@@ -1,4 +1,4 @@
-# Sermon RSS Feed Monitor
+# Sermon Note Poller
 
 Polls each church's sermon RSS feed on a schedule, records every newly-published
 sermon to a per-church JSON file in [`data/`](./data), and emails about it when
