@@ -50,11 +50,11 @@ Do not edit between the markers by hand; it will be overwritten.
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
 | hillside | 508 | A Parting Conversation | 2026-09-06 |
-| lakepointe | 135 | What to Remember When Life Feels Out of Control | 2026-09-06 |
+| lakepointe | 136 | How To Consecrate Your Life For God’s Purposes | 2026-09-13 |
 | menlo | 144 | The Vapor (Sacrifical Developer) | 2026-09-06 |
 | north_point | 99 | Functional Faith | 2026-09-06 |
 | pbc | 397 | No Middle Ground | 2026-09-06 |
 | westgate | 104 | Division Over Jesus | 2026-08-30 |
 
-**Total sermons across all churches: 1387**
+**Total sermons across all churches: 1388**
 <!-- STATS:END -->
