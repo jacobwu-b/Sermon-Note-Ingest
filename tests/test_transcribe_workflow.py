@@ -43,3 +43,10 @@ def test_transcribe_workflow_caches_whisper_model_weights():
 def test_transcribe_workflow_does_not_share_poll_yml_s_concurrency_group():
     # Transcription and polling must never block each other.
     assert "group: transcribe-sermons" in workflow_text()
+
+
+def test_transcribe_workflow_wires_hf_token_secret():
+    # HF_TOKEN authenticates faster-whisper's Hugging Face Hub model download
+    # (read by huggingface_hub itself, not this repo's code) — the secret already
+    # exists in GitHub but must be passed into the job's environment to take effect.
+    assert "HF_TOKEN: ${{ secrets.HF_TOKEN }}" in workflow_text()

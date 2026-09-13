@@ -40,6 +40,10 @@ env:
   WHISPER_COMPUTE_TYPE: ${{ vars.WHISPER_COMPUTE_TYPE }}
   CONTENT_REPO: ${{ vars.CONTENT_REPO }}
   CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+  # Read directly by huggingface_hub (faster-whisper's model download), not by our own
+  # code — authenticates the weight download so it isn't subject to Hugging Face's
+  # anonymous rate limit.
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
 jobs:
   transcribe:
