@@ -53,3 +53,47 @@ def test_load_notify_config_raises_when_any_secret_missing(monkeypatch):
     monkeypatch.setenv("RESEND_API_KEY", "re_123")
     with pytest.raises(config.ConfigError, match="NOTIFY_EMAIL_FROM"):
         config.load_notify_config()
+
+
+def test_load_whisper_config_defaults_to_small_and_int8(monkeypatch):
+    monkeypatch.delenv("WHISPER_MODEL", raising=False)
+    monkeypatch.delenv("WHISPER_COMPUTE_TYPE", raising=False)
+    assert config.load_whisper_config() == config.WhisperConfig(model="small", compute_type="int8")
+
+
+def test_load_whisper_config_reads_overrides(monkeypatch):
+    monkeypatch.setenv("WHISPER_MODEL", "medium")
+    monkeypatch.setenv("WHISPER_COMPUTE_TYPE", "float32")
+    assert config.load_whisper_config() == config.WhisperConfig(model="medium", compute_type="float32")
+
+
+def test_load_content_repo_config_reads_all_three(monkeypatch):
+    monkeypatch.setenv("CONTENT_REPO", "owner/sermon-note-content")
+    monkeypatch.setenv("CONTENT_REPO_TOKEN", "ghp_123")
+    monkeypatch.setenv("CONTENT_REPO_BRANCH", "prod")
+    cfg = config.load_content_repo_config()
+    assert cfg == config.ContentRepoConfig(repo="owner/sermon-note-content", token="ghp_123", branch="prod")
+
+
+def test_load_content_repo_config_defaults_branch_to_main(monkeypatch):
+    monkeypatch.setenv("CONTENT_REPO", "owner/sermon-note-content")
+    monkeypatch.setenv("CONTENT_REPO_TOKEN", "ghp_123")
+    monkeypatch.delenv("CONTENT_REPO_BRANCH", raising=False)
+    assert config.load_content_repo_config().branch == "main"
+
+
+def test_load_content_repo_config_raises_when_required_vars_missing(monkeypatch):
+    monkeypatch.delenv("CONTENT_REPO", raising=False)
+    monkeypatch.delenv("CONTENT_REPO_TOKEN", raising=False)
+    with pytest.raises(config.ConfigError, match="CONTENT_REPO"):
+        config.load_content_repo_config()
+
+
+def test_load_log_level_defaults_to_info(monkeypatch):
+    monkeypatch.delenv("LOG_LEVEL", raising=False)
+    assert config.load_log_level() == "INFO"
+
+
+def test_load_log_level_reads_override(monkeypatch):
+    monkeypatch.setenv("LOG_LEVEL", "debug")
+    assert config.load_log_level() == "debug"

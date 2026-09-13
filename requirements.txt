@@ -1,1 +1,2 @@
 feedparser==6.0.14
+faster-whisper==1.2.1

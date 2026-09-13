@@ -1,0 +1,114 @@
+# Transcribes pending sermons with faster-whisper and pushes each transcript
+# directly to the private Sermon-Note-Content repo, then commits this repo's own
+# ledger update (transcription_status/transcript_hash/content_path) to data/.
+#
+# Runs independently of poll.yml: Whisper transcription cannot fit inside that
+# job's 4-minute budget. --limit bounds each run's cost (spec 0003, ADR-0004);
+# raise the schedule's frequency or workflow_dispatch's limit to work down a
+# backlog faster, rather than removing the cap.
+
+name: Transcribe sermons
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Maximum sermons to transcribe this run, across all selected churches."
+        type: number
+        default: 5
+      church:
+        description: "Only transcribe this church (its CHURCHES key). Leave blank for every enabled church."
+        type: string
+        default: ""
+
+# Separate from poll.yml's group: transcription and polling never need to block
+# each other. Both still write data/ — see the push step below for how that race
+# is handled.
+concurrency:
+  group: transcribe-sermons
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  CHURCHES: ${{ vars.CHURCHES }}
+  LOG_LEVEL: ${{ vars.LOG_LEVEL }}
+  WHISPER_MODEL: ${{ vars.WHISPER_MODEL }}
+  WHISPER_COMPUTE_TYPE: ${{ vars.WHISPER_COMPUTE_TYPE }}
+  CONTENT_REPO: ${{ vars.CONTENT_REPO }}
+  CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+
+jobs:
+  transcribe:
+    name: Transcribe
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      # Deploy key authenticates this repo's own ledger push, same as poll.yml.
+      # It is unrelated to CONTENT_REPO_TOKEN, which authenticates the separate
+      # push to Sermon-Note-Content inside the transcriber itself.
+      - uses: actions/checkout@v7
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # faster-whisper downloads model weights from the Hugging Face hub on first
+      # use; caching them here means a scheduled run doesn't re-fetch on every
+      # invocation (§13 unattended cost).
+      - name: Cache Whisper model weights
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: whisper-model-${{ vars.WHISPER_MODEL || 'small' }}
+
+      - name: Transcribe
+        run: |
+          args=(--limit "${{ inputs.limit || 5 }}")
+          if [ -n "${{ inputs.church }}" ]; then
+            args+=(--church "${{ inputs.church }}")
+          fi
+          echo "TRANSCRIBE_ARGS=${args[*]}" >> "$GITHUB_ENV"
+          python -m poller.transcriber "${args[@]}"
+
+      - name: Push ledger update
+        # Always runs, even if Transcribe exited non-zero (e.g. one sermon's model
+        # call failed terminally): transcribe_church() writes each church's ledger
+        # to disk before returning, so one failure must not discard every other
+        # church's progress. poll.yml also commits data/ on its own schedule, so a
+        # rejected push here means main moved since checkout — rather than a
+        # textual git rebase on a file both jobs rewrite whole (likely to
+        # conflict), reset to the fresh main and re-run the transcriber: it is
+        # idempotent (a sermon already "done" or already landed in Content is
+        # never re-marked or re-pushed with new content), so redoing the batch on
+        # top of latest main is always safe, just occasionally wasted CPU time.
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git add data/
+            if git diff --cached --quiet; then
+              echo "No transcription progress to record this run."
+              exit 0
+            fi
+            git commit -m "chore(data): record transcription progress [skip ci]"
+            if git push; then
+              exit 0
+            fi
+            echo "push rejected (attempt $attempt/3); re-syncing with main and retrying"
+            git fetch origin main
+            git reset --hard origin/main
+            python -m poller.transcriber $TRANSCRIBE_ARGS || true
+          done
+          echo "::error::failed to push ledger update after 3 attempts"
+          exit 1
