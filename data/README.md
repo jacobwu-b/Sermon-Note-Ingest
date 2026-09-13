@@ -49,12 +49,12 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| hillside | 508 | A Parting Conversation | 2026-09-06 |
+| hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 136 | How To Consecrate Your Life For God’s Purposes | 2026-09-13 |
 | menlo | 145 | The Two-Sided Coin | 2026-09-13 |
 | north_point | 100 | Mind Games, Part 1: Seeing Clearly | 2026-09-13 |
 | pbc | 397 | No Middle Ground | 2026-09-06 |
 | westgate | 104 | Division Over Jesus | 2026-08-30 |
 
-**Total sermons across all churches: 1390**
+**Total sermons across all churches: 1391**
 <!-- STATS:END -->
