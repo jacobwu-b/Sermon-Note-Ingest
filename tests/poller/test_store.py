@@ -101,3 +101,45 @@ def test_save_sorts_records_missing_published_on_after_every_dated_record(tmp_pa
     }
     store.save("menlo", records)
     assert list(store.load("menlo").keys()) == ["dated", "undated_a", "undated_b"]
+
+
+def test_item_to_record_defaults_transcription_fields_to_absent():
+    record = store.item_to_record(_item(), first_seen_at="now", published_at=None)
+    assert record["transcription_status"] is None
+    assert record["transcribed_at"] is None
+    assert record["transcript_hash"] is None
+    assert record["content_path"] is None
+
+
+def test_mark_transcribed_sets_exactly_its_own_fields():
+    record = store.item_to_record(_item(), first_seen_at="now", published_at=None)
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
+        transcript_hash="deadbeef",
+        transcribed_at="2026-09-06T12:00:00+00:00",
+    )
+    assert record["transcription_status"] == "done"
+    assert record["content_path"] == "transcripts/menlo/2026-09-06_hear-and-do_g1.txt"
+    assert record["transcript_hash"] == "deadbeef"
+    assert record["transcribed_at"] == "2026-09-06T12:00:00+00:00"
+
+
+def test_mark_transcription_failed_sets_only_the_status():
+    record = store.item_to_record(_item(), first_seen_at="now", published_at=None)
+    store.mark_transcription_failed(record)
+    assert record["transcription_status"] == "failed"
+    assert record["content_path"] is None
+    assert record["transcript_hash"] is None
+
+
+def test_an_old_record_without_transcription_fields_round_trips_unchanged(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    old_record = _record("g1", published_on="2026-01-04")
+    for key in ("transcription_status", "transcribed_at", "transcript_hash", "content_path"):
+        del old_record[key]
+
+    store.save("menlo", {"g1": old_record})
+    loaded = store.load("menlo")
+    assert "transcription_status" not in loaded["g1"]
+    assert loaded["g1"]["title"] == "Hear and Do"

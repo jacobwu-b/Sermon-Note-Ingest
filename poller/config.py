@@ -82,3 +82,45 @@ def load_notify_config() -> NotifyConfig:
         to_addr=os.environ["NOTIFY_EMAIL_TO"],
         api_key=os.environ["RESEND_API_KEY"],
     )
+
+
+@dataclass(frozen=True)
+class WhisperConfig:
+    """The faster-whisper accuracy/runtime knobs, read once at startup."""
+
+    model: str
+    compute_type: str
+
+
+def load_whisper_config() -> WhisperConfig:
+    """Read ``WHISPER_MODEL``/``WHISPER_COMPUTE_TYPE``, defaulting to ``small``/``int8``."""
+    return WhisperConfig(
+        model=os.environ.get("WHISPER_MODEL") or "small",
+        compute_type=os.environ.get("WHISPER_COMPUTE_TYPE") or "int8",
+    )
+
+
+@dataclass(frozen=True)
+class ContentRepoConfig:
+    """Where and how to push transcripts to the private Sermon-Note-Content repo."""
+
+    repo: str
+    token: str
+    branch: str
+
+
+def load_content_repo_config() -> ContentRepoConfig:
+    """Read ``CONTENT_REPO``/``CONTENT_REPO_TOKEN`` (required) and ``CONTENT_REPO_BRANCH``
+    (default ``main``), raising if either required var is missing.
+    """
+    repo = os.environ.get("CONTENT_REPO", "")
+    token = os.environ.get("CONTENT_REPO_TOKEN", "")
+    missing = [name for name, value in (("CONTENT_REPO", repo), ("CONTENT_REPO_TOKEN", token)) if not value]
+    if missing:
+        raise ConfigError(f"missing required env var(s) for content repo push: {', '.join(missing)}")
+    return ContentRepoConfig(repo=repo, token=token, branch=os.environ.get("CONTENT_REPO_BRANCH") or "main")
+
+
+def load_log_level(default: str = "INFO") -> str:
+    """Return ``LOG_LEVEL``, defaulting to ``INFO`` — the sole place this repo reads that var."""
+    return os.environ.get("LOG_LEVEL") or default

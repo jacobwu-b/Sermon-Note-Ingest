@@ -101,7 +101,13 @@ The ruleset must enforce, **for everyone except the documented bypass**:
       - Live: `DeployKey` / `always`, matching the write-access deploy key
         titled `poll-workflow-push` (repo Settings → Deploy keys), whose
         private half is the `DEPLOY_KEY` secret `.github/workflows/poll.yml`
+        (and `.github/workflows/transcribe.yml`, for its own ledger commit)
         uses to push `data/` updates straight to `main`.
+      - **Not a bypass-list concern:** `CONTENT_REPO_TOKEN`, used by
+        `transcribe.yml` to push transcripts to the private Sermon-Note-Content
+        repo, authenticates against *that* repo, not this one — it needs no
+        entry here. It does need `contents:write` scope on Sermon-Note-Content,
+        confirmed before the first real transcription run.
   - **A credential used by automation is two settings, and they drift apart
     silently:** the bypass or permission entry, and the secret itself. A key on
     the bypass list that no workflow holds cannot sign a push; a key the
