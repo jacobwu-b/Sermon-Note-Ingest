@@ -96,4 +96,4 @@ def test_load_log_level_defaults_to_info(monkeypatch):
 
 def test_load_log_level_reads_override(monkeypatch):
     monkeypatch.setenv("LOG_LEVEL", "debug")
-    assert config.load_log_level() == "debug"
+    assert config.load_log_level() == "DEBUG"

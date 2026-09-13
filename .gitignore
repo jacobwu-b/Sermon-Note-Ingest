@@ -55,3 +55,6 @@ vendor/
 /evals/
 /scripts/
 /.claude/
+
+# Local reference material — kept on disk, never committed.
+/sermon_notes/
