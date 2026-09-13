@@ -122,5 +122,6 @@ def load_content_repo_config() -> ContentRepoConfig:
 
 
 def load_log_level(default: str = "INFO") -> str:
-    """Return ``LOG_LEVEL``, defaulting to ``INFO`` — the sole place this repo reads that var."""
-    return os.environ.get("LOG_LEVEL") or default
+    """Return ``LOG_LEVEL`` capitalized, defaulting to ``INFO`` — the sole place this repo reads that var."""
+    value = os.environ.get("LOG_LEVEL")
+    return value.upper() if value else default
