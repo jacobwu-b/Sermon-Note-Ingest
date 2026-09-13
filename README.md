@@ -1,4 +1,4 @@
-# Sermon Note Poller
+# Sermon Note Ingest
 
 Polls each church's sermon RSS feed on a schedule, records every newly-published
 sermon to a per-church JSON file in [`data/`](./data), and emails about it when
