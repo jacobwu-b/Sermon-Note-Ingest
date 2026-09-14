@@ -173,7 +173,11 @@
     "raw_title": "Take Up Your Cross - Luke",
     "series": "Luke",
     "speaker": null,
-    "title": "Take Up Your Cross"
+    "title": "Take Up Your Cross",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-07-05_take-up-your-cross_https_pbc.org_enmse_mid_4680.txt",
+    "transcript_hash": "5bab2fa4e0c9f48a229e0d771c0ac0dd204bca47537f1660f05594c0792845aa",
+    "transcribed_at": "2026-09-14T07:06:27.008975+00:00"
   },
   "pbc-archive:Main_Service/2026/06/28/Sermon Audio 2026-06-28.mp3": {
     "guid": "pbc-archive:Main_Service/2026/06/28/Sermon Audio 2026-06-28.mp3",
