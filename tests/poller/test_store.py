@@ -133,6 +133,61 @@ def test_mark_transcription_failed_sets_only_the_status():
     assert record["transcript_hash"] is None
 
 
+def test_refresh_record_updates_feed_sourced_fields():
+    record = store.item_to_record(_item(), first_seen_at="now", published_at=None)
+    rotated = _item(published_on="2026-09-06").__class__(
+        **{
+            **_item(published_on="2026-09-06").__dict__,
+            "audio_url": "https://cdn.example.org/rotated.mp3",
+            "title": "Hear and Do (rebroadcast)",
+        }
+    )
+    store.refresh_record(record, rotated)
+    assert record["audio_url"] == "https://cdn.example.org/rotated.mp3"
+    assert record["title"] == "Hear and Do (rebroadcast)"
+
+
+def test_refresh_record_never_touches_first_seen_at_published_at_or_progress_fields():
+    record = store.item_to_record(
+        _item(), first_seen_at="2026-01-01T00:00:00+00:00", published_at="2026-01-01T00:00:00+00:00"
+    )
+    record["notified_at"] = "2026-01-02T00:00:00+00:00"
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/x.txt",
+        transcript_hash="abc",
+        transcribed_at="2026-01-03T00:00:00+00:00",
+    )
+
+    store.refresh_record(record, _item(published_on="2026-09-06"))
+
+    assert record["first_seen_at"] == "2026-01-01T00:00:00+00:00"
+    assert record["published_at"] == "2026-01-01T00:00:00+00:00"
+    assert record["notified_at"] == "2026-01-02T00:00:00+00:00"
+    assert record["transcript_hash"] == "abc"
+    assert record["content_path"] == "transcripts/x.txt"
+    assert record["transcribed_at"] == "2026-01-03T00:00:00+00:00"
+
+
+def test_refresh_record_freezes_title_once_transcription_is_done_but_not_other_fields():
+    record = store.item_to_record(_item(), first_seen_at="now", published_at=None)
+    store.mark_transcribed(
+        record, content_path="transcripts/x.txt", transcript_hash="abc", transcribed_at="now"
+    )
+
+    renamed_and_rotated = _item(published_on="2026-09-06").__class__(
+        **{
+            **_item(published_on="2026-09-06").__dict__,
+            "title": "A totally different title",
+            "audio_url": "https://cdn.example.org/rotated.mp3",
+        }
+    )
+    store.refresh_record(record, renamed_and_rotated)
+
+    assert record["title"] == "Hear and Do"  # frozen once done
+    assert record["audio_url"] == "https://cdn.example.org/rotated.mp3"  # still refreshes
+
+
 def test_an_old_record_without_transcription_fields_round_trips_unchanged(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     old_record = _record("g1", published_on="2026-01-04")
