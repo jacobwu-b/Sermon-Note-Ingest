@@ -1,4 +1,6 @@
 import hashlib
+import sys
+import types
 
 import pytest
 
@@ -85,3 +87,24 @@ def test_transcribe_audio_succeeds_on_a_later_attempt(tmp_path):
     )
     assert text == "recovered transcript"
     assert len(calls) == 2
+
+
+def test_get_model_passes_cpu_threads_from_config(monkeypatch):
+    monkeypatch.setenv("WHISPER_MODEL", "small")
+    monkeypatch.setenv("WHISPER_COMPUTE_TYPE", "int8")
+    monkeypatch.setenv("WHISPER_CPU_THREADS", "3")
+    monkeypatch.setattr(transcribe, "_model", None)
+
+    calls = []
+
+    class FakeWhisperModel:
+        def __init__(self, model_size_or_path, **kwargs):
+            calls.append((model_size_or_path, kwargs))
+
+    fake_module = types.ModuleType("faster_whisper")
+    fake_module.WhisperModel = FakeWhisperModel
+    monkeypatch.setitem(sys.modules, "faster_whisper", fake_module)
+
+    transcribe._get_model()
+
+    assert calls == [("small", {"device": "cpu", "compute_type": "int8", "cpu_threads": 3})]

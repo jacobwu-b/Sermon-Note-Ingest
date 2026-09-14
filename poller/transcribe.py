@@ -50,7 +50,12 @@ def _get_model() -> Any:
         from faster_whisper import WhisperModel
 
         whisper_cfg = config.load_whisper_config()
-        _model = WhisperModel(whisper_cfg.model, device="cpu", compute_type=whisper_cfg.compute_type)
+        _model = WhisperModel(
+            whisper_cfg.model,
+            device="cpu",
+            compute_type=whisper_cfg.compute_type,
+            cpu_threads=whisper_cfg.cpu_threads,
+        )
     return _model
 
 
