@@ -413,7 +413,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/04/03/Good%20Friday%20Service%202026%20Audio.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-04-03_untitled_pbc-archive_Main_Service_2026_04_03_Good_Friday_Service_2026_Audio.mp3.txt",
+    "transcript_hash": "a58a2f654880d2c5a1fa32dbb4e7312870ad3a1419624e6455f561c9ec5e4022",
+    "transcribed_at": "2026-09-14T22:19:57.102159+00:00"
   },
   "pbc-archive:Main_Service/2026/03/29/Sermon Audio 2026-03-29.mp3": {
     "guid": "pbc-archive:Main_Service/2026/03/29/Sermon Audio 2026-03-29.mp3",
