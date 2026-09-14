@@ -11,7 +11,11 @@
     "raw_title": "No Middle Ground - Luke",
     "series": "Luke",
     "speaker": "Dan Westman",
-    "title": "No Middle Ground"
+    "title": "No Middle Ground",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-09-06_no-middle-ground_https_pbc.org_enmse_mid_4690.txt",
+    "transcript_hash": "fba2b3204aaab8e43bb9c1fbce84325f01a72c3586bf37add95fd2bfe23a0923",
+    "transcribed_at": "2026-09-14T05:50:37.371357+00:00"
   },
   "https://pbc.org?enmse_mid=4689": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/30/2026-08-30+Sermon+Audio.mp3",
