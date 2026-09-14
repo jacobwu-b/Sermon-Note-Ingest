@@ -39,7 +39,11 @@
     "raw_title": "One Necessary Thing - Luke",
     "series": "Luke",
     "speaker": "Scott Grant",
-    "title": "One Necessary Thing"
+    "title": "One Necessary Thing",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-08-23_one-necessary-thing_https_pbc.org_enmse_mid_4686.txt",
+    "transcript_hash": "e84b56474bd502b71cdafc354ba9c49083c77528feb85f4eec67b5cab5866dc0",
+    "transcribed_at": "2026-09-14T05:39:07.086669+00:00"
   },
   "https://pbc.org?enmse_mid=4687": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/16/Sermon+Audio+2026-08-16.mp3",
