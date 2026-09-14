@@ -58,13 +58,19 @@ def test_load_notify_config_raises_when_any_secret_missing(monkeypatch):
 def test_load_whisper_config_defaults_to_small_and_int8(monkeypatch):
     monkeypatch.delenv("WHISPER_MODEL", raising=False)
     monkeypatch.delenv("WHISPER_COMPUTE_TYPE", raising=False)
-    assert config.load_whisper_config() == config.WhisperConfig(model="small", compute_type="int8")
+    monkeypatch.delenv("WHISPER_CPU_THREADS", raising=False)
+    assert config.load_whisper_config() == config.WhisperConfig(
+        model="small", compute_type="int8", cpu_threads=0
+    )
 
 
 def test_load_whisper_config_reads_overrides(monkeypatch):
     monkeypatch.setenv("WHISPER_MODEL", "medium")
     monkeypatch.setenv("WHISPER_COMPUTE_TYPE", "float32")
-    assert config.load_whisper_config() == config.WhisperConfig(model="medium", compute_type="float32")
+    monkeypatch.setenv("WHISPER_CPU_THREADS", "3")
+    assert config.load_whisper_config() == config.WhisperConfig(
+        model="medium", compute_type="float32", cpu_threads=3
+    )
 
 
 def test_load_content_repo_config_reads_all_three(monkeypatch):

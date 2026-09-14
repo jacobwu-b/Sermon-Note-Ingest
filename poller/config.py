@@ -90,13 +90,22 @@ class WhisperConfig:
 
     model: str
     compute_type: str
+    cpu_threads: int
 
 
 def load_whisper_config() -> WhisperConfig:
-    """Read ``WHISPER_MODEL``/``WHISPER_COMPUTE_TYPE``, defaulting to ``small``/``int8``."""
+    """Read ``WHISPER_MODEL``/``WHISPER_COMPUTE_TYPE``/``WHISPER_CPU_THREADS``.
+
+    Defaults: ``small``/``int8``/``0`` — ``0`` tells faster-whisper to pick its own
+    thread count (every core it can see). A single-run GitHub Actions job never needs
+    to override this; a local run fanning out several parallel shards (scripts/
+    transcribe_local.py) sets it per-shard so shards divide cores instead of each
+    claiming every core faster-whisper can see.
+    """
     return WhisperConfig(
         model=os.environ.get("WHISPER_MODEL") or "small",
         compute_type=os.environ.get("WHISPER_COMPUTE_TYPE") or "int8",
+        cpu_threads=int(os.environ.get("WHISPER_CPU_THREADS") or "0"),
     )
 
 
