@@ -11,7 +11,11 @@
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/975EE20996fED783F8741C8cB0A1/media/58480dC71487BcBf118632D7EFA5.mp3?feedId=1968826fF8",
     "blurb": "Some of the things we believe most deeply about ourselves and others may not be as true as they feel.",
     "first_seen_at": "2026-09-13T18:12:14.479115+00:00",
-    "notified_at": null
+    "notified_at": null,
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2026-09-13_mind-games-part-1-seeing-clearly_north_point_975EE20996fED783F8741C8cB0A1.txt",
+    "transcript_hash": "d5608f9c6d5b7c3268feb2f4aac106789aa850f5590323674a33afa9c9f1162a",
+    "transcribed_at": "2026-09-14T07:07:00.799289+00:00"
   },
   "north_point:34eFAA65D2F1285a9d5E8A4c0a43": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/34eFAA65D2F1285a9d5E8A4c0a43/media/4ef6FB14281884B8d976DB77Cf53.mp3?feedId=1968826fF8",
