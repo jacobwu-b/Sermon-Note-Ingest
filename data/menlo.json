@@ -349,7 +349,11 @@
     "raw_title": "Digital Thorns | Joey Odom",
     "series": null,
     "speaker": "Joey Odom",
-    "title": "Digital Thorns"
+    "title": "Digital Thorns",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-05-03_digital-thorns_menlochurchvideo.podbean.com_bd1c7882-0414-31b4-9d25-ae942847f779.txt",
+    "transcript_hash": "464a16bf65dc7c6e03a8d08f4c57d0322f3f0ba747e9088d921b01df587b29a7",
+    "transcribed_at": "2026-09-14T22:58:28.084242+00:00"
   },
   "menlochurchvideo.podbean.com/2d144bf5-f873-37e0-ac65-98da9dee1013": {
     "audio_url": "https://mcdn.podbean.com/mf/web/vipr8ugm6kgcpgtu/Sermon_2026-04-26_PodcastAudio.mp3",
