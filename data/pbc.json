@@ -137,7 +137,11 @@
     "raw_title": "Down from the Mountain - Luke",
     "series": "Luke",
     "speaker": null,
-    "title": "Down from the Mountain"
+    "title": "Down from the Mountain",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-07-19_down-from-the-mountain_https_pbc.org_enmse_mid_4682.txt",
+    "transcript_hash": "838529b44fff850c5fd2cabb05ab15d353cf0587cf6d22feae51c98b04493146",
+    "transcribed_at": "2026-09-14T06:58:40.566222+00:00"
   },
   "https://pbc.org?enmse_mid=4681": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/12/Sermon+Audio+2026-07-12.mp3",
