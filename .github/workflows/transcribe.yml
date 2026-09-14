@@ -89,7 +89,10 @@ jobs:
     name: Transcribe (shard ${{ matrix.shard }})
     needs: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    # No timeout-minutes: large-v3 run length varies enough that a fixed cap keeps
+    # cutting runs off before they finish. Public repo — GitHub-hosted runner
+    # minutes are unmetered, so the usual §13 cost-ceiling rationale doesn't apply;
+    # GitHub's own default job cap (6h) still bounds a truly stuck runner.
     # One shard failing (a crashed runner, a terminal model error) must not cancel
     # the others — each is an independent slice of the backlog, per ADR-0005.
     strategy:
