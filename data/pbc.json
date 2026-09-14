@@ -245,7 +245,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/06/07/Sermon%20Audio%202026-06-07.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-06-07_untitled_pbc-archive_Main_Service_2026_06_07_Sermon_Audio_2026-06-07.mp3.txt",
+    "transcript_hash": "7d469371d9b7b8199debf4a1131befa672cc8763a6c8dd14a20e4a809f2d0202",
+    "transcribed_at": "2026-09-14T13:51:30.697483+00:00"
   },
   "pbc-archive:Main_Service/2026/05/31/Sermon Audio 2026-05-31.mp3": {
     "guid": "pbc-archive:Main_Service/2026/05/31/Sermon Audio 2026-05-31.mp3",
