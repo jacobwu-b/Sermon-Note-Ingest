@@ -57,7 +57,11 @@
     "raw_title": "More Than Obedience - Luke",
     "series": "Luke",
     "speaker": null,
-    "title": "More Than Obedience"
+    "title": "More Than Obedience",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-08-16_more-than-obedience_https_pbc.org_enmse_mid_4687.txt",
+    "transcript_hash": "1ac865c0473d666087b252f7c39ab49b02025613cfc5b1dfc7ea4967e9ff6af4",
+    "transcribed_at": "2026-09-14T05:39:09.420779+00:00"
   },
   "https://pbc.org?enmse_mid=4685": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/09/Sermon+Audio+2026-08-09.mp3",
