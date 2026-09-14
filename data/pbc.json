@@ -83,7 +83,11 @@
     "raw_title": "The Joy of the Mission - Luke",
     "series": "Luke",
     "speaker": null,
-    "title": "The Joy of the Mission"
+    "title": "The Joy of the Mission",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-08-09_the-joy-of-the-mission_https_pbc.org_enmse_mid_4685.txt",
+    "transcript_hash": "79492b22920748fb6bd79e7f56ccbd3f93d852a3f7370b0ae633927973f782df",
+    "transcribed_at": "2026-09-14T06:00:24.581352+00:00"
   },
   "https://pbc.org?enmse_mid=4684": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/02/Sermon+Audio+2026-08-02.mp3",
