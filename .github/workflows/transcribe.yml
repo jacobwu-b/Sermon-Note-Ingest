@@ -148,14 +148,19 @@ jobs:
         # call failed terminally): transcribe_church() writes each church's ledger
         # to disk before returning, so one failure must not discard every other
         # church's progress. poll.yml also commits data/ on its own schedule, and
-        # every other shard in this same matrix does too — rather than a textual
-        # git rebase on a file every writer rewrites whole (likely to conflict),
-        # reset to the fresh main and re-run this shard's transcriber invocation:
-        # it is idempotent (a sermon already "done" or already landed in Content is
-        # never re-marked or re-pushed with new content), so redoing this shard's
-        # batch on top of latest main is always safe, just occasionally wasted CPU
-        # time. More shards means more concurrent writers, so the retry budget
-        # scales with shard count (ADR-0005) rather than staying fixed at 3.
+        # every other shard in this same matrix does too, so a rejected push here
+        # is routine, not exceptional — a Whisper run can take tens of minutes,
+        # long enough that at least one other writer almost always lands first.
+        # On rejection, rebase this shard's already-committed ledger update onto
+        # the fresh main rather than discarding it: the other writers' edits are
+        # almost always different records in the same file, so this is a clean
+        # 3-way merge, not a real conflict. Only a genuine conflict (two shards'
+        # updates landing on the very same record) falls back to redoing this
+        # shard's batch from scratch — the previously idempotent behavior — since
+        # a sermon already "done" or already landed in Content is never re-marked
+        # or re-pushed with new content. More shards means more concurrent
+        # writers, so the retry budget scales with shard count (ADR-0005) rather
+        # than staying fixed at 3.
         if: always()
         run: |
           git config user.name "github-actions[bot]"
@@ -165,20 +170,31 @@ jobs:
           if [ "$attempts" -lt 3 ]; then
             attempts=3
           fi
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No transcription progress to record this run."
+            exit 0
+          fi
+          git commit -m "chore(data): record transcription progress [skip ci]"
           for attempt in $(seq 1 "$attempts"); do
-            git add data/
-            if git diff --cached --quiet; then
-              echo "No transcription progress to record this run."
-              exit 0
-            fi
-            git commit -m "chore(data): record transcription progress [skip ci]"
             if git push; then
               exit 0
             fi
-            echo "push rejected (attempt $attempt/$attempts); re-syncing with main and retrying"
+            echo "push rejected (attempt $attempt/$attempts); rebasing onto latest main and retrying"
             git fetch origin main
+            if git rebase origin/main; then
+              continue
+            fi
+            echo "rebase conflicted; redoing this shard's batch on top of latest main"
+            git rebase --abort
             git reset --hard origin/main
             python -m poller.transcriber $TRANSCRIBE_ARGS || true
+            git add data/
+            if git diff --cached --quiet; then
+              echo "No transcription progress to record after redo; nothing left to push."
+              exit 0
+            fi
+            git commit -m "chore(data): record transcription progress [skip ci]"
           done
           echo "::error::failed to push ledger update after $attempts attempts"
           exit 1
