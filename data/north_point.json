@@ -119,7 +119,11 @@
     "raw_title": "None of My Business? // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "None of My Business?"
+    "title": "None of My Business?",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2026-08-02_none-of-my-business_north_point_a92Ed6A1EA4C755A82007D865069.txt",
+    "transcript_hash": "0075288d5339cf8534d272d4ca58dc5b4bc07e4dfb8aeb67410da9bb21fc4dc0",
+    "transcribed_at": "2026-09-14T14:01:39.101751+00:00"
   },
   "north_point:41e8DDAD70988621a8B92A747bA3": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/41e8DDAD70988621a8B92A747bA3/media/49677Fa45e7F084B84F1f4BF99f4.mp3?feedId=1968826fF8",
