@@ -55,6 +55,36 @@ def test_poll_church_stores_new_items_and_skips_when_none_are_new(tmp_path, monk
     assert store.load("fake")["g1"]["first_seen_at"] == first_seen
 
 
+def test_poll_church_refreshes_a_rotated_audio_url_on_an_existing_guid(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = False
+
+    assert runner.poll_church("fake", _church(notify_flag=False), backfill=False) is True
+    assert store.load("fake")["g1"]["audio_url"] == "https://example.org/ep.mp3"
+
+    rotated = _item("g1").__class__(
+        **{**_item("g1").__dict__, "audio_url": "https://cdn.example.org/rotated.mp3"}
+    )
+    _FakeAdapter.items = [rotated]
+    assert runner.poll_church("fake", _church(notify_flag=False), backfill=False) is True
+    assert store.load("fake")["g1"]["audio_url"] == "https://cdn.example.org/rotated.mp3"
+
+
+def test_poll_church_saves_a_refresh_even_when_nothing_new_is_discovered(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = False
+    runner.poll_church("fake", _church(notify_flag=False), backfill=False)
+
+    renamed = _item("g1").__class__(**{**_item("g1").__dict__, "title": "A new title"})
+    _FakeAdapter.items = [renamed]
+    assert runner.poll_church("fake", _church(notify_flag=False), backfill=False) is True
+    assert store.load("fake")["g1"]["title"] == "A new title"
+
+
 def test_poll_church_defers_without_writing_when_feed_unavailable(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})

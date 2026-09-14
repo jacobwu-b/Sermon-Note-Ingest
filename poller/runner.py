@@ -24,7 +24,7 @@ logger = logging.getLogger("poller")
 
 
 def poll_church(name: str, entry: config.ChurchConfig, *, backfill: bool) -> bool:
-    """Poll one church, ledger any new sermons, and notify if configured.
+    """Poll one church, ledger any new sermons, refresh known ones, and notify if configured.
 
     Returns ``True`` on success (including "feed unavailable, deferred" — that
     is an expected, retried-next-run outcome, not a failure of this run).
@@ -43,6 +43,7 @@ def poll_church(name: str, entry: config.ChurchConfig, *, backfill: bool) -> boo
     records = store.load(name)
     retrieved_at = now()
     new_items = [item for item in result.items if item.guid not in records]
+    existing_items = [item for item in result.items if item.guid in records]
     for item in new_items:
         published_at = adapter.resolve_published_at(item)
         records[item.guid] = store.item_to_record(
@@ -50,6 +51,11 @@ def poll_church(name: str, entry: config.ChurchConfig, *, backfill: bool) -> boo
             first_seen_at=retrieved_at,
             published_at=published_at.isoformat() if published_at is not None else None,
         )
+    # Refreshes audio_url/title/etc. in place for guids the feed still lists — a feed
+    # can rotate an enclosure URL after first discovery, and a pending sermon must not
+    # be stuck retrying a URL the feed no longer serves (store.refresh_record).
+    for item in existing_items:
+        store.refresh_record(records[item.guid], item)
 
     logger.info(
         "%s: %d discovered, %d new, %d excluded",
@@ -60,6 +66,8 @@ def poll_church(name: str, entry: config.ChurchConfig, *, backfill: bool) -> boo
     )
 
     if not new_items:
+        if existing_items:
+            store.save(name, records)
         return True
 
     if backfill:
