@@ -151,7 +151,11 @@
     "raw_title": "On the Mountaintop with Jesus - Luke",
     "series": "Luke",
     "speaker": null,
-    "title": "On the Mountaintop with Jesus"
+    "title": "On the Mountaintop with Jesus",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-07-12_on-the-mountaintop-with-jesus_https_pbc.org_enmse_mid_4681.txt",
+    "transcript_hash": "544e6ccefb0ab42803e1aa32832fdf43e30a9a9b33e325d4e327a76c0fc1c54b",
+    "transcribed_at": "2026-09-14T06:55:45.398886+00:00"
   },
   "https://pbc.org?enmse_mid=4680": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/05/Sermon+Audio+2026-07-05.mp3",
