@@ -152,7 +152,7 @@ def test_transcribe_church_marks_a_terminal_model_failure(tmp_path, monkeypatch)
     assert saved["g1"]["transcription_status"] == "failed"
 
 
-def test_run_caps_total_sermons_across_churches_not_per_church(tmp_path, monkeypatch):
+def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     store.save(
         "menlo",
@@ -170,9 +170,15 @@ def test_run_caps_total_sermons_across_churches_not_per_church(tmp_path, monkeyp
         return "text", "hash"
 
     transcriber.run(
-        church_names=None, limit=3, transcribe_audio=fake_transcribe_audio, push=lambda files: None
+        church_names=None, limit=1, transcribe_audio=fake_transcribe_audio, push=lambda files: None
     )
-    assert len(transcribed) == 3
+    # limit=1 caps each church at 1, not the pair combined at 1 — a shared budget
+    # would let the first church (menlo) exhaust it and leave pbc untouched.
+    assert len(transcribed) == 2
+    assert store.load("menlo")["m1"]["transcription_status"] == "done"
+    assert store.load("menlo")["m2"]["transcription_status"] is None
+    assert store.load("pbc")["p1"]["transcription_status"] == "done"
+    assert store.load("pbc")["p2"]["transcription_status"] is None
 
 
 def test_run_is_a_noop_on_a_second_run_against_already_transcribed_records(tmp_path, monkeypatch):
@@ -304,6 +310,39 @@ def test_main_rejects_invalid_shard_arguments():
         transcriber.main(["--shard-index", "2", "--shard-count", "2"])
     with pytest.raises(SystemExit):
         transcriber.main(["--shard-index", "-1"])
+
+
+def test_count_in_scope_matches_the_number_of_sermons_run_would_process(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save(
+        "menlo",
+        {"m1": _record("m1", published_on="2026-01-01"), "m2": _record("m2", published_on="2026-01-02")},
+    )
+    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+
+    assert transcriber.count_in_scope(church_names=None, limit=1) == 2
+    assert transcriber.count_in_scope(church_names=None, limit=5) == 3
+    assert transcriber.count_in_scope(church_names=["pbc"], limit=5) == 1
+
+
+def test_count_in_scope_is_zero_when_nothing_is_pending(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"m1": _record("m1", published_on="2026-01-01")}
+    store.mark_transcribed(records["m1"], content_path="x", transcript_hash="h", transcribed_at="t")
+    store.save("menlo", records)
+
+    assert transcriber.count_in_scope(church_names=None, limit=5) == 0
+
+
+def test_main_print_shard_count_prints_the_count_and_transcribes_nothing(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
+
+    exit_code = transcriber.main(["--print-shard-count"])
+
+    assert exit_code == 0
+    assert capsys.readouterr().out.strip() == "1"
+    assert store.load("menlo")["m1"]["transcription_status"] is None
 
 
 def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):

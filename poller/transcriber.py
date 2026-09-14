@@ -1,12 +1,11 @@
 """The transcription entry point: transcribe pending sermons and push them to Content.
 
-One run works down at most ``--limit`` pending sermons, in deterministic
-(oldest-``published_on``-first) order, across the selected churches (``--church``,
-default: every enabled church) — this is also this repo's backfill tool: a large
-historical backlog is worked down by repeated bounded runs, not a special
-unbounded mode. A sermon becomes "pending" the moment it's ledgered by
-``poller.runner`` and stays pending until its ``transcription_status`` is
-``"done"`` or ``"failed"``.
+One run works down at most ``--limit`` pending sermons *per church* (``--church``,
+default: every enabled church), in deterministic (oldest-``published_on``-first)
+order — this is also this repo's backfill tool: a large historical backlog is
+worked down by repeated bounded runs, not a special unbounded mode. A sermon
+becomes "pending" the moment it's ledgered by ``poller.runner`` and stays pending
+until its ``transcription_status`` is ``"done"`` or ``"failed"``.
 
 Durability ordering (ADR-0004): every sermon transcribed in a run is pushed to
 Sermon-Note-Content in one batch, and only sermons whose push succeeds are marked
@@ -130,26 +129,46 @@ def _select_in_scope(
     """Every (church, guid) in scope for this run, in processing order, plus each
     touched church's full record set (for :func:`transcribe_church` to save back).
 
-    Order matches today's unsharded ``run()`` exactly: churches in ``selected``'s
-    order, each contributing its own oldest-``published_on``-first pending sermons
-    up to whatever of ``limit`` remains. This is the list :func:`run` shards —
-    sharding only filters it, never reorders it, so shard-count 1 reproduces this
-    order byte-for-byte.
+    Each church in ``selected`` independently contributes up to ``limit`` of its own
+    oldest-``published_on``-first pending sermons — ``limit`` is a per-church cap, not
+    a budget shared across churches (ADR-0005, amended). This is the list :func:`run`
+    shards — sharding only filters it, never reorders it, so shard-count 1 reproduces
+    this order byte-for-byte.
     """
     loaded: dict[str, dict] = {}
     ordered: list[tuple[str, str]] = []
-    remaining = limit
     for name in selected:
-        if remaining <= 0:
-            break
         records = store.load(name)
-        batch = _select_pending(records)[:remaining]
+        batch = _select_pending(records)[:limit]
         if not batch:
             continue
         loaded[name] = records
-        remaining -= len(batch)
         ordered.extend((name, guid) for guid, _record in batch)
     return loaded, ordered
+
+
+def _selected_churches(church_names: list[str] | None) -> dict[str, config.ChurchConfig]:
+    """Enabled churches, narrowed to ``church_names`` if given (default: all enabled)."""
+    churches = config.load_churches()
+    return {
+        name: entry
+        for name, entry in churches.items()
+        if entry.enabled and (church_names is None or name in church_names)
+    }
+
+
+def count_in_scope(*, church_names: list[str] | None, limit: int) -> int:
+    """Number of sermons :func:`run` would process for the same ``church_names``/``limit``.
+
+    Pure selection — no transcription, no writes. Used by ``transcribe.yml``'s plan job to
+    size the shard matrix (ADR-0005) before any shard runs, so shard count always matches the
+    actual backlog instead of being guessed at dispatch time.
+    """
+    selected = _selected_churches(church_names)
+    if not selected:
+        return 0
+    _loaded, ordered = _select_in_scope(selected, limit=limit)
+    return len(ordered)
 
 
 def run(
@@ -161,7 +180,7 @@ def run(
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
     push: PushTranscripts = content_repo.push_transcripts,
 ) -> bool:
-    """Transcribe at most ``limit`` pending sermons across the selected churches.
+    """Transcribe at most ``limit`` pending sermons per selected church.
 
     ``shard_index``/``shard_count`` (ADR-0005) narrow that same bounded selection to
     the ``shard_index``-th of ``shard_count`` disjoint pieces, by position in the
@@ -173,12 +192,7 @@ def run(
     rather than relied on as its defaults, so a caller (or a test) can replace them
     without reaching into another module's attributes.
     """
-    churches = config.load_churches()
-    selected = {
-        name: entry
-        for name, entry in churches.items()
-        if entry.enabled and (church_names is None or name in church_names)
-    }
+    selected = _selected_churches(church_names)
     if not selected:
         logger.warning("no enabled churches matched the selection; nothing to transcribe")
         return True
@@ -214,7 +228,15 @@ def main(argv: list[str] | None = None) -> int:
         "--limit",
         type=int,
         default=_DEFAULT_LIMIT,
-        help=f"Maximum sermons to transcribe this run, across all selected churches (default: {_DEFAULT_LIMIT}).",
+        help=f"Maximum sermons to transcribe this run, per selected church (default: {_DEFAULT_LIMIT}).",
+    )
+    parser.add_argument(
+        "--print-shard-count",
+        action="store_true",
+        help=(
+            "Print the number of sermons in scope for --limit/--church and exit "
+            "(no transcription, no writes). Used by transcribe.yml to size its shard matrix."
+        ),
     )
     parser.add_argument(
         "--shard-index",
@@ -233,6 +255,13 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.limit <= 0:
         parser.error("--limit must be a positive integer")
+    if args.print_shard_count:
+        # Machine-readable stdout, not a log line: transcribe.yml's plan job captures
+        # this via `$(...)` to size its shard matrix (§6 exempts a command's own
+        # designed output contract from the "no print" rule, which targets ad-hoc
+        # debug prints in place of logging).
+        print(count_in_scope(church_names=args.churches, limit=args.limit))
+        return 0
     if args.shard_count <= 0:
         parser.error("--shard-count must be a positive integer")
     if not 0 <= args.shard_index < args.shard_count:

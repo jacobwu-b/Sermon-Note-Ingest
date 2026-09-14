@@ -52,18 +52,20 @@ def test_transcribe_workflow_wires_hf_token_secret():
     assert "HF_TOKEN: ${{ secrets.HF_TOKEN }}" in workflow_text()
 
 
-def test_transcribe_workflow_accepts_a_shards_dispatch_input():
+def test_transcribe_workflow_does_not_accept_a_shards_dispatch_input():
+    # Shard count is computed from the actual backlog (ADR-0005, amended), not
+    # guessed by an operator at dispatch time.
     text = workflow_text()
-    assert "shards:" in text
-    assert "default: 1" in text
+    assert "      shards:\n" not in text  # a workflow_dispatch input, indented under `inputs:`
+    assert "inputs.shards" not in text
 
 
-def test_transcribe_workflow_computes_a_shard_matrix_from_the_shards_input():
-    # A dynamic matrix, not a static one — the shard count is only known at
-    # dispatch time (ADR-0005), so a separate job must turn it into an array the
-    # transcribe job's strategy.matrix consumes.
+def test_transcribe_workflow_computes_a_shard_matrix_from_the_actual_backlog():
+    # A dynamic matrix, not a static one — the shard count is only known once the
+    # plan job counts sermons in scope, so a separate job must turn it into an
+    # array the transcribe job's strategy.matrix consumes.
     text = workflow_text()
-    assert "inputs.shards" in text
+    assert "--print-shard-count" in text
     assert "strategy:" in text
     assert "fromJson(needs.plan.outputs.shards)" in text
     assert "fail-fast: false" in text
@@ -74,6 +76,7 @@ def test_transcribe_workflow_wires_shard_index_and_count_to_the_transcriber_cli(
     assert "--shard-index" in text
     assert "--shard-count" in text
     assert "matrix.shard" in text
+    assert "needs.plan.outputs.shard_count" in text
 
 
 def test_transcribe_workflow_scales_ledger_push_retries_with_shard_count():
@@ -82,4 +85,4 @@ def test_transcribe_workflow_scales_ledger_push_retries_with_shard_count():
     # faster as shard count grows (ADR-0005 Decision 3).
     text = workflow_text()
     assert "attempts=" in text
-    assert 'attempts="${{ inputs.shards || 1 }}"' in text
+    assert 'attempts="${{ needs.plan.outputs.shard_count }}"' in text
