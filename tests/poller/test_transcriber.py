@@ -51,14 +51,24 @@ def test_select_pending_skips_done_failed_and_unfetchable():
     assert [guid for guid, _r in pending] == ["pending"]
 
 
-def test_select_pending_orders_oldest_published_on_first():
+def test_select_pending_orders_newest_published_on_first():
     records = {
         "new": _record("new", published_on="2026-09-06"),
         "old": _record("old", published_on="2026-01-04"),
         "mid": _record("mid", published_on="2026-05-01"),
     }
     pending = transcriber._select_pending(records)
-    assert [guid for guid, _r in pending] == ["old", "mid", "new"]
+    assert [guid for guid, _r in pending] == ["new", "mid", "old"]
+
+
+def test_select_pending_sorts_undated_records_last_regardless_of_direction():
+    records = {
+        "undated": _record("undated", published_on=""),
+        "new": _record("new", published_on="2026-09-06"),
+        "old": _record("old", published_on="2026-01-04"),
+    }
+    pending = transcriber._select_pending(records)
+    assert [guid for guid, _r in pending] == ["new", "old", "undated"]
 
 
 def test_content_path_is_deterministic_for_the_same_guid():
@@ -173,12 +183,13 @@ def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkey
         church_names=None, limit=1, transcribe_audio=fake_transcribe_audio, push=lambda files: None
     )
     # limit=1 caps each church at 1, not the pair combined at 1 — a shared budget
-    # would let the first church (menlo) exhaust it and leave pbc untouched.
+    # would let the first church (menlo) exhaust it and leave pbc untouched. Each
+    # church's newest sermon (m2/p2) is the one selected, not its oldest.
     assert len(transcribed) == 2
-    assert store.load("menlo")["m1"]["transcription_status"] == "done"
-    assert store.load("menlo")["m2"]["transcription_status"] is None
-    assert store.load("pbc")["p1"]["transcription_status"] == "done"
-    assert store.load("pbc")["p2"]["transcription_status"] is None
+    assert store.load("menlo")["m2"]["transcription_status"] == "done"
+    assert store.load("menlo")["m1"]["transcription_status"] is None
+    assert store.load("pbc")["p2"]["transcription_status"] == "done"
+    assert store.load("pbc")["p1"]["transcription_status"] is None
 
 
 def test_run_is_a_noop_on_a_second_run_against_already_transcribed_records(tmp_path, monkeypatch):

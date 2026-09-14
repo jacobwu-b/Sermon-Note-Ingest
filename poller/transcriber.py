@@ -1,11 +1,13 @@
 """The transcription entry point: transcribe pending sermons and push them to Content.
 
 One run works down at most ``--limit`` pending sermons *per church* (``--church``,
-default: every enabled church), in deterministic (oldest-``published_on``-first)
-order — this is also this repo's backfill tool: a large historical backlog is
-worked down by repeated bounded runs, not a special unbounded mode. A sermon
-becomes "pending" the moment it's ledgered by ``poller.runner`` and stays pending
-until its ``transcription_status`` is ``"done"`` or ``"failed"``.
+default: every enabled church), in deterministic (newest-``published_on``-first)
+order — so the most recent sermon is always the one a small ``--limit`` (e.g. 1)
+surfaces. This is also this repo's backfill tool: a large historical backlog is
+worked down by repeated bounded runs, catching up from most-recent backward
+rather than a special unbounded mode. A sermon becomes "pending" the moment it's
+ledgered by ``poller.runner`` and stays pending until its ``transcription_status``
+is ``"done"`` or ``"failed"``.
 
 Durability ordering (ADR-0004): every sermon transcribed in a run is pushed to
 Sermon-Note-Content in one batch, and only sermons whose push succeeds are marked
@@ -56,15 +58,24 @@ def _content_path(church: str, record: dict) -> str:
 
 
 def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
-    """Records not yet transcribed or failed, with a fetchable enclosure, oldest first."""
+    """Records not yet transcribed or failed, with a fetchable enclosure, newest first.
+
+    A record missing ``published_on`` sorts last regardless of direction — it carries
+    the least scheduling information, so it's the lowest priority either way (mirrors
+    ``store._ordered_items``).
+    """
     pending = [
         (guid, record)
         for guid, record in records.items()
         if record.get("transcription_status") is None
         and net.is_fetchable_enclosure(record.get("audio_url") or "")
     ]
-    pending.sort(key=lambda kv: kv[1].get("published_on") or "9999-99-99")
-    return pending
+    dated = [(guid, record) for guid, record in pending if record.get("published_on")]
+    undated = [(guid, record) for guid, record in pending if not record.get("published_on")]
+    dated.sort(key=lambda kv: kv[0])
+    dated.sort(key=lambda kv: kv[1]["published_on"], reverse=True)
+    undated.sort(key=lambda kv: kv[0])
+    return dated + undated
 
 
 def transcribe_church(
@@ -130,7 +141,7 @@ def _select_in_scope(
     touched church's full record set (for :func:`transcribe_church` to save back).
 
     Each church in ``selected`` independently contributes up to ``limit`` of its own
-    oldest-``published_on``-first pending sermons — ``limit`` is a per-church cap, not
+    newest-``published_on``-first pending sermons — ``limit`` is a per-church cap, not
     a budget shared across churches (ADR-0005, amended). This is the list :func:`run`
     shards — sharding only filters it, never reorders it, so shard-count 1 reproduces
     this order byte-for-byte.
