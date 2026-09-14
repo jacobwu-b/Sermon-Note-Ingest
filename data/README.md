@@ -54,7 +54,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | menlo | 145 | The Two-Sided Coin | 2026-09-13 |
 | north_point | 100 | Mind Games, Part 1: Seeing Clearly | 2026-09-13 |
 | pbc | 397 | No Middle Ground | 2026-09-06 |
-| westgate | 104 | Division Over Jesus | 2026-08-30 |
+| westgate | 105 | Week 1 - A New Family | 2026-09-13 |
 
-**Total sermons across all churches: 1391**
+**Total sermons across all churches: 1392**
 <!-- STATS:END -->
