@@ -241,7 +241,11 @@
     "raw_title": "Going Offline | Glitch | Phil EuBank",
     "series": "Glitch",
     "speaker": "Phil EuBank",
-    "title": "Going Offline"
+    "title": "Going Offline",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-06-14_going-offline_menlochurchvideo.podbean.com_1ff09455-adfd-337d-9002-0e775fb28b69.txt",
+    "transcript_hash": "6a9bdccce78417dba59cbde3e3bfd9a8b983274a7b5a0c499126ec4c6275d227",
+    "transcribed_at": "2026-09-14T19:28:04.840856+00:00"
   },
   "menlochurchvideo.podbean.com/8c8e620c-f1a8-34f9-8d1d-3361df2304a1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3s7zutwwbmvuym8j/Sermon_2026-06-07_PodcastAudio.mp3",
