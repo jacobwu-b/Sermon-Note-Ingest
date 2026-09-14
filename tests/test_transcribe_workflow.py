@@ -50,3 +50,36 @@ def test_transcribe_workflow_wires_hf_token_secret():
     # (read by huggingface_hub itself, not this repo's code) — the secret already
     # exists in GitHub but must be passed into the job's environment to take effect.
     assert "HF_TOKEN: ${{ secrets.HF_TOKEN }}" in workflow_text()
+
+
+def test_transcribe_workflow_accepts_a_shards_dispatch_input():
+    text = workflow_text()
+    assert "shards:" in text
+    assert "default: 1" in text
+
+
+def test_transcribe_workflow_computes_a_shard_matrix_from_the_shards_input():
+    # A dynamic matrix, not a static one — the shard count is only known at
+    # dispatch time (ADR-0005), so a separate job must turn it into an array the
+    # transcribe job's strategy.matrix consumes.
+    text = workflow_text()
+    assert "inputs.shards" in text
+    assert "strategy:" in text
+    assert "fromJson(needs.plan.outputs.shards)" in text
+    assert "fail-fast: false" in text
+
+
+def test_transcribe_workflow_wires_shard_index_and_count_to_the_transcriber_cli():
+    text = workflow_text()
+    assert "--shard-index" in text
+    assert "--shard-count" in text
+    assert "matrix.shard" in text
+
+
+def test_transcribe_workflow_scales_ledger_push_retries_with_shard_count():
+    # More shards means more concurrent writers to data/*.json; a fixed retry
+    # budget sized for one concurrent writer (poll.yml) would run out headroom
+    # faster as shard count grows (ADR-0005 Decision 3).
+    text = workflow_text()
+    assert "attempts=" in text
+    assert 'attempts="${{ inputs.shards || 1 }}"' in text

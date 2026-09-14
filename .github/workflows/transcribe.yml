@@ -6,6 +6,13 @@
 # job's 4-minute budget. --limit bounds each run's cost (spec 0003, ADR-0004);
 # raise the schedule's frequency or workflow_dispatch's limit to work down a
 # backlog faster, rather than removing the cap.
+#
+# `shards` (ADR-0005) splits one bounded run into that many parallel matrix legs,
+# each a disjoint slice of the same selection (poller/transcriber.py
+# --shard-index/--shard-count) — for a large manual backfill only. The scheduled
+# run always uses a single shard: at the typical weekly volume, an extra shard's
+# fixed per-job setup cost (checkout, dependency install, cache restore) buys no
+# real parallelism benefit.
 
 name: Transcribe sermons
 
@@ -22,6 +29,10 @@ on:
         description: "Only transcribe this church (its CHURCHES key). Leave blank for every enabled church."
         type: string
         default: ""
+      shards:
+        description: "Split this run into this many parallel shards (backfill only; leave at 1 otherwise)."
+        type: number
+        default: 1
 
 # Separate from poll.yml's group: transcription and polling never need to block
 # each other. Both still write data/ — see the push step below for how that race
@@ -46,10 +57,45 @@ env:
   HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
 jobs:
+  # Turns the `shards` input into the matrix `transcribe` fans out over. A separate
+  # job (rather than a static matrix in transcribe.yml) because the shard count is
+  # only known at dispatch time — `schedule` runs carry no `inputs`, so this always
+  # falls back to a single shard for them.
+  plan:
+    name: Plan shards
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      shards: ${{ steps.compute.outputs.shards }}
+    steps:
+      - name: Compute shard indices
+        id: compute
+        run: |
+          count="${{ inputs.shards || 1 }}"
+          if [ "$count" -lt 1 ]; then
+            count=1
+          fi
+          shards="["
+          for ((i = 0; i < count; i++)); do
+            shards+="$i"
+            if [ "$i" -lt "$((count - 1))" ]; then
+              shards+=","
+            fi
+          done
+          shards+="]"
+          echo "shards=$shards" >> "$GITHUB_OUTPUT"
+
   transcribe:
-    name: Transcribe
+    name: Transcribe (shard ${{ matrix.shard }})
+    needs: plan
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    # One shard failing (a crashed runner, a terminal model error) must not cancel
+    # the others — each is an independent slice of the backlog, per ADR-0005.
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJson(needs.plan.outputs.shards) }}
     steps:
       # Deploy key authenticates this repo's own ledger push, same as poll.yml.
       # It is unrelated to CONTENT_REPO_TOKEN, which authenticates the separate
@@ -68,7 +114,8 @@ jobs:
 
       # faster-whisper downloads model weights from the Hugging Face hub on first
       # use; caching them here means a scheduled run doesn't re-fetch on every
-      # invocation (§13 unattended cost).
+      # invocation (§13 unattended cost). Shared across shards: a cold cache means
+      # each shard downloads once in parallel, a one-time cost, not a per-run one.
       - name: Cache Whisper model weights
         uses: actions/cache@v4
         with:
@@ -77,7 +124,7 @@ jobs:
 
       - name: Transcribe
         run: |
-          args=(--limit "${{ inputs.limit || 5 }}")
+          args=(--limit "${{ inputs.limit || 5 }}" --shard-index "${{ matrix.shard }}" --shard-count "${{ inputs.shards || 1 }}")
           if [ -n "${{ inputs.church }}" ]; then
             args+=(--church "${{ inputs.church }}")
           fi
@@ -88,18 +135,25 @@ jobs:
         # Always runs, even if Transcribe exited non-zero (e.g. one sermon's model
         # call failed terminally): transcribe_church() writes each church's ledger
         # to disk before returning, so one failure must not discard every other
-        # church's progress. poll.yml also commits data/ on its own schedule, so a
-        # rejected push here means main moved since checkout — rather than a
-        # textual git rebase on a file both jobs rewrite whole (likely to
-        # conflict), reset to the fresh main and re-run the transcriber: it is
-        # idempotent (a sermon already "done" or already landed in Content is
-        # never re-marked or re-pushed with new content), so redoing the batch on
-        # top of latest main is always safe, just occasionally wasted CPU time.
+        # church's progress. poll.yml also commits data/ on its own schedule, and
+        # every other shard in this same matrix does too — rather than a textual
+        # git rebase on a file every writer rewrites whole (likely to conflict),
+        # reset to the fresh main and re-run this shard's transcriber invocation:
+        # it is idempotent (a sermon already "done" or already landed in Content is
+        # never re-marked or re-pushed with new content), so redoing this shard's
+        # batch on top of latest main is always safe, just occasionally wasted CPU
+        # time. More shards means more concurrent writers, so the retry budget
+        # scales with shard count (ADR-0005) rather than staying fixed at 3.
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for attempt in 1 2 3; do
+          attempts="${{ inputs.shards || 1 }}"
+          attempts=$((attempts + 1))
+          if [ "$attempts" -lt 3 ]; then
+            attempts=3
+          fi
+          for attempt in $(seq 1 "$attempts"); do
             git add data/
             if git diff --cached --quiet; then
               echo "No transcription progress to record this run."
@@ -109,10 +163,10 @@ jobs:
             if git push; then
               exit 0
             fi
-            echo "push rejected (attempt $attempt/3); re-syncing with main and retrying"
+            echo "push rejected (attempt $attempt/$attempts); re-syncing with main and retrying"
             git fetch origin main
             git reset --hard origin/main
             python -m poller.transcriber $TRANSCRIBE_ARGS || true
           done
-          echo "::error::failed to push ledger update after 3 attempts"
+          echo "::error::failed to push ledger update after $attempts attempts"
           exit 1
