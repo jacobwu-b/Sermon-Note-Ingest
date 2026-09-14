@@ -56,7 +56,7 @@ def _get_model() -> Any:
 
 def default_transcribe(audio_path: Path) -> str:
     """Run faster-whisper over ``audio_path`` and return the joined transcript text."""
-    segments, _info = _get_model().transcribe(str(audio_path), vad_filter=True)
+    segments, _info = _get_model().transcribe(str(audio_path), vad_filter=True, log_progress=True)
     return " ".join(segment.text.strip() for segment in segments)
 
 
