@@ -101,7 +101,11 @@
     "raw_title": "Set Your Face - Luke",
     "series": "Luke",
     "speaker": null,
-    "title": "Set Your Face"
+    "title": "Set Your Face",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-08-02_set-your-face_https_pbc.org_enmse_mid_4684.txt",
+    "transcript_hash": "748f283b2a1c37b531504430adfba82987002868474b35c707ff7eed3e22a993",
+    "transcribed_at": "2026-09-14T06:40:59.951895+00:00"
   },
   "https://pbc.org?enmse_mid=4683": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/26/Sermon+Audio+07-26-2026.mp3",
