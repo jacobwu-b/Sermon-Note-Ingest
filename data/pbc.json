@@ -385,7 +385,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/04/12/Sermon%20Audio%202026-04-12.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-04-12_untitled_pbc-archive_Main_Service_2026_04_12_Sermon_Audio_2026-04-12.mp3.txt",
+    "transcript_hash": "921a8f25a2a38ce0a9046c470eadf9824d522dd825abd80e3e50bef00392ea19",
+    "transcribed_at": "2026-09-14T22:39:17.034366+00:00"
   },
   "pbc-archive:Main_Service/2026/04/05/Easter Sunday 2026 Sermon Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2026/04/05/Easter Sunday 2026 Sermon Audio.mp3",
