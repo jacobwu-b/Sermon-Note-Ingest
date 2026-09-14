@@ -49,7 +49,6 @@ jobs:
   transcribe:
     name: Transcribe
     runs-on: ubuntu-latest
-    timeout-minutes: 40
     steps:
       # Deploy key authenticates this repo's own ledger push, same as poll.yml.
       # It is unrelated to CONTENT_REPO_TOKEN, which authenticates the separate
