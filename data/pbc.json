@@ -119,7 +119,11 @@
     "raw_title": "G.O.A.T. - Luke",
     "series": "Luke",
     "speaker": null,
-    "title": "G.O.A.T."
+    "title": "G.O.A.T.",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-07-26_g-o-a-t_https_pbc.org_enmse_mid_4683.txt",
+    "transcript_hash": "2ede56a646a405ccee40b6820033dfc1c48da970be0b43dd2b61b483ce1eb9fb",
+    "transcribed_at": "2026-09-14T06:54:09.813984+00:00"
   },
   "https://pbc.org?enmse_mid=4682": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/19/Sermon+Audio+2026-07-19.mp3",
