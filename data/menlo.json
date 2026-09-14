@@ -317,7 +317,11 @@
     "raw_title": "Baptism Sunday | Phil EuBank",
     "series": null,
     "speaker": "Phil EuBank",
-    "title": "Baptism Sunday"
+    "title": "Baptism Sunday",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-05-17_baptism-sunday_menlochurchvideo.podbean.com_f269ef39-d737-3b61-8d90-4ab8680e6aba.txt",
+    "transcript_hash": "4bd0624b4ec7ecfc664c0bd78527df25e9b198eb4611c0f97a413cb8910fc1b1",
+    "transcribed_at": "2026-09-14T22:54:29.886059+00:00"
   },
   "menlochurchvideo.podbean.com/a0c4c988-5457-3f69-83bf-0698d2933773": {
     "audio_url": "https://mcdn.podbean.com/mf/web/uxqq2stsf3xrjv98/2026-05-10_Sermon_PodcastAudio.mp3",
