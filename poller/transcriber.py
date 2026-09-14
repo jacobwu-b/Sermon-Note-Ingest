@@ -12,6 +12,13 @@ Durability ordering (ADR-0004): every sermon transcribed in a run is pushed to
 Sermon-Note-Content in one batch, and only sermons whose push succeeds are marked
 ``"done"`` in the local ledger. A push failure leaves the whole run's transcriptions
 pending rather than mark one done that never durably landed.
+
+Sharding (ADR-0005): ``--shard-index``/``--shard-count`` split that same bounded
+selection into disjoint pieces so a large backfill can be dispatched as several
+parallel runs instead of one. Sharding never changes *which* sermons are in scope
+(``--limit``/``--church`` still decide that) or their processing order — it only
+decides which of them this particular invocation is responsible for. The default
+(index 0, count 1) is every sermon in scope, identical to omitting both flags.
 """
 
 from __future__ import annotations
@@ -117,14 +124,50 @@ def transcribe_church(
     return all_ok
 
 
+def _select_in_scope(
+    selected: dict[str, config.ChurchConfig], *, limit: int
+) -> tuple[dict[str, dict], list[tuple[str, str]]]:
+    """Every (church, guid) in scope for this run, in processing order, plus each
+    touched church's full record set (for :func:`transcribe_church` to save back).
+
+    Order matches today's unsharded ``run()`` exactly: churches in ``selected``'s
+    order, each contributing its own oldest-``published_on``-first pending sermons
+    up to whatever of ``limit`` remains. This is the list :func:`run` shards —
+    sharding only filters it, never reorders it, so shard-count 1 reproduces this
+    order byte-for-byte.
+    """
+    loaded: dict[str, dict] = {}
+    ordered: list[tuple[str, str]] = []
+    remaining = limit
+    for name in selected:
+        if remaining <= 0:
+            break
+        records = store.load(name)
+        batch = _select_pending(records)[:remaining]
+        if not batch:
+            continue
+        loaded[name] = records
+        remaining -= len(batch)
+        ordered.extend((name, guid) for guid, _record in batch)
+    return loaded, ordered
+
+
 def run(
     *,
     church_names: list[str] | None,
     limit: int,
+    shard_index: int = 0,
+    shard_count: int = 1,
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
     push: PushTranscripts = content_repo.push_transcripts,
 ) -> bool:
     """Transcribe at most ``limit`` pending sermons across the selected churches.
+
+    ``shard_index``/``shard_count`` (ADR-0005) narrow that same bounded selection to
+    the ``shard_index``-th of ``shard_count`` disjoint pieces, by position in the
+    scoped, ordered selection (``_select_in_scope``) — every in-scope sermon lands in
+    exactly one shard, and the default (0, 1) is every sermon, unchanged from before
+    sharding existed.
 
     ``transcribe_audio``/``push`` are threaded through to :func:`transcribe_church`
     rather than relied on as its defaults, so a caller (or a test) can replace them
@@ -140,18 +183,17 @@ def run(
         logger.warning("no enabled churches matched the selection; nothing to transcribe")
         return True
 
-    remaining = limit
+    loaded, ordered = _select_in_scope(selected, limit=limit)
+    shard = [pair for i, pair in enumerate(ordered) if i % shard_count == shard_index]
+
+    batches: dict[str, list[tuple[str, dict]]] = {}
+    for name, guid in shard:
+        batches.setdefault(name, []).append((guid, loaded[name][guid]))
+
     all_ok = True
-    for name in selected:
-        if remaining <= 0:
-            break
-        records = store.load(name)
-        batch = _select_pending(records)[:remaining]
-        if not batch:
-            continue
-        remaining -= len(batch)
+    for name, batch in batches.items():
         try:
-            ok = transcribe_church(name, records, batch, transcribe_audio=transcribe_audio, push=push)
+            ok = transcribe_church(name, loaded[name], batch, transcribe_audio=transcribe_audio, push=push)
         except Exception:
             logger.exception("%s: transcription crashed unexpectedly", name)
             ok = False
@@ -174,18 +216,39 @@ def main(argv: list[str] | None = None) -> int:
         default=_DEFAULT_LIMIT,
         help=f"Maximum sermons to transcribe this run, across all selected churches (default: {_DEFAULT_LIMIT}).",
     )
+    parser.add_argument(
+        "--shard-index",
+        type=int,
+        default=0,
+        help="This run's shard, 0-based (default: 0). Used with --shard-count for parallel backfills.",
+    )
+    parser.add_argument(
+        "--shard-count",
+        type=int,
+        default=1,
+        help="Number of disjoint shards to split the selection into (default: 1, i.e. no sharding).",
+    )
     parser.add_argument("--verbose", action="store_true", help="Debug-level logging.")
     args = parser.parse_args(argv)
 
     if args.limit <= 0:
         parser.error("--limit must be a positive integer")
+    if args.shard_count <= 0:
+        parser.error("--shard-count must be a positive integer")
+    if not 0 <= args.shard_index < args.shard_count:
+        parser.error("--shard-index must be in [0, --shard-count)")
 
     logging.basicConfig(
         level="DEBUG" if args.verbose else config.load_log_level(),
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    ok = run(church_names=args.churches, limit=args.limit)
+    ok = run(
+        church_names=args.churches,
+        limit=args.limit,
+        shard_index=args.shard_index,
+        shard_count=args.shard_count,
+    )
     return 0 if ok else 1
 
 
