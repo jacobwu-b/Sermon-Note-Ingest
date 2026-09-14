@@ -173,7 +173,11 @@
     "raw_title": "Happy Birthday USA // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "Happy Birthday USA"
+    "title": "Happy Birthday USA",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2026-07-05_happy-birthday-usa_north_point_3F52f4A84f80Cf9EE5DC714AA5bE.txt",
+    "transcript_hash": "f34c973afb533ca46436960a1840f898bdc81429e74e76aadf85407a9be432f2",
+    "transcribed_at": "2026-09-14T14:11:48.233512+00:00"
   },
   "north_point:eD407689663C6c697AC32534AD48": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/eD407689663C6c697AC32534AD48/media/E9Ca00F9Eb38080DA9Fe5D4012f6.mp3?feedId=1968826fF8",
