@@ -196,6 +196,116 @@ def test_run_is_a_noop_on_a_second_run_against_already_transcribed_records(tmp_p
     assert len(calls) == 1
 
 
+def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path / "unsharded")
+    store.save(
+        "menlo",
+        {"m1": _record("m1", published_on="2026-01-01"), "m2": _record("m2", published_on="2026-01-02")},
+    )
+    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+
+    unsharded_calls: list[str] = []
+
+    def fake_unsharded(url):
+        unsharded_calls.append(url)
+        return "text", "hash"
+
+    transcriber.run(church_names=None, limit=5, transcribe_audio=fake_unsharded, push=lambda files: None)
+
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path / "sharded")
+    store.save(
+        "menlo",
+        {"m1": _record("m1", published_on="2026-01-01"), "m2": _record("m2", published_on="2026-01-02")},
+    )
+    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+
+    sharded_calls: list[str] = []
+
+    def fake_sharded(url):
+        sharded_calls.append(url)
+        return "text", "hash"
+
+    transcriber.run(
+        church_names=None,
+        limit=5,
+        shard_index=0,
+        shard_count=1,
+        transcribe_audio=fake_sharded,
+        push=lambda files: None,
+    )
+
+    assert sharded_calls == unsharded_calls
+
+
+def test_run_shards_partition_every_pending_sermon_exactly_once(tmp_path, monkeypatch):
+    shard_count = 3
+    seen: list[str] = []
+    for shard_index in range(shard_count):
+        base = tmp_path / f"shard-{shard_index}"
+        base.mkdir()
+        monkeypatch.setattr(store, "DATA_DIR", base)
+        store.save(
+            "menlo",
+            {
+                "m1": _record("m1", published_on="2026-01-01"),
+                "m2": _record("m2", published_on="2026-01-02"),
+                "m3": _record("m3", published_on="2026-01-03"),
+            },
+        )
+        store.save(
+            "pbc",
+            {"p1": _record("p1", published_on="2026-01-01"), "p2": _record("p2", published_on="2026-01-02")},
+        )
+
+        def fake_transcribe_audio(url, _seen=seen):
+            _seen.append(url)
+            return "text", "hash"
+
+        transcriber.run(
+            church_names=None,
+            limit=5,
+            shard_index=shard_index,
+            shard_count=shard_count,
+            transcribe_audio=fake_transcribe_audio,
+            push=lambda files: None,
+        )
+
+    assert len(seen) == 5
+
+
+def test_run_shard_count_more_than_pending_leaves_extra_shards_empty(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
+
+    calls = []
+
+    def fake_transcribe_audio(url):
+        calls.append(url)
+        return "text", "hash"
+
+    ok = transcriber.run(
+        church_names=None,
+        limit=5,
+        shard_index=1,
+        shard_count=5,
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+    )
+
+    assert ok is True
+    assert calls == []
+    assert store.load("menlo")["m1"]["transcription_status"] is None
+
+
+def test_main_rejects_invalid_shard_arguments():
+    with pytest.raises(SystemExit):
+        transcriber.main(["--shard-count", "0"])
+    with pytest.raises(SystemExit):
+        transcriber.main(["--shard-index", "2", "--shard-count", "2"])
+    with pytest.raises(SystemExit):
+        transcriber.main(["--shard-index", "-1"])
+
+
 def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
