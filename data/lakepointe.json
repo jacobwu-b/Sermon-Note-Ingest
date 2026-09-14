@@ -11,7 +11,11 @@
     "audio_url": "https://traffic.megaphone.fm/HAEEH7883239321.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-13T17:48:15.566989+00:00",
-    "notified_at": null
+    "notified_at": null,
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2026-09-13_how-to-consecrate-your-life-for-gods-purposes_lakepointe_3e3f3a82-af9b-11f1-ad89-77ec95c060f4.txt",
+    "transcript_hash": "6f0c3697e6aaca3afb25a8aa7984ac8471a808438c7f80fdad81c3101397e7a3",
+    "transcribed_at": "2026-09-14T07:05:43.603729+00:00"
   },
   "lakepointe:08a8ef5c-aa1a-11f1-a002-4b2b4579dc2b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1458294367.mp3",
