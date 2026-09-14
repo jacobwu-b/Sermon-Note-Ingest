@@ -281,7 +281,11 @@
     "raw_title": "Infinite Loop | Glitch | Phil EuBank",
     "series": "Glitch",
     "speaker": "Phil EuBank",
-    "title": "Infinite Loop"
+    "title": "Infinite Loop",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-05-31_infinite-loop_menlochurchvideo.podbean.com_94b28be5-934d-3297-82df-9a39dead63c6.txt",
+    "transcript_hash": "34d8b7b3694ed0cb96720b3c03eeaac28bfd2efa6d8b9f826c8d57d3cbc5d86b",
+    "transcribed_at": "2026-09-14T22:35:38.571302+00:00"
   },
   "menlochurchvideo.podbean.com/4cf0ccd6-5085-304f-89eb-839cc22cf4af": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ca3t73xmyfath9v3/Sermon_2026-05-24_PodcastAudio.mp3",
