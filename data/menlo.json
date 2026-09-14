@@ -299,7 +299,11 @@
     "raw_title": "Fatal Error | Glitch | Phil EuBank",
     "series": "Glitch",
     "speaker": "Phil EuBank",
-    "title": "Fatal Error"
+    "title": "Fatal Error",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-05-24_fatal-error_menlochurchvideo.podbean.com_4cf0ccd6-5085-304f-89eb-839cc22cf4af.txt",
+    "transcript_hash": "fadc1b8d46aa11a477724dd20651e811a1603692e7546b35c9f44e6ad8d9d6a3",
+    "transcribed_at": "2026-09-14T22:35:49.744804+00:00"
   },
   "menlochurchvideo.podbean.com/f269ef39-d737-3b61-8d90-4ab8680e6aba": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ymsvu9rxshixucyr/Sermon_2026-05-17_PodcastAudio.mp3",
