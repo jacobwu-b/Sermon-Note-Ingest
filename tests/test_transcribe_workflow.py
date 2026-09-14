@@ -86,3 +86,33 @@ def test_transcribe_workflow_scales_ledger_push_retries_with_shard_count():
     text = workflow_text()
     assert "attempts=" in text
     assert 'attempts="${{ needs.plan.outputs.shard_count }}"' in text
+
+
+def test_transcribe_workflow_rebases_onto_main_before_redoing_a_shard_s_batch():
+    # Regression: a rejected push used to unconditionally `git reset --hard` and
+    # re-run the whole shard's transcriber invocation, discarding this shard's
+    # own already-completed (expensive, Whisper) work on every race with
+    # poll.yml's independent commits — not just on a genuine conflict. That
+    # turned a routine push race into a repeated ~50-minute redo, exhausting the
+    # retry budget in hours. A rejected push must try a rebase first, so an
+    # unrelated writer's commit (almost always a different record) merges
+    # cleanly instead of discarding this shard's progress.
+    text = workflow_text()
+    assert "git rebase origin/main" in text
+    assert "git rebase --abort" in text
+    # The expensive redo path must be reached only from a failed rebase, not
+    # unconditionally on every rejected push.
+    reset_index = text.index("git reset --hard origin/main")
+    rebase_abort_index = text.index("git rebase --abort")
+    redo_index = text.index("python -m poller.transcriber $TRANSCRIBE_ARGS")
+    assert rebase_abort_index < reset_index < redo_index
+
+
+def test_transcribe_workflow_commits_the_ledger_update_once_before_the_push_retry_loop():
+    # The commit must happen once, outside the retry loop — a successful rebase
+    # already carries the commit forward, so re-committing on every loop
+    # iteration would either duplicate it or (worse) silently no-op the "nothing
+    # staged" check and report success without ever pushing.
+    text = workflow_text()
+    commit_count = text.count('git commit -m "chore(data): record transcription progress [skip ci]"')
+    assert commit_count == 2  # once up front, once after a redo following a real conflict
