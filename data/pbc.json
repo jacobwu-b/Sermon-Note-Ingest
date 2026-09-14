@@ -25,7 +25,11 @@
     "raw_title": "On The Other Side of The Door - Luke",
     "series": "Luke",
     "speaker": "Cormac Parker Jr.",
-    "title": "On The Other Side of The Door"
+    "title": "On The Other Side of The Door",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-08-30_on-the-other-side-of-the-door_https_pbc.org_enmse_mid_4689.txt",
+    "transcript_hash": "eea7136e2d6dcab05754e8544d541ba96e169b81f9a9eae4f2635be2d44c0785",
+    "transcribed_at": "2026-09-14T05:41:26.557340+00:00"
   },
   "https://pbc.org?enmse_mid=4686": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/23/sermon+audio+2026-08-23.mp3",
