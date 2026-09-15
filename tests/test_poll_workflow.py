@@ -30,3 +30,27 @@ def test_poll_workflow_keeps_schedule_fallback():
     # Retained as a zero-cost fallback in case the external trigger fails
     # silently — see ADR-0002.
     assert "schedule:" in workflow_text()
+
+
+def test_poll_workflow_dispatches_transcription_for_discovered_churches():
+    # After a successful ledger push, dispatch transcribe.yml for each newly-
+    # discovered church rather than waiting for its own schedule — see ADR-0007.
+    assert "gh workflow run transcribe.yml" in workflow_text()
+
+
+def test_poll_workflow_dispatch_uses_the_dedicated_dispatch_token():
+    # The default GITHUB_TOKEN cannot trigger another workflow's
+    # workflow_dispatch event — a dedicated PAT is required (ADR-0007).
+    assert "secrets.TRANSCRIBE_DISPATCH_TOKEN" in workflow_text()
+
+
+def test_poll_workflow_dispatch_is_gated_on_the_commit_step_succeeding():
+    # Dispatching against a ledger update that failed to push would have
+    # transcribe.yml find nothing pending — the dispatch step must depend on
+    # the commit step's own outcome (ADR-0007).
+    assert "steps.commit.outcome == 'success'" in workflow_text()
+
+
+def test_poll_workflow_commit_step_has_an_id():
+    # The dispatch step's gate above depends on this id existing.
+    assert "id: commit" in workflow_text()

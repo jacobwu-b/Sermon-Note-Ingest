@@ -6,6 +6,12 @@
 # event below is a zero-cost fallback only, kept because schedule events are
 # delayed or dropped under GitHub's load and give no signal when that happens.
 # See ADR-0002 (docs/decisions/0002-external-dispatch-trigger-for-polling.md).
+#
+# After a successful ledger push, dispatches transcribe.yml for each church that
+# had a new sermon this run, so transcription starts within this workflow's own
+# cadence instead of waiting for transcribe.yml's independent 15-minute schedule
+# (that schedule stays as the backstop if this dispatch fails or is skipped).
+# See ADR-0007 (docs/decisions/0007-poll-dispatches-transcription-on-discovery.md).
 
 name: Poll church feeds
 
@@ -56,6 +62,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Poll
+        id: poll
         env:
           CHURCHES: ${{ vars.CHURCHES }}
           NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
@@ -69,9 +76,20 @@ jobs:
           if [ -n "${{ inputs.church }}" ]; then
             args+=(--church "${{ inputs.church }}")
           fi
-          python -m poller.runner "${args[@]}"
+          # Captured via redirection (not a pipe) so `poll_exit` is this command's own
+          # status, and the exit is deferred past recording `discovered` so a partial
+          # failure (e.g. one church's notification) still reports the churches that
+          # did succeed (ADR-0007) — mirroring how the commit step below already
+          # tolerates a non-zero Poll exit for the same reason.
+          set +e
+          python -m poller.runner "${args[@]}" --print-discovered > /tmp/poll_discovered.txt
+          poll_exit=$?
+          set -e
+          echo "discovered=$(cat /tmp/poll_discovered.txt)" >> "$GITHUB_OUTPUT"
+          exit "$poll_exit"
 
       - name: Commit newly-discovered sermons
+        id: commit
         # Always runs, even if Poll exited non-zero (e.g. one church's
         # notification failed): poll_church() writes each church's ledger to
         # disk before attempting to notify, so a failure for one church must
@@ -87,3 +105,22 @@ jobs:
           fi
           git commit -m "chore(data): record newly-discovered sermons [skip ci]"
           git push
+
+      - name: Dispatch transcription for newly-discovered churches
+        # Best-effort latency optimization, not a correctness dependency (ADR-0007):
+        # transcribe.yml's own */15 schedule still catches anything this misses, so a
+        # dispatch failure here warns and moves on rather than failing the job. Runs
+        # only once the ledger update for this run's discoveries actually landed on
+        # main — dispatching against a push that failed would have transcribe.yml find
+        # nothing pending.
+        if: always() && steps.commit.outcome == 'success' && steps.poll.outputs.discovered != ''
+        env:
+          GH_TOKEN: ${{ secrets.TRANSCRIBE_DISPATCH_TOKEN }}
+        run: |
+          IFS=',' read -ra churches <<< "${{ steps.poll.outputs.discovered }}"
+          for church in "${churches[@]}"; do
+            echo "dispatching transcription for $church"
+            if ! gh workflow run transcribe.yml --repo "${{ github.repository }}" -f church="$church"; then
+              echo "::warning::failed to dispatch transcription for $church; the */15 schedule will still catch it"
+            fi
+          done
