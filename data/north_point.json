@@ -403,7 +403,11 @@
     "raw_title": "The Starting Point // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "The Starting Point"
+    "title": "The Starting Point",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2026-04-05_the-starting-point_north_point_3CA5FD9C3FFdFc15E949975BbE64.txt",
+    "transcript_hash": "83060fecd56f57f2bcb9d16e808da2780814f6bb2defd1f99b2705549d2dc103",
+    "transcribed_at": "2026-09-15T01:25:27.142827+00:00"
   },
   "north_point:32A78B3c59417B219A5A5A1588Ab": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/32A78B3c59417B219A5A5A1588Ab/static/Ef891d/C999D0eD86B6.mp3?feedId=1968826fF8",
