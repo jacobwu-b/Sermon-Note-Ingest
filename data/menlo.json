@@ -659,7 +659,11 @@
     "raw_title": "Perfect Family | PERFCT | Phil EuBank",
     "series": "PERFCT",
     "speaker": "Phil EuBank",
-    "title": "Perfect Family"
+    "title": "Perfect Family",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-01-04_perfect-family_menlochurchvideo.podbean.com_8737b88f-7130-39b8-8433-e07316529728.txt",
+    "transcript_hash": "9e0be5b427ef5f464f5305e9ab441e039c9db7043c17a4c04e78efc3bd593677",
+    "transcribed_at": "2026-09-15T16:00:19.211456+00:00"
   },
   "menlochurchvideo.podbean.com/44fa68d3-3279-3a09-9432-5fe376051e50": {
     "audio_url": "https://mcdn.podbean.com/mf/web/igqfbczqu3xt7tmp/ComeAllYeFaithless4POD.mp3",
