@@ -655,7 +655,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/01/04/sermon%20audio%202026-01-04.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2026-01-04_untitled_pbc-archive_Main_Service_2026_01_04_sermon_audio_2026-01-04.mp3.txt",
+    "transcript_hash": "8154da73d12a61db00621f9bdd793e84f0175539bed48d0680fced489e21ad9f",
+    "transcribed_at": "2026-09-15T10:54:59.553961+00:00"
   },
   "pbc-archive:Main_Service/2025/12/28/Sermon Audio 2025-12-28.mp3": {
     "guid": "pbc-archive:Main_Service/2025/12/28/Sermon Audio 2025-12-28.mp3",
