@@ -593,7 +593,11 @@
     "raw_title": "Perfect Kids | PERFCT | Phil EuBank",
     "series": "PERFCT",
     "speaker": "Phil EuBank",
-    "title": "Perfect Kids"
+    "title": "Perfect Kids",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-01-25_perfect-kids_menlochurchvideo.podbean.com_ccc53af7-1410-35bd-9807-a8f61258cd92.txt",
+    "transcript_hash": "35203b395b7fdd490f7afbc0e0f4f4785a03a8ab1d268b9a04b32de466266d31",
+    "transcribed_at": "2026-09-15T10:35:29.648141+00:00"
   },
   "menlochurchvideo.podbean.com/52211f90-9f68-3d7c-b91d-40439cf91032": {
     "audio_url": "https://mcdn.podbean.com/mf/web/t8yd5gcd4vnrtd95/PerfectMessage3Pod.mp3",
