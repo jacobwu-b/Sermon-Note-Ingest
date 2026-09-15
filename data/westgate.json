@@ -579,7 +579,11 @@
     "raw_title": "Simple Faith | One Thing I Seek | January 18, 2026",
     "series": "Simple Faith",
     "speaker": "David Kim",
-    "title": "One Thing I Seek"
+    "title": "One Thing I Seek",
+    "transcription_status": "done",
+    "content_path": "transcripts/westgate/2026-01-18_one-thing-i-seek_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_696fc450dfd6542a46671eb6.txt",
+    "transcript_hash": "9c66a3f6cc8aa44309dde0229dd9d2c03daab1083060cb72e9d68941db1e1a48",
+    "transcribed_at": "2026-09-15T11:15:36.641348+00:00"
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:696fc23846fc4a7ef5db827b": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/696fc2dc9ade8807a346b1cb/1768932432931/WestGate_Church_945a_1080+%2820%29-MP3.mp3",
