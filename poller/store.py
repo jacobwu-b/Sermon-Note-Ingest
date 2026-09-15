@@ -21,6 +21,7 @@ sermon at the top.
 from __future__ import annotations
 
 import json
+import logging
 from pathlib import Path
 from typing import Any
 
@@ -28,18 +29,56 @@ from poller.sources.base import SermonItem
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
+logger = logging.getLogger("poller")
+
 
 def _record_path(church: str) -> Path:
     return DATA_DIR / f"{church}.json"
 
 
-def load(church: str) -> dict[str, dict[str, Any]]:
-    """Load a church's ledger as ``{guid: record}``, or ``{}`` if it has none yet."""
-    path = _record_path(church)
+def _overrides_path(church: str) -> Path:
+    return DATA_DIR / "overrides" / f"{church}.json"
+
+
+def _load_overrides(church: str) -> dict[str, dict[str, Any]]:
+    """Manual field corrections for ``church``, keyed by guid (ADR-0008).
+
+    Merged onto the base record by :func:`load` on every read, never written back by
+    :func:`save` — a correction survives the next feed refresh without editing the ledger
+    itself. Keys starting with ``_`` (``_reason``, ``_added_at``) are documentation for
+    whoever edits the file by hand and are never merged into a record.
+    """
+    path = _overrides_path(church)
     if not path.exists():
         return {}
     with path.open(encoding="utf-8") as f:
         return json.load(f)
+
+
+def load(church: str) -> dict[str, dict[str, Any]]:
+    """Load a church's ledger as ``{guid: record}``, or ``{}`` if it has none yet.
+
+    Any matching entry in ``data/overrides/<church>.json`` is merged onto the returned
+    records field by field (ADR-0008); an override for a guid absent from the ledger is
+    skipped with a warning rather than applied or raised.
+    """
+    path = _record_path(church)
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as f:
+        records: dict[str, dict[str, Any]] = json.load(f)
+
+    for guid, fields in _load_overrides(church).items():
+        record = records.get(guid)
+        if record is None:
+            logger.warning("%s: override for unknown guid %r ignored", church, guid)
+            continue
+        for key, value in fields.items():
+            if key.startswith("_"):
+                continue
+            record[key] = value
+
+    return records
 
 
 def _ordered_items(records: dict[str, dict[str, Any]]) -> list[tuple[str, dict[str, Any]]]:

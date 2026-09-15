@@ -1,3 +1,5 @@
+import json
+
 from poller import store
 from poller.sources.base import SermonItem
 
@@ -198,3 +200,83 @@ def test_an_old_record_without_transcription_fields_round_trips_unchanged(tmp_pa
     loaded = store.load("menlo")
     assert "transcription_status" not in loaded["g1"]
     assert loaded["g1"]["title"] == "Hear and Do"
+
+
+def _write_overrides(tmp_path, church: str, overrides: dict) -> None:
+    overrides_dir = tmp_path / "overrides"
+    overrides_dir.mkdir(parents=True, exist_ok=True)
+    (overrides_dir / f"{church}.json").write_text(json.dumps(overrides), encoding="utf-8")
+
+
+def test_load_with_no_overrides_file_is_unchanged(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    loaded = store.load("menlo")
+    assert loaded["g1"]["audio_url"] == "https://example.org/ep1.mp3"
+
+
+def test_load_merges_an_override_field_onto_a_matching_guid(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    _write_overrides(tmp_path, "menlo", {"g1": {"audio_url": "https://cdn.example.org/fixed.mp3"}})
+
+    loaded = store.load("menlo")
+    assert loaded["g1"]["audio_url"] == "https://cdn.example.org/fixed.mp3"
+
+
+def test_load_merges_multiple_override_fields_at_once(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    _write_overrides(
+        tmp_path,
+        "menlo",
+        {"g1": {"audio_url": "https://cdn.example.org/fixed.mp3", "title": "Corrected Title"}},
+    )
+
+    loaded = store.load("menlo")
+    assert loaded["g1"]["audio_url"] == "https://cdn.example.org/fixed.mp3"
+    assert loaded["g1"]["title"] == "Corrected Title"
+
+
+def test_load_ignores_underscore_prefixed_override_keys(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    _write_overrides(
+        tmp_path,
+        "menlo",
+        {
+            "g1": {
+                "audio_url": "https://cdn.example.org/fixed.mp3",
+                "_reason": "feed serves a 404ing path",
+                "_added_at": "2026-09-15",
+            }
+        },
+    )
+
+    loaded = store.load("menlo")
+    assert loaded["g1"]["audio_url"] == "https://cdn.example.org/fixed.mp3"
+    assert "_reason" not in loaded["g1"]
+    assert "_added_at" not in loaded["g1"]
+
+
+def test_load_warns_and_skips_an_override_for_an_unknown_guid(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    _write_overrides(tmp_path, "menlo", {"unknown-guid": {"audio_url": "https://cdn.example.org/x.mp3"}})
+
+    with caplog.at_level("WARNING"):
+        loaded = store.load("menlo")
+
+    assert list(loaded.keys()) == ["g1"]
+    assert loaded["g1"]["audio_url"] == "https://example.org/ep1.mp3"
+    assert any("unknown-guid" in message for message in caplog.messages)
+
+
+def test_save_does_not_read_or_touch_the_overrides_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    _write_overrides(tmp_path, "menlo", {"g1": {"audio_url": "https://cdn.example.org/fixed.mp3"}})
+
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+
+    on_disk = json.loads((tmp_path / "menlo.json").read_text(encoding="utf-8"))
+    assert on_disk["g1"]["audio_url"] == "https://example.org/ep1.mp3"
