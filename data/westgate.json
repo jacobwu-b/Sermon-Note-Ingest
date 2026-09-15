@@ -413,7 +413,11 @@
     "raw_title": "Long Live the King | For Us (Substitution) | March 22, 2026",
     "series": "Long Live the King",
     "speaker": "Andy Gridley",
-    "title": "For Us (Substitution)"
+    "title": "For Us (Substitution)",
+    "transcription_status": "done",
+    "content_path": "transcripts/westgate/2026-03-22_for-us-substitution_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69c04b728fa3b527e91e85fb.txt",
+    "transcript_hash": "3091f9b93e02209a161cca9192bf1934e0d9f36dcc1fd03d7de579db1d01f794",
+    "transcribed_at": "2026-09-15T01:11:23.958924+00:00"
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69b7157a9092e06a62f8c7fa": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69b7373e58ae313318ea4c27/1774209906836/WestGate_Church_3.15.26_audio.m4a",
