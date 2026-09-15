@@ -461,7 +461,11 @@
     "raw_title": "God Died for Them Too | Boot Camp | Pastor Mike Breaux",
     "series": "Boot Camp",
     "speaker": "Pastor Mike Breaux",
-    "title": "God Died for Them Too"
+    "title": "God Died for Them Too",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2026-02-15_god-died-for-them-too_lakepointe_4bae9622-0a9b-11f1-a341-cb009796d578.txt",
+    "transcript_hash": "ecd43840af050272f8a32df51d85f2beca6adfac447e39df7924a11c06feb25e",
+    "transcribed_at": "2026-09-15T06:01:45.994033+00:00"
   },
   "lakepointe:9b2e14a0-051b-11f1-9eb3-c3db383791ac": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1521934337.mp3",
