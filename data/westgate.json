@@ -385,7 +385,11 @@
     "raw_title": "Easter 2026 | The Last Thing is the Best Thing | April 05, 2026",
     "series": "Easter 2026",
     "speaker": "Jay Kim",
-    "title": "The Last Thing is the Best Thing"
+    "title": "The Last Thing is the Best Thing",
+    "transcription_status": "done",
+    "content_path": "transcripts/westgate/2026-04-05_the-last-thing-is-the-best-thing_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69d2d57851809460a79bbd9a.txt",
+    "transcript_hash": "20c6428aaa4e81ea7681b609d6358a3f6258fbf407be7d8fd70da90904d4d904",
+    "transcribed_at": "2026-09-15T01:20:05.117230+00:00"
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69c9e2472aafb7025be4a6cb": {
     "audio_url": null,
