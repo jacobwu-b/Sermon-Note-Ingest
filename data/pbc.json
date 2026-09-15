@@ -8,7 +8,7 @@
     "published_on": "2026-09-13",
     "published_at": "2026-09-14T18:26:44+00:00",
     "episode_url": "https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid=4691",
-    "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/09/20/Sermon+Audio+2026-09-13.mp3",
+    "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/09/13/Sermon+Audio+2026-09-13.mp3",
     "blurb": "We’ve all been at that lunch where one person says the thing no one else dared to. This week, Jesus is that person. The ones who invited him never saw it coming. In Luke 11:37-54 Jesus pulls back the surface and reveals it’s possible to appear faithful and still miss the heart of God: justice, mercy, love and care for people. How do we know when we’ve missed God’s Heart?",
     "first_seen_at": "2026-09-15T17:21:30.393762+00:00",
     "notified_at": "2026-09-15T17:21:30.786066+00:00",
@@ -929,7 +929,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/10/05/sermon%20audio%202025-10-05.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-10-05_untitled_pbc-archive_Main_Service_2025_10_05_sermon_audio_2025-10-05.mp3.txt",
+    "transcript_hash": "d9029c5f7e25d1841c556b141a5f51e7cca9ec312c74d6d1d1295d491204044a",
+    "transcribed_at": "2026-09-15T22:56:16.803072+00:00"
   },
   "pbc-archive:Main_Service/2025/09/21/sermon audio 2025-09-21.mp3": {
     "guid": "pbc-archive:Main_Service/2025/09/21/sermon audio 2025-09-21.mp3",
