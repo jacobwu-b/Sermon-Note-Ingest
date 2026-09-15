@@ -767,7 +767,11 @@
     "raw_title": "Not Coming Down // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "Not Coming Down"
+    "title": "Not Coming Down",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-11-02_not-coming-down_north_point_85925E3769FfFD08D38579C8fA2c.txt",
+    "transcript_hash": "2ec1d660e010a5faa710f6c766b520dd50a82f36dc667fbf917b120c430aaf64",
+    "transcribed_at": "2026-09-15T20:01:37.507366+00:00"
   },
   "north_point:077EC5F2B4bE148146785754E609": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/077EC5F2B4bE148146785754E609/static/8B5656/51Fe658230f6.mp3?feedId=1968826fF8",
