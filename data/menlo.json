@@ -615,7 +615,11 @@
     "raw_title": "Perfect Parents | PERFCT | Menlo Church Sermon Message",
     "series": "PERFCT",
     "speaker": "Menlo Church Sermon Message",
-    "title": "Perfect Parents"
+    "title": "Perfect Parents",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2026-01-18_perfect-parents_menlochurchvideo.podbean.com_52211f90-9f68-3d7c-b91d-40439cf91032.txt",
+    "transcript_hash": "9012f261c2e2d44dd789b29da435061284f47c95100cc5e1eb6411974db667ac",
+    "transcribed_at": "2026-09-15T11:04:44.233122+00:00"
   },
   "menlochurchvideo.podbean.com/12e8300b-aba4-37a6-b3b3-60b74c7fd0d7": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x9xav3qe9hwqcnbb/PerfectMessage2POD.mp3",
