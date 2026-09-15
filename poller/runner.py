@@ -23,11 +23,22 @@ from poller.sources import ADAPTERS
 logger = logging.getLogger("poller")
 
 
-def poll_church(name: str, entry: config.ChurchConfig, *, backfill: bool) -> bool:
+def poll_church(
+    name: str,
+    entry: config.ChurchConfig,
+    *,
+    backfill: bool,
+    discovered_out: list[str] | None = None,
+) -> bool:
     """Poll one church, ledger any new sermons, refresh known ones, and notify if configured.
 
     Returns ``True`` on success (including "feed unavailable, deferred" — that
     is an expected, retried-next-run outcome, not a failure of this run).
+
+    ``discovered_out``, when given, gets ``name`` appended iff this poll ledgered
+    at least one new sermon (whether or not it was a backfill or notified) — used
+    by :func:`run` to report which churches ``poll.yml`` should dispatch
+    transcription for (ADR-0007).
     """
     adapter_cls = ADAPTERS.get(name)
     if adapter_cls is None:
@@ -70,6 +81,9 @@ def poll_church(name: str, entry: config.ChurchConfig, *, backfill: bool) -> boo
             store.save(name, records)
         return True
 
+    if discovered_out is not None:
+        discovered_out.append(name)
+
     if backfill:
         # Backfill seeds history without emailing — mark it already-notified so
         # a later normal run never sends for these.
@@ -101,8 +115,18 @@ def poll_church(name: str, entry: config.ChurchConfig, *, backfill: bool) -> boo
     return True
 
 
-def run(*, church_names: list[str] | None, backfill: bool) -> bool:
-    """Poll every selected, enabled church. Returns ``True`` iff all succeeded."""
+def run(
+    *,
+    church_names: list[str] | None,
+    backfill: bool,
+    discovered_out: list[str] | None = None,
+) -> bool:
+    """Poll every selected, enabled church. Returns ``True`` iff all succeeded.
+
+    ``discovered_out``, when given, collects the name of every church that had at
+    least one new sermon this run (ADR-0007) — the set ``poll.yml`` dispatches
+    transcription for.
+    """
     churches = config.load_churches()
     selected = {
         name: entry
@@ -116,7 +140,7 @@ def run(*, church_names: list[str] | None, backfill: bool) -> bool:
     all_ok = True
     for name, entry in selected.items():
         try:
-            ok = poll_church(name, entry, backfill=backfill)
+            ok = poll_church(name, entry, backfill=backfill, discovered_out=discovered_out)
         except Exception:
             logger.exception("%s: poll crashed unexpectedly", name)
             ok = False
@@ -145,6 +169,15 @@ def main(argv: list[str] | None = None) -> int:
         help="Seed the ledger from the full feed history without sending notifications.",
     )
     parser.add_argument("--verbose", action="store_true", help="Debug-level logging.")
+    parser.add_argument(
+        "--print-discovered",
+        action="store_true",
+        help=(
+            "After polling, print a comma-joined list of churches that had a new sermon "
+            "this run (empty line if none). Used by poll.yml to know which churches to "
+            "dispatch transcription for (ADR-0007)."
+        ),
+    )
     args = parser.parse_args(argv)
 
     logging.basicConfig(
@@ -152,7 +185,12 @@ def main(argv: list[str] | None = None) -> int:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    ok = run(church_names=args.churches, backfill=args.backfill)
+    discovered: list[str] | None = [] if args.print_discovered else None
+    ok = run(church_names=args.churches, backfill=args.backfill, discovered_out=discovered)
+    if args.print_discovered:
+        # Machine-readable stdout, not a log line — same designed-output exemption as
+        # transcriber.py's --print-shard-count (CLAUDE.md §6).
+        print(",".join(discovered or []))
     return 0 if ok else 1
 
 

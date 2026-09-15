@@ -210,3 +210,93 @@ def test_run_reports_failure_when_stats_regeneration_fails(tmp_path, monkeypatch
     # The ledger write itself still succeeded; only the stats step failed.
     assert runner.run(church_names=None, backfill=False) is False
     assert set(store.load("fake")) == {"g1"}
+
+
+def test_poll_church_records_discovery_when_new_items_are_found(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = False
+
+    discovered: list[str] = []
+    runner.poll_church("fake", _church(notify_flag=False), backfill=False, discovered_out=discovered)
+    assert discovered == ["fake"]
+
+
+def test_poll_church_does_not_record_discovery_when_nothing_new(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = False
+    runner.poll_church("fake", _church(notify_flag=False), backfill=False)  # seeds the ledger
+
+    discovered: list[str] = []
+    runner.poll_church("fake", _church(notify_flag=False), backfill=False, discovered_out=discovered)
+    assert discovered == []
+
+
+def test_poll_church_records_discovery_on_backfill_too(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = False
+
+    discovered: list[str] = []
+    runner.poll_church("fake", _church(notify_flag=False), backfill=True, discovered_out=discovered)
+    assert discovered == ["fake"]
+
+
+def test_poll_church_does_not_record_discovery_when_deferred(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = True
+
+    discovered: list[str] = []
+    runner.poll_church("fake", _church(notify_flag=False), backfill=False, discovered_out=discovered)
+    assert discovered == []
+
+
+def test_run_aggregates_discovered_churches_across_the_selection(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = False
+    monkeypatch.setenv(
+        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    )
+
+    discovered: list[str] = []
+    assert runner.run(church_names=None, backfill=False, discovered_out=discovered) is True
+    assert discovered == ["fake"]
+
+
+def test_main_prints_discovered_churches_when_requested(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = [_item("g1")]
+    _FakeAdapter.deferred = False
+    monkeypatch.setenv(
+        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    )
+
+    exit_code = runner.main(["--print-discovered"])
+    assert exit_code == 0
+    assert capsys.readouterr().out.strip() == "fake"
+
+
+def test_main_prints_nothing_when_no_churches_were_discovered(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = []
+    _FakeAdapter.deferred = False
+    monkeypatch.setenv(
+        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    )
+
+    exit_code = runner.main(["--print-discovered"])
+    assert exit_code == 0
+    assert capsys.readouterr().out.strip() == ""
