@@ -1,0 +1,7 @@
+{
+  "https://pbc.org?enmse_mid=4691": {
+    "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/09/13/Sermon+Audio+2026-09-13.mp3",
+    "_reason": "PBC's feed serves this sermon's audio_url pointing at Main_Service/2026/09/20/... (404); the file actually lives at Main_Service/2026/09/13/... (200), matching published_on. Every transcribe run's download attempt fails and retries next tick until PBC's feed self-corrects.",
+    "_added_at": "2026-09-15"
+  }
+}
