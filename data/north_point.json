@@ -1303,7 +1303,11 @@
     "raw_title": "Take Aim // Joel Thomas",
     "series": null,
     "speaker": "Joel Thomas",
-    "title": "Take Aim"
+    "title": "Take Aim",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-03-30_take-aim_north_point_43F195e021553Cf66220C7D50828.txt",
+    "transcript_hash": "a52722a7fcef206a940f087d5945d14977a045a6ade2e7983c5cf5a9b52a2ed4",
+    "transcribed_at": "2026-09-16T19:25:27.655326+00:00"
   },
   "north_point:85F24c5B263f127824bbD73E53CD": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/85F24c5B263f127824bbD73E53CD/static/3Be205/5E8D0E03F89D.mp3?feedId=1968826fF8",
