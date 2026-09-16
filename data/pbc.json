@@ -1205,7 +1205,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/06/01/Made%20One%20in%20Christ%20-%20June%201%202025.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-06-01_untitled_pbc-archive_Main_Service_2025_06_01_Made_One_in_Christ_-_June_1_2025.mp3.txt",
+    "transcript_hash": "2e2f3077fb2aadf5e33d8c01d28d43eb7da65392ebc6307f6f0a505b6760ab70",
+    "transcribed_at": "2026-09-16T10:33:40.512250+00:00"
   },
   "pbc-archive:Main_Service/2025/05/25/ It Ends With Love - May 25, 2025.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/25/ It Ends With Love - May 25, 2025.mp3",
