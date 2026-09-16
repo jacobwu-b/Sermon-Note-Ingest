@@ -29,6 +29,7 @@ import logging
 import re
 import sys
 from collections.abc import Callable
+from datetime import UTC, datetime, timedelta
 
 from poller import config, content_repo, net, pipeline_dispatch, store, transcribe
 from poller.slug import slugify
@@ -41,6 +42,27 @@ logger = logging.getLogger("poller")
 
 _DEFAULT_LIMIT = 5
 _UNSAFE_FILENAME = re.compile(r"[^A-Za-z0-9._-]+")
+_DISPATCH_RECENCY = timedelta(days=7)
+
+
+def _recently_published(record: dict, *, now: datetime) -> bool:
+    """Whether ``record`` was published within :data:`_DISPATCH_RECENCY` of ``now``.
+
+    Gates the pipeline dispatch (spec 0005) so a backfill run — transcribing an old
+    sermon, potentially years after it aired — never triggers note generation; only
+    genuine discovery of a new sermon does. Falls back to ``published_on`` (date-only)
+    when ``published_at`` is absent, mirroring ``_ingest_event``'s own fallback.
+    """
+    raw = record.get("published_at") or record.get("published_on")
+    if not raw:
+        return False
+    try:
+        when = datetime.fromisoformat(raw)
+    except ValueError:
+        return False
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=UTC)
+    return timedelta() <= now - when <= _DISPATCH_RECENCY
 
 
 def _safe_guid(guid: str) -> str:
@@ -156,11 +178,20 @@ def transcribe_church(
             store.save(name, records)
             return False
         transcribed_at = net.now()
+        now_dt = datetime.fromisoformat(transcribed_at)
         for guid, (path, digest) in pending_marks.items():
             record = records[guid]
             store.mark_transcribed(
                 record, content_path=path, transcript_hash=digest, transcribed_at=transcribed_at
             )
+            if not _recently_published(record, now=now_dt):
+                logger.debug(
+                    "%s/%s: published more than %d days ago, skipping pipeline dispatch (backfill)",
+                    name,
+                    guid,
+                    _DISPATCH_RECENCY.days,
+                )
+                continue
             event = _ingest_event(
                 name, guid, record, content_path=path, transcript_hash=digest, transcribed_at=transcribed_at
             )
