@@ -1289,7 +1289,11 @@
     "raw_title": "Death To The King // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "Death To The King"
+    "title": "Death To The King",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-04-06_death-to-the-king_north_point_5814B473DcF220EEEB101930C31c.txt",
+    "transcript_hash": "defe00c3e3e9fb660ba5a4edc976f49a2fdd6a5d917f6519739b36c134f27fa6",
+    "transcribed_at": "2026-09-16T19:29:24.008587+00:00"
   },
   "north_point:43F195e021553Cf66220C7D50828": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/43F195e021553Cf66220C7D50828/static/733A82/62a41AEA5D67.mp3?feedId=1968826fF8",
