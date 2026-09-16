@@ -1313,7 +1313,11 @@
     "raw_title": "Easter Message | Cost of Connections | Phil EuBank",
     "series": "Cost of Connections",
     "speaker": "Phil EuBank",
-    "title": "Easter Message"
+    "title": "Easter Message",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-04-20_easter-message_menlochurchvideo.podbean.com_333e949b-794e-3c46-be40-020f45971f8e.txt",
+    "transcript_hash": "3c12dceb7ee5e9ac2e21395db5f0a8e12114bd5eb07bca9404faab54209bb1e0",
+    "transcribed_at": "2026-09-16T18:53:34.351561+00:00"
   },
   "menlochurchvideo.podbean.com/9b95d6ce-ba3b-31c2-ba40-3276ce7fca82": {
     "audio_url": "https://mcdn.podbean.com/mf/web/xyjh68g38ey3y9vg/CocSunday7MessagePOD.mp3",
