@@ -26,10 +26,11 @@ def test_poll_workflow_accepts_workflow_dispatch():
     assert "workflow_dispatch:" in workflow_text()
 
 
-def test_poll_workflow_keeps_schedule_fallback():
-    # Retained as a zero-cost fallback in case the external trigger fails
-    # silently — see ADR-0002.
-    assert "schedule:" in workflow_text()
+def test_poll_workflow_has_no_schedule_trigger():
+    # GitHub's schedule: event was dropped as a fallback — it is delayed or
+    # dropped under load for the same reason it isn't the primary trigger,
+    # so workflow_dispatch (cron-job.org) is now the sole trigger — ADR-0011.
+    assert "\n  schedule:" not in workflow_text()
 
 
 def test_poll_workflow_dispatches_transcription_for_discovered_churches():
