@@ -1271,7 +1271,11 @@
     "raw_title": "Math Problems | Weird Church | Menlo Church Sunday Message",
     "series": "Weird Church",
     "speaker": "Menlo Church Sunday Message",
-    "title": "Math Problems"
+    "title": "Math Problems",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-05-11_math-problems_menlochurchvideo.podbean.com_095f9bc7-aa78-39ab-906d-6f1bfb209bf2.txt",
+    "transcript_hash": "bab3c1fd221db6310b76122bdd20746e91035e1b1ecc9e01227a0993e9b70370",
+    "transcribed_at": "2026-09-16T19:21:20.012355+00:00"
   },
   "menlochurchvideo.podbean.com/810a5789-3df7-303b-a7b1-706fe4dbd3d5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/7ieikhj7misb7q32/WCMessage2Pod.mp3",
