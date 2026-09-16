@@ -130,6 +130,26 @@ def load_content_repo_config() -> ContentRepoConfig:
     return ContentRepoConfig(repo=repo, token=token, branch=os.environ.get("CONTENT_REPO_BRANCH") or "main")
 
 
+@dataclass(frozen=True)
+class PipelineConfig:
+    """Where and how to dispatch an ingest event to the Sermon-Note-Pipeline repo."""
+
+    repo: str
+    token: str
+
+
+def load_pipeline_config() -> PipelineConfig:
+    """Read ``PIPELINE_REPO``/``PIPELINE_DISPATCH_TOKEN`` (both required), raising if either is missing."""
+    repo = os.environ.get("PIPELINE_REPO", "")
+    token = os.environ.get("PIPELINE_DISPATCH_TOKEN", "")
+    missing = [
+        name for name, value in (("PIPELINE_REPO", repo), ("PIPELINE_DISPATCH_TOKEN", token)) if not value
+    ]
+    if missing:
+        raise ConfigError(f"missing required env var(s) for pipeline dispatch: {', '.join(missing)}")
+    return PipelineConfig(repo=repo, token=token)
+
+
 def load_log_level(default: str = "INFO") -> str:
     """Return ``LOG_LEVEL`` capitalized, defaulting to ``INFO`` — the sole place this repo reads that var."""
     value = os.environ.get("LOG_LEVEL")

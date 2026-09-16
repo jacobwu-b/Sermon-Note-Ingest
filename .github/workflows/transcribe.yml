@@ -51,6 +51,12 @@ env:
   # code — authenticates the weight download so it isn't subject to Hugging Face's
   # anonymous rate limit.
   HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  # Lets poller/pipeline_dispatch.py trigger Sermon-Note-Pipeline's pipeline.yml
+  # right after a sermon's transcript lands in Content (spec 0005, ADR-0009).
+  # Best-effort: a dispatch failure is logged, never fails this job — Pipeline's
+  # own cron still catches anything it misses.
+  PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}
+  PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
 
 jobs:
   # Sizes the matrix `transcribe` fans out over from the actual backlog, not a
