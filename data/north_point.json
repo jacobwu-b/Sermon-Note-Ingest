@@ -1001,7 +1001,11 @@
     "raw_title": "Three Reasons // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "Three Reasons"
+    "title": "Three Reasons",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-08-03_three-reasons_north_point_65b41f8D5E694665245deAd18d63.txt",
+    "transcript_hash": "ac0e499fe810fe0b6a461520cd87abd906207cedb030e53794cfa223eb387f68",
+    "transcribed_at": "2026-09-16T05:53:34.255376+00:00"
   },
   "north_point:e7D9FD7e74C84f50f3D53eA16CB8": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/e7D9FD7e74C84f50f3D53eA16CB8/static/6CDC0D/A408174B31BB.mp3?feedId=1968826fF8",
