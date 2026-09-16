@@ -16,7 +16,7 @@ import argparse
 import logging
 import sys
 
-from poller import config, notify, stats, store
+from poller import batch_poll, config, notify, stats, store
 from poller.net import now
 from poller.sources import ADAPTERS
 
@@ -151,6 +151,14 @@ def run(
     except stats.StatsError:
         logger.exception("failed to regenerate data/README.md stats")
         all_ok = False
+
+    # Best-effort latency optimization (docs/decisions/0010), never a correctness
+    # dependency — Pipeline's own cron is the backstop, so a crash here must not
+    # fail an otherwise-successful poll run.
+    try:
+        batch_poll.poll_pending_batches()
+    except Exception:
+        logger.exception("batch poll crashed unexpectedly")
 
     return all_ok
 
