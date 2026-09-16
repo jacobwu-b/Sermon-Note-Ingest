@@ -109,14 +109,63 @@ def test_load_pipeline_config_raises_when_required_vars_missing(monkeypatch):
         config.load_pipeline_config()
 
 
-def test_load_anthropic_config_reads_the_required_var(monkeypatch):
+def _clear_anthropic_env(monkeypatch):
+    for var in (
+        "ANTHROPIC_API_KEY",
+        "ANTHROPIC_FEDERATION_RULE_ID",
+        "ANTHROPIC_ORGANIZATION_ID",
+        "ANTHROPIC_SERVICE_ACCOUNT_ID",
+        "ANTHROPIC_WORKSPACE_ID",
+    ):
+        monkeypatch.delenv(var, raising=False)
+
+
+def test_load_anthropic_config_reads_the_api_key(monkeypatch):
+    _clear_anthropic_env(monkeypatch)
     monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-123")
-    assert config.load_anthropic_config() == config.AnthropicConfig(api_key="sk-ant-123")
+    assert config.load_anthropic_config() == config.AnthropicConfig(
+        api_key="sk-ant-123",
+        federation_rule_id=None,
+        organization_id=None,
+        service_account_id=None,
+        workspace_id=None,
+    )
 
 
-def test_load_anthropic_config_raises_when_required_var_missing(monkeypatch):
-    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+def test_load_anthropic_config_reads_federation_vars_when_no_api_key(monkeypatch):
+    _clear_anthropic_env(monkeypatch)
+    monkeypatch.setenv("ANTHROPIC_FEDERATION_RULE_ID", "fdrl_123")
+    monkeypatch.setenv("ANTHROPIC_ORGANIZATION_ID", "org_123")
+    monkeypatch.setenv("ANTHROPIC_SERVICE_ACCOUNT_ID", "svac_123")
+    monkeypatch.setenv("ANTHROPIC_WORKSPACE_ID", "wrkspc_123")
+    assert config.load_anthropic_config() == config.AnthropicConfig(
+        api_key=None,
+        federation_rule_id="fdrl_123",
+        organization_id="org_123",
+        service_account_id="svac_123",
+        workspace_id="wrkspc_123",
+    )
+
+
+def test_load_anthropic_config_api_key_wins_over_federation_vars(monkeypatch):
+    _clear_anthropic_env(monkeypatch)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-123")
+    monkeypatch.setenv("ANTHROPIC_FEDERATION_RULE_ID", "fdrl_123")
+    monkeypatch.setenv("ANTHROPIC_ORGANIZATION_ID", "org_123")
+    cfg = config.load_anthropic_config()
+    assert cfg.api_key == "sk-ant-123"
+
+
+def test_load_anthropic_config_raises_when_neither_auth_path_set(monkeypatch):
+    _clear_anthropic_env(monkeypatch)
     with pytest.raises(config.ConfigError, match="ANTHROPIC_API_KEY"):
+        config.load_anthropic_config()
+
+
+def test_load_anthropic_config_raises_when_federation_rule_missing_organization_id(monkeypatch):
+    _clear_anthropic_env(monkeypatch)
+    monkeypatch.setenv("ANTHROPIC_FEDERATION_RULE_ID", "fdrl_123")
+    with pytest.raises(config.ConfigError, match="ANTHROPIC_ORGANIZATION_ID"):
         config.load_anthropic_config()
 
 
