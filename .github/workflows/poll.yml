@@ -49,6 +49,14 @@ jobs:
     name: Poll
     runs-on: ubuntu-latest
     timeout-minutes: 4
+    # id-token: write (ADR-0087): lets this job request a GitHub OIDC token to
+    # exchange for Anthropic Workload Identity Federation auth (the batch-status
+    # check below). The Console-side federation rule is scoped to
+    # `ref:refs/heads/main` only, so the env below gates the federation vars on
+    # github.ref rather than relying on the Console rule alone to fail closed.
+    permissions:
+      contents: read
+      id-token: write
     steps:
       # Deploy key (DEPLOY_KEY secret) authenticates the later `git push`, not
       # GITHUB_TOKEN — main's ruleset requires a PR from everyone else, and
@@ -76,6 +84,15 @@ jobs:
           PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}
           PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Literal strings, not repository variables (ADR-0087, ADR-0010): none of
+          # the four is a secret on its own, and a repository variable would render
+          # on every branch regardless of the rule's own main-only scope. Gated on
+          # github.ref so a feature-branch run gets a clean fallback to
+          # ANTHROPIC_API_KEY instead of a denied exchange.
+          ANTHROPIC_FEDERATION_RULE_ID: ${{ github.ref == 'refs/heads/main' && 'fdrl_01DwaM4pBCr8UkPuKAvbzYmt' || '' }}
+          ANTHROPIC_ORGANIZATION_ID: ${{ github.ref == 'refs/heads/main' && '65b14891-0386-45a7-a760-1f0739bc0cee' || '' }}
+          ANTHROPIC_SERVICE_ACCOUNT_ID: ${{ github.ref == 'refs/heads/main' && 'svac_01CDFfTYqT39Gx5BXgRXBGHt' || '' }}
+          ANTHROPIC_WORKSPACE_ID: ${{ github.ref == 'refs/heads/main' && 'wrkspc_01CzT9ik9bv58XyTBxKUNs2F' || '' }}
         run: |
           args=()
           if [ "${{ inputs.backfill }}" = "true" ]; then

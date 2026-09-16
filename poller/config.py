@@ -152,17 +152,45 @@ def load_pipeline_config() -> PipelineConfig:
 
 @dataclass(frozen=True)
 class AnthropicConfig:
-    """The Anthropic API key used to check Claude batch status (docs/decisions/0010)."""
+    """Anthropic auth used to check Claude batch status (docs/decisions/0010).
 
-    api_key: str
+    Two auth paths, same precedence as Sermon-Note-Pipeline's ADR-0087: an explicit
+    ``api_key`` wins if set; otherwise ``federation_rule_id`` (with
+    ``organization_id``) selects Workload Identity Federation. ``service_account_id``
+    and ``workspace_id`` are optional narrowing on the federation exchange.
+    """
+
+    api_key: str | None
+    federation_rule_id: str | None
+    organization_id: str | None
+    service_account_id: str | None
+    workspace_id: str | None
 
 
 def load_anthropic_config() -> AnthropicConfig:
-    """Read ``ANTHROPIC_API_KEY``, raising if missing."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not api_key:
-        raise ConfigError("missing required env var for Claude batch poll: ANTHROPIC_API_KEY")
-    return AnthropicConfig(api_key=api_key)
+    """Read Anthropic auth: ``ANTHROPIC_API_KEY`` or ``ANTHROPIC_FEDERATION_RULE_ID``
+    (with ``ANTHROPIC_ORGANIZATION_ID``), raising if neither path is configured.
+    """
+    api_key = os.environ.get("ANTHROPIC_API_KEY") or None
+    federation_rule_id = os.environ.get("ANTHROPIC_FEDERATION_RULE_ID") or None
+    organization_id = os.environ.get("ANTHROPIC_ORGANIZATION_ID") or None
+    if not api_key and not federation_rule_id:
+        raise ConfigError(
+            "missing required env var for Claude batch poll: ANTHROPIC_API_KEY "
+            "(or ANTHROPIC_FEDERATION_RULE_ID for Workload Identity Federation)"
+        )
+    if federation_rule_id and not api_key and not organization_id:
+        raise ConfigError(
+            "missing required env var for Claude batch poll: ANTHROPIC_ORGANIZATION_ID "
+            "(required alongside ANTHROPIC_FEDERATION_RULE_ID)"
+        )
+    return AnthropicConfig(
+        api_key=api_key,
+        federation_rule_id=federation_rule_id,
+        organization_id=organization_id,
+        service_account_id=os.environ.get("ANTHROPIC_SERVICE_ACCOUNT_ID") or None,
+        workspace_id=os.environ.get("ANTHROPIC_WORKSPACE_ID") or None,
+    )
 
 
 def load_log_level(default: str = "INFO") -> str:
