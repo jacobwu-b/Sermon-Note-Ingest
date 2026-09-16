@@ -1091,7 +1091,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/07/27/2025-07-27-Sermon-Audio.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-07-27_untitled_pbc-archive_Main_Service_2025_07_27_2025-07-27-Sermon-Audio.mp3.txt",
+    "transcript_hash": "1d534b79dd5fe46bf904cb63dce53f163970beacd9f5f6b29c553b886caa280f",
+    "transcribed_at": "2026-09-16T05:36:53.557472+00:00"
   },
   "pbc-archive:Main_Service/2025/07/20/2025-07-20-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/07/20/2025-07-20-Sermon.mp3",
@@ -1105,7 +1109,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/07/20/2025-07-20-Sermon.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-07-20_untitled_pbc-archive_Main_Service_2025_07_20_2025-07-20-Sermon.mp3.txt",
+    "transcript_hash": "cae1abf35122016db375f9534d492c74f3873fdc022cc7ab9d4c8e80971de7fa",
+    "transcribed_at": "2026-09-16T05:42:01.340492+00:00"
   },
   "pbc-archive:Main_Service/2025/07/13/2025-07-13-sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/07/13/2025-07-13-sermon.mp3",
@@ -1119,7 +1127,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/07/13/2025-07-13-sermon.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-07-13_untitled_pbc-archive_Main_Service_2025_07_13_2025-07-13-sermon.mp3.txt",
+    "transcript_hash": "1a75c2192bbdd0e9382b820c8dbf074ec2901f3ccaf64603c47bb69e11d4052f",
+    "transcribed_at": "2026-09-16T05:59:37.848177+00:00"
   },
   "pbc-archive:Main_Service/2025/07/06/2025-07-06-Sermon-Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/07/06/2025-07-06-Sermon-Audio.mp3",
@@ -1133,7 +1145,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/07/06/2025-07-06-Sermon-Audio.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-07-06_untitled_pbc-archive_Main_Service_2025_07_06_2025-07-06-Sermon-Audio.mp3.txt",
+    "transcript_hash": "dd87fe3478b766fcfae2a5e4df1554617250662394ab6d1ed2927c8de58b05f1",
+    "transcribed_at": "2026-09-16T05:52:32.890879+00:00"
   },
   "pbc-archive:Main_Service/2025/06/29/2025-06-29-Sermon-Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/29/2025-06-29-Sermon-Audio.mp3",
@@ -1147,7 +1163,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/06/29/2025-06-29-Sermon-Audio.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-06-29_untitled_pbc-archive_Main_Service_2025_06_29_2025-06-29-Sermon-Audio.mp3.txt",
+    "transcript_hash": "1be2d18f7db4b046a428f5520098a8067f96ec1f81c05ecec2bbb8b9a343dddf",
+    "transcribed_at": "2026-09-16T10:46:45.132045+00:00"
   },
   "pbc-archive:Main_Service/2025/06/22/2025-06-22-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/22/2025-06-22-Sermon.mp3",
@@ -1161,7 +1181,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/06/22/2025-06-22-Sermon.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-06-22_untitled_pbc-archive_Main_Service_2025_06_22_2025-06-22-Sermon.mp3.txt",
+    "transcript_hash": "e8e98f43a04b367e731e5d3591bc355b17b983a98fbb2e8ffd6388734f8b942f",
+    "transcribed_at": "2026-09-16T10:40:30.176819+00:00"
   },
   "pbc-archive:Main_Service/2025/06/15/2025-06-15-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/15/2025-06-15-Sermon.mp3",
@@ -1175,7 +1199,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/06/15/2025-06-15-Sermon.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-06-15_untitled_pbc-archive_Main_Service_2025_06_15_2025-06-15-Sermon.mp3.txt",
+    "transcript_hash": "634de39a2bbe1b65c2a790f51d61353d6fef1ce864e915f5af1fe0237bec3e35",
+    "transcribed_at": "2026-09-16T10:43:17.263942+00:00"
   },
   "pbc-archive:Main_Service/2025/06/01/Made One in Christ - June 1 2025.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/01/Made One in Christ - June 1 2025.mp3",
@@ -1189,7 +1217,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/06/01/Made%20One%20in%20Christ%20-%20June%201%202025.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-06-01_untitled_pbc-archive_Main_Service_2025_06_01_Made_One_in_Christ_-_June_1_2025.mp3.txt",
+    "transcript_hash": "2e2f3077fb2aadf5e33d8c01d28d43eb7da65392ebc6307f6f0a505b6760ab70",
+    "transcribed_at": "2026-09-16T10:33:40.512250+00:00"
   },
   "pbc-archive:Main_Service/2025/05/25/ It Ends With Love - May 25, 2025.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/25/ It Ends With Love - May 25, 2025.mp3",
@@ -1203,7 +1235,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/05/25/%20It%20Ends%20With%20Love%20-%20May%2025%2C%202025.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-05-25_untitled_pbc-archive_Main_Service_2025_05_25_It_Ends_With_Love_-_May_25_2025.mp3.txt",
+    "transcript_hash": "38acffee3b11fc51f7cd76462e2a81c228efed8e7643db92334ae2a362e72630",
+    "transcribed_at": "2026-09-16T10:38:53.585560+00:00"
   },
   "pbc-archive:Main_Service/2025/05/18/2025 05 18 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/18/2025 05 18 Sermon podcast.mp3",
