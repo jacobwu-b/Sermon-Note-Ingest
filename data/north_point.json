@@ -1105,7 +1105,11 @@
     "raw_title": "My Story, My Song, Part 1: Bigger Than I Thought // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "My Story, My Song, Part 1: Bigger Than I Thought"
+    "title": "My Story, My Song, Part 1: Bigger Than I Thought",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-06-22_my-story-my-song-part-1-bigger-than-i-thought_north_point_A71E9379383CF62155B365f51D96.txt",
+    "transcript_hash": "26da236ffd3bb2fd1eb7026aabd78afccaf60453dbe0407f343c1b3081156662",
+    "transcribed_at": "2026-09-16T10:48:57.498333+00:00"
   },
   "north_point:6b2BEcfA3a0561f53D45e1D70C43": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/6b2BEcfA3a0561f53D45e1D70C43/static/10905B/32B761af554E.mp3?feedId=1968826fF8",
