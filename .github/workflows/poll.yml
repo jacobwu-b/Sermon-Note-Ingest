@@ -12,6 +12,11 @@
 # cadence instead of waiting for transcribe.yml's independent 15-minute schedule
 # (that schedule stays as the backstop if this dispatch fails or is skipped).
 # See ADR-0007 (docs/decisions/0007-poll-dispatches-transcription-on-discovery.md).
+#
+# The Poll step below also checks Sermon-Note-Pipeline's pending Claude batches
+# and dispatches its pipeline.yml the moment one has ended, instead of waiting for
+# Pipeline's own (much longer) cron. See ADR-0010
+# (docs/decisions/0010-poll-claude-batches-from-ingest.md).
 
 name: Poll church feeds
 
@@ -68,6 +73,9 @@ jobs:
           NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
           NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}
+          PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           args=()
           if [ "${{ inputs.backfill }}" = "true" ]; then

@@ -1,6 +1,6 @@
 from typing import ClassVar
 
-from poller import config, notify, runner, stats, store
+from poller import batch_poll, config, notify, runner, stats, store
 from poller.sources.base import PollResult, SermonItem, SourceAdapter
 
 _MARKED_README = "# Sermon ledger\n\n<!-- STATS:START -->\nplaceholder\n<!-- STATS:END -->\n"
@@ -300,3 +300,38 @@ def test_main_prints_nothing_when_no_churches_were_discovered(tmp_path, monkeypa
     exit_code = runner.main(["--print-discovered"])
     assert exit_code == 0
     assert capsys.readouterr().out.strip() == ""
+
+
+def test_run_polls_pending_claude_batches_once(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = []
+    _FakeAdapter.deferred = False
+    monkeypatch.setenv(
+        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    )
+
+    calls = []
+    monkeypatch.setattr(batch_poll, "poll_pending_batches", lambda: calls.append(1))
+
+    assert runner.run(church_names=None, backfill=False) is True
+    assert calls == [1]
+
+
+def test_run_survives_an_unexpected_batch_poll_crash(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = []
+    _FakeAdapter.deferred = False
+    monkeypatch.setenv(
+        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    )
+
+    def _boom():
+        raise RuntimeError("unexpected crash")
+
+    monkeypatch.setattr(batch_poll, "poll_pending_batches", _boom)
+
+    assert runner.run(church_names=None, backfill=False) is True
