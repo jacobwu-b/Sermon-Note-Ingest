@@ -1223,7 +1223,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/05/25/%20It%20Ends%20With%20Love%20-%20May%2025%2C%202025.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-05-25_untitled_pbc-archive_Main_Service_2025_05_25_It_Ends_With_Love_-_May_25_2025.mp3.txt",
+    "transcript_hash": "38acffee3b11fc51f7cd76462e2a81c228efed8e7643db92334ae2a362e72630",
+    "transcribed_at": "2026-09-16T10:38:53.585560+00:00"
   },
   "pbc-archive:Main_Service/2025/05/18/2025 05 18 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/18/2025 05 18 Sermon podcast.mp3",
