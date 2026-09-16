@@ -1421,7 +1421,11 @@
     "raw_title": "Born Again | The Cost of Connections | Menlo Church Sunday Message",
     "series": "The Cost of Connections",
     "speaker": "Menlo Church Sunday Message",
-    "title": "Born Again"
+    "title": "Born Again",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-03-09_born-again_menlochurchvideo.podbean.com_9b24189d-8228-35d4-b559-50349ead1300.txt",
+    "transcript_hash": "35a5cd1d858fc113f2dea18b7fe35979c9d50ce00acd06b4c52db54a394d3fa7",
+    "transcribed_at": "2026-09-16T22:12:06.644205+00:00"
   },
   "menlochurchvideo.podbean.com/20ea29ed-1384-37b2-9b9a-e777541956fd": {
     "audio_url": "https://mcdn.podbean.com/mf/web/vu4gp8jx9tk4niiu/CocMessage1Pod.mp3",
