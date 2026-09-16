@@ -1417,7 +1417,11 @@
     "raw_title": "New Year's at Home",
     "series": null,
     "speaker": null,
-    "title": "New Year's at Home"
+    "title": "New Year's at Home",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-12-31_new-year-s-at-home_lakepointe_78cdb87ee6a5638e4247773006834032.txt",
+    "transcript_hash": "3870b6eb336f0544d66b816f47afb1245c5046f53efefab335f54a9416d505ea",
+    "transcribed_at": "2026-09-16T21:57:59.867139+00:00"
   },
   "lakepointe:555370bc0bc85383e836a4586319d121": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9972471309.mp3?updated=1704307202",
