@@ -1019,7 +1019,11 @@
     "raw_title": "My Story, My Song, Part 6: Taste and See // April Farmer",
     "series": null,
     "speaker": "April Farmer",
-    "title": "My Story, My Song, Part 6: Taste and See"
+    "title": "My Story, My Song, Part 6: Taste and See",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-07-27_my-story-my-song-part-6-taste-and-see_north_point_e7D9FD7e74C84f50f3D53eA16CB8.txt",
+    "transcript_hash": "dff36a66ca7ed9bc65fddf7a14085017e297e013cf783c222e908dc70e9a656a",
+    "transcribed_at": "2026-09-16T05:56:43.759704+00:00"
   },
   "north_point:32DF5221B0e0c972B780Dc815b3A": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/32DF5221B0e0c972B780Dc815b3A/static/B92B29/2818B1A92D56.mp3?feedId=1968826fF8",
