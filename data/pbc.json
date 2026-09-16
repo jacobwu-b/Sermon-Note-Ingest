@@ -1177,7 +1177,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/06/22/2025-06-22-Sermon.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-06-22_untitled_pbc-archive_Main_Service_2025_06_22_2025-06-22-Sermon.mp3.txt",
+    "transcript_hash": "e8e98f43a04b367e731e5d3591bc355b17b983a98fbb2e8ffd6388734f8b942f",
+    "transcribed_at": "2026-09-16T10:40:30.176819+00:00"
   },
   "pbc-archive:Main_Service/2025/06/15/2025-06-15-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/15/2025-06-15-Sermon.mp3",
