@@ -1483,7 +1483,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/02/16/2025%2002%2016%20Sermon-podcst.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-02-16_untitled_pbc-archive_Main_Service_2025_02_16_2025_02_16_Sermon-podcst.mp3.txt",
+    "transcript_hash": "d596b13a78d9e1cbc9099a01d89a932419b8d8dfc567be24005f2be06840d843",
+    "transcribed_at": "2026-09-16T22:21:46.698110+00:00"
   },
   "pbc-archive:Main_Service/2025/02/09/February 9, 2025_ podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/02/09/February 9, 2025_ podcast.mp3",
