@@ -54,3 +54,12 @@ def test_poll_workflow_dispatch_is_gated_on_the_commit_step_succeeding():
 def test_poll_workflow_commit_step_has_an_id():
     # The dispatch step's gate above depends on this id existing.
     assert "id: commit" in workflow_text()
+
+
+def test_poll_workflow_passes_the_claude_batch_poll_config_to_the_poll_step():
+    # runner.run() now also checks pending Claude batches every poll cycle
+    # (ADR-0010) — without these, poller/batch_poll.py silently no-ops.
+    text = workflow_text()
+    assert "ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}" in text
+    assert "PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}" in text
+    assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in text

@@ -150,6 +150,21 @@ def load_pipeline_config() -> PipelineConfig:
     return PipelineConfig(repo=repo, token=token)
 
 
+@dataclass(frozen=True)
+class AnthropicConfig:
+    """The Anthropic API key used to check Claude batch status (docs/decisions/0010)."""
+
+    api_key: str
+
+
+def load_anthropic_config() -> AnthropicConfig:
+    """Read ``ANTHROPIC_API_KEY``, raising if missing."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if not api_key:
+        raise ConfigError("missing required env var for Claude batch poll: ANTHROPIC_API_KEY")
+    return AnthropicConfig(api_key=api_key)
+
+
 def load_log_level(default: str = "INFO") -> str:
     """Return ``LOG_LEVEL`` capitalized, defaulting to ``INFO`` — the sole place this repo reads that var."""
     value = os.environ.get("LOG_LEVEL")

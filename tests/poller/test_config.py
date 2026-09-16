@@ -109,6 +109,17 @@ def test_load_pipeline_config_raises_when_required_vars_missing(monkeypatch):
         config.load_pipeline_config()
 
 
+def test_load_anthropic_config_reads_the_required_var(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-123")
+    assert config.load_anthropic_config() == config.AnthropicConfig(api_key="sk-ant-123")
+
+
+def test_load_anthropic_config_raises_when_required_var_missing(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    with pytest.raises(config.ConfigError, match="ANTHROPIC_API_KEY"):
+        config.load_anthropic_config()
+
+
 def test_load_log_level_defaults_to_info(monkeypatch):
     monkeypatch.delenv("LOG_LEVEL", raising=False)
     assert config.load_log_level() == "INFO"
