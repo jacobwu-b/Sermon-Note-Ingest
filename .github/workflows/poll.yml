@@ -1,11 +1,14 @@
 # Polls every enabled church's RSS feed and commits any newly-discovered
 # sermons to data/<church>.json, emailing about them per CHURCHES' notify flag.
 #
-# Primary trigger is an external scheduler (cron-job.org) calling the
-# workflow_dispatch REST API on a tight interval — GitHub's own `schedule:`
-# event below is a zero-cost fallback only, kept because schedule events are
-# delayed or dropped under GitHub's load and give no signal when that happens.
-# See ADR-0002 (docs/decisions/0002-external-dispatch-trigger-for-polling.md).
+# Sole trigger is an external scheduler (cron-job.org) calling the
+# workflow_dispatch REST API on a tight interval. GitHub's own `schedule:`
+# event was dropped as a fallback (ADR-0011): it is delayed or dropped under
+# GitHub's load for the same reason it was never the primary trigger, so it
+# added a second trigger path to reason about without meaningfully more
+# detection confidence than cron-job.org's own failure-notification email.
+# See ADR-0002 (docs/decisions/0002-external-dispatch-trigger-for-polling.md)
+# and ADR-0011 (docs/decisions/0011-remove-poll-schedule-fallback.md).
 #
 # After a successful ledger push, dispatches transcribe.yml for each church that
 # had a new sermon this run, so transcription starts within this workflow's own
@@ -21,8 +24,6 @@
 name: Poll church feeds
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       backfill:
