@@ -95,6 +95,20 @@ def test_load_content_repo_config_raises_when_required_vars_missing(monkeypatch)
         config.load_content_repo_config()
 
 
+def test_load_pipeline_config_reads_both_required_vars(monkeypatch):
+    monkeypatch.setenv("PIPELINE_REPO", "owner/sermon-note-pipeline")
+    monkeypatch.setenv("PIPELINE_DISPATCH_TOKEN", "ghp_456")
+    cfg = config.load_pipeline_config()
+    assert cfg == config.PipelineConfig(repo="owner/sermon-note-pipeline", token="ghp_456")
+
+
+def test_load_pipeline_config_raises_when_required_vars_missing(monkeypatch):
+    monkeypatch.delenv("PIPELINE_REPO", raising=False)
+    monkeypatch.delenv("PIPELINE_DISPATCH_TOKEN", raising=False)
+    with pytest.raises(config.ConfigError, match="PIPELINE_REPO"):
+        config.load_pipeline_config()
+
+
 def test_load_log_level_defaults_to_info(monkeypatch):
     monkeypatch.delenv("LOG_LEVEL", raising=False)
     assert config.load_log_level() == "INFO"

@@ -1,6 +1,6 @@
 import pytest
 
-from poller import store, transcriber
+from poller import pipeline_dispatch, store, transcriber
 from poller.content_repo import ContentPublishError
 from poller.net import AudioDownloadError
 from poller.sources.base import SermonItem
@@ -101,6 +101,84 @@ def test_transcribe_church_marks_success_only_after_push_succeeds(tmp_path, monk
     assert saved["g1"]["transcription_status"] == "done"
     assert saved["g1"]["transcript_hash"] == "hash123"
     assert saved["g1"]["content_path"] == "transcripts/menlo/2026-01-01_sermon-g1_g1.txt"
+
+
+def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcribed_item(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", published_on="2026-01-01")}
+    dispatched = []
+
+    def fake_transcribe_audio(url):
+        return "the transcript", "hash123"
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
+    )
+
+    assert ok is True
+    assert len(dispatched) == 1
+    event, source = dispatched[0]
+    assert source == "menlo"
+    assert event["event"] == "sermon_detected"
+    assert event["source"] == "menlo"
+    assert event["external_id"] == "g1"
+    assert event["transcript"]["content_path"] == "transcripts/menlo/2026-01-01_sermon-g1_g1.txt"
+    assert event["transcript"]["transcript_hash"] == "hash123"
+
+
+def test_transcribe_church_survives_a_dispatch_failure(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", published_on="2026-01-01")}
+
+    def fake_transcribe_audio(url):
+        return "the transcript", "hash123"
+
+    def failing_dispatch(event, source):
+        raise pipeline_dispatch.PipelineDispatchError("pipeline unreachable")
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        dispatch_ingest_event=failing_dispatch,
+    )
+
+    assert ok is True
+    saved = store.load("menlo")
+    assert saved["g1"]["transcription_status"] == "done"
+
+
+def test_transcribe_church_never_dispatches_for_an_item_whose_push_failed(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", published_on="2026-01-01")}
+    dispatched = []
+
+    def fake_transcribe_audio(url):
+        return "text", "hash"
+
+    def failing_push(files):
+        raise ContentPublishError("content repo unreachable")
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=fake_transcribe_audio,
+        push=failing_push,
+        dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
+    )
+
+    assert ok is False
+    assert dispatched == []
 
 
 def test_transcribe_church_leaves_batch_pending_when_push_fails(tmp_path, monkeypatch):

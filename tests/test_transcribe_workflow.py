@@ -45,6 +45,14 @@ def test_transcribe_workflow_does_not_share_poll_yml_s_concurrency_group():
     assert "group: transcribe-sermons" in workflow_text()
 
 
+def test_transcribe_workflow_wires_pipeline_dispatch_config():
+    # poller/pipeline_dispatch.py (spec 0005, ADR-0009) needs both to trigger
+    # Sermon-Note-Pipeline's ingest-event dispatch after a successful transcription.
+    text = workflow_text()
+    assert "PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}" in text
+    assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in text
+
+
 def test_transcribe_workflow_wires_hf_token_secret():
     # HF_TOKEN authenticates faster-whisper's Hugging Face Hub model download
     # (read by huggingface_hub itself, not this repo's code) — the secret already

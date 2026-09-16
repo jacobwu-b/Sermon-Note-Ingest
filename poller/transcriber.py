@@ -30,11 +30,12 @@ import re
 import sys
 from collections.abc import Callable
 
-from poller import config, content_repo, net, store, transcribe
+from poller import config, content_repo, net, pipeline_dispatch, store, transcribe
 from poller.slug import slugify
 
 TranscribeAudio = Callable[[str], tuple[str, str]]
 PushTranscripts = Callable[[dict[str, str]], None]
+DispatchIngestEvent = Callable[[dict[str, object], str], None]
 
 logger = logging.getLogger("poller")
 
@@ -55,6 +56,36 @@ def _content_path(church: str, record: dict) -> str:
     """
     stem = f"{record.get('published_on') or 'undated'}_{slugify(record.get('title') or '')}_{_safe_guid(record['guid'])}"
     return f"transcripts/{church}/{stem}.txt"
+
+
+def _ingest_event(
+    name: str, guid: str, record: dict, *, content_path: str, transcript_hash: str, transcribed_at: str
+) -> dict[str, object]:
+    """Build the ``sermon_detected`` payload Sermon-Note-Pipeline's ``ingest_event`` expects.
+
+    Field shape and names come from Pipeline's own spec 0026 — ``source``/``external_id``
+    are the only fields Pipeline's code reads; the rest is logged there for traceability.
+    ``external_id`` is ``guid`` verbatim: this repo's per-church guid scheme (raw for
+    Menlo/PBC, ``<source>:``-prefixed for the rest) already matches Pipeline's own.
+    """
+    return {
+        "event": "sermon_detected",
+        "source": name,
+        "external_id": guid,
+        "url": record.get("episode_url") or "",
+        "published_at": record.get("published_at") or record.get("published_on") or "",
+        "detected_at": transcribed_at,
+        "transcript": {
+            "content_path": content_path,
+            "transcript_hash": transcript_hash,
+            "transcribed_at": transcribed_at,
+        },
+    }
+
+
+def _dispatch_ingest_event(event: dict[str, object], source: str) -> None:
+    pipeline_config = config.load_pipeline_config()
+    pipeline_dispatch.dispatch_ingest_event(event, source=source, config=pipeline_config)
 
 
 def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
@@ -85,6 +116,7 @@ def transcribe_church(
     *,
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
     push: PushTranscripts = content_repo.push_transcripts,
+    dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
 ) -> bool:
     """Transcribe ``batch``, push the successes to Content in one commit, then ledger them.
 
@@ -125,9 +157,22 @@ def transcribe_church(
             return False
         transcribed_at = net.now()
         for guid, (path, digest) in pending_marks.items():
+            record = records[guid]
             store.mark_transcribed(
-                records[guid], content_path=path, transcript_hash=digest, transcribed_at=transcribed_at
+                record, content_path=path, transcript_hash=digest, transcribed_at=transcribed_at
             )
+            event = _ingest_event(
+                name, guid, record, content_path=path, transcript_hash=digest, transcribed_at=transcribed_at
+            )
+            try:
+                dispatch_ingest_event(event, name)
+            except (config.ConfigError, pipeline_dispatch.PipelineDispatchError) as exc:
+                logger.warning(
+                    "%s/%s: pipeline dispatch failed, pipeline's own cron will still catch it: %s",
+                    name,
+                    guid,
+                    exc,
+                )
 
     store.save(name, records)
     logger.info("%s: transcribed %d/%d selected", name, len(pending_marks), len(batch))
@@ -190,6 +235,7 @@ def run(
     shard_count: int = 1,
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
     push: PushTranscripts = content_repo.push_transcripts,
+    dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
 ) -> bool:
     """Transcribe at most ``limit`` pending sermons per selected church.
 
@@ -199,9 +245,9 @@ def run(
     exactly one shard, and the default (0, 1) is every sermon, unchanged from before
     sharding existed.
 
-    ``transcribe_audio``/``push`` are threaded through to :func:`transcribe_church`
-    rather than relied on as its defaults, so a caller (or a test) can replace them
-    without reaching into another module's attributes.
+    ``transcribe_audio``/``push``/``dispatch_ingest_event`` are threaded through to
+    :func:`transcribe_church` rather than relied on as its defaults, so a caller (or a
+    test) can replace them without reaching into another module's attributes.
     """
     selected = _selected_churches(church_names)
     if not selected:
@@ -218,7 +264,14 @@ def run(
     all_ok = True
     for name, batch in batches.items():
         try:
-            ok = transcribe_church(name, loaded[name], batch, transcribe_audio=transcribe_audio, push=push)
+            ok = transcribe_church(
+                name,
+                loaded[name],
+                batch,
+                transcribe_audio=transcribe_audio,
+                push=push,
+                dispatch_ingest_event=dispatch_ingest_event,
+            )
         except Exception:
             logger.exception("%s: transcription crashed unexpectedly", name)
             ok = False
