@@ -1181,7 +1181,11 @@
     "raw_title": "Ultimate Survivor // Clay Cooney",
     "series": null,
     "speaker": "Clay Cooney",
-    "title": "Ultimate Survivor"
+    "title": "Ultimate Survivor",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-05-18_ultimate-survivor_north_point_9729167C88b32b6E481060B9D0AC.txt",
+    "transcript_hash": "7106588a564cbab989c23f52ac81bab0ce9a1aeb0bda4d6351da33fba64187a3",
+    "transcribed_at": "2026-09-16T15:30:37.933626+00:00"
   },
   "north_point:1aB156f70EC0CEACfAB8b88cB0eC": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/1aB156f70EC0CEACfAB8b88cB0eC/static/086281/32A2165705c4.mp3?feedId=1968826fF8",
