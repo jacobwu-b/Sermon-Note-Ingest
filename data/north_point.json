@@ -1271,7 +1271,11 @@
     "raw_title": "Death Of A King // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "Death Of A King"
+    "title": "Death Of A King",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-04-13_death-of-a-king_north_point_d92E001714EB75E39Db108036439.txt",
+    "transcript_hash": "3339b77570315ebf5ec62fc15507832881c0ace5dc95b89d9fc89247ef6f3bca",
+    "transcribed_at": "2026-09-16T19:19:46.066558+00:00"
   },
   "north_point:5814B473DcF220EEEB101930C31c": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/5814B473DcF220EEEB101930C31c/static/7Cb5D3/aE35E3912747.mp3?feedId=1968826fF8",
