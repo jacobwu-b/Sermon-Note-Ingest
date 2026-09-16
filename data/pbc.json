@@ -1303,7 +1303,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/04/27/2025%2004%2027%20Sermon%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-04-27_untitled_pbc-archive_Main_Service_2025_04_27_2025_04_27_Sermon_Podcast.mp3.txt",
+    "transcript_hash": "d51a5d8889ee9e4e43c555424cf98b3fb15f78d12b50bfc1696bdee6a09b3e6c",
+    "transcribed_at": "2026-09-16T15:19:23.625589+00:00"
   },
   "pbc-archive:Main_Service/2025/04/20/202504 20 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/04/20/202504 20 Sermon Podcast.mp3",
