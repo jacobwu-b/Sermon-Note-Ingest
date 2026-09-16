@@ -1411,7 +1411,11 @@
     "raw_title": "Eyes Opened | Cost of Connections | Menlo Church Live Stream",
     "series": "Cost of Connections",
     "speaker": "Menlo Church Live Stream",
-    "title": "Eyes Opened"
+    "title": "Eyes Opened",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-03-16_eyes-opened_menlochurchvideo.podbean.com_cfa5f8d2-eaea-3bb6-8296-942b1ef5ef99.txt",
+    "transcript_hash": "8363d73e6bcba6f21bec3b80550b8d9600ad600f84e0e0ac478c63e5e4f10a6c",
+    "transcribed_at": "2026-09-16T22:17:56.489760+00:00"
   },
   "menlochurchvideo.podbean.com/9b24189d-8228-35d4-b559-50349ead1300": {
     "audio_url": "https://mcdn.podbean.com/mf/web/d4bbk6k6fkkvwrzq/CocWeek2MessagePod.mp3",
