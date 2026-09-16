@@ -911,7 +911,11 @@
     "raw_title": "Annual Congregational Meeting Q&A | Phil EuBank, Dawn Hogh, Mark Morinishi",
     "series": null,
     "speaker": "Phil EuBank, Dawn Hogh, Mark Morinishi",
-    "title": "Annual Congregational Meeting Q&A"
+    "title": "Annual Congregational Meeting Q&A",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-09-21_annual-congregational-meeting-q-a_menlochurchvideo.podbean.com_39dcca61-e3c3-3976-8752-84869049f42a.txt",
+    "transcript_hash": "05666e3f66930c7224fc2938acfe709230a36ce4524fac45f3ba34dc592ab321",
+    "transcribed_at": "2026-09-16T00:43:45.500368+00:00"
   },
   "menlochurchvideo.podbean.com/05b38ad3-8874-30f6-b408-4ab33639bc21": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3jxizvkb7ft8sd2m/WagingPeaceMesagePod.mp3",
@@ -953,7 +957,11 @@
     "raw_title": "Making Room at the Table | The Art of Showing Up | Phil EuBank",
     "series": "The Art of Showing Up",
     "speaker": "Phil EuBank",
-    "title": "Making Room at the Table"
+    "title": "Making Room at the Table",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-09-07_making-room-at-the-table_menlochurchvideo.podbean.com_24e9c5d7-b1f4-310a-96b0-9c86616cf895.txt",
+    "transcript_hash": "11cd83bbc73948c1ab2c02fe7b119ec06b98dc64fc44a1d509b5b6e4a65adb38",
+    "transcribed_at": "2026-09-16T00:44:33.964396+00:00"
   },
   "menlochurchvideo.podbean.com/454ac64f-8c38-3584-89b0-b2235dfa20f8": {
     "audio_url": "https://mcdn.podbean.com/mf/web/nwqd7c3ridzyagnt/AoSUMidweek2Pod.mp3",
