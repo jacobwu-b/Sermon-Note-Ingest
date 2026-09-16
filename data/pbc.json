@@ -1253,7 +1253,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/05/18/2025%2005%2018%20Sermon%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-05-18_untitled_pbc-archive_Main_Service_2025_05_18_2025_05_18_Sermon_podcast.mp3.txt",
+    "transcript_hash": "1413641c648bc5a35eb3453638996801493dad2cb15d331eacd10ba147b4f410",
+    "transcribed_at": "2026-09-16T15:13:30.017734+00:00"
   },
   "pbc-archive:Main_Service/2025/05/11/2025 05 11 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/11/2025 05 11 Sermon podcast.mp3",
