@@ -1307,7 +1307,11 @@
     "raw_title": "Christian Karaoke | Weird Church | Dr. Jo Vitale",
     "series": "Weird Church",
     "speaker": "Dr. Jo Vitale",
-    "title": "Christian Karaoke"
+    "title": "Christian Karaoke",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-04-27_christian-karaoke_menlochurchvideo.podbean.com_15f5d73c-fda0-30bd-bb3e-0604f71deb9a.txt",
+    "transcript_hash": "45860faeecd63ee53cc2887956ea700599939b98e00550a7989ec1bd4317a5ec",
+    "transcribed_at": "2026-09-16T19:21:31.190724+00:00"
   },
   "menlochurchvideo.podbean.com/333e949b-794e-3c46-be40-020f45971f8e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/tmnmgvb8znv9wksq/EasterMessagePod.mp3",
