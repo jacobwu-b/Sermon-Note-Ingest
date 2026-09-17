@@ -1811,7 +1811,11 @@
     "raw_title": "Jesus & Exclusivity",
     "series": null,
     "speaker": null,
-    "title": "Jesus & Exclusivity"
+    "title": "Jesus & Exclusivity",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-06-04_jesus-exclusivity_lakepointe_33041525a6b96ce94792adb5f05808de.txt",
+    "transcript_hash": "77c9d014a56ea268abe9bc88daec9dbbb1de92950c0060d3559d5a2480ce3c08",
+    "transcribed_at": "2026-09-17T18:55:18.527786+00:00"
   },
   "lakepointe:4f42afc976b8f63da81b5078a760bc82": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4503724670.mp3?updated=1704307246",
