@@ -1515,7 +1515,11 @@
     "raw_title": "Heaven is Real",
     "series": null,
     "speaker": null,
-    "title": "Heaven is Real"
+    "title": "Heaven is Real",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-11-26_heaven-is-real_lakepointe_9467c7a60247e77dbd7f50ce5b5277ff.txt",
+    "transcript_hash": "6936c1d1ce4ed7ac4e2f4b33fef4ebb0fafcabdb73a9bb09cf3cf654a7f41f54",
+    "transcribed_at": "2026-09-17T00:25:38.064921+00:00"
   },
   "lakepointe:4a31edff3b06f61115385f631fc24410": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2272695395.mp3?updated=1704307206",
