@@ -1735,7 +1735,11 @@
     "raw_title": "You Are Not What You've Done",
     "series": null,
     "speaker": null,
-    "title": "You Are Not What You've Done"
+    "title": "You Are Not What You've Done",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-07-02_you-are-not-what-you-ve-done_lakepointe_2e6c1e9ab13e09932f6fc4d03650fe50.txt",
+    "transcript_hash": "3185c52330201ea2f5cbea01a27bc490aff383797eac51b418fc35b84a43ca00",
+    "transcribed_at": "2026-09-17T14:26:03.622054+00:00"
   },
   "lakepointe:c3b1275f1212869e5ec525154ca1b140": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1252471634.mp3?updated=1704307229",
