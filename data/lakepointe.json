@@ -1771,7 +1771,11 @@
     "raw_title": "You Are Not What People Say About You",
     "series": null,
     "speaker": null,
-    "title": "You Are Not What People Say About You"
+    "title": "You Are Not What People Say About You",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-06-18_you-are-not-what-people-say-about-you_lakepointe_e018293ebd09f99a895b053ffd9f1815.txt",
+    "transcript_hash": "af66bba504b07e955026cf7c750a10b8c4edd2e5c5a66d476e722fba819b43f0",
+    "transcribed_at": "2026-09-17T14:28:01.146685+00:00"
   },
   "lakepointe:c6a81aae7b76a87ffcc30c1253b4e9f9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1734788922.mp3?updated=1704307238",
