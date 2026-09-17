@@ -1849,7 +1849,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/09/29/Sermon%202024%2009%2029%20Pocast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-09-29_untitled_pbc-archive_Main_Service_2024_09_29_Sermon_2024_09_29_Pocast.mp3.txt",
+    "transcript_hash": "25c028d5375234ec78fbc3c47cd53ef0990ad5c48b8be0e32fdc23685c9acd63",
+    "transcribed_at": "2026-09-17T14:27:52.373672+00:00"
   },
   "pbc-archive:Main_Service/2024/09/22/Sermon 2024 09 22 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/09/22/Sermon 2024 09 22 Podcast.mp3",
