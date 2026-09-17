@@ -1695,7 +1695,11 @@
     "raw_title": "Finding and Fulfilling Your Calling",
     "series": null,
     "speaker": null,
-    "title": "Finding and Fulfilling Your Calling"
+    "title": "Finding and Fulfilling Your Calling",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-09-17_finding-and-fulfilling-your-calling_lakepointe_32a0a8133bbb3b0966340cc1ab9a9917.txt",
+    "transcript_hash": "763121bc55553c20bd8fac7dc7ffe18fff57e559584e0b858221787fc4efb13c",
+    "transcribed_at": "2026-09-17T09:36:22.393831+00:00"
   },
   "lakepointe:5b9442648c5698738015c99fdf12477e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9474129141.mp3?updated=1704307213",
