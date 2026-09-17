@@ -1469,7 +1469,11 @@
     "raw_title": "Light Up The Darkness",
     "series": null,
     "speaker": null,
-    "title": "Light Up The Darkness"
+    "title": "Light Up The Darkness",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-12-17_light-up-the-darkness_lakepointe_49fd13c634efcf039624b1f5aea63527.txt",
+    "transcript_hash": "ca30127043685f2d2c27b3e92e22ed5ad803fa73a0e000bb8fea1f0cf889055d",
+    "transcribed_at": "2026-09-17T00:29:13.928004+00:00"
   },
   "lakepointe:0c5be24877b30115d31a945dcf1fc893": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9891600395.mp3?updated=1704307203",
