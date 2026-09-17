@@ -1915,7 +1915,11 @@
     "raw_title": "Jesus & Religion",
     "series": null,
     "speaker": null,
-    "title": "Jesus & Religion"
+    "title": "Jesus & Religion",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-04-23_jesus-religion_lakepointe_1387ad0fc65ff4e8ff86b7139a5edd11.txt",
+    "transcript_hash": "e184da8c9ae2ed3ae9d6d79f2b710b109905478371210762c3890d81d94cd664",
+    "transcribed_at": "2026-09-17T21:39:53.416342+00:00"
   },
   "lakepointe:a3328e79ec62df82d0c2d1e3465bda5f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2232570909.mp3?updated=1704307274",
