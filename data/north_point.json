@@ -1497,7 +1497,11 @@
     "raw_title": "Made for More // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "Made for More"
+    "title": "Made for More",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-01-05_made-for-more_north_point_eDAFC1C3145f60217CB38A5B4AB5.txt",
+    "transcript_hash": "02e18a72a02baed75392e3a8cf699c8675e433d4dbcd50602a8d14bff19ef89c",
+    "transcribed_at": "2026-09-17T00:44:14.031989+00:00"
   },
   "north_point:F37775291DA5f8D2c2193299e163": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/F37775291DA5f8D2c2193299e163/static/25223A/737cbF06302E.mp3?feedId=1968826fF8",
