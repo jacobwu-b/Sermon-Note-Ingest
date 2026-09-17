@@ -1793,7 +1793,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/10/27/2024%2010%2027%20Sermon%20-%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-10-27_untitled_pbc-archive_Main_Service_2024_10_27_2024_10_27_Sermon_-_Podcast.mp3.txt",
+    "transcript_hash": "844e88eff642e24f10e65aa413da3c85e950dd09cbabcc7ea4805d9f77464b9e",
+    "transcribed_at": "2026-09-17T14:30:41.493944+00:00"
   },
   "pbc-archive:Main_Service/2024/10/20/Sermon 2024 10 20 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/10/20/Sermon 2024 10 20 Podcast.mp3",
