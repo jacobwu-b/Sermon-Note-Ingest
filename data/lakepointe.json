@@ -1901,7 +1901,11 @@
     "raw_title": "Jesus & Hell",
     "series": null,
     "speaker": null,
-    "title": "Jesus & Hell"
+    "title": "Jesus & Hell",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-04-30_jesus-hell_lakepointe_eea49ca87cc41b27abcb107f32469f86.txt",
+    "transcript_hash": "d279f9f58eee0cdf7143a3f5e07e2f7fdb14f2090e46d76d361f0b7e3803a66f",
+    "transcribed_at": "2026-09-17T21:55:05.734187+00:00"
   },
   "lakepointe:1387ad0fc65ff4e8ff86b7139a5edd11": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9502422838.mp3?updated=1704307268",
