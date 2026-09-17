@@ -1825,7 +1825,11 @@
     "raw_title": "Jesus & Controversial Grace",
     "series": null,
     "speaker": null,
-    "title": "Jesus & Controversial Grace"
+    "title": "Jesus & Controversial Grace",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-05-28_jesus-controversial-grace_lakepointe_4f42afc976b8f63da81b5078a760bc82.txt",
+    "transcript_hash": "6b2039995d8950d4f5f7d84594cd149422c26e0b2ac40face69030ff7880f7cd",
+    "transcribed_at": "2026-09-17T18:33:37.853907+00:00"
   },
   "lakepointe:85669eb9e294edea41f01da54ac66d94": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5519038333.mp3?updated=1704307250",
