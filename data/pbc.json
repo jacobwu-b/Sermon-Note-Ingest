@@ -1915,7 +1915,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/09/08/Sermon%202024%2009%2008%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-09-08_untitled_pbc-archive_Main_Service_2024_09_08_Sermon_2024_09_08_Podcast.mp3.txt",
+    "transcript_hash": "b47db5141999a67c474ead755c1f1b1e6a47718c0563bfa66d893b98599b16f3",
+    "transcribed_at": "2026-09-17T18:36:36.912964+00:00"
   },
   "pbc-archive:Main_Service/2024/09/01/Sermon 2024 09 01 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/09/01/Sermon 2024 09 01 Podcast.mp3",
