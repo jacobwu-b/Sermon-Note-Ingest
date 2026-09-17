@@ -1507,7 +1507,11 @@
     "raw_title": "Christmas Celebration // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "Christmas Celebration"
+    "title": "Christmas Celebration",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2024-12-22_christmas-celebration_north_point_F37775291DA5f8D2c2193299e163.txt",
+    "transcript_hash": "477065516a008fd54f3766af176b44de529c234597025adc2b16f9e7fa0de681",
+    "transcribed_at": "2026-09-17T00:18:33.476155+00:00"
   },
   "north_point:6Bd265FC1C79F4F4A45154033037": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/6Bd265FC1C79F4F4A45154033037/static/7EAE07/F9F4E9817118.mp3?feedId=1968826fF8",
