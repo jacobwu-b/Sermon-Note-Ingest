@@ -1479,7 +1479,11 @@
     "raw_title": "The Last Kingdom, Part 1: Lost in Translation // Andy Stanley",
     "series": null,
     "speaker": "Andy Stanley",
-    "title": "The Last Kingdom, Part 1: Lost in Translation"
+    "title": "The Last Kingdom, Part 1: Lost in Translation",
+    "transcription_status": "done",
+    "content_path": "transcripts/north_point/2025-01-19_the-last-kingdom-part-1-lost-in-translation_north_point_1DFAD46Ed1f81CBA0A286538998E.txt",
+    "transcript_hash": "88d8da022b0c06ea3d7434875248598033ec9bb8ea4680b8282fb84c79a30133",
+    "transcribed_at": "2026-09-17T00:36:55.063113+00:00"
   },
   "north_point:eDAFC1C3145f60217CB38A5B4AB5": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/eDAFC1C3145f60217CB38A5B4AB5/static/2e5c10/ED17ec6051F1.mp3?feedId=1968826fF8",
