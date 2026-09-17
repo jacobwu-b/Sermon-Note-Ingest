@@ -1551,7 +1551,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/01/19/2024%2001%2019%20Sermon%20Edit%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-01-19_untitled_pbc-archive_Main_Service_2025_01_19_2024_01_19_Sermon_Edit_Podcast.mp3.txt",
+    "transcript_hash": "a7752e6b03395215b2671410cc0dacdca870a9d7c2e095428849b6c315b0ad15",
+    "transcribed_at": "2026-09-17T00:43:41.942435+00:00"
   },
   "pbc-archive:Main_Service/2025/01/12/January 12, 2025 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/01/12/January 12, 2025 Podcast.mp3",
