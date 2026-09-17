@@ -1541,7 +1541,11 @@
     "raw_title": "Deploy | Startup Faith | Menlo Church Live Stream",
     "series": "Startup Faith",
     "speaker": "Menlo Church Live Stream",
-    "title": "Deploy"
+    "title": "Deploy",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-01-26_deploy_menlochurchvideo.podbean.com_ef3fcca2-ada2-3bb2-a11a-3ad5a8b402cf.txt",
+    "transcript_hash": "59840e87c287b01121d9d728df1746a3e926dc26e0a1d5057a42f1c713d2a2f6",
+    "transcribed_at": "2026-09-17T03:52:49.148766+00:00"
   },
   "menlochurchvideo.podbean.com/07eabd70-eec3-354d-ad9e-067680df9e3e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/44d6vxtvgxyf8vq2/Week3Pod_b991n.mp3",
