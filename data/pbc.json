@@ -1537,7 +1537,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/01/26/The%20Right%20Questions%20%20-%20January%2026%2C%202025%20Sermon%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-01-26_untitled_pbc-archive_Main_Service_2025_01_26_The_Right_Questions_-_January_26_2025_Sermon_podcast.mp3.txt",
+    "transcript_hash": "4c734c2f30f68f0d0c008f7771f5dcecf2ae16c4c2919f63a63e045740fd0531",
+    "transcribed_at": "2026-09-17T00:43:50.200322+00:00"
   },
   "pbc-archive:Main_Service/2025/01/19/2024 01 19 Sermon Edit Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/01/19/2024 01 19 Sermon Edit Podcast.mp3",
