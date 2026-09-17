@@ -1703,7 +1703,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/12/01/Sermon%202024%2012%2001%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-12-01_untitled_pbc-archive_Main_Service_2024_12_01_Sermon_2024_12_01_Podcast.mp3.txt",
+    "transcript_hash": "3b324dc5e295be59ff35310df4c81929d5059f67d7e3ee1444034e2d9e6aa3d8",
+    "transcribed_at": "2026-09-17T09:19:13.845507+00:00"
   },
   "pbc-archive:Main_Service/2024/11/24/Sermon 2024 11 24 - Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/11/24/Sermon 2024 11 24 - Podcast.mp3",
