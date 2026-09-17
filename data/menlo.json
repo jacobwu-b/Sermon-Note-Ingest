@@ -1577,7 +1577,11 @@
     "raw_title": "Design | Startup Faith | Phil EuBank",
     "series": "Startup Faith",
     "speaker": "Phil EuBank",
-    "title": "Design"
+    "title": "Design",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2025-01-12_design_menlochurchvideo.podbean.com_8de78206-444e-3897-a921-e4cd79363405.txt",
+    "transcript_hash": "288d1d8f78b2a3d0b24b10a12b238cf190732da671dc8b8c3384805c9eb9db0c",
+    "transcribed_at": "2026-09-17T04:00:09.427023+00:00"
   },
   "menlochurchvideo.podbean.com/5490ae9d-f57c-36d4-80d9-827b474c6a9a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3e66bry73kk79fkc/Week1MessagePod.mp3",
