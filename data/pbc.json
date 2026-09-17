@@ -1973,7 +1973,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/08/18/Sermon%202024%2008%2018%20VPodcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-08-18_untitled_pbc-archive_Main_Service_2024_08_18_Sermon_2024_08_18_VPodcast.mp3.txt",
+    "transcript_hash": "0b6736fa228224cbfbf3f8415277e14c46fb087521aba9f2f49ef63c11ee421d",
+    "transcribed_at": "2026-09-17T21:30:37.522720+00:00"
   },
   "pbc-archive:Main_Service/2024/08/11/Sermon 2024 008 11 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/08/11/Sermon 2024 008 11 Podcast.mp3",
