@@ -1937,7 +1937,11 @@
     "raw_title": "Jesus & Controversy",
     "series": null,
     "speaker": null,
-    "title": "Jesus & Controversy"
+    "title": "Jesus & Controversy",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-04-16_jesus-controversy_lakepointe_a3328e79ec62df82d0c2d1e3465bda5f.txt",
+    "transcript_hash": "ced3b1beaf00e75df670c177a94a136737977536c11516953699f67c8a6e2a01",
+    "transcribed_at": "2026-09-17T22:06:42.888779+00:00"
   },
   "lakepointe:39686ab7e9e05efe7482a731b46e4ee5": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8673378765.mp3?updated=1704307282",
