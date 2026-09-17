@@ -1627,7 +1627,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/12/24/2024%2012%2024%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-12-24_untitled_pbc-archive_Main_Service_2024_12_24_2024_12_24_podcast.mp3.txt",
+    "transcript_hash": "2af62f858eb2cd10f623b0e5d7df7b3def83be826d3cdb084848382600438db0",
+    "transcribed_at": "2026-09-17T03:33:49.601698+00:00"
   },
   "pbc-archive:Main_Service/2024/12/22/2024 12 22 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/22/2024 12 22 Podcast.mp3",
