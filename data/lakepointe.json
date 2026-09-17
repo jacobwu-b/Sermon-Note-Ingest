@@ -1451,7 +1451,11 @@
     "raw_title": "Christmas Candlelight Services 2023",
     "series": null,
     "speaker": null,
-    "title": "Christmas Candlelight Services 2023"
+    "title": "Christmas Candlelight Services 2023",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-12-24_christmas-candlelight-services-2023_lakepointe_555370bc0bc85383e836a4586319d121.txt",
+    "transcript_hash": "50926f3509fa1da13cd050e0a94644f24fbbe95afcdb921e38adca6584fe80e7",
+    "transcribed_at": "2026-09-17T00:21:54.062264+00:00"
   },
   "lakepointe:49fd13c634efcf039624b1f5aea63527": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2545225583.mp3?updated=1704307203",
