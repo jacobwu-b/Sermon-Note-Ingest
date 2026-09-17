@@ -1587,7 +1587,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2025/01/05/2025%2001%2005%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2025-01-05_untitled_pbc-archive_Main_Service_2025_01_05_2025_01_05_podcast.mp3.txt",
+    "transcript_hash": "48e2df8a98b3b4e318395c33776fd7948555128c059bbd6bb87e76e6e9425684",
+    "transcribed_at": "2026-09-17T00:44:40.822447+00:00"
   },
   "pbc-archive:Main_Service/2024/12/29/2024 12 29 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/29/2024 12 29 Podcast.mp3",
