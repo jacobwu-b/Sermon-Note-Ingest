@@ -132,10 +132,10 @@
     "blurb": "Pastor Iron Kim continues our series in the Book of Psalms with a message from Psalm 67",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-18T23:07:19.245805+00:00",
+    "transcript_hash": "bba1c4d90d4b6677a19d21e889c1e3fed978de686018d3f541c68e7ef053ad44",
+    "content_path": "transcripts/gracepres/2026-08-02_benediction_gracepres_tag_soundcloud_2010_tracks_2375043299.txt"
   },
   "gracepres:tag:soundcloud,2010:tracks/2369782640": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2369782640",
