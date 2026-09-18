@@ -2109,7 +2109,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/06/23/2023%2006%2023%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-06-23_untitled_pbc-archive_Main_Service_2024_06_23_2023_06_23_Podcast.mp3.txt",
+    "transcript_hash": "1297b249ddb23162b9f9d923b8fc32435b00fe60f8101adc634f8d128cffde07",
+    "transcribed_at": "2026-09-18T19:07:13.908894+00:00"
   },
   "pbc-archive:Main_Service/2024/06/16/Sermon 2024 06 16 Podcast V2.mp3": {
     "guid": "pbc-archive:Main_Service/2024/06/16/Sermon 2024 06 16 Podcast V2.mp3",
