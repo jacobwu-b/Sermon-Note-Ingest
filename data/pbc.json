@@ -2451,7 +2451,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/05/19/05%2019%202024%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-05-19_untitled_pbc-archive_Main_Service_2024_05_19_05_19_2024_Podcast.mp3.txt",
+    "transcript_hash": "f82d66a11d0f18422b8d4852d6b088fe27db9cf22481b12de12c062b0eba2184",
+    "transcribed_at": "2026-09-18T22:31:59.963084+00:00"
   },
   "pbc-archive:Main_Service/2024/05/12/5 12 2024 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/05/12/5 12 2024 Sermon Podcast.mp3",
