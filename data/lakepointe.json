@@ -2311,7 +2311,11 @@
     "raw_title": "Are Your Friends Like Jesus?",
     "series": null,
     "speaker": null,
-    "title": "Are Your Friends Like Jesus?"
+    "title": "Are Your Friends Like Jesus?",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-01-29_are-your-friends-like-jesus_lakepointe_ae9c29f34448c7327e871a95ee6c83a1.txt",
+    "transcript_hash": "771ec05cf4c6f5fe60d1cd7763783cae453158e7cdf62aab349c87463d7c5968",
+    "transcribed_at": "2026-09-18T22:35:20.933940+00:00"
   },
   "lakepointe:5fa488dde83e7f5fed470a7f0f6a88ff": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9888256455.mp3?updated=1704307318",
