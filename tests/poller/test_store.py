@@ -111,6 +111,8 @@ def test_item_to_record_defaults_transcription_fields_to_absent():
     assert record["transcribed_at"] is None
     assert record["transcript_hash"] is None
     assert record["content_path"] is None
+    assert record["transcription_model"] is None
+    assert record["transcription_domain_prompt"] is None
 
 
 def test_mark_transcribed_sets_exactly_its_own_fields():
@@ -120,11 +122,15 @@ def test_mark_transcribed_sets_exactly_its_own_fields():
         content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
         transcript_hash="deadbeef",
         transcribed_at="2026-09-06T12:00:00+00:00",
+        model="large-v3",
+        domain_prompt=True,
     )
     assert record["transcription_status"] == "done"
     assert record["content_path"] == "transcripts/menlo/2026-09-06_hear-and-do_g1.txt"
     assert record["transcript_hash"] == "deadbeef"
     assert record["transcribed_at"] == "2026-09-06T12:00:00+00:00"
+    assert record["transcription_model"] == "large-v3"
+    assert record["transcription_domain_prompt"] is True
 
 
 def test_mark_transcription_failed_sets_only_the_status():
@@ -159,6 +165,8 @@ def test_refresh_record_never_touches_first_seen_at_published_at_or_progress_fie
         content_path="transcripts/x.txt",
         transcript_hash="abc",
         transcribed_at="2026-01-03T00:00:00+00:00",
+        model="large-v3",
+        domain_prompt=True,
     )
 
     store.refresh_record(record, _item(published_on="2026-09-06"))
@@ -174,7 +182,12 @@ def test_refresh_record_never_touches_first_seen_at_published_at_or_progress_fie
 def test_refresh_record_freezes_title_once_transcription_is_done_but_not_other_fields():
     record = store.item_to_record(_item(), first_seen_at="now", published_at=None)
     store.mark_transcribed(
-        record, content_path="transcripts/x.txt", transcript_hash="abc", transcribed_at="now"
+        record,
+        content_path="transcripts/x.txt",
+        transcript_hash="abc",
+        transcribed_at="now",
+        model="large-v3",
+        domain_prompt=True,
     )
 
     renamed_and_rotated = _item(published_on="2026-09-06").__class__(
@@ -193,12 +206,20 @@ def test_refresh_record_freezes_title_once_transcription_is_done_but_not_other_f
 def test_an_old_record_without_transcription_fields_round_trips_unchanged(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     old_record = _record("g1", published_on="2026-01-04")
-    for key in ("transcription_status", "transcribed_at", "transcript_hash", "content_path"):
+    for key in (
+        "transcription_status",
+        "transcribed_at",
+        "transcript_hash",
+        "content_path",
+        "transcription_model",
+        "transcription_domain_prompt",
+    ):
         del old_record[key]
 
     store.save("menlo", {"g1": old_record})
     loaded = store.load("menlo")
     assert "transcription_status" not in loaded["g1"]
+    assert "transcription_model" not in loaded["g1"]
     assert loaded["g1"]["title"] == "Hear and Do"
 
 

@@ -15,7 +15,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-15T22:37:37.162445+00:00",
     "transcript_hash": "a0daf9cab92d823794cb982c1ad3bfa8ca47f106075db03bbb290520e300a23b",
-    "content_path": "transcripts/pbc/2026-09-13_beneath-the-surface_https_pbc.org_enmse_mid_4691.txt"
+    "content_path": "transcripts/pbc/2026-09-13_beneath-the-surface_https_pbc.org_enmse_mid_4691.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4690": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/09/06/Sermon+Audio+2026-09-06.mp3",
@@ -33,7 +35,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-09-06_no-middle-ground_https_pbc.org_enmse_mid_4690.txt",
     "transcript_hash": "fba2b3204aaab8e43bb9c1fbce84325f01a72c3586bf37add95fd2bfe23a0923",
-    "transcribed_at": "2026-09-14T05:50:37.371357+00:00"
+    "transcribed_at": "2026-09-14T05:50:37.371357+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4689": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/30/2026-08-30+Sermon+Audio.mp3",
@@ -51,7 +55,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-08-30_on-the-other-side-of-the-door_https_pbc.org_enmse_mid_4689.txt",
     "transcript_hash": "eea7136e2d6dcab05754e8544d541ba96e169b81f9a9eae4f2635be2d44c0785",
-    "transcribed_at": "2026-09-14T05:41:26.557340+00:00"
+    "transcribed_at": "2026-09-14T05:41:26.557340+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4686": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/23/sermon+audio+2026-08-23.mp3",
@@ -69,7 +75,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-08-23_one-necessary-thing_https_pbc.org_enmse_mid_4686.txt",
     "transcript_hash": "e84b56474bd502b71cdafc354ba9c49083c77528feb85f4eec67b5cab5866dc0",
-    "transcribed_at": "2026-09-14T05:39:07.086669+00:00"
+    "transcribed_at": "2026-09-14T05:39:07.086669+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4687": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/16/Sermon+Audio+2026-08-16.mp3",
@@ -87,7 +95,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-08-16_more-than-obedience_https_pbc.org_enmse_mid_4687.txt",
     "transcript_hash": "1ac865c0473d666087b252f7c39ab49b02025613cfc5b1dfc7ea4967e9ff6af4",
-    "transcribed_at": "2026-09-14T05:39:09.420779+00:00"
+    "transcribed_at": "2026-09-14T05:39:09.420779+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4685": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/09/Sermon+Audio+2026-08-09.mp3",
@@ -105,7 +115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-08-09_the-joy-of-the-mission_https_pbc.org_enmse_mid_4685.txt",
     "transcript_hash": "79492b22920748fb6bd79e7f56ccbd3f93d852a3f7370b0ae633927973f782df",
-    "transcribed_at": "2026-09-14T06:00:24.581352+00:00"
+    "transcribed_at": "2026-09-14T06:00:24.581352+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4684": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/08/02/Sermon+Audio+2026-08-02.mp3",
@@ -123,7 +135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-08-02_set-your-face_https_pbc.org_enmse_mid_4684.txt",
     "transcript_hash": "748f283b2a1c37b531504430adfba82987002868474b35c707ff7eed3e22a993",
-    "transcribed_at": "2026-09-14T06:40:59.951895+00:00"
+    "transcribed_at": "2026-09-14T06:40:59.951895+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4683": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/26/Sermon+Audio+07-26-2026.mp3",
@@ -141,7 +155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-07-26_g-o-a-t_https_pbc.org_enmse_mid_4683.txt",
     "transcript_hash": "2ede56a646a405ccee40b6820033dfc1c48da970be0b43dd2b61b483ce1eb9fb",
-    "transcribed_at": "2026-09-14T06:54:09.813984+00:00"
+    "transcribed_at": "2026-09-14T06:54:09.813984+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4682": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/19/Sermon+Audio+2026-07-19.mp3",
@@ -159,7 +175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-07-19_down-from-the-mountain_https_pbc.org_enmse_mid_4682.txt",
     "transcript_hash": "838529b44fff850c5fd2cabb05ab15d353cf0587cf6d22feae51c98b04493146",
-    "transcribed_at": "2026-09-14T06:58:40.566222+00:00"
+    "transcribed_at": "2026-09-14T06:58:40.566222+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4681": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/12/Sermon+Audio+2026-07-12.mp3",
@@ -177,7 +195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-07-12_on-the-mountaintop-with-jesus_https_pbc.org_enmse_mid_4681.txt",
     "transcript_hash": "544e6ccefb0ab42803e1aa32832fdf43e30a9a9b33e325d4e327a76c0fc1c54b",
-    "transcribed_at": "2026-09-14T06:55:45.398886+00:00"
+    "transcribed_at": "2026-09-14T06:55:45.398886+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "https://pbc.org?enmse_mid=4680": {
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/07/05/Sermon+Audio+2026-07-05.mp3",
@@ -195,7 +215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-07-05_take-up-your-cross_https_pbc.org_enmse_mid_4680.txt",
     "transcript_hash": "5bab2fa4e0c9f48a229e0d771c0ac0dd204bca47537f1660f05594c0792845aa",
-    "transcribed_at": "2026-09-14T07:06:27.008975+00:00"
+    "transcribed_at": "2026-09-14T07:06:27.008975+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/06/28/Sermon Audio 2026-06-28.mp3": {
     "guid": "pbc-archive:Main_Service/2026/06/28/Sermon Audio 2026-06-28.mp3",
@@ -213,7 +235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-06-28_untitled_pbc-archive_Main_Service_2026_06_28_Sermon_Audio_2026-06-28.mp3.txt",
     "transcript_hash": "3e24e9f3db40e0162d60c0d9c5cc306df5c719d116c959d1c48f7cc31c430977",
-    "transcribed_at": "2026-09-14T13:46:03.515386+00:00"
+    "transcribed_at": "2026-09-14T13:46:03.515386+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/06/21/Sermon Audio 2026-06-21.mp3": {
     "guid": "pbc-archive:Main_Service/2026/06/21/Sermon Audio 2026-06-21.mp3",
@@ -231,7 +255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-06-21_untitled_pbc-archive_Main_Service_2026_06_21_Sermon_Audio_2026-06-21.mp3.txt",
     "transcript_hash": "ae0c824a51711236fa178245d24d8b056ba776ddaa53f9293e0c532f9bce92f4",
-    "transcribed_at": "2026-09-14T13:39:55.375188+00:00"
+    "transcribed_at": "2026-09-14T13:39:55.375188+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/06/14/Sermon Audio 2026-06-14.mp3": {
     "guid": "pbc-archive:Main_Service/2026/06/14/Sermon Audio 2026-06-14.mp3",
@@ -249,7 +275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-06-14_untitled_pbc-archive_Main_Service_2026_06_14_Sermon_Audio_2026-06-14.mp3.txt",
     "transcript_hash": "e2ee74fb41c50be2667f9fc1c8c9ac2ef53f3e301eee5fe6ad9404d0e4805f91",
-    "transcribed_at": "2026-09-14T13:45:18.297308+00:00"
+    "transcribed_at": "2026-09-14T13:45:18.297308+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/06/07/Sermon Audio 2026-06-07.mp3": {
     "guid": "pbc-archive:Main_Service/2026/06/07/Sermon Audio 2026-06-07.mp3",
@@ -267,7 +295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-06-07_untitled_pbc-archive_Main_Service_2026_06_07_Sermon_Audio_2026-06-07.mp3.txt",
     "transcript_hash": "7d469371d9b7b8199debf4a1131befa672cc8763a6c8dd14a20e4a809f2d0202",
-    "transcribed_at": "2026-09-14T13:51:30.697483+00:00"
+    "transcribed_at": "2026-09-14T13:51:30.697483+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/05/31/Sermon Audio 2026-05-31.mp3": {
     "guid": "pbc-archive:Main_Service/2026/05/31/Sermon Audio 2026-05-31.mp3",
@@ -285,7 +315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-05-31_untitled_pbc-archive_Main_Service_2026_05_31_Sermon_Audio_2026-05-31.mp3.txt",
     "transcript_hash": "78e85c9ff247e6b5afc6f4c5a1b54e5c8757e8d7fb462cfc5eab918c803f21a1",
-    "transcribed_at": "2026-09-14T13:47:51.055938+00:00"
+    "transcribed_at": "2026-09-14T13:47:51.055938+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/05/24/Sermon Audio 2026-05-24.mp3": {
     "guid": "pbc-archive:Main_Service/2026/05/24/Sermon Audio 2026-05-24.mp3",
@@ -303,7 +335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-05-24_untitled_pbc-archive_Main_Service_2026_05_24_Sermon_Audio_2026-05-24.mp3.txt",
     "transcript_hash": "14811407da20058710d8117e5c98e28c20f003400a3cc3981d6b5b3baccda4b1",
-    "transcribed_at": "2026-09-14T19:16:45.362845+00:00"
+    "transcribed_at": "2026-09-14T19:16:45.362845+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/05/17/Sermon Audio 2026-05-17.mp3": {
     "guid": "pbc-archive:Main_Service/2026/05/17/Sermon Audio 2026-05-17.mp3",
@@ -321,7 +355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-05-17_untitled_pbc-archive_Main_Service_2026_05_17_Sermon_Audio_2026-05-17.mp3.txt",
     "transcript_hash": "64a349e9b8156f64852b8700390b2cb06ef47d7997e3ed10358b9d7d923dc6e1",
-    "transcribed_at": "2026-09-14T19:37:33.728683+00:00"
+    "transcribed_at": "2026-09-14T19:37:33.728683+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/05/10/Sermon Audio 2026-05-10.mp3": {
     "guid": "pbc-archive:Main_Service/2026/05/10/Sermon Audio 2026-05-10.mp3",
@@ -339,7 +375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-05-10_untitled_pbc-archive_Main_Service_2026_05_10_Sermon_Audio_2026-05-10.mp3.txt",
     "transcript_hash": "a363fae45d968f032e9196e141ceada585703530491b80886c9e36862e281c16",
-    "transcribed_at": "2026-09-14T19:11:15.085191+00:00"
+    "transcribed_at": "2026-09-14T19:11:15.085191+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/05/03/Sermon Audio 2026-05-03.mp3": {
     "guid": "pbc-archive:Main_Service/2026/05/03/Sermon Audio 2026-05-03.mp3",
@@ -357,7 +395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-05-03_untitled_pbc-archive_Main_Service_2026_05_03_Sermon_Audio_2026-05-03.mp3.txt",
     "transcript_hash": "dc6c3043505e573ff0faf37fb60f455317ee6505074f72bea08a7f1c26f326fe",
-    "transcribed_at": "2026-09-14T19:29:00.992299+00:00"
+    "transcribed_at": "2026-09-14T19:29:00.992299+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/04/26/2026-04-26 Sermon Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2026/04/26/2026-04-26 Sermon Audio.mp3",
@@ -375,7 +415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-04-26_untitled_pbc-archive_Main_Service_2026_04_26_2026-04-26_Sermon_Audio.mp3.txt",
     "transcript_hash": "f9cfc6cc5a91967ffba65992f879ad75779a748df292ab0e4e96b20f40f945da",
-    "transcribed_at": "2026-09-14T20:19:45.310108+00:00"
+    "transcribed_at": "2026-09-14T20:19:45.310108+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/04/19/Sermon Audio 2026-04-19.mp3": {
     "guid": "pbc-archive:Main_Service/2026/04/19/Sermon Audio 2026-04-19.mp3",
@@ -393,7 +435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-04-19_untitled_pbc-archive_Main_Service_2026_04_19_Sermon_Audio_2026-04-19.mp3.txt",
     "transcript_hash": "bb646c027368a3f8dd257dfd1f1ad54bb99f405720fb957e8b29a05f4f9e3f73",
-    "transcribed_at": "2026-09-14T22:41:53.941086+00:00"
+    "transcribed_at": "2026-09-14T22:41:53.941086+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/04/12/Sermon Audio 2026-04-12.mp3": {
     "guid": "pbc-archive:Main_Service/2026/04/12/Sermon Audio 2026-04-12.mp3",
@@ -411,7 +455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-04-12_untitled_pbc-archive_Main_Service_2026_04_12_Sermon_Audio_2026-04-12.mp3.txt",
     "transcript_hash": "921a8f25a2a38ce0a9046c470eadf9824d522dd825abd80e3e50bef00392ea19",
-    "transcribed_at": "2026-09-14T22:39:17.034366+00:00"
+    "transcribed_at": "2026-09-14T22:39:17.034366+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/04/05/Easter Sunday 2026 Sermon Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2026/04/05/Easter Sunday 2026 Sermon Audio.mp3",
@@ -429,7 +475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-04-05_untitled_pbc-archive_Main_Service_2026_04_05_Easter_Sunday_2026_Sermon_Audio.mp3.txt",
     "transcript_hash": "543ef9540d9f4696c1863c3f8836d779f108e74b9c4b3c0246c64b596c1bf4cc",
-    "transcribed_at": "2026-09-14T22:48:37.029813+00:00"
+    "transcribed_at": "2026-09-14T22:48:37.029813+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/04/03/Good Friday Service 2026 Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2026/04/03/Good Friday Service 2026 Audio.mp3",
@@ -447,7 +495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-04-03_untitled_pbc-archive_Main_Service_2026_04_03_Good_Friday_Service_2026_Audio.mp3.txt",
     "transcript_hash": "a58a2f654880d2c5a1fa32dbb4e7312870ad3a1419624e6455f561c9ec5e4022",
-    "transcribed_at": "2026-09-14T22:19:57.102159+00:00"
+    "transcribed_at": "2026-09-14T22:19:57.102159+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/03/29/Sermon Audio 2026-03-29.mp3": {
     "guid": "pbc-archive:Main_Service/2026/03/29/Sermon Audio 2026-03-29.mp3",
@@ -465,7 +515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-03-29_untitled_pbc-archive_Main_Service_2026_03_29_Sermon_Audio_2026-03-29.mp3.txt",
     "transcript_hash": "69c71380488e42e0d4f03a6c8f040b489a340b3f874af34b781e860f472da417",
-    "transcribed_at": "2026-09-14T22:38:13.224162+00:00"
+    "transcribed_at": "2026-09-14T22:38:13.224162+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/03/22/Sermon Audio 2026-03-22.mp3": {
     "guid": "pbc-archive:Main_Service/2026/03/22/Sermon Audio 2026-03-22.mp3",
@@ -483,7 +535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-03-22_untitled_pbc-archive_Main_Service_2026_03_22_Sermon_Audio_2026-03-22.mp3.txt",
     "transcript_hash": "ab4f48ccb17a04ee5273b7a2e2cbe0a9548480360c5f46e8257c34f1460d3361",
-    "transcribed_at": "2026-09-15T01:21:46.598967+00:00"
+    "transcribed_at": "2026-09-15T01:21:46.598967+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/03/15/sermon audio 2026-03-15.mp3": {
     "guid": "pbc-archive:Main_Service/2026/03/15/sermon audio 2026-03-15.mp3",
@@ -501,7 +555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-03-15_untitled_pbc-archive_Main_Service_2026_03_15_sermon_audio_2026-03-15.mp3.txt",
     "transcript_hash": "8d2ccf450e5018869f861d297f11c7f62c48556f85ef5fa08dc707e893090957",
-    "transcribed_at": "2026-09-15T01:35:51.623664+00:00"
+    "transcribed_at": "2026-09-15T01:35:51.623664+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/03/08/sermon audio 2026-03-08.mp3": {
     "guid": "pbc-archive:Main_Service/2026/03/08/sermon audio 2026-03-08.mp3",
@@ -519,7 +575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-03-08_untitled_pbc-archive_Main_Service_2026_03_08_sermon_audio_2026-03-08.mp3.txt",
     "transcript_hash": "01544416cf3b049c603d4bc2b108874d462330d789059674af0e78224e4211ca",
-    "transcribed_at": "2026-09-15T01:15:41.226579+00:00"
+    "transcribed_at": "2026-09-15T01:15:41.226579+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/03/01/Sermon Audio 2026-03-01.mp3": {
     "guid": "pbc-archive:Main_Service/2026/03/01/Sermon Audio 2026-03-01.mp3",
@@ -537,7 +595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-03-01_untitled_pbc-archive_Main_Service_2026_03_01_Sermon_Audio_2026-03-01.mp3.txt",
     "transcript_hash": "2e53ae58e0db6366bf6af4602823edcb2b0a51001bdd87c3e294e41b57b22c30",
-    "transcribed_at": "2026-09-15T01:16:16.781674+00:00"
+    "transcribed_at": "2026-09-15T01:16:16.781674+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/02/22/Sermon Audio 2026-02-22.mp3": {
     "guid": "pbc-archive:Main_Service/2026/02/22/Sermon Audio 2026-02-22.mp3",
@@ -555,7 +615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-02-22_untitled_pbc-archive_Main_Service_2026_02_22_Sermon_Audio_2026-02-22.mp3.txt",
     "transcript_hash": "622bc96fd0ccf5fcc30d8776a8dc80911ac1cf9b0f6d0ff283423e9589db6b9d",
-    "transcribed_at": "2026-09-15T01:22:09.509524+00:00"
+    "transcribed_at": "2026-09-15T01:22:09.509524+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/02/15/sermon audio 2026-02-15.mp3": {
     "guid": "pbc-archive:Main_Service/2026/02/15/sermon audio 2026-02-15.mp3",
@@ -573,7 +635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-02-15_untitled_pbc-archive_Main_Service_2026_02_15_sermon_audio_2026-02-15.mp3.txt",
     "transcript_hash": "83d069626f2ae72fa5f989e916c0bc51f2287581c05ee16a4cd8c5e26c5e4fdf",
-    "transcribed_at": "2026-09-15T06:02:15.329052+00:00"
+    "transcribed_at": "2026-09-15T06:02:15.329052+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/02/08/Sermon Audio 2026-02-08.mp3": {
     "guid": "pbc-archive:Main_Service/2026/02/08/Sermon Audio 2026-02-08.mp3",
@@ -591,7 +655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-02-08_untitled_pbc-archive_Main_Service_2026_02_08_Sermon_Audio_2026-02-08.mp3.txt",
     "transcript_hash": "a9d22eff612b3c310f301949cf776801e8db606698714700e4bc8566284c6330",
-    "transcribed_at": "2026-09-15T06:00:58.109988+00:00"
+    "transcribed_at": "2026-09-15T06:00:58.109988+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/02/01/Sermon Audio 2026-02-01.mp3": {
     "guid": "pbc-archive:Main_Service/2026/02/01/Sermon Audio 2026-02-01.mp3",
@@ -609,7 +675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-02-01_untitled_pbc-archive_Main_Service_2026_02_01_Sermon_Audio_2026-02-01.mp3.txt",
     "transcript_hash": "783271e3c05d177cf00c3ddf018b7f468e0a37dd85b241ac18d6ea7c520f6722",
-    "transcribed_at": "2026-09-15T05:50:57.163366+00:00"
+    "transcribed_at": "2026-09-15T05:50:57.163366+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/01/25/Sermon Audio 2025-01-25.mp3": {
     "guid": "pbc-archive:Main_Service/2026/01/25/Sermon Audio 2025-01-25.mp3",
@@ -627,7 +695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-01-25_untitled_pbc-archive_Main_Service_2026_01_25_Sermon_Audio_2025-01-25.mp3.txt",
     "transcript_hash": "ba9b852c658d8c2329621b3c2ec0334a4d94247155ea1fc745dae680255c6fca",
-    "transcribed_at": "2026-09-15T06:05:38.914524+00:00"
+    "transcribed_at": "2026-09-15T06:05:38.914524+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/01/18/Sermon Audio 2026-01-18.mp3": {
     "guid": "pbc-archive:Main_Service/2026/01/18/Sermon Audio 2026-01-18.mp3",
@@ -645,7 +715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-01-18_untitled_pbc-archive_Main_Service_2026_01_18_Sermon_Audio_2026-01-18.mp3.txt",
     "transcript_hash": "d69cd6a035d8d73cc23c91940b21fad8bbdeee347c2a3a7ee5d1bd783570140a",
-    "transcribed_at": "2026-09-15T06:07:33.206760+00:00"
+    "transcribed_at": "2026-09-15T06:07:33.206760+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/01/11/Sermon Audio 2026-01-11.mp3": {
     "guid": "pbc-archive:Main_Service/2026/01/11/Sermon Audio 2026-01-11.mp3",
@@ -663,7 +735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-01-11_untitled_pbc-archive_Main_Service_2026_01_11_Sermon_Audio_2026-01-11.mp3.txt",
     "transcript_hash": "e3c3a630c3e9ab2bc84ee87547c3175c0d9e666729338b744126f24f02ab65e4",
-    "transcribed_at": "2026-09-15T11:04:51.766554+00:00"
+    "transcribed_at": "2026-09-15T11:04:51.766554+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2026/01/04/sermon audio 2026-01-04.mp3": {
     "guid": "pbc-archive:Main_Service/2026/01/04/sermon audio 2026-01-04.mp3",
@@ -681,7 +755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2026-01-04_untitled_pbc-archive_Main_Service_2026_01_04_sermon_audio_2026-01-04.mp3.txt",
     "transcript_hash": "8154da73d12a61db00621f9bdd793e84f0175539bed48d0680fced489e21ad9f",
-    "transcribed_at": "2026-09-15T10:54:59.553961+00:00"
+    "transcribed_at": "2026-09-15T10:54:59.553961+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/12/28/Sermon Audio 2025-12-28.mp3": {
     "guid": "pbc-archive:Main_Service/2025/12/28/Sermon Audio 2025-12-28.mp3",
@@ -699,7 +775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-12-28_untitled_pbc-archive_Main_Service_2025_12_28_Sermon_Audio_2025-12-28.mp3.txt",
     "transcript_hash": "e4685995a17a381cbf8bc3a7369fa322ba19c0e17bcf56d014b6aa9b8de1efdf",
-    "transcribed_at": "2026-09-15T11:00:50.589611+00:00"
+    "transcribed_at": "2026-09-15T11:00:50.589611+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/12/24/Sermon Audio 2025-12-24.mp3": {
     "guid": "pbc-archive:Main_Service/2025/12/24/Sermon Audio 2025-12-24.mp3",
@@ -717,7 +795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-12-24_untitled_pbc-archive_Main_Service_2025_12_24_Sermon_Audio_2025-12-24.mp3.txt",
     "transcript_hash": "b627636fb2102399e67674fdce29cc6f9c5d3b5d8b74cea74fb350a19325a9c9",
-    "transcribed_at": "2026-09-15T10:36:35.520398+00:00"
+    "transcribed_at": "2026-09-15T10:36:35.520398+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/12/21/Sermon Audio 2025-12-21.mp3": {
     "guid": "pbc-archive:Main_Service/2025/12/21/Sermon Audio 2025-12-21.mp3",
@@ -735,7 +815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-12-21_untitled_pbc-archive_Main_Service_2025_12_21_Sermon_Audio_2025-12-21.mp3.txt",
     "transcript_hash": "7a260b11d73c882a9123968e101b03de51975da0820f3d3772a2b3169d81163d",
-    "transcribed_at": "2026-09-15T10:59:33.317284+00:00"
+    "transcribed_at": "2026-09-15T10:59:33.317284+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/12/14/Sermon Audio 2025-12-14.mp3": {
     "guid": "pbc-archive:Main_Service/2025/12/14/Sermon Audio 2025-12-14.mp3",
@@ -753,7 +835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-12-14_untitled_pbc-archive_Main_Service_2025_12_14_Sermon_Audio_2025-12-14.mp3.txt",
     "transcript_hash": "090e23be9d9e29c18a8da83c30495d036e374375c66b0d1c0d9387e0b008847e",
-    "transcribed_at": "2026-09-15T15:51:40.137219+00:00"
+    "transcribed_at": "2026-09-15T15:51:40.137219+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/12/07/Sermon Audio 2025-12-07.mp3": {
     "guid": "pbc-archive:Main_Service/2025/12/07/Sermon Audio 2025-12-07.mp3",
@@ -771,7 +855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-12-07_untitled_pbc-archive_Main_Service_2025_12_07_Sermon_Audio_2025-12-07.mp3.txt",
     "transcript_hash": "dda80850e74ed9b1f643482b638ec89abf43e3ffc4a82d40a9588afb8b8c61a2",
-    "transcribed_at": "2026-09-15T15:51:59.333858+00:00"
+    "transcribed_at": "2026-09-15T15:51:59.333858+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/11/30/sermon audio 2025-11-30.mp3": {
     "guid": "pbc-archive:Main_Service/2025/11/30/sermon audio 2025-11-30.mp3",
@@ -789,7 +875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-11-30_untitled_pbc-archive_Main_Service_2025_11_30_sermon_audio_2025-11-30.mp3.txt",
     "transcript_hash": "4e3fcfc20880186498510f05001cf6006e5f0ca24896cd33ed23ad7c80e709ea",
-    "transcribed_at": "2026-09-15T15:59:46.005005+00:00"
+    "transcribed_at": "2026-09-15T15:59:46.005005+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/11/23/sermon audio 2025-11-23.mp3": {
     "guid": "pbc-archive:Main_Service/2025/11/23/sermon audio 2025-11-23.mp3",
@@ -807,7 +895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-11-23_untitled_pbc-archive_Main_Service_2025_11_23_sermon_audio_2025-11-23.mp3.txt",
     "transcript_hash": "c5ee0e7a162cdce848bcf6b11a4089838c1d316d8b1594366c0555ca79e39fa9",
-    "transcribed_at": "2026-09-15T15:42:11.121283+00:00"
+    "transcribed_at": "2026-09-15T15:42:11.121283+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/11/16/Sermon Audio 2025-11-16.mp3": {
     "guid": "pbc-archive:Main_Service/2025/11/16/Sermon Audio 2025-11-16.mp3",
@@ -825,7 +915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-11-16_untitled_pbc-archive_Main_Service_2025_11_16_Sermon_Audio_2025-11-16.mp3.txt",
     "transcript_hash": "03060993ef3b6163325087a9741c363526682ce751b1f1fc68c4e506aa48b195",
-    "transcribed_at": "2026-09-15T15:55:18.386612+00:00"
+    "transcribed_at": "2026-09-15T15:55:18.386612+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/11/09/Sermon Audio 2025-11-09.mp3": {
     "guid": "pbc-archive:Main_Service/2025/11/09/Sermon Audio 2025-11-09.mp3",
@@ -843,7 +935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-11-09_untitled_pbc-archive_Main_Service_2025_11_09_Sermon_Audio_2025-11-09.mp3.txt",
     "transcript_hash": "0e25dbf89cc04d4e371214b4f5ff712b872f85cca2f9671244697147f3831ad0",
-    "transcribed_at": "2026-09-15T19:43:04.148913+00:00"
+    "transcribed_at": "2026-09-15T19:43:04.148913+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/11/02/2025-11-02 Sermon Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/11/02/2025-11-02 Sermon Audio.mp3",
@@ -861,7 +955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-11-02_untitled_pbc-archive_Main_Service_2025_11_02_2025-11-02_Sermon_Audio.mp3.txt",
     "transcript_hash": "d5b76c50ac656e2b0abc6128de17b9bfefeb39e9829ebe411a9c54ae734e60ab",
-    "transcribed_at": "2026-09-15T19:45:47.080187+00:00"
+    "transcribed_at": "2026-09-15T19:45:47.080187+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/10/26/2025-10-26 Sermon Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/10/26/2025-10-26 Sermon Audio.mp3",
@@ -879,7 +975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-10-26_untitled_pbc-archive_Main_Service_2025_10_26_2025-10-26_Sermon_Audio.mp3.txt",
     "transcript_hash": "70dfc90e31db7a9e2188c66f6b34f297f5443ed648e68444070fb6de7377af79",
-    "transcribed_at": "2026-09-15T19:34:39.665626+00:00"
+    "transcribed_at": "2026-09-15T19:34:39.665626+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/10/19/2025-10-19 Sermon Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/10/19/2025-10-19 Sermon Audio.mp3",
@@ -897,7 +995,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-10-19_untitled_pbc-archive_Main_Service_2025_10_19_2025-10-19_Sermon_Audio.mp3.txt",
     "transcript_hash": "f027ac875c22ac5aff368a9bc6361304fdb3038d2e1c9de408e64f97f0bceaf0",
-    "transcribed_at": "2026-09-15T19:47:12.403886+00:00"
+    "transcribed_at": "2026-09-15T19:47:12.403886+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/10/12/sermon audio 2025-10-12.mp3": {
     "guid": "pbc-archive:Main_Service/2025/10/12/sermon audio 2025-10-12.mp3",
@@ -915,7 +1015,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-10-12_untitled_pbc-archive_Main_Service_2025_10_12_sermon_audio_2025-10-12.mp3.txt",
     "transcript_hash": "1e62f13ef30ac1d0ffee9a2d31edb719d0b3899d7b3d969337f80a3255e1c0f9",
-    "transcribed_at": "2026-09-15T22:39:01.034057+00:00"
+    "transcribed_at": "2026-09-15T22:39:01.034057+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/10/05/sermon audio 2025-10-05.mp3": {
     "guid": "pbc-archive:Main_Service/2025/10/05/sermon audio 2025-10-05.mp3",
@@ -933,7 +1035,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-10-05_untitled_pbc-archive_Main_Service_2025_10_05_sermon_audio_2025-10-05.mp3.txt",
     "transcript_hash": "d9029c5f7e25d1841c556b141a5f51e7cca9ec312c74d6d1d1295d491204044a",
-    "transcribed_at": "2026-09-15T22:56:16.803072+00:00"
+    "transcribed_at": "2026-09-15T22:56:16.803072+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/09/21/sermon audio 2025-09-21.mp3": {
     "guid": "pbc-archive:Main_Service/2025/09/21/sermon audio 2025-09-21.mp3",
@@ -951,7 +1055,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-09-21_untitled_pbc-archive_Main_Service_2025_09_21_sermon_audio_2025-09-21.mp3.txt",
     "transcript_hash": "755be61911df7f0eb6b999fa1912749e16960ac3360cb10eef8c98baf84ad241",
-    "transcribed_at": "2026-09-15T23:18:13.216216+00:00"
+    "transcribed_at": "2026-09-15T23:18:13.216216+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/09/14/sermon audio 2025-09-14.mp3": {
     "guid": "pbc-archive:Main_Service/2025/09/14/sermon audio 2025-09-14.mp3",
@@ -969,7 +1075,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-09-14_untitled_pbc-archive_Main_Service_2025_09_14_sermon_audio_2025-09-14.mp3.txt",
     "transcript_hash": "d76cb36147b4fc22e61b4c3140baea366e241b88e0ea427a17908945ebe88412",
-    "transcribed_at": "2026-09-15T22:40:11.073259+00:00"
+    "transcribed_at": "2026-09-15T22:40:11.073259+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/09/07/sermon 09-07-2025.mp3": {
     "guid": "pbc-archive:Main_Service/2025/09/07/sermon 09-07-2025.mp3",
@@ -987,7 +1095,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-09-07_untitled_pbc-archive_Main_Service_2025_09_07_sermon_09-07-2025.mp3.txt",
     "transcript_hash": "b4af949bcbf1f564f10f48deef25182738126a18c9d6a7621619a1576b54632a",
-    "transcribed_at": "2026-09-16T00:55:03.570119+00:00"
+    "transcribed_at": "2026-09-16T00:55:03.570119+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/08/31/sermon audio 2025-08-31.mp3": {
     "guid": "pbc-archive:Main_Service/2025/08/31/sermon audio 2025-08-31.mp3",
@@ -1005,7 +1115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-08-31_untitled_pbc-archive_Main_Service_2025_08_31_sermon_audio_2025-08-31.mp3.txt",
     "transcript_hash": "d5ce1936632de108ef9843ece6d13b5c913d6559a7f281f65f0ec0a0dc3b4eed",
-    "transcribed_at": "2026-09-16T00:56:18.943437+00:00"
+    "transcribed_at": "2026-09-16T00:56:18.943437+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/08/24/Sermon Audio 2025-08-24.mp3": {
     "guid": "pbc-archive:Main_Service/2025/08/24/Sermon Audio 2025-08-24.mp3",
@@ -1023,7 +1135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-08-24_untitled_pbc-archive_Main_Service_2025_08_24_Sermon_Audio_2025-08-24.mp3.txt",
     "transcript_hash": "a879023526fd149eb7c74ae7932fd85ce83faefaaae1473211d905309f591be7",
-    "transcribed_at": "2026-09-16T00:56:35.294018+00:00"
+    "transcribed_at": "2026-09-16T00:56:35.294018+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/08/17/2025-08-17-sermon-audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/08/17/2025-08-17-sermon-audio.mp3",
@@ -1041,7 +1155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-08-17_untitled_pbc-archive_Main_Service_2025_08_17_2025-08-17-sermon-audio.mp3.txt",
     "transcript_hash": "0bf4ef861b61284942d3c3f6a3f039bbe6bb4af883839859f68b80bb22bbe67b",
-    "transcribed_at": "2026-09-16T00:41:36.279203+00:00"
+    "transcribed_at": "2026-09-16T00:41:36.279203+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/08/10/08-10-2025-Sermon-Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/08/10/08-10-2025-Sermon-Audio.mp3",
@@ -1059,7 +1175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-08-10_untitled_pbc-archive_Main_Service_2025_08_10_08-10-2025-Sermon-Audio.mp3.txt",
     "transcript_hash": "1daf084071182c267b2545cdea9af8ced2de7b2e0925d47dabcd70d0eff99bc4",
-    "transcribed_at": "2026-09-16T00:53:30.789958+00:00"
+    "transcribed_at": "2026-09-16T00:53:30.789958+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/08/03/2025-08-03-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/08/03/2025-08-03-Sermon.mp3",
@@ -1077,7 +1195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-08-03_untitled_pbc-archive_Main_Service_2025_08_03_2025-08-03-Sermon.mp3.txt",
     "transcript_hash": "ee09d10a577cb30ee505764bc6d5c03807d98e2660947811e8e6b88829bc4f9e",
-    "transcribed_at": "2026-09-16T05:21:22.027158+00:00"
+    "transcribed_at": "2026-09-16T05:21:22.027158+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/07/27/2025-07-27-Sermon-Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/07/27/2025-07-27-Sermon-Audio.mp3",
@@ -1095,7 +1215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-07-27_untitled_pbc-archive_Main_Service_2025_07_27_2025-07-27-Sermon-Audio.mp3.txt",
     "transcript_hash": "1d534b79dd5fe46bf904cb63dce53f163970beacd9f5f6b29c553b886caa280f",
-    "transcribed_at": "2026-09-16T05:36:53.557472+00:00"
+    "transcribed_at": "2026-09-16T05:36:53.557472+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/07/20/2025-07-20-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/07/20/2025-07-20-Sermon.mp3",
@@ -1113,7 +1235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-07-20_untitled_pbc-archive_Main_Service_2025_07_20_2025-07-20-Sermon.mp3.txt",
     "transcript_hash": "cae1abf35122016db375f9534d492c74f3873fdc022cc7ab9d4c8e80971de7fa",
-    "transcribed_at": "2026-09-16T05:42:01.340492+00:00"
+    "transcribed_at": "2026-09-16T05:42:01.340492+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/07/13/2025-07-13-sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/07/13/2025-07-13-sermon.mp3",
@@ -1131,7 +1255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-07-13_untitled_pbc-archive_Main_Service_2025_07_13_2025-07-13-sermon.mp3.txt",
     "transcript_hash": "1a75c2192bbdd0e9382b820c8dbf074ec2901f3ccaf64603c47bb69e11d4052f",
-    "transcribed_at": "2026-09-16T05:59:37.848177+00:00"
+    "transcribed_at": "2026-09-16T05:59:37.848177+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/07/06/2025-07-06-Sermon-Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/07/06/2025-07-06-Sermon-Audio.mp3",
@@ -1149,7 +1275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-07-06_untitled_pbc-archive_Main_Service_2025_07_06_2025-07-06-Sermon-Audio.mp3.txt",
     "transcript_hash": "dd87fe3478b766fcfae2a5e4df1554617250662394ab6d1ed2927c8de58b05f1",
-    "transcribed_at": "2026-09-16T05:52:32.890879+00:00"
+    "transcribed_at": "2026-09-16T05:52:32.890879+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/06/29/2025-06-29-Sermon-Audio.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/29/2025-06-29-Sermon-Audio.mp3",
@@ -1167,7 +1295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-06-29_untitled_pbc-archive_Main_Service_2025_06_29_2025-06-29-Sermon-Audio.mp3.txt",
     "transcript_hash": "1be2d18f7db4b046a428f5520098a8067f96ec1f81c05ecec2bbb8b9a343dddf",
-    "transcribed_at": "2026-09-16T10:46:45.132045+00:00"
+    "transcribed_at": "2026-09-16T10:46:45.132045+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/06/22/2025-06-22-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/22/2025-06-22-Sermon.mp3",
@@ -1185,7 +1315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-06-22_untitled_pbc-archive_Main_Service_2025_06_22_2025-06-22-Sermon.mp3.txt",
     "transcript_hash": "e8e98f43a04b367e731e5d3591bc355b17b983a98fbb2e8ffd6388734f8b942f",
-    "transcribed_at": "2026-09-16T10:40:30.176819+00:00"
+    "transcribed_at": "2026-09-16T10:40:30.176819+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/06/15/2025-06-15-Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/15/2025-06-15-Sermon.mp3",
@@ -1203,7 +1335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-06-15_untitled_pbc-archive_Main_Service_2025_06_15_2025-06-15-Sermon.mp3.txt",
     "transcript_hash": "634de39a2bbe1b65c2a790f51d61353d6fef1ce864e915f5af1fe0237bec3e35",
-    "transcribed_at": "2026-09-16T10:43:17.263942+00:00"
+    "transcribed_at": "2026-09-16T10:43:17.263942+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/06/01/Made One in Christ - June 1 2025.mp3": {
     "guid": "pbc-archive:Main_Service/2025/06/01/Made One in Christ - June 1 2025.mp3",
@@ -1221,7 +1355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-06-01_untitled_pbc-archive_Main_Service_2025_06_01_Made_One_in_Christ_-_June_1_2025.mp3.txt",
     "transcript_hash": "2e2f3077fb2aadf5e33d8c01d28d43eb7da65392ebc6307f6f0a505b6760ab70",
-    "transcribed_at": "2026-09-16T10:33:40.512250+00:00"
+    "transcribed_at": "2026-09-16T10:33:40.512250+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/05/25/ It Ends With Love - May 25, 2025.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/25/ It Ends With Love - May 25, 2025.mp3",
@@ -1239,7 +1375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-05-25_untitled_pbc-archive_Main_Service_2025_05_25_It_Ends_With_Love_-_May_25_2025.mp3.txt",
     "transcript_hash": "38acffee3b11fc51f7cd76462e2a81c228efed8e7643db92334ae2a362e72630",
-    "transcribed_at": "2026-09-16T10:38:53.585560+00:00"
+    "transcribed_at": "2026-09-16T10:38:53.585560+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/05/18/2025 05 18 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/18/2025 05 18 Sermon podcast.mp3",
@@ -1257,7 +1395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-05-18_untitled_pbc-archive_Main_Service_2025_05_18_2025_05_18_Sermon_podcast.mp3.txt",
     "transcript_hash": "1413641c648bc5a35eb3453638996801493dad2cb15d331eacd10ba147b4f410",
-    "transcribed_at": "2026-09-16T15:13:30.017734+00:00"
+    "transcribed_at": "2026-09-16T15:13:30.017734+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/05/11/2025 05 11 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/11/2025 05 11 Sermon podcast.mp3",
@@ -1275,7 +1415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-05-11_untitled_pbc-archive_Main_Service_2025_05_11_2025_05_11_Sermon_podcast.mp3.txt",
     "transcript_hash": "d15ef63e1c7c0dcd861c07fa6fe8c364d0d34136c000adf9b2e7b5050093e9e5",
-    "transcribed_at": "2026-09-16T15:07:20.351655+00:00"
+    "transcribed_at": "2026-09-16T15:07:20.351655+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/05/04/2025 05 04 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/05/04/2025 05 04 Sermon Podcast.mp3",
@@ -1293,7 +1435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-05-04_untitled_pbc-archive_Main_Service_2025_05_04_2025_05_04_Sermon_Podcast.mp3.txt",
     "transcript_hash": "b1b970b4c12ab667124541431235591a40d1f65c9b2a3b394fb808ef1b924b01",
-    "transcribed_at": "2026-09-16T15:19:50.279045+00:00"
+    "transcribed_at": "2026-09-16T15:19:50.279045+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/04/27/2025 04 27 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/04/27/2025 04 27 Sermon Podcast.mp3",
@@ -1311,7 +1455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-04-27_untitled_pbc-archive_Main_Service_2025_04_27_2025_04_27_Sermon_Podcast.mp3.txt",
     "transcript_hash": "d51a5d8889ee9e4e43c555424cf98b3fb15f78d12b50bfc1696bdee6a09b3e6c",
-    "transcribed_at": "2026-09-16T15:19:23.625589+00:00"
+    "transcribed_at": "2026-09-16T15:19:23.625589+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/04/20/202504 20 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/04/20/202504 20 Sermon Podcast.mp3",
@@ -1329,7 +1475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-04-20_untitled_pbc-archive_Main_Service_2025_04_20_202504_20_Sermon_Podcast.mp3.txt",
     "transcript_hash": "ae6836caefeb01cbda79687b30f337df3f77643c4a19238626ec6d9179a10ee3",
-    "transcribed_at": "2026-09-16T15:06:54.191736+00:00"
+    "transcribed_at": "2026-09-16T15:06:54.191736+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/04/13/2025 04 13 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/04/13/2025 04 13 Sermon podcast.mp3",
@@ -1347,7 +1495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-04-13_untitled_pbc-archive_Main_Service_2025_04_13_2025_04_13_Sermon_podcast.mp3.txt",
     "transcript_hash": "510e3e9e93560900981356c211694a12b4fb60874a69374250fa1f4ca4a9f847",
-    "transcribed_at": "2026-09-16T19:06:05.826846+00:00"
+    "transcribed_at": "2026-09-16T19:06:05.826846+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/04/06/2025 04 06 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/04/06/2025 04 06 Sermon Podcast.mp3",
@@ -1365,7 +1515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-04-06_untitled_pbc-archive_Main_Service_2025_04_06_2025_04_06_Sermon_Podcast.mp3.txt",
     "transcript_hash": "dfa478e827bac7c7845e59127711a618da8d6b3bebc1e39d162c1096ce87a9e3",
-    "transcribed_at": "2026-09-16T19:18:55.435448+00:00"
+    "transcribed_at": "2026-09-16T19:18:55.435448+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/03/30/2025 03 30 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/03/30/2025 03 30 Sermon Podcast.mp3",
@@ -1383,7 +1535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-03-30_untitled_pbc-archive_Main_Service_2025_03_30_2025_03_30_Sermon_Podcast.mp3.txt",
     "transcript_hash": "b07fed2ab90202a5a70f3c7d99e33746deca021ce8a731346fd4ebef725ba91a",
-    "transcribed_at": "2026-09-16T19:21:57.078079+00:00"
+    "transcribed_at": "2026-09-16T19:21:57.078079+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/03/23/2025 03 23 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/03/23/2025 03 23 Sermon podcast.mp3",
@@ -1401,7 +1555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-03-23_untitled_pbc-archive_Main_Service_2025_03_23_2025_03_23_Sermon_podcast.mp3.txt",
     "transcript_hash": "31304b1f9272df090a75acef00f0b0aa25ec61d5e575878b42f971ec586f50e1",
-    "transcribed_at": "2026-09-16T19:05:33.676110+00:00"
+    "transcribed_at": "2026-09-16T19:05:33.676110+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/03/16/2025 03 16 Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/03/16/2025 03 16 Sermon.mp3",
@@ -1419,7 +1575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-03-16_untitled_pbc-archive_Main_Service_2025_03_16_2025_03_16_Sermon.mp3.txt",
     "transcript_hash": "f449002dacae6d6014781141cff80db559f5ca82e828e99e66df05d8549d407d",
-    "transcribed_at": "2026-09-16T19:10:19.807723+00:00"
+    "transcribed_at": "2026-09-16T19:10:19.807723+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/03/09/2025 03 09 Sermon.mp3": {
     "guid": "pbc-archive:Main_Service/2025/03/09/2025 03 09 Sermon.mp3",
@@ -1437,7 +1595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-03-09_untitled_pbc-archive_Main_Service_2025_03_09_2025_03_09_Sermon.mp3.txt",
     "transcript_hash": "83d0b591545c81968052ce19238b8ed00d6511592ad633b9ee850d5528491d82",
-    "transcribed_at": "2026-09-16T22:19:32.615148+00:00"
+    "transcribed_at": "2026-09-16T22:19:32.615148+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/03/02/2025 03 02 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/03/02/2025 03 02 Sermon Podcast.mp3",
@@ -1455,7 +1615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-03-02_untitled_pbc-archive_Main_Service_2025_03_02_2025_03_02_Sermon_Podcast.mp3.txt",
     "transcript_hash": "bfbe2dff66ff176cedae8affcbc0e3dde05422c444bee2c0f9b52f12cdc45121",
-    "transcribed_at": "2026-09-16T22:07:31.010282+00:00"
+    "transcribed_at": "2026-09-16T22:07:31.010282+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/02/23/2025 02 23 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/02/23/2025 02 23 Sermon podcast.mp3",
@@ -1473,7 +1635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-02-23_untitled_pbc-archive_Main_Service_2025_02_23_2025_02_23_Sermon_podcast.mp3.txt",
     "transcript_hash": "02b69d364fa58983719842afcd991c19dc1960a9301825928ce5a499c2385aac",
-    "transcribed_at": "2026-09-16T22:24:47.669110+00:00"
+    "transcribed_at": "2026-09-16T22:24:47.669110+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/02/16/2025 02 16 Sermon-podcst.mp3": {
     "guid": "pbc-archive:Main_Service/2025/02/16/2025 02 16 Sermon-podcst.mp3",
@@ -1491,7 +1655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-02-16_untitled_pbc-archive_Main_Service_2025_02_16_2025_02_16_Sermon-podcst.mp3.txt",
     "transcript_hash": "d596b13a78d9e1cbc9099a01d89a932419b8d8dfc567be24005f2be06840d843",
-    "transcribed_at": "2026-09-16T22:21:46.698110+00:00"
+    "transcribed_at": "2026-09-16T22:21:46.698110+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/02/09/February 9, 2025_ podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/02/09/February 9, 2025_ podcast.mp3",
@@ -1509,7 +1675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-02-09_untitled_pbc-archive_Main_Service_2025_02_09_February_9_2025__podcast.mp3.txt",
     "transcript_hash": "e2d8d48a2b0aec46c5506b167d26434f11c32799213846da5268c525bb54366e",
-    "transcribed_at": "2026-09-16T22:02:40.765329+00:00"
+    "transcribed_at": "2026-09-16T22:02:40.765329+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/02/02/February 2 2025 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/02/02/February 2 2025 Podcast.mp3",
@@ -1527,7 +1695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-02-02_untitled_pbc-archive_Main_Service_2025_02_02_February_2_2025_Podcast.mp3.txt",
     "transcript_hash": "47b31b34eb9443ba89edf326b9472dbe01d10bf7a5614d4b39b465c4b51a87f2",
-    "transcribed_at": "2026-09-17T00:49:53.687756+00:00"
+    "transcribed_at": "2026-09-17T00:49:53.687756+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/01/26/The Right Questions  - January 26, 2025 Sermon podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/01/26/The Right Questions  - January 26, 2025 Sermon podcast.mp3",
@@ -1545,7 +1715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-01-26_untitled_pbc-archive_Main_Service_2025_01_26_The_Right_Questions_-_January_26_2025_Sermon_podcast.mp3.txt",
     "transcript_hash": "4c734c2f30f68f0d0c008f7771f5dcecf2ae16c4c2919f63a63e045740fd0531",
-    "transcribed_at": "2026-09-17T00:43:50.200322+00:00"
+    "transcribed_at": "2026-09-17T00:43:50.200322+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/01/19/2024 01 19 Sermon Edit Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/01/19/2024 01 19 Sermon Edit Podcast.mp3",
@@ -1563,7 +1735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-01-19_untitled_pbc-archive_Main_Service_2025_01_19_2024_01_19_Sermon_Edit_Podcast.mp3.txt",
     "transcript_hash": "a7752e6b03395215b2671410cc0dacdca870a9d7c2e095428849b6c315b0ad15",
-    "transcribed_at": "2026-09-17T00:43:41.942435+00:00"
+    "transcribed_at": "2026-09-17T00:43:41.942435+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/01/12/January 12, 2025 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/01/12/January 12, 2025 Podcast.mp3",
@@ -1581,7 +1755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-01-12_untitled_pbc-archive_Main_Service_2025_01_12_January_12_2025_Podcast.mp3.txt",
     "transcript_hash": "1be32baab27dff5b57aea1da6172f4a7c34246a4ad858b64acea30281b6ca80f",
-    "transcribed_at": "2026-09-17T00:46:48.774683+00:00"
+    "transcribed_at": "2026-09-17T00:46:48.774683+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2025/01/05/2025 01 05 podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2025/01/05/2025 01 05 podcast.mp3",
@@ -1599,7 +1775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2025-01-05_untitled_pbc-archive_Main_Service_2025_01_05_2025_01_05_podcast.mp3.txt",
     "transcript_hash": "48e2df8a98b3b4e318395c33776fd7948555128c059bbd6bb87e76e6e9425684",
-    "transcribed_at": "2026-09-17T00:44:40.822447+00:00"
+    "transcribed_at": "2026-09-17T00:44:40.822447+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/12/29/2024 12 29 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/29/2024 12 29 Podcast.mp3",
@@ -1617,7 +1795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-12-29_untitled_pbc-archive_Main_Service_2024_12_29_2024_12_29_Podcast.mp3.txt",
     "transcript_hash": "cab326dc6b0f59660ad0c1c7c53e9f2714a00b3d2f64d4841a239d176abff181",
-    "transcribed_at": "2026-09-17T03:56:50.680271+00:00"
+    "transcribed_at": "2026-09-17T03:56:50.680271+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/12/24/2024 12 24 podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/24/2024 12 24 podcast.mp3",
@@ -1635,7 +1815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-12-24_untitled_pbc-archive_Main_Service_2024_12_24_2024_12_24_podcast.mp3.txt",
     "transcript_hash": "2af62f858eb2cd10f623b0e5d7df7b3def83be826d3cdb084848382600438db0",
-    "transcribed_at": "2026-09-17T03:33:49.601698+00:00"
+    "transcribed_at": "2026-09-17T03:33:49.601698+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/12/22/2024 12 22 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/22/2024 12 22 Podcast.mp3",
@@ -1653,7 +1835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-12-22_untitled_pbc-archive_Main_Service_2024_12_22_2024_12_22_Podcast.mp3.txt",
     "transcript_hash": "f583cf8ff86f1792f58182b3258b85195290557b5272fc4bf2c25d0105fa1b95",
-    "transcribed_at": "2026-09-17T03:46:57.301302+00:00"
+    "transcribed_at": "2026-09-17T03:46:57.301302+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/12/15/Sermon 2024 12 15 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/15/Sermon 2024 12 15 Podcast.mp3",
@@ -1671,7 +1855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-12-15_untitled_pbc-archive_Main_Service_2024_12_15_Sermon_2024_12_15_Podcast.mp3.txt",
     "transcript_hash": "d645e0c3c5170fa99298c29787cdf0f9615697616336abc1033ce465e8cb2451",
-    "transcribed_at": "2026-09-17T03:47:44.734536+00:00"
+    "transcribed_at": "2026-09-17T03:47:44.734536+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/12/08/Sermon 2024 12 08 - Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/08/Sermon 2024 12 08 - Podcast.mp3",
@@ -1689,7 +1875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-12-08_untitled_pbc-archive_Main_Service_2024_12_08_Sermon_2024_12_08_-_Podcast.mp3.txt",
     "transcript_hash": "a6cbc6fe1b300609a8a62f006c41a2568db713a4f832ef68c3068493a97d568a",
-    "transcribed_at": "2026-09-17T03:34:38.269376+00:00"
+    "transcribed_at": "2026-09-17T03:34:38.269376+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/12/01/Sermon 2024 12 01 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/12/01/Sermon 2024 12 01 Podcast.mp3",
@@ -1707,7 +1895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-12-01_untitled_pbc-archive_Main_Service_2024_12_01_Sermon_2024_12_01_Podcast.mp3.txt",
     "transcript_hash": "3b324dc5e295be59ff35310df4c81929d5059f67d7e3ee1444034e2d9e6aa3d8",
-    "transcribed_at": "2026-09-17T09:19:13.845507+00:00"
+    "transcribed_at": "2026-09-17T09:19:13.845507+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/11/24/Sermon 2024 11 24 - Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/11/24/Sermon 2024 11 24 - Podcast.mp3",
@@ -1725,7 +1915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-11-24_untitled_pbc-archive_Main_Service_2024_11_24_Sermon_2024_11_24_-_Podcast.mp3.txt",
     "transcript_hash": "0a92c407e3c009b9f3ad0daf6dee3724020e012e0ddbbfc70aaa67c20c0e7130",
-    "transcribed_at": "2026-09-17T09:27:21.812110+00:00"
+    "transcribed_at": "2026-09-17T09:27:21.812110+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/11/17/Sermon 2024 11 17 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/11/17/Sermon 2024 11 17 Podcast.mp3",
@@ -1743,7 +1935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-11-17_untitled_pbc-archive_Main_Service_2024_11_17_Sermon_2024_11_17_Podcast.mp3.txt",
     "transcript_hash": "d85f3d3ca05486c6b92f284b0f89b49dec43550be091ce134b1437b987da4aef",
-    "transcribed_at": "2026-09-17T09:20:19.818336+00:00"
+    "transcribed_at": "2026-09-17T09:20:19.818336+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/11/10/Sermon 2024 11 10 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/11/10/Sermon 2024 11 10 Podcast.mp3",
@@ -1761,7 +1955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-11-10_untitled_pbc-archive_Main_Service_2024_11_10_Sermon_2024_11_10_Podcast.mp3.txt",
     "transcript_hash": "e573793d65366523fa6bf162262ab2eda48ca1615473a34dbf00a89ec3bfb13c",
-    "transcribed_at": "2026-09-17T09:53:03.712925+00:00"
+    "transcribed_at": "2026-09-17T09:53:03.712925+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/11/03/Sermon 2024 11 03 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/11/03/Sermon 2024 11 03 Podcast.mp3",
@@ -1779,7 +1975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-11-03_untitled_pbc-archive_Main_Service_2024_11_03_Sermon_2024_11_03_Podcast.mp3.txt",
     "transcript_hash": "0a119b927397a75655e2e9027e8c9c1535a2dc5d66be8053520c3487cc9e375a",
-    "transcribed_at": "2026-09-17T09:39:15.588814+00:00"
+    "transcribed_at": "2026-09-17T09:39:15.588814+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/10/27/2024 10 27 Sermon - Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/10/27/2024 10 27 Sermon - Podcast.mp3",
@@ -1797,7 +1995,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-10-27_untitled_pbc-archive_Main_Service_2024_10_27_2024_10_27_Sermon_-_Podcast.mp3.txt",
     "transcript_hash": "844e88eff642e24f10e65aa413da3c85e950dd09cbabcc7ea4805d9f77464b9e",
-    "transcribed_at": "2026-09-17T14:30:41.493944+00:00"
+    "transcribed_at": "2026-09-17T14:30:41.493944+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/10/20/Sermon 2024 10 20 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/10/20/Sermon 2024 10 20 Podcast.mp3",
@@ -1815,7 +2015,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-10-20_untitled_pbc-archive_Main_Service_2024_10_20_Sermon_2024_10_20_Podcast.mp3.txt",
     "transcript_hash": "8bdde70e7fae4eb1d907224894729814d68d978119946d1d08356c243866a6a5",
-    "transcribed_at": "2026-09-17T14:31:40.587964+00:00"
+    "transcribed_at": "2026-09-17T14:31:40.587964+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/10/13/Sermon 2024 10 13_Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/10/13/Sermon 2024 10 13_Podcast.mp3",
@@ -1833,7 +2035,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-10-13_untitled_pbc-archive_Main_Service_2024_10_13_Sermon_2024_10_13_Podcast.mp3.txt",
     "transcript_hash": "53eb7ccdc34d244797f470060475c32fcce41a9c51bb98f4db7fdf375299e8f6",
-    "transcribed_at": "2026-09-17T14:30:00.024790+00:00"
+    "transcribed_at": "2026-09-17T14:30:00.024790+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/10/06/Sermon 2024 10 06 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/10/06/Sermon 2024 10 06 Podcast.mp3",
@@ -1851,7 +2055,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-10-06_untitled_pbc-archive_Main_Service_2024_10_06_Sermon_2024_10_06_Podcast.mp3.txt",
     "transcript_hash": "6a3865260f9e636155711b9560a65063a8e47c27825d9e0bd7edf87d01847132",
-    "transcribed_at": "2026-09-17T14:36:40.303951+00:00"
+    "transcribed_at": "2026-09-17T14:36:40.303951+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/09/29/Sermon 2024 09 29 Pocast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/09/29/Sermon 2024 09 29 Pocast.mp3",
@@ -1869,7 +2075,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-09-29_untitled_pbc-archive_Main_Service_2024_09_29_Sermon_2024_09_29_Pocast.mp3.txt",
     "transcript_hash": "25c028d5375234ec78fbc3c47cd53ef0990ad5c48b8be0e32fdc23685c9acd63",
-    "transcribed_at": "2026-09-17T14:27:52.373672+00:00"
+    "transcribed_at": "2026-09-17T14:27:52.373672+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/09/22/Sermon 2024 09 22 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/09/22/Sermon 2024 09 22 Podcast.mp3",
@@ -1887,7 +2095,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-09-22_untitled_pbc-archive_Main_Service_2024_09_22_Sermon_2024_09_22_Podcast.mp3.txt",
     "transcript_hash": "7781408ead1915a516de764ced99641fea607d4a34fd764b93e39228a98deef5",
-    "transcribed_at": "2026-09-17T18:36:03.702602+00:00"
+    "transcribed_at": "2026-09-17T18:36:03.702602+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/09/15/Sermon 2024 09 15 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/09/15/Sermon 2024 09 15 Podcast.mp3",
@@ -1905,7 +2115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-09-15_untitled_pbc-archive_Main_Service_2024_09_15_Sermon_2024_09_15_Podcast.mp3.txt",
     "transcript_hash": "71038c3afa0bce98c865ba06eef205b3bfa5c90bbb519f64245132131b0b15de",
-    "transcribed_at": "2026-09-17T18:42:59.027942+00:00"
+    "transcribed_at": "2026-09-17T18:42:59.027942+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/09/08/Sermon 2024 09 08 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/09/08/Sermon 2024 09 08 Podcast.mp3",
@@ -1923,7 +2135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-09-08_untitled_pbc-archive_Main_Service_2024_09_08_Sermon_2024_09_08_Podcast.mp3.txt",
     "transcript_hash": "b47db5141999a67c474ead755c1f1b1e6a47718c0563bfa66d893b98599b16f3",
-    "transcribed_at": "2026-09-17T18:36:36.912964+00:00"
+    "transcribed_at": "2026-09-17T18:36:36.912964+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/09/01/Sermon 2024 09 01 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/09/01/Sermon 2024 09 01 Podcast.mp3",
@@ -1941,7 +2155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-09-01_untitled_pbc-archive_Main_Service_2024_09_01_Sermon_2024_09_01_Podcast.mp3.txt",
     "transcript_hash": "5acb6dd9b5ec66f384b0936ed36203f02d032958fbed3cc0e8caf8dacac816a1",
-    "transcribed_at": "2026-09-17T18:35:09.204701+00:00"
+    "transcribed_at": "2026-09-17T18:35:09.204701+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/08/25/2024 08 25 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/08/25/2024 08 25 Sermon Podcast.mp3",
@@ -1959,7 +2175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-08-25_untitled_pbc-archive_Main_Service_2024_08_25_2024_08_25_Sermon_Podcast.mp3.txt",
     "transcript_hash": "bd894ab13960680fe4e0cb02b915341e04b9afdec936fb41bb510879caa46a0a",
-    "transcribed_at": "2026-09-17T18:41:44.657190+00:00"
+    "transcribed_at": "2026-09-17T18:41:44.657190+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/08/18/Sermon 2024 08 18 VPodcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/08/18/Sermon 2024 08 18 VPodcast.mp3",
@@ -1977,7 +2195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-08-18_untitled_pbc-archive_Main_Service_2024_08_18_Sermon_2024_08_18_VPodcast.mp3.txt",
     "transcript_hash": "0b6736fa228224cbfbf3f8415277e14c46fb087521aba9f2f49ef63c11ee421d",
-    "transcribed_at": "2026-09-17T21:30:37.522720+00:00"
+    "transcribed_at": "2026-09-17T21:30:37.522720+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/08/11/Sermon 2024 008 11 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/08/11/Sermon 2024 008 11 Podcast.mp3",
@@ -1995,7 +2215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-08-11_untitled_pbc-archive_Main_Service_2024_08_11_Sermon_2024_008_11_Podcast.mp3.txt",
     "transcript_hash": "16ef1b39026b8e888c3f085576c1794780c1ab5985fcb7fd2f315455c10d4f84",
-    "transcribed_at": "2026-09-17T21:42:59.665873+00:00"
+    "transcribed_at": "2026-09-17T21:42:59.665873+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/08/04/Sermon 2024 08 04 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/08/04/Sermon 2024 08 04 Podcast.mp3",
@@ -2013,7 +2235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-08-04_untitled_pbc-archive_Main_Service_2024_08_04_Sermon_2024_08_04_Podcast.mp3.txt",
     "transcript_hash": "c539780654109fc26fbd5ada6235625b491e9067ee5d26a70b217d11454fe882",
-    "transcribed_at": "2026-09-17T21:33:06.085158+00:00"
+    "transcribed_at": "2026-09-17T21:33:06.085158+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/07/28/Sermon 2024 07 28 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/07/28/Sermon 2024 07 28 Podcast.mp3",
@@ -2031,7 +2255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-07-28_untitled_pbc-archive_Main_Service_2024_07_28_Sermon_2024_07_28_Podcast.mp3.txt",
     "transcript_hash": "449261149072538987e549b46147863b596059d3bd8ee1e490b3bc499d9559a5",
-    "transcribed_at": "2026-09-17T21:39:59.734361+00:00"
+    "transcribed_at": "2026-09-17T21:39:59.734361+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/07/21/Sermon 2024 07 21 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/07/21/Sermon 2024 07 21 Podcast.mp3",
@@ -2049,7 +2275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-07-21_untitled_pbc-archive_Main_Service_2024_07_21_Sermon_2024_07_21_Podcast.mp3.txt",
     "transcript_hash": "d9cea15990bc142661c2da54e022cdb4f201af390e4d1c5be65a57a30bb85776",
-    "transcribed_at": "2026-09-17T21:52:14.121546+00:00"
+    "transcribed_at": "2026-09-17T21:52:14.121546+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/07/14/Sermon 2024 07 14 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/07/14/Sermon 2024 07 14 Podcast.mp3",
@@ -2067,7 +2295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-07-14_untitled_pbc-archive_Main_Service_2024_07_14_Sermon_2024_07_14_Podcast.mp3.txt",
     "transcript_hash": "cb4c17aab641f57a4a17920d52accea1c6c9d56d35dd9fe53709c987cfe6a355",
-    "transcribed_at": "2026-09-18T19:21:32.374193+00:00"
+    "transcribed_at": "2026-09-18T19:21:32.374193+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/07/07/2024 07 07 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/07/07/2024 07 07 Sermon Podcast.mp3",
@@ -2085,7 +2315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-07-07_untitled_pbc-archive_Main_Service_2024_07_07_2024_07_07_Sermon_Podcast.mp3.txt",
     "transcript_hash": "12310e246beafce428e569f4dd535bf5eb0af5a71f85817a609b97fb086e3c1c",
-    "transcribed_at": "2026-09-18T19:11:00.984738+00:00"
+    "transcribed_at": "2026-09-18T19:11:00.984738+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/06/30/2024 06 30 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/06/30/2024 06 30 Podcast.mp3",
@@ -2103,7 +2335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-06-30_untitled_pbc-archive_Main_Service_2024_06_30_2024_06_30_Podcast.mp3.txt",
     "transcript_hash": "3691d551e6c20c456614d362b3603112891f0de0a4f29a9981ce0806f11ad626",
-    "transcribed_at": "2026-09-18T18:52:06.650695+00:00"
+    "transcribed_at": "2026-09-18T18:52:06.650695+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/06/23/2023 06 23 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/06/23/2023 06 23 Podcast.mp3",
@@ -2121,7 +2355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-06-23_untitled_pbc-archive_Main_Service_2024_06_23_2023_06_23_Podcast.mp3.txt",
     "transcript_hash": "1297b249ddb23162b9f9d923b8fc32435b00fe60f8101adc634f8d128cffde07",
-    "transcribed_at": "2026-09-18T19:07:13.908894+00:00"
+    "transcribed_at": "2026-09-18T19:07:13.908894+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/06/16/Sermon 2024 06 16 Podcast V2.mp3": {
     "guid": "pbc-archive:Main_Service/2024/06/16/Sermon 2024 06 16 Podcast V2.mp3",
@@ -2139,7 +2375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-06-16_untitled_pbc-archive_Main_Service_2024_06_16_Sermon_2024_06_16_Podcast_V2.mp3.txt",
     "transcript_hash": "debddc996b58124b8e724d36a691c84027347acbacb74b316bcaa0edf1bd454b",
-    "transcribed_at": "2026-09-18T19:21:58.472479+00:00"
+    "transcribed_at": "2026-09-18T19:21:58.472479+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/06/09/Sermon 2024 06 09 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/06/09/Sermon 2024 06 09 Podcast.mp3",
@@ -2157,7 +2395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-06-09_untitled_pbc-archive_Main_Service_2024_06_09_Sermon_2024_06_09_Podcast.mp3.txt",
     "transcript_hash": "df1a1cb3fc7bf8f9b4eaa1da886bc932ec9c602416fd3e736aea90d09c02d9e1",
-    "transcribed_at": "2026-09-18T22:08:54.976086+00:00"
+    "transcribed_at": "2026-09-18T22:08:54.976086+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/06/02/Sermon 2024 06 02 podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/06/02/Sermon 2024 06 02 podcast.mp3",
@@ -2175,7 +2415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-06-02_untitled_pbc-archive_Main_Service_2024_06_02_Sermon_2024_06_02_podcast.mp3.txt",
     "transcript_hash": "5cc43333a6cfc5bc1c343d63435d71d83073468bd6bfe21bbf0760f2bcb66251",
-    "transcribed_at": "2026-09-18T21:43:26.284105+00:00"
+    "transcribed_at": "2026-09-18T21:43:26.284105+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/05/26/Sermon 2024 05 26 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/05/26/Sermon 2024 05 26 Podcast.mp3",
@@ -2193,7 +2435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-05-26_untitled_pbc-archive_Main_Service_2024_05_26_Sermon_2024_05_26_Podcast.mp3.txt",
     "transcript_hash": "0d0ba3b19fbce45883f13d5729728e0bf43d89c4eceeb535b82d1faebf091628",
-    "transcribed_at": "2026-09-18T21:58:31.348160+00:00"
+    "transcribed_at": "2026-09-18T21:58:31.348160+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/05/19/05 19 2024 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/05/19/05 19 2024 Podcast.mp3",
@@ -2225,7 +2469,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/pbc/2024-05-12_untitled_pbc-archive_Main_Service_2024_05_12_5_12_2024_Sermon_Podcast.mp3.txt",
     "transcript_hash": "402f37061c23b81ce5438647c1d758b757a29201dd6fd82e5a76182109c6853e",
-    "transcribed_at": "2026-09-18T22:00:46.690170+00:00"
+    "transcribed_at": "2026-09-18T22:00:46.690170+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "pbc-archive:Main_Service/2024/05/05/2024 05 05 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/05/05/2024 05 05 Podcast.mp3",

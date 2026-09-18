@@ -15,7 +15,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-14T19:31:44.419084+00:00",
     "transcript_hash": "115a8c268e5e71cfe1ccf6980480ed6b5a15c7730d490a38336586f6b70e4f55",
-    "content_path": "transcripts/westgate/2026-09-13_week-1-a-new-family_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6aa76caac20cf700426cce17.txt"
+    "content_path": "transcripts/westgate/2026-09-13_week-1-a-new-family_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6aa76caac20cf700426cce17.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a94c96cb581f969a6ffc7e4": {
     "audio_url": null,
@@ -47,7 +49,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-08-23_living-water_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a8bb899345aa5414070a638.txt",
     "transcript_hash": "9041f40dbc2fc9019cc8db80514c2cc072967e21a3fbd6d33113185506c32167",
-    "transcribed_at": "2026-09-14T06:50:47.149977+00:00"
+    "transcribed_at": "2026-09-14T06:50:47.149977+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a8367d3a3be253a44e2b2fe": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a8368414429a6056b55c37d/1787541657053/The+Gospel+Of+John+Pt.2+-+8.16.26_audio.m4a",
@@ -65,7 +69,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-08-16_to-whom-shall-we-go_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a8367d3a3be253a44e2b2fe.txt",
     "transcript_hash": "b7f9a297b6805f9ae08c3e30f1c13e915e6b056ad2835d7cbe9e3d71983786ef",
-    "transcribed_at": "2026-09-14T07:05:15.076959+00:00"
+    "transcribed_at": "2026-09-14T07:05:15.076959+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a796875970ccb22bcd51b70": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a796875970ccb22bcd51b6b/1785718695274/The+Gospel+Of+John+Pt.2+-+8.2.26_audio.m4a",
@@ -83,7 +89,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-08-09_the-bread-of-life_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a796875970ccb22bcd51b70.txt",
     "transcript_hash": "0bf6f4c8828c5d744ffe72bd4e7ce841f388d912337036076e822feeb0ca74f8",
-    "transcribed_at": "2026-09-14T07:10:08.177586+00:00"
+    "transcribed_at": "2026-09-14T07:10:08.177586+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a6fe71a1fab6c1175497646": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a6fe79c8ba4df6f4af861d6/1786341493214/The+Gospel+Of+John+Pt.2+-+8.2.26_audio.m4a",
@@ -101,7 +109,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-08-02_feeding-the-5-000-and-walking-on-water_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a6fe71a1fab6c1175497646.txt",
     "transcript_hash": "03f935b2db712cd41ad5af57f9e568088fe4755a6cd73caf0016ef70ed723ddf",
-    "transcribed_at": "2026-09-14T07:04:51.619088+00:00"
+    "transcribed_at": "2026-09-14T07:04:51.619088+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a67af14c469b971c1db5c1b": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a67afb5559f337e5628d4e3/1785718554904/The+Gospel+Of+John+Pt.2+-+7.26.26_audio.m4a",
@@ -119,7 +129,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-07-26_the-authority-of-the-son_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a67af14c469b971c1db5c1b.txt",
     "transcript_hash": "3bc108b5b1b6a34cc79ffd89a3fb41db6b840e343b786a9ecdc2b4c90ec0c9e0",
-    "transcribed_at": "2026-09-14T06:59:25.290355+00:00"
+    "transcribed_at": "2026-09-14T06:59:25.290355+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a5d358ddd0e511ae674c304": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a5d358ddd0e511ae674c2ff/1783963508198/The+God+Who+Is+-+7.12.26_audio.m4a",
@@ -137,7 +149,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-07-19_the-healing-at-bethesda_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a5d358ddd0e511ae674c304.txt",
     "transcript_hash": "28107019f3b5c205eb1b8a82fe83025c6f5d7ba066df1ce899ba34b695223c61",
-    "transcribed_at": "2026-09-14T13:47:41.561722+00:00"
+    "transcribed_at": "2026-09-14T13:47:41.561722+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a551ee824fb256b1938fa48": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a551f673ffe8707ccd899ac/1784493453481/The+God+Who+Is+-+7.12.26_audio.m4a",
@@ -155,7 +169,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-07-12_the-everlasting-god_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a551ee824fb256b1938fa48.txt",
     "transcript_hash": "b639ccb7e8d6114ed268a3356368b8c9c2fc16353098bbec45e437e1503c7ee0",
-    "transcribed_at": "2026-09-14T13:46:27.789362+00:00"
+    "transcribed_at": "2026-09-14T13:46:27.789362+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a4be2e69793da19475b3c74": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a4be3830f959f43ac5c4c73/1783963368310/The+God+Who+Is+-+7.5.26_audio.m4a",
@@ -173,7 +189,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-07-05_the-god-who-is-there_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a4be2e69793da19475b3c74.txt",
     "transcript_hash": "79d5e36fd55356b23cd091003e1d354d98dc3cf726caf40c31664dbb25f38b78",
-    "transcribed_at": "2026-09-14T13:54:20.116760+00:00"
+    "transcribed_at": "2026-09-14T13:54:20.116760+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a41e7907df51e62b6c8111e": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a41e7ff20654b6b4b6a4dfe/1783358182727/The+God+Who+Is+-+6.28.26_audio.m4a",
@@ -191,7 +209,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-06-28_the-god-who-sees-and-provides_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a41e7907df51e62b6c8111e.txt",
     "transcript_hash": "1a05dee77561fd0775a9e4f280da505691081caf34950fdfe434292340dc057f",
-    "transcribed_at": "2026-09-14T13:46:51.589138+00:00"
+    "transcribed_at": "2026-09-14T13:46:51.589138+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a3860541ae6ff35459c4ef2": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a3860cafa63741906b88205/1782704016867/The+God+Who+Is+-+6.21.26_audio.m4a",
@@ -209,7 +229,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-06-21_the-god-who-is-my-shepherd_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a3860541ae6ff35459c4ef2.txt",
     "transcript_hash": "22e35970cbf0e29ea5c88841c368556c1c59d4cb41b6bb321cb2efef0e8dcfcb",
-    "transcribed_at": "2026-09-14T13:50:05.546589+00:00"
+    "transcribed_at": "2026-09-14T13:50:05.546589+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a2f3da5deab2c7ccde3cb16": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a2f3ea1e2cbc068b3a016c2/1782079572131/The+God+Who+Is+-+6.14.26_audio.m4a",
@@ -227,7 +249,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-06-14_the-god-who-is-faithful_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a2f3da5deab2c7ccde3cb16.txt",
     "transcript_hash": "a2237d6ba2169806e4be6ae904792de65831d2f8d5f13e8d9eccff0df687424b",
-    "transcribed_at": "2026-09-14T19:19:36.635734+00:00"
+    "transcribed_at": "2026-09-14T19:19:36.635734+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a1d00e012c80708b00f1ab4": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a1d0168d7566e3bf1a27cd2/1780888860755/Gospel+of+John+-+5.31.26_audio.m4a",
@@ -245,7 +269,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-05-31_healing_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a1d00e012c80708b00f1ab4.txt",
     "transcript_hash": "87fea8dd024040a7b870d74586de26880136ec4fc54512969751ef3a43d9908e",
-    "transcribed_at": "2026-09-14T19:23:27.541017+00:00"
+    "transcribed_at": "2026-09-14T19:23:27.541017+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a16631b05cb23342f92dfd7": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a16638d830a5310876903dd/1780285664341/WestGate_Church_945a_audio.m4a",
@@ -263,7 +289,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-05-24_living-water_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a16631b05cb23342f92dfd7.txt",
     "transcript_hash": "e2a89d0e6617bcf4bf5ae11696dbfaf99f439bebd258aeb8c2256c6d4d599e49",
-    "transcribed_at": "2026-09-14T19:32:25.130152+00:00"
+    "transcribed_at": "2026-09-14T19:32:25.130152+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a0a2cb79fc579779fa46a19": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a0a2d84c17a7652f975d2cd/1779852059322/Gospel+of+John+-+5.17.26_audio.m4a",
@@ -281,7 +309,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-05-17_he-must-increase_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a0a2cb79fc579779fa46a19.txt",
     "transcript_hash": "266a0a6d22b35a432312b107d9774f0b19ca662342bf8598fbe9460319c9d4ac",
-    "transcribed_at": "2026-09-14T19:22:06.694912+00:00"
+    "transcribed_at": "2026-09-14T19:22:06.694912+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6a022248cbc7297c30dce09d": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6a0223d5abdf834e27d9cc44/1779051703573/Gospel+of+John+-+5.10.26_audio.m4a",
@@ -299,7 +329,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-05-10_born-again_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6a022248cbc7297c30dce09d.txt",
     "transcript_hash": "ec8dea6974243274c3d0a873b98cf78d2fb43e7c272e44909c56885c58dd3bd2",
-    "transcribed_at": "2026-09-14T22:47:16.015417+00:00"
+    "transcribed_at": "2026-09-14T22:47:16.015417+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69f8e34ce6e5596360c76733": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69f8e4560f642b79158f0331/1778524744049/Gospel+of+John+-+5.3.26_audio.m4a",
@@ -317,7 +349,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-05-03_cleansing-the-temple_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69f8e34ce6e5596360c76733.txt",
     "transcript_hash": "71ba39ff5d25ccc3f5b679f82dd660ea41a96c9dca9b7d05e2424e8f5e42e4f0",
-    "transcribed_at": "2026-09-14T22:49:39.595692+00:00"
+    "transcribed_at": "2026-09-14T22:49:39.595692+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69eebe530038cd5c6be8dd55": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69eebed4b110a143d1eea1c5/1777918796773/Gospel+of+John+-+4.26.26_audio.m4a",
@@ -335,7 +369,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-04-26_water-into-wine_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69eebe530038cd5c6be8dd55.txt",
     "transcript_hash": "c457a1ac698f34768010f3f3cdb305ae1f6b6fe7e395586b53080634c18fd17c",
-    "transcribed_at": "2026-09-14T22:49:53.945956+00:00"
+    "transcribed_at": "2026-09-14T22:49:53.945956+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69e576d6358f1364ab8b39e1": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69e57e6987704e1c3836e74d/1777253971285/WestGate_Church_1130_1080+%284%29-MP3.mp3",
@@ -353,7 +389,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-04-19_behold-the-lamb_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69e576d6358f1364ab8b39e1.txt",
     "transcript_hash": "18af662022c2dc9988c272fbf2675241beef6971c341d2b2c2e0ab83077d5b36",
-    "transcribed_at": "2026-09-14T22:55:00.030852+00:00"
+    "transcribed_at": "2026-09-14T22:55:00.030852+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69dc166baf29c8404f2da381": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69dc18fcbd54b97b00f9609b/1776645846038/Gospel+Of+John+-+4.12.26_audio.m4a",
@@ -371,7 +409,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-04-12_the-word-became-flesh_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69dc166baf29c8404f2da381.txt",
     "transcript_hash": "7fdb53235ea9d26ee4864ff5d6eb8cb0e0e1f643c4b073558692b8ea15366bde",
-    "transcribed_at": "2026-09-14T22:47:25.426833+00:00"
+    "transcribed_at": "2026-09-14T22:47:25.426833+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69d2d57851809460a79bbd9a": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69d2d610c8c9604626bfe699/1776031339244/Long+Live+The+King+-+4.5.26_audio.m4a",
@@ -389,7 +429,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-04-05_the-last-thing-is-the-best-thing_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69d2d57851809460a79bbd9a.txt",
     "transcript_hash": "20c6428aaa4e81ea7681b609d6358a3f6258fbf407be7d8fd70da90904d4d904",
-    "transcribed_at": "2026-09-15T01:20:05.117230+00:00"
+    "transcribed_at": "2026-09-15T01:20:05.117230+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69c9e2472aafb7025be4a6cb": {
     "audio_url": null,
@@ -421,7 +463,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-03-22_for-us-substitution_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69c04b728fa3b527e91e85fb.txt",
     "transcript_hash": "3091f9b93e02209a161cca9192bf1934e0d9f36dcc1fd03d7de579db1d01f794",
-    "transcribed_at": "2026-09-15T01:11:23.958924+00:00"
+    "transcribed_at": "2026-09-15T01:11:23.958924+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69b7157a9092e06a62f8c7fa": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69b7373e58ae313318ea4c27/1774209906836/WestGate_Church_3.15.26_audio.m4a",
@@ -439,7 +483,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-03-15_god-wins-christus-victor_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69b7157a9092e06a62f8c7fa.txt",
     "transcript_hash": "527336164299e7fa6abe40a977a4c8ae9a12df58d85d2de8293893c2d10ee244",
-    "transcribed_at": "2026-09-15T01:32:56.294459+00:00"
+    "transcribed_at": "2026-09-15T01:32:56.294459+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69adcf10f725584c7c5ffaa7": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69aeea0588dd5d65727213cf/1773606266966/WestGate_Church_945a_1080+%2827%29-MP3.mp3",
@@ -457,7 +503,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-03-08_no-condemnation-satisfaction_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69adcf10f725584c7c5ffaa7.txt",
     "transcript_hash": "d3e8d4f534921697f1387d7990e5a5a7013c75975673b5b7aae8c2970d88d49f",
-    "transcribed_at": "2026-09-15T01:37:28.593309+00:00"
+    "transcribed_at": "2026-09-15T01:37:28.593309+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69a4ac7cb1ea2750542042c9": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69a4acedfc7128678a085e5f/1772998416314/WestGate_Church_945a_audio.m4a",
@@ -475,7 +523,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-03-01_the-price-of-freedom-ransom_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69a4ac7cb1ea2750542042c9.txt",
     "transcript_hash": "522db1ea8cabf35eacd0c44285c030e6b64a512ea8f1760e20df43e75a22f09a",
-    "transcribed_at": "2026-09-15T01:16:23.935404+00:00"
+    "transcribed_at": "2026-09-15T01:16:23.935404+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:699b6422f67eb805d011b63b": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/699b64e5568da100167bcdb6/1772399740715/WestGate_Church_945a_1080+%2825%29-MP3.mp3",
@@ -493,7 +543,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-02-22_life-given-for-life-blood-sacrifice_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_699b6422f67eb805d011b63b.txt",
     "transcript_hash": "a90cda53504c9a360294844adfebbde463ef28a15dc874cf02ac18fb02b4de0a",
-    "transcribed_at": "2026-09-15T05:59:51.701691+00:00"
+    "transcribed_at": "2026-09-15T05:59:51.701691+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6994c660767833629cf3ce34": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6994c6a4cdadfc226fc9f913/1771452127899/WestGate_Church_945a_1080+%2824%29-MP3.mp3",
@@ -511,7 +563,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-02-15_the-cross-as-deliverance_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6994c660767833629cf3ce34.txt",
     "transcript_hash": "5f3c4854c0fa728d8f3aedff5c6e56b444ce992eb5f8e9604de3d344b94976a0",
-    "transcribed_at": "2026-09-15T06:15:16.062212+00:00"
+    "transcribed_at": "2026-09-15T06:15:16.062212+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:698cc8237e983f23c5000048": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/698cc9bc9485cc74d71e5119/1771357792198/WestGate_Church_815a_1080-MP3.mp3",
@@ -529,7 +583,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-02-08_here-to-stay-where-were-headed_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_698cc8237e983f23c5000048.txt",
     "transcript_hash": "7b3f9d210eeb609efdfd8b92e565c270c8bbae262f470af8f2fccbb609baabb8",
-    "transcribed_at": "2026-09-15T05:58:17.261681+00:00"
+    "transcribed_at": "2026-09-15T05:58:17.261681+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69813127be84172094f0c2b1": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6981319340db7e2bb433a18d/1770833955724/WestGate_Church_945a_1080+%2823%29-MP3.mp3",
@@ -547,7 +603,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-02-01_missional-living-for-ordinary-people_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69813127be84172094f0c2b1.txt",
     "transcript_hash": "1ab8bdab9bd8b19e5d7f719eee6f7d4a219f0ffa4c84e2e4f151c58b789e1aa7",
-    "transcribed_at": "2026-09-15T05:48:01.987460+00:00"
+    "transcribed_at": "2026-09-15T05:48:01.987460+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6977b4a968399a0b48ac2bee": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6977b52bd843291e503ee4df/1770074407445/WestGate_Church_945a_1080+%2822%29-MP3.mp3",
@@ -565,7 +623,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-01-25_a-long-obedience-in-the-same-direction_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6977b4a968399a0b48ac2bee.txt",
     "transcript_hash": "cbaa20b1bd2cba8b22a450754a3d7f1077ea28b5d42b540fa32b560080ab2fb4",
-    "transcribed_at": "2026-09-15T05:53:23.105884+00:00"
+    "transcribed_at": "2026-09-15T05:53:23.105884+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:696fc450dfd6542a46671eb6": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/696fc59085fe232146d3b77f/1769452713179/WestGate_Church_945a_1080+%2821%29-MP3.mp3",
@@ -583,7 +643,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-01-18_one-thing-i-seek_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_696fc450dfd6542a46671eb6.txt",
     "transcript_hash": "9c66a3f6cc8aa44309dde0229dd9d2c03daab1083060cb72e9d68941db1e1a48",
-    "transcribed_at": "2026-09-15T11:15:36.641348+00:00"
+    "transcribed_at": "2026-09-15T11:15:36.641348+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:696fc23846fc4a7ef5db827b": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/696fc2dc9ade8807a346b1cb/1768932432931/WestGate_Church_945a_1080+%2820%29-MP3.mp3",
@@ -601,7 +663,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-01-11_sacred-simplicity_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_696fc23846fc4a7ef5db827b.txt",
     "transcript_hash": "ede2d0b45f1517ab7baea7ee6dacb9d3b6a97b96fcc7b78c3152987846eca1ec",
-    "transcribed_at": "2026-09-15T10:44:03.302368+00:00"
+    "transcribed_at": "2026-09-15T10:44:03.302368+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:695c391eed5a943ed8abb962": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/695c39a8773b4659b22a4cc2/1768931896218/WestGate_Church_1130_1080+%283%29-MP3.mp3",
@@ -619,7 +683,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2026-01-04_essentialism-and-the-good-way_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_695c391eed5a943ed8abb962.txt",
     "transcript_hash": "842082ed48ae60ee78310a7075fad5645ba4eb4bef9002f57bbc3f4a65252943",
-    "transcribed_at": "2026-09-15T10:40:14.460844+00:00"
+    "transcribed_at": "2026-09-15T10:40:14.460844+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:695c35c527f8ba5ba1489a94": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/695c362b27f8ba5ba148c425/1767651614335/WestGate_Church_1130_1080+%282%29-MP3.mp3",
@@ -637,7 +703,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-12-28_the-discipline-of-remembering_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_695c35c527f8ba5ba1489a94.txt",
     "transcript_hash": "60b208c18abf4c9667c22cb450100aa8f360771067f6a1d40fc48d46f467083f",
-    "transcribed_at": "2026-09-15T10:37:51.485066+00:00"
+    "transcribed_at": "2026-09-15T10:37:51.485066+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:694980fa3f947e0afe78fe78": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/694981349f39505ceca74d59/1767650757628/WestGate_Church_945a_1080+%2819%29-MP3.mp3",
@@ -655,7 +723,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-12-21_the-practice-of-disruption_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_694980fa3f947e0afe78fe78.txt",
     "transcript_hash": "190f21038d88a5999ad2ce6466d702645b8ff80db8ac60ff9cb553d4cbaa33d2",
-    "transcribed_at": "2026-09-15T11:07:55.106267+00:00"
+    "transcribed_at": "2026-09-15T11:07:55.106267+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:694064353e07200fba56e5da": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6940650774ed3123c9281c03/1766424826149/WestGate_Church_945a_1080-MP3.mp3",
@@ -673,7 +743,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-12-14_the-practice-of-stilling-the-mind_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_694064353e07200fba56e5da.txt",
     "transcript_hash": "e484f87f67d138a4cfb4b60fc27f628e8f0f44f3f873025697b38d913b1cd89e",
-    "transcribed_at": "2026-09-15T15:52:49.753133+00:00"
+    "transcribed_at": "2026-09-15T15:52:49.753133+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:692dddf85ffe5d15bbcf5b4c": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6936fdccfc92783b520218c6/1765827637887/WestGate_Church_1130_1080+%281%29-MP3.mp3",
@@ -691,7 +763,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-12-07_the-practice-of-waiting_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_692dddf85ffe5d15bbcf5b4c.txt",
     "transcript_hash": "e7d8b1935f2dded6070121acfc8f6c25705886939da6648be074c3d05b4cbc99",
-    "transcribed_at": "2026-09-15T15:48:11.211119+00:00"
+    "transcribed_at": "2026-09-15T15:48:11.211119+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:692491acd2875d6630545231": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6925da888fa2571b10fac6f9/1764088576588/WestGate_Church_945a_1080+%2817%29-MP3.mp3",
@@ -709,7 +783,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-11-23_gratitude-and-grace-at-the-table_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_692491acd2875d6630545231.txt",
     "transcript_hash": "eedbeff00b0ac77d4e7f816354d285736c93cc994d82aefceacfc430cf65b0d4",
-    "transcribed_at": "2026-09-15T15:48:49.829632+00:00"
+    "transcribed_at": "2026-09-15T15:48:49.829632+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69120cac452abf0b0cab312a": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6925dc016c6cf33c64aec7bd/1764088978149/WestGate_Church_945a_1080+%2815%29-MP3.mp3",
@@ -727,7 +803,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-11-16_return-to-the-lord_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69120cac452abf0b0cab312a.txt",
     "transcript_hash": "347518965f81a23e6bc39115d0191def53666a04ab005856ab8fb863bcd0cf49",
-    "transcribed_at": "2026-09-15T16:16:12.247499+00:00"
+    "transcribed_at": "2026-09-15T16:16:12.247499+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:692c6139c6f971644a85a3b4": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/692c61fddefb3635c7b8f6f1/1764613624624/WestGate_Church_945a_1080+%2815%29-MP3.mp3",
@@ -745,7 +823,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-11-09_relational-knowing_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_692c6139c6f971644a85a3b4.txt",
     "transcript_hash": "97870a0e10c01e9a0461054a62ffc778b57a2bc9d2e9c833e850f4a6428d6696",
-    "transcribed_at": "2026-09-15T16:07:02.494407+00:00"
+    "transcribed_at": "2026-09-15T16:07:02.494407+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:69091d1e7ad2113d559087af": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/69091dbb35fdc9695c33f1a7/1762790572726/WestGate_Church_945a_1080+%2814%29-MP3.mp3",
@@ -763,7 +843,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-11-02_the-heartbreak-of-sin_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_69091d1e7ad2113d559087af.txt",
     "transcript_hash": "8142203e7659c8d91a5dd8f37e4511f355d9f7d349463f79fb307b6b6d568c64",
-    "transcribed_at": "2026-09-15T19:31:30.220968+00:00"
+    "transcribed_at": "2026-09-15T19:31:30.220968+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68ff856b1a54be65ac10b482": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68ff8600ceb9ef7283bbbf53/1762204958112/WestGate_Church_945a_1080+%2812%29-MP3.mp3",
@@ -781,7 +863,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-10-26_next-gen-vision_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68ff856b1a54be65ac10b482.txt",
     "transcript_hash": "c61352f8780a17d70d1bb0ee5605ff62b35decb03f8daf6b8674ca0d2c67f83b",
-    "transcribed_at": "2026-09-15T19:55:21.642214+00:00"
+    "transcribed_at": "2026-09-15T19:55:21.642214+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68f6bb8e5cba365faaaf2ce4": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68f6bc139bbf112c1782940b/1761576299059/WestGate_Church_945a_1080+%2811%29-MP3.mp3",
@@ -799,7 +883,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-10-19_beautiful-day-celebration-2025_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68f6bb8e5cba365faaaf2ce4.txt",
     "transcript_hash": "1457a4e6effd1b07d864c99e1a17e1ace82c6c40f1f603c379301c8863fd5b05",
-    "transcribed_at": "2026-09-15T19:59:21.157158+00:00"
+    "transcribed_at": "2026-09-15T19:59:21.157158+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68e3e95cd72105480240afbb": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68e3ea48b5454443a80acef2/1761000334749/WestGate_Church_945a_1080+%2810%29-MP3.mp3",
@@ -817,7 +903,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-10-05_when-life-feels-empty-7-ancient-practices-to-cultivate-meaning_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68e3e95cd72105480240afbb.txt",
     "transcript_hash": "83762fd46eac903dbb71e97c8c3de0bf5cf3ff93ea3b6c796b5f42f35cdfafff",
-    "transcribed_at": "2026-09-15T19:57:28.873814+00:00"
+    "transcribed_at": "2026-09-15T19:57:28.873814+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68daad2bbdabf614c34f16eb": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68daae8fbdabf614c34f6d56/1759766876934/WestGate_Church_945a_1080+%289%29-MP3.mp3",
@@ -835,7 +923,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-09-28_week-4-a-community-of-help-friendship-and-comfort_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68daad2bbdabf614c34f16eb.txt",
     "transcript_hash": "62c6c643db31e416dbb5a7a2a82323bb32363fd9de35b708c7275ce6c5759efe",
-    "transcribed_at": "2026-09-15T19:42:13.305435+00:00"
+    "transcribed_at": "2026-09-15T19:42:13.305435+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68d16e2dc688147466fc41d7": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68d16ed7ff162a7f4301fc67/1759161643701/WestGate_Church_945a_1080+%288%29-MP3.mp3",
@@ -853,7 +943,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-09-21_week-3-the-power-of-confession_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68d16e2dc688147466fc41d7.txt",
     "transcript_hash": "a648e8b349f2ba77aa2de63a33f833b4df6c1ce49fbce34d15a3cd1cac43dd00",
-    "transcribed_at": "2026-09-15T22:55:02.163306+00:00"
+    "transcribed_at": "2026-09-15T22:55:02.163306+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68c84ad3e1b72973945e0a7e": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68c863cd04947e67b55dfe17/1758555693598/WestGate_Church_945a_1080+%287%29-MP3.mp3",
@@ -871,7 +963,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-09-14_week-2-spiritual-gifts-in-service-of-others_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68c84ad3e1b72973945e0a7e.txt",
     "transcript_hash": "1147f2b330b001b174cd444bbe85c897b7518d11a10af847ecff4a5485101bf7",
-    "transcribed_at": "2026-09-15T22:53:25.226188+00:00"
+    "transcribed_at": "2026-09-15T22:53:25.226188+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68bef8012a40422f40c66a18": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68bef863c74e314647c9edff/1757956819922/WestGate_Church_945a_1080+%286%29-MP3.mp3",
@@ -889,7 +983,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-09-07_week-1-community-is-a-gift-we-receive_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68bef8012a40422f40c66a18.txt",
     "transcript_hash": "36f4f8eb6757f0aa17fdddebb6bdfeec2f0a071322e33f1d02259a93174d9c46",
-    "transcribed_at": "2026-09-15T23:10:25.588258+00:00"
+    "transcribed_at": "2026-09-15T23:10:25.588258+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68b7038293f16420e251daa4": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68b703d08a7a604c249d6ac7/1757345793822/WestGate_Church_945a_1080+%285%29-MP3.mp3",
@@ -907,7 +1003,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-08-31_week-6-formed-for-love_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68b7038293f16420e251daa4.txt",
     "transcript_hash": "4380e85c6cda4d997d27e01fc4e303c407d367290b21f2a4dd50289cb39088dd",
-    "transcribed_at": "2026-09-15T22:38:52.953241+00:00"
+    "transcribed_at": "2026-09-15T22:38:52.953241+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68ac7a3e0beb6755b1d6ef06": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68ac7b17ba3a6e19d783be03/1756824450843/WestGate_Church_945a_1080+%284%29-MP3.mp3",
@@ -925,7 +1023,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-08-24_week-5-formed-by-love_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68ac7a3e0beb6755b1d6ef06.txt",
     "transcript_hash": "dfbef63f902fc8fa99b12a53298eca5f8381ee38b96933ff1eee61674cb55d02",
-    "transcribed_at": "2026-09-15T22:58:26.854343+00:00"
+    "transcribed_at": "2026-09-15T22:58:26.854343+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68a385f1ffe3a60ba629ebd1": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68a3868144ce5f4a4ee5df39/1756133950095/WestGate_Church_945a_1080+%283%29-MP3.mp3",
@@ -943,7 +1043,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-08-17_week-4-burned-branches-and-bearing-fruit_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68a385f1ffe3a60ba629ebd1.txt",
     "transcript_hash": "2485c7104959ada5979f97febbcc94e01f02f751b01fc5dabd5bed32b8dc953c",
-    "transcribed_at": "2026-09-16T01:26:23.138721+00:00"
+    "transcribed_at": "2026-09-16T01:26:23.138721+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:689a157a6f940225d59cb2bd": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/689a161baa788e0088b648cb/1755547121229/WestGate_Church_945a_1080+%282%29-MP3.mp3",
@@ -961,7 +1063,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-08-10_week-3-the-art-of-remaining_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_689a157a6f940225d59cb2bd.txt",
     "transcript_hash": "d455d90b517b3fc3882e4f899a73c01c4cce0266847da29ceb6af537cd76d255",
-    "transcribed_at": "2026-09-16T01:04:27.308000+00:00"
+    "transcribed_at": "2026-09-16T01:04:27.308000+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6892243c13fbf572f266535e": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68922473b8f65636d8e6cd9b/1754928506343/WestGate_Church_945a_1080+%281%29-MP3.mp3",
@@ -979,7 +1083,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-08-03_week-2-the-pain-of-pruning_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6892243c13fbf572f266535e.txt",
     "transcript_hash": "cef1f268e650cb8c5cb97ef47a72fe7a958a9801c08caa336df681e58d965b9e",
-    "transcribed_at": "2026-09-16T01:08:28.164756+00:00"
+    "transcribed_at": "2026-09-16T01:08:28.164756+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6887a4c5e86741290248c70f": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6887a531812d581c69bf2d03/1754407996979/WestGate_Church_945a_1080-MP3.mp3",
@@ -997,7 +1103,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-07-27_week-1-the-vine-the-gardener-and-the-branch_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6887a4c5e86741290248c70f.txt",
     "transcript_hash": "5fdb9aea2dd54b5e119ea727b581ebe998e0f73ea29106f95506fec3bb4c5518",
-    "transcribed_at": "2026-09-16T00:59:38.095848+00:00"
+    "transcribed_at": "2026-09-16T00:59:38.095848+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:687e729b9415d133be48d8a8": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/687e72e03c542d083319f05a/1753720005574/WestGate_Church_1130_1080+%281%29-MP3.mp3",
@@ -1015,7 +1123,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-07-20_week-8-nothing-can-separate-us-from-gods-love_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_687e729b9415d133be48d8a8.txt",
     "transcript_hash": "500ab01f79b1880668cc2f9a324a7788e58580941b959a2755d80aa040df36ca",
-    "transcribed_at": "2026-09-16T01:10:57.184922+00:00"
+    "transcribed_at": "2026-09-16T01:10:57.184922+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6875018eb94d3f63b510c83d": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/687501bb89a36c0997ba60f1/1753117339983/WestGate_Church_1130_1080-MP3.mp3",
@@ -1033,7 +1143,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-07-13_week-7-if-god-is-for-us_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6875018eb94d3f63b510c83d.txt",
     "transcript_hash": "7c4576e89690552ae3875687175ee676718028f4ed93cb521f861936f4cf51d1",
-    "transcribed_at": "2026-09-16T05:58:07.352448+00:00"
+    "transcribed_at": "2026-09-16T05:58:07.352448+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:686bf9e86155491a6bcc53b3": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/686bfa1fdf85eb4ec42f0b01/1752498574034/WestGate_Church_945a_1080+%282%29-MP3.mp3",
@@ -1051,7 +1163,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-07-06_week-6-justified-and-glorified_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_686bf9e86155491a6bcc53b3.txt",
     "transcript_hash": "30051e0086d7e5cb9f250e3fe64d232146388b1df10d52ea04c3219cb5876fc9",
-    "transcribed_at": "2026-09-16T05:31:03.461262+00:00"
+    "transcribed_at": "2026-09-16T05:31:03.461262+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6862b396e1d8a8777627d0d6": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6862b45d1626e8236371f38c/1751906792562/WestGate_Church_1130_1080-MP3.mp3",
@@ -1069,7 +1183,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-06-29_week-5-the-groaning-of-the-spirit_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6862b396e1d8a8777627d0d6.txt",
     "transcript_hash": "aa7de5ce429683bf55cf1cc16ebf9297811adaa7b9359b3d3062723dadf03a85",
-    "transcribed_at": "2026-09-16T05:30:37.261677+00:00"
+    "transcribed_at": "2026-09-16T05:30:37.261677+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:685859343c5da91291fad1c8": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/685859892e3779065a81411c/1751298966127/WestGate_Church_945a_1080+%281%29-MP3.mp3",
@@ -1087,7 +1203,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-06-22_week-4-the-liberation-of-creation_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_685859343c5da91291fad1c8.txt",
     "transcript_hash": "2d1e76837b592e8e69106738f283cb94e1a9f08fc2576e1e95e28ba11314e20c",
-    "transcribed_at": "2026-09-16T05:51:38.977697+00:00"
+    "transcribed_at": "2026-09-16T05:51:38.977697+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:684f54822038aa60e4bb0f28": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/684f54d17e289350cb104868/1750620468940/WestGate_Church_945a_1080-MP3.mp3",
@@ -1105,7 +1223,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-06-15_week-3-led-by-the-spirit_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_684f54822038aa60e4bb0f28.txt",
     "transcript_hash": "41ad60252db78e9e60dbbfd8606ad5b24f95380e6f5bd4b005f8222b61f1626c",
-    "transcribed_at": "2026-09-16T05:52:05.863707+00:00"
+    "transcribed_at": "2026-09-16T05:52:05.863707+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6845e3a5a4692d177caae924": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6845e3ecc9eb78513444c963/1750029442472/WestGate_Church_945a_1080-MP3.mp3",
@@ -1123,7 +1243,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-06-08_week-2-the-spirit-gives-life_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6845e3a5a4692d177caae924.txt",
     "transcript_hash": "ec0d324e844942b1c5b43b55e316c93cd460f709f81634810f280d1084317998",
-    "transcribed_at": "2026-09-16T10:46:41.614229+00:00"
+    "transcribed_at": "2026-09-16T10:46:41.614229+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:683de7dce23fde2898eb2ed5": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/683de83eb586aa10c788f9ad/1749410725994/WestGate_Church_9am__1080+%286%29-MP3.mp3",
@@ -1141,7 +1263,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-06-01_week-1-no-condemnation_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_683de7dce23fde2898eb2ed5.txt",
     "transcript_hash": "6d77e259594711ba67604478938cd10f6d371bff04b06fa165df5787dea01acd",
-    "transcribed_at": "2026-09-16T10:36:47.074935+00:00"
+    "transcribed_at": "2026-09-16T10:36:47.074935+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:68363d4f31ec430dd9ab4bbc": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/68363dc82f7e1c6e0a2416f3/1748887516361/WestGate_Church_1045_1080+%284%29-MP3.mp3",
@@ -1159,7 +1283,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-05-25_the-empowering-presence_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_68363d4f31ec430dd9ab4bbc.txt",
     "transcript_hash": "992105d24907fb672ef8f21f8dc17645ea2d39ebb2855e17f89ca049523b9325",
-    "transcribed_at": "2026-09-16T11:05:12.763379+00:00"
+    "transcribed_at": "2026-09-16T11:05:12.763379+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:682cb5ef55c6c96ce0d8c57c": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/682cb6414454532b890c3e1d/1748385103876/WestGate_Church_1045_1080+%283%29-MP3.mp3",
@@ -1177,7 +1303,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-05-18_the-renewing-presence-suffering-healing_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_682cb5ef55c6c96ce0d8c57c.txt",
     "transcript_hash": "d4a0d38a9bc25a2168a2af2d6627409caf1a2806a5fb8be7d5baa0f3eeced2ab",
-    "transcribed_at": "2026-09-16T11:06:11.430416+00:00"
+    "transcribed_at": "2026-09-16T11:06:11.430416+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:682214b95c061e46ec6f72a2": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/682215015da8d81bb15535cb/1747760623887/WestGate_Church_9am__1080+%285%29-MP3.mp3",
@@ -1195,7 +1323,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-05-11_the-guiding-presence-discernment-prophecy_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_682214b95c061e46ec6f72a2.txt",
     "transcript_hash": "d86f55c4f0a8f934dd8f3568947c23718a5c21b8ce187815d5b0b74badc389c8",
-    "transcribed_at": "2026-09-16T10:28:56.232272+00:00"
+    "transcribed_at": "2026-09-16T10:28:56.232272+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6818f7698aaa223cbf4fc362": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6818f82844c1a72f0118a838/1747063993308/WestGate_Church_9am__1080+%284%29-WAV-MP3.mp3",
@@ -1213,7 +1343,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-05-04_the-transforming-presence-formed-into-holiness_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6818f7698aaa223cbf4fc362.txt",
     "transcript_hash": "7c62f4c2b4608297f81c6270c5cae7496782e625523981fb519ac9db1f2fbccc",
-    "transcribed_at": "2026-09-16T15:22:51.382594+00:00"
+    "transcribed_at": "2026-09-16T15:22:51.382594+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:680fbacb0c0bd27fe3d21ed5": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/680fbb962ac02638947d34aa/1746466665044/WestGate_Church_9am__1080+%283%29-MP3.mp3",
@@ -1231,7 +1363,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-04-27_who-is-the-holy-spirit-three-life-giving-descents_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_680fbacb0c0bd27fe3d21ed5.txt",
     "transcript_hash": "75a95fc71377aaadb943540d8a7fbd2c75e9e277d2bab367bfb882b58bb9a502",
-    "transcribed_at": "2026-09-16T15:13:15.515317+00:00"
+    "transcribed_at": "2026-09-16T15:13:15.515317+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6807cf954211062e27d92100": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6807cfd478af51569064510d/1745861323719/WestGate_Church_1045_1080+%282%29-MP3.mp3",
@@ -1249,7 +1383,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-04-20_fear-denial-betrayal-fleeing-peace_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6807cf954211062e27d92100.txt",
     "transcript_hash": "6b83d9724daa28ce95ca8cb415a3774428306f023fc511af1cbcbcb4b7e54698",
-    "transcribed_at": "2026-09-16T15:16:07.396599+00:00"
+    "transcribed_at": "2026-09-16T15:16:07.396599+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67fd3fe70e91a949cc36b3e9": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/67fd403786e4d34b7582a54f/1745342357505/WestGate_Church_9am__1080+%282%29-MP3.mp3",
@@ -1267,7 +1403,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-04-13_palm-sunday_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_67fd3fe70e91a949cc36b3e9.txt",
     "transcript_hash": "9f1119b596beed306782a2c27853ab045c99f895cfdcd5c7e8939b29d9937ded",
-    "transcribed_at": "2026-09-16T15:33:48.816092+00:00"
+    "transcribed_at": "2026-09-16T15:33:48.816092+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67f423b3b959cb07581b7811": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/67f42431ff19ee018a65bf5b/1744650215115/WestGate_Church_1045_1080+%281%29-MP3.mp3",
@@ -1285,7 +1423,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-04-06_fasting-for-formation_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_67f423b3b959cb07581b7811.txt",
     "transcript_hash": "894b19e16623a8e7f2eddad6e8ad1347b022f49df654a183a0139609b96812e5",
-    "transcribed_at": "2026-09-16T15:24:33.131528+00:00"
+    "transcribed_at": "2026-09-16T15:24:33.131528+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67eac7e2aa348f6cec52641a": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/67ead0c942a11f27d66131c5/1744053171921/WestGate_Church_9am__1080+%281%29-MP3.mp3",
@@ -1303,7 +1443,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-03-30_fasting-to-offer-ourselves-to-god_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_67eac7e2aa348f6cec52641a.txt",
     "transcript_hash": "baea803c6341f39b29adad5484d0d49d609dbaefd5a8115b27bcd72dc0a9610b",
-    "transcribed_at": "2026-09-16T19:17:17.089939+00:00"
+    "transcribed_at": "2026-09-16T19:17:17.089939+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67e192da408d6c563863f4b3": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/67e1934491dc071dfcf64b0b/1743439842937/Hunger+and+Thurst+-+Mark.mp3",
@@ -1321,7 +1463,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-03-23_a-house-of-intercessory-prayer_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_67e192da408d6c563863f4b3.txt",
     "transcript_hash": "32edcbe9e7c8fdd6ebe0bd8f9eb6ec478e3f009eb26b4aa2ccb435d25f753e47",
-    "transcribed_at": "2026-09-16T19:05:13.903951+00:00"
+    "transcribed_at": "2026-09-16T19:05:13.903951+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67d74ca22b1d29228ab9aa27": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/67d74fb14ab89a7993cf053d/1742836442465/WestGate_Church_1045_1080-2-MP3.mp3",
@@ -1339,7 +1483,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-03-16_how-we-pray-the-lords-prayer_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_67d74ca22b1d29228ab9aa27.txt",
     "transcript_hash": "543dbd7a0b897b102c116a8eda890779071e9957920ceeaf63ab443af63ed0cd",
-    "transcribed_at": "2026-09-16T18:55:02.654936+00:00"
+    "transcribed_at": "2026-09-16T18:55:02.654936+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67b2e0eb4cd7762cddddf9d0": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/67b39b0a449202603a0e0b93/1751310569139/WestGate_Church_1045_audio+%284%29.m4a",
@@ -1357,7 +1503,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-02-16_faith-thats-alive_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_67b2e0eb4cd7762cddddf9d0.txt",
     "transcript_hash": "4d0619890a88f9029d1d4c51745ec899982ff1bb2bbe4a7f7dc21dcd502c3516",
-    "transcribed_at": "2026-09-16T19:15:39.978607+00:00"
+    "transcribed_at": "2026-09-16T19:15:39.978607+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67a92dc57388da69b23e4891": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/67a92e47cd5d3c52c2492f50/1751310569139/WestGate_Church_1045_audio+%282%29.m4a",
@@ -1375,7 +1523,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-02-09_faith-thats-alive_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_67a92dc57388da69b23e4891.txt",
     "transcript_hash": "653a402a88553e1c6a3be64ef30d4de0c079192d39486fc5e170f41d2a031067",
-    "transcribed_at": "2026-09-16T19:15:02.000862+00:00"
+    "transcribed_at": "2026-09-16T19:15:02.000862+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:678d82479ef7947b249950ef": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/678d8276f9686127aed710cf/1751310569139/WestGate_Church_1045_1080.m4a",
@@ -1393,7 +1543,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-01-19_week-3-where-am-i-going_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_678d82479ef7947b249950ef.txt",
     "transcript_hash": "087c0d3d262608cf6aaf8c5f44c273f7c787c1ebfe394dbb274f85e20805edee",
-    "transcribed_at": "2026-09-16T22:09:04.295422+00:00"
+    "transcribed_at": "2026-09-16T22:09:04.295422+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67845cc01540bb7c6a139b9b": {
     "audio_url": null,
@@ -1425,7 +1577,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2025-01-05_week-1-where-am-i-now_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_677b030ad9aa456fe70d178a.txt",
     "transcript_hash": "2380d5323fea7c0d38b6c730bc5c6b967cf340aa3de9d08e7cb5739266102bda",
-    "transcribed_at": "2026-09-16T22:19:22.888870+00:00"
+    "transcribed_at": "2026-09-16T22:19:22.888870+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6755eb885307524ec1247e5b": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6755ebff433cc53f3f2e1fa3/1751310569139/Week+2.mp3",
@@ -1443,7 +1597,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-12-08_the-light-of-freedom-amid-the-darkness-of-burden_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6755eb885307524ec1247e5b.txt",
     "transcript_hash": "8fc2e0154cbea3bea4b8b48b1f61c5556178a34fa64ced647db0fd89335653d1",
-    "transcribed_at": "2026-09-16T22:24:32.196390+00:00"
+    "transcribed_at": "2026-09-16T22:24:32.196390+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:674d1bb1fa1ab8733abfb6e4": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/674d1d097ed4a613c65884ae/1751310569139/Week+1.mp3",
@@ -1461,7 +1617,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-12-01_the-light-of-joy-amidst-the-darkness-of-despair_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_674d1bb1fa1ab8733abfb6e4.txt",
     "transcript_hash": "fa866d468f53fa91209538db3783772c22de278bdfd04be10a62fdbc635c1f60",
-    "transcribed_at": "2026-09-16T22:29:50.323889+00:00"
+    "transcribed_at": "2026-09-16T22:29:50.323889+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6743ae44bd2a08017d57cd57": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6743b1bdbd2a08017d58c829/1751310569139/Week+1.mp3",
@@ -1479,7 +1637,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-11-24_giving-thanks_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6743ae44bd2a08017d57cd57.txt",
     "transcript_hash": "9a600b59a3ac6b9df1bafcffa9e68625327cda3602fac9dc4ab706f5ecc960a0",
-    "transcribed_at": "2026-09-16T22:20:55.128286+00:00"
+    "transcribed_at": "2026-09-16T22:20:55.128286+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:673a902060ecd26007646a08": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/673a9077c5f1042110c99384/1751310569139/Week+4.mp3",
@@ -1497,7 +1657,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-11-17_whatever-happens_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_673a902060ecd26007646a08.txt",
     "transcript_hash": "5a52a39c7f684ab2eb069a03bd727406ea43089b536263bd90a13ccd930fa307",
-    "transcribed_at": "2026-09-17T00:27:32.528584+00:00"
+    "transcribed_at": "2026-09-17T00:27:32.528584+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:671eb44445e4a34bce349a8b": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/671eb5daf0267a797e0c714e/1751310569139/Week+1.mp3",
@@ -1515,7 +1677,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-10-27_pledge-allegiance-to-the-king_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_671eb44445e4a34bce349a8b.txt",
     "transcript_hash": "5c5e4c05d2c9c6588b6a946b071a2fd43b0cb037d3ff5422c62616321a5c1939",
-    "transcribed_at": "2026-09-17T00:48:11.129082+00:00"
+    "transcribed_at": "2026-09-17T00:48:11.129082+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:67153944f84a3503cd710a2b": {
     "audio_url": null,
@@ -1547,7 +1711,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-09-29_generosity-inside-my-dna_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66f9ad996ba3637b736dfd99.txt",
     "transcript_hash": "acad021ca89ae5efde2f1412412477e8e4e9147927a7fe7fea9e88a5a2e07842",
-    "transcribed_at": "2026-09-17T00:27:47.836096+00:00"
+    "transcribed_at": "2026-09-17T00:27:47.836096+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66f9ad9fe690c9217061f1ec": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66f9ade9ea31014351050a1d/1751310569139/Giveaway+Week+1.mp3",
@@ -1565,7 +1731,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-09-29_generosity-inside-my-dna_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66f9ad9fe690c9217061f1ec.txt",
     "transcript_hash": "d48e4beda571ac75cea98ec36ab8b0441b2bd80bc9b82b0202127d66dd26ffdc",
-    "transcribed_at": "2026-09-17T00:28:32.720022+00:00"
+    "transcribed_at": "2026-09-17T00:28:32.720022+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66f08a0d5bcd6d4b0f6a8942": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66f08a328a14754d7c4a5501/1751310569139/WK3.mp3",
@@ -1583,7 +1751,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-09-22_a-renewed-city-church-and-world_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66f08a0d5bcd6d4b0f6a8942.txt",
     "transcript_hash": "6d5561dc09d8f83909634424f6ab83e3eb3f192aae266afd2d5355d4805cf113",
-    "transcribed_at": "2026-09-17T00:24:30.076035+00:00"
+    "transcribed_at": "2026-09-17T00:24:30.076035+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66e74f8096daf213f63085f9": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66e75069130b4e0d4f9087e2/1751310569139/WK2.mp3",
@@ -1601,7 +1771,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-09-15_renewed-by-love-in-an-age-of-fear_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66e74f8096daf213f63085f9.txt",
     "transcript_hash": "6efc66ce51d4f33ab11093b0cb4b211fab0aee350ad4b004b432eadd2e8fcb28",
-    "transcribed_at": "2026-09-17T04:00:19.421452+00:00"
+    "transcribed_at": "2026-09-17T04:00:19.421452+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66de11680c453243d49d0ab5": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66de11d7e08d4b6ec0863dbf/1751310569139/2024.09.08+AfterWord+-+Renewal+-+Week+2+-+Rule+of+Life+%28DAT%2C+Archie%2C+DK%2C+Ruth%29.mp3",
@@ -1619,7 +1791,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-09-08_the-afterword-a-panel-discussion-on-the-communal-rule-of-life_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66de11680c453243d49d0ab5.txt",
     "transcript_hash": "308df424cfb3c3b42f98ce363513b97beda5c4f16553fb66f83b2bcfb74e65d2",
-    "transcribed_at": "2026-09-17T04:06:07.980156+00:00"
+    "transcribed_at": "2026-09-17T04:06:07.980156+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66de0db010d7a8349b445b1f": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66de0e195da7932f8488951c/1751310569139/WK1.mp3",
@@ -1637,7 +1811,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-09-08_communal-rule-of-life_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66de0db010d7a8349b445b1f.txt",
     "transcript_hash": "cf7a147bd2a6c21b6130055299ad16b11d2e7f06e5a6a849d6bc29f1e985a385",
-    "transcribed_at": "2026-09-17T04:09:07.783777+00:00"
+    "transcribed_at": "2026-09-17T04:09:07.783777+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66cb98b32ff2cd3d40340921": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66cb9a1ae5328a74eba9f18c/1725231591411/08.25.2024+AJ+Swoboda.mp3",
@@ -1655,7 +1831,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-08-25_jesus-our-flesh-and-the-war-for-our-wants_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66cb98b32ff2cd3d40340921.txt",
     "transcript_hash": "3022e71a02d5e48400a08492be5d8c2a8701174de669959925b2415de559082d",
-    "transcribed_at": "2026-09-17T04:06:35.391116+00:00"
+    "transcribed_at": "2026-09-17T04:06:35.391116+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66c23d2d9d00111a60d7d535": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66c23ea725a2552b5768ecf3/1751310569139/Week+7.mp3",
@@ -1673,7 +1851,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-08-18_forgiveness-of-sins-resurrection-of-the-body-life-everlasting_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66c23d2d9d00111a60d7d535.txt",
     "transcript_hash": "bffa8b3e715e64fe55e2135ee17e33b9d535d9fc4b3f427c99da4c6ef76c5d4a",
-    "transcribed_at": "2026-09-17T04:09:46.582436+00:00"
+    "transcribed_at": "2026-09-17T04:09:46.582436+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66b8ec138a5fa458e0366dae": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66b8fdfac47a3b5c4c54e033/1751310569139/Week+6.mp3",
@@ -1691,7 +1871,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-08-11_the-church-the-communion-of-saints_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66b8ec138a5fa458e0366dae.txt",
     "transcript_hash": "f008d28b047c76eac62e84f2be4b5f69855926d3f26224ca6502dad0cba58d29",
-    "transcribed_at": "2026-09-17T09:40:36.066894+00:00"
+    "transcribed_at": "2026-09-17T09:40:36.066894+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66afb424b53fb579fe54c34f": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66b03fd60c1ceb7df7b6e7ab/1751310569139/Week+5.mp3",
@@ -1709,7 +1891,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-08-04_the-holy-spirit_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66afb424b53fb579fe54c34f.txt",
     "transcript_hash": "d1668bc99257cc63dabb3ec7c35e3e4cae81bdcc1e9bc8524c8142742018eede",
-    "transcribed_at": "2026-09-17T09:28:23.991839+00:00"
+    "transcribed_at": "2026-09-17T09:28:23.991839+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66a6e912642ee50bcffc9e57": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66a6edcc340ee4595aec1c98/1751310569139/Week+4.mp3",
@@ -1727,7 +1911,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-07-28_descended-into-hell_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66a6e912642ee50bcffc9e57.txt",
     "transcript_hash": "77250e0743361e9c0a3d67551d2fe845ca61739fb5c34981906157a100c3464e",
-    "transcribed_at": "2026-09-17T09:22:32.049827+00:00"
+    "transcribed_at": "2026-09-17T09:22:32.049827+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:669da0e4df917e6a475f775d": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/669da21337d9290c5431c84b/1751310569139/Week+3.mp3",
@@ -1745,7 +1931,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-07-21_jesus-our-lord_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_669da0e4df917e6a475f775d.txt",
     "transcript_hash": "d7aa9ad95a1503dfffc42489417ba3f7aa173d4e9432532d01db4a18da57fd6d",
-    "transcribed_at": "2026-09-17T09:35:59.959333+00:00"
+    "transcribed_at": "2026-09-17T09:35:59.959333+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:669434302049b01466a88e33": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66943463ef978e6d95f9d0dc/1751310569139/Week+2.mp3",
@@ -1763,7 +1951,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-07-14_god-the-father-almighty_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_669434302049b01466a88e33.txt",
     "transcript_hash": "1594998c6be259e723d8a280877528d929bf730ec1a62b7d42a13f7c7b0984cb",
-    "transcribed_at": "2026-09-17T09:37:18.029171+00:00"
+    "transcribed_at": "2026-09-17T09:37:18.029171+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:668afd6abdde483305fe10a2": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/668b011d91bc9a3ecb59b30f/1751310569139/Week+1.mp3",
@@ -1781,7 +1971,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-07-07_introduction-i-believe_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_668afd6abdde483305fe10a2.txt",
     "transcript_hash": "081e9d230add313e70baceb0983c179e8ffaefc67e333c4a048278e21e3ed8a2",
-    "transcribed_at": "2026-09-17T14:50:10.158952+00:00"
+    "transcribed_at": "2026-09-17T14:50:10.158952+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:66819e4f9187b6576218f571": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66819f7fba0e3760567c6388/1751310569139/Week+8.mp3",
@@ -1799,7 +1991,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-06-30_philippians-4-1-9-think-about-such-things-and-the-peace-of-god_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_66819e4f9187b6576218f571.txt",
     "transcript_hash": "e857c6c12a2f5641efbfe8d14fe77757424c69e8b3af36bd5f77bf543c43f1ba",
-    "transcribed_at": "2026-09-17T14:38:29.619993+00:00"
+    "transcribed_at": "2026-09-17T14:38:29.619993+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:667887a841aced3c13b37687": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/66788a7aef952037404bcaec/1751310569139/Week+7.mp3",
@@ -1817,7 +2011,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-06-23_philippians-3-15-21-enemies-of-the-cross_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_667887a841aced3c13b37687.txt",
     "transcript_hash": "efa2820c711c7a85724e00fe0aa16c35308d4b12c78859d7358484fe9f72b167",
-    "transcribed_at": "2026-09-17T14:29:47.032852+00:00"
+    "transcribed_at": "2026-09-17T14:29:47.032852+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:666f51831688243609e6ac40": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/666f52dd68c490694bebdf50/1719175080079/2024.06.16+-+Philippians+-+Week+6+-+Mark+%28AUDIO+ONLY%29.mp3",
@@ -1835,7 +2031,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-06-16_philippians-3-1-14-this-is-garbage_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_666f51831688243609e6ac40.txt",
     "transcript_hash": "415226824acc7200494c4e769063fae6c9bf325d6cf811313d0a9574cdbc89ef",
-    "transcribed_at": "2026-09-17T14:38:15.481567+00:00"
+    "transcribed_at": "2026-09-17T14:38:15.481567+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:6666309f6b227110efd6374f": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/6666314d1aaf441eaded1e34/1718571395482/06.09.2024+-+Philippians+-+Week+5+-+Jay+.mp3",
@@ -1853,7 +2051,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-06-09_philippians-2-12-18-stars-in-the-sky_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_6666309f6b227110efd6374f.txt",
     "transcript_hash": "84fa0323acf61e366ece3b8ca38839f95f854968820d64e57215da500bf4f1c8",
-    "transcribed_at": "2026-09-17T14:40:15.892867+00:00"
+    "transcribed_at": "2026-09-17T14:40:15.892867+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "westgate:5728a06459827e6e7a15844c:573a35f9ab48def8efe8c30d:665ce38ae84efe111322e5fb": {
     "audio_url": "https://static1.squarespace.com/static/5728a06459827e6e7a15844c/t/665ce4095178a24e7c45ac8b/1717973151672/Philippians+-+This+is+Living+%7C+Philippians+2%3A1-11%2C+Descend+to+Ascend+%7C+June+02%2C+2024+AUDIO.mp3",
@@ -1871,6 +2071,8 @@
     "transcription_status": "done",
     "content_path": "transcripts/westgate/2024-06-02_philippians-2-1-11-descend-to-ascend_westgate_5728a06459827e6e7a15844c_573a35f9ab48def8efe8c30d_665ce38ae84efe111322e5fb.txt",
     "transcript_hash": "77ab16e04e1b89017f43e678014c79f7ab745ec8dd488cbb819f09d90be640ac",
-    "transcribed_at": "2026-09-14T02:38:05.472935+00:00"
+    "transcribed_at": "2026-09-14T02:38:05.472935+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   }
 }

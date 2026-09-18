@@ -15,7 +15,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-09-13_mind-games-part-1-seeing-clearly_north_point_975EE20996fED783F8741C8cB0A1.txt",
     "transcript_hash": "d5608f9c6d5b7c3268feb2f4aac106789aa850f5590323674a33afa9c9f1162a",
-    "transcribed_at": "2026-09-14T07:07:00.799289+00:00"
+    "transcribed_at": "2026-09-14T07:07:00.799289+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:34eFAA65D2F1285a9d5E8A4c0a43": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/34eFAA65D2F1285a9d5E8A4c0a43/media/4ef6FB14281884B8d976DB77Cf53.mp3?feedId=1968826fF8",
@@ -33,7 +35,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-09-06_functional-faith_north_point_34eFAA65D2F1285a9d5E8A4c0a43.txt",
     "transcript_hash": "3ac6fbc1a55421f615841b85a4e5b5b50be05ae7ae2dd47385cc6109035eeea1",
-    "transcribed_at": "2026-09-14T07:14:05.095528+00:00"
+    "transcribed_at": "2026-09-14T07:14:05.095528+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:BdC4bFDC6468E11e2883b3036F2e": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/BdC4bFDC6468E11e2883b3036F2e/media/7e5Ff6e2C96C1DE9D8CAd93Fb012.mp3?feedId=1968826fF8",
@@ -51,7 +55,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-08-30_everyday-courage-part-4-courage-in-the-mirror_north_point_BdC4bFDC6468E11e2883b3036F2e.txt",
     "transcript_hash": "4c5f1aea4b3739140e42495a9822d191e059982a85eb5031f0816b4bc167babf",
-    "transcribed_at": "2026-09-14T07:17:44.420718+00:00"
+    "transcribed_at": "2026-09-14T07:17:44.420718+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:d001d9AA623aD4c420eBAD45A93e": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/d001d9AA623aD4c420eBAD45A93e/media/515F1BBD5c070070aAE43757914F.mp3?feedId=1968826fF8",
@@ -69,7 +75,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-08-23_everyday-courage-part-3-by-the-slice_north_point_d001d9AA623aD4c420eBAD45A93e.txt",
     "transcript_hash": "7e888a5d250323772c7e068ab7717a1396c41469184a1ed47a177c6ca6f2a13f",
-    "transcribed_at": "2026-09-14T06:58:48.923030+00:00"
+    "transcribed_at": "2026-09-14T06:58:48.923030+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:eF73825A91CECC93DB86F065Bb29": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/eF73825A91CECC93DB86F065Bb29/media/4D3C63AC36d6F97d9DD2BCC16878.mp3?feedId=1968826fF8",
@@ -87,7 +95,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-08-16_everyday-courage-part-2-it-s-complicated_north_point_eF73825A91CECC93DB86F065Bb29.txt",
     "transcript_hash": "aa51478c34ab92d17ec407212a56a4f5469208b5cb664b42894c4ecfbc62dc50",
-    "transcribed_at": "2026-09-14T06:49:08.126825+00:00"
+    "transcribed_at": "2026-09-14T06:49:08.126825+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:6C308233DFD5aFe6B17FC23D654A": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/6C308233DFD5aFe6B17FC23D654A/media/Deac1a8B17e8A7d9D3d8BDE041c4.mp3?feedId=1968826fF8",
@@ -105,7 +115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-08-09_everyday-courage-part-1-the-win_north_point_6C308233DFD5aFe6B17FC23D654A.txt",
     "transcript_hash": "964835c119209a72fa8852a87cce1b9698bd57af0be9116a93a6763de91eb1f5",
-    "transcribed_at": "2026-09-14T13:59:11.516018+00:00"
+    "transcribed_at": "2026-09-14T13:59:11.516018+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:a92Ed6A1EA4C755A82007D865069": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/a92Ed6A1EA4C755A82007D865069/media/58BBB9cBFFC1e03a23364BD7694F.mp3?feedId=1968826fF8",
@@ -123,7 +135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-08-02_none-of-my-business_north_point_a92Ed6A1EA4C755A82007D865069.txt",
     "transcript_hash": "0075288d5339cf8534d272d4ca58dc5b4bc07e4dfb8aeb67410da9bb21fc4dc0",
-    "transcribed_at": "2026-09-14T14:01:39.101751+00:00"
+    "transcribed_at": "2026-09-14T14:01:39.101751+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:41e8DDAD70988621a8B92A747bA3": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/41e8DDAD70988621a8B92A747bA3/media/49677Fa45e7F084B84F1f4BF99f4.mp3?feedId=1968826fF8",
@@ -141,7 +155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-07-19_you-re-invited-part-2-prepared_north_point_41e8DDAD70988621a8B92A747bA3.txt",
     "transcript_hash": "240952c22d829a39da370f4f48c36cdf2d31bbb938283f1145c7746ae6e94dc0",
-    "transcribed_at": "2026-09-14T14:06:05.093181+00:00"
+    "transcribed_at": "2026-09-14T14:06:05.093181+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:C68E6752e87BDa9E6A7163EFcb3F": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/C68E6752e87BDa9E6A7163EFcb3F/media/a1d6D1eB911d448c66E79fF9DC20.mp3?feedId=1968826fF8",
@@ -159,7 +175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-07-12_you-re-invited-part-1-come-and-see_north_point_C68E6752e87BDa9E6A7163EFcb3F.txt",
     "transcript_hash": "3931e2708bd58c3a8e288fa4f1d20069c0202b3bc78a86c34894e076b2bb320b",
-    "transcribed_at": "2026-09-14T14:08:40.796236+00:00"
+    "transcribed_at": "2026-09-14T14:08:40.796236+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:3F52f4A84f80Cf9EE5DC714AA5bE": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/3F52f4A84f80Cf9EE5DC714AA5bE/media/632785220485A6CDd8573545598a.mp3?feedId=1968826fF8",
@@ -177,7 +195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-07-05_happy-birthday-usa_north_point_3F52f4A84f80Cf9EE5DC714AA5bE.txt",
     "transcript_hash": "f34c973afb533ca46436960a1840f898bdc81429e74e76aadf85407a9be432f2",
-    "transcribed_at": "2026-09-14T14:11:48.233512+00:00"
+    "transcribed_at": "2026-09-14T14:11:48.233512+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:eD407689663C6c697AC32534AD48": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/eD407689663C6c697AC32534AD48/media/E9Ca00F9Eb38080DA9Fe5D4012f6.mp3?feedId=1968826fF8",
@@ -195,7 +215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-06-28_the-matter-with-you-part-2-your-choice-in-the-matter_north_point_eD407689663C6c697AC32534AD48.txt",
     "transcript_hash": "7bb48f5665721869638c71a163af9afb20c413b935fbbf590445ba8104c02d6b",
-    "transcribed_at": "2026-09-14T19:33:32.801559+00:00"
+    "transcribed_at": "2026-09-14T19:33:32.801559+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:EE1EB6F8518652D4b6555839321b": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/EE1EB6F8518652D4b6555839321b/media/5086AF3A6dE63457C6b1d956EF54.mp3?feedId=1968826fF8",
@@ -213,7 +235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-06-21_the-matter-with-you-part-1-no-say-in-the-matter_north_point_EE1EB6F8518652D4b6555839321b.txt",
     "transcript_hash": "e80857e515ea7f32c09afae03de876535963521ce9c1a99bf84595a453f56efe",
-    "transcribed_at": "2026-09-14T19:51:55.732543+00:00"
+    "transcribed_at": "2026-09-14T19:51:55.732543+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:5399789695EE24041b204B9411FB": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/5399789695EE24041b204B9411FB/media/1CE771CA966876f33198E1F67589.mp3?feedId=1968826fF8",
@@ -231,7 +255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-06-14_under-clear-blue-sky-part-3-embracing-responsibility_north_point_5399789695EE24041b204B9411FB.txt",
     "transcript_hash": "1a8b04da541df56a3eda17c06516360b96eb1cd05493144c82f7af612137048e",
-    "transcribed_at": "2026-09-14T19:36:40.889416+00:00"
+    "transcribed_at": "2026-09-14T19:36:40.889416+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:3E6646958A69f476CCe7533b0AEc": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/3E6646958A69f476CCe7533b0AEc/media/8Ae64A29553eB3B34EDA601c1dE0.mp3?feedId=1968826fF8",
@@ -249,7 +275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-06-07_under-clear-blue-sky-part-2-constructing-stability_north_point_3E6646958A69f476CCe7533b0AEc.txt",
     "transcript_hash": "21a8706a7107a2a092157813af4d70f591d54eed3190b7936e0d6f76ac598865",
-    "transcribed_at": "2026-09-14T19:39:26.195671+00:00"
+    "transcribed_at": "2026-09-14T19:39:26.195671+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:13c56FDD36c63F4e0D1c58C8b2F6": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/13c56FDD36c63F4e0D1c58C8b2F6/media/CA0417CBC0e075D8440d521eB079.mp3?feedId=1968826fF8",
@@ -267,7 +295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-05-31_under-clear-blue-sky-part-1-avoiding-catastrophe_north_point_13c56FDD36c63F4e0D1c58C8b2F6.txt",
     "transcript_hash": "ea522ac443f71815aa7ed292ff5c1927feee7a522e7d748468e5446c65d16061",
-    "transcribed_at": "2026-09-14T19:30:37.043618+00:00"
+    "transcribed_at": "2026-09-14T19:30:37.043618+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:5F765F6C0C6A9B7d9690B5D53b68": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/5F765F6C0C6A9B7d9690B5D53b68/media/41363BCD18087362A41A5C74a36C.mp3?feedId=1968826fF8",
@@ -285,7 +315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-05-24_don-t-take-the-first-no-as-the-final-answer-memorial-day-2026_north_point_5F765F6C0C6A9B7d9690B5D53b68.txt",
     "transcript_hash": "232f7c48764a2bc8d3a7b0b7997a78c2813d15ffba6ab7bfaaf3e9eaf0b1eabf",
-    "transcribed_at": "2026-09-14T22:55:47.488169+00:00"
+    "transcribed_at": "2026-09-14T22:55:47.488169+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:cA3672DA867BD45457bEC5540FE0": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/cA3672DA867BD45457bEC5540FE0/media/aD9A35B6A4108697C41Db75ac7f8.mp3?feedId=1968826fF8",
@@ -303,7 +335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-05-17_clockwise-part-3-necessary-endings_north_point_cA3672DA867BD45457bEC5540FE0.txt",
     "transcript_hash": "98d43a786427697c51ac34a6721fe21653bdc3e35946d26492a644111aaf7906",
-    "transcribed_at": "2026-09-14T22:55:23.812988+00:00"
+    "transcribed_at": "2026-09-14T22:55:23.812988+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:aBB176B9Bd59e6B2D5c67A4790b5": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/aBB176B9Bd59e6B2D5c67A4790b5/media/4aCCa13A1F144B4F1DCFd215e8d5.mp3?feedId=1968826fF8",
@@ -321,7 +355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-05-10_clockwise-part-2-the-time-you-re-missing_north_point_aBB176B9Bd59e6B2D5c67A4790b5.txt",
     "transcript_hash": "6566d92596fca6e2ac16dc7860ca5aeae29e088080a1ac6cfc12f2e04e15a911",
-    "transcribed_at": "2026-09-14T22:59:25.535672+00:00"
+    "transcribed_at": "2026-09-14T22:59:25.535672+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:8F053E2D35fF4A4c987E485DDD6a": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/8F053E2D35fF4A4c987E485DDD6a/media/31601642D5cbB54F1C4A22ADaD6f.mp3?feedId=1968826fF8",
@@ -339,7 +375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-05-03_clockwise-part-1-under-the-sun_north_point_8F053E2D35fF4A4c987E485DDD6a.txt",
     "transcript_hash": "a4406a4980fd2c294e359ea8b9adfab8707542c8124a278565c1e1f02bf9d7e3",
-    "transcribed_at": "2026-09-14T23:00:38.398913+00:00"
+    "transcribed_at": "2026-09-14T23:00:38.398913+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:86FCec7941C1D3DA464352162575": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/86FCec7941C1D3DA464352162575/media/712d9C6FbcDffA15E8360dFA2032.mp3?feedId=1968826fF8",
@@ -357,7 +395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-04-26_three-ingredients-for-relationships-that-go-the-distance-part-3-a-rule_north_point_86FCec7941C1D3DA464352162575.txt",
     "transcript_hash": "1f057bdf250c8bd6804c357305290330553550cb3e1c9c45890f9be0190879c4",
-    "transcribed_at": "2026-09-14T22:52:50.767747+00:00"
+    "transcribed_at": "2026-09-14T22:52:50.767747+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:F68D4D78AF7aAb05E8fB94c665E2": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/F68D4D78AF7aAb05E8fB94c665E2/media/15d1Cb3B605dd1EBAE2264CcEd69.mp3?feedId=1968826fF8",
@@ -375,7 +415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-04-19_three-ingredients-for-relationships-that-go-the-distance-part-2-a-posture_north_point_F68D4D78AF7aAb05E8fB94c665E2.txt",
     "transcript_hash": "38081598bbb09948b2435c357e61510a264d529363fafaca950fdebd3e8d8369",
-    "transcribed_at": "2026-09-15T01:09:55.636024+00:00"
+    "transcribed_at": "2026-09-15T01:09:55.636024+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:7E69B99f97183E7Df73ca26213bA": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/7E69B99f97183E7Df73ca26213bA/media/82263fDb46921a498B20403A9214.mp3?feedId=1968826fF8",
@@ -393,7 +435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-04-12_three-ingredients-for-relationships-that-go-the-distance-part-1-a-confession_north_point_7E69B99f97183E7Df73ca26213bA.txt",
     "transcript_hash": "4df9b0e09f9019aedc907b28409af376a2b2dba85ff328ce7a8ae17d10f7ee41",
-    "transcribed_at": "2026-09-15T01:32:09.404236+00:00"
+    "transcribed_at": "2026-09-15T01:32:09.404236+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:3CA5FD9C3FFdFc15E949975BbE64": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/3CA5FD9C3FFdFc15E949975BbE64/static/D03B31/C1BE7BA6C520.mp3?feedId=1968826fF8",
@@ -411,7 +455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-04-05_the-starting-point_north_point_3CA5FD9C3FFdFc15E949975BbE64.txt",
     "transcript_hash": "83060fecd56f57f2bcb9d16e808da2780814f6bb2defd1f99b2705549d2dc103",
-    "transcribed_at": "2026-09-15T01:25:27.142827+00:00"
+    "transcribed_at": "2026-09-15T01:25:27.142827+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:32A78B3c59417B219A5A5A1588Ab": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/32A78B3c59417B219A5A5A1588Ab/static/Ef891d/C999D0eD86B6.mp3?feedId=1968826fF8",
@@ -429,7 +475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-03-29_reasons-not-to-panic-about-bible-skepticism_north_point_32A78B3c59417B219A5A5A1588Ab.txt",
     "transcript_hash": "45d9c829a809e778dc3007053522287a12cdf647efb8b2e678b03260d2ca0cb1",
-    "transcribed_at": "2026-09-15T01:44:05.235824+00:00"
+    "transcribed_at": "2026-09-15T01:44:05.235824+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:7002fd852A86730524B036A34F24": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/7002fd852A86730524B036A34F24/static/9C5A83/88b4B06d4F0A.mp3?feedId=1968826fF8",
@@ -447,7 +495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-03-22_inflection-point-part-4-a-parable_north_point_7002fd852A86730524B036A34F24.txt",
     "transcript_hash": "b9b3deab2f7bbf232fc3a05318ddef806e28f027e03fb0334054b75db4411a3e",
-    "transcribed_at": "2026-09-15T01:23:51.302539+00:00"
+    "transcribed_at": "2026-09-15T01:23:51.302539+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:2548Fb0A2fAF19e8DA115775E7C2": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/2548Fb0A2fAF19e8DA115775E7C2/static/e09212/4e136261F7cA.mp3?feedId=1968826fF8",
@@ -465,7 +515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-03-15_inflection-point-part-3-pouring-out_north_point_2548Fb0A2fAF19e8DA115775E7C2.txt",
     "transcript_hash": "d22ad8579f992fdb33e6743f5c2d9fc35b740379db56bad666223a39d7a42a21",
-    "transcribed_at": "2026-09-15T05:48:15.400287+00:00"
+    "transcribed_at": "2026-09-15T05:48:15.400287+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:F3596553C992d243e9582F05533D": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/F3596553C992d243e9582F05533D/static/0ED592/4C53Ab66a4a4.mp3?feedId=1968826fF8",
@@ -483,7 +535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-03-08_inflection-point-part-2-pathway-to-prosperity_north_point_F3596553C992d243e9582F05533D.txt",
     "transcript_hash": "7beba6117ccb69603a08604e51fab17ee5fec4957a4768a2db6610ada677b741",
-    "transcribed_at": "2026-09-15T06:23:22.548259+00:00"
+    "transcribed_at": "2026-09-15T06:23:22.548259+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:7E8b29A64606F0FEDF6157B2C5Aa": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/7E8b29A64606F0FEDF6157B2C5Aa/static/6FD60d/9244d522B3A2.mp3?feedId=1968826fF8",
@@ -501,7 +555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-03-01_inflection-point-part-1-halfway-there_north_point_7E8b29A64606F0FEDF6157B2C5Aa.txt",
     "transcript_hash": "88626862ef48c5c4ab69d6527f157fe563930680d62f30ad4e3883950b910f08",
-    "transcribed_at": "2026-09-15T06:08:58.042573+00:00"
+    "transcribed_at": "2026-09-15T06:08:58.042573+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:5a7B5E4C3Fc5DDc64E8C044E0Ee4": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/5a7B5E4C3Fc5DDc64E8C044E0Ee4/static/0B23F7/B357EB18b274.mp3?feedId=1968826fF8",
@@ -519,7 +575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-02-22_the-choices-legends-are-made-of-part-3-the-ultimate-choice_north_point_5a7B5E4C3Fc5DDc64E8C044E0Ee4.txt",
     "transcript_hash": "0d0c6db9c348be87959bad830e4ae60611e6bf2d253a3545b8b2235528da98ac",
-    "transcribed_at": "2026-09-15T06:10:42.728626+00:00"
+    "transcribed_at": "2026-09-15T06:10:42.728626+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:e8ef6eC9801976C3445F86C2De36": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/e8ef6eC9801976C3445F86C2De36/static/0C032F/B3359528E183.mp3?feedId=1968826fF8",
@@ -537,7 +595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-02-15_the-choices-legends-are-made-of-part-2-the-win_north_point_e8ef6eC9801976C3445F86C2De36.txt",
     "transcript_hash": "07fde13358030802312a4e7b08787ae22f8754b428e0ee3e935b30d7fe0823ff",
-    "transcribed_at": "2026-09-15T06:11:37.346902+00:00"
+    "transcribed_at": "2026-09-15T06:11:37.346902+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:78DCf650712F4e3FA542D5A9400d": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/78DCf650712F4e3FA542D5A9400d/static/A55585/77B3AF4885b7.mp3?feedId=1968826fF8",
@@ -555,7 +615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-02-08_the-choices-legends-are-made-of-part-1-the-choice-before-the-choice_north_point_78DCf650712F4e3FA542D5A9400d.txt",
     "transcript_hash": "3902d447f7ed57a65bc6182a6f50cc4bcdadf6bac6bb91ea9eecfc680d716ef3",
-    "transcribed_at": "2026-09-15T11:02:41.246515+00:00"
+    "transcribed_at": "2026-09-15T11:02:41.246515+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:BA741881be37220f5B2683F453a7": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/BA741881be37220f5B2683F453a7/static/a4E0F0/0EDAF9961D88.mp3?feedId=1968826fF8",
@@ -573,7 +635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-02-01_people-looking-for-purpose_north_point_BA741881be37220f5B2683F453a7.txt",
     "transcript_hash": "48215ae87fdf6bd6e9c56f7b42bc0b1c538f8697276e90667ebb271618f3009f",
-    "transcribed_at": "2026-09-15T11:08:04.542050+00:00"
+    "transcribed_at": "2026-09-15T11:08:04.542050+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:85EbDD407eECBAf2426E7A78F338": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/85EbDD407eECBAf2426E7A78F338/static/032840/6a8456F94d9D.mp3?feedId=1968826fF8",
@@ -591,7 +655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-01-18_who-needs-church-part-3-people-looking-for-answers_north_point_85EbDD407eECBAf2426E7A78F338.txt",
     "transcript_hash": "e64f58753e9139147fb0cfc4b4df8f9e12b8d78d2760f29d3f24fa2c99c64a34",
-    "transcribed_at": "2026-09-15T10:50:46.299472+00:00"
+    "transcribed_at": "2026-09-15T10:50:46.299472+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:00C782EfA8aCE78486D82D8A15E5": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/00C782EfA8aCE78486D82D8A15E5/static/4065A9/8ED8A3d9Ab88.mp3?feedId=1968826fF8",
@@ -609,7 +675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-01-11_who-needs-church-part-2-people-looking-for-help_north_point_00C782EfA8aCE78486D82D8A15E5.txt",
     "transcript_hash": "07a2da2ee656a62c3df8eff618641ae065afdf318e913c23a4c7f103d18db900",
-    "transcribed_at": "2026-09-15T10:57:21.350036+00:00"
+    "transcribed_at": "2026-09-15T10:57:21.350036+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:D97DC5366e9765a58DaC8113F193": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/D97DC5366e9765a58DaC8113F193/static/615C8B/3AAEF9599A93.mp3?feedId=1968826fF8",
@@ -627,7 +695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2026-01-04_who-needs-church-part-1-i-did-i-do-and-you-do-too_north_point_D97DC5366e9765a58DaC8113F193.txt",
     "transcript_hash": "7324e4a20408f0e98f3257b9a12c61c5f5b6fdf98208e0123b8673b47976f359",
-    "transcribed_at": "2026-09-15T11:10:06.370806+00:00"
+    "transcribed_at": "2026-09-15T11:10:06.370806+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:632c95EFD4BC59839acD6Fb688A3": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/632c95EFD4BC59839acD6Fb688A3/static/BDEf38/5484C07E232E.mp3?feedId=1968826fF8",
@@ -645,7 +715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-12-21_anticipating-christmas-part-3-christmas-invite_north_point_632c95EFD4BC59839acD6Fb688A3.txt",
     "transcript_hash": "bc0f710f48500fdd50e53fbb7ca311efa5cc4cb46b742a1556f4455709805e11",
-    "transcribed_at": "2026-09-15T16:14:15.905049+00:00"
+    "transcribed_at": "2026-09-15T16:14:15.905049+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:91E7aa61D2B6D3D8E7c623073358": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/91E7aa61D2B6D3D8E7c623073358/static/1b64DF/C08c414D1EEE.mp3?feedId=1968826fF8",
@@ -663,7 +735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-12-14_anticipating-christmas-part-2-an-unexpected-guest_north_point_91E7aa61D2B6D3D8E7c623073358.txt",
     "transcript_hash": "34cf805c1092f96793bf9011de7973e70041b7bf49c26b060d30e399fa9195d8",
-    "transcribed_at": "2026-09-15T15:57:59.101355+00:00"
+    "transcribed_at": "2026-09-15T15:57:59.101355+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:8A7bDA5Cc503ded9CD463E0C0355": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/8A7bDA5Cc503ded9CD463E0C0355/static/2727A5/7Fe025b0797e.mp3?feedId=1968826fF8",
@@ -681,7 +755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-12-07_anticipating-christmas-part-1-when-god-arrives-ahead-of-time_north_point_8A7bDA5Cc503ded9CD463E0C0355.txt",
     "transcript_hash": "424c1045b7105167f17bfdf32d35b0738ae20645b58f5aa5d94c18f976e42f33",
-    "transcribed_at": "2026-09-15T16:02:38.034935+00:00"
+    "transcribed_at": "2026-09-15T16:02:38.034935+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:D9E60A14Bd80D734EFF6fd400722": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/D9E60A14Bd80D734EFF6fd400722/static/D1173e/c0E5B1C89E96.mp3?feedId=1968826fF8",
@@ -699,7 +775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-11-30_redefining-messiah_north_point_D9E60A14Bd80D734EFF6fd400722.txt",
     "transcript_hash": "2e04f86a40ebc44e6fd8aec6b98b0ad80f01d7319624fe62656fcbb5f88a3da7",
-    "transcribed_at": "2026-09-15T15:59:11.695882+00:00"
+    "transcribed_at": "2026-09-15T15:59:11.695882+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:4E98259f1BFAE0ED08E923A7506D": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/4E98259f1BFAE0ED08E923A7506D/static/4823B5/e68020094Be9.mp3?feedId=1968826fF8",
@@ -717,7 +795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-11-23_questioning-jesus-part-3-he-is-jesus_north_point_4E98259f1BFAE0ED08E923A7506D.txt",
     "transcript_hash": "62327628f67bff62b4499a08f35301e5b44e02efed45b8cb2f339d73a9e61abd",
-    "transcribed_at": "2026-09-15T15:51:49.203011+00:00"
+    "transcribed_at": "2026-09-15T15:51:49.203011+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:CA379B00E1B9d12efEdBB6598736": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/CA379B00E1B9d12efEdBB6598736/static/B006b8/A999D8B46381.mp3?feedId=1968826fF8",
@@ -735,7 +815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-11-16_questioning-jesus-part-2-don-t-settle_north_point_CA379B00E1B9d12efEdBB6598736.txt",
     "transcript_hash": "0ee688a7ac51328946d52597507b95a7fc2a582120a552495df8345e4455ddf3",
-    "transcribed_at": "2026-09-15T19:44:56.996770+00:00"
+    "transcribed_at": "2026-09-15T19:44:56.996770+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:9cAF3b30704f0F889Db6372B2978": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/9cAF3b30704f0F889Db6372B2978/static/9D103F/5C6a00be99Ff.mp3?feedId=1968826fF8",
@@ -753,7 +835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-11-09_questioning-jesus-part-1-selective-compassion_north_point_9cAF3b30704f0F889Db6372B2978.txt",
     "transcript_hash": "120e751df999bbaa6015eadca54cd8b9f1fda89172ed40993e7752308eeca7f4",
-    "transcribed_at": "2026-09-15T19:43:39.651448+00:00"
+    "transcribed_at": "2026-09-15T19:43:39.651448+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:85925E3769FfFD08D38579C8fA2c": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/85925E3769FfFD08D38579C8fA2c/static/E977E3/FCF0F7f987AE.mp3?feedId=1968826fF8",
@@ -771,7 +855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-11-02_not-coming-down_north_point_85925E3769FfFD08D38579C8fA2c.txt",
     "transcript_hash": "2ec1d660e010a5faa710f6c766b520dd50a82f36dc667fbf917b120c430aaf64",
-    "transcribed_at": "2026-09-15T20:01:37.507366+00:00"
+    "transcribed_at": "2026-09-15T20:01:37.507366+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:077EC5F2B4bE148146785754E609": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/077EC5F2B4bE148146785754E609/static/8B5656/51Fe658230f6.mp3?feedId=1968826fF8",
@@ -789,7 +875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-10-26_the-response-of-a-lifetime-part-3-playing-god_north_point_077EC5F2B4bE148146785754E609.txt",
     "transcript_hash": "ebbcca054e6472a98915b3c5db0105c6b51698fa9f068c3c756eeb3dd6f79885",
-    "transcribed_at": "2026-09-15T19:51:17.487470+00:00"
+    "transcribed_at": "2026-09-15T19:51:17.487470+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:74c8a9A8F7DdE475C425B40833da": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/74c8a9A8F7DdE475C425B40833da/static/956046/99AB8bA95468.mp3?feedId=1968826fF8",
@@ -807,7 +895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-10-19_the-response-of-a-lifetime-part-2-bad-to-badder_north_point_74c8a9A8F7DdE475C425B40833da.txt",
     "transcript_hash": "bad0eb8549df4913c362a7c15a7b154a50b8e0d2e6b29ee5e64ce0017b0f957e",
-    "transcribed_at": "2026-09-15T19:48:03.634259+00:00"
+    "transcribed_at": "2026-09-15T19:48:03.634259+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:E30D7BC0F92b530E967661Aa714E": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/E30D7BC0F92b530E967661Aa714E/static/4d483c/1b7F23e128Fb.mp3?feedId=1968826fF8",
@@ -825,7 +915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-10-12_the-response-of-a-lifetime-part-1-god-of-the-pit_north_point_E30D7BC0F92b530E967661Aa714E.txt",
     "transcript_hash": "87a4504d231e95f289b1e984dd285abf107338f0ca7538a171a0d76140eeec9e",
-    "transcribed_at": "2026-09-15T23:03:12.454924+00:00"
+    "transcribed_at": "2026-09-15T23:03:12.454924+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:68C7702eE4159008186d519cE207": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/68C7702eE4159008186d519cE207/static/2E626C/9655bB11022B.mp3?feedId=1968826fF8",
@@ -843,7 +935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-10-05_andy-stanley-october-5_north_point_68C7702eE4159008186d519cE207.txt",
     "transcript_hash": "29d474da3da892aee34913a8cddaf250484d2b23abc2ab17d6cce8e1daa20c12",
-    "transcribed_at": "2026-09-15T22:56:08.795505+00:00"
+    "transcribed_at": "2026-09-15T22:56:08.795505+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:9492eAEcc4D0CDAD0CcC9348CBAF": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/9492eAEcc4D0CDAD0CcC9348CBAF/static/8ADB2d/38Ac6F50d037.mp3?feedId=1968826fF8",
@@ -861,7 +955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-09-28_worth-the-wait-part-3-his-will-his-way_north_point_9492eAEcc4D0CDAD0CcC9348CBAF.txt",
     "transcript_hash": "ef82c80c23d0b46317cca229800a811eb8c4f140a2e71e0b62d6a1d5a395e920",
-    "transcribed_at": "2026-09-15T22:27:30.182403+00:00"
+    "transcribed_at": "2026-09-15T22:27:30.182403+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:644589e7BF00475012Bc4D4e617A": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/644589e7BF00475012Bc4D4e617A/static/DB6029/A99E7E4A0de5.mp3?feedId=1968826fF8",
@@ -879,7 +975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-09-21_worth-the-wait-part-2-peace-filled-dependence_north_point_644589e7BF00475012Bc4D4e617A.txt",
     "transcript_hash": "c18ec04f04ef6c69473cf6e59ede2af5e7587dd2e900752c005c3f04335f97e8",
-    "transcribed_at": "2026-09-15T22:51:25.999544+00:00"
+    "transcribed_at": "2026-09-15T22:51:25.999544+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:21EAB896935687626c26910a2061": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/21EAB896935687626c26910a2061/static/08A7D4/d736D0F19346.mp3?feedId=1968826fF8",
@@ -897,7 +995,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-09-14_worth-the-wait-part-1-your-future-self_north_point_21EAB896935687626c26910a2061.txt",
     "transcript_hash": "3bc3d4474cfa0f9d000a7ed91d4c64a8f76d5ecc36c61ff04eec54b8c907fde6",
-    "transcribed_at": "2026-09-15T22:54:52.658130+00:00"
+    "transcribed_at": "2026-09-15T22:54:52.658130+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:CFBc307D2ED771351aCBA8fD5CE9": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/CFBc307D2ED771351aCBA8fD5CE9/static/B3f14c/916B9F3E5826.mp3?feedId=1968826fF8",
@@ -915,7 +1015,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-09-07_be-rich-2025-a-conversation-with-bruce-deel_north_point_CFBc307D2ED771351aCBA8fD5CE9.txt",
     "transcript_hash": "ab9adf8399494594207e70de677d1f222a0f04cb14e6c35e4be460ab673bf54c",
-    "transcribed_at": "2026-09-16T01:14:44.694215+00:00"
+    "transcribed_at": "2026-09-16T01:14:44.694215+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:F0D55bDA4856457587BCE5B01FD7": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/F0D55bDA4856457587BCE5B01FD7/static/3AD781/B0f1A8Aa608B.mp3?feedId=1968826fF8",
@@ -933,7 +1035,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-08-31_too-good-to-miss-part-4-don-t-miss-great_north_point_F0D55bDA4856457587BCE5B01FD7.txt",
     "transcript_hash": "1b0149ee961ce9582d88b461b31046f67b8e09e080981bf6348c6c152b412592",
-    "transcribed_at": "2026-09-16T01:13:46.932168+00:00"
+    "transcribed_at": "2026-09-16T01:13:46.932168+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:cCB884753070BCEB310D9eC3e6B6": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/cCB884753070BCEB310D9eC3e6B6/static/5ec514/f98FceEF06aB.mp3?feedId=1968826fF8",
@@ -951,7 +1055,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-08-24_too-good-to-miss-part-3-family_north_point_cCB884753070BCEB310D9eC3e6B6.txt",
     "transcript_hash": "34419289cc54931c536692e2f31727edfa8e5892d668ae69c30348bb7683f62e",
-    "transcribed_at": "2026-09-16T01:08:38.966158+00:00"
+    "transcribed_at": "2026-09-16T01:08:38.966158+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:fAB2BDB2D1474CC1999828b678c7": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/fAB2BDB2D1474CC1999828b678c7/static/DDAC43/C286443644cb.mp3?feedId=1968826fF8",
@@ -969,7 +1075,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-08-17_too-good-to-miss-part-2-jesus_north_point_fAB2BDB2D1474CC1999828b678c7.txt",
     "transcript_hash": "261968160a20576890f94febac797e1f412cd40cc2da59d78efc12d88e97ad6a",
-    "transcribed_at": "2026-09-16T01:13:42.619054+00:00"
+    "transcribed_at": "2026-09-16T01:13:42.619054+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:99A4833a1CFb419acE006c4F4C06": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/99A4833a1CFb419acE006c4F4C06/static/376872/C78150E57EC9.mp3?feedId=1968826fF8",
@@ -987,7 +1095,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-08-10_too-good-to-miss-part-1-future-proof_north_point_99A4833a1CFb419acE006c4F4C06.txt",
     "transcript_hash": "7587679643ddfeeee9ff6b7c1b7cbc572c0be8d43c87d6a56d09e50ae252a81c",
-    "transcribed_at": "2026-09-16T01:14:20.093460+00:00"
+    "transcribed_at": "2026-09-16T01:14:20.093460+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:65b41f8D5E694665245deAd18d63": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/65b41f8D5E694665245deAd18d63/static/0A86ff/3A0854dE925b.mp3?feedId=1968826fF8",
@@ -1005,7 +1115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-08-03_three-reasons_north_point_65b41f8D5E694665245deAd18d63.txt",
     "transcript_hash": "ac0e499fe810fe0b6a461520cd87abd906207cedb030e53794cfa223eb387f68",
-    "transcribed_at": "2026-09-16T05:53:34.255376+00:00"
+    "transcribed_at": "2026-09-16T05:53:34.255376+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:e7D9FD7e74C84f50f3D53eA16CB8": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/e7D9FD7e74C84f50f3D53eA16CB8/static/6CDC0D/A408174B31BB.mp3?feedId=1968826fF8",
@@ -1023,7 +1135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-07-27_my-story-my-song-part-6-taste-and-see_north_point_e7D9FD7e74C84f50f3D53eA16CB8.txt",
     "transcript_hash": "dff36a66ca7ed9bc65fddf7a14085017e297e013cf783c222e908dc70e9a656a",
-    "transcribed_at": "2026-09-16T05:56:43.759704+00:00"
+    "transcribed_at": "2026-09-16T05:56:43.759704+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:32DF5221B0e0c972B780Dc815b3A": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/32DF5221B0e0c972B780Dc815b3A/static/B92B29/2818B1A92D56.mp3?feedId=1968826fF8",
@@ -1041,7 +1155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-07-20_my-story-my-song-part-5-oceans-no-longer-slaves-and-i-speak-jesus_north_point_32DF5221B0e0c972B780Dc815b3A.txt",
     "transcript_hash": "a5d9f85408082a9f6f38e422f0429042225b956ab867edb3a13e4a2b19c62e53",
-    "transcribed_at": "2026-09-16T05:43:03.611769+00:00"
+    "transcribed_at": "2026-09-16T05:43:03.611769+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:18669D4e4D17863E4AaE6F706D6e": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/18669D4e4D17863E4AaE6F706D6e/static/833252/867630b231E3.mp3?feedId=1968826fF8",
@@ -1059,7 +1175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-07-13_my-story-my-song-part-4-spirit-of-god_north_point_18669D4e4D17863E4AaE6F706D6e.txt",
     "transcript_hash": "028810b3e1d7243927676c530bac65299f85fbefccecc35057a6118c6fdeb363",
-    "transcribed_at": "2026-09-16T05:48:38.472245+00:00"
+    "transcribed_at": "2026-09-16T05:48:38.472245+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:8898aC390188d4E43A3C2D5B59D3": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/8898aC390188d4E43A3C2D5B59D3/static/E50137/DeFC4D7CFf12.mp3?feedId=1968826fF8",
@@ -1077,7 +1195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-07-06_my-story-my-song-part-3-battle-belongs_north_point_8898aC390188d4E43A3C2D5B59D3.txt",
     "transcript_hash": "b37e05e47171994ead27a59f025dd8f10ee91ff99cb7c2eb6070e3bde6a21694",
-    "transcribed_at": "2026-09-16T05:52:27.166954+00:00"
+    "transcribed_at": "2026-09-16T05:52:27.166954+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:80C0188CA64548d1803B339948CB": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/80C0188CA64548d1803B339948CB/static/15E130/4D3CD6e6CE8a.mp3?feedId=1968826fF8",
@@ -1095,7 +1215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-06-29_my-story-my-song-part-2-god-is-love_north_point_80C0188CA64548d1803B339948CB.txt",
     "transcript_hash": "e102551e638d83febda653ce25b443439956217f64d62f04e8276a883572b21d",
-    "transcribed_at": "2026-09-16T10:56:21.910802+00:00"
+    "transcribed_at": "2026-09-16T10:56:21.910802+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:A71E9379383CF62155B365f51D96": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/A71E9379383CF62155B365f51D96/static/A9F5EE/7e24872B79Df.mp3?feedId=1968826fF8",
@@ -1113,7 +1235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-06-22_my-story-my-song-part-1-bigger-than-i-thought_north_point_A71E9379383CF62155B365f51D96.txt",
     "transcript_hash": "26da236ffd3bb2fd1eb7026aabd78afccaf60453dbe0407f343c1b3081156662",
-    "transcribed_at": "2026-09-16T10:48:57.498333+00:00"
+    "transcribed_at": "2026-09-16T10:48:57.498333+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:6b2BEcfA3a0561f53D45e1D70C43": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/6b2BEcfA3a0561f53D45e1D70C43/static/10905B/32B761af554E.mp3?feedId=1968826fF8",
@@ -1131,7 +1255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-06-15_challenge-accepted-part-3-depending_north_point_6b2BEcfA3a0561f53D45e1D70C43.txt",
     "transcript_hash": "807dc6068dd1a0c6d784c0bada81e3e9c739f0f18c17ce0570c33ec6e55f7327",
-    "transcribed_at": "2026-09-16T10:59:16.156247+00:00"
+    "transcribed_at": "2026-09-16T10:59:16.156247+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:43B1C764D9818C669EF1704F17FB": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/43B1C764D9818C669EF1704F17FB/static/7E3591/572520f14809.mp3?feedId=1968826fF8",
@@ -1149,7 +1275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-06-08_challenge-accepted-part-2-in-around_north_point_43B1C764D9818C669EF1704F17FB.txt",
     "transcript_hash": "70cd76fb30f0856f977e3effa7b7edefbdea8cf25026fdea0b42484f439b6b89",
-    "transcribed_at": "2026-09-16T10:42:06.987404+00:00"
+    "transcribed_at": "2026-09-16T10:42:06.987404+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:20EC6174bdC9949aE80641C05C43": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/20EC6174bdC9949aE80641C05C43/static/3b01F6/1C203D63B72C.mp3?feedId=1968826fF8",
@@ -1167,7 +1295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-06-01_challenge-accepted-part-1-choosing-hard_north_point_20EC6174bdC9949aE80641C05C43.txt",
     "transcript_hash": "0306aa4495f7323078a2d60a5f274156b6da7d251bb86e435a3edf7d298785cd",
-    "transcribed_at": "2026-09-16T10:40:22.947896+00:00"
+    "transcribed_at": "2026-09-16T10:40:22.947896+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:9729167C88b32b6E481060B9D0AC": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/9729167C88b32b6E481060B9D0AC/static/0769aC/b6D07D503313.mp3?feedId=1968826fF8",
@@ -1185,7 +1315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-05-18_ultimate-survivor_north_point_9729167C88b32b6E481060B9D0AC.txt",
     "transcript_hash": "7106588a564cbab989c23f52ac81bab0ce9a1aeb0bda4d6351da33fba64187a3",
-    "transcribed_at": "2026-09-16T15:30:37.933626+00:00"
+    "transcribed_at": "2026-09-16T15:30:37.933626+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:1aB156f70EC0CEACfAB8b88cB0eC": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/1aB156f70EC0CEACfAB8b88cB0eC/static/086281/32A2165705c4.mp3?feedId=1968826fF8",
@@ -1203,7 +1335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-05-11_when-good-becomes-god-part-2-order-of-operations_north_point_1aB156f70EC0CEACfAB8b88cB0eC.txt",
     "transcript_hash": "2929bfc87433a02fdec34eec72d1e736a97b082942ff95fa657e6cb25cc97504",
-    "transcribed_at": "2026-09-16T15:23:01.007476+00:00"
+    "transcribed_at": "2026-09-16T15:23:01.007476+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:716fB56b694CEe8F2FB6A5d06246": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/716fB56b694CEe8F2FB6A5d06246/static/0A465D/97E0C3C46BEA.mp3?feedId=1968826fF8",
@@ -1221,7 +1355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-05-04_when-good-becomes-god-part-1-idol-factory_north_point_716fB56b694CEe8F2FB6A5d06246.txt",
     "transcript_hash": "59db37fa53f95e4c8c88bdce0e097801a283e16130b16202455840c80db4f5ef",
-    "transcribed_at": "2026-09-16T15:27:38.799122+00:00"
+    "transcribed_at": "2026-09-16T15:27:38.799122+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:E95Fd4300c6073E59B65e40501D7": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/E95Fd4300c6073E59B65e40501D7/static/99a9A0/2b3F522CC6a9.mp3?feedId=1968826fF8",
@@ -1239,7 +1375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-04-27_grace-truth-the-beach-version_north_point_E95Fd4300c6073E59B65e40501D7.txt",
     "transcript_hash": "eafd0b2e5f2b9500ebf95ddb641bf282668fca0c1caee10650660310e71133f4",
-    "transcribed_at": "2026-09-16T15:27:01.608094+00:00"
+    "transcribed_at": "2026-09-16T15:27:01.608094+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:3B7BaB613756487DAD14573E5D4E": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/3B7BaB613756487DAD14573E5D4E/static/4320BB/FEB2EE9DfBeF.mp3?feedId=1968826fF8",
@@ -1257,7 +1395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-04-20_easter-2025-thomas_north_point_3B7BaB613756487DAD14573E5D4E.txt",
     "transcript_hash": "6938280a49241250da978f361e3c6aa2bf4870da82fc2550d27bd6279119a666",
-    "transcribed_at": "2026-09-16T15:23:49.015950+00:00"
+    "transcribed_at": "2026-09-16T15:23:49.015950+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:d92E001714EB75E39Db108036439": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/d92E001714EB75E39Db108036439/static/27f1A6/2d7Fc2Dfc0b2.mp3?feedId=1968826fF8",
@@ -1275,7 +1415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-04-13_death-of-a-king_north_point_d92E001714EB75E39Db108036439.txt",
     "transcript_hash": "3339b77570315ebf5ec62fc15507832881c0ace5dc95b89d9fc89247ef6f3bca",
-    "transcribed_at": "2026-09-16T19:19:46.066558+00:00"
+    "transcribed_at": "2026-09-16T19:19:46.066558+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:5814B473DcF220EEEB101930C31c": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/5814B473DcF220EEEB101930C31c/static/7Cb5D3/aE35E3912747.mp3?feedId=1968826fF8",
@@ -1293,7 +1435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-04-06_death-to-the-king_north_point_5814B473DcF220EEEB101930C31c.txt",
     "transcript_hash": "defe00c3e3e9fb660ba5a4edc976f49a2fdd6a5d917f6519739b36c134f27fa6",
-    "transcribed_at": "2026-09-16T19:29:24.008587+00:00"
+    "transcribed_at": "2026-09-16T19:29:24.008587+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:43F195e021553Cf66220C7D50828": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/43F195e021553Cf66220C7D50828/static/733A82/62a41AEA5D67.mp3?feedId=1968826fF8",
@@ -1311,7 +1455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-03-30_take-aim_north_point_43F195e021553Cf66220C7D50828.txt",
     "transcript_hash": "a52722a7fcef206a940f087d5945d14977a045a6ade2e7983c5cf5a9b52a2ed4",
-    "transcribed_at": "2026-09-16T19:25:27.655326+00:00"
+    "transcribed_at": "2026-09-16T19:25:27.655326+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:85F24c5B263f127824bbD73E53CD": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/85F24c5B263f127824bbD73E53CD/static/3Be205/5E8D0E03F89D.mp3?feedId=1968826fF8",
@@ -1329,7 +1475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-03-23_deeper-wider-part-5-just-because_north_point_85F24c5B263f127824bbD73E53CD.txt",
     "transcript_hash": "5542e69fed3c136fb839b3e710c8bc390ea8d666618c97d4e755f9803691d0df",
-    "transcribed_at": "2026-09-16T19:16:38.988572+00:00"
+    "transcribed_at": "2026-09-16T19:16:38.988572+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:eeb5c4442dF95C7E351D9AB7D423": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/eeb5c4442dF95C7E351D9AB7D423/static/F77bFd/73486A399803.mp3?feedId=1968826fF8",
@@ -1347,7 +1495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-03-16_deeper-wider-part-4-obstacles_north_point_eeb5c4442dF95C7E351D9AB7D423.txt",
     "transcript_hash": "69a6486d7543c9068281f63f1910958ce9cb7a8c59f508bb998727b805f0b46c",
-    "transcribed_at": "2026-09-16T19:32:02.668733+00:00"
+    "transcribed_at": "2026-09-16T19:32:02.668733+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:C589C06386AB3A291F3fF2187310": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/C589C06386AB3A291F3fF2187310/static/176C24/3B493F716194.mp3?feedId=1968826fF8",
@@ -1365,7 +1515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-03-09_deeper-wider-part-3-the-plan_north_point_C589C06386AB3A291F3fF2187310.txt",
     "transcript_hash": "109f2d3299d738e1026294c913954b822ee5b32d266d794cf679f9d076a962c9",
-    "transcribed_at": "2026-09-16T22:18:49.435945+00:00"
+    "transcribed_at": "2026-09-16T22:18:49.435945+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:0EF1519349A8309431BE60f0C51E": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/0EF1519349A8309431BE60f0C51E/static/1394d9/1c9BaF490887.mp3?feedId=1968826fF8",
@@ -1383,7 +1535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-03-02_deeper-wider-part-2-defining-terms_north_point_0EF1519349A8309431BE60f0C51E.txt",
     "transcript_hash": "1a29d9f0aaf1fd6c7fa3a50d8a8dba79d6bccb5a89f5cf22895007fd2d600621",
-    "transcribed_at": "2026-09-16T22:21:50.356725+00:00"
+    "transcribed_at": "2026-09-16T22:21:50.356725+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:FDb8AE20d216F4E7AB57c7c09905": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/FDb8AE20d216F4E7AB57c7c09905/static/D3941a/4eE5B0F45e2C.mp3?feedId=1968826fF8",
@@ -1401,7 +1555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-02-23_deeper-wider-part-1-everything_north_point_FDb8AE20d216F4E7AB57c7c09905.txt",
     "transcript_hash": "6af1785179ab616aff0970eb8ca5548592e41ebe2f4ee22436328eac7cdbfcd2",
-    "transcribed_at": "2026-09-16T22:19:17.337324+00:00"
+    "transcribed_at": "2026-09-16T22:19:17.337324+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:575A74928F40E03e29FF464DB58E": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/575A74928F40E03e29FF464DB58E/static/339253/E8EA1C186bF8.mp3?feedId=1968826fF8",
@@ -1419,7 +1575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-02-16_the-last-kingdom-part-5-unstoppable_north_point_575A74928F40E03e29FF464DB58E.txt",
     "transcript_hash": "2289ba0254d3f01ee5a65afc67005791cecd0712f91f13cb6c7329caf6b9dab1",
-    "transcribed_at": "2026-09-16T22:20:39.416770+00:00"
+    "transcribed_at": "2026-09-16T22:20:39.416770+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:31C7F4F15EF79D3F2654D68004C1": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/31C7F4F15EF79D3F2654D68004C1/static/fFEF53/823402eDF5cC.mp3?feedId=1968826fF8",
@@ -1437,7 +1595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-02-09_the-last-kingdom-part-4-fight-like-the-king_north_point_31C7F4F15EF79D3F2654D68004C1.txt",
     "transcript_hash": "f323615c17f445b70af1ccdb80ae7038f304562338baba02dbf45c38d18f237d",
-    "transcribed_at": "2026-09-16T22:31:16.273649+00:00"
+    "transcribed_at": "2026-09-16T22:31:16.273649+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:9C6AFE50b29343dfC90a684AB896": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/9C6AFE50b29343dfC90a684AB896/static/a029cd/177eF7167337.mp3?feedId=1968826fF8",
@@ -1455,7 +1615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-02-02_the-last-kingdom-part-3-beyond-pledging-allegiance_north_point_9C6AFE50b29343dfC90a684AB896.txt",
     "transcript_hash": "ae442d32ffa09b6b9d514805405baba60e994729b1d65518c0fe6724d69d764f",
-    "transcribed_at": "2026-09-17T00:47:19.604458+00:00"
+    "transcribed_at": "2026-09-17T00:47:19.604458+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:3Cd7CE4167CBD4AF32CCD26F7341": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/3Cd7CE4167CBD4AF32CCD26F7341/static/1d1F57/41AAE822B6A2.mp3?feedId=1968826fF8",
@@ -1473,7 +1635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-01-26_the-last-kingdom-part-2-reclaiming-the-plotline_north_point_3Cd7CE4167CBD4AF32CCD26F7341.txt",
     "transcript_hash": "975f899bda143915be7f5f1ce20749796c421bd753008d2a50a100adc37ab2d0",
-    "transcribed_at": "2026-09-17T00:55:03.234076+00:00"
+    "transcribed_at": "2026-09-17T00:55:03.234076+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:1DFAD46Ed1f81CBA0A286538998E": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/1DFAD46Ed1f81CBA0A286538998E/static/17424D/A1D9A3aF335F.mp3?feedId=1968826fF8",
@@ -1491,7 +1655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-01-19_the-last-kingdom-part-1-lost-in-translation_north_point_1DFAD46Ed1f81CBA0A286538998E.txt",
     "transcript_hash": "88d8da022b0c06ea3d7434875248598033ec9bb8ea4680b8282fb84c79a30133",
-    "transcribed_at": "2026-09-17T00:36:55.063113+00:00"
+    "transcribed_at": "2026-09-17T00:36:55.063113+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:eDAFC1C3145f60217CB38A5B4AB5": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/eDAFC1C3145f60217CB38A5B4AB5/static/2e5c10/ED17ec6051F1.mp3?feedId=1968826fF8",
@@ -1509,7 +1675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2025-01-05_made-for-more_north_point_eDAFC1C3145f60217CB38A5B4AB5.txt",
     "transcript_hash": "02e18a72a02baed75392e3a8cf699c8675e433d4dbcd50602a8d14bff19ef89c",
-    "transcribed_at": "2026-09-17T00:44:14.031989+00:00"
+    "transcribed_at": "2026-09-17T00:44:14.031989+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:F37775291DA5f8D2c2193299e163": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/F37775291DA5f8D2c2193299e163/static/25223A/737cbF06302E.mp3?feedId=1968826fF8",
@@ -1527,7 +1695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-12-22_christmas-celebration_north_point_F37775291DA5f8D2c2193299e163.txt",
     "transcript_hash": "477065516a008fd54f3766af176b44de529c234597025adc2b16f9e7fa0de681",
-    "transcribed_at": "2026-09-17T00:18:33.476155+00:00"
+    "transcribed_at": "2026-09-17T00:18:33.476155+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:6Bd265FC1C79F4F4A45154033037": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/6Bd265FC1C79F4F4A45154033037/static/7EAE07/F9F4E9817118.mp3?feedId=1968826fF8",
@@ -1545,7 +1715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-12-15_sinners-like-me-part-3-misfits-embarrassments_north_point_6Bd265FC1C79F4F4A45154033037.txt",
     "transcript_hash": "722e24159ebca020c70efc0b79ae9d8646f4bca7d56b5b8c4ca07b6d79581864",
-    "transcribed_at": "2026-09-17T04:08:11.643850+00:00"
+    "transcribed_at": "2026-09-17T04:08:11.643850+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:b0800f06CB74b90a294ED753e4b6": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/b0800f06CB74b90a294ED753e4b6/static/cA5A68/F78d945C1EaB.mp3?feedId=1968826fF8",
@@ -1563,7 +1735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-12-08_sinners-like-me-part-2-party-crasher_north_point_b0800f06CB74b90a294ED753e4b6.txt",
     "transcript_hash": "c2592d647034c2fbb6aa82d0c48a491eb50961095d898b047defa3c58d975ebd",
-    "transcribed_at": "2026-09-17T03:56:45.524165+00:00"
+    "transcribed_at": "2026-09-17T03:56:45.524165+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:2F2F2D4Ec3f307F22c97Ce917e72": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/2F2F2D4Ec3f307F22c97Ce917e72/static/4541B7/Ad3D4fE59bD1.mp3?feedId=1968826fF8",
@@ -1581,7 +1755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-12-01_sinners-like-me-part-1-the-back-story_north_point_2F2F2D4Ec3f307F22c97Ce917e72.txt",
     "transcript_hash": "479fe6310beb8ef3433f96585db4f5cef3fa80df2516d3b03d716fbb8cbf1b90",
-    "transcribed_at": "2026-09-17T03:55:01.354190+00:00"
+    "transcribed_at": "2026-09-17T03:55:01.354190+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:308Bc9F858c516A549D96FB1B0A7": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/308Bc9F858c516A549D96FB1B0A7/static/Ac9422/0d4bD62BFC03.mp3?feedId=1968826fF8",
@@ -1599,7 +1775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-11-24_the-power-of-a-made-up-story-part-3-planting-seeds_north_point_308Bc9F858c516A549D96FB1B0A7.txt",
     "transcript_hash": "57008eb113693885fd33bd44c2fe11dafa27b2748699e2ee3605bad6153eb44a",
-    "transcribed_at": "2026-09-17T04:05:34.304905+00:00"
+    "transcribed_at": "2026-09-17T04:05:34.304905+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:B39FB39435Ee8788C718c909C4F6": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/B39FB39435Ee8788C718c909C4F6/static/455be4/D3E6310BeBc2.mp3?feedId=1968826fF8",
@@ -1617,7 +1795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-11-17_the-power-of-a-made-up-story-part-2-unforgiving-servant_north_point_B39FB39435Ee8788C718c909C4F6.txt",
     "transcript_hash": "cfb1af3f33d5f94a0de7cffa16b743be89820423e76cb2a5a54aa0108dfa8c9e",
-    "transcribed_at": "2026-09-17T03:49:04.665017+00:00"
+    "transcribed_at": "2026-09-17T03:49:04.665017+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:21e18975323CD185a31923b769FB": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/21e18975323CD185a31923b769FB/static/FC3eF2/3888977277A5.mp3?feedId=1968826fF8",
@@ -1635,7 +1815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-11-10_the-power-of-a-made-up-story-part-1-lost-things_north_point_21e18975323CD185a31923b769FB.txt",
     "transcript_hash": "41e683dcbe7dc3ff44da28e06588fd66d834e70350a3802fe4b5d94e5181520b",
-    "transcribed_at": "2026-09-17T09:03:46.302807+00:00"
+    "transcribed_at": "2026-09-17T09:03:46.302807+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:C49D3D854CE3D78d9C6Ba1AC5716": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/C49D3D854CE3D78d9C6Ba1AC5716/static/5E861B/418a00FE399d.mp3?feedId=1968826fF8",
@@ -1653,7 +1835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-11-03_miracles-then-now-part-4-in-the-zone_north_point_C49D3D854CE3D78d9C6Ba1AC5716.txt",
     "transcript_hash": "83785d2e1a45c0c47db5436fc8406876dcc921fa28a04815351399a097aba2f7",
-    "transcribed_at": "2026-09-17T09:29:17.834011+00:00"
+    "transcribed_at": "2026-09-17T09:29:17.834011+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:B249e23C9a82e13C32896F5449cF": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/B249e23C9a82e13C32896F5449cF/static/e588f5/40B527D8A7Fc.mp3?feedId=1968826fF8",
@@ -1671,7 +1855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-10-27_miracles-then-now-part-3-don-t-lost-hope_north_point_B249e23C9a82e13C32896F5449cF.txt",
     "transcript_hash": "0e258afee9cc2182455f3d157a9c9d15f8ce932668e56c4e7cf5764f94d4c814",
-    "transcribed_at": "2026-09-17T09:30:57.826299+00:00"
+    "transcribed_at": "2026-09-17T09:30:57.826299+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:3CF9a09124A4B76E2776E181D080": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/3CF9a09124A4B76E2776E181D080/static/5BB3e9/F9A56C1Cb438.mp3?feedId=1968826fF8",
@@ -1689,7 +1875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-10-20_miracles-then-now-part-2-mystery-and-inconsistency_north_point_3CF9a09124A4B76E2776E181D080.txt",
     "transcript_hash": "e3fbadbe42d2e0a0f1f6a01a5da24cfc037b571e9606ad99b5151d422fa49cd3",
-    "transcribed_at": "2026-09-17T09:35:32.902131+00:00"
+    "transcribed_at": "2026-09-17T09:35:32.902131+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:4b309CD0d754F3dB8C28d016577E": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/4b309CD0d754F3dB8C28d016577E/static/261eA4/4FBa175DE087.mp3?feedId=1968826fF8",
@@ -1707,7 +1895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-10-13_miracles-then-now-part-1-who-needs-em_north_point_4b309CD0d754F3dB8C28d016577E.txt",
     "transcript_hash": "522d6c2a468676f8d3978aeba83128aacb4a84a5c37358914fdd0558da25c42b",
-    "transcribed_at": "2026-09-17T09:30:52.867662+00:00"
+    "transcribed_at": "2026-09-17T09:30:52.867662+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:5BA472A98241d4FF254DBB31C126": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/5BA472A98241d4FF254DBB31C126/static/87097C/EeFe28Bcd90E.mp3?feedId=1968826fF8",
@@ -1725,7 +1915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-10-06_be-rich-uncomfortably-close_north_point_5BA472A98241d4FF254DBB31C126.txt",
     "transcript_hash": "ef068d0f864c774e9fc0a64d7d7d1e63a6ba66df0faa5e52827316c4d7c1e44b",
-    "transcribed_at": "2026-09-17T14:41:08.875151+00:00"
+    "transcribed_at": "2026-09-17T14:41:08.875151+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:dC9BC13CbFE250368A7C7d2e66B6": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/dC9BC13CbFE250368A7C7d2e66B6/static/B276D2/ECC34C66B77E.mp3?feedId=1968826fF8",
@@ -1743,7 +1935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-09-29_heaven-hell-everything-in-between-part-3-connection_north_point_dC9BC13CbFE250368A7C7d2e66B6.txt",
     "transcript_hash": "3075bae5ef64102fe848ec6bb8cdc79ab47402e8a7986afddfce0eaf7a245f55",
-    "transcribed_at": "2026-09-17T14:40:34.078798+00:00"
+    "transcribed_at": "2026-09-17T14:40:34.078798+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:815d007BD3C81354A1dE39C6bab9": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/815d007BD3C81354A1dE39C6bab9/static/ac4C9B/36a0E6f87086.mp3?feedId=1968826fF8",
@@ -1761,7 +1955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-09-22_heaven-hell-everything-in-between-part-2-alignment_north_point_815d007BD3C81354A1dE39C6bab9.txt",
     "transcript_hash": "802d620f090d0efdc3092c67fefff34c97381dd40fea2e8e53619cbfef9ee7dc",
-    "transcribed_at": "2026-09-17T14:21:30.859717+00:00"
+    "transcribed_at": "2026-09-17T14:21:30.859717+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:8685761A20EA02F832CF5BBD6902": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/8685761A20EA02F832CF5BBD6902/static/34B24a/eE6FA85bEfab.mp3?feedId=1968826fF8",
@@ -1779,7 +1975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-09-15_heaven-hell-everything-in-between-part-1-reality_north_point_8685761A20EA02F832CF5BBD6902.txt",
     "transcript_hash": "902671dc27e0c82209873179ad71a3b274d59b875e1f0d48e37acd3db0fd99ae",
-    "transcribed_at": "2026-09-17T14:34:29.033712+00:00"
+    "transcribed_at": "2026-09-17T14:34:29.033712+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "north_point:48D24d76899ECC1258F01b892023": {
     "audio_url": "https://storage.sardius.media/8d5F99Ed22aB004/archives/48D24d76899ECC1258F01b892023/static/6A56F2/4Fa0f7C10CD4.mp3?feedId=1968826fF8",
@@ -1797,6 +1995,8 @@
     "transcription_status": "done",
     "content_path": "transcripts/north_point/2024-09-08_be-rich-making-history_north_point_48D24d76899ECC1258F01b892023.txt",
     "transcript_hash": "9b416bcaeb0d2c6577bc982f71c36c6c5fefe398b97221a16a0a329c1ef700b0",
-    "transcribed_at": "2026-09-17T14:44:27.558676+00:00"
+    "transcribed_at": "2026-09-17T14:44:27.558676+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   }
 }
