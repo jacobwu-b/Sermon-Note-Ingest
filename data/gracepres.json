@@ -150,10 +150,10 @@
     "blurb": "Pastor Iron Kim continues our sermon series in the Book of Psalms with a message from Psalm 133",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-18T23:02:20.675477+00:00",
+    "transcript_hash": "bc6bb79ba52f1ec6aa71671936a63db72b4801355ef77bbaf5c1b63f4f3461de",
+    "content_path": "transcripts/gracepres/2026-07-26_a-beautiful-community_gracepres_tag_soundcloud_2010_tracks_2369782640.txt"
   },
   "gracepres:tag:soundcloud,2010:tracks/2364015854": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2364015854",
