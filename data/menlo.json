@@ -15,7 +15,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-09-13_the-two-sided-coin_menlochurchvideo.podbean.com_11fa57bb-a88c-35fb-80a6-8fb0b12cf519.txt",
     "transcript_hash": "3e42c066bfdd94d179198bfee988a3f4982f2584fab0c0f5625936786f21e874",
-    "transcribed_at": "2026-09-14T06:59:30.484645+00:00"
+    "transcribed_at": "2026-09-14T06:59:30.484645+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/6ebd0693-c10f-3125-8198-fdb35dec8944": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8avjusukg8kgzsgs/2026-09-06_Sermon-PodcastAudio.mp3",
@@ -33,7 +35,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-09-06_the-vapor-sacrifical-developer_menlochurchvideo.podbean.com_6ebd0693-c10f-3125-8198-fdb35dec8944.txt",
     "transcript_hash": "d5afb506397935e70699dc2c9ea6971e095fa321488cc4c918577114ab10d0fb",
-    "transcribed_at": "2026-09-14T07:16:28.108407+00:00"
+    "transcribed_at": "2026-09-14T07:16:28.108407+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/86c1dcf1-1fd9-3507-ba53-1855ae72d6a3": {
     "audio_url": "https://mcdn.podbean.com/mf/web/45g3yceyb3fpt647/2026-08-30_PodcastAudio.mp3",
@@ -51,7 +55,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-08-30_small-fire-big-forest-thoughtful-witness_menlochurchvideo.podbean.com_86c1dcf1-1fd9-3507-ba53-1855ae72d6a3.txt",
     "transcript_hash": "6fd85de4027a1ee685e0ef2d62485c57ae75ddef97efc64c0dc0a8bef6f03790",
-    "transcribed_at": "2026-09-14T06:59:02.506891+00:00"
+    "transcribed_at": "2026-09-14T06:59:02.506891+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/a8e96ca6-8f0b-3d11-9d2e-628821d5cf7a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/cfqrt3rbagv8er62/2026-08-23_SermonPodcastAudio.mp3",
@@ -69,7 +75,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-08-23_the-clock-unhurried-friend_menlochurchvideo.podbean.com_a8e96ca6-8f0b-3d11-9d2e-628821d5cf7a.txt",
     "transcript_hash": "6feb9d063cf0da81b94295072d6014dbddb35c7a326482498b3cd6a1539dd9cd",
-    "transcribed_at": "2026-09-14T07:02:01.438161+00:00"
+    "transcribed_at": "2026-09-14T07:02:01.438161+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/52d746b0-70af-3fef-8882-3bc2e3e2def1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v3cupcbtpb93i4ys/2026-08-16_SermonPodcastAudio.mp3",
@@ -87,7 +95,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-08-16_the-mirror-undivided-follower_menlochurchvideo.podbean.com_52d746b0-70af-3fef-8882-3bc2e3e2def1.txt",
     "transcript_hash": "b14fc67afbf0ed6d24bddf6caccff245ac2101efc42c5ec76aa4296a2084780c",
-    "transcribed_at": "2026-09-14T07:12:04.374608+00:00"
+    "transcribed_at": "2026-09-14T07:12:04.374608+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/275a86da-df23-3251-b364-a2507b24d854": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2kjvjafsmddfckwi/2026-08-09_PodcastAudio.mp3",
@@ -105,7 +115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-08-09_it-is-finished-the-gospel_menlochurchvideo.podbean.com_275a86da-df23-3251-b364-a2507b24d854.txt",
     "transcript_hash": "87fb29228f4d79916453954971dc06e39be0560c899f32c2d8107b3d7c295839",
-    "transcribed_at": "2026-09-14T13:46:01.101683+00:00"
+    "transcribed_at": "2026-09-14T13:46:01.101683+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/8f9d6d9e-2913-36ea-9739-69a7a63b4540": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dfrxsi7ku4qwp37m/Sermon_2026-08-02_PodcastAudio.mp3",
@@ -123,7 +135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-08-02_the-religion-of-good-people-the-nones-agonostics_menlochurchvideo.podbean.com_8f9d6d9e-2913-36ea-9739-69a7a63b4540.txt",
     "transcript_hash": "61a50fc91d28b6b08891e358dd1a4bf8a8628407a38be306f737a9892b079f59",
-    "transcribed_at": "2026-09-14T14:04:02.009245+00:00"
+    "transcribed_at": "2026-09-14T14:04:02.009245+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/5bd3b5e0-eb0b-336e-abe4-b22c9d7db8bf": {
     "audio_url": "https://mcdn.podbean.com/mf/web/iwyqepxhitx48qce/Sermon_2026-07-26_PodcastAudio.mp3",
@@ -141,7 +155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-07-26_the-system-of-merit-catholicism_menlochurchvideo.podbean.com_5bd3b5e0-eb0b-336e-abe4-b22c9d7db8bf.txt",
     "transcript_hash": "f90254b412d0a11ce5398ab514589463b2a3faa867a37f783b1888e7237de54c",
-    "transcribed_at": "2026-09-14T13:52:50.991521+00:00"
+    "transcribed_at": "2026-09-14T13:52:50.991521+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/15006a66-2fbb-3df2-8cd5-1ae735f04134": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ev6tdkj4rzfbfbfs/Sermon_2026-07-19_PodcastAudio.mp3",
@@ -159,7 +175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-07-19_the-ladder-of-modern-prophets-mormonism_menlochurchvideo.podbean.com_15006a66-2fbb-3df2-8cd5-1ae735f04134.txt",
     "transcript_hash": "6f51e747f8dd157988d12c30e6de6afb540845f8ce8efb2a75420b52d515369b",
-    "transcribed_at": "2026-09-14T14:00:41.623868+00:00"
+    "transcribed_at": "2026-09-14T14:00:41.623868+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/212bc814-4655-329c-bc16-27256dc8dc03": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v3y3hc5nxxytzvsn/Sermon_2026-07-12_PodcastAudio.mp3",
@@ -177,7 +195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-07-12_the-cycle-of-self-liberation-buddhism_menlochurchvideo.podbean.com_212bc814-4655-329c-bc16-27256dc8dc03.txt",
     "transcript_hash": "6ffa67a1de13d1f3f85400fbb96e7c3e7b719145b3527356d528f6a2457e708d",
-    "transcribed_at": "2026-09-14T13:44:51.667289+00:00"
+    "transcribed_at": "2026-09-14T13:44:51.667289+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/49518992-b608-38f0-a006-1d84e77a9b5a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3z44k2x5ww4q85m9/Sermon_2026-7-5_PodcastAudio.mp3",
@@ -195,7 +215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-07-05_the-five-pillars-of-effort-islam_menlochurchvideo.podbean.com_49518992-b608-38f0-a006-1d84e77a9b5a.txt",
     "transcript_hash": "bdb29ab909929d6a83a061f3cddb1bfbd07f0c9cfa9c5155cae4d35703ee04d9",
-    "transcribed_at": "2026-09-14T19:15:42.472605+00:00"
+    "transcribed_at": "2026-09-14T19:15:42.472605+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/4be93004-fe98-307d-953e-12af49c80200": {
     "audio_url": "https://mcdn.podbean.com/mf/web/pdb7xytp3utaz6qp/Sermon_2026-06-28_PodcastAudio.mp3",
@@ -213,7 +235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-06-28_the-burden-of-the-law-judaism_menlochurchvideo.podbean.com_4be93004-fe98-307d-953e-12af49c80200.txt",
     "transcript_hash": "c5be245b6e23995f6be362896a4a6e7be71f91b492c200f63f9bfb86d215d2ef",
-    "transcribed_at": "2026-09-14T19:19:53.230549+00:00"
+    "transcribed_at": "2026-09-14T19:19:53.230549+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/6ac064de-cbff-3fde-a565-6270fd471ad0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/gvvv2m5qbzkd7xdu/Sermon_2026-06-21_PodcastAudio.mp3",
@@ -231,7 +255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-06-21_strength-doesn-t-have-to-be-loud_menlochurchvideo.podbean.com_6ac064de-cbff-3fde-a565-6270fd471ad0.txt",
     "transcript_hash": "1fe87b02c05d630221a65c88a47e882e8c329dacd218107406b0ec40951b312a",
-    "transcribed_at": "2026-09-14T19:31:36.884699+00:00"
+    "transcribed_at": "2026-09-14T19:31:36.884699+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/1ff09455-adfd-337d-9002-0e775fb28b69": {
     "audio_url": "https://mcdn.podbean.com/mf/web/k89ztb7viam8nxra/2026-06-14_PodcastAudio.mp3",
@@ -249,7 +275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-06-14_going-offline_menlochurchvideo.podbean.com_1ff09455-adfd-337d-9002-0e775fb28b69.txt",
     "transcript_hash": "6a9bdccce78417dba59cbde3e3bfd9a8b983274a7b5a0c499126ec4c6275d227",
-    "transcribed_at": "2026-09-14T19:28:04.840856+00:00"
+    "transcribed_at": "2026-09-14T19:28:04.840856+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/8c8e620c-f1a8-34f9-8d1d-3361df2304a1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3s7zutwwbmvuym8j/Sermon_2026-06-07_PodcastAudio.mp3",
@@ -267,7 +295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-06-07_hardware-crash_menlochurchvideo.podbean.com_8c8e620c-f1a8-34f9-8d1d-3361df2304a1.txt",
     "transcript_hash": "f1a1aee16f620d4426ad301d514f628c545655300c227a163763439d7713b65e",
-    "transcribed_at": "2026-09-14T19:17:16.158063+00:00"
+    "transcribed_at": "2026-09-14T19:17:16.158063+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/94b28be5-934d-3297-82df-9a39dead63c6": {
     "audio_url": "https://mcdn.podbean.com/mf/web/uze5wsyi5rqspyzc/Sermon_2026-05-31_PodcastAudio.mp3",
@@ -285,7 +315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-05-31_infinite-loop_menlochurchvideo.podbean.com_94b28be5-934d-3297-82df-9a39dead63c6.txt",
     "transcript_hash": "34d8b7b3694ed0cb96720b3c03eeaac28bfd2efa6d8b9f826c8d57d3cbc5d86b",
-    "transcribed_at": "2026-09-14T22:35:38.571302+00:00"
+    "transcribed_at": "2026-09-14T22:35:38.571302+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/4cf0ccd6-5085-304f-89eb-839cc22cf4af": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ca3t73xmyfath9v3/Sermon_2026-05-24_PodcastAudio.mp3",
@@ -303,7 +335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-05-24_fatal-error_menlochurchvideo.podbean.com_4cf0ccd6-5085-304f-89eb-839cc22cf4af.txt",
     "transcript_hash": "fadc1b8d46aa11a477724dd20651e811a1603692e7546b35c9f44e6ad8d9d6a3",
-    "transcribed_at": "2026-09-14T22:35:49.744804+00:00"
+    "transcribed_at": "2026-09-14T22:35:49.744804+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f269ef39-d737-3b61-8d90-4ab8680e6aba": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ymsvu9rxshixucyr/Sermon_2026-05-17_PodcastAudio.mp3",
@@ -321,7 +355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-05-17_baptism-sunday_menlochurchvideo.podbean.com_f269ef39-d737-3b61-8d90-4ab8680e6aba.txt",
     "transcript_hash": "4bd0624b4ec7ecfc664c0bd78527df25e9b198eb4611c0f97a413cb8910fc1b1",
-    "transcribed_at": "2026-09-14T22:54:29.886059+00:00"
+    "transcribed_at": "2026-09-14T22:54:29.886059+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/a0c4c988-5457-3f69-83bf-0698d2933773": {
     "audio_url": "https://mcdn.podbean.com/mf/web/uxqq2stsf3xrjv98/2026-05-10_Sermon_PodcastAudio.mp3",
@@ -339,7 +375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-05-10_no-one-ever-told-me_menlochurchvideo.podbean.com_a0c4c988-5457-3f69-83bf-0698d2933773.txt",
     "transcript_hash": "713d80b7c61444076357f297c4b53b5d30911f6f932098dbd67fcf49e97ce4c7",
-    "transcribed_at": "2026-09-14T22:58:47.758881+00:00"
+    "transcribed_at": "2026-09-14T22:58:47.758881+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/bd1c7882-0414-31b4-9d25-ae942847f779": {
     "audio_url": "https://mcdn.podbean.com/mf/web/zxpsg2mpcwhbxrwi/Sermon_2026-05-03_PodcastAudio.mp3",
@@ -357,7 +395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-05-03_digital-thorns_menlochurchvideo.podbean.com_bd1c7882-0414-31b4-9d25-ae942847f779.txt",
     "transcript_hash": "464a16bf65dc7c6e03a8d08f4c57d0322f3f0ba747e9088d921b01df587b29a7",
-    "transcribed_at": "2026-09-14T22:58:28.084242+00:00"
+    "transcribed_at": "2026-09-14T22:58:28.084242+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/2d144bf5-f873-37e0-ac65-98da9dee1013": {
     "audio_url": "https://mcdn.podbean.com/mf/web/vipr8ugm6kgcpgtu/Sermon_2026-04-26_PodcastAudio.mp3",
@@ -375,7 +415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-04-26_if-you-re-real-i-need-a-miracle_menlochurchvideo.podbean.com_2d144bf5-f873-37e0-ac65-98da9dee1013.txt",
     "transcript_hash": "2826adf22a28093222d6bbf7daa24915e454620f5ff9292500e94f5f513b7dc3",
-    "transcribed_at": "2026-09-15T01:21:31.969175+00:00"
+    "transcribed_at": "2026-09-15T01:21:31.969175+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f1d65163-6d4a-316e-a813-245b1848a972": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x8za6c4eqphhxksf/2026-04-19_SermonAudio.mp3",
@@ -393,7 +435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-04-19_if-you-re-real-help-me_menlochurchvideo.podbean.com_f1d65163-6d4a-316e-a813-245b1848a972.txt",
     "transcript_hash": "a3be1798b6168068e328d034accd6e92f6450a38d89f356b0fde18537cf274f6",
-    "transcribed_at": "2026-09-15T01:05:12.614786+00:00"
+    "transcribed_at": "2026-09-15T01:05:12.614786+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/df0f07fc-5c1a-34c3-b051-f0ac68792e57": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8subv5smwb5vpb4t/Sermon_2026-04-12_PodcastAudio.mp3",
@@ -411,7 +455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-04-12_if-you-re-real-show-me_menlochurchvideo.podbean.com_df0f07fc-5c1a-34c3-b051-f0ac68792e57.txt",
     "transcript_hash": "070e2cb8e71c8dca3c595a66b96d053b6a02085acb43c6700c388fcb6c42588b",
-    "transcribed_at": "2026-09-15T01:19:14.453584+00:00"
+    "transcribed_at": "2026-09-15T01:19:14.453584+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/83633b52-d0ca-37e3-aa99-c68b278936eb": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ektk2mk4nhpfkmyw/Sermon_2026-04-05_PodcastAudio.mp3",
@@ -429,7 +475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-04-05_i-am-with-you-in-the-dark_menlochurchvideo.podbean.com_83633b52-d0ca-37e3-aa99-c68b278936eb.txt",
     "transcript_hash": "d736f80deeb7de907a6aa1d98402f4c76f339b0ddd6fe3ce710490ff2d34ff4d",
-    "transcribed_at": "2026-09-15T01:09:39.017803+00:00"
+    "transcribed_at": "2026-09-15T01:09:39.017803+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/c466eab1-5b1b-3bc2-afec-e4180fd9ec2a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/97md8w6ue4mvq8zi/Sermon_2026-03-29_PodcastAudio.mp3",
@@ -447,7 +495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-03-29_i-am-with-you-in-the-garden_menlochurchvideo.podbean.com_c466eab1-5b1b-3bc2-afec-e4180fd9ec2a.txt",
     "transcript_hash": "9ac0c81c51bd8fa54e518369d8c24af3e64834b147e1c7360a4a5f7a59f9fa33",
-    "transcribed_at": "2026-09-15T01:26:02.084441+00:00"
+    "transcribed_at": "2026-09-15T01:26:02.084441+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/b644dbb3-7002-3a18-9b20-ba896199389b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/a3gcyevbr8f8a7se/Sermon_2026-03-22_PodcastAudio.mp3",
@@ -465,7 +515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-03-22_i-am-with-you-at-the-table_menlochurchvideo.podbean.com_b644dbb3-7002-3a18-9b20-ba896199389b.txt",
     "transcript_hash": "8be2a36a9d40dcc41cd3c357b56eb8a5bb3dd35d691eecfe43f4e4c8e7d32493",
-    "transcribed_at": "2026-09-15T05:59:57.653674+00:00"
+    "transcribed_at": "2026-09-15T05:59:57.653674+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/0d11e418-ef07-3ded-909e-651495ef9aed": {
     "audio_url": "https://mcdn.podbean.com/mf/web/sqb7dki4exems79g/Sermon_2026-03-15_PodcastAudio.mp3",
@@ -483,7 +535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-03-15_i-am-with-you-in-the-silence_menlochurchvideo.podbean.com_0d11e418-ef07-3ded-909e-651495ef9aed.txt",
     "transcript_hash": "099d7b0d382f57ac06809f579cea8e0c2fe619a6fefcf8aa6993109f6fad7b0b",
-    "transcribed_at": "2026-09-15T06:12:20.439239+00:00"
+    "transcribed_at": "2026-09-15T06:12:20.439239+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/42922dbb-a797-35cc-9347-80e3fce1c61a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dbeiwkkriamyrhys/Sermon_2026-03-08_PodcastAudio.mp3",
@@ -501,7 +555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-03-08_i-am-with-you-in-the-fire_menlochurchvideo.podbean.com_42922dbb-a797-35cc-9347-80e3fce1c61a.txt",
     "transcript_hash": "e7c81cc6b03f4e8ff6d3be3fb526dec0637df5ae24cfa4776e57ce38710fefb6",
-    "transcribed_at": "2026-09-15T05:48:36.487591+00:00"
+    "transcribed_at": "2026-09-15T05:48:36.487591+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/5af77a48-ca50-3b12-b73b-e0141252457b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ii4psyt763irxjw7/Sermon_2026-03-01_Podcast.mp3",
@@ -519,7 +575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-03-01_i-am-with-you-in-the-fight_menlochurchvideo.podbean.com_5af77a48-ca50-3b12-b73b-e0141252457b.txt",
     "transcript_hash": "118dbda6c6cc0d6a325daffe9203e42e0c007b94a4d64673ca83495c1f4e82a9",
-    "transcribed_at": "2026-09-15T06:16:47.526380+00:00"
+    "transcribed_at": "2026-09-15T06:16:47.526380+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/d2d4618d-9835-3e33-8b75-8ebc8c8e4c3e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3a4pxkhga5u82gm7/2026-02-22_Sermon_NoBumper.mp3",
@@ -537,7 +595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-02-22_i-am-with-you-in-the-desert_menlochurchvideo.podbean.com_d2d4618d-9835-3e33-8b75-8ebc8c8e4c3e.txt",
     "transcript_hash": "7e6f8f3b7be938fcfd011712592e6849cdb959f179e9a9e3d3f7afa9ea2720f2",
-    "transcribed_at": "2026-09-15T06:01:03.812214+00:00"
+    "transcribed_at": "2026-09-15T06:01:03.812214+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/031929bd-ba48-3507-b52a-73eeb8af980d": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bttkc2kcuy6wfykf/LoveisMessage3POD.mp3",
@@ -555,7 +615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-02-15_love-is-holy-including-intimacy_menlochurchvideo.podbean.com_031929bd-ba48-3507-b52a-73eeb8af980d.txt",
     "transcript_hash": "ff62000ef51c475d33f8659465826d6eee9cd7bc78870d9ef4da9736a24e59b7",
-    "transcribed_at": "2026-09-15T11:04:47.621062+00:00"
+    "transcribed_at": "2026-09-15T11:04:47.621062+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f378acce-35e5-3422-a40f-1c964702f4cb": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5pz7rgk829rsibqv/LoveisWorthWaitingforPdNewmp3.mp3",
@@ -573,7 +635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-02-08_love-is-worth-waiting-for_menlochurchvideo.podbean.com_f378acce-35e5-3422-a40f-1c964702f4cb.txt",
     "transcript_hash": "a63e74934b520e132ba9a94834ca14df2533c5d14253bcfdca24e38028bcfe8b",
-    "transcribed_at": "2026-09-15T11:14:49.362595+00:00"
+    "transcribed_at": "2026-09-15T11:14:49.362595+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/59ea5d6b-808c-31c7-8216-12352991f3c8": {
     "audio_url": "https://mcdn.podbean.com/mf/web/upxqp322s9vnra28/LoveisMessage1PodcastFinal.mp3",
@@ -591,7 +655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-02-01_love-is-more-than-a-feeling_menlochurchvideo.podbean.com_59ea5d6b-808c-31c7-8216-12352991f3c8.txt",
     "transcript_hash": "def3d4e4fb909e4874057eba64c81b9c60b446f4490cdbaf6a49086592c46cce",
-    "transcribed_at": "2026-09-15T11:01:54.307122+00:00"
+    "transcribed_at": "2026-09-15T11:01:54.307122+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/ccc53af7-1410-35bd-9807-a8f61258cd92": {
     "audio_url": "https://mcdn.podbean.com/mf/web/p6thdg6crm4im4xv/PerfectMessage4PodFinal.mp3",
@@ -609,7 +675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-01-25_perfect-kids_menlochurchvideo.podbean.com_ccc53af7-1410-35bd-9807-a8f61258cd92.txt",
     "transcript_hash": "35203b395b7fdd490f7afbc0e0f4f4785a03a8ab1d268b9a04b32de466266d31",
-    "transcribed_at": "2026-09-15T10:35:29.648141+00:00"
+    "transcribed_at": "2026-09-15T10:35:29.648141+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/52211f90-9f68-3d7c-b91d-40439cf91032": {
     "audio_url": "https://mcdn.podbean.com/mf/web/t8yd5gcd4vnrtd95/PerfectMessage3Pod.mp3",
@@ -627,7 +695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-01-18_perfect-parents_menlochurchvideo.podbean.com_52211f90-9f68-3d7c-b91d-40439cf91032.txt",
     "transcript_hash": "9012f261c2e2d44dd789b29da435061284f47c95100cc5e1eb6411974db667ac",
-    "transcribed_at": "2026-09-15T11:04:44.233122+00:00"
+    "transcribed_at": "2026-09-15T11:04:44.233122+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/12e8300b-aba4-37a6-b3b3-60b74c7fd0d7": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x9xav3qe9hwqcnbb/PerfectMessage2POD.mp3",
@@ -645,7 +715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-01-11_perfect-marriage_menlochurchvideo.podbean.com_12e8300b-aba4-37a6-b3b3-60b74c7fd0d7.txt",
     "transcript_hash": "f4ce1ae7069be896d369ce31b9ca7bd5ca41484bb783368115fd8168b9d77f97",
-    "transcribed_at": "2026-09-15T15:53:44.566504+00:00"
+    "transcribed_at": "2026-09-15T15:53:44.566504+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/8737b88f-7130-39b8-8433-e07316529728": {
     "audio_url": "https://mcdn.podbean.com/mf/web/53qtfbihhhi4ndxp/PerfectMessage1PodFinal.mp3",
@@ -663,7 +735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2026-01-04_perfect-family_menlochurchvideo.podbean.com_8737b88f-7130-39b8-8433-e07316529728.txt",
     "transcript_hash": "9e0be5b427ef5f464f5305e9ab441e039c9db7043c17a4c04e78efc3bd593677",
-    "transcribed_at": "2026-09-15T16:00:19.211456+00:00"
+    "transcribed_at": "2026-09-15T16:00:19.211456+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/44fa68d3-3279-3a09-9432-5fe376051e50": {
     "audio_url": "https://mcdn.podbean.com/mf/web/igqfbczqu3xt7tmp/ComeAllYeFaithless4POD.mp3",
@@ -681,7 +755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-12-21_come-all-ye-lonely_menlochurchvideo.podbean.com_44fa68d3-3279-3a09-9432-5fe376051e50.txt",
     "transcript_hash": "a9f07664945ff68f26793b42fb8832426514b9fac56665589c898efc80cd8bc0",
-    "transcribed_at": "2026-09-15T15:48:02.887963+00:00"
+    "transcribed_at": "2026-09-15T15:48:02.887963+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f6883b55-589c-31ad-9fb6-0044ff76523f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/eyegibtvqp9sxkj5/ComeAllyeFaithlessWeek3PODmp4.mp3",
@@ -699,7 +775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-12-14_come-all-ye-anxious_menlochurchvideo.podbean.com_f6883b55-589c-31ad-9fb6-0044ff76523f.txt",
     "transcript_hash": "e1353693428d4b5a689d0a49665548ee8336d8bf3f16f5ba53c74060288bafbb",
-    "transcribed_at": "2026-09-15T15:43:33.965071+00:00"
+    "transcribed_at": "2026-09-15T15:43:33.965071+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/e7dee28e-9715-39b6-9ca4-36b674f75ede": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5defe6a8fnnks4xr/JolyessPod.mp3",
@@ -717,7 +795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-12-07_come-all-ye-joyless_menlochurchvideo.podbean.com_e7dee28e-9715-39b6-9ca4-36b674f75ede.txt",
     "transcript_hash": "71f15c5bb530db1f2fa5f364c91002eb1e2b6bf05f94b70493e8d71aa5b94795",
-    "transcribed_at": "2026-09-15T15:54:33.276781+00:00"
+    "transcribed_at": "2026-09-15T15:54:33.276781+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/1e860ebd-9433-384b-b7be-5f03b380ac3a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ttgdmzd39sy87jiz/ComeallyehoplessPod.mp3",
@@ -735,7 +815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-11-30_come-all-ye-hopeless_menlochurchvideo.podbean.com_1e860ebd-9433-384b-b7be-5f03b380ac3a.txt",
     "transcript_hash": "5ab308c66362749f9d617e9bd63db5d302eed68183d1ef21544975485f785d02",
-    "transcribed_at": "2026-09-15T19:36:41.475882+00:00"
+    "transcribed_at": "2026-09-15T19:36:41.475882+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/4391e330-553b-3ede-b794-91b563052b20": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dk8urg3j84vmrb3x/HopeforEveryoneMessage2Pod.mp3",
@@ -753,7 +835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-11-23_they-re-still-worth-it_menlochurchvideo.podbean.com_4391e330-553b-3ede-b794-91b563052b20.txt",
     "transcript_hash": "3086b150260d34617022b5ec4794a33b4c1297617007c24a14fdc025d279da06",
-    "transcribed_at": "2026-09-15T19:49:43.384784+00:00"
+    "transcribed_at": "2026-09-15T19:49:43.384784+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/beee9c20-8070-3f02-830a-9e6ec267bff0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/y8pkjfc5cqfh6wjn/H4EWeek1PODFINAL.mp3",
@@ -771,7 +855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-11-16_don-t-stop-believing_menlochurchvideo.podbean.com_beee9c20-8070-3f02-830a-9e6ec267bff0.txt",
     "transcript_hash": "6071e82effeb5dcdc527d0ac297003417540b82489bd28ef0e0190e2197e6223",
-    "transcribed_at": "2026-09-15T19:49:48.762703+00:00"
+    "transcribed_at": "2026-09-15T19:49:48.762703+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/c9bd4a56-404c-3d20-ae09-05e483ce6257": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ci2d46kh3se28snh/NumbMessag4Pod.mp3",
@@ -789,7 +875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-11-09_angry-about-grace_menlochurchvideo.podbean.com_c9bd4a56-404c-3d20-ae09-05e483ce6257.txt",
     "transcript_hash": "a1de595dbcbe84121e71c3140737dfe5b3baf121a2d0f599bc60fc7875ace14d",
-    "transcribed_at": "2026-09-15T19:58:53.812732+00:00"
+    "transcribed_at": "2026-09-15T19:58:53.812732+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/8ce726ac-7ccd-3874-b71e-2f0bdc845500": {
     "audio_url": "https://mcdn.podbean.com/mf/web/6ncj545ttr2si9j6/NumbMessagePod3.mp3",
@@ -807,7 +895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-11-02_from-running-to-returning_menlochurchvideo.podbean.com_8ce726ac-7ccd-3874-b71e-2f0bdc845500.txt",
     "transcript_hash": "8dc33f6e8e918487225b5b51b9eda676222fec5bfd84dfe8d4c8ff0d52bf98b7",
-    "transcribed_at": "2026-09-15T19:59:36.441069+00:00"
+    "transcribed_at": "2026-09-15T19:59:36.441069+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/0d5a5ec3-1498-36d0-bd3e-11d0bd20c75c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4pkhkqhvzaeevhns/NumbMessage2Pod.mp3",
@@ -825,7 +915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-10-26_in-the-belly-of-the-beast_menlochurchvideo.podbean.com_0d5a5ec3-1498-36d0-bd3e-11d0bd20c75c.txt",
     "transcript_hash": "1d8fa88a71b949366c6ebcca780372ed65236d5ce730f7de1eb6bab92c5a3cd6",
-    "transcribed_at": "2026-09-15T22:50:15.203879+00:00"
+    "transcribed_at": "2026-09-15T22:50:15.203879+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/eec095a2-7433-3a18-8fe6-afe14d2dba22": {
     "audio_url": "https://mcdn.podbean.com/mf/web/jsenbtdem4z93x5k/NumbMessage1Podmp4.mp3",
@@ -843,7 +935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-10-19_sleeping-through-the-storm_menlochurchvideo.podbean.com_eec095a2-7433-3a18-8fe6-afe14d2dba22.txt",
     "transcript_hash": "2935087eec1dc1b4c06c77623235c156b63793da5eee02dc499c852a0c4a37bd",
-    "transcribed_at": "2026-09-15T22:56:20.789232+00:00"
+    "transcribed_at": "2026-09-15T22:56:20.789232+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/15b1edc3-d938-3d5a-912f-dffaa54ac26b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/84zyw77nfipsi8zk/BoTDMessage3Pod.mp3",
@@ -861,7 +955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-10-12_finding-steady-faith_menlochurchvideo.podbean.com_15b1edc3-d938-3d5a-912f-dffaa54ac26b.txt",
     "transcript_hash": "8fbe7e7b68a4098727d0ed597bce36b87f658853382f40192923df9fc081063a",
-    "transcribed_at": "2026-09-15T22:48:33.890169+00:00"
+    "transcribed_at": "2026-09-15T22:48:33.890169+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/47e4fafd-9f73-381f-b535-ce0db9a55618": {
     "audio_url": "https://mcdn.podbean.com/mf/web/n9afbvm9nz9wv23f/BoTDMessage2Pod.mp3",
@@ -879,7 +975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-10-05_believing-in-the-tension_menlochurchvideo.podbean.com_47e4fafd-9f73-381f-b535-ce0db9a55618.txt",
     "transcript_hash": "13b311288f908cc2fb6283d39f6b9eca8a984ae3ae69f2b0fe5baee35bd537ce",
-    "transcribed_at": "2026-09-15T22:54:20.770144+00:00"
+    "transcribed_at": "2026-09-15T22:54:20.770144+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/34b7e834-6f10-3803-a990-2f73428aaa09": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8gbzu5ff7cqqwnnh/BotDMessage1Pod.mp3",
@@ -897,7 +995,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-09-28_thomas-wasn-t-wrong_menlochurchvideo.podbean.com_34b7e834-6f10-3803-a990-2f73428aaa09.txt",
     "transcript_hash": "44b49498a9b71ff66a439b194aefd9031b13489ecb0891a7bc273a26bf5a49bf",
-    "transcribed_at": "2026-09-15T22:40:27.544280+00:00"
+    "transcribed_at": "2026-09-15T22:40:27.544280+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/39dcca61-e3c3-3976-8752-84869049f42a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/qtix2jb87rs4653h/ACMPodcastPodmp4.mp3",
@@ -915,7 +1015,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-09-21_annual-congregational-meeting-q-a_menlochurchvideo.podbean.com_39dcca61-e3c3-3976-8752-84869049f42a.txt",
     "transcript_hash": "05666e3f66930c7224fc2938acfe709230a36ce4524fac45f3ba34dc592ab321",
-    "transcribed_at": "2026-09-16T00:43:45.500368+00:00"
+    "transcribed_at": "2026-09-16T00:43:45.500368+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/05b38ad3-8874-30f6-b408-4ab33639bc21": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3jxizvkb7ft8sd2m/WagingPeaceMesagePod.mp3",
@@ -933,7 +1035,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-09-21_waging-peace-bringing-hope-to-a-world-at-war_menlochurchvideo.podbean.com_05b38ad3-8874-30f6-b408-4ab33639bc21.txt",
     "transcript_hash": "01ae855cf5d7a350a71dd8463efb789122dd36c62b813cef69e995cad64330d3",
-    "transcribed_at": "2026-09-16T00:53:09.523635+00:00"
+    "transcribed_at": "2026-09-16T00:53:09.523635+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/939c7191-12ee-343a-9a7d-2aa88ba15142": {
     "audio_url": "https://mcdn.podbean.com/mf/web/fve8mj9wqsq23rxk/AoSUMessage4Pod.mp3",
@@ -951,7 +1055,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-09-14_stay-a-while_menlochurchvideo.podbean.com_939c7191-12ee-343a-9a7d-2aa88ba15142.txt",
     "transcript_hash": "235e364018a63fc08f205206021f7d764907c547e009a3c2cf3a386fc83a14d2",
-    "transcribed_at": "2026-09-16T01:11:33.608896+00:00"
+    "transcribed_at": "2026-09-16T01:11:33.608896+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/24e9c5d7-b1f4-310a-96b0-9c86616cf895": {
     "audio_url": "https://mcdn.podbean.com/mf/web/75rrgdgj8sfy7gdc/AoSUMessage3Pod.mp3",
@@ -969,7 +1075,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-09-07_making-room-at-the-table_menlochurchvideo.podbean.com_24e9c5d7-b1f4-310a-96b0-9c86616cf895.txt",
     "transcript_hash": "11cd83bbc73948c1ab2c02fe7b119ec06b98dc64fc44a1d509b5b6e4a65adb38",
-    "transcribed_at": "2026-09-16T00:44:33.964396+00:00"
+    "transcribed_at": "2026-09-16T00:44:33.964396+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/454ac64f-8c38-3584-89b0-b2235dfa20f8": {
     "audio_url": "https://mcdn.podbean.com/mf/web/nwqd7c3ridzyagnt/AoSUMidweek2Pod.mp3",
@@ -987,7 +1095,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-08-31_interruptible_menlochurchvideo.podbean.com_454ac64f-8c38-3584-89b0-b2235dfa20f8.txt",
     "transcript_hash": "91feb30b8b581086db50341553aae720334f4d6cb26f62d4c0329b85cdabb7e0",
-    "transcribed_at": "2026-09-16T01:00:09.809928+00:00"
+    "transcribed_at": "2026-09-16T01:00:09.809928+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/4f1de1e2-b0a3-3bc7-bf31-89162320bd32": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2f48t3te592gy6m4/AosUMessage1Pod.mp3",
@@ -1005,7 +1115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-08-24_calling-is-greater-than-comfort_menlochurchvideo.podbean.com_4f1de1e2-b0a3-3bc7-bf31-89162320bd32.txt",
     "transcript_hash": "8d126ebbc54216cb4e4066ccaa4fe3db772a9433d106589455ef7e727c5b25de",
-    "transcribed_at": "2026-09-16T05:49:47.659274+00:00"
+    "transcribed_at": "2026-09-16T05:49:47.659274+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/54ac5a80-caff-3dc2-a307-a77b8969a1b8": {
     "audio_url": "https://mcdn.podbean.com/mf/web/zq9zwa83dmw7r3yf/FFMessage4Pod.mp3",
@@ -1023,7 +1135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-08-17_letting-god-take-the-lead_menlochurchvideo.podbean.com_54ac5a80-caff-3dc2-a307-a77b8969a1b8.txt",
     "transcript_hash": "39d0c33bce4c382a0d6ec6ad6b25dd7659a7ee88ba6b26cda3c420b27bacf380",
-    "transcribed_at": "2026-09-16T05:48:48.919520+00:00"
+    "transcribed_at": "2026-09-16T05:48:48.919520+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/29cd36f5-9e8d-3db2-9b0b-91394fdb9267": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bsspit5t2y5y9f3m/FFMessage3Pod.mp3",
@@ -1041,7 +1155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-08-10_it-s-never-too-late-to-turn-back_menlochurchvideo.podbean.com_29cd36f5-9e8d-3db2-9b0b-91394fdb9267.txt",
     "transcript_hash": "b44fd87afa5e95e1b3d08e0a243d196332f83b003baa8a74440e8c689e41b9e3",
-    "transcribed_at": "2026-09-16T05:38:43.021426+00:00"
+    "transcribed_at": "2026-09-16T05:38:43.021426+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/c882ac25-0019-3e3b-a04b-d1c57603d9e6": {
     "audio_url": "https://mcdn.podbean.com/mf/web/za3adzj92tbk3bh7/FFMessage2Podmp4.mp3",
@@ -1059,7 +1175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-08-03_when-we-lead-ourselves_menlochurchvideo.podbean.com_c882ac25-0019-3e3b-a04b-d1c57603d9e6.txt",
     "transcript_hash": "36bbb323d25457b4e88634c3cc19236fd5392a6760ad38091b9eafb4201c6cf0",
-    "transcribed_at": "2026-09-16T05:50:20.045536+00:00"
+    "transcribed_at": "2026-09-16T05:50:20.045536+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/cdd8a379-0c28-3e12-ad22-eaff75ffbe8f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3tab3823sweb2s4n/FFmessage1Pod.mp3",
@@ -1077,7 +1195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-07-27_lost-and-stuck_menlochurchvideo.podbean.com_cdd8a379-0c28-3e12-ad22-eaff75ffbe8f.txt",
     "transcript_hash": "d67acd4874fa47b892634abc1d8f37ecb3507796e4aab94f33778965b835643c",
-    "transcribed_at": "2026-09-16T05:44:23.987169+00:00"
+    "transcribed_at": "2026-09-16T05:44:23.987169+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/6842aa4f-e9a7-381e-8735-a409f0110cc5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/up6i3xikefeia8jv/IandUMessage5Pod.mp3",
@@ -1095,7 +1215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-07-20_why-would-a-loving-father-sacrifice-his-son_menlochurchvideo.podbean.com_6842aa4f-e9a7-381e-8735-a409f0110cc5.txt",
     "transcript_hash": "1e22e1abf5f6b0a365b48e21a94222ba7c066484b39f00c2f583093b019fac79",
-    "transcribed_at": "2026-09-16T10:17:08.192843+00:00"
+    "transcribed_at": "2026-09-16T10:17:08.192843+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/382a3b31-4f0c-3ae5-ae9b-3ee5aac5c28c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/96htmj96ng3nvbvk/IandUMessage4Pod.mp3",
@@ -1113,7 +1235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-07-13_why-does-god-choose-some-and-not-others_menlochurchvideo.podbean.com_382a3b31-4f0c-3ae5-ae9b-3ee5aac5c28c.txt",
     "transcript_hash": "511b73bf512150ccb2d51b53b993c64a94a77bbf062892241048a76a114e31ea",
-    "transcribed_at": "2026-09-16T10:32:16.943417+00:00"
+    "transcribed_at": "2026-09-16T10:32:16.943417+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f9b0d1a6-90da-3b77-8543-25fc530f2517": {
     "audio_url": "https://mcdn.podbean.com/mf/web/c3x7f6yzm7dtsaad/IandUMessage3Pod.mp3",
@@ -1131,7 +1255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-07-06_why-does-god-seem-to-want-war_menlochurchvideo.podbean.com_f9b0d1a6-90da-3b77-8543-25fc530f2517.txt",
     "transcript_hash": "e5296892bd5202b96ec09b30ff9d84e40e6f66000c2e4da21dc7e6ea4969cff7",
-    "transcribed_at": "2026-09-16T10:49:15.980765+00:00"
+    "transcribed_at": "2026-09-16T10:49:15.980765+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f3be0069-6c71-35c5-a48a-b80bb344fa3c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/6ncx3j3bj9dqzhfv/IandUMessage2Pod.mp3",
@@ -1149,7 +1275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-06-29_does-the-bible-limit-women_menlochurchvideo.podbean.com_f3be0069-6c71-35c5-a48a-b80bb344fa3c.txt",
     "transcript_hash": "f913e89dc7ef192ffabe0798b4de97c94a1acd873e32c8436c3feb34f338cb23",
-    "transcribed_at": "2026-09-16T10:19:38.300608+00:00"
+    "transcribed_at": "2026-09-16T10:19:38.300608+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/595d6f86-ca5b-3086-a37b-02c838cdcbac": {
     "audio_url": "https://mcdn.podbean.com/mf/web/da3chmipy8dqiinz/IandUMessagePod.mp3",
@@ -1167,7 +1295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-06-22_does-the-bible-support-slavery_menlochurchvideo.podbean.com_595d6f86-ca5b-3086-a37b-02c838cdcbac.txt",
     "transcript_hash": "5f08db0676e584daa0d62776c7db6f9f78e4e089cfb99c4f029e91df3028f361",
-    "transcribed_at": "2026-09-16T10:37:04.924546+00:00"
+    "transcribed_at": "2026-09-16T10:37:04.924546+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/a53d271a-02d2-3e5e-856c-17f2328a0b5b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/n7eps7t7h74tmk8c/DadviceMessagePod.mp3",
@@ -1185,7 +1315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-06-15_dadvice-wisdom-from-the-trenches_menlochurchvideo.podbean.com_a53d271a-02d2-3e5e-856c-17f2328a0b5b.txt",
     "transcript_hash": "b51e3bbf8c7bf621818b3bf87207fc8eeab099d12f52181a210fec6fd0609da6",
-    "transcribed_at": "2026-09-16T15:22:03.475346+00:00"
+    "transcribed_at": "2026-09-16T15:22:03.475346+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/76acba94-d1f2-37b3-a03b-46929364daf9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ecugkdqu6gyhzrnu/SM3MessagePod.mp3",
@@ -1203,7 +1335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-06-08_casting-your-cares_menlochurchvideo.podbean.com_76acba94-d1f2-37b3-a03b-46929364daf9.txt",
     "transcript_hash": "8c696323e0072506bcb2f51a96f4b020fe59a60d0899f28232bbff7671406980",
-    "transcribed_at": "2026-09-16T15:25:32.643831+00:00"
+    "transcribed_at": "2026-09-16T15:25:32.643831+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/1c35a0fb-3137-325b-a6b9-e66331d6ebf0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/n59abmftcyqrvp7t/SoundMindMessage2Pod.mp3",
@@ -1221,7 +1355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-06-01_carrying-peace_menlochurchvideo.podbean.com_1c35a0fb-3137-325b-a6b9-e66331d6ebf0.txt",
     "transcript_hash": "2df16e07e25d03b7696efa034885c166d567ea508b98d3889755e2d4c117ca9c",
-    "transcribed_at": "2026-09-16T15:20:10.872496+00:00"
+    "transcribed_at": "2026-09-16T15:20:10.872496+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/854f553a-5409-372f-a0bb-20b6f51ab5be": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hvd6ryrvd37xhcup/Week1NEWpod.mp3",
@@ -1239,7 +1375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-05-25_living-with-fear_menlochurchvideo.podbean.com_854f553a-5409-372f-a0bb-20b6f51ab5be.txt",
     "transcript_hash": "2cf32a1214e59594dee971b79d951d1921972bf16a47b2c4d2bca49b01570b50",
-    "transcribed_at": "2026-09-16T15:23:57.367811+00:00"
+    "transcribed_at": "2026-09-16T15:23:57.367811+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/18e14c2e-ff8d-30ff-a347-8b07d3655092": {
     "audio_url": "https://mcdn.podbean.com/mf/web/aghu9heiwfdcr7is/WCMessage4Pod.mp3",
@@ -1257,7 +1395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-05-18_spiritual-bath_menlochurchvideo.podbean.com_18e14c2e-ff8d-30ff-a347-8b07d3655092.txt",
     "transcript_hash": "6a2e74e66765eda2a4ae2a437175846b4d3e7a88fb49da14cf3ea83d6299e4bb",
-    "transcribed_at": "2026-09-16T15:28:44.979360+00:00"
+    "transcribed_at": "2026-09-16T15:28:44.979360+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/095f9bc7-aa78-39ab-906d-6f1bfb209bf2": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3xifa6bdyzm6he6y/WCMessage3Pod.mp3",
@@ -1275,7 +1415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-05-11_math-problems_menlochurchvideo.podbean.com_095f9bc7-aa78-39ab-906d-6f1bfb209bf2.txt",
     "transcript_hash": "bab3c1fd221db6310b76122bdd20746e91035e1b1ecc9e01227a0993e9b70370",
-    "transcribed_at": "2026-09-16T19:21:20.012355+00:00"
+    "transcribed_at": "2026-09-16T19:21:20.012355+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/810a5789-3df7-303b-a7b1-706fe4dbd3d5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/7ieikhj7misb7q32/WCMessage2Pod.mp3",
@@ -1293,7 +1435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-05-04_body-and-blood_menlochurchvideo.podbean.com_810a5789-3df7-303b-a7b1-706fe4dbd3d5.txt",
     "transcript_hash": "25fc3cff259c4df7c7a9f8d8c8ac2acabdf5fac41de453ccd156d68cef4dd316",
-    "transcribed_at": "2026-09-16T19:00:31.683897+00:00"
+    "transcribed_at": "2026-09-16T19:00:31.683897+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/15f5d73c-fda0-30bd-bb3e-0604f71deb9a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2by8ddmx43tzmpki/WeirdChurchWk1MessagePod.mp3",
@@ -1311,7 +1455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-04-27_christian-karaoke_menlochurchvideo.podbean.com_15f5d73c-fda0-30bd-bb3e-0604f71deb9a.txt",
     "transcript_hash": "45860faeecd63ee53cc2887956ea700599939b98e00550a7989ec1bd4317a5ec",
-    "transcribed_at": "2026-09-16T19:21:31.190724+00:00"
+    "transcribed_at": "2026-09-16T19:21:31.190724+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/333e949b-794e-3c46-be40-020f45971f8e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/tmnmgvb8znv9wksq/EasterMessagePod.mp3",
@@ -1329,7 +1475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-04-20_easter-message_menlochurchvideo.podbean.com_333e949b-794e-3c46-be40-020f45971f8e.txt",
     "transcript_hash": "3c12dceb7ee5e9ac2e21395db5f0a8e12114bd5eb07bca9404faab54209bb1e0",
-    "transcribed_at": "2026-09-16T18:53:34.351561+00:00"
+    "transcribed_at": "2026-09-16T18:53:34.351561+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/9b95d6ce-ba3b-31c2-ba40-3276ce7fca82": {
     "audio_url": "https://mcdn.podbean.com/mf/web/xyjh68g38ey3y9vg/CocSunday7MessagePOD.mp3",
@@ -1347,7 +1495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-04-13_last-minute-leaps_menlochurchvideo.podbean.com_9b95d6ce-ba3b-31c2-ba40-3276ce7fca82.txt",
     "transcript_hash": "348378974510d1dddd4e36297c5296134a37145b6175605ee2f870400849461c",
-    "transcribed_at": "2026-09-16T19:01:09.174002+00:00"
+    "transcribed_at": "2026-09-16T19:01:09.174002+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/63807d30-5551-38ab-b977-69863d58efaf": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ggvhiu6y2yuxtfcj/CocWeek6Pod.mp3",
@@ -1365,7 +1515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-04-06_the-cost-of-experiencing-glory_menlochurchvideo.podbean.com_63807d30-5551-38ab-b977-69863d58efaf.txt",
     "transcript_hash": "7c977b567b97bbfeac5cc9c1a5e3539f409d19a8f66e185b2117105bf5819d8e",
-    "transcribed_at": "2026-09-16T22:22:02.808204+00:00"
+    "transcribed_at": "2026-09-16T22:22:02.808204+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/bb86b69f-7344-3ec9-8923-b58105f23f47": {
     "audio_url": "https://mcdn.podbean.com/mf/web/b27vwy7qefpdj56w/CoCMessage5Pod.mp3",
@@ -1383,7 +1535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-03-30_the-cost-of-following-jesus_menlochurchvideo.podbean.com_bb86b69f-7344-3ec9-8923-b58105f23f47.txt",
     "transcript_hash": "988d652a434b72124e345a98baeab39216f95cbbf484a4f0ebc2c60f78d7709a",
-    "transcribed_at": "2026-09-16T22:14:28.449968+00:00"
+    "transcribed_at": "2026-09-16T22:14:28.449968+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f0d4e113-8e7b-3063-b695-c6caf66b4ecd": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bd2d9s65eimpud9b/CofCMessage4Pod.mp3",
@@ -1401,7 +1555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-03-23_choosing-the-better-part_menlochurchvideo.podbean.com_f0d4e113-8e7b-3063-b695-c6caf66b4ecd.txt",
     "transcript_hash": "7f2f2a7f5e256d752be667fae8b702935ccf3799f980bdf6815a777ae8f5accf",
-    "transcribed_at": "2026-09-16T22:10:30.108293+00:00"
+    "transcribed_at": "2026-09-16T22:10:30.108293+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/cfa5f8d2-eaea-3bb6-8296-942b1ef5ef99": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wqgmnjabyz6hhgca/cocmessage3pod.mp3",
@@ -1419,7 +1575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-03-16_eyes-opened_menlochurchvideo.podbean.com_cfa5f8d2-eaea-3bb6-8296-942b1ef5ef99.txt",
     "transcript_hash": "8363d73e6bcba6f21bec3b80550b8d9600ad600f84e0e0ac478c63e5e4f10a6c",
-    "transcribed_at": "2026-09-16T22:17:56.489760+00:00"
+    "transcribed_at": "2026-09-16T22:17:56.489760+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/9b24189d-8228-35d4-b559-50349ead1300": {
     "audio_url": "https://mcdn.podbean.com/mf/web/d4bbk6k6fkkvwrzq/CocWeek2MessagePod.mp3",
@@ -1437,7 +1595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-03-09_born-again_menlochurchvideo.podbean.com_9b24189d-8228-35d4-b559-50349ead1300.txt",
     "transcript_hash": "35a5cd1d858fc113f2dea18b7fe35979c9d50ce00acd06b4c52db54a394d3fa7",
-    "transcribed_at": "2026-09-16T22:12:06.644205+00:00"
+    "transcribed_at": "2026-09-16T22:12:06.644205+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/20ea29ed-1384-37b2-9b9a-e777541956fd": {
     "audio_url": "https://mcdn.podbean.com/mf/web/vu4gp8jx9tk4niiu/CocMessage1Pod.mp3",
@@ -1455,7 +1615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-03-02_thirst-for-truth_menlochurchvideo.podbean.com_20ea29ed-1384-37b2-9b9a-e777541956fd.txt",
     "transcript_hash": "643aed8d133e05f8214e3ffdca66cae137629557fdd7da9c0e5865b6674f22e8",
-    "transcribed_at": "2026-09-17T00:33:12.037928+00:00"
+    "transcribed_at": "2026-09-17T00:33:12.037928+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/cdcc377c-c70e-346d-b40c-67b3cbabe270": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ffaeg5sv2argzx8h/FMWeek3Pod.mp3",
@@ -1473,7 +1635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-02-23_counter-cultural-community_menlochurchvideo.podbean.com_cdcc377c-c70e-346d-b40c-67b3cbabe270.txt",
     "transcript_hash": "058c58af864beff69a424bf94639e1a78d223b966582b4a57554787fe6d148e4",
-    "transcribed_at": "2026-09-17T00:22:47.999074+00:00"
+    "transcribed_at": "2026-09-17T00:22:47.999074+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/a8a63de4-4c7e-34e4-b046-adbc18e33bff": {
     "audio_url": "https://mcdn.podbean.com/mf/web/h9cqmvtwuu7wj34j/FMMessagePodb67et.mp3",
@@ -1491,7 +1655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-02-16_counter-formation_menlochurchvideo.podbean.com_a8a63de4-4c7e-34e4-b046-adbc18e33bff.txt",
     "transcript_hash": "e0011633d1a8f5e5288f6187b4c722e3277ced87ee6a8572d0be1e8cf2c9eb85",
-    "transcribed_at": "2026-09-17T00:30:16.317310+00:00"
+    "transcribed_at": "2026-09-17T00:30:16.317310+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/44784844-6599-3343-918b-3bed37ac32c7": {
     "audio_url": "https://mcdn.podbean.com/mf/web/w68n465q4rtf7ysw/FMWeek1Pod.mp3",
@@ -1509,7 +1675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-02-09_culture-s-curriculum_menlochurchvideo.podbean.com_44784844-6599-3343-918b-3bed37ac32c7.txt",
     "transcript_hash": "ffad22260d6c03d6116ef87dd0c3f59c4d73b40881ce21e07e33f37578240c88",
-    "transcribed_at": "2026-09-17T00:31:44.140919+00:00"
+    "transcribed_at": "2026-09-17T00:31:44.140919+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/bb875b4a-56cd-31ba-80b8-db5dff9ee219": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wcmce5a6gzxdu4qd/BaptismFebSundayMessage.mp3",
@@ -1527,7 +1695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-02-02_accepting-god-s-power_menlochurchvideo.podbean.com_bb875b4a-56cd-31ba-80b8-db5dff9ee219.txt",
     "transcript_hash": "61f55737991955ff21f1e528691d829ae6dc6ba52c15b9bcbe4c08c44d06d0d0",
-    "transcribed_at": "2026-09-17T00:38:08.719234+00:00"
+    "transcribed_at": "2026-09-17T00:38:08.719234+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/ef3fcca2-ada2-3bb2-a11a-3ad5a8b402cf": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ismfptnmz7j7b3im/SufWeek4MessagePod.mp3",
@@ -1545,7 +1715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-01-26_deploy_menlochurchvideo.podbean.com_ef3fcca2-ada2-3bb2-a11a-3ad5a8b402cf.txt",
     "transcript_hash": "59840e87c287b01121d9d728df1746a3e926dc26e0a1d5057a42f1c713d2a2f6",
-    "transcribed_at": "2026-09-17T03:52:49.148766+00:00"
+    "transcribed_at": "2026-09-17T03:52:49.148766+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/07eabd70-eec3-354d-ad9e-067680df9e3e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/44d6vxtvgxyf8vq2/Week3Pod_b991n.mp3",
@@ -1563,7 +1735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-01-19_develop_menlochurchvideo.podbean.com_07eabd70-eec3-354d-ad9e-067680df9e3e.txt",
     "transcript_hash": "f90780511b3652968cc2e494da2a2741cbc396f308ea6377b9341574a8052e0d",
-    "transcribed_at": "2026-09-17T03:54:55.169085+00:00"
+    "transcribed_at": "2026-09-17T03:54:55.169085+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/8de78206-444e-3897-a921-e4cd79363405": {
     "audio_url": "https://mcdn.podbean.com/mf/web/kmt2qmhrxj5gsckv/SuFWk2MessagePod.mp3",
@@ -1581,7 +1755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-01-12_design_menlochurchvideo.podbean.com_8de78206-444e-3897-a921-e4cd79363405.txt",
     "transcript_hash": "288d1d8f78b2a3d0b24b10a12b238cf190732da671dc8b8c3384805c9eb9db0c",
-    "transcribed_at": "2026-09-17T04:00:09.427023+00:00"
+    "transcribed_at": "2026-09-17T04:00:09.427023+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/5490ae9d-f57c-36d4-80d9-827b474c6a9a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3e66bry73kk79fkc/Week1MessagePod.mp3",
@@ -1599,7 +1775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2025-01-05_dream_menlochurchvideo.podbean.com_5490ae9d-f57c-36d4-80d9-827b474c6a9a.txt",
     "transcript_hash": "10d8e2e28751c9587b119ac03c15c90cfa9c7c9f6752f9e1635b2d53ec890363",
-    "transcribed_at": "2026-09-17T03:45:33.023042+00:00"
+    "transcribed_at": "2026-09-17T03:45:33.023042+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/30d401bc-f3f4-30c2-81a5-773061690fa9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5zne3swhbk8xx79g/Week5MessagePod.mp3",
@@ -1617,7 +1795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-12-22_hope-for-the-magi_menlochurchvideo.podbean.com_30d401bc-f3f4-30c2-81a5-773061690fa9.txt",
     "transcript_hash": "a299c8499ca56ae6a092258e8779d5d17b8ae29a57b3dadcd958ca3dcfc8b0a3",
-    "transcribed_at": "2026-09-17T03:34:17.753061+00:00"
+    "transcribed_at": "2026-09-17T03:34:17.753061+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/2f615720-42bf-3616-a7e5-3ac771429dd5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/e6yynj88ub75cqs3/Week3Pod.mp3",
@@ -1635,7 +1815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-12-15_hope-for-the-shepherds_menlochurchvideo.podbean.com_2f615720-42bf-3616-a7e5-3ac771429dd5.txt",
     "transcript_hash": "1ba6753bee7c53b3aa43a9564aa76722584d5385d40876678fa2a318da370e6d",
-    "transcribed_at": "2026-09-17T08:59:22.176797+00:00"
+    "transcribed_at": "2026-09-17T08:59:22.176797+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f104fcf0-0ef8-3b23-81b9-768a6c590ec2": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ier4x3kryhxmxk27/HIBWeek2JosephPod.mp3",
@@ -1653,7 +1835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-12-08_hope-for-joseph_menlochurchvideo.podbean.com_f104fcf0-0ef8-3b23-81b9-768a6c590ec2.txt",
     "transcript_hash": "460f204cb43e7be56fc8e7aa9ec9b9becf9f11699b0aee5d4084dd342437c99a",
-    "transcribed_at": "2026-09-17T09:19:59.244646+00:00"
+    "transcribed_at": "2026-09-17T09:19:59.244646+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/c5b4e5c4-974e-3ef4-b4d2-12c67fc39e18": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4jca9rf5bjikzyf6/MaryMessagePod.mp3",
@@ -1671,7 +1855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-12-01_hope-for-mary_menlochurchvideo.podbean.com_c5b4e5c4-974e-3ef4-b4d2-12c67fc39e18.txt",
     "transcript_hash": "58e7eb9c4690a439e38fb70ab0ed7e0f065003a20a8d2be06f85fca20ecd6bb9",
-    "transcribed_at": "2026-09-17T09:21:09.126987+00:00"
+    "transcribed_at": "2026-09-17T09:21:09.126987+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/2901658b-c037-373d-aa66-2f027a58da84": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rb2nxc6gs92m97tj/Message5JayKim.mp3",
@@ -1689,7 +1875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-11-24_choosing-joy-over-comparison_menlochurchvideo.podbean.com_2901658b-c037-373d-aa66-2f027a58da84.txt",
     "transcript_hash": "9d8f5fcc47876fa0c31630d20208f986ea29a629e11bbc34c670e9cfc4a693c6",
-    "transcribed_at": "2026-09-17T09:19:28.613959+00:00"
+    "transcribed_at": "2026-09-17T09:19:28.613959+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/f94e75f7-89d7-39d2-82e3-22a983bd4bbc": {
     "audio_url": "https://mcdn.podbean.com/mf/web/268jubxa6tb28sig/ChoosingStayingOverGoingPod.mp3",
@@ -1707,7 +1895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-11-17_choosing-staying-over-going_menlochurchvideo.podbean.com_f94e75f7-89d7-39d2-82e3-22a983bd4bbc.txt",
     "transcript_hash": "920e888ba34d4d27dee9ec0d67ee9180b913e16d342c3a8ff32c8707f6bcf796",
-    "transcribed_at": "2026-09-17T09:19:23.991943+00:00"
+    "transcribed_at": "2026-09-17T09:19:23.991943+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/27c3815d-4e61-3f5c-94a0-9599918a4ffb": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hfgxh9xj8ntjnrfv/ForTheBay3politics.mp3",
@@ -1725,7 +1915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-11-10_choosing-trust-over-fear_menlochurchvideo.podbean.com_27c3815d-4e61-3f5c-94a0-9599918a4ffb.txt",
     "transcript_hash": "e849153c144ac11bbee14a04bf513e8381ccb39155df77aefaadbc617b196e11",
-    "transcribed_at": "2026-09-17T14:23:50.899397+00:00"
+    "transcribed_at": "2026-09-17T14:23:50.899397+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/0800dd74-a15d-3a9e-a00b-cbb449914969": {
     "audio_url": "https://mcdn.podbean.com/mf/web/86u2ykuq8fta68wn/Week2MessagePod.mp3",
@@ -1743,7 +1935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-11-03_choosing-neighbors-over-naysayers_menlochurchvideo.podbean.com_0800dd74-a15d-3a9e-a00b-cbb449914969.txt",
     "transcript_hash": "9363732d981b9185197aa88acc6332152c574040e3aee37870eaf2e26d6268eb",
-    "transcribed_at": "2026-09-17T14:44:22.752834+00:00"
+    "transcribed_at": "2026-09-17T14:44:22.752834+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/eb8f8355-c73e-31e2-9cdd-e1279cf48783": {
     "audio_url": "https://mcdn.podbean.com/mf/web/njp5wrwmq64yb5pp/FTB1Message.mp3",
@@ -1761,7 +1955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-10-27_choosing-for-over-against_menlochurchvideo.podbean.com_eb8f8355-c73e-31e2-9cdd-e1279cf48783.txt",
     "transcript_hash": "0595a7da8a68aaafe56cff342b1bdd948c0f5ebe28af966143976602822af72d",
-    "transcribed_at": "2026-09-17T14:32:16.319318+00:00"
+    "transcribed_at": "2026-09-17T14:32:16.319318+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/de0e40bb-e142-3324-864b-4eb7540e3f7e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rcnnravg25cbji2f/1020246ukcb.mp3",
@@ -1779,7 +1975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-10-20_joining-the-family_menlochurchvideo.podbean.com_de0e40bb-e142-3324-864b-4eb7540e3f7e.txt",
     "transcript_hash": "93e30d62a72b9cb3d174fa698aba4de59fe10474176c54f3aea712e66eef5c4b",
-    "transcribed_at": "2026-09-17T14:23:23.190833+00:00"
+    "transcribed_at": "2026-09-17T14:23:23.190833+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/7323b2ad-034e-39fd-b440-0b019297f7c6": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wx9wtuusgfxfnxjr/H4E4Pod.mp3",
@@ -1797,7 +1995,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-10-13_hope-fueled_menlochurchvideo.podbean.com_7323b2ad-034e-39fd-b440-0b019297f7c6.txt",
     "transcript_hash": "5739f18ccbe43f2d6b880ae6de1049623ef593a729c8cca35a7f72fc64691fab",
-    "transcribed_at": "2026-09-17T14:27:48.092765+00:00"
+    "transcribed_at": "2026-09-17T14:27:48.092765+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/1b8abeb9-26f0-3ec5-88bc-f60ad166476a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dh8b2hxuxv94svcy/H4e3Pod.mp3",
@@ -1815,7 +2015,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-10-06_hope-forged_menlochurchvideo.podbean.com_1b8abeb9-26f0-3ec5-88bc-f60ad166476a.txt",
     "transcript_hash": "00a6a4ab95e5fc013a4c373f4adbc58d55205cd76238bdcc2f0d05ccb3731386",
-    "transcribed_at": "2026-09-17T18:31:23.120992+00:00"
+    "transcribed_at": "2026-09-17T18:31:23.120992+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/952a1fb7-f00f-3936-81d6-fbaa85a3e123": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hzm3tjiwjfkpurds/HopeWeek2Pod.mp3",
@@ -1833,7 +2035,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-09-29_hope-favored_menlochurchvideo.podbean.com_952a1fb7-f00f-3936-81d6-fbaa85a3e123.txt",
     "transcript_hash": "b1416a04a7a8a943166f1a1a5400dcd61a695b4c50ba9de39848c88ab20e6bbe",
-    "transcribed_at": "2026-09-17T18:38:53.384550+00:00"
+    "transcribed_at": "2026-09-17T18:38:53.384550+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/322e9ba9-a69b-31ac-8f79-05a135f22557": {
     "audio_url": "https://mcdn.podbean.com/mf/web/feuahtrdqxrd9fit/HopeFound1MessagePod.mp3",
@@ -1851,7 +2055,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-09-22_hope-found_menlochurchvideo.podbean.com_322e9ba9-a69b-31ac-8f79-05a135f22557.txt",
     "transcript_hash": "834af2479f3be64c64e8f0dc0d77bbf1c52e8cade51ed28f4a27600df35440f5",
-    "transcribed_at": "2026-09-17T18:15:00.366375+00:00"
+    "transcribed_at": "2026-09-17T18:15:00.366375+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/d60ec6e6-f459-3c5b-b910-7e647ff4b951": {
     "audio_url": "https://mcdn.podbean.com/mf/web/39hr9nm75w7858c5/Storytellers4MessagePod.mp3",
@@ -1869,7 +2075,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-09-15_where-is-your-story-headed_menlochurchvideo.podbean.com_d60ec6e6-f459-3c5b-b910-7e647ff4b951.txt",
     "transcript_hash": "9cc818d20cc1ff1150ea47d29d17695f9d717acfe709399177b706ae9533b7e1",
-    "transcribed_at": "2026-09-17T18:30:26.675706+00:00"
+    "transcribed_at": "2026-09-17T18:30:26.675706+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/a0a9451b-c485-323f-934f-8e56d70f5575": {
     "audio_url": "https://mcdn.podbean.com/mf/web/phhnujc8yggzdbsg/StorytellersMessage3Pod.mp3",
@@ -1887,7 +2095,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-09-08_the-story-of-sharing_menlochurchvideo.podbean.com_a0a9451b-c485-323f-934f-8e56d70f5575.txt",
     "transcript_hash": "03a1b15d1aaa14a5d90e45e7d19b7eba264b32f9a74b80cc2574c53b5d380282",
-    "transcribed_at": "2026-09-17T18:44:41.596884+00:00"
+    "transcribed_at": "2026-09-17T18:44:41.596884+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/c9b5fc50-7fe6-3625-8976-9131a70e394f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v858q2t42dzsf4q6/Storytellers2Pod.mp3",
@@ -1905,7 +2115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-09-01_the-story-of-jesus_menlochurchvideo.podbean.com_c9b5fc50-7fe6-3625-8976-9131a70e394f.txt",
     "transcript_hash": "e71c9ce2c544f2c1c7539c83e19406de2e401a159157b367c34d1552fbb37e69",
-    "transcribed_at": "2026-09-17T21:31:19.136981+00:00"
+    "transcribed_at": "2026-09-17T21:31:19.136981+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/426dcc4f-a792-3320-ae4c-1eb8e86f7663": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2k9c7evaepwemjhj/Storytellers1MessagePod.mp3",
@@ -1923,7 +2135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-08-25_the-power-of-story_menlochurchvideo.podbean.com_426dcc4f-a792-3320-ae4c-1eb8e86f7663.txt",
     "transcript_hash": "b8e3d9c5ebddbcc54608f56559d078eef741922468349ad4e0fc2a3204b5a0c0",
-    "transcribed_at": "2026-09-17T21:32:30.143220+00:00"
+    "transcribed_at": "2026-09-17T21:32:30.143220+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/8d1a8390-2009-3f11-a80f-c76a31eb066f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5kpwnpqxq4gsnxi4/Basics9Pod.mp3",
@@ -1941,7 +2155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-08-18_living-beyond-the-basics_menlochurchvideo.podbean.com_8d1a8390-2009-3f11-a80f-c76a31eb066f.txt",
     "transcript_hash": "8b2b009070a778a76b3a6909bef213196af43bc6a921bccd9770c536d1b6eaf0",
-    "transcribed_at": "2026-09-17T21:35:42.209557+00:00"
+    "transcribed_at": "2026-09-17T21:35:42.209557+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/81830806-7655-363e-bc50-c13b2c55ebd1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2cxmdd6z7nqzk3hj/Message8Pod.mp3",
@@ -1959,7 +2175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-08-11_the-hope-of-permanent-love_menlochurchvideo.podbean.com_81830806-7655-363e-bc50-c13b2c55ebd1.txt",
     "transcript_hash": "79e5b73d045ce7078741f733c131afefc662a9d71a2358712ff1bff5ed403396",
-    "transcribed_at": "2026-09-17T21:37:22.364220+00:00"
+    "transcribed_at": "2026-09-17T21:37:22.364220+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/39136c74-6639-33b1-8626-2d9751da1a7a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/qmcawuxngu7u4m6a/Basics7Message.mp3",
@@ -1977,7 +2195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-08-04_the-assurance-of-divine-purpose_menlochurchvideo.podbean.com_39136c74-6639-33b1-8626-2d9751da1a7a.txt",
     "transcript_hash": "97092de17152c36875141ce6688a46b414350b3d6b7b0063fb20748d33faed80",
-    "transcribed_at": "2026-09-17T21:36:15.999989+00:00"
+    "transcribed_at": "2026-09-17T21:36:15.999989+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/43bdb104-7caa-3064-a082-6fc9da388798": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ujxskwsygc69x6ia/Basics6Message.mp3",
@@ -1995,7 +2215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-07-28_the-god-who-groans-with-us_menlochurchvideo.podbean.com_43bdb104-7caa-3064-a082-6fc9da388798.txt",
     "transcript_hash": "d640b582e0b181f69f24c434b93b3ec76bb196f176956f314adaa96f44959923",
-    "transcribed_at": "2026-09-18T19:02:36.083742+00:00"
+    "transcribed_at": "2026-09-18T19:02:36.083742+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/11a8ceb9-8265-3dda-9d44-7dea72572adc": {
     "audio_url": "https://mcdn.podbean.com/mf/web/msy6ry6yu9ijtv9y/Week5Message.mp3",
@@ -2013,7 +2235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-07-21_the-certainty-of-future-glory_menlochurchvideo.podbean.com_11a8ceb9-8265-3dda-9d44-7dea72572adc.txt",
     "transcript_hash": "a507919951b9487f945e4008a89e0cfd549b15eb54f468ee854712857fab97f2",
-    "transcribed_at": "2026-09-18T19:07:48.177330+00:00"
+    "transcribed_at": "2026-09-18T19:07:48.177330+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/2009f0e8-8ca7-358b-ab7b-ae2ad1847da0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ymwkzaaqmsv6gsae/Basics4Message.mp3",
@@ -2031,7 +2255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-07-14_the-inheritance-of-adoption_menlochurchvideo.podbean.com_2009f0e8-8ca7-358b-ab7b-ae2ad1847da0.txt",
     "transcript_hash": "04504d20ef2c2dba85a2055bf370a398aa6cfe0650a3984d4ff99a8117f76fc9",
-    "transcribed_at": "2026-09-18T19:12:46.836734+00:00"
+    "transcribed_at": "2026-09-18T19:12:46.836734+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/a7953183-eade-3410-98d5-2b481639ae63": {
     "audio_url": "https://mcdn.podbean.com/mf/web/igznjwn7e5dd5tpd/Basics3Message.mp3",
@@ -2049,7 +2275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-07-07_the-power-of-a-different-spirit_menlochurchvideo.podbean.com_a7953183-eade-3410-98d5-2b481639ae63.txt",
     "transcript_hash": "8e29ecb00206e983e3219c314802d002d0cf8ca27c89f51a912cc2ee959d5b70",
-    "transcribed_at": "2026-09-18T19:10:17.838382+00:00"
+    "transcribed_at": "2026-09-18T19:10:17.838382+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/0733b5f2-e482-3749-8129-9d2bdbe6f6c1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2s3wai2w9ggcqypa/basics2.mp3",
@@ -2067,7 +2295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-06-30_the-matters-of-our-mindset_menlochurchvideo.podbean.com_0733b5f2-e482-3749-8129-9d2bdbe6f6c1.txt",
     "transcript_hash": "fd192049834747760b7367f818a184387c60c344352cb35a31c77ba144feceda",
-    "transcribed_at": "2026-09-18T18:51:52.090468+00:00"
+    "transcribed_at": "2026-09-18T18:51:52.090468+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/b7687ea9-ae37-3825-bf52-98e7301c1aed": {
     "audio_url": "https://mcdn.podbean.com/mf/web/yg5thf2hgwy76m2x/FreedomMessage.mp3",
@@ -2085,7 +2315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-06-23_the-freedom-of-new-beginnings_menlochurchvideo.podbean.com_b7687ea9-ae37-3825-bf52-98e7301c1aed.txt",
     "transcript_hash": "3572c183a18616e3bca4aa6b173873057ade755a892b08bb4f3dcd5631751565",
-    "transcribed_at": "2026-09-18T22:10:47.034189+00:00"
+    "transcribed_at": "2026-09-18T22:10:47.034189+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/e160ded3-cdd2-3eb9-8950-8340e6e9c1dc": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rjcbsqegiwwu3ibd/Smear5.mp3",
@@ -2103,7 +2335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-06-16_faithfulness-fulfills_menlochurchvideo.podbean.com_e160ded3-cdd2-3eb9-8950-8340e6e9c1dc.txt",
     "transcript_hash": "3bb855a663a563aaafb214c410a99ec526ade0905979698dc36090475f82899e",
-    "transcribed_at": "2026-09-18T22:17:55.100428+00:00"
+    "transcribed_at": "2026-09-18T22:17:55.100428+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/15a3d899-7cbf-33cf-96e7-22abba4af627": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wj5xbtp2qvybhenp/Smear3Ashlee.mp3",
@@ -2121,7 +2355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-06-09_contain-the-flame_menlochurchvideo.podbean.com_15a3d899-7cbf-33cf-96e7-22abba4af627.txt",
     "transcript_hash": "a44492755a6c9989628976ca2a0fcb8217a373ba7264e11e661819dfddd172e6",
-    "transcribed_at": "2026-09-18T22:01:58.050271+00:00"
+    "transcribed_at": "2026-09-18T22:01:58.050271+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/a31873ea-aae7-3ec6-9f44-cdf95b246113": {
     "audio_url": "https://mcdn.podbean.com/mf/web/f2mz6iunjxhmp6sq/Smear2Message.mp3",
@@ -2139,7 +2375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-06-02_diversity-develops_menlochurchvideo.podbean.com_a31873ea-aae7-3ec6-9f44-cdf95b246113.txt",
     "transcript_hash": "6fe2c09d02e3841d7acc209b090ce31d1203e26e5b138010ef328a4e38a8634d",
-    "transcribed_at": "2026-09-18T22:13:19.487096+00:00"
+    "transcribed_at": "2026-09-18T22:13:19.487096+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/e15abb67-c594-3c3d-820e-334dfdb51b0b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/jmv6atwxzyzcc3xr/Smear1Message.mp3",
@@ -2157,7 +2395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/menlo/2024-05-26_love-lasts_menlochurchvideo.podbean.com_e15abb67-c594-3c3d-820e-334dfdb51b0b.txt",
     "transcript_hash": "cb0753c06fa902ed41b32b76dc9f3775174bd6a7389afe2e7131f9bd0f14bc38",
-    "transcribed_at": "2026-09-18T22:14:04.926788+00:00"
+    "transcribed_at": "2026-09-18T22:14:04.926788+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "menlochurchvideo.podbean.com/4175e59f-55e8-3f7f-b2e8-29c864e62f88": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3xxvpea6d5ajqjgr/BaptismSundayMessage.mp3",

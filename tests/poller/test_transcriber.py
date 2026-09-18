@@ -44,7 +44,14 @@ def test_select_pending_skips_done_failed_and_unfetchable():
         "no_audio": _record("no_audio", published_on="2026-01-03", audio_url=""),
         "pending": _record("pending", published_on="2026-01-04"),
     }
-    store.mark_transcribed(records["done"], content_path="x", transcript_hash="h", transcribed_at="t")
+    store.mark_transcribed(
+        records["done"],
+        content_path="x",
+        transcript_hash="h",
+        transcribed_at="t",
+        model="large-v3",
+        domain_prompt=True,
+    )
     store.mark_transcription_failed(records["failed"])
 
     pending = transcriber._select_pending(records)
@@ -101,6 +108,25 @@ def test_transcribe_church_marks_success_only_after_push_succeeds(tmp_path, monk
     assert saved["g1"]["transcription_status"] == "done"
     assert saved["g1"]["transcript_hash"] == "hash123"
     assert saved["g1"]["content_path"] == "transcripts/menlo/2026-01-01_sermon-g1_g1.txt"
+
+
+def test_transcribe_church_records_the_running_whisper_model_and_domain_prompt_setting(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setenv("WHISPER_MODEL", "large-v3")
+    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "false")
+    records = {"g1": _record("g1", published_on="2026-01-01")}
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
+        push=lambda files: None,
+    )
+
+    saved = store.load("menlo")
+    assert saved["g1"]["transcription_model"] == "large-v3"
+    assert saved["g1"]["transcription_domain_prompt"] is False
 
 
 def test_transcribe_church_passes_per_sermon_hotwords_built_from_the_record_and_church_vocabulary(
@@ -514,7 +540,14 @@ def test_count_in_scope_matches_the_number_of_sermons_run_would_process(tmp_path
 def test_count_in_scope_is_zero_when_nothing_is_pending(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"m1": _record("m1", published_on="2026-01-01")}
-    store.mark_transcribed(records["m1"], content_path="x", transcript_hash="h", transcribed_at="t")
+    store.mark_transcribed(
+        records["m1"],
+        content_path="x",
+        transcript_hash="h",
+        transcribed_at="t",
+        model="large-v3",
+        domain_prompt=True,
+    )
     store.save("menlo", records)
 
     assert transcriber.count_in_scope(church_names=None, limit=5) == 0

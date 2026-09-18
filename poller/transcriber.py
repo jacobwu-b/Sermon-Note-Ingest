@@ -153,6 +153,7 @@ def transcribe_church(
     pending_marks: dict[str, tuple[str, str]] = {}
     all_ok = True
     church_terms = prompting.church_vocabulary(records)
+    whisper_cfg = config.load_whisper_config()
 
     for guid, record in batch:
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
@@ -188,7 +189,12 @@ def transcribe_church(
         for guid, (path, digest) in pending_marks.items():
             record = records[guid]
             store.mark_transcribed(
-                record, content_path=path, transcript_hash=digest, transcribed_at=transcribed_at
+                record,
+                content_path=path,
+                transcript_hash=digest,
+                transcribed_at=transcribed_at,
+                model=whisper_cfg.model,
+                domain_prompt=whisper_cfg.domain_prompt,
             )
             if not _recently_published(record, now=now_dt):
                 logger.debug(

@@ -110,12 +110,12 @@ def save(church: str, records: dict[str, dict[str, Any]]) -> None:
 def item_to_record(item: SermonItem, *, first_seen_at: str, published_at: str | None) -> dict[str, Any]:
     """Build the JSON record for a newly-discovered item.
 
-    The four ``transcription_*``/``content_path`` fields are absent-by-default
-    operational metadata (ADR-0004): their value never holds the transcript text
-    itself, only whether/where transcription happened, so this public repo can
-    ledger transcription state without ever holding transcript content. An older
-    record saved before these fields existed simply lacks them — :func:`load` and
-    :func:`save` are field-agnostic, so no migration is needed.
+    The ``transcription_*``/``content_path`` fields are absent-by-default operational
+    metadata (ADR-0004, ADR-0012): their value never holds the transcript text itself,
+    only whether/where/how transcription happened, so this public repo can ledger
+    transcription state without ever holding transcript content. An older record saved
+    before these fields existed simply lacks them — :func:`load` and :func:`save` are
+    field-agnostic, so no migration is needed.
     """
     return {
         "guid": item.guid,
@@ -134,6 +134,8 @@ def item_to_record(item: SermonItem, *, first_seen_at: str, published_at: str | 
         "transcribed_at": None,
         "transcript_hash": None,
         "content_path": None,
+        "transcription_model": None,
+        "transcription_domain_prompt": None,
     }
 
 
@@ -183,18 +185,28 @@ def refresh_record(record: dict[str, Any], item: SermonItem) -> None:
 
 
 def mark_transcribed(
-    record: dict[str, Any], *, content_path: str, transcript_hash: str, transcribed_at: str
+    record: dict[str, Any],
+    *,
+    content_path: str,
+    transcript_hash: str,
+    transcribed_at: str,
+    model: str,
+    domain_prompt: bool,
 ) -> None:
     """Advance ``record`` to transcribed, recording where its text landed in Content.
 
     Called only after :func:`poller.content_repo.push_transcripts` has already
     succeeded for this record's content — the transcript text itself is never
-    written here or anywhere else in this repo.
+    written here or anywhere else in this repo. ``model``/``domain_prompt`` are the
+    ``WhisperConfig`` values active for this transcription (ADR-0012), so a later
+    re-transcription pass can select precisely instead of inferring from timestamps.
     """
     record["transcription_status"] = "done"
     record["content_path"] = content_path
     record["transcript_hash"] = transcript_hash
     record["transcribed_at"] = transcribed_at
+    record["transcription_model"] = model
+    record["transcription_domain_prompt"] = domain_prompt
 
 
 def mark_transcription_failed(record: dict[str, Any]) -> None:

@@ -15,7 +15,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-09-13_how-to-consecrate-your-life-for-gods-purposes_lakepointe_3e3f3a82-af9b-11f1-ad89-77ec95c060f4.txt",
     "transcript_hash": "6f0c3697e6aaca3afb25a8aa7984ac8471a808438c7f80fdad81c3101397e7a3",
-    "transcribed_at": "2026-09-14T07:05:43.603729+00:00"
+    "transcribed_at": "2026-09-14T07:05:43.603729+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:08a8ef5c-aa1a-11f1-a002-4b2b4579dc2b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1458294367.mp3",
@@ -33,7 +35,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-09-06_what-to-remember-when-life-feels-out-of-control_lakepointe_08a8ef5c-aa1a-11f1-a002-4b2b4579dc2b.txt",
     "transcript_hash": "869999624532bfcb4b6e2feb4a5c939265fbc32f46eef83991e6578a1eb07130",
-    "transcribed_at": "2026-09-14T07:15:52.488657+00:00"
+    "transcribed_at": "2026-09-14T07:15:52.488657+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:244b0562-a49b-11f1-bb5e-c391319433ba": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4123679489.mp3",
@@ -51,7 +55,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-08-30_what-the-bible-says-about-enduring-hard-seasons_lakepointe_244b0562-a49b-11f1-bb5e-c391319433ba.txt",
     "transcript_hash": "1cd9295aed0f2dce24bc77bfc1dd1df59526f6f35562368ffdb4399590668282",
-    "transcribed_at": "2026-09-14T07:13:16.094548+00:00"
+    "transcribed_at": "2026-09-14T07:13:16.094548+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:4e7b3552-9f12-11f1-9d73-b76bbbad48f6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2608809547.mp3",
@@ -69,7 +75,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-08-23_why-christians-never-fight-alone_lakepointe_4e7b3552-9f12-11f1-9d73-b76bbbad48f6.txt",
     "transcript_hash": "91d14da4c3b0198ce57bcd13533742713e92a5e79d8466b84ca7de69fa11e7ae",
-    "transcribed_at": "2026-09-14T07:19:38.921499+00:00"
+    "transcribed_at": "2026-09-14T07:19:38.921499+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:49697736-999a-11f1-8221-fb7335b00c35": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8244482911.mp3",
@@ -87,7 +95,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-08-16_4-ways-to-kill-the-spirit-of-fear_lakepointe_49697736-999a-11f1-8221-fb7335b00c35.txt",
     "transcript_hash": "8c48fdb45be1040ac8e774816f7d8b342251632855153329364d595fc032843d",
-    "transcribed_at": "2026-09-14T07:12:23.837088+00:00"
+    "transcribed_at": "2026-09-14T07:12:23.837088+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:b445bed4-941d-11f1-8099-a3564bfef232": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7420355677.mp3",
@@ -105,7 +115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-08-09_why-you-cant-follow-jesus-alone_lakepointe_b445bed4-941d-11f1-8099-a3564bfef232.txt",
     "transcript_hash": "6af039e32cc756ccc0236c2e7a39c6b0dab5d417a718e81b3472e042915ded1a",
-    "transcribed_at": "2026-09-14T14:20:35.187022+00:00"
+    "transcribed_at": "2026-09-14T14:20:35.187022+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:26b2e67e-789c-11f1-ba97-e320afc5442a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5561402125.mp3",
@@ -123,7 +135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-07-05_god-can-use-anybody_lakepointe_26b2e67e-789c-11f1-ba97-e320afc5442a.txt",
     "transcript_hash": "92e64c58e287fa7ab22e244968e991186a11e49d9dcdf82166afb5acb2c4a702",
-    "transcribed_at": "2026-09-14T14:08:49.140461+00:00"
+    "transcribed_at": "2026-09-14T14:08:49.140461+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:03363acc-731d-11f1-a29b-638d24917f6a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3564208990.mp3",
@@ -141,7 +155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-06-28_god-is-with-you-in-the-fire_lakepointe_03363acc-731d-11f1-a29b-638d24917f6a.txt",
     "transcript_hash": "15b641d2d86aee39e4c52d86c87d96b20d4127eafe8dae420d37a2f3807e74d7",
-    "transcribed_at": "2026-09-14T13:48:27.093138+00:00"
+    "transcribed_at": "2026-09-14T13:48:27.093138+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:0449828e-6d9b-11f1-be67-cb455c8fe748": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4334295760.mp3",
@@ -159,7 +175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-06-21_the-strength-of-surrender_lakepointe_0449828e-6d9b-11f1-be67-cb455c8fe748.txt",
     "transcript_hash": "a470eebf2a6225f3688ca160faf00800ade294c884e760d83bd545e48c3bdada",
-    "transcribed_at": "2026-09-14T14:06:34.591824+00:00"
+    "transcribed_at": "2026-09-14T14:06:34.591824+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:def7f5ba-6818-11f1-bf9b-e7a54963f20e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1661616848.mp3",
@@ -177,7 +195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-06-14_how-to-forgive-someone-who-hurt-you_lakepointe_def7f5ba-6818-11f1-bf9b-e7a54963f20e.txt",
     "transcript_hash": "421bcf910a843774882cd5081e0ec63915c49b61c3e0885b62f2481cccef5c46",
-    "transcribed_at": "2026-09-14T13:56:28.996553+00:00"
+    "transcribed_at": "2026-09-14T13:56:28.996553+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:27a08cd0-62a3-11f1-97d1-7f367294f057": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5679571855.mp3",
@@ -195,7 +215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-06-07_how-to-be-angry-without-sinning_lakepointe_27a08cd0-62a3-11f1-97d1-7f367294f057.txt",
     "transcript_hash": "a9d75386436143eeef0bcd53cb0771bdef51b7286ec73a8b50d9031ba4155c0c",
-    "transcribed_at": "2026-09-14T19:18:31.976905+00:00"
+    "transcribed_at": "2026-09-14T19:18:31.976905+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:090d7bae-5d1a-11f1-8baa-273fb2c108d1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7926686353.mp3",
@@ -213,7 +235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-05-31_your-greatest-pain-might-be-your-greatest-purpose_lakepointe_090d7bae-5d1a-11f1-8baa-273fb2c108d1.txt",
     "transcript_hash": "9272804a5d5c9953f837338091a59118818cc697c62c88107add5fa031e63951",
-    "transcribed_at": "2026-09-14T19:45:09.993429+00:00"
+    "transcribed_at": "2026-09-14T19:45:09.993429+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:d851091a-579a-11f1-aee7-1bce2593eb97": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7900112834.mp3",
@@ -231,7 +255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-05-24_how-to-trust-god-when-everything-goes-wrong_lakepointe_d851091a-579a-11f1-aee7-1bce2593eb97.txt",
     "transcript_hash": "19a9b12ea4f4c7d594dff97244fb90936c65da4c449e0e2082e3a63730e3398f",
-    "transcribed_at": "2026-09-14T19:38:59.921292+00:00"
+    "transcribed_at": "2026-09-14T19:38:59.921292+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:158e4a58-521a-11f1-af30-dffd8c4a5a49": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5280695709.mp3",
@@ -249,7 +275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-05-17_how-to-go-all-in-for-jesus_lakepointe_158e4a58-521a-11f1-af30-dffd8c4a5a49.txt",
     "transcript_hash": "c6ebe277e5f81106a7fa0053293e26e9468d2a4ee65c7aa6cc964d0916118ef4",
-    "transcribed_at": "2026-09-14T19:10:16.505253+00:00"
+    "transcribed_at": "2026-09-14T19:10:16.505253+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:56cc43d8-4c9a-11f1-a33a-3be6d3252272": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1197373911.mp3",
@@ -267,7 +295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-05-10_how-to-share-the-gospel-with-anyone_lakepointe_56cc43d8-4c9a-11f1-a33a-3be6d3252272.txt",
     "transcript_hash": "9810cb38c9b1a85f8cbf25bc4d55a964ed8059358d46cabc02c05e2cd474969e",
-    "transcribed_at": "2026-09-14T19:44:39.608836+00:00"
+    "transcribed_at": "2026-09-14T19:44:39.608836+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:e9d62118-471c-11f1-b1de-c7352a8d2808": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4183299957.mp3",
@@ -285,7 +315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-05-03_what-happens-when-you-ignore-your-conscience_lakepointe_e9d62118-471c-11f1-b1de-c7352a8d2808.txt",
     "transcript_hash": "bc8b7026343890647f6679e1580454302b1519cc50c06a791528c9b9517b2ddd",
-    "transcribed_at": "2026-09-14T23:19:06.002782+00:00"
+    "transcribed_at": "2026-09-14T23:19:06.002782+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:175c3082-4105-11f1-8e7c-4bfce9364ed5": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9590833076.mp3?updated=1777389440",
@@ -303,7 +335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-04-26_this-will-change-how-you-share-jesus_lakepointe_175c3082-4105-11f1-8e7c-4bfce9364ed5.txt",
     "transcript_hash": "1efc2d489822bbcc99b6eeedef768b61cee758401427a3797b4016ceda6d978e",
-    "transcribed_at": "2026-09-14T22:55:57.240839+00:00"
+    "transcribed_at": "2026-09-14T22:55:57.240839+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:862e5ad2-3c17-11f1-ad1d-1b93caa2fde2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5665637689.mp3",
@@ -321,7 +355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-04-19_who-did-jesus-rebuke-the-most_lakepointe_862e5ad2-3c17-11f1-ad1d-1b93caa2fde2.txt",
     "transcript_hash": "99432a324698ca97c75345667a549b162e037589af51e8ccfc36978c61de1d20",
-    "transcribed_at": "2026-09-14T22:48:18.589590+00:00"
+    "transcribed_at": "2026-09-14T22:48:18.589590+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:8c50c20c-3699-11f1-bf01-c3b7f5f0ec42": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3478826337.mp3",
@@ -339,7 +375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-04-12_when-will-jesus-return-4-predictions-about-the-end-times_lakepointe_8c50c20c-3699-11f1-bf01-c3b7f5f0ec42.txt",
     "transcript_hash": "96de8b6b87e11dd4c3eb946b05f9706fd1e0ece28d19c3242cc2e18c36509119",
-    "transcribed_at": "2026-09-14T22:44:25.862391+00:00"
+    "transcribed_at": "2026-09-14T22:44:25.862391+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:ec260c14-310d-11f1-bca1-2f3f716ea9a7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3508549211.mp3",
@@ -357,7 +395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-04-05_3-reasons-to-believe-the-resurrection-is-true_lakepointe_ec260c14-310d-11f1-bca1-2f3f716ea9a7.txt",
     "transcript_hash": "eff387329a33cacb97cc4d9981465d91f7e09e56721b06e5cacb386395c56178",
-    "transcribed_at": "2026-09-14T23:01:43.180881+00:00"
+    "transcribed_at": "2026-09-14T23:01:43.180881+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:a87d9a3a-2b96-11f1-845b-cfb44ced041c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6000855758.mp3",
@@ -375,7 +415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-03-29_how-the-old-testament-points-to-jesus_lakepointe_a87d9a3a-2b96-11f1-845b-cfb44ced041c.txt",
     "transcript_hash": "4ef8c26035f09a262b290d2c6581fe833ecc37fd60f4da4a92d75417c9940d14",
-    "transcribed_at": "2026-09-15T01:26:49.210153+00:00"
+    "transcribed_at": "2026-09-15T01:26:49.210153+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:55345904-2097-11f1-a70f-cbed1a186118": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9782766805.mp3",
@@ -393,7 +435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-03-15_why-living-for-peoples-approval-is-a-trap_lakepointe_55345904-2097-11f1-a70f-cbed1a186118.txt",
     "transcript_hash": "d8b377384f0d984136d4195f2b16767a360233ee2a9fea83585ea1c3cb686d8a",
-    "transcribed_at": "2026-09-15T01:37:54.575484+00:00"
+    "transcribed_at": "2026-09-15T01:37:54.575484+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:c1f84e16-1b14-11f1-8bd5-ebd5615be8ed": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1122815354.mp3",
@@ -411,7 +455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-03-08_the-most-ignored-commandment-in-the-bible_lakepointe_c1f84e16-1b14-11f1-8bd5-ebd5615be8ed.txt",
     "transcript_hash": "fdfc2e5e453a241a4b3aa65c8d818e9eeab6b8588d4ab7e9b2da26541623803f",
-    "transcribed_at": "2026-09-15T01:57:50.800861+00:00"
+    "transcribed_at": "2026-09-15T01:57:50.800861+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:484077bc-159f-11f1-a1f9-ef2336e6b67c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1475402782.mp3",
@@ -429,7 +475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-03-01_5-reasons-god-is-not-answering-your-prayers_lakepointe_484077bc-159f-11f1-a1f9-ef2336e6b67c.txt",
     "transcript_hash": "f2ec3262ad47d5a828f61cca319354675b602d7c683ec00402875b07620a9aab",
-    "transcribed_at": "2026-09-15T01:58:03.768751+00:00"
+    "transcribed_at": "2026-09-15T01:58:03.768751+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:2e8ef830-1021-11f1-8ef7-f74714c1a0c7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9173919675.mp3",
@@ -447,7 +495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-02-22_3-things-that-will-kill-your-marriage_lakepointe_2e8ef830-1021-11f1-8ef7-f74714c1a0c7.txt",
     "transcript_hash": "249ccb31f81656d748c52dc6697153d7413d380ee3800d0a2884bb80ddddb35e",
-    "transcribed_at": "2026-09-15T01:54:43.147304+00:00"
+    "transcribed_at": "2026-09-15T01:54:43.147304+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:4bae9622-0a9b-11f1-a341-cb009796d578": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8323222566.mp3",
@@ -465,7 +515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-02-15_god-died-for-them-too_lakepointe_4bae9622-0a9b-11f1-a341-cb009796d578.txt",
     "transcript_hash": "ecd43840af050272f8a32df51d85f2beca6adfac447e39df7924a11c06feb25e",
-    "transcribed_at": "2026-09-15T06:01:45.994033+00:00"
+    "transcribed_at": "2026-09-15T06:01:45.994033+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:9b2e14a0-051b-11f1-9eb3-c3db383791ac": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1521934337.mp3",
@@ -483,7 +535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-02-08_a-disciple-stewards-everything_lakepointe_9b2e14a0-051b-11f1-9eb3-c3db383791ac.txt",
     "transcript_hash": "a8b8ca63910757371feb57294dd1e7529a0e27519ca90fb58fd0a072682af29c",
-    "transcribed_at": "2026-09-15T06:33:31.322333+00:00"
+    "transcribed_at": "2026-09-15T06:33:31.322333+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:3486c630-ff9d-11f0-8256-5baad845b33e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3569939407.mp3",
@@ -501,7 +555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-02-01_your-selfish-life-is-holding-you-back_lakepointe_3486c630-ff9d-11f0-8256-5baad845b33e.txt",
     "transcript_hash": "64f378f6234a3e0d2bfba2cc69963d35185da9beed4c26f7bc99096bc76e0bb4",
-    "transcribed_at": "2026-09-15T06:24:07.234202+00:00"
+    "transcribed_at": "2026-09-15T06:24:07.234202+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:fd226484-f49c-11f0-bb15-733c0828e89d": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8914790452.mp3",
@@ -519,7 +575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-01-18_nothing-will-change-your-life-more-than-this_lakepointe_fd226484-f49c-11f0-bb15-733c0828e89d.txt",
     "transcript_hash": "f081940e7e390e899cc2d8b78bb47bba65ce001f63504831b44d265650a56b8f",
-    "transcribed_at": "2026-09-15T06:37:45.001573+00:00"
+    "transcribed_at": "2026-09-15T06:37:45.001573+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:3f03a1ec-ef1b-11f0-aac1-035da6038eb9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9807814197.mp3",
@@ -537,7 +595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-01-11_baptism-the-holy-spirit-what-every-christian-needs-to-know_lakepointe_3f03a1ec-ef1b-11f0-aac1-035da6038eb9.txt",
     "transcript_hash": "4afe308fa21404972b475edbe4f1da1974cb727741eaf0f7641a33bf21ae8593",
-    "transcribed_at": "2026-09-15T06:31:30.067387+00:00"
+    "transcribed_at": "2026-09-15T06:31:30.067387+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:3c8b9fa2-e99c-11f0-a5d0-8f0b456b5ec6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9304979158.mp3",
@@ -555,7 +615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2026-01-04_why-most-christians-get-discipleship-wrong-it-starts-here_lakepointe_3c8b9fa2-e99c-11f0-a5d0-8f0b456b5ec6.txt",
     "transcript_hash": "ed6e029aee5e69d84251365c4d70d87ae04a47e0bec7c03c654dd8be92a57232",
-    "transcribed_at": "2026-09-15T11:46:55.227041+00:00"
+    "transcribed_at": "2026-09-15T11:46:55.227041+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:bc7a9880-e12c-11f0-8266-7b4f2e14ceba": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2767766621.mp3",
@@ -573,7 +635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-12-28_how-to-have-the-most-fruitful-year-of-your-life-yet_lakepointe_bc7a9880-e12c-11f0-8266-7b4f2e14ceba.txt",
     "transcript_hash": "580a95b550ab67862b41964bc681f1418a11230ae50a7030f57d274527767cbb",
-    "transcribed_at": "2026-09-15T10:38:40.497495+00:00"
+    "transcribed_at": "2026-09-15T10:38:40.497495+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:30ba9f34-d91b-11f0-8ffa-d72148c5d75f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9949363126.mp3",
@@ -591,7 +655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-12-14_joy-that-lasts_lakepointe_30ba9f34-d91b-11f0-8ffa-d72148c5d75f.txt",
     "transcript_hash": "ceaf8ca3322cd4c0a69d3a103e0d61aee5688c82062fd57a645159b78625ed1d",
-    "transcribed_at": "2026-09-15T10:36:13.494004+00:00"
+    "transcribed_at": "2026-09-15T10:36:13.494004+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:51c60c58-d39a-11f0-af68-93148b07ab0c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9013694725.mp3",
@@ -609,7 +675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-12-07_the-one-fact-that-will-change-everything-about-your-fear_lakepointe_51c60c58-d39a-11f0-af68-93148b07ab0c.txt",
     "transcript_hash": "e112e05fd0c94511cdafc78328e5a7d3a2dbd200dfb7742116275aecded9a0fe",
-    "transcribed_at": "2026-09-15T11:13:18.861974+00:00"
+    "transcribed_at": "2026-09-15T11:13:18.861974+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:c36a294c-c89c-11f0-92cf-2be3afec539f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7612470907.mp3",
@@ -627,7 +695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-11-23_5-proofs-that-the-supernatural-is-real_lakepointe_c36a294c-c89c-11f0-92cf-2be3afec539f.txt",
     "transcript_hash": "59fe6aba140730bab3d901525620cd6664f784fd8a821dfcb5bfcaa2d741aee0",
-    "transcribed_at": "2026-09-15T11:02:15.114431+00:00"
+    "transcribed_at": "2026-09-15T11:02:15.114431+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:6e64917a-c31b-11f0-963f-9792fc610914": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6316748907.mp3",
@@ -645,7 +715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-11-16_the-lie-that-keeps-good-people-out-of-heaven_lakepointe_6e64917a-c31b-11f0-963f-9792fc610914.txt",
     "transcript_hash": "ae135c3aa386d121ac2a58da7f614f8a101b5f56733bf2e8155d21dfd26bea4b",
-    "transcribed_at": "2026-09-15T16:32:53.843313+00:00"
+    "transcribed_at": "2026-09-15T16:32:53.843313+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:b03008b8-bd9a-11f0-8d9e-831e21f972d9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1848022417.mp3",
@@ -663,7 +735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-11-09_don-t-drop-the-baton-gen-z-needs-jesus_lakepointe_b03008b8-bd9a-11f0-8d9e-831e21f972d9.txt",
     "transcript_hash": "e48440fcd1ece1c9d042663e73275044fef51edbc66b35fe65e9d0ca83384e81",
-    "transcribed_at": "2026-09-15T16:33:15.147243+00:00"
+    "transcribed_at": "2026-09-15T16:33:15.147243+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:6e785b98-b81b-11f0-8471-3b5e296b3c79": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3251866715.mp3",
@@ -681,7 +755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-11-02_when-is-jesus-coming-back_lakepointe_6e785b98-b81b-11f0-8471-3b5e296b3c79.txt",
     "transcript_hash": "261a9ba537657ef819d313eb48c986dd457953eedc3e3da720681fb6cbd5f793",
-    "transcribed_at": "2026-09-15T16:31:06.397016+00:00"
+    "transcribed_at": "2026-09-15T16:31:06.397016+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:8c93eabc-b293-11f0-b016-2fb2d2dc040f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9749876600.mp3",
@@ -699,7 +775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-10-26_why-success-won-t-satisfy-you_lakepointe_8c93eabc-b293-11f0-b016-2fb2d2dc040f.txt",
     "transcript_hash": "7d10aad4455661bc95dabea1b10dccc18b24757d135d801bc5b1564b6533cc05",
-    "transcribed_at": "2026-09-15T16:19:06.527941+00:00"
+    "transcribed_at": "2026-09-15T16:19:06.527941+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:bdd9067e-ad12-11f0-868f-bfbc4dea4e66": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3515667648.mp3",
@@ -717,7 +795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-10-19_what-happens-when-you-die-these-2-questions-decide-everything_lakepointe_bdd9067e-ad12-11f0-868f-bfbc4dea4e66.txt",
     "transcript_hash": "b84a9f3affcc231564412b68c8e6bbf7e1ca07a1fd46cfb521cba4a08b89fbb7",
-    "transcribed_at": "2026-09-15T16:13:50.011341+00:00"
+    "transcribed_at": "2026-09-15T16:13:50.011341+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:583b1602-a792-11f0-9e88-db9ee01e8501": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3681795885.mp3",
@@ -735,7 +815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-10-12_what-would-you-do-if-you-werent-afraid_lakepointe_583b1602-a792-11f0-9e88-db9ee01e8501.txt",
     "transcript_hash": "e5ce9abbfdac2da3d058e2ed8033b8bba258920c33fcf08597dd9a0f92914cba",
-    "transcribed_at": "2026-09-15T19:49:17.933021+00:00"
+    "transcribed_at": "2026-09-15T19:49:17.933021+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:eb45abc4-a210-11f0-aed4-130b8b07245b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1869816725.mp3",
@@ -753,7 +835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-10-05_why-religion-cant-save-you-but-jesus-can_lakepointe_eb45abc4-a210-11f0-aed4-130b8b07245b.txt",
     "transcript_hash": "8463b910537f40fc0af12e655c704295a0148088e6d33db794cd344b0a3b5bea",
-    "transcribed_at": "2026-09-15T19:46:27.902833+00:00"
+    "transcribed_at": "2026-09-15T19:46:27.902833+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:ab382b18-9c90-11f0-90f0-9fe6192adda1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2278042280.mp3",
@@ -771,7 +855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-09-28_what-does-the-bible-really-say-about-prophecy_lakepointe_ab382b18-9c90-11f0-90f0-9fe6192adda1.txt",
     "transcript_hash": "4996897fd24499fb6aaa0e2449c8f9095d10a0f741e2f2466b09421a78419a23",
-    "transcribed_at": "2026-09-15T20:16:31.657068+00:00"
+    "transcribed_at": "2026-09-15T20:16:31.657068+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:530feeec-9715-11f0-9504-97a1dcbe1135": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5464400138.mp3",
@@ -789,7 +875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-09-21_how-courageous-faith-is-changing-our-nation_lakepointe_530feeec-9715-11f0-9504-97a1dcbe1135.txt",
     "transcript_hash": "73288f01e2458b84bf86ad464a64e0892aa6e4cd2a650adba6029e3dfbb824cc",
-    "transcribed_at": "2026-09-15T20:02:11.969505+00:00"
+    "transcribed_at": "2026-09-15T20:02:11.969505+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:36b9766c-9190-11f0-8f93-038194ae305e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9198628247.mp3",
@@ -807,7 +895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-09-14_what-is-keeping-the-american-church-from-the-power-of-the-holy-spirit_lakepointe_36b9766c-9190-11f0-8f93-038194ae305e.txt",
     "transcript_hash": "2716a0ed406931b7b94eae0f9f6dce9885ec7a81f9b87104a7e6704e3f2e4eae",
-    "transcribed_at": "2026-09-15T20:12:41.681081+00:00"
+    "transcribed_at": "2026-09-15T20:12:41.681081+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:7fe9ad30-8c12-11f0-a423-1b527821c998": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1524600487.mp3",
@@ -825,7 +915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-09-07_6-rules-to-fight-for-your-marriage-not-in-it_lakepointe_7fe9ad30-8c12-11f0-a423-1b527821c998.txt",
     "transcript_hash": "3377b936c1dfa0eb1e8d2a80bf0379d2e95c12df0be92f92cc56a5745911358f",
-    "transcribed_at": "2026-09-15T23:23:16.142491+00:00"
+    "transcribed_at": "2026-09-15T23:23:16.142491+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:9f3e562c-8695-11f0-9829-db2bfe5a8d37": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9658260273.mp3",
@@ -843,7 +935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-08-31_god-s-blueprint-for-lasting-marriage_lakepointe_9f3e562c-8695-11f0-9829-db2bfe5a8d37.txt",
     "transcript_hash": "50de95382b13741f9f49b07283eb98a3ff743599c7725be790bee9aaa6c886f5",
-    "transcribed_at": "2026-09-15T22:39:45.981106+00:00"
+    "transcribed_at": "2026-09-15T22:39:45.981106+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:e681ae5a-8111-11f0-b2b8-bf6564d65657": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7648814399.mp3",
@@ -861,7 +955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-08-24_the-building-blocks-for-godly-dating-single-and-married_lakepointe_e681ae5a-8111-11f0-b2b8-bf6564d65657.txt",
     "transcript_hash": "a8c57ab100d34ec9e7747d1791db96052b4e9566d7fa8d9d86a016f0254c05dc",
-    "transcribed_at": "2026-09-15T23:14:31.051877+00:00"
+    "transcribed_at": "2026-09-15T23:14:31.051877+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:a2a12ba6-7b95-11f0-b14a-dfbfceee4cd6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9127229380.mp3",
@@ -879,7 +975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-08-17_the-power-of-a-godly-woman_lakepointe_a2a12ba6-7b95-11f0-b14a-dfbfceee4cd6.txt",
     "transcript_hash": "7cc8bffbb75a8eea95c04bebff0a44082ce661535494a9fbd222e1757433d15c",
-    "transcribed_at": "2026-09-15T23:24:14.049355+00:00"
+    "transcribed_at": "2026-09-15T23:24:14.049355+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:61e308e0-7614-11f0-84e8-5765c1914ca3": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6333917493.mp3",
@@ -897,7 +995,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-08-10_the-code-of-a-godly-man_lakepointe_61e308e0-7614-11f0-84e8-5765c1914ca3.txt",
     "transcript_hash": "ad5a6540dd0171d73350ebec20b9b36862af6c5476eb9a2825fd7c0ee67d5efd",
-    "transcribed_at": "2026-09-15T23:24:48.903646+00:00"
+    "transcribed_at": "2026-09-15T23:24:48.903646+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:5880d68a-5a92-11f0-9e28-d365cccef5d2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3956082524.mp3?updated=1751824819",
@@ -915,7 +1015,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-07-06_could-2025-be-the-church-s-next-great-awakening_lakepointe_5880d68a-5a92-11f0-9e28-d365cccef5d2.txt",
     "transcript_hash": "21a6ff57144a375b0f29743036cf2307e832410815f723239df84b895c2b1514",
-    "transcribed_at": "2026-09-16T01:50:28.709381+00:00"
+    "transcribed_at": "2026-09-16T01:50:28.709381+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:bc4f541c-551e-11f0-96a0-bbda738d4579": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7413500722.mp3?updated=1751225403",
@@ -933,7 +1035,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-06-29_build-a-life-that-doesnt-collapse_lakepointe_bc4f541c-551e-11f0-96a0-bbda738d4579.txt",
     "transcript_hash": "d4e5dc2d465d01d80e3e0d23fdde456b0b2c3eddd90f5b1aaadbd42db01b5ad6",
-    "transcribed_at": "2026-09-16T01:22:12.031208+00:00"
+    "transcribed_at": "2026-09-16T01:22:12.031208+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:abdfedda-4f8d-11f0-81e4-1f7624d0bafd": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3690763145.mp3?updated=1750613336",
@@ -951,7 +1055,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-06-22_walk-out-of-worry_lakepointe_abdfedda-4f8d-11f0-81e4-1f7624d0bafd.txt",
     "transcript_hash": "ba54654da3d211361dfe91e5b170abd146ab6719807f8c84e4db198d77da5582",
-    "transcribed_at": "2026-09-16T01:06:03.610975+00:00"
+    "transcribed_at": "2026-09-16T01:06:03.610975+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:f0aa8b98-4a0e-11f0-8432-d31a427097f8": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8802799753.mp3?updated=1750009148",
@@ -969,7 +1075,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-06-15_why-jesus-wants-your-heart-not-your-performance_lakepointe_f0aa8b98-4a0e-11f0-8432-d31a427097f8.txt",
     "transcript_hash": "6027c5f88a78c336f215b72d38fa88d11b1889cac43a736b1100ecfabc7039c3",
-    "transcribed_at": "2026-09-16T01:11:13.823825+00:00"
+    "transcribed_at": "2026-09-16T01:11:13.823825+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:b696ae74-4495-11f0-9126-ff6dadccfde8": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3792002469.mp3?updated=1749407326",
@@ -987,7 +1095,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-06-08_the-road-to-happiness-are-you-on-the-right-path_lakepointe_b696ae74-4495-11f0-9126-ff6dadccfde8.txt",
     "transcript_hash": "889ce1a924f73fa42768a8d23883e0b0f34a4293e9af2de5e306c0ca8da6d249",
-    "transcribed_at": "2026-09-16T01:06:40.283494+00:00"
+    "transcribed_at": "2026-09-16T01:06:40.283494+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:26132242-3f0e-11f0-bf58-2b854a9d62fc": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5701143690.mp3?updated=1748799345",
@@ -1005,7 +1115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-06-01_dont-let-fear-keep-you-silent_lakepointe_26132242-3f0e-11f0-bf58-2b854a9d62fc.txt",
     "transcript_hash": "c3774b9ff1bcc7ff665714e7e53ad9cd18486165a6ded5354f3e28ccf37c2dc1",
-    "transcribed_at": "2026-09-16T06:07:33.677389+00:00"
+    "transcribed_at": "2026-09-16T06:07:33.677389+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:fc652210-398b-11f0-9957-0f289c3d1211": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9479203433.mp3?updated=1748193685",
@@ -1023,7 +1135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-05-25_every-christian-is-a-missionary-or-an-impostor_lakepointe_fc652210-398b-11f0-9957-0f289c3d1211.txt",
     "transcript_hash": "404b2ea79dc449ad2025abae58b169069606797dbdb7df0efd97e3d21419122c",
-    "transcribed_at": "2026-09-16T05:28:37.364229+00:00"
+    "transcribed_at": "2026-09-16T05:28:37.364229+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:1f9616c2-340f-11f0-b647-83be7fc99541": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2742801799.mp3?updated=1747590302",
@@ -1041,7 +1155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-05-18_can-i-overcome-sexual-brokenness_lakepointe_1f9616c2-340f-11f0-b647-83be7fc99541.txt",
     "transcript_hash": "1c6c783d6292e3ce46482c63bfa9e0471e5fc08da653895e31e4f13903e125d0",
-    "transcribed_at": "2026-09-16T06:14:35.224421+00:00"
+    "transcribed_at": "2026-09-16T06:14:35.224421+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:0cd5b2f2-2e8f-11f0-9f77-5ba7159cb103": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2139462344.mp3?updated=1746985539",
@@ -1059,7 +1175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-05-11_how-to-heal-from-church-hurt_lakepointe_0cd5b2f2-2e8f-11f0-9f77-5ba7159cb103.txt",
     "transcript_hash": "7a1d4b7cc00b1f5efa731f114160668e6e26185ec24cfd0c39713e7a22e12219",
-    "transcribed_at": "2026-09-16T05:47:25.071431+00:00"
+    "transcribed_at": "2026-09-16T05:47:25.071431+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:658e3c4a-2910-11f0-b803-d3f363a711d2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1515015423.mp3?updated=1746381385",
@@ -1077,7 +1195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-05-04_sin-is-not-your-safety-net_lakepointe_658e3c4a-2910-11f0-b803-d3f363a711d2.txt",
     "transcript_hash": "314317b86e70bb1528b689efb2634f5abba46c92ed49673c9e9a47290114f784",
-    "transcribed_at": "2026-09-16T06:10:19.264791+00:00"
+    "transcribed_at": "2026-09-16T06:10:19.264791+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:9dc25f02-238d-11f0-8c8e-23748b829008": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9430889788.mp3?updated=1745775460",
@@ -1095,7 +1215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-04-27_faith-is-on-the-rise-the-tide-is-turning_lakepointe_9dc25f02-238d-11f0-8c8e-23748b829008.txt",
     "transcript_hash": "dcb26bcc9155df21acc289f38a8beb8bd677b552440e13555391f188694bfa0c",
-    "transcribed_at": "2026-09-16T11:18:18.309157+00:00"
+    "transcribed_at": "2026-09-16T11:18:18.309157+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:360e4b26-1e0d-11f0-b2ea-2fc8e6534f44": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4316997173.mp3?updated=1745170555",
@@ -1113,7 +1235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-04-20_you-can-win-in-life-and-still-lose-eternity_lakepointe_360e4b26-1e0d-11f0-b2ea-2fc8e6534f44.txt",
     "transcript_hash": "b874b812b1e0c46e9a3b87ccc335cf887760dcb7ec8f9feb589a5976c6b0ce40",
-    "transcribed_at": "2026-09-16T11:01:55.989683+00:00"
+    "transcribed_at": "2026-09-16T11:01:55.989683+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:d277a4de-188c-11f0-8389-5b8aa79f7ecf": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7653274030.mp3?updated=1744565656",
@@ -1131,7 +1255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-04-13_the-dangers-of-a-counterfeit-christianity_lakepointe_d277a4de-188c-11f0-8389-5b8aa79f7ecf.txt",
     "transcript_hash": "3f62890d1ef43791abf96ce2f47fcdd4f67cfc618b3b280a27c2d1204fb69ffc",
-    "transcribed_at": "2026-09-16T10:20:11.087784+00:00"
+    "transcribed_at": "2026-09-16T10:20:11.087784+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:de5e4042-1313-11f0-b6ff-bf885bbbd320": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3024093804.mp3?updated=1743963951",
@@ -1149,7 +1275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-04-06_the-art-of-evangelism-how-to-share-your-faith-boldly_lakepointe_de5e4042-1313-11f0-b6ff-bf885bbbd320.txt",
     "transcript_hash": "e383b2dd991bc94095d763a38ac4d9de20be1487f7fa532e80c8bb27a102c57c",
-    "transcribed_at": "2026-09-16T11:09:38.123053+00:00"
+    "transcribed_at": "2026-09-16T11:09:38.123053+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:b74d9fec-0d8d-11f0-99c2-57802877c2b3": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2986918668.mp3?updated=1743356577",
@@ -1167,7 +1295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-03-30_tolerating-a-jezebel-spirit-in-the-church_lakepointe_b74d9fec-0d8d-11f0-99c2-57802877c2b3.txt",
     "transcript_hash": "753cfae48600d56c030ff3ffac0818a9b7dda4709d0309af521c3d5d78acce5b",
-    "transcribed_at": "2026-09-16T11:02:51.648093+00:00"
+    "transcribed_at": "2026-09-16T11:02:51.648093+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:22fc7114-07f8-11f0-85ed-af15f176e9e3": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4212456801.mp3?updated=1742742578",
@@ -1185,7 +1315,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-03-23_choosing-courage-in-a-compromised-culture_lakepointe_22fc7114-07f8-11f0-85ed-af15f176e9e3.txt",
     "transcript_hash": "f5701155b87a9703ad0d08ceb664435b07dfbd4e8b588214182222335b52b6d8",
-    "transcribed_at": "2026-09-16T15:19:46.101569+00:00"
+    "transcribed_at": "2026-09-16T15:19:46.101569+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:c6e5ac54-0295-11f0-95dc-2ff2037080ea": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6508609551.mp3?updated=1742150576",
@@ -1203,7 +1335,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-03-16_how-god-shapes-us-in-lifes-toughest-moments_lakepointe_c6e5ac54-0295-11f0-95dc-2ff2037080ea.txt",
     "transcript_hash": "ce9cbd2c0e67b1cbe23ca61b3bb9d4d64497296dcc3b40b9e87c46e7ff6ab3c4",
-    "transcribed_at": "2026-09-16T15:35:00.969545+00:00"
+    "transcribed_at": "2026-09-16T15:35:00.969545+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:2cafb3bc-fd15-11ef-9bc1-5760a456f689": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8370889184.mp3?updated=1741545587",
@@ -1221,7 +1355,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-03-09_has-the-church-lost-its-way-and-how-to-find-it-again_lakepointe_2cafb3bc-fd15-11ef-9bc1-5760a456f689.txt",
     "transcript_hash": "612a5a0839c2842e62d6c8f5c213a2e4c029f1a4c21bf690223702c2d5bc1b56",
-    "transcribed_at": "2026-09-16T15:14:55.369175+00:00"
+    "transcribed_at": "2026-09-16T15:14:55.369175+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:cd92b38a-f79b-11ef-957c-1bdd0f63502b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7171685546.mp3?updated=1740943702",
@@ -1239,7 +1375,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-03-02_overcome-spiritual-apathy_lakepointe_cd92b38a-f79b-11ef-957c-1bdd0f63502b.txt",
     "transcript_hash": "42383ec34b6d5d340a3d75cc54f4363e0135366bc69b57de5f3e55360b615e2a",
-    "transcribed_at": "2026-09-16T16:10:28.878723+00:00"
+    "transcribed_at": "2026-09-16T16:10:28.878723+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:e9b20068-f21c-11ef-8c06-233bc80b9ced": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8985698057.mp3?updated=1740339609",
@@ -1257,7 +1395,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-02-23_there-is-hope-for-your-marriage_lakepointe_e9b20068-f21c-11ef-8c06-233bc80b9ced.txt",
     "transcript_hash": "aeb0876b0ccf6f8f68a30f16ada55f591950becf1587e465b1ce355122e00a19",
-    "transcribed_at": "2026-09-16T19:41:11.501533+00:00"
+    "transcribed_at": "2026-09-16T19:41:11.501533+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:6c1c8156-ec8a-11ef-a9b1-a72902b96b56": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4528111327.mp3?updated=1740339707",
@@ -1275,7 +1415,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-02-23_are-you-tipping-or-tithing-to-god_lakepointe_6c1c8156-ec8a-11ef-a9b1-a72902b96b56.txt",
     "transcript_hash": "c53130199afeb836430ef5431a173824c3b530772a9fb9677b4f6896a7dfb1fc",
-    "transcribed_at": "2026-09-16T15:29:06.854384+00:00"
+    "transcribed_at": "2026-09-16T15:29:06.854384+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:422f86d4-e719-11ef-b901-0fa6f3b222ba": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9821124347.mp3?updated=1739128415",
@@ -1293,7 +1435,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-02-09_do-you-resent-god-s-goodness-in-other-people-s-lives_lakepointe_422f86d4-e719-11ef-b901-0fa6f3b222ba.txt",
     "transcript_hash": "f2a49000a6aaf43f2358a73426ac30f2115a5dd6cf685e8f88c2e80713823cba",
-    "transcribed_at": "2026-09-16T19:11:17.774251+00:00"
+    "transcribed_at": "2026-09-16T19:11:17.774251+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:9046c8e8-e1a4-11ef-aa12-07dc70132fcc": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8775437366.mp3?updated=1738528540",
@@ -1311,7 +1455,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-02-02_the-domino-effect-of-relationships_lakepointe_9046c8e8-e1a4-11ef-aa12-07dc70132fcc.txt",
     "transcript_hash": "d013b17cefc5af7b5ae7784cfb061a13b0ec484b032633d1fd232dccabb631f4",
-    "transcribed_at": "2026-09-16T19:31:11.940011+00:00"
+    "transcribed_at": "2026-09-16T19:31:11.940011+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:a6d060a2-dc1c-11ef-a63c-1b81560bc112": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4378016831.mp3?updated=1737920428",
@@ -1329,7 +1475,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-01-26_pride-the-silent-killer_lakepointe_a6d060a2-dc1c-11ef-a63c-1b81560bc112.txt",
     "transcript_hash": "eb3d8f671acedca49632ff31400e2362d87d37fd1281782e0d1983df69111129",
-    "transcribed_at": "2026-09-16T19:28:29.399272+00:00"
+    "transcribed_at": "2026-09-16T19:28:29.399272+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:aec31bda-d6a7-11ef-b81f-1b3f147a0932": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6855486984.mp3?updated=1737320416",
@@ -1347,7 +1495,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-01-19_worship-wins-the-war_lakepointe_aec31bda-d6a7-11ef-b81f-1b3f147a0932.txt",
     "transcript_hash": "6294596d44b592bb600b00290bfb9e885757e4349af4fbc6bee2719729562bbf",
-    "transcribed_at": "2026-09-16T19:45:12.041172+00:00"
+    "transcribed_at": "2026-09-16T19:45:12.041172+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:1bdf16c4-d117-11ef-902a-df7957a39b04": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7334026820.mp3?updated=1736785174",
@@ -1365,7 +1515,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-01-12_beware-spiritual-pride_lakepointe_1bdf16c4-d117-11ef-902a-df7957a39b04.txt",
     "transcript_hash": "eb8a9c155954f7dff8a5432ab01f1504d9bc263c6d17f52bb4ea62f023b96493",
-    "transcribed_at": "2026-09-16T22:16:54.235042+00:00"
+    "transcribed_at": "2026-09-16T22:16:54.235042+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:69b5c1b4-cb99-11ef-b06d-6700a06d9d58": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4227916731.mp3?updated=1736104824",
@@ -1383,7 +1535,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2025-01-05_freedom-from-people-pleasing_lakepointe_69b5c1b4-cb99-11ef-b06d-6700a06d9d58.txt",
     "transcript_hash": "2379b60ae730150757660239b7d51456d91757b5796fbec19b823435d263da1f",
-    "transcribed_at": "2026-09-16T22:21:44.470194+00:00"
+    "transcribed_at": "2026-09-16T22:21:44.470194+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:6bad56c0-bb23-11ef-868c-372b85446f96": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3763060372.mp3?updated=1734294929",
@@ -1401,7 +1555,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2024-12-15_wisdom-that-transforms-your-life-mike-breaux_lakepointe_6bad56c0-bb23-11ef-868c-372b85446f96.txt",
     "transcript_hash": "35ce357c954336570f1bbd2ac52c2d62ac6fb30d7458a602ef457d69739fdb42",
-    "transcribed_at": "2026-09-16T22:17:22.594604+00:00"
+    "transcribed_at": "2026-09-16T22:17:22.594604+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:0c07a4fe-7880-11ef-803b-675aa3c85318": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5997205318.mp3?updated=1726967984",
@@ -1419,7 +1575,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2024-09-22_the-anointing-of-forgiveness_lakepointe_0c07a4fe-7880-11ef-803b-675aa3c85318.txt",
     "transcript_hash": "03289bdaf1bcec83726e64e2ebc52ffb723cd2e147277c77805d57e94bbaa18c",
-    "transcribed_at": "2026-09-16T22:27:37.084527+00:00"
+    "transcribed_at": "2026-09-16T22:27:37.084527+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:78cdb87ee6a5638e4247773006834032": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7154722856.mp3?updated=1704307202",
@@ -1437,7 +1595,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-12-31_new-year-s-at-home_lakepointe_78cdb87ee6a5638e4247773006834032.txt",
     "transcript_hash": "3870b6eb336f0544d66b816f47afb1245c5046f53efefab335f54a9416d505ea",
-    "transcribed_at": "2026-09-16T21:57:59.867139+00:00"
+    "transcribed_at": "2026-09-16T21:57:59.867139+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:555370bc0bc85383e836a4586319d121": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9972471309.mp3?updated=1704307202",
@@ -1455,7 +1615,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-12-24_christmas-candlelight-services-2023_lakepointe_555370bc0bc85383e836a4586319d121.txt",
     "transcript_hash": "50926f3509fa1da13cd050e0a94644f24fbbe95afcdb921e38adca6584fe80e7",
-    "transcribed_at": "2026-09-17T00:21:54.062264+00:00"
+    "transcribed_at": "2026-09-17T00:21:54.062264+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:49fd13c634efcf039624b1f5aea63527": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2545225583.mp3?updated=1704307203",
@@ -1473,7 +1635,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-12-17_light-up-the-darkness_lakepointe_49fd13c634efcf039624b1f5aea63527.txt",
     "transcript_hash": "ca30127043685f2d2c27b3e92e22ed5ad803fa73a0e000bb8fea1f0cf889055d",
-    "transcribed_at": "2026-09-17T00:29:13.928004+00:00"
+    "transcribed_at": "2026-09-17T00:29:13.928004+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:0c5be24877b30115d31a945dcf1fc893": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9891600395.mp3?updated=1704307203",
@@ -1491,7 +1655,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-12-10_how-to-deal-with-grief_lakepointe_0c5be24877b30115d31a945dcf1fc893.txt",
     "transcript_hash": "ed7a1cf81a9c68352dc5a31ed481efda5f69250dfb9df112cff2b877262156d3",
-    "transcribed_at": "2026-09-17T01:09:00.868782+00:00"
+    "transcribed_at": "2026-09-17T01:09:00.868782+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:37d64ef39efb16067c0e2b095c9b481c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9771367454.mp3?updated=1704307204",
@@ -1509,7 +1675,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-12-03_forgiveness-sets-you-free_lakepointe_37d64ef39efb16067c0e2b095c9b481c.txt",
     "transcript_hash": "596c2a2d6831224fb25c8cd39af4d7b435be8c89c4968739d3faede30d2a1bf8",
-    "transcribed_at": "2026-09-17T00:20:31.105283+00:00"
+    "transcribed_at": "2026-09-17T00:20:31.105283+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:9467c7a60247e77dbd7f50ce5b5277ff": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4886600203.mp3?updated=1704307205",
@@ -1527,7 +1695,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-11-26_heaven-is-real_lakepointe_9467c7a60247e77dbd7f50ce5b5277ff.txt",
     "transcript_hash": "6936c1d1ce4ed7ac4e2f4b33fef4ebb0fafcabdb73a9bb09cf3cf654a7f41f54",
-    "transcribed_at": "2026-09-17T00:25:38.064921+00:00"
+    "transcribed_at": "2026-09-17T00:25:38.064921+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:4a31edff3b06f61115385f631fc24410": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2272695395.mp3?updated=1704307206",
@@ -1545,7 +1715,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-11-19_how-a-heart-of-gratitude-changes-your-life_lakepointe_4a31edff3b06f61115385f631fc24410.txt",
     "transcript_hash": "602f61afb4dec8b366e768d45e9776359faab8602562b3b5e8f0d9cfdeeedff8",
-    "transcribed_at": "2026-09-17T04:00:13.444746+00:00"
+    "transcribed_at": "2026-09-17T04:00:13.444746+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:9ae3f867867382879d0c060075cad4c7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4609636963.mp3?updated=1704307207",
@@ -1563,7 +1735,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-11-12_rescuing-a-generation-from-critical-theory-queer-theory-humanism_lakepointe_9ae3f867867382879d0c060075cad4c7.txt",
     "transcript_hash": "05dd60950d7530c2dd78fc879ca07d6c469f0330bf9786050444f55a9dc646c9",
-    "transcribed_at": "2026-09-17T04:07:50.577173+00:00"
+    "transcribed_at": "2026-09-17T04:07:50.577173+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:b4f0fac311e882c11cc807af250764a6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2884817450.mp3?updated=1704307207",
@@ -1581,7 +1755,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-11-05_israel-hamas-and-the-end-times_lakepointe_b4f0fac311e882c11cc807af250764a6.txt",
     "transcript_hash": "82029688a929b64ece156cd44104b4243aa0c5e69f0fc5135381b79920c0246d",
-    "transcribed_at": "2026-09-17T04:10:44.592534+00:00"
+    "transcribed_at": "2026-09-17T04:10:44.592534+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:83f014ab07f37abcbf37bddd5aa8044f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7405131666.mp3?updated=1704307208",
@@ -1599,7 +1775,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-10-29_gods-dreams-are-born-in-prayer_lakepointe_83f014ab07f37abcbf37bddd5aa8044f.txt",
     "transcript_hash": "cac365cf921c3f2375970292c692fcb9e76434149513f204ad12616dbb066bc2",
-    "transcribed_at": "2026-09-17T03:41:06.219438+00:00"
+    "transcribed_at": "2026-09-17T03:41:06.219438+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:9c49b157d4c24d088c8567853f249abc": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1646041454.mp3?updated=1704307208",
@@ -1617,7 +1795,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-10-22_embracing-the-servanthood-of-jesus_lakepointe_9c49b157d4c24d088c8567853f249abc.txt",
     "transcript_hash": "4cdc1315347624838fce3aab34894b6897fa48b72d3a3b5005b8083426ef76d0",
-    "transcribed_at": "2026-09-17T04:19:32.832019+00:00"
+    "transcribed_at": "2026-09-17T04:19:32.832019+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:ca8229dcab2b22a28d5104f141def4ac": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4801330627.mp3?updated=1704307209",
@@ -1635,7 +1815,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-10-15_9-ways-to-lead-like-christ_lakepointe_ca8229dcab2b22a28d5104f141def4ac.txt",
     "transcript_hash": "d06aa3a9922ef26c42c0b562fa34acf85245781836bbfdedb1cb302d1b56d9d6",
-    "transcribed_at": "2026-09-17T09:25:21.668599+00:00"
+    "transcribed_at": "2026-09-17T09:25:21.668599+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:70990e74273e5843bd39b280d1122504": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6000185871.mp3?updated=1704307210",
@@ -1653,7 +1835,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-10-08_this-is-how-god-sparks-revivals_lakepointe_70990e74273e5843bd39b280d1122504.txt",
     "transcript_hash": "8b986e6ae68f180571f8ecd2f380552d00d337df6657cd82895bbfdf336039ab",
-    "transcribed_at": "2026-09-17T09:45:02.528169+00:00"
+    "transcribed_at": "2026-09-17T09:45:02.528169+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:3d5c546912de569b27628331afa8d2e6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6353012951.mp3?updated=1704307211",
@@ -1671,7 +1855,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-10-01_how-god-can-fix-the-chaos-in-our-culture_lakepointe_3d5c546912de569b27628331afa8d2e6.txt",
     "transcript_hash": "34e886a46c858b241d90427a85dd8bcf8aa7c6b05302439e222430535820ec5f",
-    "transcribed_at": "2026-09-17T09:29:55.130957+00:00"
+    "transcribed_at": "2026-09-17T09:29:55.130957+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:94b9a92510a5142e6f51c11115f8964e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3765408907.mp3?updated=1704307212",
@@ -1689,7 +1875,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-09-24_overcoming-opposition-through-jesus_lakepointe_94b9a92510a5142e6f51c11115f8964e.txt",
     "transcript_hash": "849b38ece2d0b0ffbe394514f884dda54fd3b8e62e386c473a299b6e53413929",
-    "transcribed_at": "2026-09-17T09:41:40.835122+00:00"
+    "transcribed_at": "2026-09-17T09:41:40.835122+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:32a0a8133bbb3b0966340cc1ab9a9917": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7034828447.mp3?updated=1704307212",
@@ -1707,7 +1895,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-09-17_finding-and-fulfilling-your-calling_lakepointe_32a0a8133bbb3b0966340cc1ab9a9917.txt",
     "transcript_hash": "763121bc55553c20bd8fac7dc7ffe18fff57e559584e0b858221787fc4efb13c",
-    "transcribed_at": "2026-09-17T09:36:22.393831+00:00"
+    "transcribed_at": "2026-09-17T09:36:22.393831+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:5b9442648c5698738015c99fdf12477e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9474129141.mp3?updated=1704307213",
@@ -1725,7 +1915,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-09-10_reigniting-the-it-factor-of-faith_lakepointe_5b9442648c5698738015c99fdf12477e.txt",
     "transcript_hash": "0bc6764e7c43d785967241a45fa2580d8a28319d20eb62850c1d56fb293f3613",
-    "transcribed_at": "2026-09-17T14:48:50.745351+00:00"
+    "transcribed_at": "2026-09-17T14:48:50.745351+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:2e6c1e9ab13e09932f6fc4d03650fe50": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2323503657.mp3?updated=1704307225",
@@ -1743,7 +1935,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-07-02_you-are-not-what-you-ve-done_lakepointe_2e6c1e9ab13e09932f6fc4d03650fe50.txt",
     "transcript_hash": "3185c52330201ea2f5cbea01a27bc490aff383797eac51b418fc35b84a43ca00",
-    "transcribed_at": "2026-09-17T14:26:03.622054+00:00"
+    "transcribed_at": "2026-09-17T14:26:03.622054+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:c3b1275f1212869e5ec525154ca1b140": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1252471634.mp3?updated=1704307229",
@@ -1761,7 +1955,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-06-25_you-are-not-what-you-do_lakepointe_c3b1275f1212869e5ec525154ca1b140.txt",
     "transcript_hash": "6ce684395ecd5a9a3ed79e4420c360d8545165dedd96bda1180df87a6b5cefdf",
-    "transcribed_at": "2026-09-17T14:26:46.148034+00:00"
+    "transcribed_at": "2026-09-17T14:26:46.148034+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:e018293ebd09f99a895b053ffd9f1815": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8619698257.mp3?updated=1704307234",
@@ -1779,7 +1975,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-06-18_you-are-not-what-people-say-about-you_lakepointe_e018293ebd09f99a895b053ffd9f1815.txt",
     "transcript_hash": "af66bba504b07e955026cf7c750a10b8c4edd2e5c5a66d476e722fba819b43f0",
-    "transcribed_at": "2026-09-17T14:28:01.146685+00:00"
+    "transcribed_at": "2026-09-17T14:28:01.146685+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:c6a81aae7b76a87ffcc30c1253b4e9f9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1734788922.mp3?updated=1704307238",
@@ -1797,7 +1995,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-06-11_you-are-not-your-feelings_lakepointe_c6a81aae7b76a87ffcc30c1253b4e9f9.txt",
     "transcript_hash": "0ba95d057296c2ec2bcd7ea87ddcb85e3cd74a587510e0c7ea6353eeba309576",
-    "transcribed_at": "2026-09-17T14:43:23.419334+00:00"
+    "transcribed_at": "2026-09-17T14:43:23.419334+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:33041525a6b96ce94792adb5f05808de": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6839867539.mp3?updated=1704307242",
@@ -1815,7 +2015,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-06-04_jesus-exclusivity_lakepointe_33041525a6b96ce94792adb5f05808de.txt",
     "transcript_hash": "77c9d014a56ea268abe9bc88daec9dbbb1de92950c0060d3559d5a2480ce3c08",
-    "transcribed_at": "2026-09-17T18:55:18.527786+00:00"
+    "transcribed_at": "2026-09-17T18:55:18.527786+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:4f42afc976b8f63da81b5078a760bc82": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4503724670.mp3?updated=1704307246",
@@ -1833,7 +2035,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-05-28_jesus-controversial-grace_lakepointe_4f42afc976b8f63da81b5078a760bc82.txt",
     "transcript_hash": "6b2039995d8950d4f5f7d84594cd149422c26e0b2ac40face69030ff7880f7cd",
-    "transcribed_at": "2026-09-17T18:33:37.853907+00:00"
+    "transcribed_at": "2026-09-17T18:33:37.853907+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:85669eb9e294edea41f01da54ac66d94": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5519038333.mp3?updated=1704307250",
@@ -1851,7 +2055,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-05-21_jesus-the-sexual-revolution_lakepointe_85669eb9e294edea41f01da54ac66d94.txt",
     "transcript_hash": "57066b135a90312d2498138a05e8719107ff41504d6e4134d7da926204a12066",
-    "transcribed_at": "2026-09-17T18:54:30.197097+00:00"
+    "transcribed_at": "2026-09-17T18:54:30.197097+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:6154cabc2b27969034017125e6a69055": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1835316397.mp3?updated=1704307254",
@@ -1869,7 +2075,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-05-14_raising-godly-children_lakepointe_6154cabc2b27969034017125e6a69055.txt",
     "transcript_hash": "4bcc7ac6fe7b6f6b271a8529b9fb6001cd23fc26ff1457d468e275a9b769377a",
-    "transcribed_at": "2026-09-17T18:35:04.029805+00:00"
+    "transcribed_at": "2026-09-17T18:35:04.029805+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:5b85f9a1fa9d58321b2b36ade96514f9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4497713462.mp3?updated=1704307258",
@@ -1887,7 +2095,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-05-07_jesus-gender-dysphoria-the-transgender-movement_lakepointe_5b85f9a1fa9d58321b2b36ade96514f9.txt",
     "transcript_hash": "50c97afef0dfaf510cb937117f8e632385cc0930a6011b8da77657a53189f344",
-    "transcribed_at": "2026-09-17T18:28:20.509949+00:00"
+    "transcribed_at": "2026-09-17T18:28:20.509949+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:eea49ca87cc41b27abcb107f32469f86": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6601818693.mp3?updated=1704307264",
@@ -1905,7 +2115,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-04-30_jesus-hell_lakepointe_eea49ca87cc41b27abcb107f32469f86.txt",
     "transcript_hash": "d279f9f58eee0cdf7143a3f5e07e2f7fdb14f2090e46d76d361f0b7e3803a66f",
-    "transcribed_at": "2026-09-17T21:55:05.734187+00:00"
+    "transcribed_at": "2026-09-17T21:55:05.734187+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:1387ad0fc65ff4e8ff86b7139a5edd11": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9502422838.mp3?updated=1704307268",
@@ -1923,7 +2135,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-04-23_jesus-religion_lakepointe_1387ad0fc65ff4e8ff86b7139a5edd11.txt",
     "transcript_hash": "e184da8c9ae2ed3ae9d6d79f2b710b109905478371210762c3890d81d94cd664",
-    "transcribed_at": "2026-09-17T21:39:53.416342+00:00"
+    "transcribed_at": "2026-09-17T21:39:53.416342+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:a3328e79ec62df82d0c2d1e3465bda5f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2232570909.mp3?updated=1704307274",
@@ -1941,7 +2155,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-04-16_jesus-controversy_lakepointe_a3328e79ec62df82d0c2d1e3465bda5f.txt",
     "transcript_hash": "ced3b1beaf00e75df670c177a94a136737977536c11516953699f67c8a6e2a01",
-    "transcribed_at": "2026-09-17T22:06:42.888779+00:00"
+    "transcribed_at": "2026-09-17T22:06:42.888779+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:39686ab7e9e05efe7482a731b46e4ee5": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8673378765.mp3?updated=1704307282",
@@ -1959,7 +2175,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-04-02_when-your-soul-feels-crushed_lakepointe_39686ab7e9e05efe7482a731b46e4ee5.txt",
     "transcript_hash": "0853e9ea793369f9612668ec4913bff8e30ce13a031117ccd31c795cb09181ed",
-    "transcribed_at": "2026-09-17T21:35:52.758180+00:00"
+    "transcribed_at": "2026-09-17T21:35:52.758180+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:1c0c7c30a096ae2365f54efd17a2671e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1902606032.mp3?updated=1704307287",
@@ -1977,7 +2195,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-03-26_defeating-the-goliaths-in-your-life_lakepointe_1c0c7c30a096ae2365f54efd17a2671e.txt",
     "transcript_hash": "7728e7bbf3438b3d360760ae62debce22cdc5163f26d80c81b85db5aa3daf09e",
-    "transcribed_at": "2026-09-17T21:45:58.934663+00:00"
+    "transcribed_at": "2026-09-17T21:45:58.934663+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:24a297fd8ff0e707200889ee0fd508b8": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4380648288.mp3?updated=1704307294",
@@ -1995,7 +2215,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-03-12_christ-alone-can-cure-us-from-sin_lakepointe_24a297fd8ff0e707200889ee0fd508b8.txt",
     "transcript_hash": "62b064ed9cbb8383608b6fecd8234e8c12c7b16f622bcb3708d23428b5531d55",
-    "transcribed_at": "2026-09-18T19:08:39.025968+00:00"
+    "transcribed_at": "2026-09-18T19:08:39.025968+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:3d8960b5792c495d4f49a4f553a2a0ef": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6426062352.mp3?updated=1704307298",
@@ -2013,7 +2235,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-03-05_god-doesn-t-waste-our-waiting_lakepointe_3d8960b5792c495d4f49a4f553a2a0ef.txt",
     "transcript_hash": "ecc5518d8056f909329012f27d3beb9b3444dcdfa96f2a8a1f6124b331e589a3",
-    "transcribed_at": "2026-09-18T19:18:47.928941+00:00"
+    "transcribed_at": "2026-09-18T19:18:47.928941+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:c254d1f06c88b1029e3c7d9bc191677d": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1474701187.mp3?updated=1704307303",
@@ -2031,7 +2255,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-02-26_jesus-is-with-you-in-the-valleys_lakepointe_c254d1f06c88b1029e3c7d9bc191677d.txt",
     "transcript_hash": "a4f86de7f10775067bd8842e7224a3fba0d7e1ce55e76587d9e5fa085c659bed",
-    "transcribed_at": "2026-09-18T19:26:10.079559+00:00"
+    "transcribed_at": "2026-09-18T19:26:10.079559+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:cbc10553e1c743dc63183d689da86068": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6139102303.mp3?updated=1704307308",
@@ -2049,7 +2275,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-02-19_seeking-god-on-the-mountaintop_lakepointe_cbc10553e1c743dc63183d689da86068.txt",
     "transcript_hash": "7a71089f40dc50d101afc6ab5ad15988df46a54dcc1b58954bb1153453665e15",
-    "transcribed_at": "2026-09-18T19:26:58.082183+00:00"
+    "transcribed_at": "2026-09-18T19:26:58.082183+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:da67c1c97bbf6273038f70383971f3a0": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6691661657.mp3?updated=1704307312",
@@ -2067,7 +2295,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-02-12_god-s-plan-for-financial-peace-freedom_lakepointe_da67c1c97bbf6273038f70383971f3a0.txt",
     "transcript_hash": "4ab5779b0662db4f893a13a4e195754817ea3c07a77dc495d824f9963ae8d93a",
-    "transcribed_at": "2026-09-18T19:11:54.294618+00:00"
+    "transcribed_at": "2026-09-18T19:11:54.294618+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:ae9c29f34448c7327e871a95ee6c83a1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1185601520.mp3?updated=1704307317",
@@ -2099,7 +2329,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-01-22_let-god-fight-your-battles_lakepointe_5fa488dde83e7f5fed470a7f0f6a88ff.txt",
     "transcript_hash": "39df5d57ac08715ff234b788f038d90606bc3e2b010bfa3b424acbe9e60b79d7",
-    "transcribed_at": "2026-09-18T22:06:19.666919+00:00"
+    "transcribed_at": "2026-09-18T22:06:19.666919+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:03bbe2eec23ffa07a1606ea5306c2fe1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4526631575.mp3?updated=1704307319",
@@ -2117,7 +2349,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-01-15_a-lifestyle-of-worship_lakepointe_03bbe2eec23ffa07a1606ea5306c2fe1.txt",
     "transcript_hash": "881bf641ffc72ff53fbc5b46bf8f197215e5f1cf37cddb7310a3117d9ea6ba35",
-    "transcribed_at": "2026-09-18T22:08:59.967660+00:00"
+    "transcribed_at": "2026-09-18T22:08:59.967660+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:e2ff7861cc2fbbfb156ea9893fdc0a0e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9695613578.mp3?updated=1704307320",
@@ -2135,7 +2369,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-01-08_where-is-god-when-you-need-him_lakepointe_e2ff7861cc2fbbfb156ea9893fdc0a0e.txt",
     "transcript_hash": "50b8e4cbdce73d3615b85fcb4d2cd82051bfb2bfd28d91b916a1b18798a91533",
-    "transcribed_at": "2026-09-18T22:10:01.528419+00:00"
+    "transcribed_at": "2026-09-18T22:10:01.528419+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:0c4f0144cb73d2e295654cb9f98f7db2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9823305224.mp3?updated=1704307320",
@@ -2153,7 +2389,9 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2023-01-01_new-year-new-life-in-jesus_lakepointe_0c4f0144cb73d2e295654cb9f98f7db2.txt",
     "transcript_hash": "341c9ed3b0a1ac0563519bda49edc2c49334c714f39f88f4e7b6ad2126f82406",
-    "transcribed_at": "2026-09-18T22:04:20.869805+00:00"
+    "transcribed_at": "2026-09-18T22:04:20.869805+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "lakepointe:ec47548010cf19ecad23efbe41910304": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1210452414.mp3?updated=1704307321",
@@ -2381,6 +2619,8 @@
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2022-08-28_it-s-okay-to-not-be-okay_lakepointe_4333d3497680451f2e6255501e13a53a.txt",
     "transcript_hash": "9abfc9c12212d9496bd8a01a61f3be412fb7db79d54fe2d53893f4917267d13e",
-    "transcribed_at": "2026-09-14T03:08:27.766508+00:00"
+    "transcribed_at": "2026-09-14T03:08:27.766508+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   }
 }

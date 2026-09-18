@@ -15,7 +15,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-18T21:19:23.856612+00:00",
     "transcript_hash": "ef35edb2bd9acde0c11f0d6c34c27f989ffb94a7e5a1d7f3f0c5c2146e99a89a",
-    "content_path": "transcripts/gracepres/2026-09-13_protected-by-the-king_gracepres_tag_soundcloud_2010_tracks_2401192710.txt"
+    "content_path": "transcripts/gracepres/2026-09-13_protected-by-the-king_gracepres_tag_soundcloud_2010_tracks_2401192710.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "gracepres:tag:soundcloud,2010:tracks/2397037218": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2397037218",
@@ -33,7 +35,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-18T21:07:25.942438+00:00",
     "transcript_hash": "024ac43bcf4d25408d1b54a45cc672d10cebe8167217a29d883b54f9a9df413d",
-    "content_path": "transcripts/gracepres/2026-09-06_the-secret-of-contentment_gracepres_tag_soundcloud_2010_tracks_2397037218.txt"
+    "content_path": "transcripts/gracepres/2026-09-06_the-secret-of-contentment_gracepres_tag_soundcloud_2010_tracks_2397037218.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "gracepres:tag:soundcloud,2010:tracks/2392057917": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2392057917",
@@ -51,7 +55,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-18T21:08:09.050317+00:00",
     "transcript_hash": "69ac3378133a05b2166d926152438d347e3a1703f5283a38ddfedfc379adf521",
-    "content_path": "transcripts/gracepres/2026-08-30_only-the-good-die-young_gracepres_tag_soundcloud_2010_tracks_2392057917.txt"
+    "content_path": "transcripts/gracepres/2026-08-30_only-the-good-die-young_gracepres_tag_soundcloud_2010_tracks_2392057917.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "gracepres:tag:soundcloud,2010:tracks/2387554707": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2387554707",
@@ -69,7 +75,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-18T21:29:40.653750+00:00",
     "transcript_hash": "4cec0a065833aef942abfbece64b07996998446295ef3476977f9b0d662fc1a6",
-    "content_path": "transcripts/gracepres/2026-08-23_the-one-thing_gracepres_tag_soundcloud_2010_tracks_2387554707.txt"
+    "content_path": "transcripts/gracepres/2026-08-23_the-one-thing_gracepres_tag_soundcloud_2010_tracks_2387554707.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "gracepres:tag:soundcloud,2010:tracks/2383882473": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2383882473",
@@ -87,7 +95,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-18T21:31:22.481665+00:00",
     "transcript_hash": "a0f3d664d93f7b3239a96aed5fc5d69c0a865b9948602be9839b7e86bd40fb6c",
-    "content_path": "transcripts/gracepres/2026-08-16_the-song-of-life_gracepres_tag_soundcloud_2010_tracks_2383882473.txt"
+    "content_path": "transcripts/gracepres/2026-08-16_the-song-of-life_gracepres_tag_soundcloud_2010_tracks_2383882473.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "gracepres:tag:soundcloud,2010:tracks/2379252398": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2379252398",
@@ -105,7 +115,9 @@
     "transcription_status": "done",
     "transcribed_at": "2026-09-18T22:18:58.547510+00:00",
     "transcript_hash": "e3408a217ca1f6b117bfcd1890b0c638c8dc7bc6bf64abc62f4b7a71a2cf1215",
-    "content_path": "transcripts/gracepres/2026-08-09_our-dwelling-place_gracepres_tag_soundcloud_2010_tracks_2379252398.txt"
+    "content_path": "transcripts/gracepres/2026-08-09_our-dwelling-place_gracepres_tag_soundcloud_2010_tracks_2379252398.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false
   },
   "gracepres:tag:soundcloud,2010:tracks/2375043299": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2375043299",
