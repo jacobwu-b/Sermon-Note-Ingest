@@ -2113,7 +2113,11 @@
     "raw_title": "A Lifestyle of Worship",
     "series": null,
     "speaker": null,
-    "title": "A Lifestyle of Worship"
+    "title": "A Lifestyle of Worship",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-01-15_a-lifestyle-of-worship_lakepointe_03bbe2eec23ffa07a1606ea5306c2fe1.txt",
+    "transcript_hash": "881bf641ffc72ff53fbc5b46bf8f197215e5f1cf37cddb7310a3117d9ea6ba35",
+    "transcribed_at": "2026-09-18T22:08:59.967660+00:00"
   },
   "lakepointe:e2ff7861cc2fbbfb156ea9893fdc0a0e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9695613578.mp3?updated=1704307320",
