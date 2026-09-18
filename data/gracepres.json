@@ -12,10 +12,10 @@
     "blurb": "Pastor Matt Mobley ends our series in the book of Psalm with a message from Psalm 2",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-18T21:19:23.856612+00:00",
+    "transcript_hash": "ef35edb2bd9acde0c11f0d6c34c27f989ffb94a7e5a1d7f3f0c5c2146e99a89a",
+    "content_path": "transcripts/gracepres/2026-09-13_protected-by-the-king_gracepres_tag_soundcloud_2010_tracks_2401192710.txt"
   },
   "gracepres:tag:soundcloud,2010:tracks/2397037218": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2397037218",
