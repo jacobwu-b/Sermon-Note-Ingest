@@ -30,10 +30,10 @@
     "blurb": "Pastor Abhishikth Babu continues our series in The Book of Psalms with a message from psalm 131",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-18T21:07:25.942438+00:00",
+    "transcript_hash": "024ac43bcf4d25408d1b54a45cc672d10cebe8167217a29d883b54f9a9df413d",
+    "content_path": "transcripts/gracepres/2026-09-06_the-secret-of-contentment_gracepres_tag_soundcloud_2010_tracks_2397037218.txt"
   },
   "gracepres:tag:soundcloud,2010:tracks/2392057917": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2392057917",
