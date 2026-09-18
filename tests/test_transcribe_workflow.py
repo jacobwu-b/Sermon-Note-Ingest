@@ -124,3 +124,12 @@ def test_transcribe_workflow_commits_the_ledger_update_once_before_the_push_retr
     text = workflow_text()
     commit_count = text.count('git commit -m "chore(data): record transcription progress [skip ci]"')
     assert commit_count == 2  # once up front, once after a redo following a real conflict
+
+
+def test_transcribe_workflow_wires_whisper_decoding_vars():
+    # poller/config.py reads these (spec 0003); unset repo variables arrive as empty
+    # strings and fall back to the defaults, so wiring them costs nothing until set.
+    text = workflow_text()
+    assert "WHISPER_BEAM_SIZE: ${{ vars.WHISPER_BEAM_SIZE }}" in text
+    assert "WHISPER_CONDITION_ON_PREVIOUS_TEXT: ${{ vars.WHISPER_CONDITION_ON_PREVIOUS_TEXT }}" in text
+    assert "WHISPER_DOMAIN_PROMPT: ${{ vars.WHISPER_DOMAIN_PROMPT }}" in text

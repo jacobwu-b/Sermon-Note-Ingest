@@ -28,13 +28,13 @@ import argparse
 import logging
 import re
 import sys
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from datetime import UTC, datetime, timedelta
 
-from poller import config, content_repo, net, pipeline_dispatch, store, transcribe
+from poller import config, content_repo, net, pipeline_dispatch, prompting, store, transcribe
 from poller.slug import slugify
 
-TranscribeAudio = Callable[[str], tuple[str, str]]
+TranscribeAudio = Callable[[str, str | None], tuple[str, str]]
 PushTranscripts = Callable[[dict[str, str]], None]
 DispatchIngestEvent = Callable[[dict[str, object], str], None]
 
@@ -139,20 +139,26 @@ def transcribe_church(
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
     push: PushTranscripts = content_repo.push_transcripts,
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
+    vocabulary: Sequence[str] = (),
 ) -> bool:
     """Transcribe ``batch``, push the successes to Content in one commit, then ledger them.
 
     Returns ``True`` iff no sermon in ``batch`` ended terminally failed and the Content
     push (if there was anything to push) succeeded. A download failure is not a failure
-    of this run — it's an expected, retried-next-run outcome.
+    of this run — it's an expected, retried-next-run outcome. ``vocabulary`` is the
+    church's configured term list (``CHURCHES[name].vocabulary``), prompted alongside
+    what ``records`` already knows about the church.
     """
     to_push: dict[str, str] = {}
     pending_marks: dict[str, tuple[str, str]] = {}
     all_ok = True
+    church_terms = prompting.church_vocabulary(records)
 
     for guid, record in batch:
+        hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
+        logger.debug("%s/%s: hotwords: %s", name, guid, hotwords)
         try:
-            text, digest = transcribe_audio(record["audio_url"])
+            text, digest = transcribe_audio(record["audio_url"], hotwords)
         except net.AudioDownloadError as exc:
             logger.warning("%s/%s: audio download failed, retrying next run: %s", name, guid, exc)
             continue
@@ -302,6 +308,7 @@ def run(
                 transcribe_audio=transcribe_audio,
                 push=push,
                 dispatch_ingest_event=dispatch_ingest_event,
+                vocabulary=selected[name].vocabulary,
             )
         except Exception:
             logger.exception("%s: transcription crashed unexpectedly", name)
