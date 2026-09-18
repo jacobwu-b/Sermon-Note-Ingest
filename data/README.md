@@ -49,6 +49,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
+| gracepres | 446 | Protected By The King | 2026-09-13 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 136 | How To Consecrate Your Life For God’s Purposes | 2026-09-13 |
 | menlo | 145 | The Two-Sided Coin | 2026-09-13 |
@@ -56,5 +57,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | pbc | 398 | Beneath the Surface | 2026-09-13 |
 | westgate | 105 | Week 1 - A New Family | 2026-09-13 |
 
-**Total sermons across all churches: 1393**
+**Total sermons across all churches: 1839**
 <!-- STATS:END -->
