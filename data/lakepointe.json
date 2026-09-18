@@ -2045,7 +2045,11 @@
     "raw_title": "Seeking God on the Mountaintop",
     "series": null,
     "speaker": null,
-    "title": "Seeking God on the Mountaintop"
+    "title": "Seeking God on the Mountaintop",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-02-19_seeking-god-on-the-mountaintop_lakepointe_cbc10553e1c743dc63183d689da86068.txt",
+    "transcript_hash": "7a71089f40dc50d101afc6ab5ad15988df46a54dcc1b58954bb1153453665e15",
+    "transcribed_at": "2026-09-18T19:26:58.082183+00:00"
   },
   "lakepointe:da67c1c97bbf6273038f70383971f3a0": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6691661657.mp3?updated=1704307312",
