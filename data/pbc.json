@@ -2063,7 +2063,11 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/07/14/Sermon%202024%2007%2014%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-07-14_untitled_pbc-archive_Main_Service_2024_07_14_Sermon_2024_07_14_Podcast.mp3.txt",
+    "transcript_hash": "cb4c17aab641f57a4a17920d52accea1c6c9d56d35dd9fe53709c987cfe6a355",
+    "transcribed_at": "2026-09-18T19:21:32.374193+00:00"
   },
   "pbc-archive:Main_Service/2024/07/07/2024 07 07 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/07/07/2024 07 07 Sermon Podcast.mp3",
