@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from poller.sources.base import PollResult, SermonItem, SourceAdapter
+from poller.sources.gracepres import GracepresAdapter
 from poller.sources.hillside import HillsideAdapter
 from poller.sources.lakepointe import LakepointeAdapter
 from poller.sources.menlo import MenloPodbeanAdapter
@@ -25,4 +26,5 @@ ADAPTERS: dict[str, type[SourceAdapter]] = {
     "westgate": WestgateAdapter,
     "lakepointe": LakepointeAdapter,
     "hillside": HillsideAdapter,
+    "gracepres": GracepresAdapter,
 }
