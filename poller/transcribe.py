@@ -59,9 +59,21 @@ def _get_model() -> Any:
     return _model
 
 
-def default_transcribe(audio_path: Path) -> str:
-    """Run faster-whisper over ``audio_path`` and return the joined transcript text."""
-    segments, _info = _get_model().transcribe(str(audio_path), vad_filter=True, log_progress=True)
+def default_transcribe(audio_path: Path, hotwords: str | None) -> str:
+    """Run faster-whisper over ``audio_path`` and return the joined transcript text.
+
+    ``hotwords`` (poller/prompting.py) is dropped here, not upstream, when
+    ``WHISPER_DOMAIN_PROMPT`` is off — this is the one place that talks to the model.
+    """
+    whisper_cfg = config.load_whisper_config()
+    segments, _info = _get_model().transcribe(
+        str(audio_path),
+        vad_filter=True,
+        log_progress=True,
+        beam_size=whisper_cfg.beam_size,
+        condition_on_previous_text=whisper_cfg.condition_on_previous_text,
+        hotwords=hotwords if whisper_cfg.domain_prompt else None,
+    )
     return " ".join(segment.text.strip() for segment in segments)
 
 
@@ -72,8 +84,9 @@ def _sha256(text: str) -> str:
 
 def _transcribe_with_retries(
     audio_path: Path,
+    hotwords: str | None,
     *,
-    transcribe: Callable[[Path], str],
+    transcribe: Callable[[Path, str | None], str],
     sleep: Callable[[float], None],
     attempts: int = _TRANSCRIBE_ATTEMPTS,
     backoff_base: float = _TRANSCRIBE_BACKOFF_BASE,
@@ -87,7 +100,7 @@ def _transcribe_with_retries(
     model_error: Exception | None = None
     for attempt in range(1, attempts + 1):
         try:
-            text = transcribe(audio_path).strip()
+            text = transcribe(audio_path, hotwords).strip()
         except Exception as exc:  # noqa: BLE001 — a per-file model failure; classified below.
             model_error = exc
         else:
@@ -105,8 +118,9 @@ def _transcribe_with_retries(
 
 def transcribe_audio(
     audio_url: str,
+    hotwords: str | None = None,
     *,
-    transcribe: Callable[[Path], str] = default_transcribe,
+    transcribe: Callable[[Path, str | None], str] = default_transcribe,
     download: Callable[[str, Path], None] = http_download,
     sleep: Callable[[float], None] = time.sleep,
 ) -> tuple[str, str]:
@@ -121,5 +135,5 @@ def transcribe_audio(
     with tempfile.TemporaryDirectory() as tmpdir:
         dest = Path(tmpdir) / "audio"
         download_audio(audio_url, dest, download=download, sleep=sleep)
-        text = _transcribe_with_retries(dest, transcribe=transcribe, sleep=sleep)
+        text = _transcribe_with_retries(dest, hotwords, transcribe=transcribe, sleep=sleep)
     return text, _sha256(text)

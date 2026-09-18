@@ -37,6 +37,26 @@ def test_load_churches_rejects_non_object_entry():
         config.load_churches('{"menlo": "not an object"}')
 
 
+def test_load_churches_parses_a_vocabulary_list():
+    churches = config.load_churches(
+        '{"pbc": {"rss": "https://example.org/pbc.xml", "enabled": true,'
+        ' "vocabulary": ["Peninsula Bible Church", "Cupertino"]}}'
+    )
+    assert churches["pbc"].vocabulary == ("Peninsula Bible Church", "Cupertino")
+
+
+def test_load_churches_defaults_vocabulary_to_empty():
+    churches = config.load_churches('{"menlo": {"rss": "https://example.org/feed.xml"}}')
+    assert churches["menlo"].vocabulary == ()
+
+
+def test_load_churches_rejects_a_vocabulary_that_is_not_a_list_of_strings():
+    with pytest.raises(config.ConfigError):
+        config.load_churches('{"pbc": {"rss": "https://example.org/pbc.xml", "vocabulary": "PBC"}}')
+    with pytest.raises(config.ConfigError):
+        config.load_churches('{"pbc": {"rss": "https://example.org/pbc.xml", "vocabulary": ["ok", 3]}}')
+
+
 def test_load_notify_config_reads_all_three_secrets(monkeypatch):
     monkeypatch.setenv("NOTIFY_EMAIL_FROM", "alerts@example.org")
     monkeypatch.setenv("NOTIFY_EMAIL_TO", "team@example.org")
@@ -55,12 +75,26 @@ def test_load_notify_config_raises_when_any_secret_missing(monkeypatch):
         config.load_notify_config()
 
 
-def test_load_whisper_config_defaults_to_small_and_int8(monkeypatch):
-    monkeypatch.delenv("WHISPER_MODEL", raising=False)
-    monkeypatch.delenv("WHISPER_COMPUTE_TYPE", raising=False)
-    monkeypatch.delenv("WHISPER_CPU_THREADS", raising=False)
+_WHISPER_VARS = (
+    "WHISPER_MODEL",
+    "WHISPER_COMPUTE_TYPE",
+    "WHISPER_CPU_THREADS",
+    "WHISPER_BEAM_SIZE",
+    "WHISPER_CONDITION_ON_PREVIOUS_TEXT",
+    "WHISPER_DOMAIN_PROMPT",
+)
+
+
+def test_load_whisper_config_defaults_to_small_int8_and_prompted_beam_search(monkeypatch):
+    for var in _WHISPER_VARS:
+        monkeypatch.delenv(var, raising=False)
     assert config.load_whisper_config() == config.WhisperConfig(
-        model="small", compute_type="int8", cpu_threads=0
+        model="small",
+        compute_type="int8",
+        cpu_threads=0,
+        beam_size=5,
+        condition_on_previous_text=True,
+        domain_prompt=True,
     )
 
 
@@ -68,9 +102,34 @@ def test_load_whisper_config_reads_overrides(monkeypatch):
     monkeypatch.setenv("WHISPER_MODEL", "medium")
     monkeypatch.setenv("WHISPER_COMPUTE_TYPE", "float32")
     monkeypatch.setenv("WHISPER_CPU_THREADS", "3")
+    monkeypatch.setenv("WHISPER_BEAM_SIZE", "8")
+    monkeypatch.setenv("WHISPER_CONDITION_ON_PREVIOUS_TEXT", "false")
+    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "False")
     assert config.load_whisper_config() == config.WhisperConfig(
-        model="medium", compute_type="float32", cpu_threads=3
+        model="medium",
+        compute_type="float32",
+        cpu_threads=3,
+        beam_size=8,
+        condition_on_previous_text=False,
+        domain_prompt=False,
     )
+
+
+def test_load_whisper_config_treats_empty_values_as_unset(monkeypatch):
+    # An unset GitHub Actions `vars.*` reaches the job as an empty string, which
+    # must read as "not supplied", not as a parse error or a false flag.
+    for var in _WHISPER_VARS:
+        monkeypatch.setenv(var, "")
+    cfg = config.load_whisper_config()
+    assert cfg.beam_size == 5
+    assert cfg.condition_on_previous_text is True
+    assert cfg.domain_prompt is True
+
+
+def test_load_whisper_config_rejects_an_unrecognised_flag_value(monkeypatch):
+    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "maybe")
+    with pytest.raises(config.ConfigError):
+        config.load_whisper_config()
 
 
 def test_load_content_repo_config_reads_all_three(monkeypatch):

@@ -25,6 +25,9 @@ class ChurchConfig:
     rss: str
     enabled: bool
     notify: bool
+    # Operator-supplied terms the feed can't tell us (the church's full name, campus
+    # names); prompted into every transcription of this church (poller/prompting.py).
+    vocabulary: tuple[str, ...] = ()
 
 
 def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
@@ -48,13 +51,29 @@ def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
     for name, entry in data.items():
         if not isinstance(entry, dict):
             raise ConfigError(f"CHURCHES[{name!r}] must be a JSON object")
+        vocabulary = entry.get("vocabulary", [])
+        if not isinstance(vocabulary, list) or not all(isinstance(term, str) for term in vocabulary):
+            raise ConfigError(f"CHURCHES[{name!r}].vocabulary must be a list of strings")
         churches[name] = ChurchConfig(
             name=name,
             rss=str(entry.get("rss", "")),
             enabled=bool(entry.get("enabled", False)),
             notify=bool(entry.get("notify", False)),
+            vocabulary=tuple(vocabulary),
         )
     return churches
+
+
+def _env_flag(name: str, default: bool) -> bool:
+    """A boolean env var; unset or empty (an unset Actions ``vars.*``) reads as ``default``."""
+    raw = (os.environ.get(name) or "").strip().lower()
+    if not raw:
+        return default
+    if raw in ("true", "1", "yes"):
+        return True
+    if raw in ("false", "0", "no"):
+        return False
+    raise ConfigError(f"{name} must be true or false, got {raw!r}")
 
 
 @dataclass(frozen=True)
@@ -91,21 +110,30 @@ class WhisperConfig:
     model: str
     compute_type: str
     cpu_threads: int
+    beam_size: int
+    condition_on_previous_text: bool
+    # The kill switch for poller/prompting.py's hotwords (spec 0003).
+    domain_prompt: bool
 
 
 def load_whisper_config() -> WhisperConfig:
-    """Read ``WHISPER_MODEL``/``WHISPER_COMPUTE_TYPE``/``WHISPER_CPU_THREADS``.
+    """Read the ``WHISPER_*`` env vars; every one is optional.
 
-    Defaults: ``small``/``int8``/``0`` — ``0`` tells faster-whisper to pick its own
-    thread count (every core it can see). A single-run GitHub Actions job never needs
+    Defaults: ``small``/``int8``/``0`` threads — ``0`` tells faster-whisper to pick its
+    own thread count (every core it can see). A single-run GitHub Actions job never needs
     to override this; a local run fanning out several parallel shards (scripts/
     transcribe_local.py) sets it per-shard so shards divide cores instead of each
-    claiming every core faster-whisper can see.
+    claiming every core faster-whisper can see. ``beam_size`` 5 and
+    ``condition_on_previous_text`` true are faster-whisper's own defaults, exposed so a
+    production run can be retuned without a code change.
     """
     return WhisperConfig(
         model=os.environ.get("WHISPER_MODEL") or "small",
         compute_type=os.environ.get("WHISPER_COMPUTE_TYPE") or "int8",
         cpu_threads=int(os.environ.get("WHISPER_CPU_THREADS") or "0"),
+        beam_size=int(os.environ.get("WHISPER_BEAM_SIZE") or "5"),
+        condition_on_previous_text=_env_flag("WHISPER_CONDITION_ON_PREVIOUS_TEXT", True),
+        domain_prompt=_env_flag("WHISPER_DOMAIN_PROMPT", True),
     )
 
 

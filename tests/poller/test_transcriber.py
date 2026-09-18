@@ -85,7 +85,7 @@ def test_transcribe_church_marks_success_only_after_push_succeeds(tmp_path, monk
     records = {"g1": _record("g1", published_on="2026-01-01")}
     pushed = {}
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         return "the transcript", "hash123"
 
     def fake_push(files):
@@ -103,6 +103,56 @@ def test_transcribe_church_marks_success_only_after_push_succeeds(tmp_path, monk
     assert saved["g1"]["content_path"] == "transcripts/menlo/2026-01-01_sermon-g1_g1.txt"
 
 
+def test_transcribe_church_passes_per_sermon_hotwords_built_from_the_record_and_church_vocabulary(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {
+        "g1": _record("g1", published_on="2026-01-01") | {"speaker": "Keith Crosby", "series": "Luke"},
+        "g2": _record("g2", published_on="2025-12-01") | {"speaker": "Jesse Fenn", "series": None},
+    }
+    seen = {}
+
+    def fake_transcribe_audio(url, hotwords):
+        seen[url] = hotwords
+        return "the transcript", "hash123"
+
+    ok = transcriber.transcribe_church(
+        "hillside",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        vocabulary=("Hillside Church",),
+    )
+
+    assert ok is True
+    # The sermon's own metadata leads, then the operator's vocabulary, then what the
+    # rest of the ledger knows about this church (g2's speaker).
+    assert seen["https://example.org/a.mp3"] == "Keith Crosby, Luke, Sermon g1, Hillside Church, Jesse Fenn"
+
+
+def test_run_passes_the_configured_church_vocabulary_through_to_the_hotwords(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setenv(
+        "CHURCHES",
+        '{"pbc": {"rss": "https://example.org/pbc.xml", "enabled": true,'
+        ' "vocabulary": ["Peninsula Bible Church"]}}',
+    )
+    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+    seen = []
+
+    def fake_transcribe_audio(url, hotwords):
+        seen.append(hotwords)
+        return "text", "hash"
+
+    transcriber.run(
+        church_names=["pbc"], limit=1, transcribe_audio=fake_transcribe_audio, push=lambda files: None
+    )
+
+    assert seen == ["Sermon p1, Peninsula Bible Church"]
+
+
 def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcribed_item(
     tmp_path, monkeypatch
 ):
@@ -110,7 +160,7 @@ def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcrib
     records = {"g1": _record("g1", published_on="2026-09-15")}
     dispatched = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         return "the transcript", "hash123"
 
     ok = transcriber.transcribe_church(
@@ -137,7 +187,7 @@ def test_transcribe_church_survives_a_dispatch_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", published_on="2026-09-15")}
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         return "the transcript", "hash123"
 
     def failing_dispatch(event, source):
@@ -162,7 +212,7 @@ def test_transcribe_church_never_dispatches_for_an_item_whose_push_failed(tmp_pa
     records = {"g1": _record("g1", published_on="2026-09-15")}
     dispatched = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         return "text", "hash"
 
     def failing_push(files):
@@ -186,7 +236,7 @@ def test_transcribe_church_never_dispatches_for_a_backfill_sermon(tmp_path, monk
     records = {"g1": _record("g1", published_on="2026-01-01")}
     dispatched = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         return "the transcript", "hash123"
 
     ok = transcriber.transcribe_church(
@@ -212,7 +262,7 @@ def test_transcribe_church_dispatches_when_published_at_is_recent_even_if_publis
     records["g1"]["published_at"] = "2026-09-15T10:00:00+00:00"
     dispatched = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         return "the transcript", "hash123"
 
     ok = transcriber.transcribe_church(
@@ -232,7 +282,7 @@ def test_transcribe_church_leaves_batch_pending_when_push_fails(tmp_path, monkey
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", published_on="2026-01-01")}
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         return "text", "hash"
 
     def failing_push(files):
@@ -251,7 +301,7 @@ def test_transcribe_church_leaves_a_download_failure_pending_not_failed(tmp_path
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", published_on="2026-01-01")}
 
-    def failing_transcribe_audio(url):
+    def failing_transcribe_audio(url, hotwords):
         raise AudioDownloadError("cdn rejected")
 
     ok = transcriber.transcribe_church(
@@ -271,7 +321,7 @@ def test_transcribe_church_marks_a_terminal_model_failure(tmp_path, monkeypatch)
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", published_on="2026-01-01")}
 
-    def failing_transcribe_audio(url):
+    def failing_transcribe_audio(url, hotwords):
         raise EmptyTranscriptError("nothing but silence")
 
     ok = transcriber.transcribe_church(
@@ -300,7 +350,7 @@ def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkey
 
     transcribed = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         transcribed.append(url)
         return "text", "hash"
 
@@ -323,7 +373,7 @@ def test_run_is_a_noop_on_a_second_run_against_already_transcribed_records(tmp_p
 
     calls = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         calls.append(url)
         return "text", "hash"
 
@@ -399,7 +449,7 @@ def test_run_shards_partition_every_pending_sermon_exactly_once(tmp_path, monkey
             {"p1": _record("p1", published_on="2026-01-01"), "p2": _record("p2", published_on="2026-01-02")},
         )
 
-        def fake_transcribe_audio(url, _seen=seen):
+        def fake_transcribe_audio(url, hotwords, _seen=seen):
             _seen.append(url)
             return "text", "hash"
 
@@ -421,7 +471,7 @@ def test_run_shard_count_more_than_pending_leaves_extra_shards_empty(tmp_path, m
 
     calls = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         calls.append(url)
         return "text", "hash"
 
@@ -488,7 +538,7 @@ def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):
 
     calls = []
 
-    def fake_transcribe_audio(url):
+    def fake_transcribe_audio(url, hotwords):
         calls.append(url)
         return "text", "hash"
 
