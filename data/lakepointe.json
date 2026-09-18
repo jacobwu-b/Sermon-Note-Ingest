@@ -2027,7 +2027,11 @@
     "raw_title": "Jesus Is With You in the Valleys",
     "series": null,
     "speaker": null,
-    "title": "Jesus Is With You in the Valleys"
+    "title": "Jesus Is With You in the Valleys",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-02-26_jesus-is-with-you-in-the-valleys_lakepointe_c254d1f06c88b1029e3c7d9bc191677d.txt",
+    "transcript_hash": "a4f86de7f10775067bd8842e7224a3fba0d7e1ce55e76587d9e5fa085c659bed",
+    "transcribed_at": "2026-09-18T19:26:10.079559+00:00"
   },
   "lakepointe:cbc10553e1c743dc63183d689da86068": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6139102303.mp3?updated=1704307308",
