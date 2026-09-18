@@ -2109,7 +2109,11 @@
     "raw_title": "Contain the Flame | Smear Campaign | Guest Speaker Ashlee Eiland",
     "series": "Smear Campaign",
     "speaker": "Guest Speaker Ashlee Eiland",
-    "title": "Contain the Flame"
+    "title": "Contain the Flame",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-06-09_contain-the-flame_menlochurchvideo.podbean.com_15a3d899-7cbf-33cf-96e7-22abba4af627.txt",
+    "transcript_hash": "a44492755a6c9989628976ca2a0fcb8217a373ba7264e11e661819dfddd172e6",
+    "transcribed_at": "2026-09-18T22:01:58.050271+00:00"
   },
   "menlochurchvideo.podbean.com/a31873ea-aae7-3ec6-9f44-cdf95b246113": {
     "audio_url": "https://mcdn.podbean.com/mf/web/f2mz6iunjxhmp6sq/Smear2Message.mp3",
