@@ -2137,7 +2137,11 @@
     "raw_title": "New Year, New Life in Jesus",
     "series": null,
     "speaker": null,
-    "title": "New Year, New Life in Jesus"
+    "title": "New Year, New Life in Jesus",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2023-01-01_new-year-new-life-in-jesus_lakepointe_0c4f0144cb73d2e295654cb9f98f7db2.txt",
+    "transcript_hash": "341c9ed3b0a1ac0563519bda49edc2c49334c714f39f88f4e7b6ad2126f82406",
+    "transcribed_at": "2026-09-18T22:04:20.869805+00:00"
   },
   "lakepointe:ec47548010cf19ecad23efbe41910304": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1210452414.mp3?updated=1704307321",
