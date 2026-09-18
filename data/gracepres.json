@@ -48,10 +48,10 @@
     "blurb": "Pastor David Jones continues our series in the Book of Psalms with a message from Psalm 73",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-18T21:08:09.050317+00:00",
+    "transcript_hash": "69ac3378133a05b2166d926152438d347e3a1703f5283a38ddfedfc379adf521",
+    "content_path": "transcripts/gracepres/2026-08-30_only-the-good-die-young_gracepres_tag_soundcloud_2010_tracks_2392057917.txt"
   },
   "gracepres:tag:soundcloud,2010:tracks/2387554707": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2387554707",
