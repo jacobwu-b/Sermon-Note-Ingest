@@ -84,10 +84,10 @@
     "blurb": "Pastor Rod Miles continues our series in the Book of Psalms with a message from Psalm 96",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-18T21:31:22.481665+00:00",
+    "transcript_hash": "a0f3d664d93f7b3239a96aed5fc5d69c0a865b9948602be9839b7e86bd40fb6c",
+    "content_path": "transcripts/gracepres/2026-08-16_the-song-of-life_gracepres_tag_soundcloud_2010_tracks_2383882473.txt"
   },
   "gracepres:tag:soundcloud,2010:tracks/2379252398": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2379252398",
