@@ -342,10 +342,12 @@
     "blurb": "Pastor Iron Kim continues our Series on the Parables Of The Kingdom with a message from  MATTHEW 13:24-30; 36-43 (ESV)",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T03:05:43.414291+00:00",
+    "transcript_hash": "7816f62dfd93708a3d912f24965f105550b05a9a80446c699cdadc42ffc3c7ee",
+    "content_path": "transcripts/gracepres/2026-05-17_the-parable-of-the-wheat-and-the-weeds_gracepres_tag_soundcloud_2010_tracks_2323145648.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2318886929": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2318886929",
