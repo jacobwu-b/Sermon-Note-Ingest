@@ -226,10 +226,12 @@
     "blurb": "Pastor Abhishikth Babu continues our sermon series in The Book of Psalms with a message from Psalm 42",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T01:00:34.277674+00:00",
+    "transcript_hash": "b232727c5446c20ccc2e68892e630c6a90b1c6f91381306f89eb26f9736a68d8",
+    "content_path": "transcripts/gracepres/2026-06-28_when-god-feels-far-away_gracepres_tag_soundcloud_2010_tracks_2350802600.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2344256111": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2344256111",
