@@ -2665,7 +2665,13 @@
     "raw_title": "God Is More Than Enough",
     "series": null,
     "speaker": null,
-    "title": "God Is More Than Enough"
+    "title": "God Is More Than Enough",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-09-04_god-is-more-than-enough_lakepointe_619171f4a14c96df58f04c9dda5f054a.txt",
+    "transcript_hash": "c980bf7ee7dcc2f6c6df7cfd678ca5e5e0d97e07d5043c151c0bb899ef0f3798",
+    "transcribed_at": "2026-09-19T06:55:34.520910+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:4333d3497680451f2e6255501e13a53a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9987665612.mp3?updated=1704307333",
