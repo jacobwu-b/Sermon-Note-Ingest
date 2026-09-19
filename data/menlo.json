@@ -2825,7 +2825,13 @@
     "raw_title": "How to Have Love | Christmas at the Movies | Scott Palmbush",
     "series": "Christmas at the Movies",
     "speaker": "Scott Palmbush",
-    "title": "How to Have Love"
+    "title": "How to Have Love",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2023-12-17_how-to-have-love_menlochurchvideo.podbean.com_3478b879-1b5d-32ff-9ad1-6df59c1590aa.txt",
+    "transcript_hash": "19d64deb382679ad90b34857bfdd305e5244ce07f5d5b75bf745775f861bf2de",
+    "transcribed_at": "2026-09-19T14:42:10.824692+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/cbec77f9-485d-31a7-acb9-21e83a34ed62": {
     "audio_url": "https://mcdn.podbean.com/mf/web/kex8ie/Elf_Message_Pod.mp3",
