@@ -2849,7 +2849,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/12/31/2023%2012%2031%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-12-31_untitled_pbc-archive_Main_Service_2023_12_31_2023_12_31_Podcast.mp3.txt",
+    "transcript_hash": "07f2ae6a9acf9452f4ecc8a6c4af7e996bee54e66b1088244a2b1a385f3a1406",
+    "transcribed_at": "2026-09-19T11:57:12.733993+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/12/24/Sermon 12 24 2023 podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2023/12/24/Sermon 12 24 2023 podcast.mp3",
