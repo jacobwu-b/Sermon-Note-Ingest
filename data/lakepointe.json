@@ -2529,7 +2529,13 @@
     "raw_title": "Are You Rich in Love?",
     "series": null,
     "speaker": null,
-    "title": "Are You Rich in Love?"
+    "title": "Are You Rich in Love?",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-11-06_are-you-rich-in-love_lakepointe_492376794e86d0f751cbf4b93e411a0b.txt",
+    "transcript_hash": "fdb174b7adf874463a2e529da72001715d76ae030533eca2c9b2cfb3d171a685",
+    "transcribed_at": "2026-09-19T03:37:41.581570+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:f5fa95da08a8a62c1d5e789526a590e7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6940427814.mp3?updated=1704307326",
