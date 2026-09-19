@@ -2543,7 +2543,13 @@
     "raw_title": "Love Like Jesus",
     "series": null,
     "speaker": null,
-    "title": "Love Like Jesus"
+    "title": "Love Like Jesus",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-10-30_love-like-jesus_lakepointe_f5fa95da08a8a62c1d5e789526a590e7.txt",
+    "transcript_hash": "aacf9f30fa8380d34ea8c742a1ba4d8a3f7213f3aa5a23f2001a69ca4925c2f1",
+    "transcribed_at": "2026-09-19T03:04:14.451949+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:df507f8615eb18db783d9ff1dc44a79e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1940215320.mp3?updated=1704307327",
