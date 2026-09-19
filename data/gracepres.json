@@ -324,10 +324,12 @@
     "blurb": "Pastor Iron Kim continues our series on The Parables Of The Kingdom with a message from Matthew 13: 34-36",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T03:06:40.404030+00:00",
+    "transcript_hash": "d635cd8d1f5780731b932662c72908ba6c6d76ed7990ef285fa7f2b3597c7384",
+    "content_path": "transcripts/gracepres/2026-05-24_the-hidden-treasure-and-the-pearl_gracepres_tag_soundcloud_2010_tracks_2326750103.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2323145648": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2323145648",
