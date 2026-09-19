@@ -864,10 +864,12 @@
     "blurb": "Pastor Rod Miles continues on in our series on the book of acts with a word from Acts 6:8-7:60 NIV.\n\nhttps://www.biblegateway.com/passage/?search=Acts%206%3A8-7%3A60&version=NIV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T20:15:50.022639+00:00",
+    "transcript_hash": "7b373ba6ed8fd5a7af7c703e86c635ab2abe6bb9de9e93bf8819594e040cb078",
+    "content_path": "transcripts/gracepres/2025-11-16_living-god-s-mission-the-life-of-stephen_gracepres_tag_soundcloud_2010_tracks_2215033745.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2210951633": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2210951633",
