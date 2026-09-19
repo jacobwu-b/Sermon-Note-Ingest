@@ -2449,7 +2449,13 @@
     "raw_title": "Put Your Hope in Jesus",
     "series": null,
     "speaker": null,
-    "title": "Put Your Hope in Jesus"
+    "title": "Put Your Hope in Jesus",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-12-04_put-your-hope-in-jesus_lakepointe_688628a95b2adaff2208a60595534f8a.txt",
+    "transcript_hash": "b92648db0680b63c141f8a7bdd5871fbcc82c14a2ac36973bfdcef26b882b5ad",
+    "transcribed_at": "2026-09-19T01:21:00.496585+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:b37d17ec727ebca8e87057f8623532ad": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4154264100.mp3?updated=1704307323",
