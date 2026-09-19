@@ -2851,7 +2851,13 @@
     "raw_title": "How to Have Joy | Christmas at the Movies | Phil EuBank",
     "series": "Christmas at the Movies",
     "speaker": "Phil EuBank",
-    "title": "How to Have Joy"
+    "title": "How to Have Joy",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2023-12-10_how-to-have-joy_menlochurchvideo.podbean.com_cbec77f9-485d-31a7-acb9-21e83a34ed62.txt",
+    "transcript_hash": "707dcd939fd485e493fcc8bbd96b44e7dcedc3ffc2dd6f2f4efec63183594caf",
+    "transcribed_at": "2026-09-19T15:07:46.543797+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/06b1ae3d-8ebd-374a-b435-626faecdb7ea": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8z9aav/Xmas_2_WonderfulSermon.mp3",
