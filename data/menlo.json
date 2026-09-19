@@ -2531,7 +2531,13 @@
     "raw_title": "Souls with Bodies or Embodied Souls | Wonderfully Made Series | Phil EuBank",
     "series": "Wonderfully Made Series",
     "speaker": "Phil EuBank",
-    "title": "Souls with Bodies or Embodied Souls"
+    "title": "Souls with Bodies or Embodied Souls",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-04-07_souls-with-bodies-or-embodied-souls_menlochurchvideo.podbean.com_9a9bc116-4149-3b74-b875-f5ff83e22bde.txt",
+    "transcript_hash": "85f7d36f1cf3f17e25349b4a22c78efedb50b304bf78e95eda11d63548e9ba3e",
+    "transcribed_at": "2026-09-19T03:16:14.189880+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/fd052162-d4e7-3205-97bb-8628bde80906": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bjuy5m/EasterSermon.mp3",
