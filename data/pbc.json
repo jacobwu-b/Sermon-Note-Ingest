@@ -2737,7 +2737,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/02/04/Sermon%202%204%202024%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-02-04_untitled_pbc-archive_Main_Service_2024_02_04_Sermon_2_4_2024_Podcast.mp3.txt",
+    "transcript_hash": "a74ebe733ab8787f687b43d9f36f081ed1f5d8464409adc20482125011c651f7",
+    "transcribed_at": "2026-09-19T06:46:09.839415+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2024/01/28/Sermon 1 28 2024 Sermon Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/01/28/Sermon 1 28 2024 Sermon Podcast.mp3",
