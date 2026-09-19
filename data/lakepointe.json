@@ -2649,7 +2649,13 @@
     "raw_title": "What is a Man?",
     "series": null,
     "speaker": null,
-    "title": "What is a Man?"
+    "title": "What is a Man?",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-09-18_what-is-a-man_lakepointe_e7a8e1a5d3d585e15f7a0df6062b7cf1.txt",
+    "transcript_hash": "f4535e071f14a799641c22ffab9a4b02ab3edab26faf22482e400ec4a45de38e",
+    "transcribed_at": "2026-09-19T07:27:17.297845+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:7ec75e0bfa52c9ae822ea182c1c7fa7a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4952294164.mp3?updated=1704307332",
