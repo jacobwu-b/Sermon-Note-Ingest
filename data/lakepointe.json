@@ -2589,7 +2589,13 @@
     "raw_title": "God's Purpose in Work",
     "series": null,
     "speaker": null,
-    "title": "God's Purpose in Work"
+    "title": "God's Purpose in Work",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-10-16_god-s-purpose-in-work_lakepointe_a2676e6ab2a85ce8525ac8ce7a6de7cb.txt",
+    "transcript_hash": "99bf1ee087be36c277004654451ec3400e94ef5c5ceeb7ea8f2144c82c298685",
+    "transcribed_at": "2026-09-19T05:31:49.490057+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:3a727d523bbf529f5374024e3e63239c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1897907937.mp3?updated=1704307328",
