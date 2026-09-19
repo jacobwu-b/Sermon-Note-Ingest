@@ -2573,7 +2573,13 @@
     "raw_title": "The Agony of Suffering | The Path of Surrender | Phil EuBank",
     "series": "The Path of Surrender",
     "speaker": "Phil EuBank",
-    "title": "The Agony of Suffering"
+    "title": "The Agony of Suffering",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-03-17_the-agony-of-suffering_menlochurchvideo.podbean.com_22b095eb-027d-3480-bcfb-84444c46325d.txt",
+    "transcript_hash": "9bbfeabb4f664455195010f3397c24d78e6f67aab3d5a9949ae37d73644303fe",
+    "transcribed_at": "2026-09-19T03:11:54.378614+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/d64b845b-4a19-3a75-a042-695b2b07695b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/85cj73/Lent5CherylPod.mp3",
