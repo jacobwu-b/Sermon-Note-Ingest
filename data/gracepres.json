@@ -782,10 +782,12 @@
     "blurb": "Pastor Travis Drake continues our Advent sermon series with a message from Luke 1:26-38",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T17:56:26.201100+00:00",
+    "transcript_hash": "a360a96615b6a3f160b31e5760a0e041c70dec6c01f788116be02101a9337cf6",
+    "content_path": "transcripts/gracepres/2025-12-14_comfort-and-joy-the-hope-of-announcement_gracepres_tag_soundcloud_2010_tracks_2230878977.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2226848237": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2226848237",
