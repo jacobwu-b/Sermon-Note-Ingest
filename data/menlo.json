@@ -2565,7 +2565,13 @@
     "raw_title": "Facing Injustice | Path of Surrender Series | Phil EuBank",
     "series": "Path of Surrender Series",
     "speaker": "Phil EuBank",
-    "title": "Facing Injustice"
+    "title": "Facing Injustice",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-03-24_facing-injustice_menlochurchvideo.podbean.com_1e7ba8d1-dac9-3324-a3e4-d3ce3160efff.txt",
+    "transcript_hash": "d00792b8c308e5b903ab5a0883591b64a8b96dd38e3da470044152a2a31b2cd3",
+    "transcribed_at": "2026-09-19T03:13:10.419799+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/22b095eb-027d-3480-bcfb-84444c46325d": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4tf4vj/Lent6Suffering.mp3",
