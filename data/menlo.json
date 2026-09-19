@@ -2451,7 +2451,13 @@
     "raw_title": "Living in the Future: Where Bodies are Headed | Wonderfully Made Series",
     "series": null,
     "speaker": "Wonderfully Made Series",
-    "title": "Living in the Future: Where Bodies are Headed"
+    "title": "Living in the Future: Where Bodies are Headed",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-05-05_living-in-the-future-where-bodies-are-headed_menlochurchvideo.podbean.com_b8b05ee9-84a1-316b-a081-21f7851f388e.txt",
+    "transcript_hash": "386bd26298098ac3190783f623b8d0e58859c986ba0d7a58bf9f33c76da8351b",
+    "transcribed_at": "2026-09-19T01:15:29.933892+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/51bb91ef-f72f-3671-9c53-840b79d652f9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/qpp95ka7fzfkjm8c/WM5messagePOD.mp3",
