@@ -926,10 +926,12 @@
     "blurb": "Pastor Iron Kim continues in our series on the book of Acts with a word from Acts 4:32-5:16 ESV.\n\nhttps://www.biblegateway.com/passage/?search=Acts%204%3A32-5%3A16&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T22:36:19.048061+00:00",
+    "transcript_hash": "1c152dcd9624544ea871a582a0bfe3a791370084d8a72f0e98c30478dcb20caf",
+    "content_path": "transcripts/gracepres/2025-10-26_living-god-s-mission-establishing-the-culture-of-the-church_gracepres_tag_soundcloud_2010_tracks_2201044795.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2196606351": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2196606351",
