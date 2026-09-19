@@ -2423,7 +2423,13 @@
     "raw_title": "Jesus is the Source of True Peace",
     "series": null,
     "speaker": null,
-    "title": "Jesus is the Source of True Peace"
+    "title": "Jesus is the Source of True Peace",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-12-11_jesus-is-the-source-of-true-peace_lakepointe_34ea32afa39d3b8c77965ee02a06bf64.txt",
+    "transcript_hash": "c38ea7899709dd70378c2785519b46bf2821ff3796416434aaf6bdf2afe46305",
+    "transcribed_at": "2026-09-19T00:54:25.936877+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:688628a95b2adaff2208a60595534f8a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4567932610.mp3?updated=1704307322",
