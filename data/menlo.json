@@ -2665,7 +2665,13 @@
     "raw_title": "Teachings in the Temple | Path of Surrender | Phil EuBank",
     "series": "Path of Surrender",
     "speaker": "Phil EuBank",
-    "title": "Teachings in the Temple"
+    "title": "Teachings in the Temple",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-02-18_teachings-in-the-temple_menlochurchvideo.podbean.com_36b314fb-e043-34c8-bc0b-eb5c874e94ce.txt",
+    "transcript_hash": "3345b29001db8b60e68d8605956dc18ebccb0d5bfee0e04615048fda723e91e0",
+    "transcribed_at": "2026-09-19T06:59:35.390833+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/914dc3ce-e4ed-32c6-bba5-935828f94021": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wmz4hk/KingsArrival.mp3",
