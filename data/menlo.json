@@ -2779,7 +2779,13 @@
     "raw_title": "Longing for Wonder | Wired for Wonder | Cheryl Fletcher",
     "series": "Wired for Wonder",
     "speaker": "Cheryl Fletcher",
-    "title": "Longing for Wonder"
+    "title": "Longing for Wonder",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-01-07_longing-for-wonder_menlochurchvideo.podbean.com_0ef6fab1-a4ed-30a6-a2fa-cff7fd24a50a.txt",
+    "transcript_hash": "b03caccbd9e13133430ccf5c4b6d8e34992c1cc25fe4e7c83d27d881a67089ce",
+    "transcribed_at": "2026-09-19T11:40:18.023596+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/b388d762-f03c-3380-a083-6bc677673dd0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hw9apf/NYEMessage.mp3",
