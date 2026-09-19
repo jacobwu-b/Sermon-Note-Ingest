@@ -2431,7 +2431,13 @@
     "raw_title": "Mentors and Mothers: Voices of Wisdom in our Midst | Sermon Message",
     "series": null,
     "speaker": "Sermon Message",
-    "title": "Mentors and Mothers: Voices of Wisdom in our Midst"
+    "title": "Mentors and Mothers: Voices of Wisdom in our Midst",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-05-12_mentors-and-mothers-voices-of-wisdom-in-our-midst_menlochurchvideo.podbean.com_d5c3e76d-c988-31e6-9660-e268cd35179c.txt",
+    "transcript_hash": "8e9e39f5e0cb9fb60cb6f23765982ef781453946d9c0a4e7efbf84dcc6332d3d",
+    "transcribed_at": "2026-09-19T01:14:50.930938+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/b8b05ee9-84a1-316b-a081-21f7851f388e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/7gvwj3g7ffnfyj4n/WM5Sermon.mp3",
