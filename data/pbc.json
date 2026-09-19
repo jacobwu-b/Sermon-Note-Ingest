@@ -2503,7 +2503,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/04/28/2024%2004%2028%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-04-28_untitled_pbc-archive_Main_Service_2024_04_28_2024_04_28_Podcast.mp3.txt",
+    "transcript_hash": "057d6cd8a436610a983a6af719a115f6bc0a314fd08329288e6b682bc1739981",
+    "transcribed_at": "2026-09-19T01:06:03.190108+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2024/04/21/2024 04 21 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/04/21/2024 04 21 Podcast.mp3",
