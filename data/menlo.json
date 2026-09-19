@@ -2753,7 +2753,13 @@
     "raw_title": "Are You Hurried and Worried? | Wired for Wonder Series | Phil EuBank",
     "series": "Wired for Wonder Series",
     "speaker": "Phil EuBank",
-    "title": "Are You Hurried and Worried?"
+    "title": "Are You Hurried and Worried?",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-01-14_are-you-hurried-and-worried_menlochurchvideo.podbean.com_ac306ded-4fcf-3da5-bdf9-c6fa05896c23.txt",
+    "transcript_hash": "dba73038060b0f430bc7e910c2f8f6f01c11166d40183e2f23fc5557bedbbe35",
+    "transcribed_at": "2026-09-19T11:27:41.271376+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/0ef6fab1-a4ed-30a6-a2fa-cff7fd24a50a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/6u27dw/Wonder1Cheryl.mp3",
