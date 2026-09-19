@@ -906,10 +906,12 @@
     "blurb": "Pastor Travis Drake continues on in our series on the book of Acts with a word from Acts 5:12-42 ESV. \n\nhttps://www.biblegateway.com/passage/?search=Acts%205%3A12-42&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T22:12:18.828139+00:00",
+    "transcript_hash": "d3c71f67d975b5c1cc4e816485b3161a9e3bf3bce8f3086d2cef0fdf450df7b9",
+    "content_path": "transcripts/gracepres/2025-11-02_living-god-s-mission-the-power-of-the-name_gracepres_tag_soundcloud_2010_tracks_2206427271.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2201044795": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2201044795",
