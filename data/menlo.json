@@ -2891,6 +2891,12 @@
     "raw_title": "How to Have Hope | Menlo Midweek | Joshua Jewell-Horton and Matt Summers",
     "series": "Menlo Midweek",
     "speaker": "Joshua Jewell-Horton and Matt Summers",
-    "title": "How to Have Hope"
+    "title": "How to Have Hope",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2023-11-26_how-to-have-hope_menlochurchvideo.podbean.com_c5a104ad-a5a9-3a28-a4eb-d51ed54319a9.txt",
+    "transcript_hash": "5ff5dcc671898c914b00584c4bb7b74bb6d5d26743e3bfabb3848ca0f69bfe44",
+    "transcribed_at": "2026-09-19T15:49:16.382693+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   }
 }
