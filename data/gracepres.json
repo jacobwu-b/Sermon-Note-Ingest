@@ -460,10 +460,12 @@
     "blurb": "Pastor Iron Kim brings a Palm Sunday message from Luke 19:28–40.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T06:40:32.453642+00:00",
+    "transcript_hash": "3b4273a3fff1c1fe4e5651c6c32668af44a4c1b0ad69b14cb8d31feabb205697",
+    "content_path": "transcripts/gracepres/2026-03-29_a-king-unlike-any-before_gracepres_tag_soundcloud_2010_tracks_2294449889.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2289229799": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2289229799",
