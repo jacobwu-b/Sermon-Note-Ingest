@@ -642,10 +642,12 @@
     "blurb": "Pastor Iron Kim continues our series in the Book Of Acts with a message from Acts 13",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T14:45:02.715555+00:00",
+    "transcript_hash": "524e897b5e15e3653b706a4dd970b65597a93ed0e12227548a854b80fa63e23e",
+    "content_path": "transcripts/gracepres/2026-01-25_sent-with-the-gospel_gracepres_tag_soundcloud_2010_tracks_2254095341.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2250737168": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2250737168",
