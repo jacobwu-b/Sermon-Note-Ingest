@@ -666,10 +666,12 @@
     "blurb": "Pastor David Jones continues our series in the book of Acts with a message from Acts 11:19-30 ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T15:07:21.284961+00:00",
+    "transcript_hash": "25b00ec81c7350ff2123ca7e61bf4d8d0cab092b29b3b1e8c5f6a9769108fc34",
+    "content_path": "transcripts/gracepres/2026-01-18_the-first-christians_gracepres_tag_soundcloud_2010_tracks_2250737168.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2246392544": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2246392544",
