@@ -3217,7 +3217,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/08/20/2023%2008%2020%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-08-20_untitled_pbc-archive_Main_Service_2023_08_20_2023_08_20_podcast.mp3.txt",
+    "transcript_hash": "282f85ad3ddf856c6635e6171f7f91bce5516ddae87935e87ac8a4141a9d0a70",
+    "transcribed_at": "2026-09-19T22:23:46.039940+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/08/13/Sermon_1 Audio 8-13.mp3": {
     "guid": "pbc-archive:Main_Service/2023/08/13/Sermon_1 Audio 8-13.mp3",
