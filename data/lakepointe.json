@@ -2489,7 +2489,13 @@
     "raw_title": "Let's Talk Adoption",
     "series": null,
     "speaker": null,
-    "title": "Let's Talk Adoption"
+    "title": "Let's Talk Adoption",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-11-20_let-s-talk-adoption_lakepointe_f8c6cdc6a022cfe49ae463a8da4f4fa1.txt",
+    "transcript_hash": "e9fc8018947b67c7d06a14596ecdabe3d181a6733fa69e6de9ce06e5693c67e2",
+    "transcribed_at": "2026-09-19T01:28:21.454190+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:7f2b735c82fa1360c24a053b5a09604a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6809710005.mp3?updated=1704307325",
