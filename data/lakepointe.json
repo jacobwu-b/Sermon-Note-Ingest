@@ -2457,7 +2457,13 @@
     "raw_title": "How to Love Your Neighbor",
     "series": null,
     "speaker": null,
-    "title": "How to Love Your Neighbor"
+    "title": "How to Love Your Neighbor",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-11-27_how-to-love-your-neighbor_lakepointe_b37d17ec727ebca8e87057f8623532ad.txt",
+    "transcript_hash": "a697f01904ebe885f65ab4cf167a66c89c3f141245192ef8c41674a08e0102a4",
+    "transcribed_at": "2026-09-19T01:10:15.821968+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:f8c6cdc6a022cfe49ae463a8da4f4fa1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5851084567.mp3?updated=1704307324",
