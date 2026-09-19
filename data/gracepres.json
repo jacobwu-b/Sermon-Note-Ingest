@@ -584,10 +584,12 @@
     "blurb": "Pastor David Jones continues our series in the Book Of Acts with a message from Acts 16:11-40",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T11:47:51.335856+00:00",
+    "transcript_hash": "0375ba33fc6924313fe38aa664ee3f7139303a35a52bc0a0a89bf37e2ae92f8f",
+    "content_path": "transcripts/gracepres/2026-02-15_stories-of-grace_gracepres_tag_soundcloud_2010_tracks_2268629654.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2264444399": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2264444399",
