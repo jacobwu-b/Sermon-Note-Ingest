@@ -824,10 +824,12 @@
     "blurb": "Pastor Iron Kim begins our 2025 Advent series with a word from Isaiah 9:1-7.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T20:10:52.701826+00:00",
+    "transcript_hash": "d3c106c53b0b81529d1c60256f97d463019b63947ea2504aa8ffd55e0fa8559c",
+    "content_path": "transcripts/gracepres/2025-11-30_comfort-and-joy-light-in-the-darkness_gracepres_tag_soundcloud_2010_tracks_2222286140.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2219018075": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2219018075",
