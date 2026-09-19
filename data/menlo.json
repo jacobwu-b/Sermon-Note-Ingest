@@ -2479,7 +2479,13 @@
     "raw_title": "Death or Life: Genesis, Gender, Generate, and Generations | Menlo Church Live Stream | Mark Clark",
     "series": "Menlo Church Live Stream",
     "speaker": "Mark Clark",
-    "title": "Death or Life: Genesis, Gender, Generate, and Generations"
+    "title": "Death or Life: Genesis, Gender, Generate, and Generations",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-04-21_death-or-life-genesis-gender-generate-and-generations_menlochurchvideo.podbean.com_8cd3d453-de8d-3096-8d81-687f124d0f09.txt",
+    "transcript_hash": "84d50648f5693de14edd96c9af6fa17c45bd0b25ad659bcd1814867a15278045",
+    "transcribed_at": "2026-09-19T01:12:17.866569+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/b2c4c942-28a5-39ee-aa11-a9eadcd2128d": {
     "audio_url": "https://mcdn.podbean.com/mf/web/c9nk3txwg2cjifyt/WonderfullyMade2Audio.mp3",
