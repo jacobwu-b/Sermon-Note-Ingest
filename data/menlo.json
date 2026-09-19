@@ -2731,7 +2731,13 @@
     "raw_title": "Joy in Wonder | Wired for Wonder | Phil EuBank",
     "series": "Wired for Wonder",
     "speaker": "Phil EuBank",
-    "title": "Joy in Wonder"
+    "title": "Joy in Wonder",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-01-28_joy-in-wonder_menlochurchvideo.podbean.com_3a1be259-e25f-3610-95f4-aee32b3e2ba5.txt",
+    "transcript_hash": "305bbbac16ec88927b3f1905b25dc7c123e4f335479ca89bf115d084231939f8",
+    "transcribed_at": "2026-09-19T11:46:17.170684+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/3e7cef4d-4f8b-3f04-a8d5-a8874bc12e14": {
     "audio_url": "https://mcdn.podbean.com/mf/web/zgxtxs/Wonder3Pod.mp3",
