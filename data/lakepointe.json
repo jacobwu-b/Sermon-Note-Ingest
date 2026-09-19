@@ -2509,7 +2509,13 @@
     "raw_title": "Love Without Borders",
     "series": null,
     "speaker": null,
-    "title": "Love Without Borders"
+    "title": "Love Without Borders",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-11-13_love-without-borders_lakepointe_7f2b735c82fa1360c24a053b5a09604a.txt",
+    "transcript_hash": "096faeac61e49556b7b3e20f1357a9573207e1c88c03deddf5644600143305f8",
+    "transcribed_at": "2026-09-19T03:03:18.980156+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:492376794e86d0f751cbf4b93e411a0b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7563980294.mp3?updated=1704307326",
