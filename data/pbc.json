@@ -2649,7 +2649,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/03/10/2024%2003%2010%20sermon%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-03-10_untitled_pbc-archive_Main_Service_2024_03_10_2024_03_10_sermon_podcast.mp3.txt",
+    "transcript_hash": "b2e58fd5809ee95b762c6296836975b6e73ab867eace21ee6768049a25f8400b",
+    "transcribed_at": "2026-09-19T03:29:14.347667+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2024/03/03/Sermon 3 03 2024 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/03/03/Sermon 3 03 2024 Podcast.mp3",
