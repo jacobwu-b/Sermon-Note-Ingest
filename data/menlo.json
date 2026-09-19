@@ -2459,7 +2459,13 @@
     "raw_title": "Unconditional Love + Uncompromising Faith: Grace and Truth | Menlo Church Sunday Message",
     "series": null,
     "speaker": "Menlo Church Sunday Message",
-    "title": "Unconditional Love + Uncompromising Faith: Grace and Truth"
+    "title": "Unconditional Love + Uncompromising Faith: Grace and Truth",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-04-28_unconditional-love-uncompromising-faith-grace-and-truth_menlochurchvideo.podbean.com_51bb91ef-f72f-3671-9c53-840b79d652f9.txt",
+    "transcript_hash": "84c552da2d5d59b14ea1d7f809b8c872dcb0166af634ba1a6958d06c475be447",
+    "transcribed_at": "2026-09-19T01:09:02.348366+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/8cd3d453-de8d-3096-8d81-687f124d0f09": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8p7zhzd8recr3srb/MarkClarkMessage_1.mp3",
