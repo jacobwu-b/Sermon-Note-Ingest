@@ -1078,10 +1078,12 @@
     "blurb": "Rev. Iron Kim concludes our series on the Minor Prophets with a word from Joel 1:1-4, 2:1-3, 12-14, 25-30. \n\nhttps://www.biblegateway.com/passage/?search=Joel%201%3A1-4%2C%202%3A1-3%2C%2012-14%2C%2025-30&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T23:51:52.773371+00:00",
+    "transcript_hash": "bb6fad6053daf49e503a14885ae4ca0dacd3b7fd8dddc283dba5dca4b7a965e1",
+    "content_path": "transcripts/gracepres/2025-08-31_portraits-of-the-prophets-the-god-who-restores_gracepres_tag_soundcloud_2010_tracks_2163594432.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2159692311": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2159692311",
