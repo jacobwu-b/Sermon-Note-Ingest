@@ -2511,7 +2511,13 @@
     "raw_title": "Thinking More About Sex | Wonderfully Made Series | Phil EuBank",
     "series": "Wonderfully Made Series",
     "speaker": "Phil EuBank",
-    "title": "Thinking More About Sex"
+    "title": "Thinking More About Sex",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-04-14_thinking-more-about-sex_menlochurchvideo.podbean.com_b2c4c942-28a5-39ee-aa11-a9eadcd2128d.txt",
+    "transcript_hash": "90c260d512d75170d1639e22640980d3605e701b4942c57e33882f7e7a3b76a3",
+    "transcribed_at": "2026-09-19T03:13:01.083246+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/9a9bc116-4149-3b74-b875-f5ff83e22bde": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rwtxus/WonderfullyMade1Sermon.mp3",
