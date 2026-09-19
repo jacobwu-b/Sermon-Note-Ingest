@@ -2549,7 +2549,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/04/14/2024%2004%2014%20Sernon%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-04-14_untitled_pbc-archive_Main_Service_2024_04_14_2024_04_14_Sernon_Podcast.mp3.txt",
+    "transcript_hash": "8ae949dc24ed9607798df2df00a00e2a79925e38f3c962f29abfa19e4971fb36",
+    "transcribed_at": "2026-09-19T01:15:47.404859+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2024/04/07/2024 04 07 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/04/07/2024 04 07 Podcast.mp3",
