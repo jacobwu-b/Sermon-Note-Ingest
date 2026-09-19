@@ -964,10 +964,12 @@
     "blurb": "Pastor Iron continues on in our series on the book of Acts with a word from Acts 4:1-22 ESV.\n\nhttps://www.biblegateway.com/passage/?search=Acts%204%3A1-22&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T22:15:34.719853+00:00",
+    "transcript_hash": "02f76fd0266f122b01b326e94c6a89df7c8ba11caf703f93bf56a6ade22e8e4b",
+    "content_path": "transcripts/gracepres/2025-10-12_living-god-s-mission-no-other-name_gracepres_tag_soundcloud_2010_tracks_2190309715.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2184559851": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2184559851",
