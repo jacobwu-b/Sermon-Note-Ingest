@@ -942,10 +942,12 @@
     "blurb": "Pastor Iron Kim continues on in our sermon series on the book of Acts with a word from Acts 4:23-31 ESV. \n\nhttps://www.biblegateway.com/passage/?search=Acts%204%3A23-31&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T22:10:44.246504+00:00",
+    "transcript_hash": "4c22c37dc286e9adf0f97a89026ab7f96b72b56689eb129a3bf9c28b8c735508",
+    "content_path": "transcripts/gracepres/2025-10-19_living-god-s-mission-when-your-confidence-is-shaken_gracepres_tag_soundcloud_2010_tracks_2196606351.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2190309715": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2190309715",
