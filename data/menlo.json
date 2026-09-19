@@ -2625,7 +2625,13 @@
     "raw_title": "Extravagant Love | Path of Surrender Series | Phil EuBank",
     "series": "Path of Surrender Series",
     "speaker": "Phil EuBank",
-    "title": "Extravagant Love"
+    "title": "Extravagant Love",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-03-03_extravagant-love_menlochurchvideo.podbean.com_93927d1e-aff4-3c51-90aa-fe5a0d92166b.txt",
+    "transcript_hash": "1af9c426e599b233277ecc90d7fbe1f8ce836237613662f2f689048ec1a08e43",
+    "transcribed_at": "2026-09-19T06:55:43.595725+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/e0ee2524-8a96-360b-b9c4-6b8313b6c81a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x3frrt/TeachingsintheTempleScott.mp3",
