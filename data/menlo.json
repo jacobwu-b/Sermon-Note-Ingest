@@ -2411,7 +2411,13 @@
     "raw_title": "Moving from Knowing to Going | Baptism Sunday | Phil EuBank",
     "series": "Baptism Sunday",
     "speaker": "Phil EuBank",
-    "title": "Moving from Knowing to Going"
+    "title": "Moving from Knowing to Going",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-05-19_moving-from-knowing-to-going_menlochurchvideo.podbean.com_4175e59f-55e8-3f7f-b2e8-29c864e62f88.txt",
+    "transcript_hash": "64ed0dc4af34a67512367a4178660735660bec922dce917a3a97dae1a13ab067",
+    "transcribed_at": "2026-09-19T00:56:52.371176+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/d5c3e76d-c988-31e6-9660-e268cd35179c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5ya4uvaibpk6fkh6/MothersDayMessage.mp3",
