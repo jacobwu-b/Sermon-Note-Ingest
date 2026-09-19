@@ -2609,7 +2609,13 @@
     "raw_title": "How Should Men Parent?",
     "series": null,
     "speaker": null,
-    "title": "How Should Men Parent?"
+    "title": "How Should Men Parent?",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-10-09_how-should-men-parent_lakepointe_3a727d523bbf529f5374024e3e63239c.txt",
+    "transcript_hash": "6d857fd08810ddce056ad9fa7cfd4834d908371cba48ea58040e9fa11664e0d6",
+    "transcribed_at": "2026-09-19T07:00:37.613670+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:bc11dff36fee92b9add07e6223c929e9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4817757484.mp3?updated=1704307330",
