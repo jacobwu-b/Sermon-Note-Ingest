@@ -2691,7 +2691,13 @@
     "raw_title": "The King's Arrival | The Path of Surrender | Phil EuBank",
     "series": "The Path of Surrender",
     "speaker": "Phil EuBank",
-    "title": "The King's Arrival"
+    "title": "The King's Arrival",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-02-11_the-king-s-arrival_menlochurchvideo.podbean.com_914dc3ce-e4ed-32c6-bba5-935828f94021.txt",
+    "transcript_hash": "53b42d2aaa8714bacb052988bbe5d305a3d8f41b3ccac2362a5a1492b9da420e",
+    "transcribed_at": "2026-09-19T07:03:54.931338+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/8774749d-cabe-3cb0-9e54-bb6af5f3ab44": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wf9whw/FaithinWonderSermon.mp3",
