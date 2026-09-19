@@ -2639,7 +2639,13 @@
     "raw_title": "Teachings in the Temple | Path of Surrender | Scott Palmbush",
     "series": "Path of Surrender",
     "speaker": "Scott Palmbush",
-    "title": "Teachings in the Temple"
+    "title": "Teachings in the Temple",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-02-25_teachings-in-the-temple_menlochurchvideo.podbean.com_e0ee2524-8a96-360b-b9c4-6b8313b6c81a.txt",
+    "transcript_hash": "dd73299880ea1db8c3add9f3dec1156d031c6356096928cf08c5ec9000ca0e72",
+    "transcribed_at": "2026-09-19T06:44:49.855751+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/36b314fb-e043-34c8-bc0b-eb5c874e94ce": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8bsdx2/TeachingsintheTemple.mp3",
