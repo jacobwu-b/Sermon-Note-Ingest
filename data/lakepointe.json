@@ -2657,7 +2657,13 @@
     "raw_title": "There's Purpose in Your Pain",
     "series": null,
     "speaker": null,
-    "title": "There's Purpose in Your Pain"
+    "title": "There's Purpose in Your Pain",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-09-11_there-s-purpose-in-your-pain_lakepointe_7ec75e0bfa52c9ae822ea182c1c7fa7a.txt",
+    "transcript_hash": "76c42056646e0df73ca5938151025e9f4bf1f0ca29eeb920957e09220699a28a",
+    "transcribed_at": "2026-09-19T06:58:52.696603+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:619171f4a14c96df58f04c9dda5f054a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5951228348.mp3?updated=1704307332",
