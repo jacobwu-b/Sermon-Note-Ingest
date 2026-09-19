@@ -2611,7 +2611,13 @@
     "raw_title": "The Communion of Love | Path of Surrender | Cheryl Fletcher",
     "series": "Path of Surrender",
     "speaker": "Cheryl Fletcher",
-    "title": "The Communion of Love"
+    "title": "The Communion of Love",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-03-10_the-communion-of-love_menlochurchvideo.podbean.com_d64b845b-4a19-3a75-a042-695b2b07695b.txt",
+    "transcript_hash": "bb34d3e7794d8c6698acf792744b485ed23679c623730403aa3f318136c8f130",
+    "transcribed_at": "2026-09-19T07:01:05.574709+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/93927d1e-aff4-3c51-90aa-fe5a0d92166b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4zd9tm/Lent4.mp3",
