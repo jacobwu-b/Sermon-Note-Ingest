@@ -842,10 +842,12 @@
     "blurb": "Pastor Abhishikth Babu continues on in our series on the book of acts with a word from Acts 8:1-8; 26-40 ESV.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T19:55:47.399245+00:00",
+    "transcript_hash": "9c4359ca45881b05720fd4e5ed7e0b6ceee6ebcd8db74460648d8768b28df41c",
+    "content_path": "transcripts/gracepres/2025-11-23_living-god-s-mission-the-unstoppable-mission-of-god_gracepres_tag_soundcloud_2010_tracks_2219018075.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2215033745": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2215033745",
