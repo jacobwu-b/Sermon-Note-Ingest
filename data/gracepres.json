@@ -206,10 +206,12 @@
     "blurb": "Pastor David Jones continues our series in the Book of Psalms with a message from Psalm 25",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T00:58:03.241926+00:00",
+    "transcript_hash": "5825b7ef168af04d6cc5b0c8eaf88ad2a516b63d06cfe127b4cdca0410a0f217",
+    "content_path": "transcripts/gracepres/2026-07-05_the-guidance-of-god_gracepres_tag_soundcloud_2010_tracks_2356645334.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2350802600": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2350802600",
