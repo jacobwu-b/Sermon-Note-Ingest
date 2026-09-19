@@ -2811,7 +2811,13 @@
     "raw_title": "Endearing Faith for Confusing Times | Phil EuBank",
     "series": null,
     "speaker": "Phil EuBank",
-    "title": "Endearing Faith for Confusing Times"
+    "title": "Endearing Faith for Confusing Times",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2023-12-31_endearing-faith-for-confusing-times_menlochurchvideo.podbean.com_b388d762-f03c-3380-a083-6bc677673dd0.txt",
+    "transcript_hash": "19a2f6f14864a0d65bf5445d1e40c3908a46d95591cf66d5055f480af1c0d794",
+    "transcribed_at": "2026-09-19T14:55:25.167761+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/3478b879-1b5d-32ff-9ad1-6df59c1590aa": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x2rx83/CarolPOD.mp3",
