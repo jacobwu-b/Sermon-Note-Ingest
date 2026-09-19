@@ -2709,7 +2709,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2024/02/18/Sermon%202%2018%202024%20Sermon%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2024-02-18_untitled_pbc-archive_Main_Service_2024_02_18_Sermon_2_18_2024_Sermon_Podcast.mp3.txt",
+    "transcript_hash": "da0eee45c2e8ff784d5cd74c7b5f6c3cc72f1fa183190011e9229966747995e1",
+    "transcribed_at": "2026-09-19T07:00:15.698589+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2024/02/11/Sermon 2 11 2024 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2024/02/11/Sermon 2 11 2024 Podcast.mp3",
