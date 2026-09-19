@@ -2539,7 +2539,13 @@
     "raw_title": "Easter at Menlo Church | Phil EuBank",
     "series": null,
     "speaker": "Phil EuBank",
-    "title": "Easter at Menlo Church"
+    "title": "Easter at Menlo Church",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-03-31_easter-at-menlo-church_menlochurchvideo.podbean.com_fd052162-d4e7-3205-97bb-8628bde80906.txt",
+    "transcript_hash": "fc974c576d514b996aa4e55a99db8404a590d8b375ef54be5abdd8ee50fd2725",
+    "transcribed_at": "2026-09-19T03:07:27.260276+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/1e7ba8d1-dac9-3324-a3e4-d3ce3160efff": {
     "audio_url": "https://mcdn.podbean.com/mf/web/62uzap/Lent7InjusticePod.mp3",
