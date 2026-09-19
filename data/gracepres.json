@@ -424,10 +424,12 @@
     "blurb": "Pastor David Jones continues our series in the Book of Acts with a message from Acts 25:13, 22-23; 26:1-32 ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T06:43:02.443140+00:00",
+    "transcript_hash": "5f5ed23e8df0bf0d4b02ca441bf001a736756660a3a25e15f369d924743fc96e",
+    "content_path": "transcripts/gracepres/2026-04-12_the-gospel-for-big-shots_gracepres_tag_soundcloud_2010_tracks_2302023686.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2298381221": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2298381221",
