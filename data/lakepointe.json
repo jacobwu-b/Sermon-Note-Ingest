@@ -2623,7 +2623,13 @@
     "raw_title": "Should a Man be Rough or Gentle?",
     "series": null,
     "speaker": null,
-    "title": "Should a Man be Rough or Gentle?"
+    "title": "Should a Man be Rough or Gentle?",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-09-25_should-a-man-be-rough-or-gentle_lakepointe_bc11dff36fee92b9add07e6223c929e9.txt",
+    "transcript_hash": "467ac5256bca22386be6f86d63a2ef0e888600ef450ddef97a9e2441ab979267",
+    "transcribed_at": "2026-09-19T06:57:55.927559+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:e7a8e1a5d3d585e15f7a0df6062b7cf1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5762220747.mp3?updated=1704307331",
