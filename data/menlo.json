@@ -2751,7 +2751,13 @@
     "raw_title": "Wonder in Mystery | Wired for Wonder | Phil EuBank",
     "series": "Wired for Wonder",
     "speaker": "Phil EuBank",
-    "title": "Wonder in Mystery"
+    "title": "Wonder in Mystery",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-01-21_wonder-in-mystery_menlochurchvideo.podbean.com_3e7cef4d-4f8b-3f04-a8d5-a8874bc12e14.txt",
+    "transcript_hash": "4cdc8f1ae55c4eb10f05bfd47b9c0275fa9ce3f5ac7ccc920d5a9f65143a94a1",
+    "transcribed_at": "2026-09-19T11:49:24.045663+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/ac306ded-4fcf-3da5-bdf9-c6fa05896c23": {
     "audio_url": "https://mcdn.podbean.com/mf/web/euadcg/HurriedPod.mp3",
