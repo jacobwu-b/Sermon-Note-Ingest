@@ -2957,7 +2957,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/11/19/2023%2011%2019%20Sermon%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-11-19_untitled_pbc-archive_Main_Service_2023_11_19_2023_11_19_Sermon_podcast.mp3.txt",
+    "transcript_hash": "b9c9ad387725c1b4e9bec56d997d77583762c8248185dcbb77d2183a9f929a20",
+    "transcribed_at": "2026-09-19T15:09:05.416851+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/11/12/11 12 2023 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2023/11/12/11 12 2023 Podcast.mp3",
