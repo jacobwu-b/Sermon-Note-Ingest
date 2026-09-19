@@ -286,10 +286,12 @@
     "blurb": "Pastor Iron Kim Begins our sermon series in The Book of Psalms with a message from Psalm 1",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T02:31:34.830755+00:00",
+    "transcript_hash": "5a7c259ae64af2868e652c13530944f7f35f6a47adc8d39ddd4762db28c30f83",
+    "content_path": "transcripts/gracepres/2026-06-07_a-song-of-happiness_gracepres_tag_soundcloud_2010_tracks_2335133717.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2331542669": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2331542669",
