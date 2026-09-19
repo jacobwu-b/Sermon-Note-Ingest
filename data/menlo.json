@@ -2865,7 +2865,13 @@
     "raw_title": "How to Have Peace | Christmas at the Movies | Phil EuBank",
     "series": "Christmas at the Movies",
     "speaker": "Phil EuBank",
-    "title": "How to Have Peace"
+    "title": "How to Have Peace",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2023-12-03_how-to-have-peace_menlochurchvideo.podbean.com_06b1ae3d-8ebd-374a-b435-626faecdb7ea.txt",
+    "transcript_hash": "01819e508cdafe223843c4c81d14a4eba48e00be235e93f9affb4fe3156a06e3",
+    "transcribed_at": "2026-09-19T14:56:52.859646+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/c5a104ad-a5a9-3a28-a4eb-d51ed54319a9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/megdz2/Miracel34POD.mp3",
