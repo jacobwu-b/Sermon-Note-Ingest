@@ -2563,7 +2563,13 @@
     "raw_title": "God's Kingdom Is Here and Now",
     "series": null,
     "speaker": null,
-    "title": "God's Kingdom Is Here and Now"
+    "title": "God's Kingdom Is Here and Now",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-10-23_god-s-kingdom-is-here-and-now_lakepointe_df507f8615eb18db783d9ff1dc44a79e.txt",
+    "transcript_hash": "edd007ec7fb2ba850ba03087f3042fad9a19397a7bff44a8bdc9d22e593720d4",
+    "transcribed_at": "2026-09-19T03:15:13.909127+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:a2676e6ab2a85ce8525ac8ce7a6de7cb": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1675312919.mp3?updated=1704307328",
