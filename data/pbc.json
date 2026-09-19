@@ -3269,7 +3269,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/08/06/Sermon.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-08-06_untitled_pbc-archive_Main_Service_2023_08_06_Sermon.mp3.txt",
+    "transcript_hash": "002134e175cee4349bb46397c3dd5ee1342ac86746cede46438be70953de3ef6",
+    "transcribed_at": "2026-09-19T22:33:44.650003+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/07/30/2023_07_30 podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2023/07/30/2023_07_30 podcast.mp3",
