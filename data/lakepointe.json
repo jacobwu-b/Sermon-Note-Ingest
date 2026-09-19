@@ -2409,7 +2409,13 @@
     "raw_title": "Joy Comes From Jesus",
     "series": null,
     "speaker": null,
-    "title": "Joy Comes From Jesus"
+    "title": "Joy Comes From Jesus",
+    "transcription_status": "done",
+    "content_path": "transcripts/lakepointe/2022-12-18_joy-comes-from-jesus_lakepointe_ec47548010cf19ecad23efbe41910304.txt",
+    "transcript_hash": "db0cb132619f1901e5e6a4aa5c8eba63607d5404b8ab563f955b704e6f5b5344",
+    "transcribed_at": "2026-09-19T01:13:29.718698+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:34ea32afa39d3b8c77965ee02a06bf64": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7502711841.mp3?updated=1704307322",
