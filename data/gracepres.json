@@ -360,10 +360,12 @@
     "blurb": "Pastor Iron Kim begins our sermon series \"The Parables of The Kingdom\" with a message from Matthew 13:1-9; 18-23",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-19T03:04:01.272634+00:00",
+    "transcript_hash": "b6dacb0e749f028e2d1ac696d030a6ee14aa580860d21b82c429ba964b4f4c6c",
+    "content_path": "transcripts/gracepres/2026-05-10_the-parable-of-the-sower_gracepres_tag_soundcloud_2010_tracks_2318886929.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2310379979": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2310379979",
