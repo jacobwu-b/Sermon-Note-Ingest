@@ -2711,7 +2711,13 @@
     "raw_title": "Faith in Wonder | Wired for Wonder | Phil EuBank",
     "series": "Wired for Wonder",
     "speaker": "Phil EuBank",
-    "title": "Faith in Wonder"
+    "title": "Faith in Wonder",
+    "transcription_status": "done",
+    "content_path": "transcripts/menlo/2024-02-04_faith-in-wonder_menlochurchvideo.podbean.com_8774749d-cabe-3cb0-9e54-bb6af5f3ab44.txt",
+    "transcript_hash": "2954a85b29f4277a2cfe4377ae39d4f33a72acbcd1a20b0b1be79c199888fe76",
+    "transcribed_at": "2026-09-19T11:29:24.571929+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/3a1be259-e25f-3610-95f4-aee32b3e2ba5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v57g2i/JoyinWonder.mp3",
