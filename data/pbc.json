@@ -3031,7 +3031,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/10/22/2023%20010%2022%20Sermon%20podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-10-22_untitled_pbc-archive_Main_Service_2023_10_22_2023_010_22_Sermon_podcast.mp3.txt",
+    "transcript_hash": "fb580adb25d703a30d6afaea298d65cb0eafbdbcbe1836730781a98a1a712d63",
+    "transcribed_at": "2026-09-19T17:50:08.892790+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/10/15/20230915 Sermon_podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2023/10/15/20230915 Sermon_podcast.mp3",
