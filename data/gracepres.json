@@ -1006,10 +1006,12 @@
     "blurb": "Pastor David Jones continues on in our series on the book of Acts with word from from Acts 2:41-47.\n\nhttps://www.biblegateway.com/passage/?search=Acts%202%3A41-47&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T00:28:17.168846+00:00",
+    "transcript_hash": "a039f440bf514b7cb1cc9bec6d5a29d9bdf40011dc82d8a266ddea37e26cef5a",
+    "content_path": "transcripts/gracepres/2025-09-28_living-god-s-mission-the-new-community_gracepres_tag_soundcloud_2010_tracks_2179457051.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2175518592": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2175518592",
