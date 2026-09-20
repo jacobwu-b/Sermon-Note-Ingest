@@ -53,9 +53,9 @@ Do not edit between the markers by hand; it will be overwritten.
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 136 | How To Consecrate Your Life For God’s Purposes | 2026-09-13 |
 | menlo | 145 | The Two-Sided Coin | 2026-09-13 |
-| north_point | 100 | Mind Games, Part 1: Seeing Clearly | 2026-09-13 |
+| north_point | 101 | Mind Games, Part 2: Responding Wisely | 2026-09-20 |
 | pbc | 398 | Beneath the Surface | 2026-09-13 |
 | westgate | 105 | Week 1 - A New Family | 2026-09-13 |
 
-**Total sermons across all churches: 1839**
+**Total sermons across all churches: 1840**
 <!-- STATS:END -->
