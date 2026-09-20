@@ -1724,10 +1724,12 @@
     "blurb": "1 Peter 1:13 - 2:3 ESV\n\nhttps://www.biblegateway.com/passage/?search=1%20Peter%201%3A13%20-%202%3A3&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T23:56:28.591741+00:00",
+    "transcript_hash": "61655c5e04b0077f7a5ebebf1bebdcff1b1293879da43d18696c47d2c599acff",
+    "content_path": "transcripts/gracepres/2025-01-12_living-hope-the-transforming-power-of-hope_gracepres_tag_soundcloud_2010_tracks_2009346359.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2003648219": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2003648219",
