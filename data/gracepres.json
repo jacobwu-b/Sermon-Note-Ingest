@@ -1424,10 +1424,12 @@
     "blurb": "Rev. David Jones continues in our series on Union with Christ, preaching from Ephesians 1:1-14.\n\nhttps://www.biblegateway.com/passage/?search=Ephesians%201%3A1-14&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T16:54:43.579216+00:00",
+    "transcript_hash": "bba1e364f34e5452387b5d926e40bdf33297e988107cce8dff99bc8c7a04a060",
+    "content_path": "transcripts/gracepres/2025-04-27_union-with-christ-get-your-story-straight_gracepres_tag_soundcloud_2010_tracks_2087187735.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2083402797": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2083402797",
