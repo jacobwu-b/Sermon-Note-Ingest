@@ -1306,10 +1306,12 @@
     "blurb": "This week, Rev. David Jones begins our sermon series through the Minor Prophets with the book of Jonah.\n\nhttps://www.biblegateway.com/passage/?search=Jonah%201%3A1-6%2C%2011-12%2C%2015-17%3B%202%3A1-2%2C%208-10%3B%203%3A1-5%2C%2010%3B%204%3A1-11&version=ESV\n\nThese twelve books may be minor in length, but not in significance. They show us how God is actively engaging brokenness and injustice BOTH in the world AND among His people. They provide a vital witness to God’s character and God’s concerns, and as Jesus taught us, ultimately point to Him. Follow along as we explore the unfamiliar and often surprising message of the Minor Prophets.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T13:05:18.218913+00:00",
+    "transcript_hash": "79dcbb2b86e04d38f04753d215b84bcbe58337d2ec89f2a5c26d110feb0bb956",
+    "content_path": "transcripts/gracepres/2025-06-15_portraits-of-the-prophets-the-heart-of-god_gracepres_tag_soundcloud_2010_tracks_2115159786.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2111068491": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2111068491",
