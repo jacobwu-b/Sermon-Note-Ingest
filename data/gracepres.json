@@ -1566,10 +1566,12 @@
     "blurb": "Genesis 11:1-9\n\nhttps://www.biblegateway.com/passage/?search=Genesis%2011%3A1-9&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T19:54:57.280478+00:00",
+    "transcript_hash": "e26414a9ebc4cfa2806a02f22de1f16b4b541d9bd0d5c55ec458ff2f459df99f",
+    "content_path": "transcripts/gracepres/2025-03-09_what-we-really-need-i-need-to-be-great_gracepres_tag_soundcloud_2010_tracks_2052859884.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2046952896": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2046952896",
