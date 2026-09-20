@@ -1226,10 +1226,12 @@
     "blurb": "Rev. Iron continues in our series on the Minor Prophets with a word from Amos 1:1-2, 2:6-8, 5:21-24, 8:4-7, 9:11-15 ESV. \n\nhttps://www.biblegateway.com/passage/?search=Amos%201%3A1-2%2C%202%3A6-8%2C%205%3A21-24%2C%208%3A4-7%2C%209%3A11-15%20ESV&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T08:08:24.318235+00:00",
+    "transcript_hash": "c1f997e40265fe8b3040a18207fa5526cfadc94b1410f725528b3e77484dfc4e",
+    "content_path": "transcripts/gracepres/2025-07-13_portraits-of-the-prophets-let-justice-roll-down_gracepres_tag_soundcloud_2010_tracks_2131301481.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2126244357": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2126244357",
