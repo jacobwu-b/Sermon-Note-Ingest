@@ -1,4 +1,24 @@
 {
+  "menlochurchvideo.podbean.com/4c2d6e13-f6b4-334b-b4a1-9613df0d51dd": {
+    "guid": "menlochurchvideo.podbean.com/4c2d6e13-f6b4-334b-b4a1-9613df0d51dd",
+    "title": "Kinds of Kindness",
+    "raw_title": "Kinds of Kindness | Repentance For the Rest Of Us | Phil EuBank",
+    "series": "Repentance For the Rest Of Us",
+    "speaker": "Phil EuBank",
+    "published_on": "2026-09-20",
+    "published_at": "2026-09-20T11:58:20-07:00",
+    "episode_url": "https://menlochurchvideo.podbean.com/e/kinds-of-kindness-repentance-for-the-rest-of-us-phil-eubank/",
+    "audio_url": "https://mcdn.podbean.com/mf/web/fb4ae2juvv7mevms/2026-09-20_SermonPodcastAudio.mp3",
+    "blurb": "We often think God waits for us to fix ourselves before He is kind. Romans 2:4 flips the script: His kindness is the reason we are able to change. This shifts us from the \"Pressure\" of the law to the \"Purpose\" of grace.\nText Our Team (650) 600-0402 | Connect With Us",
+    "first_seen_at": "2026-09-20T19:00:28.691266+00:00",
+    "notified_at": "2026-09-20T19:00:28.872090+00:00",
+    "transcription_status": null,
+    "transcribed_at": null,
+    "transcript_hash": null,
+    "content_path": null,
+    "transcription_model": null,
+    "transcription_domain_prompt": null
+  },
   "menlochurchvideo.podbean.com/11fa57bb-a88c-35fb-80a6-8fb0b12cf519": {
     "guid": "menlochurchvideo.podbean.com/11fa57bb-a88c-35fb-80a6-8fb0b12cf519",
     "title": "The Two-Sided Coin",
@@ -2838,6 +2858,26 @@
     "transcribed_at": "2026-09-19T14:42:10.824692+00:00",
     "transcription_model": "large-v3",
     "transcription_domain_prompt": true
+  },
+  "menlochurchvideo.podbean.com/3b9f87fe-2da9-3895-87a3-8642997d87d9": {
+    "guid": "menlochurchvideo.podbean.com/3b9f87fe-2da9-3895-87a3-8642997d87d9",
+    "title": "How to Have Joy",
+    "raw_title": "How to Have Joy | Menlo Midweek | Phil EuBank",
+    "series": "Menlo Midweek",
+    "speaker": "Phil EuBank",
+    "published_on": "2023-12-10",
+    "published_at": "2023-12-13T05:00:00-08:00",
+    "episode_url": "https://menlochurchvideo.podbean.com/e/how-to-have-hope-menlo-midweek-elf/",
+    "audio_url": "https://mcdn.podbean.com/mf/web/yj9ywg/ElfMidweekPod.mp3",
+    "blurb": "This week we chat about carrying joy into our everyday lives. Does that sound hard? We give some great tips on how to do so and talk about Christmas rhythms and Phil's high school fast and furious car.",
+    "first_seen_at": "2026-09-20T19:00:28.691266+00:00",
+    "notified_at": "2026-09-20T19:00:28.872110+00:00",
+    "transcription_status": null,
+    "transcribed_at": null,
+    "transcript_hash": null,
+    "content_path": null,
+    "transcription_model": null,
+    "transcription_domain_prompt": null
   },
   "menlochurchvideo.podbean.com/cbec77f9-485d-31a7-acb9-21e83a34ed62": {
     "audio_url": "https://mcdn.podbean.com/mf/web/kex8ie/Elf_Message_Pod.mp3",
