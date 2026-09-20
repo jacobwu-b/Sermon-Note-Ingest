@@ -12,12 +12,12 @@
     "blurb": "Our reactions may reveal more about what’s happening inside us than what’s happening around us.",
     "first_seen_at": "2026-09-20T17:27:25.203126+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T17:56:35.968609+00:00",
+    "transcript_hash": "0fb054d240a5a2ae25021d82898dbf38ebd708aa638ba3898d00d646152b99bf",
+    "content_path": "transcripts/north_point/2026-09-20_mind-games-part-2-responding-wisely_north_point_855312919595Fed6A3E9d91265A8.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "north_point:975EE20996fED783F8741C8cB0A1": {
     "guid": "north_point:975EE20996fED783F8741C8cB0A1",
