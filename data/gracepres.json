@@ -1244,10 +1244,12 @@
     "blurb": "Rev. David Jones continues in our series on the Minor prophets with a word from Haggai 1:1–2:9.\n\nhttps://www.biblegateway.com/passage/?search=Haggai%201%3A1-2%3A9&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T07:53:15.374826+00:00",
+    "transcript_hash": "f9799e5d87390f5a9a067b70fec8a8ea871fa2f9d79602d74d9ea888b9a2c18c",
+    "content_path": "transcripts/gracepres/2025-07-06_portraits-of-the-prophets-the-glory-of-the-lord_gracepres_tag_soundcloud_2010_tracks_2126244357.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2123265747": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2123265747",
