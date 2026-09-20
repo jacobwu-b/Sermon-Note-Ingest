@@ -1384,10 +1384,12 @@
     "blurb": "Rev. David Jones continues in our series on Union with Christ with a word from Galatians 3:26 - 4:7.\n\nhttps://www.biblegateway.com/passage/?search=Galatians%203%3A26-4%3A7&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T13:12:56.808854+00:00",
+    "transcript_hash": "d72910b8db1ab6e4e29dce7d60f502f6a16e5dab6160d81f4eb183aac5b26656",
+    "content_path": "transcripts/gracepres/2025-05-18_union-with-christ-adopted-in-him_gracepres_tag_soundcloud_2010_tracks_2098714056.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2095277715": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2095277715",
