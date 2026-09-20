@@ -1206,10 +1206,12 @@
     "blurb": "Abhishikth Babu continues in our series on the Minor Prophets with a word from Hosea 1:1-10, 3:1-5 ESV. \n\nhttps://www.biblegateway.com/passage/?search=Hosea%201%3A1-10%2C%203%3A1-5&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T07:40:15.916799+00:00",
+    "transcript_hash": "2445c1f85f26a572eb6d44442b4872231faac7647fd5eb650b3f4446822b0dc8",
+    "content_path": "transcripts/gracepres/2025-07-20_portraits-of-the-prophets-purchased-by-god_gracepres_tag_soundcloud_2010_tracks_2136006651.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2131301481": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2131301481",
