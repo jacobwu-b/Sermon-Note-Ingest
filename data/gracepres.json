@@ -1582,10 +1582,12 @@
     "blurb": "1 Peter 5:6-14 ESV\n\nhttps://www.biblegateway.com/passage/?search=1%20Peter%205%3A6-14&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T19:38:18.555771+00:00",
+    "transcript_hash": "eef4b4013d831113408d623a2fed86f41988f5571dd2bd42a0410a80899df4f6",
+    "content_path": "transcripts/gracepres/2025-03-02_living-hope-humility-anxiety-and-the-god-of-all-grace_gracepres_tag_soundcloud_2010_tracks_2046952896.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2042171028": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2042171028",
