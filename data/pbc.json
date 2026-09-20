@@ -3403,7 +3403,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/06/18/2023%2006%2018%20Sermon_podcast_1.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-06-18_untitled_pbc-archive_Main_Service_2023_06_18_2023_06_18_Sermon_podcast_1.mp3.txt",
+    "transcript_hash": "0bed7bd3ba87d65e34c0dc0e45ac63508993a78098c31de76b672ccf190be56c",
+    "transcribed_at": "2026-09-20T02:25:39.340292+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/06/11/2023_06_11_ Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2023/06/11/2023_06_11_ Podcast.mp3",
