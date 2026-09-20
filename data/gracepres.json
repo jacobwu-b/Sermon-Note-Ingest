@@ -1044,10 +1044,12 @@
     "blurb": "Pastor David Jones continues in our series on the book of Acts with a word from Acts 1:12-2:13 ESV. \n\nhttps://www.biblegateway.com/passage/?search=Acts%201%3A12-2%3A13&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T00:17:40.468184+00:00",
+    "transcript_hash": "a303abc999f7e246f28da67db35ff636575ff7c70b3ec02091bddd3dfefbc8f3",
+    "content_path": "transcripts/gracepres/2025-09-14_living-god-s-mission-the-first-start-up_gracepres_tag_soundcloud_2010_tracks_2171741658.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2167839423": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2167839423",
