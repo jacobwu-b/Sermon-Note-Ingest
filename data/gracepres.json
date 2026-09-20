@@ -1406,10 +1406,12 @@
     "blurb": "Rev. David Jones continues our series on Union with Christ with a word from Philippians 3:1-9.\n\nhttps://www.biblegateway.com/passage/?search=Philippians%203%3A1-9&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T16:57:26.117615+00:00",
+    "transcript_hash": "7767b2da34ac905175d7719a71527270531ce6d56a38c4ef21752511ffb476ef",
+    "content_path": "transcripts/gracepres/2025-05-11_union-with-christ-justified-in-him_gracepres_tag_soundcloud_2010_tracks_2095277715.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2087187735": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2087187735",
