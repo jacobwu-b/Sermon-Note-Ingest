@@ -3657,7 +3657,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/03/19/03%2019%202023_%20Sermon%20Only_Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-03-19_untitled_pbc-archive_Main_Service_2023_03_19_03_19_2023__Sermon_Only_Podcast.mp3.txt",
+    "transcript_hash": "86ce9f0d0ef15d75e09e8eaa79ed4fcb2e33aa32f2ad3fc4770ec0cf28d5e914",
+    "transcribed_at": "2026-09-20T13:16:45.114862+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/03/12/20230312.mp3": {
     "guid": "pbc-archive:Main_Service/2023/03/12/20230312.mp3",
