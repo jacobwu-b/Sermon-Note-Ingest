@@ -3637,7 +3637,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/03/26/2023%2003%2026%20Sermon%20Edit_1.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-03-26_untitled_pbc-archive_Main_Service_2023_03_26_2023_03_26_Sermon_Edit_1.mp3.txt",
+    "transcript_hash": "1406d49bfc75777a90d67538f6abec1455a7678d972805553437a56f222243a5",
+    "transcribed_at": "2026-09-20T13:04:51.857651+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/03/19/03 19 2023_ Sermon Only_Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2023/03/19/03 19 2023_ Sermon Only_Podcast.mp3",
