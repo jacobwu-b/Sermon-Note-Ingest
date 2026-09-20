@@ -1446,10 +1446,12 @@
     "blurb": "John 20:1-18\n\nhttps://www.biblegateway.com/passage/?search=John%2020%3A1-18&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T17:13:27.366770+00:00",
+    "transcript_hash": "fbf11de931a098a91069e95661276635b6a56e2ef08dae10774863e2702d9c03",
+    "content_path": "transcripts/gracepres/2025-04-20_easter-sunday-i-have-seen-the-lord_gracepres_tag_soundcloud_2010_tracks_2083402797.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2079439092": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2079439092",
