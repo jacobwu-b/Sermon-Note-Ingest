@@ -1126,10 +1126,12 @@
     "blurb": "Rev. Iron Kim continues on in our series on the Minor Prophets with a word from Nahum 1:1-8 ESV. \n\nhttps://www.biblegateway.com/passage/?search=Nahum%201%3A1-8&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T02:16:15.430741+00:00",
+    "transcript_hash": "2030f4b4335cb20ca57a60e076da40f518ceb64c6dbaa0eef8b35d803514b592",
+    "content_path": "transcripts/gracepres/2025-08-17_portraits-of-the-prophets-the-divine-avenger_gracepres_tag_soundcloud_2010_tracks_2155838034.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2152121391": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2152121391",
