@@ -12,12 +12,12 @@
     "blurb": null,
     "first_seen_at": "2026-09-20T17:51:24.714573+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T18:37:37.986743+00:00",
+    "transcript_hash": "19137cda412599bec062fa0acdafe47b3561faed0c9656b0bb84dabc558032f5",
+    "content_path": "transcripts/lakepointe/2026-09-20_why-following-jesus-will-make-you-weird_lakepointe_955e721c-b51b-11f1-b806-0fb5c6e32935.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:3e3f3a82-af9b-11f1-ad89-77ec95c060f4": {
     "guid": "lakepointe:3e3f3a82-af9b-11f1-ad89-77ec95c060f4",
