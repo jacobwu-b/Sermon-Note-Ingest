@@ -1626,10 +1626,12 @@
     "blurb": "1 Peter 4:12-19 ESV\n\nhttps://www.biblegateway.com/passage/?search=1%20Peter%204%3A12-19&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T21:59:16.083726+00:00",
+    "transcript_hash": "11e5fc51030657b0c74b18a0d29e4433f8e5889762f47564bda3e51b8f93ba3a",
+    "content_path": "transcripts/gracepres/2025-02-16_living-hope-rejoice-in-your-suffering_gracepres_tag_soundcloud_2010_tracks_2038111540.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2032045776": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2032045776",
