@@ -1278,10 +1278,12 @@
     "blurb": "We take a brief pause in our Portraits of the Prophets series, for a word from RUF Campus Minister, Rev. David Birnie, on Luke 19:1-10.\n\nhttps://www.biblegateway.com/passage/?search=Luke%2019%3A1-10&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T07:33:11.276059+00:00",
+    "transcript_hash": "9af266efcdf1f716c87292aa8d0cd81ecb520724be7ec23b6049f4822daf72c2",
+    "content_path": "transcripts/gracepres/2025-06-22_jesus-seeks-and-saves-the-lost_gracepres_tag_soundcloud_2010_tracks_2118872643.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2115159786": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2115159786",
