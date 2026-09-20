@@ -1366,10 +1366,12 @@
     "blurb": "Rev. David Jones continues in our series on Union with Christ with a word from Colossians 2:20 – 3:17 ESV.\n\nhttps://www.biblegateway.com/passage/?search=Colossians%202%3A20-3%3A17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T13:26:49.014793+00:00",
+    "transcript_hash": "f10ca0b21f612a29c7d971685a7fe7b79620309d570639b0fb7466d1c3024ab6",
+    "content_path": "transcripts/gracepres/2025-05-18_union-with-christ-sanctified-in-him_gracepres_tag_soundcloud_2010_tracks_2103223755.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2098714056": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2098714056",
