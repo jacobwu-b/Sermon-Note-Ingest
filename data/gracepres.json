@@ -1346,10 +1346,12 @@
     "blurb": "Rev. Iron Kim continues on in our Union with Christ series with a word from Philippians 3:7-12 ESV.\n\nhttps://www.biblegateway.com/passage/?search=Philippians%203%3A7-12&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T13:05:57.789914+00:00",
+    "transcript_hash": "805d2a7efee22df34714e9b3e4ad86c7603beae5312b726b0b93c84f6354aa3a",
+    "content_path": "transcripts/gracepres/2025-06-01_union-with-christ-suffering-and-glory_gracepres_tag_soundcloud_2010_tracks_2107154817.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2103223755": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2103223755",
