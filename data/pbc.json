@@ -4037,7 +4037,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/10/30/20221030.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-10-30_untitled_pbc-archive_Main_Service_2022_10_30_20221030.mp3.txt",
+    "transcript_hash": "cf4ca4dad199a0183b5c4b187be3046d78841cbb9fdf38b00592aaf59ae2dda5",
+    "transcribed_at": "2026-09-20T23:50:53.913483+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/10/23/20221023.mp3": {
     "guid": "pbc-archive:Main_Service/2022/10/23/20221023.mp3",
