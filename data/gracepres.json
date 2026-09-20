@@ -1542,10 +1542,12 @@
     "blurb": "Ecclesiastes 2:1-11 ESV\n\nhttps://www.biblegateway.com/passage/?search=Ecclesiastes%202%3A1-11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T19:24:27.787151+00:00",
+    "transcript_hash": "37a83e31e0c25a213139067b56f7beee01396ea9af543f2ab04fe30b04d4e1e0",
+    "content_path": "transcripts/gracepres/2025-03-16_what-we-really-need-i-need-to-feel-good_gracepres_tag_soundcloud_2010_tracks_2058089184.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2052859884": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2052859884",
