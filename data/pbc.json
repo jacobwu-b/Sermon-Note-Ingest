@@ -3603,7 +3603,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2023/04/09/Sunday%20Service%200409-Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2023-04-09_untitled_pbc-archive_Main_Service_2023_04_09_Sunday_Service_0409-Podcast.mp3.txt",
+    "transcript_hash": "88d773bbf58b12256e122e10ec5a1d10a1df429d332eedef65bf18e5171f76f4",
+    "transcribed_at": "2026-09-20T12:53:56.932176+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2023/04/02/2023 04 02 Podcast.mp3": {
     "guid": "pbc-archive:Main_Service/2023/04/02/2023 04 02 Podcast.mp3",
