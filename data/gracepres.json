@@ -1484,10 +1484,12 @@
     "blurb": "Psalm 1\nhttps://www.biblegateway.com/passage/?search=psalm%201&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T17:14:20.430885+00:00",
+    "transcript_hash": "87cf462639096d07a7b1cdb764a01b90a300ffaf692742e61739ec8f62715eed",
+    "content_path": "transcripts/gracepres/2025-04-06_what-we-really-need-i-need-to-be-happy_gracepres_tag_soundcloud_2010_tracks_2074136824.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2068648456": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2068648456",
