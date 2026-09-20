@@ -1142,10 +1142,12 @@
     "blurb": "Rev. Iron Kim continues on in our series on the Minor Prophets with a word from Micah 1:1-5a, 3:9-12, 6:6-8, 7:18-20.\n\nhttps://www.biblegateway.com/passage/?search=Micah%201%3A1-5a%2C%203%3A9-12%2C%206%3A6-8%2C%207%3A18-20&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T01:59:46.841265+00:00",
+    "transcript_hash": "4ded9bddd45c1078d6defdb2bedcc60ad71b220a56dc15ee9d9e2cc79422ac7d",
+    "content_path": "transcripts/gracepres/2025-08-10_portraits-of-the-prophets-what-does-the-lord-require-of-you_gracepres_tag_soundcloud_2010_tracks_2152121391.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2148465558": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2148465558",
