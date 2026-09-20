@@ -1506,10 +1506,12 @@
     "blurb": "Philippians 2:1-11 ESV\nhttps://www.biblegateway.com/passage/?search=Philippians%202%3A1-11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-20T19:54:41.632954+00:00",
+    "transcript_hash": "442b05126824f496d1a85722f9f67fcfcd37e5f7375c70695f1d4fae480c8fdb",
+    "content_path": "transcripts/gracepres/2025-03-30_what-we-really-need-i-need-to-be-better_gracepres_tag_soundcloud_2010_tracks_2068648456.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/2063238084": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2063238084",
