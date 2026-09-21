@@ -4249,7 +4249,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/08/21/20220821.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-08-21_untitled_pbc-archive_Main_Service_2022_08_21_20220821.mp3.txt",
+    "transcript_hash": "d80a60eeb6e4b82723c1c3cd5c62a65106774c819b7693edd18911c8e6d5527a",
+    "transcribed_at": "2026-09-21T07:31:37.141306+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/08/14/20220814.mp3": {
     "guid": "pbc-archive:Main_Service/2022/08/14/20220814.mp3",
