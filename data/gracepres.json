@@ -2224,10 +2224,12 @@
     "blurb": "Jonah 1:4-16\n\nhttps://www.biblegateway.com/passage/?search=Jonah%201%3A4-16&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T23:05:27.318519+00:00",
+    "transcript_hash": "d091da3b150b12102eac150cb4d65342202a94e76a35c14c3bb503fc76ee5a85",
+    "content_path": "transcripts/gracepres/2024-08-11_called-to-neighbor-love-the-dynamics-of-neighbor-love_gracepres_tag_soundcloud_2010_tracks_1897192263.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1890677043": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1890677043",
