@@ -1806,10 +1806,12 @@
     "blurb": "John 6:27-35\n\nhttps://www.biblegateway.com/passage/?search=John%206%3A27-35&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T02:07:31.970357+00:00",
+    "transcript_hash": "82926c032dc42e39e3f06e5ee65c3b0e346259049e3db9e55bcff30f5ff302cd",
+    "content_path": "transcripts/gracepres/2024-12-15_advent-2024-i-am-the-bread-of-life_gracepres_tag_soundcloud_2010_tracks_1990187519.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1979479811": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1979479811",
