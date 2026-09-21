@@ -1906,10 +1906,12 @@
     "blurb": "Encountering Jesus: With the Religious and the Powerless 241110 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T07:23:18.322604+00:00",
+    "transcript_hash": "33b5cc5416d7ff64829b89da78c7b7fd2e52a5bc468c0d0054d22b43c3252a8d",
+    "content_path": "transcripts/gracepres/2024-11-10_encountering-jesus-with-the-religious-and-the-powerless_gracepres_tag_soundcloud_2010_tracks_1956709387.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1950511755": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1950511755",
