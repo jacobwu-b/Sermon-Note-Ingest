@@ -1844,10 +1844,12 @@
     "blurb": "John 14:1-9\n“Let not your hearts be troubled. Believe in God; believe also in me. 2 In my Father's house are many rooms. If it were not so, would I have told you that I go to prepare a place for you? 3 And if I go and prepare a place for you, I will come again and will take you to myself, that where I am you may be also. 4 And you know the way to where I am going.” 5 Thomas said to him, “Lord, we do not know where you are going. How can we know the way?” 6 Jesus said to him, “I am the way, and the truth, and the life. No one comes to the Father except through me. 7 If you had known me, you would have known my Father also. From now on you do know him and have seen him.”\n\n8 Philip said to him, “Lord, show us the Father, and it is enough for us.” 9 Jesus said to him, “Have I been with you so long, and you still do not know me, Philip? Whoever has seen me has seen the Father.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T01:57:05.236373+00:00",
+    "transcript_hash": "6b262ac0df321eff249b1cced97610444dbb971d2ab28ed3274464ce99964690",
+    "content_path": "transcripts/gracepres/2024-12-01_advent-2024-i-am-the-way-the-truth-the-life_gracepres_tag_soundcloud_2010_tracks_1972954367.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1967739807": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1967739807",
