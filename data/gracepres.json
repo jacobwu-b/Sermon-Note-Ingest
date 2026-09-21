@@ -2144,10 +2144,12 @@
     "blurb": "Genesis 32:22-31\n\nhttps://www.biblegateway.com/passage/?search=Genesis%2032%3A22-31&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T19:20:18.529166+00:00",
+    "transcript_hash": "c6da3f6855944609b59958572dce6c8fcc2b51732ddf8bb832e13d4b0d8f410a",
+    "content_path": "transcripts/gracepres/2024-09-08_jacob-wrestling-with-god_gracepres_tag_soundcloud_2010_tracks_1914181907.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1909572725": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1909572725",
