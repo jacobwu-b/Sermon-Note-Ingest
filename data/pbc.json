@@ -4303,7 +4303,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/07/31/Message%202022%207%2031%20Podcast.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-07-31_untitled_pbc-archive_Main_Service_2022_07_31_Message_2022_7_31_Podcast.mp3.txt",
+    "transcript_hash": "74782bc2c542a8c84adff94d655ce839309efd8aef0dc1531ff43e39f7845402",
+    "transcribed_at": "2026-09-21T13:58:54.699652+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/07/24/20220724.mp3": {
     "guid": "pbc-archive:Main_Service/2022/07/24/20220724.mp3",
