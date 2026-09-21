@@ -5,13 +5,38 @@ the file's text rather than a parsed structure — the same tradeoff
 test_poll_workflow.py makes for poll.yml.
 """
 
+import re
 from pathlib import Path
 
 WORKFLOW = Path(__file__).parent.parent / ".github" / "workflows" / "transcribe.yml"
 
+STEPS_OUTPUTS_RE = re.compile(r"\$\{\{\s*steps\.[\w-]+\.outputs\.")
+
 
 def workflow_text() -> str:
     return WORKFLOW.read_text()
+
+
+def run_block_bodies(text: str) -> list[str]:
+    """Each `run: |` script body, by indentation."""
+    lines = text.splitlines()
+    blocks = []
+    i = 0
+    while i < len(lines):
+        stripped = lines[i].lstrip()
+        if stripped == "run: |":
+            indent = len(lines[i]) - len(stripped)
+            body = []
+            i += 1
+            while i < len(lines) and (
+                lines[i].strip() == "" or len(lines[i]) - len(lines[i].lstrip()) > indent
+            ):
+                body.append(lines[i])
+                i += 1
+            blocks.append("\n".join(body))
+            continue
+        i += 1
+    return blocks
 
 
 def test_transcribe_workflow_declares_its_own_timeout():
@@ -133,3 +158,27 @@ def test_transcribe_workflow_wires_whisper_decoding_vars():
     assert "WHISPER_BEAM_SIZE: ${{ vars.WHISPER_BEAM_SIZE }}" in text
     assert "WHISPER_CONDITION_ON_PREVIOUS_TEXT: ${{ vars.WHISPER_CONDITION_ON_PREVIOUS_TEXT }}" in text
     assert "WHISPER_DOMAIN_PROMPT: ${{ vars.WHISPER_DOMAIN_PROMPT }}" in text
+
+
+def test_transcribe_workflow_does_not_interpolate_dispatch_inputs_into_run_scripts():
+    # `${{ inputs.x }}` inside a `run:` body is text substitution before the
+    # shell sees the script — a crafted dispatch input becomes code with
+    # access to every secret in the job (CONTENT_REPO_TOKEN, HF_TOKEN, etc.).
+    # Inputs must be passed through `env:` and referenced as shell variables.
+    for body in run_block_bodies(workflow_text()):
+        assert "${{ inputs." not in body
+        assert not STEPS_OUTPUTS_RE.search(body)
+
+
+def test_transcribe_workflow_passes_inputs_through_env_not_interpolation():
+    text = workflow_text()
+    assert "LIMIT: ${{ inputs.limit || 5 }}" in text
+    assert "CHURCH: ${{ inputs.church }}" in text
+
+
+def test_transcribe_workflow_validates_limit_and_church_inputs_before_use():
+    # Defense in depth even with the injection vector closed above: an
+    # unvalidated LIMIT/CHURCH still reaches the CLI as an arbitrary string.
+    text = workflow_text()
+    assert "^[1-9][0-9]*$" in text
+    assert "^[a-z_]*$" in text
