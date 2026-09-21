@@ -2184,10 +2184,12 @@
     "blurb": "Jonah 4:1-11\n\nhttps://www.biblegateway.com/passage/?search=Jonah%204&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T19:37:12.866933+00:00",
+    "transcript_hash": "319c72551b357b0c8956216c32bf6d60b2215a0641605a0bc79bcece3a1885f2",
+    "content_path": "transcripts/gracepres/2024-08-25_called-to-neighbor-love-the-call-to-neighbor-love_gracepres_tag_soundcloud_2010_tracks_1905156746.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1900784952": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1900784952",
