@@ -89,10 +89,26 @@ jobs:
 
       - name: Count sermons in scope
         id: compute
+        # LIMIT/CHURCH read as shell variables, never interpolated directly
+        # into the script — `${{ inputs.x }}` inside `run:` is text
+        # substitution before the shell sees it, so an unvalidated dispatch
+        # input would otherwise run as code with access to every secret in
+        # this job.
+        env:
+          LIMIT: ${{ inputs.limit || 5 }}
+          CHURCH: ${{ inputs.church }}
         run: |
-          args=(--limit "${{ inputs.limit || 5 }}")
-          if [ -n "${{ inputs.church }}" ]; then
-            args+=(--church "${{ inputs.church }}")
+          if ! [[ "$LIMIT" =~ ^[1-9][0-9]*$ ]]; then
+            echo "::error::LIMIT input '$LIMIT' is not a positive integer"
+            exit 1
+          fi
+          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
+            echo "::error::CHURCH input '$CHURCH' is not a valid CHURCHES key"
+            exit 1
+          fi
+          args=(--limit "$LIMIT")
+          if [ -n "$CHURCH" ]; then
+            args+=(--church "$CHURCH")
           fi
           count=$(python -m poller.transcriber "${args[@]}" --print-shard-count)
           shards="["
@@ -147,10 +163,21 @@ jobs:
           key: whisper-model-${{ vars.WHISPER_MODEL || 'small' }}
 
       - name: Transcribe
+        env:
+          LIMIT: ${{ inputs.limit || 5 }}
+          CHURCH: ${{ inputs.church }}
         run: |
-          args=(--limit "${{ inputs.limit || 5 }}" --shard-index "${{ matrix.shard }}" --shard-count "${{ needs.plan.outputs.shard_count }}")
-          if [ -n "${{ inputs.church }}" ]; then
-            args+=(--church "${{ inputs.church }}")
+          if ! [[ "$LIMIT" =~ ^[1-9][0-9]*$ ]]; then
+            echo "::error::LIMIT input '$LIMIT' is not a positive integer"
+            exit 1
+          fi
+          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
+            echo "::error::CHURCH input '$CHURCH' is not a valid CHURCHES key"
+            exit 1
+          fi
+          args=(--limit "$LIMIT" --shard-index "${{ matrix.shard }}" --shard-count "${{ needs.plan.outputs.shard_count }}")
+          if [ -n "$CHURCH" ]; then
+            args+=(--church "$CHURCH")
           fi
           echo "TRANSCRIBE_ARGS=${args[*]}" >> "$GITHUB_ENV"
           python -m poller.transcriber "${args[@]}"

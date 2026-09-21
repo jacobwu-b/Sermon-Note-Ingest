@@ -78,6 +78,12 @@ jobs:
       - name: Poll
         id: poll
         env:
+          # Read as shell variables below, never interpolated directly into the
+          # script — `${{ inputs.x }}` inside `run:` is text substitution before
+          # the shell sees it, so an unvalidated dispatch input would otherwise
+          # run as code with access to every secret in this job.
+          BACKFILL: ${{ inputs.backfill }}
+          CHURCH: ${{ inputs.church }}
           CHURCHES: ${{ vars.CHURCHES }}
           NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
           NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
@@ -95,12 +101,16 @@ jobs:
           ANTHROPIC_SERVICE_ACCOUNT_ID: ${{ github.ref == 'refs/heads/main' && 'svac_01CDFfTYqT39Gx5BXgRXBGHt' || '' }}
           ANTHROPIC_WORKSPACE_ID: ${{ github.ref == 'refs/heads/main' && 'wrkspc_01CzT9ik9bv58XyTBxKUNs2F' || '' }}
         run: |
+          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
+            echo "::error::CHURCH input '$CHURCH' is not a valid CHURCHES key"
+            exit 1
+          fi
           args=()
-          if [ "${{ inputs.backfill }}" = "true" ]; then
+          if [ "$BACKFILL" = "true" ]; then
             args+=(--backfill)
           fi
-          if [ -n "${{ inputs.church }}" ]; then
-            args+=(--church "${{ inputs.church }}")
+          if [ -n "$CHURCH" ]; then
+            args+=(--church "$CHURCH")
           fi
           # Captured via redirection (not a pipe) so `poll_exit` is this command's own
           # status, and the exit is deferred past recording `discovered` so a partial
@@ -142,8 +152,9 @@ jobs:
         if: always() && steps.commit.outcome == 'success' && steps.poll.outputs.discovered != ''
         env:
           GH_TOKEN: ${{ secrets.TRANSCRIBE_DISPATCH_TOKEN }}
+          DISCOVERED: ${{ steps.poll.outputs.discovered }}
         run: |
-          IFS=',' read -ra churches <<< "${{ steps.poll.outputs.discovered }}"
+          IFS=',' read -ra churches <<< "$DISCOVERED"
           for church in "${churches[@]}"; do
             echo "dispatching transcription for $church"
             if ! gh workflow run transcribe.yml --repo "${{ github.repository }}" -f church="$church"; then
