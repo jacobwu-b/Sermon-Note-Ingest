@@ -2126,10 +2126,12 @@
     "blurb": "Genesis 33:1-17\n\nhttps://www.biblegateway.com/passage/?search=Genesis%2033%3A1-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T19:32:22.778554+00:00",
+    "transcript_hash": "0f3a9808e891c49cb31c447570bf8e16753b3e789c6e361d717f28c8328ec947",
+    "content_path": "transcripts/gracepres/2024-09-15_jacob-reconciliation-the-reunion-of-jacob-and-esau_gracepres_tag_soundcloud_2010_tracks_1918261103.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1914181907": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1914181907",
