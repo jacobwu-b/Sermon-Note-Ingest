@@ -2060,10 +2060,12 @@
     "blurb": "Words and Music: Mac Powell, Fernando Ortega.© 2002 New Spring / Word Music, LLC / Dejamesolo Music / CCLI #1937987.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T13:25:40.697086+00:00",
+    "transcript_hash": "3c5121645c55e00a272a8152fdfe49b029800f393783487f725396108f1b510b",
+    "content_path": "transcripts/gracepres/2024-09-29_our-great-god_gracepres_tag_soundcloud_2010_tracks_1928257523.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1927248101": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1927248101",
