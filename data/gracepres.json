@@ -1864,10 +1864,12 @@
     "blurb": "John 4:5-29 ESV\nhttps://www.biblegateway.com/passage/?search=John%204&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T01:59:52.170327+00:00",
+    "transcript_hash": "e83b42e5cdda846420099cfedfa94d86fcfdc833f2fa8821319de775507b0b41",
+    "content_path": "transcripts/gracepres/2024-11-24_encountering-jesus-with-the-outcast_gracepres_tag_soundcloud_2010_tracks_1967739807.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1962308011": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1962308011",
