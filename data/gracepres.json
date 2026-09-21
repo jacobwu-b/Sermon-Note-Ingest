@@ -1926,10 +1926,12 @@
     "blurb": "Matthew 11:1-6 ESV\n\nhttps://www.biblegateway.com/passage/?search=Matthew%2011%3A1-6&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-21T07:28:27.563504+00:00",
+    "transcript_hash": "4f09d0a87bd9ae1ad75fbee4da9e9552bfd0e93420fd4a3d1b9867d35ce03181",
+    "content_path": "transcripts/gracepres/2024-11-03_encountering-jesus-with-the-confused_gracepres_tag_soundcloud_2010_tracks_1950511755.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1945018927": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1945018927",
