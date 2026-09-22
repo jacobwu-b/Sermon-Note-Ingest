@@ -5103,7 +5103,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2021/10/17/20211017.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2021-10-17_untitled_pbc-archive_Main_Service_2021_10_17_20211017.mp3.txt",
+    "transcript_hash": "f55010ce288f16c26db3bc02ea044aadc8e68dc834f11fe59d049c87cd960b2d",
+    "transcribed_at": "2026-09-22T22:50:47.919061+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2021/10/10/20211010.mp3": {
     "guid": "pbc-archive:Main_Service/2021/10/10/20211010.mp3",
