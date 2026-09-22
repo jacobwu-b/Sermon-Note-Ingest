@@ -10,6 +10,7 @@ mode (CLAUDE.md §6, never swallow an error to pass a test).
 
 from __future__ import annotations
 
+import datetime
 import json
 import urllib.error
 import urllib.request
@@ -17,6 +18,8 @@ import urllib.request
 from poller.config import NotifyConfig
 from poller.net import DEFAULT_USER_AGENT
 from poller.sources.base import SermonItem
+
+_SUNDAY = 6
 
 _RESEND_URL = "https://api.resend.com/emails"
 _TIMEOUT = 15
@@ -29,12 +32,39 @@ class NotifyError(RuntimeError):
     """Raised when the Resend API rejects or cannot be reached for a send."""
 
 
+def _non_sunday_items(items: list[SermonItem]) -> list[SermonItem]:
+    """Items whose ``published_on`` is a real, parseable date that isn't a Sunday.
+
+    The owner's stated rule (#51) is that every church's sermon is preached on a
+    Sunday — a non-Sunday date is the anomaly worth surfacing here, distinct from a
+    missing/unparseable ``published_on`` (a different, pre-existing condition this
+    alert doesn't concern itself with).
+    """
+    anomalies = []
+    for item in items:
+        if not item.published_on:
+            continue
+        try:
+            when = datetime.date.fromisoformat(item.published_on)
+        except ValueError:
+            continue
+        if when.weekday() != _SUNDAY:
+            anomalies.append(item)
+    return anomalies
+
+
 def _format_email(church: str, items: list[SermonItem]) -> tuple[str, str]:
     """Return ``(subject, html_body)`` for one church's newly-discovered sermons."""
     noun = "sermon" if len(items) == 1 else "sermons"
     subject = f"New {noun} from {church}: " + "; ".join(item.title for item in items)
     if len(subject) > _MAX_SUBJECT_LEN:
         subject = f"New {len(items)} {noun} from {church}"
+
+    warning = ""
+    non_sunday = _non_sunday_items(items)
+    if non_sunday:
+        names = ", ".join(_escape(item.title) for item in non_sunday)
+        warning = f"<p><strong>Heads up:</strong> published_on is not a Sunday for: {names}.</p>"
 
     rows = []
     for item in items:
@@ -50,7 +80,7 @@ def _format_email(church: str, items: list[SermonItem]) -> tuple[str, str]:
             line += f'<br><a href="{_escape(item.episode_url)}">{_escape(item.episode_url)}</a>'
         rows.append(f"<li>{line}</li>")
 
-    body = f"<p>{church} published {len(items)} new {noun}:</p><ul>" + "".join(rows) + "</ul>"
+    body = warning + f"<p>{church} published {len(items)} new {noun}:</p><ul>" + "".join(rows) + "</ul>"
     return subject, body
 
 
