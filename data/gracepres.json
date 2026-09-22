@@ -2880,10 +2880,12 @@
     "blurb": "Romans 1:1-17\n\nhttps://www.biblegateway.com/passage/?search=romans+1%3A1-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T22:48:39.402971+00:00",
+    "transcript_hash": "57b8b37029f76d51dc22e7704a1836e01f52cf809889587f941e1c2dff47c961",
+    "content_path": "transcripts/gracepres/2024-01-07_romans-not-ashamed_gracepres_tag_soundcloud_2010_tracks_1715032149.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1706511153": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1706511153",
