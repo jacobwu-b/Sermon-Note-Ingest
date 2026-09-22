@@ -2866,10 +2866,12 @@
     "blurb": "Romans 1:16-32\n\nhttps://www.biblegateway.com/passage/?search=Romans+1%3A16-32&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T23:02:29.338673+00:00",
+    "transcript_hash": "3c6fb501e7cc5040f7ec3fe6d030d6393e768cfa0c888dc2a3250025bc73da7b",
+    "content_path": "transcripts/gracepres/2024-01-14_romans-living-in-denial_gracepres_tag_soundcloud_2010_tracks_1719514707.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1715032149": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1715032149",
