@@ -2326,10 +2326,12 @@
     "blurb": "GENESIS 25:19-28\n\nhttps://www.biblegateway.com/passage/?search=Genesis%2025%3A19-28&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T01:55:36.323572+00:00",
+    "transcript_hash": "2af371c1dc2bac1874eae689e761062a8d05daa30664309d57dcb88988b6140c",
+    "content_path": "transcripts/gracepres/2024-07-14_jacob-the-one-god-chooses_gracepres_tag_soundcloud_2010_tracks_1868335446.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1860388917": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1860388917",
