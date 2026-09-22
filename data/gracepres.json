@@ -2786,10 +2786,12 @@
     "blurb": "Romans 4:1-25\n\nhttps://www.biblegateway.com/passage/?search=Romans%204&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T20:03:32.098840+00:00",
+    "transcript_hash": "5d97e41cbb6afa5d7bca1364e184cfe14926dd9fddbcb3d50aabd0e764049f82",
+    "content_path": "transcripts/gracepres/2024-02-11_romans-by-faith_gracepres_tag_soundcloud_2010_tracks_1746476841.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1739728128": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1739728128",
