@@ -2378,10 +2378,12 @@
     "blurb": "Philippians 2:1-11\n\nhttps://www.biblegateway.com/passage/?search=Philippians%202%3A1-11&version=NIV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T01:36:51.938700+00:00",
+    "transcript_hash": "d2a252b17fdc1cafec65cb994723505d2b3a9ae55047112578ad23a358abd671",
+    "content_path": "transcripts/gracepres/2024-06-16_the-gift-of-service_gracepres_tag_soundcloud_2010_tracks_1851339831.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1845041811": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1845041811",
