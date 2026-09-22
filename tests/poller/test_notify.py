@@ -9,14 +9,14 @@ from poller.config import NotifyConfig
 from poller.sources.base import SermonItem
 
 
-def _item(title: str = "Hear and Do") -> SermonItem:
+def _item(title: str = "Hear and Do", published_on: str = "2026-09-06") -> SermonItem:
     return SermonItem(
         guid="g1",
         title=title,
         raw_title=title,
         series="Luke",
         speaker="Jane Doe",
-        published_on="2026-09-06",
+        published_on=published_on,
         published_at=None,
         episode_url="https://example.org/ep1",
         audio_url="https://example.org/ep1.mp3",
@@ -115,3 +115,44 @@ def test_send_new_sermons_raises_notify_error_on_network_failure(monkeypatch):
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
     with pytest.raises(notify.NotifyError):
         notify.send_new_sermons("menlo", [_item()], _config())
+
+
+def test_non_sunday_items_returns_only_the_non_sunday_ones():
+    sunday = _item(title="Sunday sermon", published_on="2026-09-06")
+    friday = _item(title="Good Friday", published_on="2026-04-03")
+    assert notify._non_sunday_items([sunday, friday]) == [friday]
+
+
+def test_non_sunday_items_ignores_an_undated_item():
+    """A missing/unparseable published_on is a different condition than this
+    alert's concern (a dated-but-wrong-weekday value) and must not be flagged."""
+    undated = _item(title="Untitled", published_on="")
+    assert notify._non_sunday_items([undated]) == []
+
+
+def test_send_new_sermons_html_carries_a_warning_for_a_non_sunday_item(monkeypatch):
+    captured = {}
+
+    def fake_urlopen(request, timeout):
+        captured["body"] = json.loads(request.data)
+        return _FakeResponse(200)
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    friday = _item(title="Good Friday Service", published_on="2026-04-03")
+    notify.send_new_sermons("pbc", [friday], _config())
+
+    assert "Good Friday Service" in captured["body"]["html"]
+    assert "not a Sunday" in captured["body"]["html"]
+
+
+def test_send_new_sermons_html_has_no_warning_when_all_items_are_sunday(monkeypatch):
+    captured = {}
+
+    def fake_urlopen(request, timeout):
+        captured["body"] = json.loads(request.data)
+        return _FakeResponse(200)
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    notify.send_new_sermons("menlo", [_item()], _config())
+
+    assert "not a Sunday" not in captured["body"]["html"]
