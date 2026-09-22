@@ -121,24 +121,48 @@ def test_transcribe_workflow_scales_ledger_push_retries_with_shard_count():
     assert 'attempts="${{ needs.plan.outputs.shard_count }}"' in text
 
 
-def test_transcribe_workflow_rebases_onto_main_before_redoing_a_shard_s_batch():
-    # Regression: a rejected push used to unconditionally `git reset --hard` and
-    # re-run the whole shard's transcriber invocation, discarding this shard's
-    # own already-completed (expensive, Whisper) work on every race with
-    # poll.yml's independent commits — not just on a genuine conflict. That
-    # turned a routine push race into a repeated ~50-minute redo, exhausting the
-    # retry budget in hours. A rejected push must try a rebase first, so an
-    # unrelated writer's commit (almost always a different record) merges
-    # cleanly instead of discarding this shard's progress.
+def test_transcribe_workflow_rebases_onto_main_before_replaying_marks_on_conflict():
+    # Regression (issue #60): a rejected push used to unconditionally `git reset
+    # --hard` and re-run the whole shard's transcriber invocation on conflict —
+    # re-transcribing the whole batch with Whisper and risking a second,
+    # differently-worded push overwriting a transcript Pipeline may have already
+    # consumed. A rejected push must try a rebase first, and a genuine conflict
+    # must replay just this shard's own already-durable marks
+    # (poller.transcriber --replay-marks, ADR-0014) rather than redoing any
+    # transcription.
     text = workflow_text()
     assert "git rebase origin/main" in text
     assert "git rebase --abort" in text
-    # The expensive redo path must be reached only from a failed rebase, not
+    assert "--replay-marks" in text
+    # The replay path must be reached only from a failed rebase, not
     # unconditionally on every rejected push.
     reset_index = text.index("git reset --hard origin/main")
     rebase_abort_index = text.index("git rebase --abort")
-    redo_index = text.index("python -m poller.transcriber $TRANSCRIBE_ARGS")
-    assert rebase_abort_index < reset_index < redo_index
+    replay_index = text.index("python -m poller.transcriber --replay-marks")
+    assert rebase_abort_index < reset_index < replay_index
+
+
+def test_transcribe_workflow_never_redoes_transcription_on_a_push_conflict():
+    # The old full-batch redo (issue #60) is removed entirely, not just guarded:
+    # no invocation of the transcriber with the original run's arguments, and no
+    # `|| true` masking a failed recovery step.
+    text = workflow_text()
+    assert "TRANSCRIBE_ARGS" not in text
+    assert "|| true" not in text
+
+
+def test_transcribe_workflow_writes_marks_out_for_the_push_conflict_recovery():
+    text = workflow_text()
+    assert "--marks-out" in text
+    assert "MARKS_FILE" in text
+
+
+def test_transcribe_workflow_preserves_unpushed_marks_as_an_artifact_on_failure():
+    # If the push retry loop still fails, this shard's already-Content-pushed
+    # marks must survive the runner rather than being lost (§13 durable output).
+    text = workflow_text()
+    assert "actions/upload-artifact@v7" in text
+    assert "if: failure()" in text
 
 
 def test_transcribe_workflow_commits_the_ledger_update_once_before_the_push_retry_loop():
