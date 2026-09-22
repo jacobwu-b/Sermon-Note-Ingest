@@ -2626,10 +2626,12 @@
     "blurb": "Romans 8:1-17\n\nhttps://www.biblegateway.com/passage/?search=romans+8%3A1-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T16:30:49.049865+00:00",
+    "transcript_hash": "ea73e433a27c5549f4aa67a66e9177f24d95a36bce4e8ec0b1a7e7d5fc736f1a",
+    "content_path": "transcripts/gracepres/2024-04-07_romans-life-in-the-spirit_gracepres_tag_soundcloud_2010_tracks_1797242698.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1791796030": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1791796030",
