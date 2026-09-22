@@ -85,7 +85,7 @@ jobs:
           cache: "pip"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install --require-hashes -r requirements.txt
 
       - name: Count sermons in scope
         id: compute
@@ -150,7 +150,7 @@ jobs:
           cache: "pip"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install --require-hashes -r requirements.txt
 
       # faster-whisper downloads model weights from the Hugging Face hub on first
       # use; caching them here means a scheduled run doesn't re-fetch on every
