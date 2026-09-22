@@ -72,7 +72,7 @@ jobs:
           python-version: "3.14"
           cache: "pip"
       - name: Install
-        run: pip install -r requirements-dev.txt
+        run: pip install --require-hashes -r requirements-dev.txt
       - name: Lint
         if: always()
         run: ruff check .
@@ -98,7 +98,7 @@ jobs:
           python-version: "3.14"
           cache: "pip"
       - name: Install
-        run: pip install -r requirements-dev.txt
+        run: pip install --require-hashes -r requirements-dev.txt
       - name: Test
         run: pytest
 

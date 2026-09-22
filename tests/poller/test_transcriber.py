@@ -1,6 +1,6 @@
 import pytest
 
-from poller import pipeline_dispatch, store, transcriber
+from poller import net, pipeline_dispatch, store, transcriber
 from poller.content_repo import ContentPublishError
 from poller.net import AudioDownloadError
 from poller.sources.base import SermonItem
@@ -183,6 +183,11 @@ def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcrib
     tmp_path, monkeypatch
 ):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    # _recently_published compares against the real wall clock (poller.net.now), so the
+    # fixture's publish date must be pinned to a fixed "now" rather than a fixed calendar
+    # date — otherwise this test silently starts failing once real time drifts more than
+    # _DISPATCH_RECENCY past whatever date was hardcoded here.
+    monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
     records = {"g1": _record("g1", published_on="2026-09-15")}
     dispatched = []
 
@@ -284,6 +289,7 @@ def test_transcribe_church_dispatches_when_published_at_is_recent_even_if_publis
     tmp_path, monkeypatch
 ):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
     records = {"g1": _record("g1", published_on="2026-01-01")}
     records["g1"]["published_at"] = "2026-09-15T10:00:00+00:00"
     dispatched = []

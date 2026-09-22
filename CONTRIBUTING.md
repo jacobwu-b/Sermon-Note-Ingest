@@ -20,6 +20,25 @@ This repo follows the operating model in [`CLAUDE.md`](./CLAUDE.md). It applies 
 - Fill every section of the PR template. No placeholders.
 - No AI attribution anywhere in git history.
 
+## Dependencies
+
+`requirements.txt` / `requirements-dev.txt` are hash-pinned locks compiled from
+`requirements.in` / `requirements-dev.in` (ADR-0013) — don't hand-edit the `.txt` files.
+CI installs with `pip install --require-hashes`, which refuses to install anything not in
+the lock.
+
+To bump a version or accept a Dependabot PR, edit the `.in` file, then relock:
+
+```
+uv pip compile requirements.in --generate-hashes --python-version 3.14 \
+    --python-platform x86_64-manylinux_2_28 -o requirements.txt
+uv pip compile requirements-dev.in --generate-hashes --python-version 3.14 \
+    --python-platform x86_64-manylinux_2_28 -o requirements-dev.txt
+```
+
+New/major dependency bumps still need the approval `CLAUDE.md` §6 describes; relocking
+doesn't skip that.
+
 ## Tests
 
 Tests are the contract. See `CLAUDE.md` §7. A PR without appropriate tests is not done.
