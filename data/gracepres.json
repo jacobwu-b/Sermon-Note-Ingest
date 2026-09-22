@@ -2642,10 +2642,12 @@
     "blurb": "Romans 8:31-39\n\nhttps://www.biblegateway.com/passage/?search=Romans%208%3A31-39&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T16:17:26.173290+00:00",
+    "transcript_hash": "253eca671f1de0a8bf210b9e6722d2138bc7d7314b1db701e954a2a3a65a8d12",
+    "content_path": "transcripts/gracepres/2024-03-31_romans-nothing-can-separate-us-from-god-s-love_gracepres_tag_soundcloud_2010_tracks_1791796030.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1785298488": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1785298488",
