@@ -2366,10 +2366,12 @@
     "blurb": "Romans 15:14-33\n\nhttps://www.biblegateway.com/passage/?search=Romans%2015%3A14-33&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T01:58:01.759943+00:00",
+    "transcript_hash": "c23521924bcbb1927ff455365434a6b98e3f9432bde2fda4403b12d54f11af96",
+    "content_path": "transcripts/gracepres/2024-06-23_romans-a-story-bigger-than-ourselves_gracepres_tag_soundcloud_2010_tracks_1856768079.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1851339831": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1851339831",
