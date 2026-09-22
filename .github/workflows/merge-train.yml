@@ -21,14 +21,19 @@ name: Merge train
 # Requires the `queue:ready` label (.github/settings.yml) and
 # `allow_auto_merge: true` (already set there).
 #
-# No schedule: trigger. The label is unused (see #31) — a 10-minute poll
-# billed 4,320 min/mo to do 4 seconds of work per tick, on a queue that has
-# never had a PR in it. workflow_dispatch keeps the mechanism testable by
-# hand. When the label is actually adopted, re-enable via event triggers
-# (pull_request: types: [labeled], push: branches: [main]) rather than a
-# poll — see merge-train.test.sh, which fails the day this pairing changes.
+# No schedule: trigger. A 10-minute poll would bill 4,320 min/mo to do 4
+# seconds of work per tick. The label is now adopted (see #31), so instead of
+# polling this reacts to the events that actually move the queue: `labeled`
+# advances a newly-queued PR to the head if it's oldest, and `push` to main
+# advances the next PR once the current head merges. workflow_dispatch stays
+# so the mechanism remains manually testable — see merge-train.test.sh, which
+# fails the day this trigger set changes.
 
 on:
+  pull_request:
+    types: [labeled]
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
