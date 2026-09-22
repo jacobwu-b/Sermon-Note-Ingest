@@ -2724,10 +2724,12 @@
     "blurb": "Romans 6:1-14\n\nhttps://www.biblegateway.com/passage/?search=Romans%206%3A1-14&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T19:52:29.212894+00:00",
+    "transcript_hash": "11ff7aa57c1c2b52a30b811b662dccf66848ae51c98cb8d00c12202aa4a3406c",
+    "content_path": "transcripts/gracepres/2024-03-03_romans-union-with-christ_gracepres_tag_soundcloud_2010_tracks_1766252049.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1759552779": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1759552779",
