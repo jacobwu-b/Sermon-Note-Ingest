@@ -1,5 +1,7 @@
 import json
 
+import pytest
+
 from poller import store
 from poller.sources.base import SermonItem
 
@@ -301,3 +303,59 @@ def test_save_does_not_read_or_touch_the_overrides_file(tmp_path, monkeypatch):
 
     on_disk = json.loads((tmp_path / "menlo.json").read_text(encoding="utf-8"))
     assert on_disk["g1"]["audio_url"] == "https://example.org/ep1.mp3"
+
+
+def test_save_interrupted_mid_write_leaves_the_previous_ledger_intact(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    before = (tmp_path / "menlo.json").read_text(encoding="utf-8")
+
+    def _boom(*args, **kwargs):
+        raise RuntimeError("killed mid-write")
+
+    monkeypatch.setattr(store.json, "dump", _boom)
+    with pytest.raises(RuntimeError):
+        store.save("menlo", {"g2": _record("g2", published_on="2026-09-07")})
+
+    assert (tmp_path / "menlo.json").read_text(encoding="utf-8") == before
+    assert not (tmp_path / "menlo.json.tmp").exists()
+
+
+def test_save_leaves_no_tmp_file_behind_on_success(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    assert not (tmp_path / "menlo.json.tmp").exists()
+
+
+def test_validate_all_returns_empty_list_when_data_dir_is_absent(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path / "does-not-exist")
+    assert store.validate_all() == []
+
+
+def test_validate_all_returns_empty_list_for_well_formed_ledgers(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    store.save("pbc", {"g2": _record("g2", published_on="2026-09-07")})
+    assert store.validate_all() == []
+
+
+def test_validate_all_reports_a_truncated_ledger_by_filename(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    (tmp_path / "menlo.json").write_text('{"g1": {"guid":', encoding="utf-8")
+
+    assert store.validate_all() == ["menlo.json"]
+
+
+def test_main_validate_exits_zero_for_well_formed_ledgers(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", published_on="2026-09-06")})
+    assert store.main(["validate"]) == 0
+
+
+def test_main_validate_exits_non_zero_and_reports_a_truncated_ledger(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "menlo.json").write_text("not json", encoding="utf-8")
+
+    assert store.main(["validate"]) == 1
+    assert "menlo.json" in capsys.readouterr().err

@@ -22,6 +22,8 @@ from __future__ import annotations
 
 import json
 import logging
+import os
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -98,13 +100,24 @@ def _ordered_items(records: dict[str, dict[str, Any]]) -> list[tuple[str, dict[s
 
 
 def save(church: str, records: dict[str, dict[str, Any]]) -> None:
-    """Write a church's ledger back, newest ``published_on`` first, for an easy-to-scan file."""
+    """Write a church's ledger back, newest ``published_on`` first, for an easy-to-scan file.
+
+    Writes to a ``.tmp`` sibling and ``os.replace``s it onto the real path, so a process
+    killed mid-write (a job timeout, a runner eviction) never leaves a truncated ledger on
+    disk — the previous, complete ledger stays in place until the new one is fully written.
+    """
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     path = _record_path(church)
+    tmp_path = path.with_suffix(path.suffix + ".tmp")
     ordered = dict(_ordered_items(records))
-    with path.open("w", encoding="utf-8") as f:
-        json.dump(ordered, f, indent=2, ensure_ascii=False)
-        f.write("\n")
+    try:
+        with tmp_path.open("w", encoding="utf-8") as f:
+            json.dump(ordered, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        os.replace(tmp_path, path)
+    except BaseException:
+        tmp_path.unlink(missing_ok=True)
+        raise
 
 
 def item_to_record(item: SermonItem, *, first_seen_at: str, published_at: str | None) -> dict[str, Any]:
@@ -217,3 +230,40 @@ def mark_transcription_failed(record: dict[str, Any]) -> None:
     same audio would not fix.
     """
     record["transcription_status"] = "failed"
+
+
+def validate_all() -> list[str]:
+    """Strict-load every ``data/*.json`` ledger; return the filenames that fail to parse.
+
+    Run by both poll.yml's and transcribe.yml's commit steps before ``git add data/``, so a
+    truncated or corrupted ledger fails the step instead of landing on main with `[skip ci]`.
+    """
+    if not DATA_DIR.exists():
+        return []
+    bad = []
+    for path in sorted(DATA_DIR.glob("*.json")):
+        try:
+            with path.open(encoding="utf-8") as f:
+                json.load(f)
+        except (OSError, json.JSONDecodeError):
+            bad.append(path.name)
+    return bad
+
+
+def main(argv: list[str] | None = None) -> int:
+    """``python -m poller.store validate`` — non-zero if any ledger fails to parse."""
+    argv = sys.argv[1:] if argv is None else argv
+    if argv != ["validate"]:
+        print("usage: python -m poller.store validate", file=sys.stderr)
+        return 2
+
+    bad = validate_all()
+    if bad:
+        for name in bad:
+            print(f"::error::data/{name} failed to parse as JSON", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -182,3 +182,17 @@ def test_transcribe_workflow_validates_limit_and_church_inputs_before_use():
     text = workflow_text()
     assert "^[1-9][0-9]*$" in text
     assert "^[a-z_]*$" in text
+
+
+def test_transcribe_workflow_validates_ledgers_before_every_git_add():
+    # A truncated ledger must fail the push step rather than reach `git add
+    # data/` and land on main with `[skip ci]` — see poller/store.py:validate_all.
+    # Two `git add data/` sites: the normal commit and the post-rebase-conflict
+    # redo — both must be guarded.
+    text = workflow_text()
+    git_add_positions = [m.start() for m in re.finditer(re.escape("git add data/"), text)]
+    validate_positions = [m.start() for m in re.finditer(re.escape("python -m poller.store validate"), text)]
+    assert len(git_add_positions) == 2
+    assert len(validate_positions) == 2
+    for git_add_pos in git_add_positions:
+        assert any(validate_pos < git_add_pos for validate_pos in validate_positions)
