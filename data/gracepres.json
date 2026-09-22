@@ -2306,10 +2306,12 @@
     "blurb": "Jacob: The Big Con 240716 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T01:38:57.656360+00:00",
+    "transcript_hash": "b466fabdecf026d5e8c9c37c1fe1bd42fc9833680ae43304ac0b1382ce81374c",
+    "content_path": "transcripts/gracepres/2024-07-14_jacob-the-big-con_gracepres_tag_soundcloud_2010_tracks_1873463247.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1868335446": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1868335446",
