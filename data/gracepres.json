@@ -2762,10 +2762,12 @@
     "blurb": "Romans 5:1-11\n\nhttps://www.biblegateway.com/passage/?search=Romans%205%3A1-11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T19:49:36.563205+00:00",
+    "transcript_hash": "6b1a7bae0f982769bc64e3609d623d5ec0b0e298976f4cfb6febd6d12b904334",
+    "content_path": "transcripts/gracepres/2024-02-18_romans-since-we-have-been-justified-by-faith_gracepres_tag_soundcloud_2010_tracks_1753214805.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1746476841": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1746476841",
