@@ -4689,7 +4689,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/03/13/20220313.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-03-13_untitled_pbc-archive_Main_Service_2022_03_13_20220313.mp3.txt",
+    "transcript_hash": "ef4108a92e65aa16c6fdf36321bf235c72e24b0844dc0f0f9311d2fd0d5f8223",
+    "transcribed_at": "2026-09-22T06:47:38.916441+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/03/06/20220306.mp3": {
     "guid": "pbc-archive:Main_Service/2022/03/06/20220306.mp3",
@@ -4703,7 +4709,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/03/06/20220306.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-03-06_untitled_pbc-archive_Main_Service_2022_03_06_20220306.mp3.txt",
+    "transcript_hash": "5eba8ddd7b2f3956f375c9675dbdb02607aab472dd86354da711283161f8c2a4",
+    "transcribed_at": "2026-09-22T06:32:52.943656+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/02/27/20220227.mp3": {
     "guid": "pbc-archive:Main_Service/2022/02/27/20220227.mp3",
@@ -4717,7 +4729,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/02/27/20220227.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-02-27_untitled_pbc-archive_Main_Service_2022_02_27_20220227.mp3.txt",
+    "transcript_hash": "de56e4dce574c27db7114c50651b71042a418c312e6316f96cdad57cb560d6e1",
+    "transcribed_at": "2026-09-22T06:45:20.965780+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/02/20/20220220.mp3": {
     "guid": "pbc-archive:Main_Service/2022/02/20/20220220.mp3",
@@ -4731,7 +4749,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/02/20/20220220.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-02-20_untitled_pbc-archive_Main_Service_2022_02_20_20220220.mp3.txt",
+    "transcript_hash": "4ad826490df7fcac39e8936848765ec089f0e6e4eaf47a934a6df6c807c3a829",
+    "transcribed_at": "2026-09-22T06:43:58.621631+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/02/13/20220213.mp3": {
     "guid": "pbc-archive:Main_Service/2022/02/13/20220213.mp3",
@@ -4745,7 +4769,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/02/13/20220213.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-02-13_untitled_pbc-archive_Main_Service_2022_02_13_20220213.mp3.txt",
+    "transcript_hash": "c28deb9d186bd4a0c9758ed72562bb6a9ec6c82cdf62e5eeaff80886e5c28fd9",
+    "transcribed_at": "2026-09-22T06:35:31.395605+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/02/06/20220206.mp3": {
     "guid": "pbc-archive:Main_Service/2022/02/06/20220206.mp3",
@@ -4759,7 +4789,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/02/06/20220206.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-02-06_untitled_pbc-archive_Main_Service_2022_02_06_20220206.mp3.txt",
+    "transcript_hash": "5cd7db05ba86f3df58ae1dbf43c2ec0a2854ce1147667622d10f25c1146f1b0e",
+    "transcribed_at": "2026-09-22T12:02:45.377574+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/01/30/20220130.mp3": {
     "guid": "pbc-archive:Main_Service/2022/01/30/20220130.mp3",
@@ -4773,7 +4809,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/01/30/20220130.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-01-30_untitled_pbc-archive_Main_Service_2022_01_30_20220130.mp3.txt",
+    "transcript_hash": "3d3fd482655c7e6290b2836412686c25546562657c69b42a3873233d9857dcaf",
+    "transcribed_at": "2026-09-22T11:59:23.341419+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/01/23/20220123.mp3": {
     "guid": "pbc-archive:Main_Service/2022/01/23/20220123.mp3",
@@ -4787,7 +4829,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/01/23/20220123.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-01-23_untitled_pbc-archive_Main_Service_2022_01_23_20220123.mp3.txt",
+    "transcript_hash": "d1fe3bb414532004d28e0cbe918a069ff7ce4edc2357d86a8d03329b77285335",
+    "transcribed_at": "2026-09-22T11:57:32.990925+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/01/16/20220116.mp3": {
     "guid": "pbc-archive:Main_Service/2022/01/16/20220116.mp3",
@@ -4801,7 +4849,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/01/16/20220116.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-01-16_untitled_pbc-archive_Main_Service_2022_01_16_20220116.mp3.txt",
+    "transcript_hash": "03e28837a5a21fbd91a2e8fc2d3de5df90b763d8beec7384fea6367e05a31f60",
+    "transcribed_at": "2026-09-22T12:01:34.618383+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/01/09/20220109.mp3": {
     "guid": "pbc-archive:Main_Service/2022/01/09/20220109.mp3",
@@ -4815,7 +4869,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/01/09/20220109.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-01-09_untitled_pbc-archive_Main_Service_2022_01_09_20220109.mp3.txt",
+    "transcript_hash": "b456c200efd4c5fc36883d8ad67a5a7ce36018393ebfa3772f1a6158efe7190d",
+    "transcribed_at": "2026-09-22T12:13:49.787899+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2022/01/02/20220102.mp3": {
     "guid": "pbc-archive:Main_Service/2022/01/02/20220102.mp3",
@@ -4829,7 +4889,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2022/01/02/20220102.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2022-01-02_untitled_pbc-archive_Main_Service_2022_01_02_20220102.mp3.txt",
+    "transcript_hash": "d692876e1bee82b0b675e8b50116b955b7e73af5bc91f1e6c6f7e3d60372f272",
+    "transcribed_at": "2026-09-22T16:18:03.961496+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2021/12/26/202112126.mp3": {
     "guid": "pbc-archive:Main_Service/2021/12/26/202112126.mp3",
@@ -4843,7 +4909,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2021/12/26/202112126.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2021-12-26_untitled_pbc-archive_Main_Service_2021_12_26_202112126.mp3.txt",
+    "transcript_hash": "077ec13f958555fbd156a49e5b2abdaf29ca10329ee51ccaa947125f080795a1",
+    "transcribed_at": "2026-09-22T16:12:52.190206+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2021/12/19/20211219.mp3": {
     "guid": "pbc-archive:Main_Service/2021/12/19/20211219.mp3",
@@ -4857,7 +4929,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2021/12/19/20211219.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2021-12-19_untitled_pbc-archive_Main_Service_2021_12_19_20211219.mp3.txt",
+    "transcript_hash": "d88b06f6307dca14ecd605265511fbc9a1570115f46c35c06a862909ba4235fd",
+    "transcribed_at": "2026-09-22T15:56:31.822257+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2021/12/12/20211212.mp3": {
     "guid": "pbc-archive:Main_Service/2021/12/12/20211212.mp3",
@@ -4871,7 +4949,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2021/12/12/20211212.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2021-12-12_untitled_pbc-archive_Main_Service_2021_12_12_20211212.mp3.txt",
+    "transcript_hash": "d67f3ceec507dae5894b61ae791a9bced73fd077d9ac3f49c52b7ef15a7f9329",
+    "transcribed_at": "2026-09-22T16:16:27.622859+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2021/12/05/20211205.mp3": {
     "guid": "pbc-archive:Main_Service/2021/12/05/20211205.mp3",
@@ -4885,7 +4969,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2021/12/05/20211205.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2021-12-05_untitled_pbc-archive_Main_Service_2021_12_05_20211205.mp3.txt",
+    "transcript_hash": "7fc5b68e437bb3b2db6a33b3088aca4eb9bb6ea6c34263ca3c699a63aa6173d2",
+    "transcribed_at": "2026-09-22T16:27:29.648369+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2021/11/28/20211128.mp3": {
     "guid": "pbc-archive:Main_Service/2021/11/28/20211128.mp3",
