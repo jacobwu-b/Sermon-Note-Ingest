@@ -2706,10 +2706,12 @@
     "blurb": "Romans 6:15-23\n\nhttps://www.biblegateway.com/passage/?search=Romans%206%3A15-23&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T19:53:34.696858+00:00",
+    "transcript_hash": "a87411085891997a26a950748e038a3c7b52e869b75e682429c5c42dd42a70ff",
+    "content_path": "transcripts/gracepres/2024-03-10_romans-slaves-of-righteousness_gracepres_tag_soundcloud_2010_tracks_1780291317.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1766252049": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1766252049",
