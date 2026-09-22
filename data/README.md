@@ -55,7 +55,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | menlo | 147 | Kinds of Kindness | 2026-09-20 |
 | north_point | 101 | Mind Games, Part 2: Responding Wisely | 2026-09-20 |
 | pbc | 398 | Beneath the Surface | 2026-09-13 |
-| westgate | 105 | Week 1 - A New Family | 2026-09-13 |
+| westgate | 106 | Week 2 - A Genuine Community | 2026-09-20 |
 
-**Total sermons across all churches: 1843**
+**Total sermons across all churches: 1844**
 <!-- STATS:END -->
