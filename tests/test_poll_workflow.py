@@ -113,3 +113,10 @@ def test_poll_workflow_validates_church_input_before_use():
     # unvalidated CHURCH still reaches the CLI as an arbitrary string.
     text = workflow_text()
     assert "^[a-z_]*$" in text
+
+
+def test_poll_workflow_validates_ledgers_before_git_add():
+    # A truncated ledger must fail the commit step rather than reach `git add
+    # data/` and land on main with `[skip ci]` — see poller/store.py:validate_all.
+    text = workflow_text()
+    assert text.index("python -m poller.store validate") < text.index("git add data/")
