@@ -2606,10 +2606,12 @@
     "blurb": "Romans 8:18-30\n\nhttps://www.biblegateway.com/passage/?search=Romans%208%3A18-30&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T16:29:33.194349+00:00",
+    "transcript_hash": "179549110b7b0fafa586215527a44c623ba21552d01f3e6b9ff889bdeefe3586",
+    "content_path": "transcripts/gracepres/2024-04-14_romans-groaning-for-glory_gracepres_tag_soundcloud_2010_tracks_1802411736.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1797242698": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1797242698",
