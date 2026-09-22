@@ -2742,10 +2742,12 @@
     "blurb": "Romans 5:12-21\n\nhttps://www.biblegateway.com/passage/?search=Romans%205%3A12-21&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T19:41:05.386166+00:00",
+    "transcript_hash": "6fe7381f26585ab5a5ae0fa3b8c7d490643306516fc2ef09d0e2ad49fc4c6583",
+    "content_path": "transcripts/gracepres/2024-02-25_romans-grace-abounded-all-the-more_gracepres_tag_soundcloud_2010_tracks_1759552779.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1753214805": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1753214805",
