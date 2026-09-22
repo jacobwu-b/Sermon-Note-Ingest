@@ -2344,10 +2344,12 @@
     "blurb": "Romans 16\n\nhttps://www.biblegateway.com/passage/?search=Romans%2016&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T01:50:53.826136+00:00",
+    "transcript_hash": "cd9794eda1940045f365e576b790ac99981f1a82640a6f221a934a6adb010ba1",
+    "content_path": "transcripts/gracepres/2024-06-30_romans-the-beautiful-community_gracepres_tag_soundcloud_2010_tracks_1860388917.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1856768079": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1856768079",
