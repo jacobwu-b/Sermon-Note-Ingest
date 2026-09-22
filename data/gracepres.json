@@ -2496,10 +2496,12 @@
     "blurb": "ROMANS 10:1-17; 11:33-36 ESV\n\nhttps://www.biblegateway.com/passage/?search=ROMANS+10%3A1-17%3B+11%3A33-36+ESV&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T06:21:14.679085+00:00",
+    "transcript_hash": "0c2f56f77d983bb18a3e3cd4f987909862bb9e107365f1eb42efb59e1e7316e5",
+    "content_path": "transcripts/gracepres/2024-05-19_romans-a-heart-for-mission-worship_gracepres_tag_soundcloud_2010_tracks_1827362886.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1827382608": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1827382608",
