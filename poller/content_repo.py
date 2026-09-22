@@ -82,6 +82,13 @@ def default_push(files: dict[str, str]) -> None:
     ``CONTENT_REPO``, ``CONTENT_REPO_TOKEN``, and ``CONTENT_REPO_BRANCH`` from config
     (the mocked boundary). The token rides only in the clone remote URL, is never
     logged, and is redacted from any git error.
+
+    Refuses (raises :class:`ContentPublishError`) to overwrite a path that already
+    exists in Content with different text, rather than silently replacing it — Whisper
+    is not bit-for-bit deterministic, so a second transcription of an already-"done"
+    sermon must never quietly become a second, different version of what a downstream
+    consumer (Pipeline) may already have fetched and hashed (issue #60). A rewrite with
+    identical text is unaffected: it diffs to nothing and stays a no-op push.
     """
     cfg = config.load_content_repo_config()
     remote = _remote_url(cfg.repo, cfg.token)
@@ -95,6 +102,11 @@ def default_push(files: dict[str, str]) -> None:
         )
         for rel_path, text in files.items():
             dest = checkout / rel_path
+            if dest.exists() and dest.read_text(encoding="utf-8") != text:
+                raise ContentPublishError(
+                    f"refusing to overwrite existing Content file {rel_path!r} with different "
+                    "text — a sermon must be represented in Content exactly once"
+                )
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(text, encoding="utf-8")
         _run_git(["add", "-A"], cwd=checkout, token=cfg.token)

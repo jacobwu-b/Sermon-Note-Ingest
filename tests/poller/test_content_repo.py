@@ -69,6 +69,18 @@ def test_default_push_is_a_noop_when_content_is_unchanged(content_repo_env):
     assert before == after
 
 
+def test_default_push_refuses_to_overwrite_an_existing_transcript_with_different_text(content_repo_env):
+    # Whisper is not bit-for-bit deterministic across runs; a second transcription
+    # of an already-"done" sermon must never silently replace one a downstream
+    # consumer (Pipeline) may already have fetched and hashed (issue #60).
+    content_repo.default_push({"transcripts/menlo/sermon-1.txt": "first version"})
+
+    with pytest.raises(content_repo.ContentPublishError):
+        content_repo.default_push({"transcripts/menlo/sermon-1.txt": "second, different version"})
+
+    assert _read_file_at_head(content_repo_env, "transcripts/menlo/sermon-1.txt") == "first version"
+
+
 def test_push_transcripts_is_a_noop_for_empty_files(monkeypatch):
     calls = []
     content_repo.push_transcripts({}, push=lambda files: calls.append(files))

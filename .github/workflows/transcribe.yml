@@ -167,6 +167,11 @@ jobs:
           LIMIT: ${{ inputs.limit || 5 }}
           CHURCH: ${{ inputs.church }}
         run: |
+          # Written first, before any input validation can exit, so a later step
+          # can always find (or safely not find, via if-no-files-found: ignore)
+          # this shard's marks regardless of where this run stops (ADR-0014).
+          marks_file="${{ runner.temp }}/transcribe-marks-${{ matrix.shard }}.json"
+          echo "MARKS_FILE=$marks_file" >> "$GITHUB_ENV"
           if ! [[ "$LIMIT" =~ ^[1-9][0-9]*$ ]]; then
             echo "::error::LIMIT input '$LIMIT' is not a positive integer"
             exit 1
@@ -175,11 +180,10 @@ jobs:
             echo "::error::CHURCH input '$CHURCH' is not a valid CHURCHES key"
             exit 1
           fi
-          args=(--limit "$LIMIT" --shard-index "${{ matrix.shard }}" --shard-count "${{ needs.plan.outputs.shard_count }}")
+          args=(--limit "$LIMIT" --shard-index "${{ matrix.shard }}" --shard-count "${{ needs.plan.outputs.shard_count }}" --marks-out "$marks_file")
           if [ -n "$CHURCH" ]; then
             args+=(--church "$CHURCH")
           fi
-          echo "TRANSCRIBE_ARGS=${args[*]}" >> "$GITHUB_ENV"
           python -m poller.transcriber "${args[@]}"
 
       - name: Push ledger update
@@ -192,14 +196,18 @@ jobs:
         # long enough that at least one other writer almost always lands first.
         # On rejection, rebase this shard's already-committed ledger update onto
         # the fresh main rather than discarding it: the other writers' edits are
-        # almost always different records in the same file, so this is a clean
-        # 3-way merge, not a real conflict. Only a genuine conflict (two shards'
-        # updates landing on the very same record) falls back to redoing this
-        # shard's batch from scratch — the previously idempotent behavior — since
-        # a sermon already "done" or already landed in Content is never re-marked
-        # or re-pushed with new content. More shards means more concurrent
-        # writers, so the retry budget scales with shard count (ADR-0005) rather
-        # than staying fixed at 3.
+        # almost always different records in the same file, so this is usually a
+        # clean 3-way merge, not a real conflict — store.save's newest-first
+        # resort means even non-overlapping record changes can still collide as
+        # text. A genuine conflict replays just this shard's own already-durable
+        # marks (poller.transcriber --replay-marks, ADR-0014) onto a freshly reset
+        # ledger instead of redoing this shard's transcription from scratch: a
+        # sermon already "done" is never re-transcribed or re-pushed with new
+        # content, so the replay is a pure record-level merge — no Whisper call,
+        # no second Content push, and no swallowed failure if the replay itself
+        # can't find its marks (the old fallback silently ignored its own exit
+        # code). More shards means more concurrent writers, so the retry budget
+        # scales with shard count (ADR-0005) rather than staying fixed at 3.
         if: always()
         run: |
           git config user.name "github-actions[bot]"
@@ -225,17 +233,31 @@ jobs:
             if git rebase origin/main; then
               continue
             fi
-            echo "rebase conflicted; redoing this shard's batch on top of latest main"
+            echo "rebase conflicted; reapplying this shard's marks onto latest main"
             git rebase --abort
             git reset --hard origin/main
-            python -m poller.transcriber $TRANSCRIBE_ARGS || true
+            python -m poller.transcriber --replay-marks "$MARKS_FILE"
             python -m poller.store validate
             git add data/
             if git diff --cached --quiet; then
-              echo "No transcription progress to record after redo; nothing left to push."
+              echo "No transcription progress to record after replay; nothing left to push."
               exit 0
             fi
             git commit -m "chore(data): record transcription progress [skip ci]"
           done
           echo "::error::failed to push ledger update after $attempts attempts"
           exit 1
+
+      - name: Preserve unpushed transcription marks
+        # If the retry loop above still failed (replay-marks couldn't find its
+        # file, or every push attempt was rejected), this shard's marks — already
+        # durably pushed to Content — must not vanish with the runner: durable
+        # output has to survive the step that could exit before it lands (§13).
+        # An operator resolves the underlying push conflict, then replays the
+        # downloaded file with `python -m poller.transcriber --replay-marks`.
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: transcribe-marks-shard-${{ matrix.shard }}
+          path: ${{ env.MARKS_FILE }}
+          if-no-files-found: ignore
