@@ -77,9 +77,9 @@ jobs:
       shards: ${{ steps.compute.outputs.shards }}
       shard_count: ${{ steps.compute.outputs.shard_count }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.14"
           cache: "pip"
@@ -140,11 +140,11 @@ jobs:
       # Deploy key authenticates this repo's own ledger push, same as poll.yml.
       # It is unrelated to CONTENT_REPO_TOKEN, which authenticates the separate
       # push to Sermon-Note-Content inside the transcriber itself.
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.14"
           cache: "pip"
@@ -157,7 +157,7 @@ jobs:
       # invocation (§13 unattended cost). Shared across shards: a cold cache means
       # each shard downloads once in parallel, a one-time cost, not a per-run one.
       - name: Cache Whisper model weights
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: ~/.cache/huggingface
           key: whisper-model-${{ vars.WHISPER_MODEL || 'small' }}
@@ -256,7 +256,7 @@ jobs:
         # An operator resolves the underlying push conflict, then replays the
         # downloaded file with `python -m poller.transcriber --replay-marks`.
         if: failure()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: transcribe-marks-shard-${{ matrix.shard }}
           path: ${{ env.MARKS_FILE }}
