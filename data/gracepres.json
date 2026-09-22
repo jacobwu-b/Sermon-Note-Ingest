@@ -2546,10 +2546,12 @@
     "blurb": "Tech Disruptions? Beyond Flatlanders and Divine perfections of human designs by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-22T13:12:08.029269+00:00",
+    "transcript_hash": "df72c95ae505a1a216d3381775c8e1beb3f5f16384d3598dbaa0d271bbe78f0c",
+    "content_path": "transcripts/gracepres/2024-04-28_tech-disruptions-beyond-flatlanders-and-divine-perfections-of-human-designs_gracepres_tag_soundcloud_2010_tracks_1810674012.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1810673604": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1810673604",
