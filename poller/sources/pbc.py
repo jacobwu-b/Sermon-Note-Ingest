@@ -11,8 +11,13 @@ Two enrichments this adapter does that no other church needs:
   same ``enmse_mid`` the feed uses in its item links — scraped here as a
   best-effort fallback that never blocks discovery if it fails.
 - The feed's own ``pubDate`` is a constant nominal value, not the true publish
-  time — a placeholder, not real data — so ``published_at`` instead comes from
-  the audio enclosure's CDN ``Last-Modified`` header, fetched once per guid.
+  time — a placeholder, not real data. The same sermons-page card also shows a
+  human-readable air date immediately before its title, keyed by the same
+  ``enmse_mid`` — a far more reliable signal than the audio enclosure's CDN
+  ``Last-Modified`` header, which a re-encode or cache-bust can rewrite long
+  after the sermon actually aired (issue #73). ``resolve_published_at`` prefers
+  that scraped date and falls back to the CDN header only for a guid that has
+  scrolled off the page's limited recent window by the time it's first seen.
 """
 
 from __future__ import annotations
@@ -21,7 +26,7 @@ import dataclasses
 import re
 import urllib.parse
 from collections.abc import Callable
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 import feedparser
@@ -47,13 +52,16 @@ _DEFAULT_SERMONS_URL = "https://pbc.org/sermons/"
 _EPISODE_URL_TEMPLATE = "https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid={mid}"
 
 # Reads the SeriesEngine "card" markup on pbc.org/sermons for the per-episode
-# speaker the feed itself omits, keyed by the same enmse_mid the feed uses.
+# speaker and air date the feed itself omits, keyed by the same enmse_mid the
+# feed uses.
 _SERMONS_PAGE_CARD_RE = re.compile(
+    r"<h6>(?P<date>[^<]*)</h6>\s*"
     r"<h5>(?P<title>[^<]*)</h5>\s*"
     r'<p class="enmse-speaker-name">(?P<speaker>[^<]*)</p>.*?'
     r"enmse_mid=(?P<mid>\d+)",
     re.DOTALL,
 )
+_SERMONS_PAGE_DATE_FORMAT = "%B %d, %Y"
 
 
 def _fetch(url: str) -> bytes:
@@ -71,6 +79,26 @@ def parse_sermons_page_speakers(content: bytes) -> dict[str, str]:
     return {
         match.group("mid"): match.group("speaker").strip() for match in _SERMONS_PAGE_CARD_RE.finditer(text)
     }
+
+
+def parse_sermons_page_dates(content: bytes) -> dict[str, datetime]:
+    """Map each ``enmse_mid`` on the PBC sermons page to its card's air date.
+
+    The card's ``<h6>`` is a bare date with no time of day, so each value is
+    midnight UTC on that date. A card whose date doesn't parse is omitted
+    rather than raising — this is enrichment, never load-bearing for discovery.
+    """
+    text = content.decode("utf-8", errors="replace")
+    dates: dict[str, datetime] = {}
+    for match in _SERMONS_PAGE_CARD_RE.finditer(text):
+        try:
+            parsed = datetime.strptime(match.group("date").strip(), _SERMONS_PAGE_DATE_FORMAT).replace(
+                tzinfo=UTC
+            )
+        except ValueError:
+            continue
+        dates[match.group("mid")] = parsed
+    return dates
 
 
 def _split_title(raw_title: str) -> tuple[str, str | None]:
@@ -140,26 +168,36 @@ class PbcAdapter(SourceAdapter):
         super().__init__(url=url)
         self._sermons_url = sermons_url
         self._fetch_last_modified = fetch_last_modified
+        # Populated by poll()'s single sermons-page fetch; resolve_published_at
+        # reads it for the new items poll() just discovered rather than
+        # re-fetching the page itself.
+        self._page_dates: dict[str, datetime] = {}
 
-    def _fetch_speakers(self) -> dict[str, str]:
-        """Best-effort mid-to-speaker mapping; never blocks discovery on failure."""
+    def _fetch_sermons_page(self) -> tuple[dict[str, str], dict[str, datetime]]:
+        """Best-effort mid-to-speaker and mid-to-date mappings; never blocks discovery on failure."""
         try:
             content = fetch_feed(
                 self._sermons_url,
                 get=lambda target: http_get(target, user_agent=_USER_AGENT),
             )
         except FeedFetchError:
-            return {}
-        return parse_sermons_page_speakers(content)
+            return {}, {}
+        return parse_sermons_page_speakers(content), parse_sermons_page_dates(content)
 
     def resolve_published_at(self, item: SermonItem) -> datetime | None:
         """The real publish instant for a newly-discovered item.
 
-        Worth its cost only the first time a guid is seen — the runner calls
-        this for new items only, so the CDN HEAD is a one-time cost per sermon
-        rather than one per poll (PBC's own pubDate is a placeholder; see
-        module docstring).
+        Prefers the sermons page's own air date (module docstring) — set by the
+        most recent ``poll()`` call, whose single page fetch this reuses rather
+        than re-fetching per item. Falls back to the CDN audio enclosure's
+        ``Last-Modified`` header for a guid the page's limited recent window no
+        longer lists; that fallback HEAD is worth its cost only the first time a
+        guid is seen, which is exactly when the runner calls this.
         """
+        mid = _mid_from_url(item.episode_url)
+        page_date = self._page_dates.get(mid) if mid is not None else None
+        if page_date is not None:
+            return page_date
         return self._fetch_last_modified(item.audio_url)
 
     def poll(self) -> PollResult:
@@ -177,7 +215,7 @@ class PbcAdapter(SourceAdapter):
             else:
                 excluded += 1
 
-        speakers = self._fetch_speakers()
+        speakers, self._page_dates = self._fetch_sermons_page()
         enriched: list[SermonItem] = []
         for item in included:
             mid = _mid_from_url(item.episode_url)
