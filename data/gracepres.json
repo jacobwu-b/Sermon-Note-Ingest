@@ -3378,10 +3378,12 @@
     "blurb": "Revelation 15:1-16:17\n\nhttps://www.biblegateway.com/passage/?search=Revelation+15%3A1-16%3A17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T19:16:37.365949+00:00",
+    "transcript_hash": "2527a01feae4388c6b4df41d49210190c76aada37ea7a80b9f0b0960bff36ff1",
+    "content_path": "transcripts/gracepres/2023-07-16_jesus-wins-the-seven-bowls_gracepres_tag_soundcloud_2010_tracks_1568505463.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1562147704": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1562147704",
