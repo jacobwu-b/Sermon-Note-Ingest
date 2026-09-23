@@ -54,8 +54,8 @@ Do not edit between the markers by hand; it will be overwritten.
 | lakepointe | 137 | Why Following Jesus Will Make You WEIRD | 2026-09-20 |
 | menlo | 147 | Kinds of Kindness | 2026-09-20 |
 | north_point | 101 | Mind Games, Part 2: Responding Wisely | 2026-09-20 |
-| pbc | 398 | Beneath the Surface | 2026-09-13 |
+| pbc | 399 | The Leaven of Life | 2026-09-20 |
 | westgate | 106 | Week 2 - A Genuine Community | 2026-09-20 |
 
-**Total sermons across all churches: 1844**
+**Total sermons across all churches: 1845**
 <!-- STATS:END -->

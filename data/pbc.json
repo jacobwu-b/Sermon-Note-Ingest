@@ -1,4 +1,24 @@
 {
+  "https://pbc.org?enmse_mid=4692": {
+    "guid": "https://pbc.org?enmse_mid=4692",
+    "title": "The Leaven of Life",
+    "raw_title": "The Leaven of Life - Luke",
+    "series": "Luke",
+    "speaker": null,
+    "published_on": "2026-09-20",
+    "published_at": "2026-09-22T21:11:24+00:00",
+    "episode_url": "https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid=4692",
+    "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/09/20/Sermon+Audio+2026-09-20.mp3",
+    "blurb": "Small attitudes and actions act like \"sourdough starter\" (leaven), silently spreading to transform the entire “spiritual dough” of our lives for better or worse. By orienting our lives to Jesus, we embrace healthy rhythms that affect our relationship with God and others.",
+    "first_seen_at": "2026-09-23T19:54:27.493720+00:00",
+    "notified_at": "2026-09-23T19:54:27.933911+00:00",
+    "transcription_status": null,
+    "transcribed_at": null,
+    "transcript_hash": null,
+    "content_path": null,
+    "transcription_model": null,
+    "transcription_domain_prompt": null
+  },
   "https://pbc.org?enmse_mid=4691": {
     "guid": "https://pbc.org?enmse_mid=4691",
     "title": "Beneath the Surface",
