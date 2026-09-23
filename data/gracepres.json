@@ -3426,10 +3426,12 @@
     "blurb": "REVELATION 8:1-9:21; 11:15-19\n\nhttps://www.biblegateway.com/passage/?search=REVELATION+8%3A1-9%3A21%3B+11%3A15-19&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T22:50:33.439532+00:00",
+    "transcript_hash": "c1a07794f89651e1bac029acee03a2bcfa2b61e59f41889992fad4e759c1e6fc",
+    "content_path": "transcripts/gracepres/2023-07-02_jesus-wins-the-seven-trumpets_gracepres_tag_soundcloud_2010_tracks_1557641410.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1551638368": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1551638368",
