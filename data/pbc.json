@@ -12,12 +12,12 @@
     "blurb": "Small attitudes and actions act like \"sourdough starter\" (leaven), silently spreading to transform the entire “spiritual dough” of our lives for better or worse. By orienting our lives to Jesus, we embrace healthy rhythms that affect our relationship with God and others.",
     "first_seen_at": "2026-09-23T19:54:27.493720+00:00",
     "notified_at": "2026-09-23T19:54:27.933911+00:00",
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T20:48:47.693100+00:00",
+    "transcript_hash": "9281f24f4a45050f2ff9af57fa477e906b89f0647c0c5e14a1f24d3e2a02c9fe",
+    "content_path": "transcripts/pbc/2026-09-20_the-leaven-of-life_https_pbc.org_enmse_mid_4692.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "https://pbc.org?enmse_mid=4691": {
     "guid": "https://pbc.org?enmse_mid=4691",
