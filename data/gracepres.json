@@ -3444,10 +3444,12 @@
     "blurb": "REVELATION 6, 7:1-4, 9-17\n\nhttps://www.biblegateway.com/passage/?search=REVELATION+6%2C+7%3A1-4%2C+9-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T22:41:43.303106+00:00",
+    "transcript_hash": "4d09b267e334d311c94c62ac70c4d9af8ffb588ddc635177ebbeee41ca41d31b",
+    "content_path": "transcripts/gracepres/2023-06-25_jesus-wins-the-seals-the-scroll_gracepres_tag_soundcloud_2010_tracks_1551638368.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1547382394": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1547382394",
