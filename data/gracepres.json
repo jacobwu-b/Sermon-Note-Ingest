@@ -3164,10 +3164,12 @@
     "blurb": "Exodus 1:8,15-22; 2:5-15,23-25\n\nhttps://www.biblegateway.com/passage/?search=Exodus+1%3A8%2C15-22%3B+2%3A5-15%2C23-25&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T10:37:57.376165+00:00",
+    "transcript_hash": "3ba5902153084fda552821de07dd6804f3889047251aeb24dad2818751df9d7b",
+    "content_path": "transcripts/gracepres/2023-10-01_who-is-the-lord-the-god-who-hears-us_gracepres_tag_soundcloud_2010_tracks_1631781117.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1626247218": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1626247218",
