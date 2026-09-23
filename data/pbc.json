@@ -5209,7 +5209,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2021/09/12/20210912.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2021-09-12_untitled_pbc-archive_Main_Service_2021_09_12_20210912.mp3.txt",
+    "transcript_hash": "110845fb61a99416c292101b6116a267df91fd12ae4fd175dae9f1b958afdf92",
+    "transcribed_at": "2026-09-23T01:20:24.699738+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2021/09/05/20210905.mp3": {
     "guid": "pbc-archive:Main_Service/2021/09/05/20210905.mp3",
