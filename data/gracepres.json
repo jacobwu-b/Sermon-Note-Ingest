@@ -3242,10 +3242,12 @@
     "blurb": "Psalm 51\n\nhttps://www.biblegateway.com/passage/?search=Psalm%2051&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T15:23:04.117872+00:00",
+    "transcript_hash": "ac49737bdcd51f8090fa8985253b34786d129dc6125bdc17be86187897f782ac",
+    "content_path": "transcripts/gracepres/2023-09-03_words-for-the-way-words-for-when-we-ve-done-wrong_gracepres_tag_soundcloud_2010_tracks_1609259952.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1603797174": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1603797174",
