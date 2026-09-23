@@ -2924,10 +2924,12 @@
     "blurb": "Luke 2:1-20\n\nhttps://www.biblegateway.com/passage/?search=Luke%202%3A1-20&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T01:12:53.073428+00:00",
+    "transcript_hash": "0a3658d7a7303a00d7ba663d3c23e3cc916b0203c5ffea69bf79cbb7bd1515fa",
+    "content_path": "transcripts/gracepres/2023-12-24_advent-2023-good-news-of-great-joy_gracepres_tag_soundcloud_2010_tracks_1706235843.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1694619810": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1694619810",
