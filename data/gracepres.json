@@ -3362,10 +3362,12 @@
     "blurb": "Revelation 17:1-9, 15-18;  18:1-8, 21-24;  19:1-9\n\nhttps://www.biblegateway.com/passage/?search=Revelation+17%3A1-9%2C+15-18%3B++18%3A1-8%2C+21-24%3B++19%3A1-9&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T19:32:28.595894+00:00",
+    "transcript_hash": "53ec4e7d9e7fa8c245b0d86dcfe978c088aa0d5cae85ef381a2d8f9c06bfa992",
+    "content_path": "transcripts/gracepres/2023-07-23_jesus-wins-the-prostitute-the-bride_gracepres_tag_soundcloud_2010_tracks_1574402665.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1568505463": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1568505463",
