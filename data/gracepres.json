@@ -3226,10 +3226,12 @@
     "blurb": "Psalm 10\n\nhttps://www.biblegateway.com/passage/?search=Psalm%2010&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T15:41:13.770926+00:00",
+    "transcript_hash": "a68709da2d22dcff0e40ed4aa469f4b715bfa7d81a6262bc376f5e77d38599c0",
+    "content_path": "transcripts/gracepres/2023-09-10_words-for-the-way-words-for-when-you-ve-been-wronged_gracepres_tag_soundcloud_2010_tracks_1616566140.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1609259952": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1609259952",
