@@ -3006,10 +3006,12 @@
     "blurb": "Exodus 40\n\nhttps://www.biblegateway.com/passage/?search=Exodus+40&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T05:54:41.226831+00:00",
+    "transcript_hash": "7b61af27efd80e7b6b2bdebe2cff40a71c0b40de7957d06263a222a4b0157fee",
+    "content_path": "transcripts/gracepres/2023-11-26_who-is-the-lord-the-descending-glory_gracepres_tag_soundcloud_2010_tracks_1677744432.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1671126321": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1671126321",
