@@ -3306,10 +3306,12 @@
     "blurb": "Revelation 21:9-22:17\n\nhttps://www.biblegateway.com/passage/?search=Revelation+21%3A9-22%3A17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T19:51:53.583162+00:00",
+    "transcript_hash": "7151336fcb5f1a9dabdbdf5c25561aec70931a5c0728fda7fd211297292563e8",
+    "content_path": "transcripts/gracepres/2023-08-13_jesus-wins-the-city-of-god_gracepres_tag_soundcloud_2010_tracks_1593965229.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1589914923": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1589914923",
