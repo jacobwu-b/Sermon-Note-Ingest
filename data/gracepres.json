@@ -3324,10 +3324,12 @@
     "blurb": "Revelation 21:1-5\nhttps://www.biblegateway.com/passage/?search=Rev+21%3A1-5&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T19:27:36.490249+00:00",
+    "transcript_hash": "6309520f02ae4f797c03e0d353a1af19adf792215ebbc4388da86122bd503bfd",
+    "content_path": "transcripts/gracepres/2023-08-06_jesus-wins-all-things-new_gracepres_tag_soundcloud_2010_tracks_1589914923.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1580168206": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1580168206",
