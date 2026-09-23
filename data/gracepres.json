@@ -2944,10 +2944,12 @@
     "blurb": "Luke 1:39-56\n\nhttps://www.biblegateway.com/passage/?search=Luke%201%3A39-56&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T01:15:53.162601+00:00",
+    "transcript_hash": "a87ed4ac35e83ea7da8a7547b769f66dd05b3965542110d69ad17efd39eab1a6",
+    "content_path": "transcripts/gracepres/2023-12-17_advent2023-the-magnificat_gracepres_tag_soundcloud_2010_tracks_1694619810.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1688956479": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1688956479",
