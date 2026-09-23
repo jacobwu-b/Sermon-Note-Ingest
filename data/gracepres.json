@@ -3466,10 +3466,12 @@
     "blurb": "Revelation 4-5\n\nhttps://www.biblegateway.com/passage/?search=Revelation%204-5&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T23:04:03.442171+00:00",
+    "transcript_hash": "5f3c3f9ec18dc62ba28eb3a5286a4dce1f9477a34c8ea0d0d4c5d2c177b3da67",
+    "content_path": "transcripts/gracepres/2023-06-18_jesus-wins-who-is-on-the-throne_gracepres_tag_soundcloud_2010_tracks_1547382394.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1539165814": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1539165814",
