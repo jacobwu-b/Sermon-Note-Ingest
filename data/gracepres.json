@@ -3124,10 +3124,12 @@
     "blurb": "Exodus 5:1-2, 7:17, 9:14-16, 10:21-23, 27-29\n\nhttps://www.biblegateway.com/passage/?search=+Exodus+5%3A1-2%2C+7%3A17%2C+9%3A14-16%2C+10%3A21-23%2C+27-29&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-23T10:28:23.666501+00:00",
+    "transcript_hash": "06029f4991bbb153dde9e4c328bcd5e86e7fb3a8b9b2320611bc79c9e3482e4e",
+    "content_path": "transcripts/gracepres/2023-10-22_who-is-the-lord-the-plagues_gracepres_tag_soundcloud_2010_tracks_1643942565.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1636837035": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1636837035",
