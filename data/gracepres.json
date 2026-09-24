@@ -3778,10 +3778,12 @@
     "blurb": "Exodus 12:1-4, (5-10), 11-14, Psalm 116:1-2, 12-19, 1 Corinthians 11:23-26, John 13:1-17, 31b-35\n\nToday’s meditation was read by Jimmy Poon, produced by Jess Springer, with music by Michael Anderson.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T10:04:37.156359+00:00",
+    "transcript_hash": "a9f6564033a4572bdc16e11c6a6795da4e53bb8e701e9f872272daa7975ac916",
+    "content_path": "transcripts/gracepres/2023-03-26_thursday-april-6-2023-holy-week_gracepres_tag_soundcloud_2010_tracks_1481543425.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1479627361": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1479627361",
