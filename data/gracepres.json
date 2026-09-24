@@ -3678,10 +3678,12 @@
     "blurb": "Isaiah 49:1-7, Psalm 71:1-14, 1 Corinthians 1:18-31, John 12:20-36\n\nToday’s meditation was read by Matt Hood, produced by Jess Springer, with music by Michael Anderson.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T05:19:31.916818+00:00",
+    "transcript_hash": "a6cc01bada71824f65127cc55282b9a395dfba768f4f41f20fc25be29a1d3557",
+    "content_path": "transcripts/gracepres/2023-04-02_tuesday-april-4-2023-holy-week_gracepres_tag_soundcloud_2010_tracks_1484206309.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1484193079": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1484193079",
