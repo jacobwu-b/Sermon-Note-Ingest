@@ -3626,10 +3626,12 @@
     "blurb": "Revelation 1\n\nhttps://www.biblegateway.com/passage/?search=Revelation%201&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T05:59:09.837943+00:00",
+    "transcript_hash": "9ed53ab437a5b25d445119adc2128413fc9108afb7e31ec2c1e57ce1b015a237",
+    "content_path": "transcripts/gracepres/2023-04-16_jesus-wins-behind-the-scenes_gracepres_tag_soundcloud_2010_tracks_1500334051.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1492681924": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1492681924",
