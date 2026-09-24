@@ -3898,10 +3898,12 @@
     "blurb": "Psalm 134:1-3; Matthew 4:1–11; Romans 8:1\n\nToday’s meditation was written and read by Rachel Stevener, produced by Jess Springer, with music by Michael Anderson. Format inspired by Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T15:00:36.556237+00:00",
+    "transcript_hash": "802f827443d72d40508a70d5da2833384f1ff049a49b3192bde366bd21bd3a2d",
+    "content_path": "transcripts/gracepres/2023-03-19_thursday-march-30-2023-the-temptation-fought_gracepres_tag_soundcloud_2010_tracks_1476644791.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1474180207": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1474180207",
