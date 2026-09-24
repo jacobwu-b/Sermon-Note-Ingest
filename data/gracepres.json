@@ -3946,10 +3946,12 @@
     "blurb": "Psalm 36:5-9; Psalm 103; Ephesians 2:4-5,7",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T22:16:49.089949+00:00",
+    "transcript_hash": "30c48ab95d068c730c3564f272b43bc47f51e02c29e5b4f40eaba0bb818debc2",
+    "content_path": "transcripts/gracepres/2023-03-12_tuesday-march-21-2023-the-forgiving-god_gracepres_tag_soundcloud_2010_tracks_1469048551.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1469048164": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1469048164",
