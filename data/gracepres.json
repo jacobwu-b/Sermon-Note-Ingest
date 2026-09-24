@@ -3564,10 +3564,12 @@
     "blurb": "Revelation 2: 12-17",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T01:14:22.903372+00:00",
+    "transcript_hash": "08a810645f4a350195375dd43bad5bd87238f5538bed8bb5399aa5983ee60607",
+    "content_path": "transcripts/gracepres/2023-05-14_jesus-wins-letter-to-pergamum-truth_gracepres_tag_soundcloud_2010_tracks_1515585298.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1510581568": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1510581568",
