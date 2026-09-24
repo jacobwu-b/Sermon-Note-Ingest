@@ -4018,10 +4018,12 @@
     "blurb": "Psalm 100:1-2; Psalm 118:19-24; Colossians 1:21-22\n\nToday’s meditation was written and read by Robert Mungai, produced by Jess Springer, with music by Michael Anderson. Format Inspired by Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T19:02:37.345735+00:00",
+    "transcript_hash": "616e7afb9cec7f509f435db5af44981f2a15f6fde2a78b929a2ba7732a0ec917",
+    "content_path": "transcripts/gracepres/2023-03-12_wednesday-march-15-2023-the-day-god-has-made_gracepres_tag_soundcloud_2010_tracks_1469025937.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1469025271": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1469025271",
