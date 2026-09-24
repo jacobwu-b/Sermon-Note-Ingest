@@ -3582,10 +3582,12 @@
     "blurb": "REVELATION 2:8-11\n\nhttps://www.biblegateway.com/passage/?search=Revelation%202%3A8-11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T01:03:41.933865+00:00",
+    "transcript_hash": "dfbedfacd680f091a3fc68de2d63958d434c86f8b0a2e06682df9a0045bbc3d8",
+    "content_path": "transcripts/gracepres/2023-04-30_jesus-wins-faithful-under-pressure_gracepres_tag_soundcloud_2010_tracks_1510581568.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1500333040": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1500333040",
