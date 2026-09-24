@@ -3964,10 +3964,12 @@
     "blurb": "Psalm 66:16-20; Matthew 18:15-22; Lamentations 3:22-23\n\nToday’s meditation was written and read by Rachel Stevener, produced by Jess Springer, with music by Michael Anderson. Format inspired by Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T22:07:11.136047+00:00",
+    "transcript_hash": "4871409baca6ca3c4898351c4fdfa97295b7440f07875e3fc589a9be2c763bef",
+    "content_path": "transcripts/gracepres/2023-03-12_thursday-march-23-2023-the-unlimited-pardon_gracepres_tag_soundcloud_2010_tracks_1469048164.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1469047198": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1469047198",
