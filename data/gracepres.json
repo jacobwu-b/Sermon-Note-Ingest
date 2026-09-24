@@ -3698,10 +3698,12 @@
     "blurb": "Lamentations 3:1-9, 19-24; Psalm 31:1-4, 15-16; 1 Peter 4:1-8; John 19:38-42\n\nToday’s meditation was read by Song Toh, produced by Jess Springer, with music by Michael Anderson.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T05:22:20.821199+00:00",
+    "transcript_hash": "0be73ebc9a0440ca3ff4e0a2a061e252b0937c4f7cc95080a96e6e8104a72fbc",
+    "content_path": "transcripts/gracepres/2023-04-02_saturday-april-8-2023-holy-saturday_gracepres_tag_soundcloud_2010_tracks_1484193079.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1481545066": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1481545066",
