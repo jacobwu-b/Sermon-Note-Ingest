@@ -3644,10 +3644,12 @@
     "blurb": "Mark 16:1-8; 2 Corinthians 4:13-18\n\nhttps://www.biblegateway.com/passage/?search=Mark+16%3A1-8%3B+2+Corinthians+4%3A13-18+&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T05:38:35.401789+00:00",
+    "transcript_hash": "2fcce05fbb3003fdf90d3c4f71da548b4f17446a4b828dd4333bcc63cb5ddaa0",
+    "content_path": "transcripts/gracepres/2023-04-09_the-glory-of-easter_gracepres_tag_soundcloud_2010_tracks_1492681924.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1485030037": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1485030037",
