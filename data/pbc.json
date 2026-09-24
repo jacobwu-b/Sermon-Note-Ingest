@@ -5969,7 +5969,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2020/12/27/20201227.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2020-12-27_untitled_pbc-archive_Main_Service_2020_12_27_20201227.mp3.txt",
+    "transcript_hash": "5913448ddfcb49dfa42a32634f05cc479349b5ef4b58451dff5e1c671f27974c",
+    "transcribed_at": "2026-09-24T05:52:01.064982+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2020/12/20/20201220.mp3": {
     "guid": "pbc-archive:Main_Service/2020/12/20/20201220.mp3",
