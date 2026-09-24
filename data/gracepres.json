@@ -3982,10 +3982,12 @@
     "blurb": "Psalm 25:2-5; Matthew 18:23-35; Ephesians 2:4-9\n\nToday’s meditation was written and read by Sam Tseng, produced by Jess Springer, with music by Michael Anderson. Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T22:03:04.882585+00:00",
+    "transcript_hash": "930057c2a7f1e3424e7409cd279705bd384dd89ccdd689954fe416c7b66310a8",
+    "content_path": "transcripts/gracepres/2023-03-12_friday-march-24-2023-forgiveness-of-the-forgiven_gracepres_tag_soundcloud_2010_tracks_1469047198.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1469026657": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1469026657",
