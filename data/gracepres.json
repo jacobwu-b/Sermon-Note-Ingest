@@ -3826,10 +3826,12 @@
     "blurb": "Psalm 121:1-2, 5-8; Romans 8:31-39; Matthew 6:25, 31\n\nToday’s meditation was written and read by Erika Mungai, produced by Jess Springer, with music by Michael Anderson. Format inspired by Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T18:55:01.363532+00:00",
+    "transcript_hash": "9f543ac759150780c53bddf69a8977b6b8c76ef9dcf684dfb940a6dc63c6ee9c",
+    "content_path": "transcripts/gracepres/2023-03-19_friday-march-31-2023-the-temptation-conquered_gracepres_tag_soundcloud_2010_tracks_1476649219.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1476648055": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1476648055",
