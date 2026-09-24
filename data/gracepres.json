@@ -3844,10 +3844,12 @@
     "blurb": "Psalm 36:5-11; 1 Corinthians 10:6-13; 2 Timothy 4:18\n\nToday’s meditation was written and read by Ruth Case, produced by Jess Springer, with music by Michael Anderson. Format inspired by Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T18:54:02.567622+00:00",
+    "transcript_hash": "93e0363776ab8b8511c7d4ddf576342fbf50f012a7419cbe122d7e7ffb8f9793",
+    "content_path": "transcripts/gracepres/2023-03-19_wednesday-march-29-2023-the-temptation-avoided_gracepres_tag_soundcloud_2010_tracks_1476648055.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1476647089": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1476647089",
