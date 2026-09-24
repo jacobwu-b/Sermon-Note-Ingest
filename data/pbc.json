@@ -6097,7 +6097,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2020/11/08/20201108.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2020-11-08_untitled_pbc-archive_Main_Service_2020_11_08_20201108.mp3.txt",
+    "transcript_hash": "01d27e0dc76398b073279bed37a730f02f992eb1ad12598f1627b20cab2f0baa",
+    "transcribed_at": "2026-09-24T10:23:13.493220+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2020/11/01/20201101.mp3": {
     "guid": "pbc-archive:Main_Service/2020/11/01/20201101.mp3",
