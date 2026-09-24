@@ -3802,10 +3802,12 @@
     "blurb": "Matthew 6:9-13\n\nhttps://www.biblegateway.com/passage/?search=Matthew%206%3A9-13&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-24T10:26:34.302841+00:00",
+    "transcript_hash": "4a91afb26918b38c01fd6957a4038fa22ecd0f1231e9cb45815ea5991c313786",
+    "content_path": "transcripts/gracepres/2023-03-26_as-jesus-taught-us-to-pray-forgive-us-our-debts_gracepres_tag_soundcloud_2010_tracks_1479627361.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1476649219": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1476649219",
