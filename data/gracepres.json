@@ -4226,10 +4226,12 @@
     "blurb": "As Jesus Taught Us to Pray: An Introduction And Invitation by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T05:19:16.332810+00:00",
+    "transcript_hash": "a5f9fa532d9c9fb2f43dc1a9f038cfd7c789b4246da1b013ca886f8e5d1765f9",
+    "content_path": "transcripts/gracepres/2023-02-19_as-jesus-taught-us-to-pray-an-introduction-and-invitation_gracepres_tag_soundcloud_2010_tracks_1452399142.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1452398227": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1452398227",
