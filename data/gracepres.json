@@ -4644,10 +4644,12 @@
     "blurb": "proverbs 1:1-7, 3:13-18\n\nhttps://www.biblegateway.com/passage/?search=proverbs+1%3A1-7%2C+3%3A13-18&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T23:08:11.048982+00:00",
+    "transcript_hash": "079fdc72dc99aca3d86579975d8a90791fa9741098c316a4604a12729a0cc5d6",
+    "content_path": "transcripts/gracepres/2023-01-08_the-way-of-wisdom-the-beginning-of-wisdom_gracepres_tag_soundcloud_2010_tracks_1421128657.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1421127535": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1421127535",
