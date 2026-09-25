@@ -4666,10 +4666,12 @@
     "blurb": "Isaiah 9:1-7\nhttps://www.biblegateway.com/passage/?search=isaiah+9%3A1-7&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T23:26:03.297177+00:00",
+    "transcript_hash": "935fbe1ba6c2241aebe7e0380ea2eef9f4bf523c1964596556b7d4287e0b0503",
+    "content_path": "transcripts/gracepres/2022-12-25_advent2022-a-light-in-the-darkness_gracepres_tag_soundcloud_2010_tracks_1421127535.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1421109022": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1421109022",
