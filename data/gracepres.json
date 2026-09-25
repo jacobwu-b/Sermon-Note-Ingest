@@ -4124,10 +4124,12 @@
     "blurb": "Psalm 32:3-5; 1 John 1:5-10; Romans 3:23-24, Romans 8:1\n\nToday’s meditation was written and read by Xuan Wu, produced by Jess Springer, with music by Michael Anderson. Format inspired by Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T00:23:55.365891+00:00",
+    "transcript_hash": "bde0e297b2a035c19235db149b0b3fadb1c84c25e08b3fa2578e18d0d9d758e6",
+    "content_path": "transcripts/gracepres/2023-02-26_wednesday-march-22-2023-the-honest-confession_gracepres_tag_soundcloud_2010_tracks_1459988554.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1458293029": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1458293029",
