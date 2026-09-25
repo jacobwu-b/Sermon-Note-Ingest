@@ -4590,10 +4590,12 @@
     "blurb": "Proverbs 11:2; 15:25, 33; 16:18; 18:12; 29:23\n\nhttps://www.biblegateway.com/passage/?search=Proverbs+11%3A2%3B+15%3A25%2C+33%3B+16%3A18%3B+18%3A12%3B+29%3A23&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T15:37:39.845956+00:00",
+    "transcript_hash": "8f5708407c1fac03d95d326bb01253a3517b3da7c3ab9c929caf9ddc30d30bad",
+    "content_path": "transcripts/gracepres/2023-01-22_the-way-of-wisdom-pride-spiritual-cancer_gracepres_tag_soundcloud_2010_tracks_1431502450.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1426299082": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1426299082",
