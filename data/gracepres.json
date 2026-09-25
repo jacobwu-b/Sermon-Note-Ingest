@@ -4160,10 +4160,12 @@
     "blurb": "[1] So if there is any encouragement in Christ, any comfort from love, any participation in the Spirit, any affection and sympathy, [2] complete my joy by being of the same mind, having the same love, being in full accord and of one mind. [3] Do nothing from selfish ambition or conceit, but in humility count others more significant than yourselves. [4] Let each of you look not only to his own interests, but also to the interests of others. [5] Have this mind among yourselves, which is yours in Christ Jesus, [6] who, though he was in the form of God, did not count equality with God a thing to be grasped, [7] but emptied himself, by taking the form of a servant, being born in the likeness of men. [8] And being found in human form, he humbled himself by becoming obedient to the point of death, even death on a cross. [9] Therefore God has highly exalted him and bestowed on him the name that is above every name, [10] so that at the name of Jesus every knee should bow, in heaven and on earth and under the earth, [11] and every tongue confess that Jesus Christ is Lord, to the glory of God the Father. -Philippians 2:1-11\n\nToday’s meditation was written and read by Jason Greene, produced by Jess Springer, with music by Michael Anderson. Format inspired by Lectio365.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T00:23:24.822581+00:00",
+    "transcript_hash": "cf1c534e213daa78addd115f257d5db2ba1219df08e1c3c8d599b2a1c9eeeaf0",
+    "content_path": "transcripts/gracepres/2023-02-26_friday-march-3-2023-the-only-name_gracepres_tag_soundcloud_2010_tracks_1458292171.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1458121342": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1458121342",
