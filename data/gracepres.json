@@ -4106,10 +4106,12 @@
     "blurb": "Psalm 143:10; 1 Thessalonians 4:1-7; Isaiah 43:25\n\nToday’s meditation was written by Betsy Boggs, read by Kathy Jenke, produced by Jess Springer, with music by Michael Anderson.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T00:28:03.459284+00:00",
+    "transcript_hash": "a976be997757717bf6a662991b88eabe169f2e992cd1c36a55dd2232e4bbfb71",
+    "content_path": "transcripts/gracepres/2023-02-26_tuesday-march-7-2023-understanding-god-s-will_gracepres_tag_soundcloud_2010_tracks_1461345847.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1459988554": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1459988554",
