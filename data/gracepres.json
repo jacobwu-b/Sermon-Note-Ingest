@@ -4504,10 +4504,12 @@
     "blurb": "Then Jesus was led up by the Spirit into the wilderness to be tempted by the devil. 2 And after fasting forty days and forty nights, he was hungry. 3 And the tempter came and said to him, “If you are the Son of God, command these stones to become loaves of bread.” 4 But he answered, “It is written,\n\n“‘Man shall not live by bread alone,\n    but by every word that comes from the mouth of God.’”\n\n5 Then the devil took him to the holy city and set him on the pinnacle of the temple 6 and said to him, “If you are the Son of God, throw yourself down, for it is written,\n\n“‘He will command his angels concerning you,’\n\nand\n\n“‘On their hands they will bear you up,\n    lest you strike your foot against a stone.’”\n\n7 Jesus said to him, “Again it is written, ‘You shall not put the Lord your God to the test.’” 8 Again, the devil took him to a very high mountain and showed him all the kingdoms of the world and their glory. 9 And he said to him, “All these I will give you, if you will fall down and worship me.” 10 Then Jesus said to him, “Be gone, Satan! For it is written,\n\n“‘You shall worship the Lord your God\n    and him only shall you serve.’”\n\n11 Then the devil left him, and behold, angels came and were ministering to him.\nMatthew 4:1-11",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T19:31:32.100193+00:00",
+    "transcript_hash": "9518821aa184678c14e85bf8e3f50610cf62fa95ab73229ace91b83df2f0b98f",
+    "content_path": "transcripts/gracepres/2023-01-22_tuesday-march-14-2023-the-word-of-the-lord_gracepres_tag_soundcloud_2010_tracks_1433253655.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1433253271": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1433253271",
