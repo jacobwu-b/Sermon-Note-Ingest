@@ -4266,10 +4266,12 @@
     "blurb": "Prov. 13:20; 17:9,17; 18:24; 20:6; 25:17; 25:20; 26:18-19; 27:5-6,9,17\n\nhttps://www.biblegateway.com/passage/?search=Prov.+13%3A20%3B+17%3A9%2C17%3B+18%3A24%3B+20%3A6%3B+25%3A17%3B+25%3A20%3B+26%3A18-19%3B+27%3A5-6%2C9%2C17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T06:03:26.317495+00:00",
+    "transcript_hash": "04b300fd1a81b96ba388f0427c2afdecd2a65500caf0a36f4d7d60af87620b34",
+    "content_path": "transcripts/gracepres/2023-02-19_the-way-of-wisdom-friendship_gracepres_tag_soundcloud_2010_tracks_1452279442.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1448757733": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448757733",
