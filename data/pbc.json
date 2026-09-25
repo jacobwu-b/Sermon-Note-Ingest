@@ -6683,7 +6683,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2020/04/05/2020-04-05-LS.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2020-04-05_untitled_pbc-archive_Main_Service_2020_04_05_2020-04-05-LS.mp3.txt",
+    "transcript_hash": "ae9402d9ef811fbffeed8b0a2b848dcb8cfe7a75434f1b039fa560431220318c",
+    "transcribed_at": "2026-09-25T10:44:04.698911+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2020/03/29/2020-03-29.mp3": {
     "guid": "pbc-archive:Main_Service/2020/03/29/2020-03-29.mp3",
