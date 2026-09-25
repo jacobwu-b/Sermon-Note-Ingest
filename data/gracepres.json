@@ -4684,10 +4684,12 @@
     "blurb": "Isaiah 40:27-31, Isaiah 30:18\nhttps://www.biblegateway.com/passage/?search=isaiah+40%3A27-31%2C+Isaiah+30%3A18&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T23:25:15.612344+00:00",
+    "transcript_hash": "ac65935f6a934294c4bcadc003420c4099f7eb361b8ba24c3ac13ea9a4cf423f",
+    "content_path": "transcripts/gracepres/2022-12-18_advent2022-weary-and-waiting_gracepres_tag_soundcloud_2010_tracks_1421109022.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1421109802": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1421109802",
