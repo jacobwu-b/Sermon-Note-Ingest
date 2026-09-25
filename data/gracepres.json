@@ -4464,10 +4464,12 @@
     "blurb": "Proverbs 3:9-10; 10:15-16; 11:1,4,24,26; 13:21,23; 18:10-11; 30:8b-9\nhttps://www.biblegateway.com/passage/?search=Proverbs+3%3A9-10%3B+10%3A15-16%3B+11%3A1%2C4%2C24%2C26%3B+13%3A21%2C23%3B+18%3A10-11%3B+30%3A8b-9&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T15:55:19.367720+00:00",
+    "transcript_hash": "6a4bb896ad2d879fc3c275b610506cf24442e3bcbe10d4d7dc63c1b1b41ec02c",
+    "content_path": "transcripts/gracepres/2023-01-29_the-way-of-wisdom-the-wisdom-of-generosity_gracepres_tag_soundcloud_2010_tracks_1436738758.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1433254027": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1433254027",
