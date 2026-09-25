@@ -4322,10 +4322,12 @@
     "blurb": "25 “Therefore I tell you, do not be anxious about your life, what you will eat or what you will drink, nor about your body, what you will put on. Is not life more than food, and the body more than clothing? 26 Look at the birds of the air: they neither sow nor reap nor gather into barns, and yet your heavenly Father feeds them. Are you not of more value than they? 27 And which of you by being anxious can add a single hour to his span of life? 28 And why are you anxious about clothing? Consider the lilies of the field, how they grow: they neither toil nor spin, 29 yet I tell you, even Solomon in all his glory was not arrayed like one of these. 30 But if God so clothes the grass of the field, which today is alive and tomorrow is thrown into the oven, will he not much more clothe you, O you of little faith? 31 Therefore do not be anxious, saying, ‘What shall we eat?’ or ‘What shall we drink?’ or ‘What shall we wear?’ 32 For the Gentiles seek after all these things, and your heavenly Father knows that you need them all. 33 But seek first the kingdom of God and his righteousness, and all these things will be added to you.\n-Matthew 6:25-33",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T10:24:28.701245+00:00",
+    "transcript_hash": "39b361d6f74433794effe4bfab012439af1dafa311c198b1e554368d120df6c0",
+    "content_path": "transcripts/gracepres/2023-02-12_monday-march-6-2023-embracing-the-kingdom_gracepres_tag_soundcloud_2010_tracks_1448757001.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1448755930": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448755930",
