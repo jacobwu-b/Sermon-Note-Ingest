@@ -4186,10 +4186,12 @@
     "blurb": "Matthew 6:9-13\n\nhttps://www.biblegateway.com/passage/?search=Matthew%206%3A9-13&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T00:44:23.359705+00:00",
+    "transcript_hash": "5ba424edca730dcfaa836b9bf1e0e48d5d08205c23c47199bf0877f5ebcb3b9f",
+    "content_path": "transcripts/gracepres/2023-02-26_as-jesus-taught-us-to-pray-our-father-in-heaven_gracepres_tag_soundcloud_2010_tracks_1458121342.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1454425681": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1454425681",
