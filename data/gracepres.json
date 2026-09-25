@@ -4306,10 +4306,12 @@
     "blurb": "4 And while staying with them he ordered them not to depart from Jerusalem, but to wait for the promise of the Father, which, he said, “you heard from me; 5 for John baptized with water, but you will be baptized with the Holy Spirit not many days from now.”\n\n6 So when they had come together, they asked him, “Lord, will you at this time restore the kingdom to Israel?” 7 He said to them, “It is not for you to know times or seasons that the Father has fixed by his own authority. 8 But you will receive power when the Holy Spirit has come upon you, and you will be my witnesses in Jerusalem and in all Judea and Samaria, and to the end of the earth.”\n-Acts 1:4-8",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T15:23:33.348324+00:00",
+    "transcript_hash": "875619e8808695203f6e1d0b122ae63a87d06ba83edfce0684b2ef5b3b6000e1",
+    "content_path": "transcripts/gracepres/2023-02-12_friday-march-10-2023-kingdom-come_gracepres_tag_soundcloud_2010_tracks_1448757442.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1448757001": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448757001",
