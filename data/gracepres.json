@@ -4576,10 +4576,12 @@
     "blurb": "9 Or which one of you, if his son asks him for bread, will give him a stone? 10 Or if he asks for a fish, will give him a serpent? 11 If you then, who are evil, know how to give good gifts to your children, how much more will your Father who is in heaven give good things to those who ask him!\n-Matthew 7:9-11",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T19:31:14.676699+00:00",
+    "transcript_hash": "fe68f7de1d9f45615e2da4ed24560b8027f4d64f0d49cc7224e739ef25f003bc",
+    "content_path": "transcripts/gracepres/2023-01-22_saturday-february-25-2023-the-good-father_gracepres_tag_soundcloud_2010_tracks_1432324963.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1431502450": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1431502450",
