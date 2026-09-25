@@ -4412,10 +4412,12 @@
     "blurb": "Proverbs 16:1-9; 19:21; 20:24\n\nhttps://www.biblegateway.com/passage/?search=Proverbs+16%3A1-9%3B+19%3A21%3B+20%3A24&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T06:14:04.499687+00:00",
+    "transcript_hash": "3b3f8acd83c6f867840289f07078ce5476c47225b73aad15e69f6d0fdc051319",
+    "content_path": "transcripts/gracepres/2023-02-12_the-way-of-wisdom-how-do-i-make-the-right-choice_gracepres_tag_soundcloud_2010_tracks_1446872593.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1441844500": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1441844500",
