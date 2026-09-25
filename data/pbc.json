@@ -6625,7 +6625,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2020/05/03/2020-05-03-LS.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2020-05-03_untitled_pbc-archive_Main_Service_2020_05_03_2020-05-03-LS.mp3.txt",
+    "transcript_hash": "961512f0e727054dc17b99d280bdfb68ef32d193472885656cb7949b7cc27d42",
+    "transcribed_at": "2026-09-25T05:41:42.328736+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2020/04/26/2020-04-26.mp3": {
     "guid": "pbc-archive:Main_Service/2020/04/26/2020-04-26.mp3",
