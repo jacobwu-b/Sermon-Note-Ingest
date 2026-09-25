@@ -4340,10 +4340,12 @@
     "blurb": "36 Then Jesus went with them to a place called Gethsemane, and he said to his disciples, “Sit here, while I go over there and pray.” 37 And taking with him Peter and the two sons of Zebedee, he began to be sorrowful and troubled. 38 Then he said to them, “My soul is very sorrowful, even to death; remain here, and watch with me.” 39 And going a little farther he fell on his face and prayed, saying, “My Father, if it be possible, let this cup pass from me; nevertheless, not as I will, but as you will.” 40 And he came to the disciples and found them sleeping. And he said to Peter, “So, could you not watch with me one hour? 41 Watch and pray that you may not enter into temptation. The spirit indeed is willing, but the flesh is weak.” 42 Again, for the second time, he went away and prayed, “My Father, if this cannot pass unless I drink it, your will be done.” 43 And again he came and found them sleeping, for their eyes were heavy. 44 So, leaving them again, he went away and prayed for the third time, saying the same words again. 45 Then he came to the disciples and said to them, “Sleep and take your rest later on. See, the hour is at hand, and the Son of Man is betrayed into the hands of sinners. 46 Rise, let us be going; see, my betrayer is at hand.”\n-Matthew 26:36-46",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T10:21:32.354654+00:00",
+    "transcript_hash": "34ff390504dcf70f09201d5ec5e71718dc1a3ab8b1ba77b74502b6cb34455b09",
+    "content_path": "transcripts/gracepres/2023-02-12_wednesday-march-8-2023-submitting-to-god-s-will_gracepres_tag_soundcloud_2010_tracks_1448755930.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1448754661": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448754661",
