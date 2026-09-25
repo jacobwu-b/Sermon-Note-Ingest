@@ -4362,10 +4362,12 @@
     "blurb": "In the year that King Uzziah died I saw the Lord sitting upon a throne, high and lifted up; and the train of his robe filled the temple. 2 Above him stood the seraphim. Each had six wings: with two he covered his face, and with two he covered his feet, and with two he flew. 3 And one called to another and said:\n\n“Holy, holy, holy is the Lord of hosts;\nthe whole earth is full of his glory!”\n\n4 And the foundations of the thresholds shook at the voice of him who called, and the house was filled with smoke. 5 And I said: “Woe is me! For I am lost; for I am a man of unclean lips, and I dwell in the midst of a people of unclean lips; for my eyes have seen the King, the Lord of hosts!”\n\n6 Then one of the seraphim flew to me, having in his hand a burning coal that he had taken with tongs from the altar. 7 And he touched my mouth and said: “Behold, this has touched your lips; your guilt is taken away, and your sin atoned for.”\n\nIsaiah's Commission from the Lord\n8 And I heard the voice of the Lord saying, “Whom shall I send, and who will go for us?” Then I said, “Here I am! Send me.”\n-Isaiah 6:1-8",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T10:30:35.050267+00:00",
+    "transcript_hash": "0ac89261f277cd7501e70aed7ea3454a9392bd06d793d3be36b40bf03cacb1a8",
+    "content_path": "transcripts/gracepres/2023-02-12_tuesday-february-28-2023-the-holy-name_gracepres_tag_soundcloud_2010_tracks_1448754661.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1448753866": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448753866",
