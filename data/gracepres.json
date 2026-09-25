@@ -4394,10 +4394,12 @@
     "blurb": "8 Then Peter, filled with the Holy Spirit, said to them, “Rulers of the people and elders, 9 if we are being examined today concerning a good deed done to a crippled man, by what means this man has been healed, 10 let it be known to all of you and to all the people of Israel that by the name of Jesus Christ of Nazareth, whom you crucified, whom God raised from the dead—by him this man is standing before you well. 11 This Jesus is the stone that was rejected by you, the builders, which has become the cornerstone. 12 And there is salvation in no one else, for there is no other name under heaven given among men by which we must be saved.”\n- Acts 4:8-12",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T10:16:21.127228+00:00",
+    "transcript_hash": "ec28c72c1adea44c7acf8232594fa42d9cf56c61cd7d5aa94a04807348e82877",
+    "content_path": "transcripts/gracepres/2023-02-12_thursday-march-2-2023-the-saving-name_gracepres_tag_soundcloud_2010_tracks_1448752672.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1446872593": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1446872593",
