@@ -7043,7 +7043,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2019/12/01/20191201.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2019-12-01_untitled_pbc-archive_Main_Service_2019_12_01_20191201.mp3.txt",
+    "transcript_hash": "bbec6f786d64a12624f4fb75e4e3cf7cd69cbc10f88c1bed3e58454365681d9c",
+    "transcribed_at": "2026-09-25T23:30:38.389001+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2019/11/24/20191124.mp3": {
     "guid": "pbc-archive:Main_Service/2019/11/24/20191124.mp3",
