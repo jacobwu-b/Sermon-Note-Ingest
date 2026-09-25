@@ -4286,10 +4286,12 @@
     "blurb": "13 Come now, you who say, “Today or tomorrow we will go into such and such a town and spend a year there and trade and make a profit”— 14 yet you do not know what tomorrow will bring. What is your life? For you are a mist that appears for a little time and then vanishes. 15 Instead you ought to say, “If the Lord wills, we will live and do this or that.” 16 As it is, you boast in your arrogance. All such boasting is evil. 17 So whoever knows the right thing to do and fails to do it, for him it is sin.\n-James 4:13-17",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-25T15:23:07.653364+00:00",
+    "transcript_hash": "aed5a8e3fec0f6ac7269e5e8e1ff9825d741d0c55d475c59ff9b32d98a61f76f",
+    "content_path": "transcripts/gracepres/2023-02-12_thursday-march-9-2023-trusting-god-s-will_gracepres_tag_soundcloud_2010_tracks_1448757733.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1448757442": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448757442",
