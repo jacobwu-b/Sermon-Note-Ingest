@@ -5260,10 +5260,12 @@
     "blurb": "Ruth 2:1-23\n\nhttps://biblia.com/bible/esv/ruth/2/1-23",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T21:47:37.163328+00:00",
+    "transcript_hash": "aa6b0c4963d9d201f47ac635c25aa3e6ae368b75ac03bfcc3abd1d708323ddfc",
+    "content_path": "transcripts/gracepres/2022-05-22_ruth-the-hidden-hand-of-hesed_gracepres_tag_soundcloud_2010_tracks_1274491975.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1270159252": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1270159252",
