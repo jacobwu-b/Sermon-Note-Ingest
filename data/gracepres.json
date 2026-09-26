@@ -5106,10 +5106,12 @@
     "blurb": "Exodus 20:1-2, 12\n\nhttps://www.biblegateway.com/passage/?search=Exodus%2020%3A1-2%2CExodus%2020%3A12&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T18:48:40.712713+00:00",
+    "transcript_hash": "e9e0d17881fcc4c582a28567800851a4c3e25d25d9ec7f98ad404622d3c808d4",
+    "content_path": "transcripts/gracepres/2022-07-17_ten-words-honor-your-parents_gracepres_tag_soundcloud_2010_tracks_1308714733.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1304016961": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1304016961",
