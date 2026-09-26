@@ -5026,10 +5026,12 @@
     "blurb": "EXODUS 20:1-2, 16; ZECHARIAH 8:16-17\n\nhttps://www.biblegateway.com/passage/?search=EXODUS+20%3A1-2%2C+16%3B+ZECHARIAH+8%3A16-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T15:28:30.108609+00:00",
+    "transcript_hash": "42253a9183d21727fb58e8ed61e71ae5b1112b09300b98570f5d90572822f843",
+    "content_path": "transcripts/gracepres/2022-08-14_ten-words-truthfulness_gracepres_tag_soundcloud_2010_tracks_1325441470.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1321086883": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1321086883",
