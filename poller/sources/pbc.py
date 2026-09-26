@@ -15,7 +15,7 @@ Two enrichments this adapter does that no other church needs:
   human-readable air date immediately before its title, keyed by the same
   ``enmse_mid`` — a far more reliable signal than the audio enclosure's CDN
   ``Last-Modified`` header, which a re-encode or cache-bust can rewrite long
-  after the sermon actually aired (issue #73). ``resolve_published_at`` prefers
+  after the sermon actually aired (issue #73). ``resolve_feed_published_at`` prefers
   that scraped date and falls back to the CDN header only for a guid that has
   scrolled off the page's limited recent window by the time it's first seen.
 """
@@ -119,7 +119,7 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int, str | None]:
     """Convert a feedparser entry into ``(item, weekday, mid)``."""
     raw_title = (entry.get("title") or "").strip()
     title, series = _split_title(raw_title)
-    published_on, weekday = parse_pubdate(entry.get("published"))
+    preached_on, weekday = parse_pubdate(entry.get("published"))
     episode_url = episode_url_from_link(entry.get("link", ""))
     item = SermonItem(
         guid=entry.get("id", ""),
@@ -127,8 +127,8 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int, str | None]:
         raw_title=raw_title,
         series=series,
         speaker=None,  # filled in from the sermons-page scrape below, if found
-        published_on=published_on,
-        published_at=None,  # PBC's own pubDate is a placeholder; see module docstring
+        preached_on=preached_on,
+        feed_published_at=None,  # PBC's own pubDate is a placeholder; see module docstring
         episode_url=episode_url,
         audio_url=entry_audio_url(entry),
         blurb=(entry.get("summary") or "").strip(),
@@ -168,7 +168,7 @@ class PbcAdapter(SourceAdapter):
         super().__init__(url=url)
         self._sermons_url = sermons_url
         self._fetch_last_modified = fetch_last_modified
-        # Populated by poll()'s single sermons-page fetch; resolve_published_at
+        # Populated by poll()'s single sermons-page fetch; resolve_feed_published_at
         # reads it for the new items poll() just discovered rather than
         # re-fetching the page itself.
         self._page_dates: dict[str, datetime] = {}
@@ -184,7 +184,7 @@ class PbcAdapter(SourceAdapter):
             return {}, {}
         return parse_sermons_page_speakers(content), parse_sermons_page_dates(content)
 
-    def resolve_published_at(self, item: SermonItem) -> datetime | None:
+    def resolve_feed_published_at(self, item: SermonItem) -> datetime | None:
         """The real publish instant for a newly-discovered item.
 
         Prefers the sermons page's own air date (module docstring) — set by the

@@ -1,7 +1,7 @@
 """The transcription entry point: transcribe pending sermons and push them to Content.
 
 One run works down at most ``--limit`` pending sermons *per church* (``--church``,
-default: every enabled church), in deterministic (newest-``published_on``-first)
+default: every enabled church), in deterministic (newest-``preached_on``-first)
 order — so the most recent sermon is always the one a small ``--limit`` (e.g. 1)
 surfaces. This is also this repo's backfill tool: a large historical backlog is
 worked down by repeated bounded runs, catching up from most-recent backward
@@ -51,10 +51,10 @@ def _recently_published(record: dict, *, now: datetime) -> bool:
 
     Gates the pipeline dispatch (spec 0005) so a backfill run — transcribing an old
     sermon, potentially years after it aired — never triggers note generation; only
-    genuine discovery of a new sermon does. Falls back to ``published_on`` (date-only)
-    when ``published_at`` is absent, mirroring ``_ingest_event``'s own fallback.
+    genuine discovery of a new sermon does. Falls back to ``preached_on`` (date-only)
+    when ``feed_published_at`` is absent (PBC, archive backfills).
     """
-    raw = record.get("published_at") or record.get("published_on")
+    raw = record.get("feed_published_at") or record.get("preached_on")
     if not raw:
         return False
     try:
@@ -77,7 +77,7 @@ def _content_path(church: str, record: dict) -> str:
     Guid-derived, so a sermon rediscovered many times always maps to the same
     file (the idempotency the Content push depends on, ADR-0004).
     """
-    stem = f"{record.get('published_on') or 'undated'}_{slugify(record.get('title') or '')}_{_safe_guid(record['guid'])}"
+    stem = f"{record.get('preached_on') or 'undated'}_{slugify(record.get('title') or '')}_{_safe_guid(record['guid'])}"
     return f"transcripts/{church}/{stem}.txt"
 
 
@@ -86,8 +86,10 @@ def _ingest_event(
 ) -> dict[str, object]:
     """Build the ``sermon_detected`` payload Sermon-Note-Pipeline's ``ingest_event`` expects.
 
-    Field shape and names come from Pipeline's own spec 0026 — ``source``/``external_id``
-    are the only fields Pipeline's code reads; the rest is logged there for traceability.
+    Field shape follows Pipeline's own spec 0026, with the date fields per ADR-0015:
+    ``preached_on`` is this ledger's service date, which Pipeline adopts as authoritative
+    for the matching sermon; ``feed_published_at`` is ``None`` when the feed carries no
+    real instant, never back-filled from the date.
     ``external_id`` is ``guid`` verbatim: this repo's per-church guid scheme (raw for
     Menlo/PBC, ``<source>:``-prefixed for the rest) already matches Pipeline's own.
     """
@@ -96,7 +98,8 @@ def _ingest_event(
         "source": name,
         "external_id": guid,
         "url": record.get("episode_url") or "",
-        "published_at": record.get("published_at") or record.get("published_on") or "",
+        "preached_on": record.get("preached_on") or None,
+        "feed_published_at": record.get("feed_published_at"),
         "detected_at": transcribed_at,
         "transcript": {
             "content_path": content_path,
@@ -114,7 +117,7 @@ def _dispatch_ingest_event(event: dict[str, object], source: str) -> None:
 def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
     """Records not yet transcribed or failed, with a fetchable enclosure, newest first.
 
-    A record missing ``published_on`` sorts last regardless of direction — it carries
+    A record missing ``preached_on`` sorts last regardless of direction — it carries
     the least scheduling information, so it's the lowest priority either way (mirrors
     ``store._ordered_items``).
     """
@@ -124,10 +127,10 @@ def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
         if record.get("transcription_status") is None
         and net.is_fetchable_enclosure(record.get("audio_url") or "")
     ]
-    dated = [(guid, record) for guid, record in pending if record.get("published_on")]
-    undated = [(guid, record) for guid, record in pending if not record.get("published_on")]
+    dated = [(guid, record) for guid, record in pending if record.get("preached_on")]
+    undated = [(guid, record) for guid, record in pending if not record.get("preached_on")]
     dated.sort(key=lambda kv: kv[0])
-    dated.sort(key=lambda kv: kv[1]["published_on"], reverse=True)
+    dated.sort(key=lambda kv: kv[1]["preached_on"], reverse=True)
     undated.sort(key=lambda kv: kv[0])
     return dated + undated
 
@@ -249,7 +252,7 @@ def _select_in_scope(
     touched church's full record set (for :func:`transcribe_church` to save back).
 
     Each church in ``selected`` independently contributes up to ``limit`` of its own
-    newest-``published_on``-first pending sermons — ``limit`` is a per-church cap, not
+    newest-``preached_on``-first pending sermons — ``limit`` is a per-church cap, not
     a budget shared across churches (ADR-0005, amended). This is the list :func:`run`
     shards — sharding only filters it, never reorders it, so shard-count 1 reproduces
     this order byte-for-byte.

@@ -19,9 +19,9 @@ from datetime import datetime
 class SermonItem:
     """One normalized main-sermon record — the contract between adapters and the store.
 
-    ``published_on`` is the sermon's service date (``YYYY-MM-DD``), which for
+    ``preached_on`` is the sermon's service date (``YYYY-MM-DD``), which for
     some churches is derived from the title rather than the feed's ``pubDate``
-    (see the Westgate and Hillside adapters). ``published_at`` is the real
+    (see the Westgate and Hillside adapters). ``feed_published_at`` is the real
     instant the feed first made the item available, when the feed carries one —
     left ``None`` rather than filled with a placeholder (e.g. PBC's ``pubDate``
     is always a fixed nominal value, never the true publish time).
@@ -32,8 +32,8 @@ class SermonItem:
     raw_title: str
     series: str | None
     speaker: str | None
-    published_on: str
-    published_at: datetime | None
+    preached_on: str
+    feed_published_at: datetime | None
     episode_url: str
     audio_url: str
     blurb: str
@@ -66,10 +66,10 @@ class SourceAdapter(ABC):
         """Fetch, parse, and classify this source's feed into main sermons."""
         raise NotImplementedError
 
-    def resolve_published_at(self, item: SermonItem) -> datetime | None:
+    def resolve_feed_published_at(self, item: SermonItem) -> datetime | None:
         """The real "first made available" instant for a newly-discovered item.
 
-        The default is a no-op returning ``item.published_at`` unchanged: most
+        The default is a no-op returning ``item.feed_published_at`` unchanged: most
         feeds' own ``pubDate`` already is that instant. An adapter overrides
         this only when the feed's ``pubDate`` is a placeholder (PBC) and the
         real instant must be resolved some other way. The runner calls this
@@ -77,4 +77,4 @@ class SourceAdapter(ABC):
         already-known item — so an adapter that resolves it via network can do
         so without turning into a per-poll cost.
         """
-        return item.published_at
+        return item.feed_published_at

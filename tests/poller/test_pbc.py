@@ -30,8 +30,8 @@ def _item(*, episode_url: str, audio_url: str = "https://cdn.pbc.org/Main_Servic
         raw_title="No Middle Ground",
         series=None,
         speaker=None,
-        published_on="2026-09-06",
-        published_at=None,
+        preached_on="2026-09-06",
+        feed_published_at=None,
         episode_url=episode_url,
         audio_url=audio_url,
         blurb="",
@@ -96,7 +96,7 @@ def test_parse_sermons_page_dates_skips_a_card_whose_date_does_not_parse():
     assert parse_sermons_page_dates(html) == {}
 
 
-def test_resolve_published_at_prefers_the_sermons_page_date_over_cdn_last_modified():
+def test_resolve_feed_published_at_prefers_the_sermons_page_date_over_cdn_last_modified():
     adapter = PbcAdapter(
         url="https://pbc.org/feed",
         fetch_last_modified=lambda url: datetime(2026, 9, 9, tzinfo=UTC),
@@ -104,13 +104,13 @@ def test_resolve_published_at_prefers_the_sermons_page_date_over_cdn_last_modifi
     adapter._page_dates = parse_sermons_page_dates(_SERMONS_PAGE_HTML)
     item = _item(episode_url="https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid=4690")
 
-    assert adapter.resolve_published_at(item) == datetime(2026, 9, 6, tzinfo=UTC)
+    assert adapter.resolve_feed_published_at(item) == datetime(2026, 9, 6, tzinfo=UTC)
 
 
-def test_resolve_published_at_falls_back_to_cdn_last_modified_when_mid_not_on_page():
+def test_resolve_feed_published_at_falls_back_to_cdn_last_modified_when_mid_not_on_page():
     fallback = datetime(2026, 9, 9, tzinfo=UTC)
     adapter = PbcAdapter(url="https://pbc.org/feed", fetch_last_modified=lambda url: fallback)
     adapter._page_dates = parse_sermons_page_dates(_SERMONS_PAGE_HTML)
     item = _item(episode_url="https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid=9999")
 
-    assert adapter.resolve_published_at(item) == fallback
+    assert adapter.resolve_feed_published_at(item) == fallback

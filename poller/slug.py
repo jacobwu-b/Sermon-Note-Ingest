@@ -1,7 +1,7 @@
 """Deterministic title -> filename-stem slug.
 
 Used to name a sermon's transcript file in the Content repo
-(``transcripts/<church>/<published_on>_<slug>_<guid>.txt``). The only invariant that
+(``transcripts/<church>/<preached_on>_<slug>_<guid>.txt``). The only invariant that
 matters is determinism — the same title always produces the same stem, so a
 rediscovered sermon always maps to the same file (the idempotency the whole
 Poller-to-Content handoff depends on) — plus a stem safe on any filesystem: ASCII,

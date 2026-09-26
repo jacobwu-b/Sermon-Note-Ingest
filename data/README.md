@@ -12,8 +12,8 @@ file is a JSON object keyed by the feed's own guid:
     "raw_title": "Hear and Do - Luke",
     "series": "Luke",
     "speaker": "Jane Doe",
-    "published_on": "2026-09-06",
-    "published_at": "2026-09-06T17:03:00+00:00",
+    "preached_on": "2026-09-06",
+    "feed_published_at": "2026-09-06T17:03:00+00:00",
     "episode_url": "https://example.org/sermons/hear-and-do",
     "audio_url": "https://example.org/audio/hear-and-do.mp3",
     "blurb": "A sermon on Luke 10.",
@@ -26,15 +26,16 @@ file is a JSON object keyed by the feed's own guid:
 A field is `null` when the source genuinely doesn't carry it, or when the only
 value available is a placeholder rather than real data (see each adapter's
 module docstring for churches where that applies) — never a fabricated
-default. `first_seen_at` is when this poller first retrieved the record;
-`published_at` is when the source itself first made it available, when that's
+default. `preached_on` is the service date the sermon was preached.
+`first_seen_at` is when this poller first retrieved the record;
+`feed_published_at` is when the source itself first made it available, when that's
 knowable. `notified_at` is set once an email has gone out for the record (or,
 for a `--backfill` run, once it's been seeded without one) so a re-poll never
 sends twice.
 
-Records are ordered newest-`published_on`-first — every write re-sorts the
+Records are ordered newest-`preached_on`-first — every write re-sorts the
 whole file, so the most recent sermon is always the first key when you open
-it. Records missing `published_on` sort last.
+it. Records missing `preached_on` sort last.
 
 These files are committed automatically by
 [`.github/workflows/poll.yml`](../.github/workflows/poll.yml) — do not edit

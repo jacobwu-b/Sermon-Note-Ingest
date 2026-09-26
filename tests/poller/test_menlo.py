@@ -5,15 +5,15 @@ _SUNDAY = 6
 _MONDAY = 0
 
 
-def _item(guid: str, raw_title: str, published_on: str) -> SermonItem:
+def _item(guid: str, raw_title: str, preached_on: str) -> SermonItem:
     return SermonItem(
         guid=guid,
         title=raw_title,
         raw_title=raw_title,
         series=None,
         speaker=None,
-        published_on=published_on,
-        published_at=None,
+        preached_on=preached_on,
+        feed_published_at=None,
         episode_url="",
         audio_url="",
         blurb="",

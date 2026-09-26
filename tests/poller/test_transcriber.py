@@ -9,24 +9,24 @@ from poller.sources.base import SermonItem
 from poller.transcribe import EmptyTranscriptError
 
 
-def _item(guid: str, *, published_on: str, audio_url: str = "https://example.org/a.mp3") -> SermonItem:
+def _item(guid: str, *, preached_on: str, audio_url: str = "https://example.org/a.mp3") -> SermonItem:
     return SermonItem(
         guid=guid,
         title=f"Sermon {guid}",
         raw_title=f"Sermon {guid}",
         series=None,
         speaker=None,
-        published_on=published_on,
-        published_at=None,
+        preached_on=preached_on,
+        feed_published_at=None,
         episode_url="https://example.org/ep",
         audio_url=audio_url,
         blurb="",
     )
 
 
-def _record(guid: str, *, published_on: str, audio_url: str = "https://example.org/a.mp3") -> dict:
+def _record(guid: str, *, preached_on: str, audio_url: str = "https://example.org/a.mp3") -> dict:
     return store.item_to_record(
-        _item(guid, published_on=published_on, audio_url=audio_url), first_seen_at="t", published_at=None
+        _item(guid, preached_on=preached_on, audio_url=audio_url), first_seen_at="t", feed_published_at=None
     )
 
 
@@ -41,10 +41,10 @@ def churches_env(monkeypatch):
 
 def test_select_pending_skips_done_failed_and_unfetchable():
     records = {
-        "done": _record("done", published_on="2026-01-01"),
-        "failed": _record("failed", published_on="2026-01-02"),
-        "no_audio": _record("no_audio", published_on="2026-01-03", audio_url=""),
-        "pending": _record("pending", published_on="2026-01-04"),
+        "done": _record("done", preached_on="2026-01-01"),
+        "failed": _record("failed", preached_on="2026-01-02"),
+        "no_audio": _record("no_audio", preached_on="2026-01-03", audio_url=""),
+        "pending": _record("pending", preached_on="2026-01-04"),
     }
     store.mark_transcribed(
         records["done"],
@@ -60,11 +60,11 @@ def test_select_pending_skips_done_failed_and_unfetchable():
     assert [guid for guid, _r in pending] == ["pending"]
 
 
-def test_select_pending_orders_newest_published_on_first():
+def test_select_pending_orders_newest_preached_on_first():
     records = {
-        "new": _record("new", published_on="2026-09-06"),
-        "old": _record("old", published_on="2026-01-04"),
-        "mid": _record("mid", published_on="2026-05-01"),
+        "new": _record("new", preached_on="2026-09-06"),
+        "old": _record("old", preached_on="2026-01-04"),
+        "mid": _record("mid", preached_on="2026-05-01"),
     }
     pending = transcriber._select_pending(records)
     assert [guid for guid, _r in pending] == ["new", "mid", "old"]
@@ -72,16 +72,16 @@ def test_select_pending_orders_newest_published_on_first():
 
 def test_select_pending_sorts_undated_records_last_regardless_of_direction():
     records = {
-        "undated": _record("undated", published_on=""),
-        "new": _record("new", published_on="2026-09-06"),
-        "old": _record("old", published_on="2026-01-04"),
+        "undated": _record("undated", preached_on=""),
+        "new": _record("new", preached_on="2026-09-06"),
+        "old": _record("old", preached_on="2026-01-04"),
     }
     pending = transcriber._select_pending(records)
     assert [guid for guid, _r in pending] == ["new", "old", "undated"]
 
 
 def test_content_path_is_deterministic_for_the_same_guid():
-    record = _record("guid-1", published_on="2026-09-06")
+    record = _record("guid-1", preached_on="2026-09-06")
     record["title"] = "Hear and Do"
     path_a = transcriber._content_path("menlo", record)
     path_b = transcriber._content_path("menlo", record)
@@ -91,7 +91,7 @@ def test_content_path_is_deterministic_for_the_same_guid():
 
 def test_transcribe_church_marks_success_only_after_push_succeeds(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
     pushed = {}
 
     def fake_transcribe_audio(url, hotwords):
@@ -116,7 +116,7 @@ def test_transcribe_church_records_the_running_whisper_model_and_domain_prompt_s
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     monkeypatch.setenv("WHISPER_MODEL", "large-v3")
     monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "false")
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
 
     transcriber.transcribe_church(
         "menlo",
@@ -136,8 +136,8 @@ def test_transcribe_church_passes_per_sermon_hotwords_built_from_the_record_and_
 ):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {
-        "g1": _record("g1", published_on="2026-01-01") | {"speaker": "Keith Crosby", "series": "Luke"},
-        "g2": _record("g2", published_on="2025-12-01") | {"speaker": "Jesse Fenn", "series": None},
+        "g1": _record("g1", preached_on="2026-01-01") | {"speaker": "Keith Crosby", "series": "Luke"},
+        "g2": _record("g2", preached_on="2025-12-01") | {"speaker": "Jesse Fenn", "series": None},
     }
     seen = {}
 
@@ -167,7 +167,7 @@ def test_run_passes_the_configured_church_vocabulary_through_to_the_hotwords(tmp
         '{"pbc": {"rss": "https://example.org/pbc.xml", "enabled": true,'
         ' "vocabulary": ["Peninsula Bible Church"]}}',
     )
-    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
     seen = []
 
     def fake_transcribe_audio(url, hotwords):
@@ -190,7 +190,7 @@ def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcrib
     # date — otherwise this test silently starts failing once real time drifts more than
     # _DISPATCH_RECENCY past whatever date was hardcoded here.
     monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
-    records = {"g1": _record("g1", published_on="2026-09-15")}
+    records = {"g1": _record("g1", preached_on="2026-09-15")}
     dispatched = []
 
     def fake_transcribe_audio(url, hotwords):
@@ -218,7 +218,7 @@ def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcrib
 
 def test_transcribe_church_survives_a_dispatch_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-09-15")}
+    records = {"g1": _record("g1", preached_on="2026-09-15")}
 
     def fake_transcribe_audio(url, hotwords):
         return "the transcript", "hash123"
@@ -242,7 +242,7 @@ def test_transcribe_church_survives_a_dispatch_failure(tmp_path, monkeypatch):
 
 def test_transcribe_church_never_dispatches_for_an_item_whose_push_failed(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-09-15")}
+    records = {"g1": _record("g1", preached_on="2026-09-15")}
     dispatched = []
 
     def fake_transcribe_audio(url, hotwords):
@@ -266,7 +266,7 @@ def test_transcribe_church_never_dispatches_for_an_item_whose_push_failed(tmp_pa
 
 def test_transcribe_church_never_dispatches_for_a_backfill_sermon(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
     dispatched = []
 
     def fake_transcribe_audio(url, hotwords):
@@ -287,13 +287,13 @@ def test_transcribe_church_never_dispatches_for_a_backfill_sermon(tmp_path, monk
     assert saved["g1"]["transcription_status"] == "done"
 
 
-def test_transcribe_church_dispatches_when_published_at_is_recent_even_if_published_on_is_not(
+def test_transcribe_church_dispatches_when_feed_published_at_is_recent_even_if_preached_on_is_not(
     tmp_path, monkeypatch
 ):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
-    records = {"g1": _record("g1", published_on="2026-01-01")}
-    records["g1"]["published_at"] = "2026-09-15T10:00:00+00:00"
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+    records["g1"]["feed_published_at"] = "2026-09-15T10:00:00+00:00"
     dispatched = []
 
     def fake_transcribe_audio(url, hotwords):
@@ -312,9 +312,51 @@ def test_transcribe_church_dispatches_when_published_at_is_recent_even_if_publis
     assert len(dispatched) == 1
 
 
+def test_ingest_event_carries_the_preached_date_and_feed_instant_as_separate_fields(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
+    records = {"g1": _record("g1", preached_on="2026-09-13")}
+    records["g1"]["feed_published_at"] = "2026-09-14T09:30:00-07:00"
+    dispatched = []
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
+        push=lambda files: None,
+        dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
+    )
+
+    event, _ = dispatched[0]
+    assert event["preached_on"] == "2026-09-13"
+    assert event["feed_published_at"] == "2026-09-14T09:30:00-07:00"
+    assert "published_at" not in event
+
+
+def test_ingest_event_sends_a_null_feed_instant_rather_than_the_preached_date(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
+    records = {"g1": _record("g1", preached_on="2026-09-13")}
+    dispatched = []
+
+    transcriber.transcribe_church(
+        "pbc",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
+        push=lambda files: None,
+        dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
+    )
+
+    event, _ = dispatched[0]
+    assert event["preached_on"] == "2026-09-13"
+    assert event["feed_published_at"] is None
+
+
 def test_transcribe_church_leaves_batch_pending_when_push_fails(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
 
     def fake_transcribe_audio(url, hotwords):
         return "text", "hash"
@@ -333,7 +375,7 @@ def test_transcribe_church_leaves_batch_pending_when_push_fails(tmp_path, monkey
 
 def test_transcribe_church_leaves_a_download_failure_pending_not_failed(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
 
     def failing_transcribe_audio(url, hotwords):
         raise AudioDownloadError("cdn rejected")
@@ -353,7 +395,7 @@ def test_transcribe_church_leaves_a_download_failure_pending_not_failed(tmp_path
 
 def test_transcribe_church_marks_a_terminal_model_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
 
     def failing_transcribe_audio(url, hotwords):
         raise EmptyTranscriptError("nothing but silence")
@@ -377,7 +419,7 @@ def test_transcribe_church_marks_out_records_a_successful_transcription(tmp_path
     # store.mark_transcribed needs.
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     monkeypatch.setenv("WHISPER_MODEL", "large-v3")
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
     marks: dict = {}
 
     transcriber.transcribe_church(
@@ -397,7 +439,7 @@ def test_transcribe_church_marks_out_records_a_successful_transcription(tmp_path
 
 def test_transcribe_church_marks_out_records_a_terminal_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
     marks: dict = {}
 
     def failing_transcribe_audio(url, hotwords):
@@ -420,7 +462,7 @@ def test_transcribe_church_marks_out_omits_a_transcription_whose_push_failed(tmp
     # never be replayable as "done" — that's exactly the corruption issue #60
     # was about (a mark claiming Content has something it doesn't).
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", published_on="2026-01-01")}
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
     marks: dict = {}
 
     def failing_push(files):
@@ -442,7 +484,7 @@ def test_replay_marks_reapplies_done_and_failed_marks_without_transcribing(tmp_p
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     store.save(
         "menlo",
-        {"g1": _record("g1", published_on="2026-01-01"), "g2": _record("g2", published_on="2026-01-02")},
+        {"g1": _record("g1", preached_on="2026-01-01"), "g2": _record("g2", preached_on="2026-01-02")},
     )
     marks_path = tmp_path / "marks.json"
     marks_path.write_text(
@@ -475,7 +517,7 @@ def test_replay_marks_reapplies_done_and_failed_marks_without_transcribing(tmp_p
 
 def test_replay_marks_is_safe_to_run_twice(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"g1": _record("g1", published_on="2026-01-01")})
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
     marks_path = tmp_path / "marks.json"
     marks_path.write_text(
         json.dumps(
@@ -501,7 +543,7 @@ def test_replay_marks_is_safe_to_run_twice(tmp_path, monkeypatch):
 
 def test_replay_marks_skips_a_guid_missing_from_the_ledger(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"g1": _record("g1", published_on="2026-01-01")})
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
     marks_path = tmp_path / "marks.json"
     marks_path.write_text(json.dumps({"menlo": {"ghost": {"kind": "failed"}}}))
 
@@ -558,11 +600,11 @@ def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkey
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     store.save(
         "menlo",
-        {"m1": _record("m1", published_on="2026-01-01"), "m2": _record("m2", published_on="2026-01-02")},
+        {"m1": _record("m1", preached_on="2026-01-01"), "m2": _record("m2", preached_on="2026-01-02")},
     )
     store.save(
         "pbc",
-        {"p1": _record("p1", published_on="2026-01-01"), "p2": _record("p2", published_on="2026-01-02")},
+        {"p1": _record("p1", preached_on="2026-01-01"), "p2": _record("p2", preached_on="2026-01-02")},
     )
 
     transcribed = []
@@ -586,7 +628,7 @@ def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkey
 
 def test_run_is_a_noop_on_a_second_run_against_already_transcribed_records(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
+    store.save("menlo", {"m1": _record("m1", preached_on="2026-01-01")})
 
     calls = []
 
@@ -609,9 +651,9 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
     monkeypatch.setattr(store, "DATA_DIR", tmp_path / "unsharded")
     store.save(
         "menlo",
-        {"m1": _record("m1", published_on="2026-01-01"), "m2": _record("m2", published_on="2026-01-02")},
+        {"m1": _record("m1", preached_on="2026-01-01"), "m2": _record("m2", preached_on="2026-01-02")},
     )
-    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
 
     unsharded_calls: list[str] = []
 
@@ -624,9 +666,9 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
     monkeypatch.setattr(store, "DATA_DIR", tmp_path / "sharded")
     store.save(
         "menlo",
-        {"m1": _record("m1", published_on="2026-01-01"), "m2": _record("m2", published_on="2026-01-02")},
+        {"m1": _record("m1", preached_on="2026-01-01"), "m2": _record("m2", preached_on="2026-01-02")},
     )
-    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
 
     sharded_calls: list[str] = []
 
@@ -656,14 +698,14 @@ def test_run_shards_partition_every_pending_sermon_exactly_once(tmp_path, monkey
         store.save(
             "menlo",
             {
-                "m1": _record("m1", published_on="2026-01-01"),
-                "m2": _record("m2", published_on="2026-01-02"),
-                "m3": _record("m3", published_on="2026-01-03"),
+                "m1": _record("m1", preached_on="2026-01-01"),
+                "m2": _record("m2", preached_on="2026-01-02"),
+                "m3": _record("m3", preached_on="2026-01-03"),
             },
         )
         store.save(
             "pbc",
-            {"p1": _record("p1", published_on="2026-01-01"), "p2": _record("p2", published_on="2026-01-02")},
+            {"p1": _record("p1", preached_on="2026-01-01"), "p2": _record("p2", preached_on="2026-01-02")},
         )
 
         def fake_transcribe_audio(url, hotwords, _seen=seen):
@@ -684,7 +726,7 @@ def test_run_shards_partition_every_pending_sermon_exactly_once(tmp_path, monkey
 
 def test_run_shard_count_more_than_pending_leaves_extra_shards_empty(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
+    store.save("menlo", {"m1": _record("m1", preached_on="2026-01-01")})
 
     calls = []
 
@@ -719,9 +761,9 @@ def test_count_in_scope_matches_the_number_of_sermons_run_would_process(tmp_path
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     store.save(
         "menlo",
-        {"m1": _record("m1", published_on="2026-01-01"), "m2": _record("m2", published_on="2026-01-02")},
+        {"m1": _record("m1", preached_on="2026-01-01"), "m2": _record("m2", preached_on="2026-01-02")},
     )
-    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
 
     assert transcriber.count_in_scope(church_names=None, limit=1) == 2
     assert transcriber.count_in_scope(church_names=None, limit=5) == 3
@@ -730,7 +772,7 @@ def test_count_in_scope_matches_the_number_of_sermons_run_would_process(tmp_path
 
 def test_count_in_scope_is_zero_when_nothing_is_pending(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"m1": _record("m1", published_on="2026-01-01")}
+    records = {"m1": _record("m1", preached_on="2026-01-01")}
     store.mark_transcribed(
         records["m1"],
         content_path="x",
@@ -746,7 +788,7 @@ def test_count_in_scope_is_zero_when_nothing_is_pending(tmp_path, monkeypatch):
 
 def test_main_print_shard_count_prints_the_count_and_transcribes_nothing(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
+    store.save("menlo", {"m1": _record("m1", preached_on="2026-01-01")})
 
     exit_code = transcriber.main(["--print-shard-count"])
 
@@ -757,8 +799,8 @@ def test_main_print_shard_count_prints_the_count_and_transcribes_nothing(tmp_pat
 
 def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
-    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+    store.save("menlo", {"m1": _record("m1", preached_on="2026-01-01")})
+    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
 
     calls = []
 
@@ -775,8 +817,8 @@ def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):
 
 def test_run_populates_marks_out_per_church(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"m1": _record("m1", published_on="2026-01-01")})
-    store.save("pbc", {"p1": _record("p1", published_on="2026-01-01")})
+    store.save("menlo", {"m1": _record("m1", preached_on="2026-01-01")})
+    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
     marks: dict = {}
 
     transcriber.run(

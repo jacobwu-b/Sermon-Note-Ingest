@@ -38,24 +38,24 @@ def parse_pubdate_at(raw: str | None) -> datetime | None:
 
 
 def derive_preached_on(
-    published_at: datetime, *, title_date: date | None = None, tz: ZoneInfo | None = None
+    feed_published_at: datetime, *, title_date: date | None = None, tz: ZoneInfo | None = None
 ) -> date:
     """The Sunday a sermon was preached: an explicit Sunday title date if the caller
-    has one, else the nearest Sunday on or before ``published_at``'s own calendar day.
+    has one, else the nearest Sunday on or before ``feed_published_at``'s own calendar day.
 
     Generalizes the rule already used by ``gracepres.py``'s ``service_date`` (a title
     date is trusted only when it's itself a Sunday — a non-Sunday title date is more
     likely a typo or an unrelated number than a real override) and, for a
-    ``published_at`` that already falls on a Sunday, reduces to that day exactly —
+    ``feed_published_at`` that already falls on a Sunday, reduces to that day exactly —
     the common case for every adapter that classifies on ``pubDate`` directly.
 
-    ``tz``, when given, converts ``published_at`` to that zone before taking its
-    calendar day — required for a feed whose ``published_at`` isn't already in the
+    ``tz``, when given, converts ``feed_published_at`` to that zone before taking its
+    calendar day — required for a feed whose ``feed_published_at`` isn't already in the
     church's own local time (e.g. GracePres's SoundCloud upload instant, stored in
     UTC): a midnight-UTC timestamp on a Sunday is still Saturday evening in Pacific
     time, and skipping the conversion silently derives the wrong week entirely,
     not just the wrong day (confirmed via the docs/specs/0007 backtest). Omit it
-    for a feed whose ``published_at`` is already meaningful in the church's own day
+    for a feed whose ``feed_published_at`` is already meaningful in the church's own day
     (the common case).
 
     Not yet wired into any adapter (see docs/specs/0007) — a per-church switch-over
@@ -63,7 +63,7 @@ def derive_preached_on(
     """
     if title_date is not None and title_date.weekday() == _SUNDAY:
         return title_date
-    when = published_at.astimezone(tz) if tz is not None else published_at
+    when = feed_published_at.astimezone(tz) if tz is not None else feed_published_at
     day = when.date()
     return day - timedelta(days=(day.weekday() + 1) % 7)
 

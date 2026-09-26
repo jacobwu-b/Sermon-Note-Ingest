@@ -53,13 +53,13 @@ def _parse_title(raw_title: str) -> tuple[str, str | None, date | None]:
 
 
 def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
-    """``published_on``/weekday come from the title's parsed service date, not
-    ``pubDate``; ``published_at`` still comes from the feed's own ``pubDate`` — it
+    """``preached_on``/weekday come from the title's parsed service date, not
+    ``pubDate``; ``feed_published_at`` still comes from the feed's own ``pubDate`` — it
     measures actual feed availability, a different instant than the nominal
     service date."""
     raw_title = (entry.get("title") or "").strip()
     title, series, service_date = _parse_title(raw_title)
-    published_on = service_date.isoformat() if service_date is not None else ""
+    preached_on = service_date.isoformat() if service_date is not None else ""
     weekday = service_date.weekday() if service_date is not None else -1
     item = SermonItem(
         guid=_GUID_PREFIX + entry.get("id", ""),
@@ -67,8 +67,8 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
         raw_title=raw_title,
         series=series,
         speaker=(entry.get("author") or "").strip() or None,
-        published_on=published_on,
-        published_at=parse_pubdate_at(entry.get("published")),
+        preached_on=preached_on,
+        feed_published_at=parse_pubdate_at(entry.get("published")),
         episode_url=entry.get("link") or "",
         audio_url=entry_audio_url(entry),
         blurb=(entry.get("summary") or "").strip(),
