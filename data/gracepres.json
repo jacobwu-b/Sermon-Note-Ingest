@@ -5162,10 +5162,12 @@
     "blurb": "exodus 20:1-2, 4-6\n\nhttps://www.biblegateway.com/passage/?search=exodus+20%3A1-2%2C+4-6&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T18:39:29.155459+00:00",
+    "transcript_hash": "959e4f929fd97a307168a5806228e64b37ecd1cf7b6ec28a7d1071b8061f28df",
+    "content_path": "transcripts/gracepres/2022-06-26_tenwords-i-like-to-think-of-god-as_gracepres_tag_soundcloud_2010_tracks_1302045208.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1302034252": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1302034252",
