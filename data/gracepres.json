@@ -5242,10 +5242,12 @@
     "blurb": "Ruth 3\nhttps://www.biblegateway.com/passage/?search=Ruth%203&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T21:56:27.775976+00:00",
+    "transcript_hash": "35f2e1d98603e6852c45e108bafd57e7d4c95f1a8b92ce0ea1f838ed0986c72c",
+    "content_path": "transcripts/gracepres/2022-05-29_ruth-trusting-the-redeemer_gracepres_tag_soundcloud_2010_tracks_1279220758.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1274491975": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1274491975",
