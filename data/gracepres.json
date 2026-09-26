@@ -4878,10 +4878,12 @@
     "blurb": "1 John 2:28-3:10\n\nhttps://www.biblegateway.com/passage/?search=1%20John%202%3A28-3%3A10&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T06:14:49.667915+00:00",
+    "transcript_hash": "88da4176606d1a8817f42cce89f8c369341858b792519c83c5c3384996092da5",
+    "content_path": "transcripts/gracepres/2022-10-02_real-christianity-children-of-god_gracepres_tag_soundcloud_2010_tracks_1357451359.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1352294704": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1352294704",
