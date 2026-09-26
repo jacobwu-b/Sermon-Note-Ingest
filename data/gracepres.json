@@ -5224,10 +5224,12 @@
     "blurb": "Ruth 4:1-22\nhttps://www.biblegateway.com/passage/?search=Ruth%204&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T22:01:25.972858+00:00",
+    "transcript_hash": "b48c083985c3a22420a7edbc723508374d592b1d0c51972915467bf2dc7f86a2",
+    "content_path": "transcripts/gracepres/2022-06-05_ruth-redeemed-and-restored_gracepres_tag_soundcloud_2010_tracks_1283640379.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1279220758": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1279220758",
