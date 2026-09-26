@@ -5206,10 +5206,12 @@
     "blurb": "Exodus 20:1-17\n\nhttps://www.biblegateway.com/passage/?search=Exodus%2020%3A1-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T22:01:35.985280+00:00",
+    "transcript_hash": "1ad0a4dfccca6eb47c6ecad8599824a4d32cd268aea601655b72d7b23d5807d3",
+    "content_path": "transcripts/gracepres/2022-06-12_ten-words-first-things-first_gracepres_tag_soundcloud_2010_tracks_1288025656.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1283640379": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1283640379",
