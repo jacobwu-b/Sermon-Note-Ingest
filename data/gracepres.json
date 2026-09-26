@@ -4982,10 +4982,12 @@
     "blurb": "1 John 1:1-4\n\nhttps://www.biblegateway.com/passage/?search=1%20John%201%3A1-4&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T11:17:45.869661+00:00",
+    "transcript_hash": "2d8482a2953f902bd9971ee3084f13fcd51b7b8a9b6b6d0ebe95689f63d9c144",
+    "content_path": "transcripts/gracepres/2022-08-28_real-christianity-the-word-of-life_gracepres_tag_soundcloud_2010_tracks_1334258923.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1329943717": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1329943717",
