@@ -4778,10 +4778,12 @@
     "blurb": "Guest Preacher: Crawford Stevener, RUF Stanford\n\nExodus 40:1-2, 16-38\nhttps://www.biblegateway.com/passage/?search=Exodus+40%3A1-2%2C+16-38&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T01:30:09.230734+00:00",
+    "transcript_hash": "7e75d0875e3d543e32f83d29d03df6da389ed8c3cc7bbdb658ff58ef54bebbea",
+    "content_path": "transcripts/gracepres/2022-11-06_god-with-his-people_gracepres_tag_soundcloud_2010_tracks_1379720827.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1375006894": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1375006894",
