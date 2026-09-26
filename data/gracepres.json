@@ -4906,10 +4906,12 @@
     "blurb": "1 John 2:15-27\n\nhttps://www.biblegateway.com/passage/?search=1%20John%202%3A15-27&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T11:16:12.389505+00:00",
+    "transcript_hash": "da369c02aa37c940ae32727e70c1641e40e2f60d4241bc21a5830cb2d6d62588",
+    "content_path": "transcripts/gracepres/2022-09-25_real-christianity-abiding-in-the-truth_gracepres_tag_soundcloud_2010_tracks_1352294704.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1343261437": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1343261437",
