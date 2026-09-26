@@ -4860,10 +4860,12 @@
     "blurb": "Many thanks to our guest preacher, Lance Lewis.\n\nhttps://www.biblegateway.com/passage/?search=Psalm%2072&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T06:22:25.945048+00:00",
+    "transcript_hash": "380b4447dd1b582edaed3257dddacb14d74c37e0e53e22931c679c69c8fda66e",
+    "content_path": "transcripts/gracepres/2022-10-09_long-live-the-king_gracepres_tag_soundcloud_2010_tracks_1366955869.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1357451359": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1357451359",
