@@ -56,11 +56,11 @@ def poll_church(
     new_items = [item for item in result.items if item.guid not in records]
     existing_items = [item for item in result.items if item.guid in records]
     for item in new_items:
-        published_at = adapter.resolve_published_at(item)
+        feed_published_at = adapter.resolve_feed_published_at(item)
         records[item.guid] = store.item_to_record(
             item,
             first_seen_at=retrieved_at,
-            published_at=published_at.isoformat() if published_at is not None else None,
+            feed_published_at=feed_published_at.isoformat() if feed_published_at is not None else None,
         )
     # Refreshes audio_url/title/etc. in place for guids the feed still lists — a feed
     # can rotate an enclosure URL after first discovery, and a pending sermon must not

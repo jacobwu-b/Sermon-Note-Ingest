@@ -42,7 +42,7 @@ def _split_title(raw_title: str) -> tuple[str, str | None]:
 def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
     raw_title = (entry.get("title") or "").strip()
     title, title_speaker = _split_title(raw_title)
-    published_on, weekday = parse_pubdate(entry.get("published"))
+    preached_on, weekday = parse_pubdate(entry.get("published"))
     # itunes:author names the individual preacher; fall back to the title's
     # trailing speaker credit if absent.
     speaker = (entry.get("author") or "").strip() or title_speaker
@@ -52,8 +52,8 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
         raw_title=raw_title,
         series=None,
         speaker=speaker,
-        published_on=published_on,
-        published_at=parse_pubdate_at(entry.get("published")),
+        preached_on=preached_on,
+        feed_published_at=parse_pubdate_at(entry.get("published")),
         episode_url=entry.get("link") or "",
         audio_url=entry_audio_url(entry),
         blurb=(entry.get("summary") or "").strip(),

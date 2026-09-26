@@ -5,7 +5,7 @@ Recomputed from scratch from every ``data/*.json`` ledger (via
 ``poller/store.py``'s data-access invariant) at the end of every poll run, so
 the numbers always reflect the ledger's current state, not just what one run
 discovered. Each church's "latest sermon" is simply its first record, relying
-on ``store.save`` having already written every ledger newest-``published_on``
+on ``store.save`` having already written every ledger newest-``preached_on``
 first.
 """
 
@@ -41,8 +41,8 @@ def _render(per_church: dict[str, dict[str, dict[str, Any]]]) -> str:
     for name, records in sorted(per_church.items()):
         latest = _latest(records)
         title = (latest or {}).get("title") or "—"
-        published_on = (latest or {}).get("published_on") or "—"
-        lines.append(f"| {name} | {len(records)} | {title} | {published_on} |")
+        preached_on = (latest or {}).get("preached_on") or "—"
+        lines.append(f"| {name} | {len(records)} | {title} | {preached_on} |")
     lines.append("")
     lines.append(f"**Total sermons across all churches: {total}**")
     return "\n".join(lines)

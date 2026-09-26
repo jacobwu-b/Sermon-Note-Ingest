@@ -33,19 +33,19 @@ class NotifyError(RuntimeError):
 
 
 def _non_sunday_items(items: list[SermonItem]) -> list[SermonItem]:
-    """Items whose ``published_on`` is a real, parseable date that isn't a Sunday.
+    """Items whose ``preached_on`` is a real, parseable date that isn't a Sunday.
 
     The owner's stated rule (#51) is that every church's sermon is preached on a
     Sunday — a non-Sunday date is the anomaly worth surfacing here, distinct from a
-    missing/unparseable ``published_on`` (a different, pre-existing condition this
+    missing/unparseable ``preached_on`` (a different, pre-existing condition this
     alert doesn't concern itself with).
     """
     anomalies = []
     for item in items:
-        if not item.published_on:
+        if not item.preached_on:
             continue
         try:
-            when = datetime.date.fromisoformat(item.published_on)
+            when = datetime.date.fromisoformat(item.preached_on)
         except ValueError:
             continue
         if when.weekday() != _SUNDAY:
@@ -64,7 +64,7 @@ def _format_email(church: str, items: list[SermonItem]) -> tuple[str, str]:
     non_sunday = _non_sunday_items(items)
     if non_sunday:
         names = ", ".join(_escape(item.title) for item in non_sunday)
-        warning = f"<p><strong>Heads up:</strong> published_on is not a Sunday for: {names}.</p>"
+        warning = f"<p><strong>Heads up:</strong> preached_on is not a Sunday for: {names}.</p>"
 
     rows = []
     for item in items:
@@ -73,8 +73,8 @@ def _format_email(church: str, items: list[SermonItem]) -> tuple[str, str]:
             details.append(_escape(item.speaker))
         if item.series:
             details.append(_escape(item.series))
-        if item.published_on:
-            details.append(item.published_on)
+        if item.preached_on:
+            details.append(item.preached_on)
         line = " — ".join(details)
         if item.episode_url:
             line += f'<br><a href="{_escape(item.episode_url)}">{_escape(item.episode_url)}</a>'

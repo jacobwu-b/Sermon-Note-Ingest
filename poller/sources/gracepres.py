@@ -5,7 +5,7 @@ Two things about this feed are unlike the other sources:
 - ``pubDate`` is the SoundCloud *upload* instant, not the service date: a
   Sunday sermon typically lands Monday–Wednesday (19 of 500 live items fell on
   a Sunday), so the weekday check every other adapter classifies on is useless
-  here. Instead, ``published_on`` is *derived*: the ``YYMMDD`` the church
+  here. Instead, ``preached_on`` is *derived*: the ``YYMMDD`` the church
   appended to titles through late 2025 when it parses to a Sunday, otherwise
   the most recent Sunday on or before the upload in the church's own timezone.
   Ordering both ways round matters — one live title carried a typo'd
@@ -62,14 +62,14 @@ def _split_title(raw_title: str) -> tuple[str, date | None]:
     return match.group("title").strip() or raw_title, title_date
 
 
-def service_date(title_date: date | None, published_at: datetime | None) -> date | None:
+def service_date(title_date: date | None, feed_published_at: datetime | None) -> date | None:
     """The Sunday this sermon was preached: the title's date if it is one, else the
     most recent Sunday on or before the upload, in the church's local day."""
     if title_date is not None and title_date.weekday() == _SUNDAY:
         return title_date
-    if published_at is None:
+    if feed_published_at is None:
         return None
-    local_day = published_at.astimezone(_CHURCH_TZ).date()
+    local_day = feed_published_at.astimezone(_CHURCH_TZ).date()
     return local_day - timedelta(days=(local_day.weekday() + 1) % 7)
 
 
@@ -81,17 +81,17 @@ def _speaker_from_blurb(blurb: str) -> str | None:
 def _entry_to_item(entry: Any) -> SermonItem:
     raw_title = (entry.get("title") or "").strip()
     title, title_date = _split_title(raw_title)
-    published_at = parse_pubdate_at(entry.get("published"))
+    feed_published_at = parse_pubdate_at(entry.get("published"))
     blurb = (entry.get("summary") or "").strip()
-    when = service_date(title_date, published_at)
+    when = service_date(title_date, feed_published_at)
     return SermonItem(
         guid=_GUID_PREFIX + entry.get("id", ""),
         title=title,
         raw_title=raw_title,
         series=None,
         speaker=_speaker_from_blurb(blurb),
-        published_on=when.isoformat() if when is not None else "",
-        published_at=published_at,
+        preached_on=when.isoformat() if when is not None else "",
+        feed_published_at=feed_published_at,
         episode_url=entry.get("link") or "",
         audio_url=entry_audio_url(entry),
         blurb=blurb,

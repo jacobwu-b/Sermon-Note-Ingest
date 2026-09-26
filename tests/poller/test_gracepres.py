@@ -141,8 +141,8 @@ def test_parse_maps_feed_entries_to_items_and_counts_id_less_ones():
     assert sermon.raw_title == "Protected By The King"
     assert sermon.series is None
     assert sermon.speaker == "Matt Mobley"
-    assert sermon.published_on == "2026-09-13"
-    assert sermon.published_at == datetime(2026, 9, 15, 23, 13, 2, tzinfo=UTC)
+    assert sermon.preached_on == "2026-09-13"
+    assert sermon.feed_published_at == datetime(2026, 9, 15, 23, 13, 2, tzinfo=UTC)
     assert sermon.episode_url == "https://soundcloud.com/gracepres-sv/protected-by-the-king"
     assert sermon.audio_url.endswith("protected-by-the-king.mp3")
     assert sermon.blurb.startswith("Pastor Matt Mobley ends")

@@ -9,15 +9,15 @@ from poller.config import NotifyConfig
 from poller.sources.base import SermonItem
 
 
-def _item(title: str = "Hear and Do", published_on: str = "2026-09-06") -> SermonItem:
+def _item(title: str = "Hear and Do", preached_on: str = "2026-09-06") -> SermonItem:
     return SermonItem(
         guid="g1",
         title=title,
         raw_title=title,
         series="Luke",
         speaker="Jane Doe",
-        published_on=published_on,
-        published_at=None,
+        preached_on=preached_on,
+        feed_published_at=None,
         episode_url="https://example.org/ep1",
         audio_url="https://example.org/ep1.mp3",
         blurb="A sermon.",
@@ -118,15 +118,15 @@ def test_send_new_sermons_raises_notify_error_on_network_failure(monkeypatch):
 
 
 def test_non_sunday_items_returns_only_the_non_sunday_ones():
-    sunday = _item(title="Sunday sermon", published_on="2026-09-06")
-    friday = _item(title="Good Friday", published_on="2026-04-03")
+    sunday = _item(title="Sunday sermon", preached_on="2026-09-06")
+    friday = _item(title="Good Friday", preached_on="2026-04-03")
     assert notify._non_sunday_items([sunday, friday]) == [friday]
 
 
 def test_non_sunday_items_ignores_an_undated_item():
-    """A missing/unparseable published_on is a different condition than this
+    """A missing/unparseable preached_on is a different condition than this
     alert's concern (a dated-but-wrong-weekday value) and must not be flagged."""
-    undated = _item(title="Untitled", published_on="")
+    undated = _item(title="Untitled", preached_on="")
     assert notify._non_sunday_items([undated]) == []
 
 
@@ -138,7 +138,7 @@ def test_send_new_sermons_html_carries_a_warning_for_a_non_sunday_item(monkeypat
         return _FakeResponse(200)
 
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
-    friday = _item(title="Good Friday Service", published_on="2026-04-03")
+    friday = _item(title="Good Friday Service", preached_on="2026-04-03")
     notify.send_new_sermons("pbc", [friday], _config())
 
     assert "Good Friday Service" in captured["body"]["html"]

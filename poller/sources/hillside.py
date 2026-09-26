@@ -67,7 +67,7 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
     raw_title = (entry.get("title") or "").strip()
     title_speaker = _split_title_speaker(raw_title)
     lines = _description_lines(entry.get("summary") or "")
-    published_on, weekday = parse_pubdate(entry.get("published"))
+    preached_on, weekday = parse_pubdate(entry.get("published"))
     item = SermonItem(
         guid=_GUID_PREFIX + entry.get("id", ""),
         title=lines[0] if lines else raw_title,
@@ -77,8 +77,8 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
         # not reliably a series name, so nothing is inferred.
         series=None,
         speaker=(entry.get("author") or "").strip() or title_speaker,
-        published_on=published_on,
-        published_at=parse_pubdate_at(entry.get("published")),
+        preached_on=preached_on,
+        feed_published_at=parse_pubdate_at(entry.get("published")),
         episode_url=entry.get("link") or "",
         audio_url=entry_audio_url(entry),
         blurb=" ".join(lines),
