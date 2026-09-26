@@ -5178,10 +5178,12 @@
     "blurb": "Exodus 20:1-3\n\nhttps://www.biblegateway.com/passage/?search=Exodus%2020:1-3&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T18:37:02.268842+00:00",
+    "transcript_hash": "75fdea0c8cd116d4d50aed9e747739e771a282cc5c48fde3f9713fda850013e1",
+    "content_path": "transcripts/gracepres/2022-06-19_ten-words-only-room-for-one_gracepres_tag_soundcloud_2010_tracks_1302034252.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1288025656": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1288025656",
