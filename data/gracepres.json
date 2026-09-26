@@ -5066,10 +5066,12 @@
     "blurb": "https://www.biblegateway.com/passage/?search=Exodus+20%3A1-2%2C+14%3B+Matthew+5%3A27-28&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T15:36:01.734215+00:00",
+    "transcript_hash": "f134405087e583051d89ccc92684fa5a39e3fb4b4b6a228b72041abdd6004fbe",
+    "content_path": "transcripts/gracepres/2022-07-31_ten-words-do-not-committ-adultery_gracepres_tag_soundcloud_2010_tracks_1316659195.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1312302961": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1312302961",
