@@ -5124,10 +5124,12 @@
     "blurb": "Exodus 20:1-2, 7\n\nhttps://www.biblegateway.com/passage/?search=Exodus+20%3A1-2%2CExodus+20%3A7&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T18:43:56.569728+00:00",
+    "transcript_hash": "384a5f5f1cb27531f10119fac49da75a0cb44a8415f0fc3a4bf564010cd35ff5",
+    "content_path": "transcripts/gracepres/2022-07-10_tenwords-the-gift-of-sabbath_gracepres_tag_soundcloud_2010_tracks_1304016961.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1302048055": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1302048055",
