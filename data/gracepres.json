@@ -5006,10 +5006,12 @@
     "blurb": "exodus 20:1-2, 17; Romans 13:9-10\n\nhttps://www.biblegateway.com/passage/?search=exodus+20%3A1-2%2C+17%3B+Romans+13%3A9-10&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T15:17:32.269845+00:00",
+    "transcript_hash": "69142f7e89b06adccb5c277c057023c13248c80d022c3c20102179378e901864",
+    "content_path": "transcripts/gracepres/2022-08-21_ten-words-contentment_gracepres_tag_soundcloud_2010_tracks_1329943717.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1325441470": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1325441470",
