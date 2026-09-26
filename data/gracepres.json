@@ -4724,10 +4724,12 @@
     "blurb": "Isaiah 40:9-11\nhttps://www.biblegateway.com/passage/?search=isaiah+40%3A9-11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-26T01:33:15.364067+00:00",
+    "transcript_hash": "fcfc9a934440a969bf08e57e7759b67dfd56c571ccfda6b526bfcea491eb04fc",
+    "content_path": "transcripts/gracepres/2022-12-04_advent2022-hope_gracepres_tag_soundcloud_2010_tracks_1421109469.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1421104783": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1421104783",
