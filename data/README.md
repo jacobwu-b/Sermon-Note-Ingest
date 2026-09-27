@@ -54,10 +54,10 @@ Do not edit between the markers by hand; it will be overwritten.
 | gracepres | 446 | Protected By The King | 2026-09-13 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 138 | God Wants You To Pour Yourself OUT | 2026-09-27 |
-| menlo | 147 | Kinds of Kindness | 2026-09-20 |
+| menlo | 148 | The Purity of Reality | 2026-09-27 |
 | north_point | 103 | Mind Games, Part 3: Living Freely | 2026-09-27 |
 | pbc | 399 | The Leaven of Life | 2026-09-20 |
 | westgate | 106 | Week 2 - A Genuine Community | 2026-09-20 |
 
-**Total sermons across all churches: 1848**
+**Total sermons across all churches: 1849**
 <!-- STATS:END -->
