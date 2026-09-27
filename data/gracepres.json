@@ -5846,10 +5846,12 @@
     "blurb": "Luke 19:11-27\n\nhttps://www.biblegateway.com/passage/?search=Luke%2019%3A11-27&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T22:15:53.086638+00:00",
+    "transcript_hash": "84c50c2f57242c4f7d1c7085ec5f900c11afc1173f18a0adb9ae0210b88d7ca0",
+    "content_path": "transcripts/gracepres/2021-10-24_luke-waiting-on-the-kingdom_gracepres_tag_soundcloud_2010_tracks_1154530534.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1154531182": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1154531182",
