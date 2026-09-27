@@ -77,8 +77,8 @@ def default_transcribe(audio_path: Path, hotwords: str | None) -> str:
     return " ".join(segment.text.strip() for segment in segments)
 
 
-def _sha256(text: str) -> str:
-    """Return the sha256 hex digest of ``text``."""
+def transcript_hash(text: str) -> str:
+    """Return the sha256 hex digest of ``text`` — the ledger's ``transcript_hash``."""
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
@@ -136,4 +136,4 @@ def transcribe_audio(
         dest = Path(tmpdir) / "audio"
         download_audio(audio_url, dest, download=download, sleep=sleep)
         text = _transcribe_with_retries(dest, hotwords, transcribe=transcribe, sleep=sleep)
-    return text, _sha256(text)
+    return text, transcript_hash(text)

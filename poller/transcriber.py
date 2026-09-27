@@ -37,6 +37,7 @@ from poller.slug import slugify
 
 TranscribeAudio = Callable[[str, str | None], tuple[str, str]]
 PushTranscripts = Callable[[dict[str, str]], None]
+FetchExisting = Callable[[list[str]], dict[str, str]]
 DispatchIngestEvent = Callable[[dict[str, object], str], None]
 
 logger = logging.getLogger("poller")
@@ -143,10 +144,19 @@ def transcribe_church(
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
     push: PushTranscripts = content_repo.push_transcripts,
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
+    fetch_existing: FetchExisting = content_repo.existing_transcripts,
     vocabulary: Sequence[str] = (),
     marks_out: dict[str, dict] | None = None,
 ) -> bool:
     """Transcribe ``batch``, push the successes to Content in one commit, then ledger them.
+
+    A sermon whose transcript Content already holds is ledgered from Content's copy
+    instead — no Whisper, no push, no pipeline dispatch (the run that pushed it already
+    dispatched). The ledger saying "pending" while Content holds the file is reachable
+    from more than one cause (a queued run reading a stale ledger, a ledger push that
+    failed after its Content push landed); re-transcribing would only be refused by
+    :func:`content_repo.default_push`'s overwrite guard, failing every run (issue #84).
+    If Content can't be read at all, the whole batch stays pending.
 
     Returns ``True`` iff no sermon in ``batch`` ended terminally failed and the Content
     push (if there was anything to push) succeeded. A download failure is not a failure
@@ -167,7 +177,42 @@ def transcribe_church(
     church_terms = prompting.church_vocabulary(records)
     whisper_cfg = config.load_whisper_config()
 
+    paths = {guid: _content_path(name, record) for guid, record in batch}
+    try:
+        existing = fetch_existing(list(paths.values()))
+    except content_repo.ContentPublishError as exc:
+        logger.error("%s: could not read Content, leaving %d sermon(s) pending: %s", name, len(batch), exc)
+        return False
+
     for guid, record in batch:
+        path = paths[guid]
+        if path in existing:
+            logger.warning(
+                "%s/%s: transcript already in Content but ledgered pending; recording Content's copy",
+                name,
+                guid,
+            )
+            # When Content's copy was produced isn't known; this records when it was adopted.
+            adopted_hash = transcribe.transcript_hash(existing[path])
+            adopted_at = net.now()
+            store.mark_transcribed(
+                record,
+                content_path=path,
+                transcript_hash=adopted_hash,
+                transcribed_at=adopted_at,
+                model=None,
+                domain_prompt=None,
+            )
+            if marks_out is not None:
+                marks_out[guid] = {
+                    "kind": "done",
+                    "content_path": path,
+                    "transcript_hash": adopted_hash,
+                    "transcribed_at": adopted_at,
+                    "model": None,
+                    "domain_prompt": None,
+                }
+            continue
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
         logger.debug("%s/%s: hotwords: %s", name, guid, hotwords)
         try:
@@ -182,7 +227,6 @@ def transcribe_church(
                 marks_out[guid] = {"kind": "failed"}
             all_ok = False
             continue
-        path = _content_path(name, record)
         to_push[path] = text
         pending_marks[guid] = (path, digest)
 
@@ -348,6 +392,7 @@ def run(
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
     push: PushTranscripts = content_repo.push_transcripts,
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
+    fetch_existing: FetchExisting = content_repo.existing_transcripts,
     marks_out: dict[str, dict[str, dict]] | None = None,
 ) -> bool:
     """Transcribe at most ``limit`` pending sermons per selected church.
@@ -358,7 +403,7 @@ def run(
     exactly one shard, and the default (0, 1) is every sermon, unchanged from before
     sharding existed.
 
-    ``transcribe_audio``/``push``/``dispatch_ingest_event`` are threaded through to
+    ``transcribe_audio``/``push``/``dispatch_ingest_event``/``fetch_existing`` are threaded through to
     :func:`transcribe_church` rather than relied on as its defaults, so a caller (or a
     test) can replace them without reaching into another module's attributes.
 
@@ -388,6 +433,7 @@ def run(
                 transcribe_audio=transcribe_audio,
                 push=push,
                 dispatch_ingest_event=dispatch_ingest_event,
+                fetch_existing=fetch_existing,
                 vocabulary=selected[name].vocabulary,
                 marks_out=marks_out.setdefault(name, {}) if marks_out is not None else None,
             )

@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from poller import net, pipeline_dispatch, store, transcriber
+from poller import net, pipeline_dispatch, store, transcribe, transcriber
 from poller.content_repo import ContentPublishError
 from poller.net import AudioDownloadError
 from poller.sources.base import SermonItem
@@ -28,6 +28,10 @@ def _record(guid: str, *, preached_on: str, audio_url: str = "https://example.or
     return store.item_to_record(
         _item(guid, preached_on=preached_on, audio_url=audio_url), first_seen_at="t", feed_published_at=None
     )
+
+
+def _nothing_in_content(paths):
+    return {}
 
 
 @pytest.fixture(autouse=True)
@@ -100,7 +104,12 @@ def test_transcribe_church_marks_success_only_after_push_succeeds(tmp_path, monk
         pushed.update(files)
 
     ok = transcriber.transcribe_church(
-        "menlo", records, [("g1", records["g1"])], transcribe_audio=fake_transcribe_audio, push=fake_push
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=fake_transcribe_audio,
+        push=fake_push,
+        fetch_existing=_nothing_in_content,
     )
 
     assert ok is True
@@ -123,6 +132,7 @@ def test_transcribe_church_records_the_running_whisper_model_and_domain_prompt_s
         [("g1", records["g1"])],
         transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
 
     saved = store.load("menlo")
@@ -150,6 +160,7 @@ def test_transcribe_church_passes_per_sermon_hotwords_built_from_the_record_and_
         [("g1", records["g1"])],
         transcribe_audio=fake_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         vocabulary=("Hillside Church",),
     )
 
@@ -175,7 +186,11 @@ def test_run_passes_the_configured_church_vocabulary_through_to_the_hotwords(
         return "text", "hash"
 
     transcriber.run(
-        church_names=["pbc"], limit=1, transcribe_audio=fake_transcribe_audio, push=lambda files: None
+        church_names=["pbc"],
+        limit=1,
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
 
     assert seen == ["Sermon p1, Peninsula Bible Church"]
@@ -202,6 +217,7 @@ def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcrib
         [("g1", records["g1"])],
         transcribe_audio=fake_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
     )
 
@@ -232,6 +248,7 @@ def test_transcribe_church_survives_a_dispatch_failure(tmp_path, monkeypatch):
         [("g1", records["g1"])],
         transcribe_audio=fake_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         dispatch_ingest_event=failing_dispatch,
     )
 
@@ -257,6 +274,7 @@ def test_transcribe_church_never_dispatches_for_an_item_whose_push_failed(tmp_pa
         [("g1", records["g1"])],
         transcribe_audio=fake_transcribe_audio,
         push=failing_push,
+        fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
     )
 
@@ -278,6 +296,7 @@ def test_transcribe_church_never_dispatches_for_a_backfill_sermon(tmp_path, monk
         [("g1", records["g1"])],
         transcribe_audio=fake_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
     )
 
@@ -305,6 +324,7 @@ def test_transcribe_church_dispatches_when_feed_published_at_is_recent_even_if_p
         [("g1", records["g1"])],
         transcribe_audio=fake_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
     )
 
@@ -325,6 +345,7 @@ def test_ingest_event_carries_the_preached_date_and_feed_instant_as_separate_fie
         [("g1", records["g1"])],
         transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
     )
 
@@ -346,6 +367,7 @@ def test_ingest_event_sends_a_null_feed_instant_rather_than_the_preached_date(tm
         [("g1", records["g1"])],
         transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
     )
 
@@ -365,7 +387,12 @@ def test_transcribe_church_leaves_batch_pending_when_push_fails(tmp_path, monkey
         raise ContentPublishError("content repo unreachable")
 
     ok = transcriber.transcribe_church(
-        "menlo", records, [("g1", records["g1"])], transcribe_audio=fake_transcribe_audio, push=failing_push
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=fake_transcribe_audio,
+        push=failing_push,
+        fetch_existing=_nothing_in_content,
     )
 
     assert ok is False
@@ -386,6 +413,7 @@ def test_transcribe_church_leaves_a_download_failure_pending_not_failed(tmp_path
         [("g1", records["g1"])],
         transcribe_audio=failing_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
 
     assert ok is True
@@ -406,6 +434,7 @@ def test_transcribe_church_marks_a_terminal_model_failure(tmp_path, monkeypatch)
         [("g1", records["g1"])],
         transcribe_audio=failing_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
 
     assert ok is False
@@ -428,6 +457,7 @@ def test_transcribe_church_marks_out_records_a_successful_transcription(tmp_path
         [("g1", records["g1"])],
         transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         marks_out=marks,
     )
 
@@ -451,6 +481,7 @@ def test_transcribe_church_marks_out_records_a_terminal_failure(tmp_path, monkey
         [("g1", records["g1"])],
         transcribe_audio=failing_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         marks_out=marks,
     )
 
@@ -474,6 +505,7 @@ def test_transcribe_church_marks_out_omits_a_transcription_whose_push_failed(tmp
         [("g1", records["g1"])],
         transcribe_audio=lambda url, hotwords: ("text", "hash"),
         push=failing_push,
+        fetch_existing=_nothing_in_content,
         marks_out=marks,
     )
 
@@ -614,7 +646,11 @@ def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkey
         return "text", "hash"
 
     transcriber.run(
-        church_names=None, limit=1, transcribe_audio=fake_transcribe_audio, push=lambda files: None
+        church_names=None,
+        limit=1,
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
     # limit=1 caps each church at 1, not the pair combined at 1 — a shared budget
     # would let the first church (menlo) exhaust it and leave pbc untouched. Each
@@ -637,12 +673,20 @@ def test_run_is_a_noop_on_a_second_run_against_already_transcribed_records(tmp_p
         return "text", "hash"
 
     transcriber.run(
-        church_names=["menlo"], limit=5, transcribe_audio=fake_transcribe_audio, push=lambda files: None
+        church_names=["menlo"],
+        limit=5,
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
     assert len(calls) == 1
 
     transcriber.run(
-        church_names=["menlo"], limit=5, transcribe_audio=fake_transcribe_audio, push=lambda files: None
+        church_names=["menlo"],
+        limit=5,
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
     assert len(calls) == 1
 
@@ -661,7 +705,13 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
         unsharded_calls.append(url)
         return "text", "hash"
 
-    transcriber.run(church_names=None, limit=5, transcribe_audio=fake_unsharded, push=lambda files: None)
+    transcriber.run(
+        church_names=None,
+        limit=5,
+        transcribe_audio=fake_unsharded,
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+    )
 
     monkeypatch.setattr(store, "DATA_DIR", tmp_path / "sharded")
     store.save(
@@ -683,6 +733,7 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
         shard_count=1,
         transcribe_audio=fake_sharded,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
 
     assert sharded_calls == unsharded_calls
@@ -719,6 +770,7 @@ def test_run_shards_partition_every_pending_sermon_exactly_once(tmp_path, monkey
             shard_count=shard_count,
             transcribe_audio=fake_transcribe_audio,
             push=lambda files: None,
+            fetch_existing=_nothing_in_content,
         )
 
     assert len(seen) == 5
@@ -741,6 +793,7 @@ def test_run_shard_count_more_than_pending_leaves_extra_shards_empty(tmp_path, m
         shard_count=5,
         transcribe_audio=fake_transcribe_audio,
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
 
     assert ok is True
@@ -809,7 +862,11 @@ def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):
         return "text", "hash"
 
     transcriber.run(
-        church_names=["menlo"], limit=5, transcribe_audio=fake_transcribe_audio, push=lambda files: None
+        church_names=["menlo"],
+        limit=5,
+        transcribe_audio=fake_transcribe_audio,
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
     )
     assert len(calls) == 1
     assert store.load("pbc")["p1"]["transcription_status"] is None
@@ -826,8 +883,176 @@ def test_run_populates_marks_out_per_church(tmp_path, monkeypatch):
         limit=5,
         transcribe_audio=lambda url, hotwords: ("text", "hash"),
         push=lambda files: None,
+        fetch_existing=_nothing_in_content,
         marks_out=marks,
     )
 
     assert marks["menlo"]["m1"]["kind"] == "done"
     assert marks["pbc"]["p1"]["kind"] == "done"
+
+
+def test_transcribe_church_records_a_sermon_already_in_content_without_retranscribing_it(
+    tmp_path, monkeypatch
+):
+    # Regression (issue #84): a pending sermon whose transcript already landed in
+    # Content (a queued run reading a stale ledger, or a ledger mark lost after the
+    # Content push) was re-transcribed, then refused by the overwrite guard — failing
+    # every run forever. Content's copy is authoritative; the ledger adopts it.
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2019-01-06")}
+    path = "transcripts/menlo/2019-01-06_sermon-g1_g1.txt"
+    whisper_calls = []
+    pushed = []
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: whisper_calls.append(url) or ("new text", "new-hash"),
+        push=pushed.append,
+        fetch_existing=lambda paths: {path: "the transcript already in Content"},
+    )
+
+    assert ok is True
+    assert whisper_calls == []
+    assert pushed == []
+    saved = store.load("menlo")["g1"]
+    assert saved["transcription_status"] == "done"
+    assert saved["content_path"] == path
+    assert saved["transcript_hash"] == transcribe.transcript_hash("the transcript already in Content")
+    # ADR-0012: null means "unknown" — this run didn't produce the text, so it can't vouch for either.
+    assert saved["transcription_model"] is None
+    assert saved["transcription_domain_prompt"] is None
+
+
+def test_transcribe_church_asks_content_about_exactly_the_batch_s_paths(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01"), "g2": _record("g2", preached_on="2025-12-01")}
+    asked = []
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"]), ("g2", records["g2"])],
+        transcribe_audio=lambda url, hotwords: ("text", "hash"),
+        push=lambda files: None,
+        fetch_existing=lambda paths: asked.append(sorted(paths)) or {},
+    )
+
+    assert asked == [
+        ["transcripts/menlo/2025-12-01_sermon-g2_g2.txt", "transcripts/menlo/2026-01-01_sermon-g1_g1.txt"]
+    ]
+
+
+def test_transcribe_church_pushes_only_the_sermons_content_does_not_already_hold(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01"), "g2": _record("g2", preached_on="2025-12-01")}
+    pushed = {}
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"]), ("g2", records["g2"])],
+        transcribe_audio=lambda url, hotwords: ("fresh transcript", "fresh-hash"),
+        push=pushed.update,
+        fetch_existing=lambda paths: {"transcripts/menlo/2025-12-01_sermon-g2_g2.txt": "older transcript"},
+    )
+
+    assert ok is True
+    assert pushed == {"transcripts/menlo/2026-01-01_sermon-g1_g1.txt": "fresh transcript"}
+    saved = store.load("menlo")
+    assert saved["g1"]["transcript_hash"] == "fresh-hash"
+    assert saved["g2"]["transcript_hash"] == transcribe.transcript_hash("older transcript")
+
+
+def test_transcribe_church_never_dispatches_for_a_sermon_already_in_content(tmp_path, monkeypatch):
+    # The run that pushed it to Content already dispatched its ingest event.
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-09-27T21:40:00+00:00")
+    records = {"g1": _record("g1", preached_on="2026-09-27")}
+    dispatched = []
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: ("new text", "new-hash"),
+        push=lambda files: None,
+        dispatch_ingest_event=lambda event, source: dispatched.append(event),
+        fetch_existing=lambda paths: dict.fromkeys(paths, "already there"),
+    )
+
+    assert dispatched == []
+
+
+def test_transcribe_church_marks_out_records_a_sermon_adopted_from_content(tmp_path, monkeypatch):
+    # A push-conflict replay (ADR-0014) must be able to re-apply the adoption too.
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2019-01-06")}
+    marks: dict = {}
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: ("new text", "new-hash"),
+        push=lambda files: None,
+        fetch_existing=lambda paths: dict.fromkeys(paths, "already there"),
+        marks_out=marks,
+    )
+
+    assert marks["g1"]["kind"] == "done"
+    assert marks["g1"]["transcript_hash"] == transcribe.transcript_hash("already there")
+    assert marks["g1"]["model"] is None
+    assert marks["g1"]["domain_prompt"] is None
+
+    fresh_dir = tmp_path / "fresh"
+    fresh_dir.mkdir()
+    monkeypatch.setattr(store, "DATA_DIR", fresh_dir)
+    store.save("menlo", {"g1": _record("g1", preached_on="2019-01-06")})
+    marks_path = tmp_path / "marks.json"
+    marks_path.write_text(json.dumps({"menlo": marks}))
+    assert transcriber.replay_marks(str(marks_path)) is True
+    assert store.load("menlo")["g1"]["transcription_status"] == "done"
+
+
+def test_transcribe_church_leaves_the_batch_pending_when_content_cannot_be_read(tmp_path, monkeypatch):
+    # Without knowing what Content holds, transcribing risks a second, different
+    # version of a sermon — so nothing is transcribed and nothing is marked.
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+    whisper_calls = []
+
+    def unreadable(paths):
+        raise ContentPublishError("content read failed after 3 attempts: clone timed out")
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: whisper_calls.append(url) or ("text", "hash"),
+        push=lambda files: None,
+        fetch_existing=unreadable,
+    )
+
+    assert ok is False
+    assert whisper_calls == []
+    assert records["g1"]["transcription_status"] is None
+
+
+def test_run_threads_fetch_existing_through_to_each_church(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"m1": _record("m1", preached_on="2026-01-01")})
+    whisper_calls = []
+
+    ok = transcriber.run(
+        church_names=["menlo"],
+        limit=5,
+        transcribe_audio=lambda url, hotwords: whisper_calls.append(url) or ("text", "hash"),
+        push=lambda files: None,
+        fetch_existing=lambda paths: dict.fromkeys(paths, "already there"),
+    )
+
+    assert ok is True
+    assert whisper_calls == []
+    assert store.load("menlo")["m1"]["transcription_status"] == "done"
