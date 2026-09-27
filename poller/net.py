@@ -2,7 +2,7 @@
 
 Every adapter fetches its feed (and, for PBC, an auxiliary HTML page and a HEAD
 request) through this module so the hardening lives in one place. The feed URLs
-themselves are fixed, operator-configured values from ``CHURCHES``, not
+themselves are fixed, operator-configured values from the church table, not
 attacker-controlled input, so the guard here is a simple defense-in-depth cap
 rather than a full SSRF-hardened opener.
 

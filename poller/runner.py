@@ -1,6 +1,6 @@
 """The poll entry point: fetch every enabled church, ledger new sermons, notify.
 
-One run touches every church ``CHURCHES`` marks ``enabled`` (or the subset
+One run touches every church the church table marks ``enabled`` (or the subset
 named by ``--church``), independently — one church's feed being down, or its
 notification failing, never stops the others from being polled and recorded.
 ``--backfill`` seeds a church's ledger from its full feed history without

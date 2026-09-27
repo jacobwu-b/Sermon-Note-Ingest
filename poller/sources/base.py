@@ -55,7 +55,7 @@ class SourceAdapter(ABC):
     rather than raising, so the runner can carry on with the other churches.
     """
 
-    #: Globally-unique source identity (e.g. ``"menlo"``), matching its ``CHURCHES`` key.
+    #: Globally-unique source identity (e.g. ``"menlo"``), matching its church-table key.
     source: str
 
     def __init__(self, *, url: str) -> None:
