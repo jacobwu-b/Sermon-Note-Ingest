@@ -5644,10 +5644,12 @@
     "blurb": "Exodus 34:5-9, 29-33; 2 Corinthians 3:10-18\n\nhttps://www.biblegateway.com/passage/?search=ExODuS+34%3A5-9%2C+29-33%3B+2+CORINThIaNS+3%3A10-18&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T13:52:13.113397+00:00",
+    "transcript_hash": "60bba2e1f15cce58e2dbc30e7c79574c5f5732c05a6bddd540d6ffb9f3e605a0",
+    "content_path": "transcripts/gracepres/2022-01-02_advent2021-the-divine-dilemma_gracepres_tag_soundcloud_2010_tracks_1197176659.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1197175837": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1197175837",
