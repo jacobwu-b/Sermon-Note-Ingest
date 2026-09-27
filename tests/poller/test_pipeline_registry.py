@@ -129,3 +129,39 @@ def test_list_pending_batches_sets_a_non_default_user_agent(monkeypatch):
 
     assert "user-agent" in captured["headers"]
     assert "python-urllib" not in captured["headers"]["user-agent"].lower()
+
+
+def test_read_church_table_reads_pipeline_s_checked_in_table(monkeypatch):
+    table = '{"menlo": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true}}}'
+    captured = {}
+
+    def fake_urlopen(request, timeout):
+        captured["url"] = request.full_url
+        captured["headers"] = {k.lower(): v for k, v in request.headers.items()}
+        payload = {"content": base64.b64encode(table.encode("utf-8")).decode("ascii")}
+        return _FakeResponse(json.dumps(payload).encode("utf-8"))
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    assert pipeline_registry.read_church_table(config=_config()) == table
+    assert captured["url"] == (
+        "https://api.github.com/repos/owner/sermon-note-pipeline/contents/config/churches.json"
+    )
+    assert captured["headers"]["authorization"] == "Bearer ghp_456"
+
+
+def test_read_church_table_raises_on_http_error(monkeypatch):
+    def fake_urlopen(request, timeout):
+        raise urllib.error.HTTPError(request.full_url, 403, "Forbidden", {}, io.BytesIO(b"no access"))
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    with pytest.raises(pipeline_registry.PipelineRegistryError):
+        pipeline_registry.read_church_table(config=_config())
+
+
+def test_read_church_table_raises_on_malformed_response(monkeypatch):
+    monkeypatch.setattr(
+        "urllib.request.urlopen", lambda request, timeout: _FakeResponse(b'{"not_content": true}')
+    )
+    with pytest.raises(pipeline_registry.PipelineRegistryError):
+        pipeline_registry.read_church_table(config=_config())
