@@ -5460,10 +5460,12 @@
     "blurb": "Luke 22:1-23\n\nhttps://www.biblegateway.com/passage/?search=Luke%2022%3A1-23&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T02:03:26.050787+00:00",
+    "transcript_hash": "ed127ed83eeae871cbcf438b627cc30a26cd6c3b08b3743bcf3073636642fb54",
+    "content_path": "transcripts/gracepres/2022-03-06_luke-judas-and-the-gracious-messiah_gracepres_tag_soundcloud_2010_tracks_1228666900.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1224560578": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1224560578",
