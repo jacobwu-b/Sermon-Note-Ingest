@@ -7825,7 +7825,13 @@
     "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2019/02/17/20190217-1st.mp3",
     "blurb": null,
     "first_seen_at": "2026-09-11T22:29:53.164705+00:00",
-    "notified_at": "2026-09-11T22:29:53.164705+00:00"
+    "notified_at": "2026-09-11T22:29:53.164705+00:00",
+    "transcription_status": "done",
+    "content_path": "transcripts/pbc/2019-02-17_untitled_pbc-archive_Main_Service_2019_02_17_20190217-1st.mp3.txt",
+    "transcript_hash": "0171e922896154b6e86f4718cddb1d42710ff01158cad4951a533ac582b7c018",
+    "transcribed_at": "2026-09-27T02:24:40.363952+00:00",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "pbc-archive:Main_Service/2019/02/10/20190210_1.mp3": {
     "guid": "pbc-archive:Main_Service/2019/02/10/20190210_1.mp3",
