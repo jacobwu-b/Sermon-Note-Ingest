@@ -5482,10 +5482,12 @@
     "blurb": "Luke 21:28-38\n\nhttps://www.biblegateway.com/passage/?search=Luke+21%3A28-38&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T02:23:26.402629+00:00",
+    "transcript_hash": "87050712feed6367f7d5b9bddd443cbc38d397fb08b0d9aba7f3530ece64d6b9",
+    "content_path": "transcripts/gracepres/2022-02-27_luke-when-redemption-draws-near_gracepres_tag_soundcloud_2010_tracks_1224560578.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1222513531": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1222513531",
