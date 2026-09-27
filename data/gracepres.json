@@ -5760,10 +5760,12 @@
     "blurb": "Luke 20:40-21:4\n\nhttps://www.biblegateway.com/passage/?search=LukE+20%3A40-21%3A4&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T18:19:00.599545+00:00",
+    "transcript_hash": "59a1b493be1e6619d4c4e32c787ce233f8d5b9cc9e88003142015f948ee6ef28",
+    "content_path": "transcripts/gracepres/2021-11-21_luke-the-question-of-the-day_gracepres_tag_soundcloud_2010_tracks_1179314896.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1179314635": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1179314635",
