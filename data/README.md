@@ -1,8 +1,9 @@
 # Sermon ledger
 
-One JSON file per church (`<church>.json`, matching its `CHURCHES` key),
-written and updated only by [`poller/runner.py`](../poller/runner.py). Each
-file is a JSON object keyed by the feed's own guid:
+One JSON file per church. `<church>.json` is named by the church's key in
+Sermon-Note-Pipeline's `config/churches.json`. [`poller/runner.py`](../poller/runner.py)
+writes each discovered sermon, and [`poller/transcriber.py`](../poller/transcriber.py)
+records its transcription. Each file is a JSON object keyed by the feed's own guid:
 
 ```json
 {
