@@ -5780,10 +5780,12 @@
     "blurb": "Luke 20:27-40\n\nhttps://www.biblegateway.com/passage/?search=Luke%2020%3A27-40&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T18:22:21.480177+00:00",
+    "transcript_hash": "b2c8acdf5e107b274fab1988652ead9097aacd93af0f0a3af56626dd387f9edf",
+    "content_path": "transcripts/gracepres/2021-11-14_luke-god-of-the-living_gracepres_tag_soundcloud_2010_tracks_1179314635.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1159007950": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1159007950",
