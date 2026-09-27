@@ -1,7 +1,7 @@
 """Build the hotwords a sermon's transcription is prompted with.
 
 Pure: no I/O, no config reads. :mod:`poller.transcriber` assembles the inputs (the
-sermon's own record, the church's ledger, the operator's ``CHURCHES`` vocabulary) and
+sermon's own record, the church's ledger, the operator's church-table vocabulary) and
 :mod:`poller.transcribe` is the one place that hands the result to faster-whisper.
 
 ``hotwords`` is the vehicle because faster-whisper re-injects it into every decoding
@@ -49,7 +49,7 @@ def build_hotwords(record: dict, *, church_terms: Sequence[str], vocabulary: Seq
     """Comma-joined hotwords for one sermon: its own metadata first, then the church's.
 
     Priority order — record ``speaker``/``series``/``title``, then ``vocabulary`` (the
-    operator's list from ``CHURCHES``), then ``church_terms`` (:func:`church_vocabulary`)
+    operator's list from the church table), then ``church_terms`` (:func:`church_vocabulary`)
     — cut to :data:`HOTWORDS_MAX_TERMS`, so the sermon-specific terms always survive.
     ``blurb`` is deliberately unused: on most feeds it is a paragraph, not a term.
     """

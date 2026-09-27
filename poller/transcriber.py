@@ -151,7 +151,7 @@ def transcribe_church(
     Returns ``True`` iff no sermon in ``batch`` ended terminally failed and the Content
     push (if there was anything to push) succeeded. A download failure is not a failure
     of this run — it's an expected, retried-next-run outcome. ``vocabulary`` is the
-    church's configured term list (``CHURCHES[name].vocabulary``), prompted alongside
+    church's configured term list (its ``ingest.vocabulary`` in the church table), prompted alongside
     what ``records`` already knows about the church.
 
     ``marks_out``, when given, is filled with every ledger mutation this call actually

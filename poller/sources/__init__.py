@@ -1,4 +1,4 @@
-"""The registry of known church adapters, keyed by ``CHURCHES`` name."""
+"""The registry of known church adapters, keyed by church-table name."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ __all__ = [
     "SourceAdapter",
 ]
 
-# A new church adds its adapter class here, keyed by its CHURCHES name.
+# A new church adds its adapter class here, keyed by its church-table name.
 ADAPTERS: dict[str, type[SourceAdapter]] = {
     "menlo": MenloPodbeanAdapter,
     "pbc": PbcAdapter,
