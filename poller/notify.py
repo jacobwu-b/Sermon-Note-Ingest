@@ -18,8 +18,7 @@ import urllib.request
 from poller.config import NotifyConfig
 from poller.net import DEFAULT_USER_AGENT
 from poller.sources.base import SermonItem
-
-_SUNDAY = 6
+from poller.sources.common import is_service_date
 
 _RESEND_URL = "https://api.resend.com/emails"
 _TIMEOUT = 15
@@ -32,11 +31,11 @@ class NotifyError(RuntimeError):
     """Raised when the Resend API rejects or cannot be reached for a send."""
 
 
-def _non_sunday_items(items: list[SermonItem]) -> list[SermonItem]:
-    """Items whose ``preached_on`` is a real, parseable date that isn't a Sunday.
+def _off_day_items(items: list[SermonItem]) -> list[SermonItem]:
+    """Items whose ``preached_on`` is a real, parseable date that is neither a Sunday
+    nor a special service (``is_service_date``).
 
-    The owner's stated rule (#51) is that every church's sermon is preached on a
-    Sunday — a non-Sunday date is the anomaly worth surfacing here, distinct from a
+    Such a date is the anomaly worth surfacing here, distinct from a
     missing/unparseable ``preached_on`` (a different, pre-existing condition this
     alert doesn't concern itself with).
     """
@@ -48,7 +47,7 @@ def _non_sunday_items(items: list[SermonItem]) -> list[SermonItem]:
             when = datetime.date.fromisoformat(item.preached_on)
         except ValueError:
             continue
-        if when.weekday() != _SUNDAY:
+        if not is_service_date(when):
             anomalies.append(item)
     return anomalies
 
@@ -61,10 +60,10 @@ def _format_email(church: str, items: list[SermonItem]) -> tuple[str, str]:
         subject = f"New {len(items)} {noun} from {church}"
 
     warning = ""
-    non_sunday = _non_sunday_items(items)
-    if non_sunday:
-        names = ", ".join(_escape(item.title) for item in non_sunday)
-        warning = f"<p><strong>Heads up:</strong> preached_on is not a Sunday for: {names}.</p>"
+    off_day = _off_day_items(items)
+    if off_day:
+        names = ", ".join(_escape(item.title) for item in off_day)
+        warning = f"<p><strong>Heads up:</strong> preached_on is neither a Sunday nor a special service for: {names}.</p>"
 
     rows = []
     for item in items:

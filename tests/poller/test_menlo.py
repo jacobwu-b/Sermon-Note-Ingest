@@ -1,5 +1,5 @@
 from poller.sources.base import SermonItem
-from poller.sources.menlo import Classification, classify, classify_feed
+from poller.sources.menlo import Classification, MenloPodbeanAdapter, classify, classify_feed
 
 _SUNDAY = 6
 _MONDAY = 0
@@ -65,3 +65,26 @@ def test_classify_feed_never_promotes_an_undated_item():
     undated = _item("g1", "Untitled Clip", "")
     verdicts = classify_feed([(undated, -1)])
     assert verdicts["g1"] is Classification.AMBIGUOUS
+
+
+_LATE_POSTED_FEED = b"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Menlo Church</title>
+  <item>
+    <title>I Am With You In the Dark | I AM... The God Who Gets Close | Phil EuBank</title>
+    <guid>menlochurchvideo.podbean.com/late-easter</guid>
+    <link>https://menlochurchvideo.podbean.com/e/late-easter/</link>
+    <pubDate>Mon, 06 Apr 2026 09:37:00 -0700</pubDate>
+    <enclosure url="https://mcdn.podbean.com/late-easter.mp4" type="video/mp4" length="1"/>
+  </item>
+</channel>
+</rss>"""
+
+
+def test_poll_dates_a_promoted_late_posted_sermon_to_its_weeks_sunday(monkeypatch):
+    monkeypatch.setattr("poller.sources.menlo.fetch_feed", lambda url: _LATE_POSTED_FEED)
+
+    result = MenloPodbeanAdapter(url="https://feed.podbean.com/menlochurchvideo/feed.xml").poll()
+
+    assert [item.preached_on for item in result.items] == ["2026-04-05"]

@@ -1,10 +1,13 @@
 from datetime import UTC, date, datetime
 from zoneinfo import ZoneInfo
 
+import pytest
+
 from poller.sources.common import (
     derive_preached_on,
     entry_audio_url,
     entry_has_identity,
+    is_service_date,
     parse_pubdate,
     parse_pubdate_at,
 )
@@ -87,3 +90,60 @@ def test_derive_preached_on_converts_to_the_given_timezone_before_deriving():
 def test_derive_preached_on_without_a_timezone_uses_feed_published_at_as_is():
     feed_published_at = datetime(2018, 12, 2, 0, 0, tzinfo=UTC)
     assert derive_preached_on(feed_published_at) == date(2018, 12, 2)
+
+
+def test_is_service_date_accepts_an_ordinary_sunday():
+    assert is_service_date(date(2026, 9, 20))
+
+
+def test_is_service_date_rejects_an_ordinary_weekday():
+    assert not is_service_date(date(2026, 9, 23))
+
+
+@pytest.mark.parametrize(
+    "day",
+    [
+        date(2025, 12, 24),  # Christmas Eve, a Wednesday
+        date(2026, 12, 25),  # Christmas Day, a Friday
+        date(2026, 12, 31),  # New Year's Eve, a Thursday
+        date(2027, 1, 1),  # New Year's Day, a Friday
+        date(2026, 4, 3),  # Good Friday
+        date(2027, 3, 26),  # Good Friday, Easter falling in March
+        date(2026, 11, 26),  # Thanksgiving Day
+        date(2025, 11, 27),  # Thanksgiving Day, November starting on a Saturday
+    ],
+)
+def test_is_service_date_accepts_off_sunday_special_services(day):
+    assert is_service_date(day)
+
+
+@pytest.mark.parametrize(
+    "day",
+    [
+        date(2026, 4, 2),  # Maundy Thursday — not on the list
+        date(2026, 4, 6),  # Easter Monday
+        date(2026, 11, 19),  # third Thursday of November
+        date(2026, 11, 27),  # the day after Thanksgiving
+        date(2026, 12, 23),
+        date(2027, 1, 2),
+    ],
+)
+def test_is_service_date_rejects_days_next_to_a_special_service(day):
+    assert not is_service_date(day)
+
+
+@pytest.mark.parametrize(
+    ("year", "easter"),
+    [
+        (1818, date(1818, 3, 22)),  # earliest possible Easter
+        (1943, date(1943, 4, 25)),  # latest possible Easter
+        (2024, date(2024, 3, 31)),
+        (2025, date(2025, 4, 20)),
+        (2026, date(2026, 4, 5)),
+        (2027, date(2027, 3, 28)),
+    ],
+)
+def test_is_service_date_places_good_friday_two_days_before_easter(year, easter):
+    good_friday = date.fromordinal(easter.toordinal() - 2)
+    assert is_service_date(good_friday)
+    assert not is_service_date(date.fromordinal(easter.toordinal() - 1))
