@@ -5442,10 +5442,12 @@
     "blurb": "Luke 22:19-30\n\nhttps://www.biblegateway.com/passage/?search=Luke+22%3A19-30&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T02:21:55.333721+00:00",
+    "transcript_hash": "7d9e9554869aa80bdf6e0cbe42465f3ba94814824b916db9eb601c1adb739fed",
+    "content_path": "transcripts/gracepres/2022-03-13_luke-the-meal-we-need_gracepres_tag_soundcloud_2010_tracks_1233398440.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1228666900": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1228666900",
