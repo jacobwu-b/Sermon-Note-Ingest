@@ -1,5 +1,5 @@
 # Polls every enabled church's RSS feed and commits any newly-discovered
-# sermons to data/<church>.json, emailing about them per CHURCHES' notify flag.
+# sermons to data/<church>.json, emailing about them per the church table's notify flag.
 #
 # Sole trigger is an external scheduler (cron-job.org) calling the
 # workflow_dispatch REST API on a tight interval. GitHub's own `schedule:`
@@ -31,7 +31,7 @@ on:
         type: boolean
         default: false
       church:
-        description: "Only poll this church (its CHURCHES key). Leave blank for every enabled church."
+        description: "Only poll this church (its key in the church table). Leave blank for every enabled church."
         type: string
         default: ""
 
@@ -84,7 +84,6 @@ jobs:
           # run as code with access to every secret in this job.
           BACKFILL: ${{ inputs.backfill }}
           CHURCH: ${{ inputs.church }}
-          CHURCHES: ${{ vars.CHURCHES }}
           NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
           NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -102,7 +101,7 @@ jobs:
           ANTHROPIC_WORKSPACE_ID: ${{ github.ref == 'refs/heads/main' && 'wrkspc_01CzT9ik9bv58XyTBxKUNs2F' || '' }}
         run: |
           if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
-            echo "::error::CHURCH input '$CHURCH' is not a valid CHURCHES key"
+            echo "::error::CHURCH input '$CHURCH' is not a valid church key"
             exit 1
           fi
           args=()

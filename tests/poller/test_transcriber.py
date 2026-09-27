@@ -31,11 +31,10 @@ def _record(guid: str, *, preached_on: str, audio_url: str = "https://example.or
 
 
 @pytest.fixture(autouse=True)
-def churches_env(monkeypatch):
-    monkeypatch.setenv(
-        "CHURCHES",
-        '{"menlo": {"rss": "https://example.org/menlo.xml", "enabled": true},'
-        ' "pbc": {"rss": "https://example.org/pbc.xml", "enabled": true}}',
+def churches_env(church_table):
+    church_table(
+        '{"menlo": {"rss": "https://example.org/menlo.xml", "ingest": {"enabled": true}},'
+        ' "pbc": {"rss": "https://example.org/pbc.xml", "ingest": {"enabled": true}}}'
     )
 
 
@@ -160,12 +159,13 @@ def test_transcribe_church_passes_per_sermon_hotwords_built_from_the_record_and_
     assert seen["https://example.org/a.mp3"] == "Keith Crosby, Luke, Sermon g1, Hillside Church, Jesse Fenn"
 
 
-def test_run_passes_the_configured_church_vocabulary_through_to_the_hotwords(tmp_path, monkeypatch):
+def test_run_passes_the_configured_church_vocabulary_through_to_the_hotwords(
+    tmp_path, monkeypatch, church_table
+):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    monkeypatch.setenv(
-        "CHURCHES",
-        '{"pbc": {"rss": "https://example.org/pbc.xml", "enabled": true,'
-        ' "vocabulary": ["Peninsula Bible Church"]}}',
+    church_table(
+        '{"pbc": {"rss": "https://example.org/pbc.xml", "ingest": {"enabled": true,'
+        ' "vocabulary": ["Peninsula Bible Church"]}}}'
     )
     store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
     seen = []

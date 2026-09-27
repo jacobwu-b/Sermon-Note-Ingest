@@ -72,10 +72,18 @@ def test_transcribe_workflow_does_not_share_poll_yml_s_concurrency_group():
 
 def test_transcribe_workflow_wires_pipeline_dispatch_config():
     # poller/pipeline_dispatch.py (spec 0005, ADR-0009) needs both to trigger
-    # Sermon-Note-Pipeline's ingest-event dispatch after a successful transcription.
+    # Sermon-Note-Pipeline's ingest-event dispatch after a successful transcription,
+    # and every job needs them to read the church table (ADR-0016) — so they are
+    # workflow-level env, before the first job.
     text = workflow_text()
-    assert "PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}" in text
-    assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in text
+    workflow_env = text[: text.index("\njobs:")]
+    assert "PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}" in workflow_env
+    assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in workflow_env
+
+
+def test_transcribe_workflow_reads_the_church_table_from_pipeline_not_a_variable():
+    """A `CHURCHES` variable here would be a second copy of Pipeline's table (ADR-0016)."""
+    assert "CHURCHES" not in workflow_text()
 
 
 def test_transcribe_workflow_wires_hf_token_secret():

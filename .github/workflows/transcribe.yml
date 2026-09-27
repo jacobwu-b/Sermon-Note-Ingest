@@ -26,7 +26,7 @@ on:
         type: number
         default: 5
       church:
-        description: "Only transcribe this church (its CHURCHES key). Leave blank for every enabled church."
+        description: "Only transcribe this church (its key in the church table). Leave blank for every enabled church."
         type: string
         default: ""
 
@@ -41,7 +41,6 @@ permissions:
   contents: read
 
 env:
-  CHURCHES: ${{ vars.CHURCHES }}
   LOG_LEVEL: ${{ vars.LOG_LEVEL }}
   WHISPER_MODEL: ${{ vars.WHISPER_MODEL }}
   WHISPER_COMPUTE_TYPE: ${{ vars.WHISPER_COMPUTE_TYPE }}
@@ -60,7 +59,9 @@ env:
   # Lets poller/pipeline_dispatch.py trigger Sermon-Note-Pipeline's pipeline.yml
   # right after a sermon's transcript lands in Content (spec 0005, ADR-0009).
   # Best-effort: a dispatch failure is logged, never fails this job — Pipeline's
-  # own cron still catches anything it misses.
+  # own cron still catches anything it misses. Also reads the church table from
+  # Pipeline's config/churches.json (ADR-0016), which is not best-effort: without
+  # it every job here fails.
   PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}
   PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
 
@@ -103,7 +104,7 @@ jobs:
             exit 1
           fi
           if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
-            echo "::error::CHURCH input '$CHURCH' is not a valid CHURCHES key"
+            echo "::error::CHURCH input '$CHURCH' is not a valid church key"
             exit 1
           fi
           args=(--limit "$LIMIT")
@@ -177,7 +178,7 @@ jobs:
             exit 1
           fi
           if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
-            echo "::error::CHURCH input '$CHURCH' is not a valid CHURCHES key"
+            echo "::error::CHURCH input '$CHURCH' is not a valid church key"
             exit 1
           fi
           args=(--limit "$LIMIT" --shard-index "${{ matrix.shard }}" --shard-count "${{ needs.plan.outputs.shard_count }}" --marks-out "$marks_file")

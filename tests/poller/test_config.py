@@ -1,20 +1,43 @@
 import pytest
 
-from poller import config
+from poller import config, pipeline_registry
 
 
 def test_load_churches_parses_a_valid_object():
-    raw = '{"menlo": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    raw = (
+        '{"menlo": {"rss": "https://example.org/feed.xml",'
+        ' "pipeline": {"enabled": false, "api": "batch"},'
+        ' "ingest": {"enabled": true, "notify": false}}}'
+    )
     churches = config.load_churches(raw)
     assert churches["menlo"] == config.ChurchConfig(
         name="menlo", rss="https://example.org/feed.xml", enabled=True, notify=False
     )
 
 
+def test_load_churches_reads_only_the_ingest_section_s_enabled_flag():
+    """Pipeline's enablement is its own: a church can be transcribed without a note (ADR-0016)."""
+    raw = (
+        '{"westgate": {"rss": "https://example.org/westgate.xml",'
+        ' "pipeline": {"enabled": true}, "ingest": {"enabled": false}}}'
+    )
+    assert config.load_churches(raw)["westgate"].enabled is False
+
+
 def test_load_churches_defaults_missing_flags_to_false():
-    churches = config.load_churches('{"menlo": {"rss": "https://example.org/feed.xml"}}')
+    churches = config.load_churches('{"menlo": {"rss": "https://example.org/feed.xml", "ingest": {}}}')
     assert churches["menlo"].enabled is False
     assert churches["menlo"].notify is False
+
+
+def test_load_churches_treats_a_church_with_no_ingest_section_as_disabled():
+    churches = config.load_churches('{"menlo": {"rss": "https://example.org/feed.xml"}}')
+    assert churches["menlo"].enabled is False
+
+
+def test_load_churches_rejects_a_non_object_ingest_section():
+    with pytest.raises(config.ConfigError):
+        config.load_churches('{"menlo": {"rss": "https://example.org/feed.xml", "ingest": true}}')
 
 
 def test_load_churches_rejects_empty_value():
@@ -39,22 +62,72 @@ def test_load_churches_rejects_non_object_entry():
 
 def test_load_churches_parses_a_vocabulary_list():
     churches = config.load_churches(
-        '{"pbc": {"rss": "https://example.org/pbc.xml", "enabled": true,'
-        ' "vocabulary": ["Peninsula Bible Church", "Cupertino"]}}'
+        '{"pbc": {"rss": "https://example.org/pbc.xml", "ingest": {"enabled": true,'
+        ' "vocabulary": ["Peninsula Bible Church", "Cupertino"]}}}'
     )
     assert churches["pbc"].vocabulary == ("Peninsula Bible Church", "Cupertino")
 
 
 def test_load_churches_defaults_vocabulary_to_empty():
-    churches = config.load_churches('{"menlo": {"rss": "https://example.org/feed.xml"}}')
+    churches = config.load_churches('{"menlo": {"rss": "https://example.org/feed.xml", "ingest": {}}}')
     assert churches["menlo"].vocabulary == ()
 
 
 def test_load_churches_rejects_a_vocabulary_that_is_not_a_list_of_strings():
     with pytest.raises(config.ConfigError):
-        config.load_churches('{"pbc": {"rss": "https://example.org/pbc.xml", "vocabulary": "PBC"}}')
+        config.load_churches(
+            '{"pbc": {"rss": "https://example.org/pbc.xml", "ingest": {"vocabulary": "PBC"}}}'
+        )
     with pytest.raises(config.ConfigError):
-        config.load_churches('{"pbc": {"rss": "https://example.org/pbc.xml", "vocabulary": ["ok", 3]}}')
+        config.load_churches(
+            '{"pbc": {"rss": "https://example.org/pbc.xml", "ingest": {"vocabulary": ["ok", 3]}}}'
+        )
+
+
+def test_load_churches_with_no_text_reads_pipeline_s_church_table(monkeypatch, real_church_table_fetch):
+    monkeypatch.setattr(config, "_fetch_church_table", real_church_table_fetch)
+    monkeypatch.setenv("PIPELINE_REPO", "owner/sermon-note-pipeline")
+    monkeypatch.setenv("PIPELINE_DISPATCH_TOKEN", "ghp_456")
+    seen = {}
+
+    def fake_read(*, config):
+        seen["config"] = config
+        return '{"menlo": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true}}}'
+
+    monkeypatch.setattr(pipeline_registry, "read_church_table", fake_read)
+
+    churches = config.load_churches()
+
+    assert churches["menlo"].enabled is True
+    assert seen["config"] == config.PipelineConfig(repo="owner/sermon-note-pipeline", token="ghp_456")
+
+
+def test_load_churches_with_no_pipeline_config_fails_rather_than_polling_nothing(
+    monkeypatch, real_church_table_fetch
+):
+    monkeypatch.setattr(config, "_fetch_church_table", real_church_table_fetch)
+    monkeypatch.delenv("PIPELINE_REPO", raising=False)
+    monkeypatch.delenv("PIPELINE_DISPATCH_TOKEN", raising=False)
+
+    with pytest.raises(config.ConfigError):
+        config.load_churches()
+
+
+def test_load_churches_fails_when_pipeline_s_church_table_cannot_be_read(
+    monkeypatch, real_church_table_fetch
+):
+    """No fallback to a stale copy: a failed read fails the run (ADR-0016)."""
+    monkeypatch.setattr(config, "_fetch_church_table", real_church_table_fetch)
+    monkeypatch.setenv("PIPELINE_REPO", "owner/sermon-note-pipeline")
+    monkeypatch.setenv("PIPELINE_DISPATCH_TOKEN", "ghp_456")
+
+    def fake_read(*, config):
+        raise pipeline_registry.PipelineRegistryError("GitHub rejected the read: 404")
+
+    monkeypatch.setattr(pipeline_registry, "read_church_table", fake_read)
+
+    with pytest.raises(pipeline_registry.PipelineRegistryError):
+        config.load_churches()
 
 
 def test_load_notify_config_reads_all_three_secrets(monkeypatch):

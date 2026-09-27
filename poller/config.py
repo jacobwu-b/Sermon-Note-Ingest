@@ -1,9 +1,10 @@
-"""Configuration read from environment: ``CHURCHES`` and the notify secrets.
+"""Configuration: the church table and the environment.
 
-All env vars this app reads are listed in ``.env.example``. ``CHURCHES`` is a
-GitHub Actions repository *variable* (not a secret) holding one JSON object per
-church; ``NOTIFY_EMAIL_FROM``, ``NOTIFY_EMAIL_TO``, and ``RESEND_API_KEY`` are
-repository secrets.
+All env vars this app reads are listed in ``.env.example``. The church table is not
+one of them: it is Sermon-Note-Pipeline's checked-in ``config/churches.json``, read
+through :mod:`poller.pipeline_registry` with ``PIPELINE_REPO``/``PIPELINE_DISPATCH_TOKEN``
+(docs/decisions/0016). ``NOTIFY_EMAIL_FROM``, ``NOTIFY_EMAIL_TO``, and
+``RESEND_API_KEY`` are repository secrets.
 """
 
 from __future__ import annotations
@@ -19,7 +20,7 @@ class ConfigError(RuntimeError):
 
 @dataclass(frozen=True)
 class ChurchConfig:
-    """One church's entry from ``CHURCHES``."""
+    """One church's entry from the church table: its ``rss`` and ``ingest`` section."""
 
     name: str
     rss: str
@@ -30,35 +31,52 @@ class ChurchConfig:
     vocabulary: tuple[str, ...] = ()
 
 
-def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
-    """Parse the ``CHURCHES`` JSON object into ``{name: ChurchConfig}``.
+def _fetch_church_table() -> str:
+    """Pipeline's church table, read from its ``main`` branch. Raises on any failure.
 
-    ``raw`` overrides the live ``CHURCHES`` env var; tests pass it so they never
-    depend on process environment. A missing or malformed ``CHURCHES`` is a
-    configuration error — there is nothing sensible to poll without it.
+    There is no fallback copy: polling a stale table is the drift the shared file exists
+    to end, so a failed read fails the run (docs/decisions/0016).
     """
-    text = raw if raw is not None else os.environ.get("CHURCHES", "")
+    # Imported here because pipeline_registry imports PipelineConfig from this module.
+    from poller import pipeline_registry
+
+    return pipeline_registry.read_church_table(config=load_pipeline_config())
+
+
+def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
+    """Parse the church table into ``{name: ChurchConfig}``.
+
+    ``raw`` overrides the table's text; tests pass it. Each church carries its ``rss``
+    and one section per repo; only the ``ingest`` section is this repo's. A church
+    with no ``ingest`` section is one only Pipeline uses, so it is disabled here. A
+    malformed table is a configuration error — there is nothing sensible to poll
+    without it.
+    """
+    text = raw if raw is not None else _fetch_church_table()
     if not text.strip():
-        raise ConfigError("CHURCHES is not set")
+        raise ConfigError("the church table is empty")
     try:
         data = json.loads(text)
     except json.JSONDecodeError as exc:
-        raise ConfigError(f"CHURCHES is not valid JSON: {exc}") from exc
+        raise ConfigError(f"the church table is not valid JSON: {exc}") from exc
     if not isinstance(data, dict):
-        raise ConfigError("CHURCHES must be a JSON object keyed by church name")
+        raise ConfigError("the church table must be a JSON object keyed by church name")
 
     churches: dict[str, ChurchConfig] = {}
     for name, entry in data.items():
         if not isinstance(entry, dict):
-            raise ConfigError(f"CHURCHES[{name!r}] must be a JSON object")
-        vocabulary = entry.get("vocabulary", [])
+            raise ConfigError(f"church table entry {name!r} must be a JSON object")
+        section = entry.get("ingest", {})
+        if not isinstance(section, dict):
+            raise ConfigError(f"church table entry {name!r} has a non-object ingest section")
+        vocabulary = section.get("vocabulary", [])
         if not isinstance(vocabulary, list) or not all(isinstance(term, str) for term in vocabulary):
-            raise ConfigError(f"CHURCHES[{name!r}].vocabulary must be a list of strings")
+            raise ConfigError(f"church table entry {name!r}: ingest.vocabulary must be a list of strings")
         churches[name] = ChurchConfig(
             name=name,
             rss=str(entry.get("rss", "")),
-            enabled=bool(entry.get("enabled", False)),
-            notify=bool(entry.get("notify", False)),
+            enabled=bool(section.get("enabled", False)),
+            notify=bool(section.get("notify", False)),
             vocabulary=tuple(vocabulary),
         )
     return churches

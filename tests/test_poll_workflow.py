@@ -120,3 +120,16 @@ def test_poll_workflow_validates_ledgers_before_git_add():
     # data/` and land on main with `[skip ci]` — see poller/store.py:validate_all.
     text = workflow_text()
     assert text.index("python -m poller.store validate") < text.index("git add data/")
+
+
+def test_poll_workflow_reads_the_church_table_from_pipeline_not_a_variable():
+    """The table is Pipeline's config/churches.json (ADR-0016); the Poll step needs its credentials.
+
+    `poller.runner` loads it through PIPELINE_REPO/PIPELINE_DISPATCH_TOKEN, so a Poll step
+    without them fails every run. A `CHURCHES` variable here would be a second copy.
+    """
+    text = workflow_text()
+    assert "CHURCHES" not in text
+    poll_step = text[text.index("- name: Poll\n") : text.index("- name: Commit newly-discovered sermons")]
+    assert "PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}" in poll_step
+    assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in poll_step

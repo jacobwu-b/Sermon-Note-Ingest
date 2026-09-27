@@ -161,45 +161,45 @@ def test_poll_church_returns_false_when_notification_fails(tmp_path, monkeypatch
     assert store.load("fake")["g1"]["notified_at"] is None
 
 
-def test_run_skips_disabled_and_unselected_churches(tmp_path, monkeypatch):
+def test_run_skips_disabled_and_unselected_churches(tmp_path, monkeypatch, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = [_item("g1")]
     _FakeAdapter.deferred = False
     raw = (
-        '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false},'
-        ' "off": {"rss": "https://example.org/other.xml", "enabled": false, "notify": false}}'
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}},'
+        ' "off": {"rss": "https://example.org/other.xml", "ingest": {"enabled": false, "notify": false}}}'
     )
-    monkeypatch.setenv("CHURCHES", raw)
+    church_table(raw)
 
     assert runner.run(church_names=None, backfill=False) is True
     assert set(store.load("fake")) == {"g1"}
     assert store.load("off") == {}
 
 
-def test_run_regenerates_readme_stats_even_when_nothing_new_is_found(tmp_path, monkeypatch):
+def test_run_regenerates_readme_stats_even_when_nothing_new_is_found(tmp_path, monkeypatch, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = []
     _FakeAdapter.deferred = False
-    monkeypatch.setenv(
-        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    church_table(
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
     assert runner.run(church_names=None, backfill=False) is True
     assert "placeholder" not in (tmp_path / "README.md").read_text(encoding="utf-8")
 
 
-def test_run_reports_failure_when_stats_regeneration_fails(tmp_path, monkeypatch):
+def test_run_reports_failure_when_stats_regeneration_fails(tmp_path, monkeypatch, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = [_item("g1")]
     _FakeAdapter.deferred = False
-    monkeypatch.setenv(
-        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    church_table(
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
     def _boom():
@@ -257,14 +257,14 @@ def test_poll_church_does_not_record_discovery_when_deferred(tmp_path, monkeypat
     assert discovered == []
 
 
-def test_run_aggregates_discovered_churches_across_the_selection(tmp_path, monkeypatch):
+def test_run_aggregates_discovered_churches_across_the_selection(tmp_path, monkeypatch, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = [_item("g1")]
     _FakeAdapter.deferred = False
-    monkeypatch.setenv(
-        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    church_table(
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
     discovered: list[str] = []
@@ -272,14 +272,14 @@ def test_run_aggregates_discovered_churches_across_the_selection(tmp_path, monke
     assert discovered == ["fake"]
 
 
-def test_main_prints_discovered_churches_when_requested(tmp_path, monkeypatch, capsys):
+def test_main_prints_discovered_churches_when_requested(tmp_path, monkeypatch, capsys, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = [_item("g1")]
     _FakeAdapter.deferred = False
-    monkeypatch.setenv(
-        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    church_table(
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
     exit_code = runner.main(["--print-discovered"])
@@ -287,14 +287,14 @@ def test_main_prints_discovered_churches_when_requested(tmp_path, monkeypatch, c
     assert capsys.readouterr().out.strip() == "fake"
 
 
-def test_main_prints_nothing_when_no_churches_were_discovered(tmp_path, monkeypatch, capsys):
+def test_main_prints_nothing_when_no_churches_were_discovered(tmp_path, monkeypatch, capsys, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = []
     _FakeAdapter.deferred = False
-    monkeypatch.setenv(
-        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    church_table(
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
     exit_code = runner.main(["--print-discovered"])
@@ -302,14 +302,14 @@ def test_main_prints_nothing_when_no_churches_were_discovered(tmp_path, monkeypa
     assert capsys.readouterr().out.strip() == ""
 
 
-def test_run_polls_pending_claude_batches_once(tmp_path, monkeypatch):
+def test_run_polls_pending_claude_batches_once(tmp_path, monkeypatch, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = []
     _FakeAdapter.deferred = False
-    monkeypatch.setenv(
-        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    church_table(
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
     calls = []
@@ -319,14 +319,14 @@ def test_run_polls_pending_claude_batches_once(tmp_path, monkeypatch):
     assert calls == [1]
 
 
-def test_run_survives_an_unexpected_batch_poll_crash(tmp_path, monkeypatch):
+def test_run_survives_an_unexpected_batch_poll_crash(tmp_path, monkeypatch, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = []
     _FakeAdapter.deferred = False
-    monkeypatch.setenv(
-        "CHURCHES", '{"fake": {"rss": "https://example.org/feed.xml", "enabled": true, "notify": false}}'
+    church_table(
+        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
     def _boom():
