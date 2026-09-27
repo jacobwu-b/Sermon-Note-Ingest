@@ -5886,10 +5886,12 @@
     "blurb": "Luke 18:31-43\n\nhttps://www.biblegateway.com/passage/?search=Luke+18%3A31-43&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T22:21:06.307843+00:00",
+    "transcript_hash": "a723a9ae2adbb81fcdfd36228fa68c39453daaeea8189d0cef159748bf3a63cc",
+    "content_path": "transcripts/gracepres/2021-10-10_luke-and-the-blind-shall-see_gracepres_tag_soundcloud_2010_tracks_1154531731.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1138552207": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1138552207",
