@@ -5806,10 +5806,12 @@
     "blurb": "Luke 20:19-26\n\nhttps://www.biblegateway.com/passage/?search=Luke+20%3A19-26&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T22:12:00.133243+00:00",
+    "transcript_hash": "ad7acd5ea03bfa42f99ffb81271087c87f7ff34a23e3c1ab2050a5ed390fd0cd",
+    "content_path": "transcripts/gracepres/2021-11-07_luke-where-is-your-allegience_gracepres_tag_soundcloud_2010_tracks_1159007950.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1154533135": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1154533135",
