@@ -22,7 +22,7 @@ from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-DEFAULT_USER_AGENT = "sermon-rss-monitor/1.0 (+https://github.com/jacobwu-b/Sermon-RSS-Feed-Monitor)"
+DEFAULT_USER_AGENT = "sermon-note-ingest/1.0 (+https://github.com/jacobwu-b/Sermon-Note-Ingest)"
 _ALLOWED_SCHEMES = frozenset({"http", "https"})
 _MAX_BODY_BYTES = 32 * 1024 * 1024  # a podcast RSS feed is a few MB at most
 _TIMEOUT = 30
