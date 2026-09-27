@@ -701,7 +701,7 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
 
     unsharded_calls: list[str] = []
 
-    def fake_unsharded(url):
+    def fake_unsharded(url, hotwords):
         unsharded_calls.append(url)
         return "text", "hash"
 
@@ -722,7 +722,7 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
 
     sharded_calls: list[str] = []
 
-    def fake_sharded(url):
+    def fake_sharded(url, hotwords):
         sharded_calls.append(url)
         return "text", "hash"
 
@@ -736,6 +736,7 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
         fetch_existing=_nothing_in_content,
     )
 
+    assert len(unsharded_calls) == 3
     assert sharded_calls == unsharded_calls
 
 
