@@ -5726,10 +5726,12 @@
     "blurb": "DANIEL 4:28-37; HEBREWS 1:1-4\n\nhttps://www.biblegateway.com/passage/?search=DANIEL+4%3A28-37%3B+HEbREWs+1%3A1-4&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T18:43:40.125132+00:00",
+    "transcript_hash": "d306e82b1415c21ad23eed50019fbb413393bad8716b8a3eac92775aaaf8d506",
+    "content_path": "transcripts/gracepres/2021-12-05_advent2021-god-most-high_gracepres_tag_soundcloud_2010_tracks_1179305461.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1179306367": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1179306367",
