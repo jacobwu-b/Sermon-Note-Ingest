@@ -117,20 +117,21 @@ def test_send_new_sermons_raises_notify_error_on_network_failure(monkeypatch):
         notify.send_new_sermons("menlo", [_item()], _config())
 
 
-def test_non_sunday_items_returns_only_the_non_sunday_ones():
+def test_off_day_items_returns_only_items_off_a_sunday_or_special_service():
     sunday = _item(title="Sunday sermon", preached_on="2026-09-06")
-    friday = _item(title="Good Friday", preached_on="2026-04-03")
-    assert notify._non_sunday_items([sunday, friday]) == [friday]
+    good_friday = _item(title="Good Friday", preached_on="2026-04-03")
+    wednesday = _item(title="Late-posted sermon", preached_on="2026-09-09")
+    assert notify._off_day_items([sunday, good_friday, wednesday]) == [wednesday]
 
 
-def test_non_sunday_items_ignores_an_undated_item():
+def test_off_day_items_ignores_an_undated_item():
     """A missing/unparseable preached_on is a different condition than this
     alert's concern (a dated-but-wrong-weekday value) and must not be flagged."""
     undated = _item(title="Untitled", preached_on="")
-    assert notify._non_sunday_items([undated]) == []
+    assert notify._off_day_items([undated]) == []
 
 
-def test_send_new_sermons_html_carries_a_warning_for_a_non_sunday_item(monkeypatch):
+def test_send_new_sermons_html_carries_a_warning_for_an_off_day_item(monkeypatch):
     captured = {}
 
     def fake_urlopen(request, timeout):
@@ -138,14 +139,14 @@ def test_send_new_sermons_html_carries_a_warning_for_a_non_sunday_item(monkeypat
         return _FakeResponse(200)
 
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
-    friday = _item(title="Good Friday Service", preached_on="2026-04-03")
-    notify.send_new_sermons("pbc", [friday], _config())
+    wednesday = _item(title="Late-posted sermon", preached_on="2026-09-09")
+    notify.send_new_sermons("pbc", [wednesday], _config())
 
-    assert "Good Friday Service" in captured["body"]["html"]
-    assert "not a Sunday" in captured["body"]["html"]
+    assert "Late-posted sermon" in captured["body"]["html"]
+    assert "Heads up" in captured["body"]["html"]
 
 
-def test_send_new_sermons_html_has_no_warning_when_all_items_are_sunday(monkeypatch):
+def test_send_new_sermons_html_has_no_warning_for_sunday_and_special_service_items(monkeypatch):
     captured = {}
 
     def fake_urlopen(request, timeout):
@@ -153,6 +154,7 @@ def test_send_new_sermons_html_has_no_warning_when_all_items_are_sunday(monkeypa
         return _FakeResponse(200)
 
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
-    notify.send_new_sermons("menlo", [_item()], _config())
+    christmas_eve = _item(title="Christmas Eve Service", preached_on="2025-12-24")
+    notify.send_new_sermons("menlo", [_item(), christmas_eve], _config())
 
-    assert "not a Sunday" not in captured["body"]["html"]
+    assert "Heads up" not in captured["body"]["html"]
