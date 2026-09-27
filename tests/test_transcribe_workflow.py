@@ -228,3 +228,39 @@ def test_transcribe_workflow_validates_ledgers_before_every_git_add():
     assert len(validate_positions) == 2
     for git_add_pos in git_add_positions:
         assert any(validate_pos < git_add_pos for validate_pos in validate_positions)
+
+
+def _job_text(job: str) -> str:
+    """The text of one top-level job (`plan` or `transcribe`), up to the next job."""
+    text = workflow_text()
+    start = text.index(f"\n  {job}:\n")
+    next_job = re.search(r"\n  [\w-]+:\n", text[start + 1 :])
+    return text[start : start + 1 + next_job.start()] if next_job else text[start:]
+
+
+def test_transcribe_workflow_plans_against_the_live_ledger_not_the_queued_snapshot():
+    # Regression (issue #84): a run queued behind another in the concurrency group
+    # checked out github.sha — main as of when it was *queued* — so it re-selected
+    # sermons the run ahead of it had already marked done, re-transcribed them, and
+    # failed on Content's overwrite guard. The plan job must read main's tip as of
+    # when it actually starts.
+    plan = _job_text("plan")
+    assert "ref: ${{ github.ref }}" in plan
+    assert "git rev-parse HEAD" in plan
+    assert "ledger_sha: ${{ steps.compute.outputs.ledger_sha }}" in plan
+
+
+def test_transcribe_workflow_shards_select_from_the_same_ledger_the_plan_counted():
+    # Shards partition the plan's ordered selection by position (ADR-0005); a poll.yml
+    # commit landing between plan and shard checkout would shift that order and let
+    # two shards transcribe the same sermon, so every shard pins the plan's commit.
+    transcribe = _job_text("transcribe")
+    assert "ref: ${{ needs.plan.outputs.ledger_sha }}" in transcribe
+
+
+def test_transcribe_workflow_pushes_the_ledger_from_a_detached_checkout():
+    # Checking out a commit SHA leaves HEAD detached, where a bare `git push` has no
+    # branch to push — every push must name main explicitly.
+    transcribe = _job_text("transcribe")
+    assert "if git push origin HEAD:main; then" in transcribe
+    assert not re.search(r"git push\s*;", transcribe)

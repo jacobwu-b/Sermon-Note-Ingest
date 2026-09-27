@@ -234,16 +234,17 @@ def mark_transcribed(
     content_path: str,
     transcript_hash: str,
     transcribed_at: str,
-    model: str,
-    domain_prompt: bool,
+    model: str | None,
+    domain_prompt: bool | None,
 ) -> None:
     """Advance ``record`` to transcribed, recording where its text landed in Content.
 
-    Called only after :func:`poller.content_repo.push_transcripts` has already
-    succeeded for this record's content — the transcript text itself is never
-    written here or anywhere else in this repo. ``model``/``domain_prompt`` are the
-    ``WhisperConfig`` values active for this transcription (ADR-0012), so a later
-    re-transcription pass can select precisely instead of inferring from timestamps.
+    Called only once this record's content is durably in Content — the transcript
+    text itself is never written here or anywhere else in this repo.
+    ``model``/``domain_prompt`` are the ``WhisperConfig`` values active for this
+    transcription (ADR-0012), so a later re-transcription pass can select precisely
+    instead of inferring from timestamps; ``None`` when unknown (a transcript adopted
+    from Content that this run didn't produce).
     """
     record["transcription_status"] = "done"
     record["content_path"] = content_path

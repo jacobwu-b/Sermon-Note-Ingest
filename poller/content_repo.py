@@ -128,6 +128,65 @@ def default_push(files: dict[str, str]) -> None:
         _run_git(["push", "origin", cfg.branch], cwd=checkout, token=cfg.token)
 
 
+def default_fetch_existing(paths: list[str]) -> dict[str, str]:
+    """Clone Sermon-Note-Content and return the text of each of ``paths`` it already holds.
+
+    Read-only: nothing is committed or pushed. A path absent from Content is simply
+    absent from the result.
+    """
+    cfg = config.load_content_repo_config()
+    remote = _remote_url(cfg.repo, cfg.token)
+
+    with tempfile.TemporaryDirectory() as workdir:
+        checkout = Path(workdir) / "content"
+        _run_git(
+            ["clone", "--depth", "1", "--branch", cfg.branch, remote, str(checkout)],
+            cwd=Path(workdir),
+            token=cfg.token,
+        )
+        return {
+            rel_path: (checkout / rel_path).read_text(encoding="utf-8")
+            for rel_path in paths
+            if (checkout / rel_path).exists()
+        }
+
+
+def _with_retries[T](
+    action: Callable[[], T], *, what: str, sleep: Callable[[float], None], attempts: int, backoff_base: float
+) -> T:
+    last_error: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            return action()
+        except Exception as exc:  # noqa: BLE001 — any Content failure retries then escalates.
+            last_error = exc
+            if attempt < attempts:
+                sleep(backoff_base * 2 ** (attempt - 1))
+    raise ContentPublishError(
+        f"content {what} failed after {attempts} attempts: {last_error}"
+    ) from last_error
+
+
+def existing_transcripts(
+    paths: list[str],
+    *,
+    fetch: Callable[[list[str]], dict[str, str]] = default_fetch_existing,
+    sleep: Callable[[float], None] = time.sleep,
+    attempts: int = _PUSH_ATTEMPTS,
+    backoff_base: float = _PUSH_BACKOFF_BASE,
+) -> dict[str, str]:
+    """Which of ``paths`` Sermon-Note-Content already holds, mapped to their text.
+
+    An empty ``paths`` is a no-op that never touches the network. Exhausting all
+    attempts raises :class:`ContentPublishError`.
+    """
+    if not paths:
+        return {}
+    return _with_retries(
+        lambda: fetch(paths), what="read", sleep=sleep, attempts=attempts, backoff_base=backoff_base
+    )
+
+
 def push_transcripts(
     files: dict[str, str],
     *,
@@ -144,13 +203,4 @@ def push_transcripts(
     """
     if not files:
         return
-    last_error: Exception | None = None
-    for attempt in range(1, attempts + 1):
-        try:
-            push(files)
-            return
-        except Exception as exc:  # noqa: BLE001 — any push failure retries then escalates.
-            last_error = exc
-            if attempt < attempts:
-                sleep(backoff_base * 2 ** (attempt - 1))
-    raise ContentPublishError(f"content push failed after {attempts} attempts: {last_error}") from last_error
+    _with_retries(lambda: push(files), what="push", sleep=sleep, attempts=attempts, backoff_base=backoff_base)

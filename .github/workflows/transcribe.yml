@@ -77,8 +77,14 @@ jobs:
     outputs:
       shards: ${{ steps.compute.outputs.shards }}
       shard_count: ${{ steps.compute.outputs.shard_count }}
+      ledger_sha: ${{ steps.compute.outputs.ledger_sha }}
     steps:
+      # The branch tip as of now, not github.sha: a run queued behind another in
+      # the concurrency group would otherwise plan from the ledger as it was when
+      # it was queued, re-selecting sermons the run ahead of it already finished.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.ref }}
 
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
@@ -122,6 +128,7 @@ jobs:
           shards+="]"
           echo "shards=$shards" >> "$GITHUB_OUTPUT"
           echo "shard_count=$count" >> "$GITHUB_OUTPUT"
+          echo "ledger_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
   transcribe:
     name: Transcribe (shard ${{ matrix.shard }})
@@ -140,9 +147,13 @@ jobs:
     steps:
       # Deploy key authenticates this repo's own ledger push, same as poll.yml.
       # It is unrelated to CONTENT_REPO_TOKEN, which authenticates the separate
-      # push to Sermon-Note-Content inside the transcriber itself.
+      # push to Sermon-Note-Content inside the transcriber itself. Pinned to the
+      # commit the plan job counted, so every shard partitions the same selection
+      # even if poll.yml commits in between; that leaves HEAD detached, hence the
+      # explicit `HEAD:main` push below.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
+          ref: ${{ needs.plan.outputs.ledger_sha }}
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
@@ -226,7 +237,7 @@ jobs:
           fi
           git commit -m "chore(data): record transcription progress [skip ci]"
           for attempt in $(seq 1 "$attempts"); do
-            if git push; then
+            if git push origin HEAD:main; then
               exit 0
             fi
             echo "push rejected (attempt $attempt/$attempts); rebasing onto latest main and retrying"

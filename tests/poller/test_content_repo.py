@@ -81,6 +81,56 @@ def test_default_push_refuses_to_overwrite_an_existing_transcript_with_different
     assert _read_file_at_head(content_repo_env, "transcripts/menlo/sermon-1.txt") == "first version"
 
 
+def test_default_fetch_existing_returns_the_text_of_only_the_paths_content_already_holds(content_repo_env):
+    content_repo.default_push({"transcripts/pbc/2019-01-06_untitled_a.txt": "already pushed text"})
+    head_before = subprocess.run(
+        ["git", "rev-parse", "main"], cwd=content_repo_env, capture_output=True, text=True, check=True
+    ).stdout
+
+    existing = content_repo.default_fetch_existing(
+        ["transcripts/pbc/2019-01-06_untitled_a.txt", "transcripts/pbc/2019-01-13_untitled_b.txt"]
+    )
+    head_after = subprocess.run(
+        ["git", "rev-parse", "main"], cwd=content_repo_env, capture_output=True, text=True, check=True
+    ).stdout
+
+    assert existing == {"transcripts/pbc/2019-01-06_untitled_a.txt": "already pushed text"}
+    assert head_before == head_after
+
+
+def test_existing_transcripts_is_a_noop_for_no_paths():
+    calls = []
+    assert content_repo.existing_transcripts([], fetch=lambda paths: calls.append(paths) or {}) == {}
+    assert calls == []
+
+
+def test_existing_transcripts_retries_a_transient_failure():
+    attempts = []
+
+    def flaky(paths):
+        attempts.append(paths)
+        if len(attempts) == 1:
+            raise content_repo.ContentPublishError("git clone failed: connection reset")
+        return {"transcripts/menlo/sermon-1.txt": "text"}
+
+    existing = content_repo.existing_transcripts(
+        ["transcripts/menlo/sermon-1.txt"], fetch=flaky, sleep=lambda _s: None, attempts=3
+    )
+
+    assert existing == {"transcripts/menlo/sermon-1.txt": "text"}
+    assert len(attempts) == 2
+
+
+def test_existing_transcripts_raises_after_exhausting_attempts():
+    def always_fails(paths):
+        raise content_repo.ContentPublishError("git clone failed: connection reset")
+
+    with pytest.raises(content_repo.ContentPublishError):
+        content_repo.existing_transcripts(
+            ["transcripts/menlo/sermon-1.txt"], fetch=always_fails, sleep=lambda _s: None, attempts=3
+        )
+
+
 def test_push_transcripts_is_a_noop_for_empty_files(monkeypatch):
     calls = []
     content_repo.push_transcripts({}, push=lambda files: calls.append(files))
