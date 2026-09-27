@@ -5406,10 +5406,12 @@
     "blurb": "LUKE 22:39-46\n\nhttps://www.biblegateway.com/passage/?search=Luke%2022%3A39-46&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T02:30:34.160088+00:00",
+    "transcript_hash": "1c3c17af834502c4eb79cb2b0ea40b64ea19a56c6a30e05dd712ef1ae2ef336a",
+    "content_path": "transcripts/gracepres/2022-03-27_luke-the-agony-of-jesus_gracepres_tag_soundcloud_2010_tracks_1241579950.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1237562923": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1237562923",
