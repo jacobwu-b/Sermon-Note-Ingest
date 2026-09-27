@@ -5382,10 +5382,12 @@
     "blurb": "LUKE 22:47-71\n\nhttps://www.biblegateway.com/passage/?search=Luke%2022%3A47-71&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-27T00:23:38.100248+00:00",
+    "transcript_hash": "4493cb1958606edffdf08693c2116b7eeaa6a51c39829494a969cfbcee6a11ed",
+    "content_path": "transcripts/gracepres/2022-04-03_luke-understanding-jesus_gracepres_tag_soundcloud_2010_tracks_1253100727.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1241579950": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1241579950",
