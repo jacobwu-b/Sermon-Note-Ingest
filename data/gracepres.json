@@ -6178,10 +6178,12 @@
     "blurb": "Luke 13:1-9\nhttps://www.biblegateway.com/passage/?search=Luke+13%3A1-9&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T08:46:56.428224+00:00",
+    "transcript_hash": "1230f70a306e3a9541d65c3a2df5bb6226d7b685ec56a42db9f529bf45970331",
+    "content_path": "transcripts/gracepres/2021-07-04_luke-the-parable-of-the-fig-tree_gracepres_tag_soundcloud_2010_tracks_1082744173.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078443805": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078443805",
