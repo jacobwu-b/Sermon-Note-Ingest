@@ -6226,10 +6226,12 @@
     "blurb": "Luke 12:13-34\nhttps://www.biblegateway.com/passage/?search=Luke%2012%3A13-34&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T17:32:31.773469+00:00",
+    "transcript_hash": "4e897cda7ba2c7b3dd80d7acb364dad66a94122b7ac60cd3c5e9a597b822d5d4",
+    "content_path": "transcripts/gracepres/2021-06-20_luke-treasure-in-heaven_gracepres_tag_soundcloud_2010_tracks_1074463159.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078453378": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078453378",
