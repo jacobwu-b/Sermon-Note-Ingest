@@ -6380,10 +6380,12 @@
     "blurb": "Luke 8:40-56\nhttps://www.biblegateway.com/passage/?search=Luke+8%3A40-56&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T22:54:19.301877+00:00",
+    "transcript_hash": "52693b37b7acdbba90223ba9685b7b7721c56bc9ffc15128455957325d862f1c",
+    "content_path": "transcripts/gracepres/2021-03-21_luke-desperate-faith_gracepres_tag_soundcloud_2010_tracks_1078478830.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078476379": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078476379",
