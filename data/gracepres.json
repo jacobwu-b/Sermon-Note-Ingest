@@ -5946,10 +5946,12 @@
     "blurb": "Luke 18:9-14\n\nhttps://www.biblegateway.com/passage/?search=LukE+18%3A9-14&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T00:10:19.438849+00:00",
+    "transcript_hash": "e50204e61698af60d1d5a5502df40a6de4ea76a7359ca9b0bcf9941f3c27348b",
+    "content_path": "transcripts/gracepres/2021-09-19_luke-the-one-who-went-home-justified_gracepres_tag_soundcloud_2010_tracks_1138535344.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1138539121": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1138539121",
