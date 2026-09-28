@@ -6282,10 +6282,12 @@
     "blurb": "Luke 10:38-42\nhttps://www.biblegateway.com/passage/?search=Luke+10%3A38-42&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T17:35:31.681747+00:00",
+    "transcript_hash": "09d0536bce3ff6ce7ba37f83a63bcfb4589d8cafb7a2f162c09bfaecafcb357a",
+    "content_path": "transcripts/gracepres/2021-05-16_luke-sitting-at-jesus-feet_gracepres_tag_soundcloud_2010_tracks_1083564673.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1083563116": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1083563116",
