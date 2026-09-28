@@ -5906,10 +5906,12 @@
     "blurb": "LUKE 18:15-30\n\nhttps://www.biblegateway.com/passage/?search=LUKE+18%3A15-30&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T00:04:49.223418+00:00",
+    "transcript_hash": "125cde8824c81d4eff98b8e780204d2e103e062fff4d02a619ed602a15885fe2",
+    "content_path": "transcripts/gracepres/2021-10-03_luke-to-whom-belongs-the-kingdom_gracepres_tag_soundcloud_2010_tracks_1138552207.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1138546165": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1138546165",
