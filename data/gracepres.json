@@ -6266,10 +6266,12 @@
     "blurb": "Luke 11:14-36\nhttps://www.biblegateway.com/passage/?search=Luke%2011%3A14-36&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T17:49:57.125473+00:00",
+    "transcript_hash": "eddd4db7f2ee0485c3161213846df130d3424a6547b1ae9e0d1f66ad072b81f7",
+    "content_path": "transcripts/gracepres/2021-06-06_luke-no-middle-ground_gracepres_tag_soundcloud_2010_tracks_1078976551.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1083564673": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1083564673",
