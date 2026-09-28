@@ -6146,10 +6146,12 @@
     "blurb": "Luke 13:10-21\n\nhttps://www.biblegateway.com/passage/?search=Luke+13%3A10-21&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T09:14:52.384885+00:00",
+    "transcript_hash": "6f8e1c99631d7a6731edb93dba7132889ee235ebcc178df83b3b134250e250b2",
+    "content_path": "transcripts/gracepres/2021-07-11_luke-what-is-the-kingdom-of-god-like_gracepres_tag_soundcloud_2010_tracks_1087584298.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1083566443": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1083566443",
