@@ -6078,10 +6078,12 @@
     "blurb": "Luke 15:1-10\n\nhttps://www.biblegateway.com/passage/?search=Luke%2015%3A1-10&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T02:26:33.572125+00:00",
+    "transcript_hash": "7ef554d02fc3a7ed58826c45e280de2678a66056f9b50d3f0e93d3c1c1b196fb",
+    "content_path": "transcripts/gracepres/2021-08-01_luke-lost-and-found_gracepres_tag_soundcloud_2010_tracks_1112747905.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1094609257": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1094609257",
