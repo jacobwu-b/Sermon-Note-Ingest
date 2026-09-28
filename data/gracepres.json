@@ -5966,10 +5966,12 @@
     "blurb": "Luke 17:20-18:8\n\nhttps://www.biblegateway.com/passage/?search=LuKE+17%3A20-18%3A8&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T00:16:28.030916+00:00",
+    "transcript_hash": "d95bf181e0a3b1ddec1b74136ce3c1bac335a218e4d3e8b0ec459e0411a6d09e",
+    "content_path": "transcripts/gracepres/2021-09-12_luke-faith-that-endures_gracepres_tag_soundcloud_2010_tracks_1138539121.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1138553683": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1138553683",
