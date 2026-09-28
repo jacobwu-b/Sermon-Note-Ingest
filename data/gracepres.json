@@ -6124,10 +6124,12 @@
     "blurb": "Luke 14:1-24\nhttps://www.biblegateway.com/passage/?search=Luke%2014%3A1-24&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T08:52:11.706627+00:00",
+    "transcript_hash": "21f3670b9e872afc2b2730347704e46119acb2b73fa02fe028ecdad29c89e36a",
+    "content_path": "transcripts/gracepres/2021-07-18_luke-the-kingdom-of-god-is-like-a-party_gracepres_tag_soundcloud_2010_tracks_1091731636.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1087584298": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1087584298",
