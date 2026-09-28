@@ -6062,10 +6062,12 @@
     "blurb": "Luke 16:1-13\nhttps://www.biblegateway.com/passage/?search=Luke+16%3A1-13&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-28T02:32:20.875109+00:00",
+    "transcript_hash": "c231e4d9ef81b9623b0cf7fe739a7d7674b5ac633e4d226c2f138dd185f646ee",
+    "content_path": "transcripts/gracepres/2021-08-08_luke-parable-of-the-shrewd-manager_gracepres_tag_soundcloud_2010_tracks_1112748361.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1112747905": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1112747905",
