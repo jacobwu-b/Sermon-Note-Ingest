@@ -6406,10 +6406,12 @@
     "blurb": "Luke 8:1-21\nhttps://www.biblegateway.com/passage/?search=Luke+8%3A1-21&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T03:09:08.577622+00:00",
+    "transcript_hash": "d9e23ec6c52165494f4d50de4780d6aa15ca5afd690fca0c93dc226ecd706eef",
+    "content_path": "transcripts/gracepres/2021-03-07_luke-look-at-how-you-hear_gracepres_tag_soundcloud_2010_tracks_1078476379.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078466263": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078466263",
