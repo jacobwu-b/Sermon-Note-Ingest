@@ -6606,10 +6606,12 @@
     "blurb": "Luke 2:21-35\nhttps://www.biblegateway.com/passage/?search=Luke+2%3A21-35&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T15:47:15.486825+00:00",
+    "transcript_hash": "89c0841223a880f84b8ff5c1e2908f486d6c9e863a32a66f4c46051ebf185d05",
+    "content_path": "transcripts/gracepres/2020-12-27_luke-joy-of-our-desires_gracepres_tag_soundcloud_2010_tracks_1078449061.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078447687": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078447687",
