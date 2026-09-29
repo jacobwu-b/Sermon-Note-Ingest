@@ -6442,10 +6442,12 @@
     "blurb": "Luke 7:18-35\nhttps://www.biblegateway.com/passage/?search=Luke+7%3A18-35&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T02:57:39.024890+00:00",
+    "transcript_hash": "7a94e4d49a0faae171b793717a2afbf7fe095d292e6946b3b703580c8553e329",
+    "content_path": "transcripts/gracepres/2021-02-21_luke-the-troubling-jesus_gracepres_tag_soundcloud_2010_tracks_1078464904.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078463611": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078463611",
