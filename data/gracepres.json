@@ -6526,10 +6526,12 @@
     "blurb": "Luke 6:12-26\nhttps://www.biblegateway.com/passage/?search=Luke+6%3A12-26&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T09:18:11.934270+00:00",
+    "transcript_hash": "889c5b17190c99c5d1e5c39ec9a5f58a7f4df8ac35ac2562a12c3eff788b3709",
+    "content_path": "transcripts/gracepres/2021-01-24_luke-the-new-community_gracepres_tag_soundcloud_2010_tracks_1078457419.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078453480": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078453480",
