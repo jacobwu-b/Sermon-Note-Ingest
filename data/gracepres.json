@@ -6726,10 +6726,12 @@
     "blurb": "Luke 4:31-41; 5:12-15\n\nhttps://classic.biblegateway.com/passage/?search=Luke+4%3A14-30&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T20:50:51.530070+00:00",
+    "transcript_hash": "4f48771ad4c1e6722996565fcf78c11c14984f496527051350b1c5d4d85cead9",
+    "content_path": "transcripts/gracepres/2020-11-15_luke-rumors-of-another-world_gracepres_tag_soundcloud_2010_tracks_931183693.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/931182619": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/931182619",
