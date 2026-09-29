@@ -6480,10 +6480,12 @@
     "blurb": "Luke 6:37-49\nhttps://www.biblegateway.com/passage/?search=Luke+6%3A37-49&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T02:53:33.648454+00:00",
+    "transcript_hash": "36dc7b923baf850473ba39c21822a4702bc4cde58740f61445fe606578cf9f15",
+    "content_path": "transcripts/gracepres/2021-02-07_luke-the-way-of-the-new-community_gracepres_tag_soundcloud_2010_tracks_1078462270.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078460044": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078460044",
