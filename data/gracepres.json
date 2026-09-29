@@ -6706,10 +6706,12 @@
     "blurb": "Luke 5:1-11\n\nhttps://www.biblegateway.com/passage/?search=Luke%205:1-11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T20:43:18.460243+00:00",
+    "transcript_hash": "faffd5487e4335f54480e91a9e5dd3c0dcfa88b0c9ef443940397fc58379bda0",
+    "content_path": "transcripts/gracepres/2020-11-22_luke-called-to-the-kingdom_gracepres_tag_soundcloud_2010_tracks_959312479.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/931183693": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/931183693",
