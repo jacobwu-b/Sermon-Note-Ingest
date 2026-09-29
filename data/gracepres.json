@@ -6546,10 +6546,12 @@
     "blurb": "Luke 6:1-11\nhttps://www.biblegateway.com/passage/?search=Luke+6%3A1-11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T09:28:40.123905+00:00",
+    "transcript_hash": "e5199f32fcff6c89998cc5998f53db9c1b069e4ab6904e83053d53726541bc1c",
+    "content_path": "transcripts/gracepres/2021-01-17_luke-lord-of-the-sabbath_gracepres_tag_soundcloud_2010_tracks_1078453480.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078451359": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078451359",
