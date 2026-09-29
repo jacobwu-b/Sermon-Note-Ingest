@@ -6626,10 +6626,12 @@
     "blurb": "Luke 2:1-20\nhttps://www.biblegateway.com/passage/?search=Luke+2%3A1-20&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T15:53:52.109579+00:00",
+    "transcript_hash": "16356a9022b193ee2eee768b7d51f4baa0e760bab8ca4af1fddc9a19cf2c43dc",
+    "content_path": "transcripts/gracepres/2020-12-20_luke-glory-and-peace_gracepres_tag_soundcloud_2010_tracks_1078447687.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078442677": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078442677",
