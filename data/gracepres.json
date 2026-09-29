@@ -6744,10 +6744,12 @@
     "blurb": "Luke 4:14-30",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T20:44:31.207967+00:00",
+    "transcript_hash": "1b9f45e6e4f9fc0164be91c67a509302687973ce8c4d0dddfb667e87c79c364e",
+    "content_path": "transcripts/gracepres/2020-11-08_luke-first-impressions_gracepres_tag_soundcloud_2010_tracks_931182619.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/931181479": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/931181479",
