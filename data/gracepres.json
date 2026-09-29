@@ -6460,10 +6460,12 @@
     "blurb": "Luke 7:1-17\nhttps://www.biblegateway.com/passage/?search=Luke+7%3A1-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T02:44:08.284801+00:00",
+    "transcript_hash": "47e4bd8e6348652e3c866f242bb62a2d439418cecfe2760bae29b679a01b5525",
+    "content_path": "transcripts/gracepres/2021-02-14_luke-the-marvelous-compassion-of-jesus_gracepres_tag_soundcloud_2010_tracks_1078463611.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078462270": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078462270",
