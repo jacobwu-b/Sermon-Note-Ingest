@@ -6644,10 +6644,12 @@
     "blurb": "Luke 1:57-79\nhttps://www.biblegateway.com/passage/?search=Luke+1%3A57-79&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T15:49:29.265821+00:00",
+    "transcript_hash": "905654bd628c0f1631411eac1f7f306b7b0201dc0aa994057225b1d564fb7d90",
+    "content_path": "transcripts/gracepres/2020-12-13_luke-breaking-the-silence_gracepres_tag_soundcloud_2010_tracks_1078442677.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078435840": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078435840",
