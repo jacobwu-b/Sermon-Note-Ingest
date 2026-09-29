@@ -6424,10 +6424,12 @@
     "blurb": "Luke 7:36-50\nhttps://www.biblegateway.com/passage/?search=Luke+7%3A36-50&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-29T03:04:10.728760+00:00",
+    "transcript_hash": "89ad17aa573c97e23883d5528bcffe2daba1e151cc54d4a7f1e0eeebc3fcbbb7",
+    "content_path": "transcripts/gracepres/2021-02-28_luke-a-tale-of-two-sinners_gracepres_tag_soundcloud_2010_tracks_1078466263.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/1078464904": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1078464904",
