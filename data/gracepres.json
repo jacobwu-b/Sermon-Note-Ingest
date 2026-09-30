@@ -6946,10 +6946,12 @@
     "blurb": "Galatians 6:11-18\n\nhttps://classic.biblegateway.com/passage/?search=Galatians+6%3A11-18&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T03:03:27.231172+00:00",
+    "transcript_hash": "7f002a7d173d087937e51e155b537da719fbf4221da7ada48a1da83ad0ee190b",
+    "content_path": "transcripts/gracepres/2020-08-30_heart-soul-the-cross-new-creation_gracepres_tag_soundcloud_2010_tracks_887871001.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/883048768": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/883048768",
