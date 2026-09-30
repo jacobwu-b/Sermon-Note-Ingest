@@ -6884,10 +6884,12 @@
     "blurb": "Jonah 2:1-10\n\nhttps://classic.biblegateway.com/passage/?search=jonah+2%3A1-10&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T00:10:08.108912+00:00",
+    "transcript_hash": "596df06a11d5e9db0eb4bc99a08b60141900b6e244336814edafc98d6d3204e7",
+    "content_path": "transcripts/gracepres/2020-09-27_jonah-amazed-by-grace_gracepres_tag_soundcloud_2010_tracks_902262985.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/894888235": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/894888235",
