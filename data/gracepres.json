@@ -6964,10 +6964,12 @@
     "blurb": "Galatians 6:1-10\n\nhttps://classic.biblegateway.com/passage/?search=Galatians+6%3A1-10&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T03:03:17.933087+00:00",
+    "transcript_hash": "dce2a10d30aac196963ae29485f0a9594aec0375cf232d3c76e1626f8d9dba34",
+    "content_path": "transcripts/gracepres/2020-08-23_heart-soul-life-together_gracepres_tag_soundcloud_2010_tracks_883048768.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/878551201": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/878551201",
