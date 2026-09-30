@@ -7144,10 +7144,12 @@
     "blurb": "Galatians 3:1-9\n\nhttps://www.biblegateway.com/passage/?search=Galatians+3%3A1-9&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T16:07:37.057806+00:00",
+    "transcript_hash": "e0d456463121384cb374b9d9b6c76d9133495c8872d4c722a729c3947a8d5fe5",
+    "content_path": "transcripts/gracepres/2020-06-21_heart-soul-a-to-z-of-christianity_gracepres_tag_soundcloud_2010_tracks_845521789.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/841364314": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/841364314",
