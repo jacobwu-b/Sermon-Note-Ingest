@@ -7180,10 +7180,12 @@
     "blurb": "Galatians 1:11-2:10\n\nhttps://www.biblegateway.com/passage/?search=Galatians+1%3A11-2%3A10&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T16:06:42.763537+00:00",
+    "transcript_hash": "510a2d35c2acabe585ca7c6c859ff7b345303d51ccb83fc46969a80a4e2ddeeb",
+    "content_path": "transcripts/gracepres/2020-06-07_heart-soul-the-power-of-story_gracepres_tag_soundcloud_2010_tracks_837747964.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/833452264": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/833452264",
