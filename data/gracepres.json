@@ -6826,10 +6826,12 @@
     "blurb": "Revelation 7:9-17\n\nhttps://www.biblegateway.com/passage/?search=Revelation%207:9-17&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T00:28:18.404768+00:00",
+    "transcript_hash": "5a2d5612390447b3f47762172da181b9373f9644af146372456bfa8fcfe43642",
+    "content_path": "transcripts/gracepres/2020-10-11_a-vision-of-beauty_gracepres_tag_soundcloud_2010_tracks_915658660.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/907893892": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/907893892",
