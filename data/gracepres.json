@@ -6982,10 +6982,12 @@
     "blurb": "Galatians 5:16-26\n\nhttps://classic.biblegateway.com/passage/?search=Galatians+5%3A16-26&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T02:55:48.786385+00:00",
+    "transcript_hash": "77ff76bf371c85818955f3162f83d8b33f7d533c08c1aa4ff046c1a5454a3648",
+    "content_path": "transcripts/gracepres/2020-08-16_heart-soul-the-fruit-of-the-spirit_gracepres_tag_soundcloud_2010_tracks_878551201.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/874235017": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/874235017",
