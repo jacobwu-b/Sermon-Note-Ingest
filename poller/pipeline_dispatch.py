@@ -56,3 +56,36 @@ def dispatch_ingest_event(event: dict[str, object], *, source: str, config: Pipe
         raise PipelineDispatchError(f"GitHub rejected the dispatch: {exc.code} {exc.read()!r}") from exc
     except urllib.error.URLError as exc:
         raise PipelineDispatchError(f"could not reach GitHub: {exc}") from exc
+
+
+# A run waiting behind Pipeline's concurrency group reports "pending" or "queued"
+# depending on where it is in GitHub's scheduler, so all three count as in flight.
+_IN_FLIGHT_STATUSES = ("queued", "in_progress", "pending")
+
+
+def has_active_run(*, config: PipelineConfig) -> bool:
+    """Whether ``pipeline.yml`` has a run queued or executing on the Pipeline repo.
+
+    Fails open: an unreadable run list answers ``False`` so the caller dispatches anyway.
+    A redundant dispatch is cheap and Pipeline is idempotent; a wake-up that never
+    happens is the worse error.
+    """
+    base = f"https://api.github.com/repos/{config.repo}/actions/workflows/pipeline.yml/runs"
+    for status in _IN_FLIGHT_STATUSES:
+        request = urllib.request.Request(
+            f"{base}?status={status}&per_page=1",
+            headers={
+                "Authorization": f"Bearer {config.token}",
+                "Accept": "application/vnd.github+json",
+                "User-Agent": DEFAULT_USER_AGENT,
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=_TIMEOUT) as response:
+                if response.status >= 300:
+                    return False
+                if json.loads(response.read())["total_count"] > 0:
+                    return True
+        except (urllib.error.URLError, json.JSONDecodeError, KeyError, TypeError):
+            return False
+    return False

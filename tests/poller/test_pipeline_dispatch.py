@@ -91,3 +91,48 @@ def test_dispatch_ingest_event_raises_on_non_2xx_status(monkeypatch):
         pipeline_dispatch.dispatch_ingest_event(
             {"event": "sermon_detected"}, source="menlo", config=_config()
         )
+
+
+class _FakeListResponse:
+    status = 200
+
+    def __init__(self, total_count: int) -> None:
+        self._body = json.dumps({"total_count": total_count, "workflow_runs": []}).encode()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def read(self):
+        return self._body
+
+
+def test_has_active_run_is_true_when_any_in_flight_status_has_a_run(monkeypatch):
+    counts = {"queued": 0, "in_progress": 1, "pending": 0}
+    urls = []
+
+    def fake_urlopen(request, timeout):
+        urls.append(request.full_url)
+        status = request.full_url.split("status=")[1].split("&")[0]
+        return _FakeListResponse(counts[status])
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    assert pipeline_dispatch.has_active_run(config=_config()) is True
+    assert all("/repos/owner/sermon-note-pipeline/actions/workflows/pipeline.yml/runs" in u for u in urls)
+
+
+def test_has_active_run_is_false_when_nothing_is_in_flight(monkeypatch):
+    monkeypatch.setattr("urllib.request.urlopen", lambda request, timeout: _FakeListResponse(0))
+    assert pipeline_dispatch.has_active_run(config=_config()) is False
+
+
+def test_has_active_run_fails_open_when_github_is_unreachable(monkeypatch):
+    def boom(request, timeout):
+        raise urllib.error.URLError("down")
+
+    monkeypatch.setattr("urllib.request.urlopen", boom)
+    # A dispatch is cheap and Pipeline is idempotent; a missed wake-up is the worse error.
+    assert pipeline_dispatch.has_active_run(config=_config()) is False

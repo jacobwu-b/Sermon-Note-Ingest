@@ -28,6 +28,7 @@ def test_poll_pending_batches_dispatches_only_for_ended_batches(monkeypatch):
         list_pending=lambda *, config: pending,
         poll_batch=lambda batch_id: statuses[batch_id],
         dispatch=lambda event, *, source, config: dispatched.append((event, source)),
+        has_active_run=lambda *, config: False,
     )
 
     assert len(dispatched) == 1
@@ -50,9 +51,45 @@ def test_poll_pending_batches_dedupes_the_same_batch_id_within_one_run(monkeypat
         list_pending=lambda *, config: pending,
         poll_batch=lambda batch_id: _status(batch_id, ended=True),
         dispatch=lambda event, *, source, config: dispatched.append(event),
+        has_active_run=lambda *, config: False,
     )
 
     assert len(dispatched) == 1
+
+
+def test_poll_pending_batches_dispatches_once_when_several_batches_ended(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-123")
+    monkeypatch.setenv("PIPELINE_REPO", "owner/sermon-note-pipeline")
+    monkeypatch.setenv("PIPELINE_DISPATCH_TOKEN", "ghp_456")
+
+    pending = [_pending("g1", "menlo", "batch_1"), _pending("g2", "pbc", "batch_2")]
+    dispatched = []
+
+    batch_poll.poll_pending_batches(
+        list_pending=lambda *, config: pending,
+        poll_batch=lambda batch_id: _status(batch_id, ended=True),
+        dispatch=lambda event, *, source, config: dispatched.append(event),
+        has_active_run=lambda *, config: False,
+    )
+
+    assert [e["batch_id"] for e in dispatched] == ["batch_1"]
+
+
+def test_poll_pending_batches_skips_dispatch_while_a_pipeline_run_is_active(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-123")
+    monkeypatch.setenv("PIPELINE_REPO", "owner/sermon-note-pipeline")
+    monkeypatch.setenv("PIPELINE_DISPATCH_TOKEN", "ghp_456")
+
+    dispatched = []
+
+    batch_poll.poll_pending_batches(
+        list_pending=lambda *, config: [_pending("g1", "menlo", "batch_1")],
+        poll_batch=lambda batch_id: _status(batch_id, ended=True),
+        dispatch=lambda event, *, source, config: dispatched.append(event),
+        has_active_run=lambda *, config: True,
+    )
+
+    assert dispatched == []
 
 
 def test_poll_pending_batches_is_a_noop_with_no_pending_batches(monkeypatch):
