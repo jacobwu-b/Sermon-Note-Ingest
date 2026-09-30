@@ -6906,10 +6906,12 @@
     "blurb": "Jonah 1:3-17\n\nhttps://classic.biblegateway.com/passage/?search=Jonah+1%3A3-17&version=NIRV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T02:54:15.771450+00:00",
+    "transcript_hash": "169002c5ffc1e839aef700b5f4653057891678d508dc07c4afa368af1c8ec04b",
+    "content_path": "transcripts/gracepres/2020-09-13_jonah-when-the-storm-rages_gracepres_tag_soundcloud_2010_tracks_894888235.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/893892010": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/893892010",
