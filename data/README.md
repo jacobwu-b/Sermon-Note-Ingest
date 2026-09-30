@@ -56,8 +56,8 @@ Do not edit between the markers by hand; it will be overwritten.
 | lakepointe | 138 | God Wants You To Pour Yourself OUT | 2026-09-27 |
 | menlo | 148 | The Purity of Reality | 2026-09-27 |
 | north_point | 103 | Mind Games, Part 3: Living Freely | 2026-09-27 |
-| pbc | 399 | The Leaven of Life | 2026-09-20 |
+| pbc | 400 | Rich Towards God | 2026-09-27 |
 | westgate | 107 | Week 3 - A Shared Life | 2026-09-27 |
 
-**Total sermons across all churches: 1850**
+**Total sermons across all churches: 1851**
 <!-- STATS:END -->

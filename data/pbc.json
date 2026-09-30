@@ -1,4 +1,24 @@
 {
+  "https://pbc.org?enmse_mid=4694": {
+    "guid": "https://pbc.org?enmse_mid=4694",
+    "title": "Rich Towards God",
+    "raw_title": "Rich Towards God - Luke",
+    "series": "Luke",
+    "speaker": null,
+    "preached_on": "2026-09-27",
+    "feed_published_at": "2026-09-30T19:22:43+00:00",
+    "episode_url": "https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid=4694",
+    "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/09/27/Sermon+Audio+2026-09-27.mp3",
+    "blurb": "What calls for your attention in life? Responsibilities? Desires? Routine maintenance of life? These easily lock our focus on this world - what we want from it and what it requires in return. Yet, as Jesus redirects our attention to an eternal life with God, how does that affect how we approach our resources, responsibility, and purpose?",
+    "first_seen_at": "2026-09-30T19:39:30.326868+00:00",
+    "notified_at": "2026-09-30T19:39:30.872547+00:00",
+    "transcription_status": null,
+    "transcribed_at": null,
+    "transcript_hash": null,
+    "content_path": null,
+    "transcription_model": null,
+    "transcription_domain_prompt": null
+  },
   "https://pbc.org?enmse_mid=4692": {
     "guid": "https://pbc.org?enmse_mid=4692",
     "title": "The Leaven of Life",
