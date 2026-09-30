@@ -7126,10 +7126,12 @@
     "blurb": "Galatians 3:10-14\nhttps://classic.biblegateway.com/passage/?search=Galatians+3%3A10-14&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T16:08:57.338345+00:00",
+    "transcript_hash": "67bd043d01369c961a8d0da9d15edc8dfa36a5b3606d82e312ad642bc9e22e1a",
+    "content_path": "transcripts/gracepres/2020-06-28_heart-soul-two-ways-to-live_gracepres_tag_soundcloud_2010_tracks_849779392.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/845521789": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/845521789",
