@@ -7044,10 +7044,12 @@
     "blurb": "Galatians 4:21-5:1\n\nhttps://classic.biblegateway.com/passage/?search=Galatians+4%3A21-5%3A1&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T09:15:42.400463+00:00",
+    "transcript_hash": "b73b40fb50b160f57eba923e07e31b437a05112d9f289d507188d33422cf56fa",
+    "content_path": "transcripts/gracepres/2020-07-26_heart-soul-children-of-promise_gracepres_tag_soundcloud_2010_tracks_866629201.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/862614076": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/862614076",
