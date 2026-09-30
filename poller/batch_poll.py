@@ -28,8 +28,17 @@ def poll_pending_batches(
     ] = pipeline_registry.list_pending_batches,
     poll_batch: Callable[[str], anthropic_client.BatchStatus] = anthropic_client.poll_batch,
     dispatch: Callable[..., None] = pipeline_dispatch.dispatch_ingest_event,
+    has_active_run: Callable[..., bool] = pipeline_dispatch.has_active_run,
 ) -> None:
-    """Check every batch Pipeline is waiting on; dispatch Pipeline early for each newly-ended one."""
+    """Check every batch Pipeline is waiting on; wake Pipeline once if any has ended.
+
+    One dispatch per tick, not one per batch: Pipeline's plan polls every pending batch
+    whatever ``sources`` the dispatch carried, so the first run resolves them all and a
+    second would only start from a checkout that predates the first's commit. For the
+    same reason nothing is dispatched while a run is already queued or executing — the
+    registry keeps showing ``pending_batch`` until that run commits, so every tick in
+    between would otherwise dispatch again.
+    """
     try:
         config.load_anthropic_config()
         pipeline_cfg: PipelineConfig = config.load_pipeline_config()
@@ -43,10 +52,11 @@ def poll_pending_batches(
         logger.warning("could not read Pipeline's registry; skipping batch poll: %s", exc)
         return
 
-    dispatched_batch_ids: set[str] = set()
+    if pending and has_active_run(config=pipeline_cfg):
+        logger.info("batch poll: a pipeline.yml run is already queued or executing; not dispatching")
+        return
+
     for record in pending:
-        if record.batch_id in dispatched_batch_ids:
-            continue
         try:
             status = poll_batch(record.batch_id)
         except anthropic_client.LLMError as exc:
@@ -68,5 +78,5 @@ def poll_pending_batches(
                 "%s: failed to dispatch early for ended batch %s: %s", record.source, record.batch_id, exc
             )
             continue
-        dispatched_batch_ids.add(record.batch_id)
         logger.info("%s: batch %s ended; dispatched pipeline.yml early", record.source, record.batch_id)
+        return
