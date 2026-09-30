@@ -7166,10 +7166,12 @@
     "blurb": "Galatians 2:11-21\n\nhttps://www.biblegateway.com/passage/?search=Galatians+2%3A11-21&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T16:20:36.879468+00:00",
+    "transcript_hash": "ea9e6b158ce03a5f6194732e9ed76fccafd377cdf21e7260c5afae0390f30adb",
+    "content_path": "transcripts/gracepres/2020-06-14_grace-2020-6-13-tr11-sermon_gracepres_tag_soundcloud_2010_tracks_841364314.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/837747964": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/837747964",
