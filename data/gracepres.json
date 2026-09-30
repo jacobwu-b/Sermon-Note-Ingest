@@ -7064,10 +7064,12 @@
     "blurb": "Galatians 4:8-20\n\nhttps://classic.biblegateway.com/passage/?search=Galatians+4%3A8-20&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T09:17:26.099209+00:00",
+    "transcript_hash": "4ce1852e2f53713c3c32bec2b6a80c2a3d36b6b0db3f0ef752065ac374f0469c",
+    "content_path": "transcripts/gracepres/2020-07-19_heart-soul-no-turning-back_gracepres_tag_soundcloud_2010_tracks_862614076.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/858491707": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/858491707",
