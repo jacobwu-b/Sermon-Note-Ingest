@@ -7262,10 +7262,12 @@
     "blurb": "Acts 2:14-17a; 1 Cor 12:12-13;  Galatians 3:26-4:7\n\nhttps://www.biblegateway.com/passage/?search=Acts+2%3A14-17a%3B+1+Cor+12%3A12-13%3B++Galatians+3%3A26-4%3A7&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T20:52:47.906077+00:00",
+    "transcript_hash": "fbdfcb8c4f7644d80fb77ffc439c488a2d461b53306c282c7306bc1ba37a056c",
+    "content_path": "transcripts/gracepres/2020-05-10_transformed-identity_gracepres_tag_soundcloud_2010_tracks_820530850.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/816297079": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/816297079",
