@@ -7106,10 +7106,12 @@
     "blurb": "Galatians 3:15-24\n\nhttps://www.biblegateway.com/passage/?search=Galatians+3%3A15-24&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T16:01:36.972143+00:00",
+    "transcript_hash": "cca3fdf64f1b332235de3c82b8cf5294807650604c0be8ddfc7d1b555e925d76",
+    "content_path": "transcripts/gracepres/2020-07-05_heart-soul-the-law-and-the-promise_gracepres_tag_soundcloud_2010_tracks_854419771.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/849779392": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/849779392",
