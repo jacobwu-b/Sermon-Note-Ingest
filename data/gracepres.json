@@ -7006,10 +7006,12 @@
     "blurb": "Galatians 5:7-15",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-09-30T09:08:44.690937+00:00",
+    "transcript_hash": "1b44b09392a1096127b874c94198fff35b94aa2e8eb52a33ccfc9b58c383eb2b",
+    "content_path": "transcripts/gracepres/2020-08-09_heart-soul-gospel-freedom_gracepres_tag_soundcloud_2010_tracks_874235017.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/871472050": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/871472050",
