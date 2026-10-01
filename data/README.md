@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| gracepres | 446 | Protected By The King | 2026-09-13 |
+| gracepres | 447 | Work & Rest | 2026-09-27 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 138 | God Wants You To Pour Yourself OUT | 2026-09-27 |
 | menlo | 148 | The Purity of Reality | 2026-09-27 |
@@ -59,5 +59,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | pbc | 400 | Rich Towards God | 2026-09-27 |
 | westgate | 107 | Week 3 - A Shared Life | 2026-09-27 |
 
-**Total sermons across all churches: 1851**
+**Total sermons across all churches: 1852**
 <!-- STATS:END -->

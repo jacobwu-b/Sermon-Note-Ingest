@@ -1,4 +1,24 @@
 {
+  "gracepres:tag:soundcloud,2010:tracks/2411552193": {
+    "guid": "gracepres:tag:soundcloud,2010:tracks/2411552193",
+    "title": "Work & Rest",
+    "raw_title": "Work & Rest",
+    "series": null,
+    "speaker": "David Jones",
+    "preached_on": "2026-09-27",
+    "feed_published_at": "2026-10-01T21:58:08+00:00",
+    "episode_url": "https://soundcloud.com/gracepres-sv/work-rest",
+    "audio_url": "https://feeds.soundcloud.com/stream/2411552193-gracepres-sv-work-rest.mp3",
+    "blurb": "Pastor David Jones continues our series in Genesis with a message from GENESIS 1:26-2:3",
+    "first_seen_at": "2026-10-01T22:00:33.891153+00:00",
+    "notified_at": null,
+    "transcription_status": null,
+    "transcribed_at": null,
+    "transcript_hash": null,
+    "content_path": null,
+    "transcription_model": null,
+    "transcription_domain_prompt": null
+  },
   "gracepres:tag:soundcloud,2010:tracks/2401192710": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/2401192710",
     "title": "Protected By The King",
