@@ -7506,10 +7506,12 @@
     "blurb": "2 Samuel 4:4, 9:1-13",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T13:03:18.264145+00:00",
+    "transcript_hash": "bbc718bffda23d9b43c40197ea265b7fbbcd3a92dc67205be6a09b165215c0b0",
+    "content_path": "transcripts/gracepres/2020-02-23_2-samuel-mephibosheth_gracepres_tag_soundcloud_2010_tracks_766084681.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/763336537": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/763336537",
