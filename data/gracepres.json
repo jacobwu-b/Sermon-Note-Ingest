@@ -7424,10 +7424,12 @@
     "blurb": "Words by Ora Rowan (alt. Kevin Twit). Music by Joel Littlepage © 2010 Joel Littlepage Music.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T05:51:23.012656+00:00",
+    "transcript_hash": "26ed93bd00b2df8d7dcc786fe7a17bebbe7211086177ba072234bea8d374274d",
+    "content_path": "transcripts/gracepres/2020-03-15_hastthouheardhim-061817_gracepres_tag_soundcloud_2010_tracks_778612078.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/778412572": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/778412572",
