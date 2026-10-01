@@ -7666,10 +7666,12 @@
     "blurb": "Advent 2019 I Am The Vine 191229 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T19:17:35.771733+00:00",
+    "transcript_hash": "e8aff51049b63e52d24bc9cd385df9104a620b9ae2ed8b6b51323de866176786",
+    "content_path": "transcripts/gracepres/2019-12-29_advent-2019-i-am-the-vine_gracepres_tag_soundcloud_2010_tracks_740445871.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/740436673": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/740436673",
