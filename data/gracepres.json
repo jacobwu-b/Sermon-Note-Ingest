@@ -7762,10 +7762,12 @@
     "blurb": "Advent2019 The Bread Of Life 191201 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T22:37:52.744760+00:00",
+    "transcript_hash": "ad251917d453e901fb0b0be2357ac212e88e4d7738650bf84798a60c92d7c864",
+    "content_path": "transcripts/gracepres/2019-12-01_advent2019-the-bread-of-life_gracepres_tag_soundcloud_2010_tracks_722354827.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/722349988": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/722349988",
