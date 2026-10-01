@@ -7862,10 +7862,12 @@
     "blurb": "1 Samuel The Tragic Failure Of Saul 191027 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T23:27:46.907549+00:00",
+    "transcript_hash": "0981dc329eed0cecc831deb534013203a44a6687b3e3d2ee1e60965922331547",
+    "content_path": "transcripts/gracepres/2019-10-27_1-samuel-the-tragic-failure-of-saul_gracepres_tag_soundcloud_2010_tracks_704949982.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/700173322": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/700173322",
