@@ -7344,10 +7344,12 @@
     "blurb": "Luke 23:50 - 24:12\n\nhttps://www.biblegateway.com/passage/?search=Luke+23%3A50-24%3A12&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T00:40:45.589857+00:00",
+    "transcript_hash": "ae8b7bc57e2ea66c919b881ddcf3e2b030ee7184f348426981e7b52d28cc17c7",
+    "content_path": "transcripts/gracepres/2020-04-12_easter-2020-resurrection-hope_gracepres_tag_soundcloud_2010_tracks_798745708.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/794778190": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/794778190",
