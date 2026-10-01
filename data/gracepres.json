@@ -7462,10 +7462,12 @@
     "blurb": "2 Samuel 12:1-25",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T06:19:24.497317+00:00",
+    "transcript_hash": "0ee03b22a90a0aa4d83a23d829a993209a0d27ff564a138b24f9239a5b1af54f",
+    "content_path": "transcripts/gracepres/2020-03-08_2-samuel-when-the-silence-is-broken_gracepres_tag_soundcloud_2010_tracks_774613813.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/770375929": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/770375929",
