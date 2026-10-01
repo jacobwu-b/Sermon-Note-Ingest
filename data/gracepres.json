@@ -7686,10 +7686,12 @@
     "blurb": "Advent 2019 The Light of the World 191222 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T19:19:57.311939+00:00",
+    "transcript_hash": "d6e9c2c9ccd09ff250daa8020cdf89f067fe9a3c9da9b9127d2ea20f880114d5",
+    "content_path": "transcripts/gracepres/2019-12-22_advent-2019-the-light-of-the-world_gracepres_tag_soundcloud_2010_tracks_740436673.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/730488028": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/730488028",
