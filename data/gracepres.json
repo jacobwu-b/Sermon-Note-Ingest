@@ -7362,10 +7362,12 @@
     "blurb": "Matthew 20:29-21:11\n\nhttps://www.biblegateway.com/passage/?search=Matthew+20%3A29-21%3A11&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T00:25:49.397622+00:00",
+    "transcript_hash": "e0797ee02898c85eb0d74c84b41878417b39f98b8fd945de39d4dde40e35b503",
+    "content_path": "transcripts/gracepres/2020-04-05_palm-sunday-welcoming-the-king_gracepres_tag_soundcloud_2010_tracks_794778190.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/788013844": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/788013844",
