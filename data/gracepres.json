@@ -7644,10 +7644,12 @@
     "blurb": "Advent 2019: I AM With You, Always. 200105 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T19:02:37.174369+00:00",
+    "transcript_hash": "f97b675dfb8d11f7d0854d744c19208396668721d29430818a04741bbf3b5378",
+    "content_path": "transcripts/gracepres/2020-01-05_advent-2019-i-am-with-you-always_gracepres_tag_soundcloud_2010_tracks_740468356.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/740445871": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/740445871",
