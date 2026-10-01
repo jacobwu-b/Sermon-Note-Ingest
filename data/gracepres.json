@@ -7446,10 +7446,12 @@
     "blurb": "2 Samuel 15:1-6, 12-13, 15, 17-18, 23, 24-29, 30-31\n\nhttps://www.biblegateway.com/passage/?search=2+Samuel+15%3A1-6%2C+12-13%2C+15%2C+17-18%2C+23%2C+24-29%2C+30-31&version=ESV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-01T06:27:40.051437+00:00",
+    "transcript_hash": "66df789843a77750c32b1a0761764f682105844d632102eda7ad277bdb5e2c80",
+    "content_path": "transcripts/gracepres/2020-03-15_2-samuel-the-rebellion-of-absalom_gracepres_tag_soundcloud_2010_tracks_778412572.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/774613813": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/774613813",
