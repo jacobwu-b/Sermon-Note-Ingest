@@ -8118,10 +8118,12 @@
     "blurb": "James The Poverty Of Wealth 190811 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-02T08:42:30.537529+00:00",
+    "transcript_hash": "86c5afbb8e8cbd4f6779584798fe30f9a74819cd3c91968a7f3c9efa45948395",
+    "content_path": "transcripts/gracepres/2019-08-11_james-the-poverty-of-wealth_gracepres_tag_soundcloud_2010_tracks_664814132.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/656260355": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/656260355",
