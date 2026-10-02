@@ -7978,10 +7978,12 @@
     "blurb": "1 Samuel Can You Hear Me Now 190915 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-02T02:23:16.177446+00:00",
+    "transcript_hash": "4153ac501435c078c2b04fca05759cb12b6e6550733919b9cad3423336294ef1",
+    "content_path": "transcripts/gracepres/2019-09-15_1-samuel-can-you-hear-me-now_gracepres_tag_soundcloud_2010_tracks_682110899.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/679146846": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/679146846",
