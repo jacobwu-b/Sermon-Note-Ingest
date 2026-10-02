@@ -8384,10 +8384,12 @@
     "blurb": "The Courage That Endures 190505 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-02T23:49:51.935524+00:00",
+    "transcript_hash": "8d76945ce36157c9a4482e733105c084286cb4bc9c8ed23172a1c5678d0347d2",
+    "content_path": "transcripts/gracepres/2019-05-05_the-courage-that-endures_gracepres_tag_soundcloud_2010_tracks_620747886.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/613865205": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/613865205",
