@@ -8284,10 +8284,12 @@
     "blurb": "Habakkuk Rejoicing In God 190502 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-02T20:19:16.883140+00:00",
+    "transcript_hash": "ef416d8617dd68502b4a757872ab49f106ecefb1f78151ffa36a64d0271a79d3",
+    "content_path": "transcripts/gracepres/2019-06-02_habakkuk-rejoicing-in-god_gracepres_tag_soundcloud_2010_tracks_631785567.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/628123908": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/628123908",
