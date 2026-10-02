@@ -8086,10 +8086,12 @@
     "blurb": "James Cheating On God by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-02T15:25:35.293480+00:00",
+    "transcript_hash": "fc827a11ceafed4f34249475653debfca4fcb306c855fad2423db328e658331c",
+    "content_path": "transcripts/gracepres/2019-08-11_james-cheating-on-god_gracepres_tag_soundcloud_2010_tracks_664814774.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/664814633": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/664814633",
