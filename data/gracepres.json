@@ -8244,10 +8244,12 @@
     "blurb": "James Doers Of The Word 190616 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-02T20:13:40.070407+00:00",
+    "transcript_hash": "64543e88a9b90f9d54f10bbe36080e437f69d48870e009149b0e857bd8cfeeaf",
+    "content_path": "transcripts/gracepres/2019-06-16_james-doers-of-the-word_gracepres_tag_soundcloud_2010_tracks_638754147.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/635231664": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/635231664",
