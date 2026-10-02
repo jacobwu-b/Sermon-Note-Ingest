@@ -8260,10 +8260,12 @@
     "blurb": "James When Trouble Finds You 190609 by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-02T20:09:54.904910+00:00",
+    "transcript_hash": "8f04f5f15a7cf93174251d35e9c482cf30a8026ad03aaff39593bd590a72c476",
+    "content_path": "transcripts/gracepres/2019-06-09_james-when-trouble-finds-you_gracepres_tag_soundcloud_2010_tracks_635231664.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/631785567": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/631785567",
