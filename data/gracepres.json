@@ -8426,10 +8426,12 @@
     "blurb": "Repent & Believe _ Why are you weeping? by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T02:58:56.327399+00:00",
+    "transcript_hash": "f5f46e903f9b2b4a686a4383b2cd7b6a2f88b0cd9a42123ece776b86cf6309e7",
+    "content_path": "transcripts/gracepres/2019-04-21_repent-believe-why-are-you-weeping_gracepres_tag_soundcloud_2010_tracks_610842012.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/610461897": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/610461897",
