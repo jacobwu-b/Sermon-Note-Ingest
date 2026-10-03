@@ -8466,10 +8466,12 @@
     "blurb": "Repent and Believe_Christ the King by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T03:17:49.130162+00:00",
+    "transcript_hash": "3ab9dafd0eb0f910063969a5aa040196789aaeb9c1c551eacb7fbc7792791921",
+    "content_path": "transcripts/gracepres/2019-04-14_repent-and-believe-christ-the-king_gracepres_tag_soundcloud_2010_tracks_607080051.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/604135431": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/604135431",
