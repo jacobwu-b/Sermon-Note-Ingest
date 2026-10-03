@@ -8842,10 +8842,12 @@
     "blurb": "The book of Judges is one of the most bizarre books we find in the Bible. It’s a book filled with dark, tragic, and violent stories.  It’s a book filled with gamblers, sex addicts, assassins, and embarrassing characters. And we don’t know how to handle it. But if we scroll through our news feeds, we read stories of racial violence, scandalous politicians, horrific abuse, and suicide bombers… every day.  Our world – like that world – is a world gone wrong.  But into the “wrongness” comes the “rightness” of God’s salvation.  Join us as we explore this odd, yet intriguing book of Scripture that reveals a God who works in a world gone wrong.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T20:55:00.733003+00:00",
+    "transcript_hash": "4f7a709f296d28e5ee09ea2bbc9b1da91f116d855caacec42b9965c8bbb7b7b3",
+    "content_path": "transcripts/gracepres/2018-07-01_judges-how-you-finish-matters_gracepres_tag_soundcloud_2010_tracks_653653205.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/653653229": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/653653229",
