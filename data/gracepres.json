@@ -8506,10 +8506,12 @@
     "blurb": "Repent & Believe: Repentance And Reconciliation by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T08:48:14.924792+00:00",
+    "transcript_hash": "e77bcef516698486e6fad66dd332aece32c0c9c67b735933ce2b3df7c72f78ae",
+    "content_path": "transcripts/gracepres/2019-03-31_repent-believe-repentance-and-reconciliation_gracepres_tag_soundcloud_2010_tracks_599373864.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/596487654": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/596487654",
