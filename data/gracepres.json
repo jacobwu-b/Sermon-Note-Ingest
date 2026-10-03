@@ -8618,10 +8618,12 @@
     "blurb": "Ephesians: Walk This Way by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T08:55:57.175140+00:00",
+    "transcript_hash": "824d835e1a623fa1c65248d865d5d1c6165751a7a324fe95d83ed42ebf2ea4e3",
+    "content_path": "transcripts/gracepres/2019-03-10_ephesians-walk-this-way_gracepres_tag_soundcloud_2010_tracks_590168901.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/590165334": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/590165334",
