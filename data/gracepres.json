@@ -8586,10 +8586,12 @@
     "blurb": "Ephesians: Jesus And Our Work by Grace Presbyterian Church of SV",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T14:14:03.602956+00:00",
+    "transcript_hash": "e252bce51a064b797c9cf17ce1dfe72bdc6cf36158ae15bc946e6b2d13940549",
+    "content_path": "transcripts/gracepres/2019-03-10_ephesians-jesus-and-our-work_gracepres_tag_soundcloud_2010_tracks_590169879.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/590169711": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/590169711",
