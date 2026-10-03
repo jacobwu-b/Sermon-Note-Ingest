@@ -8706,10 +8706,12 @@
     "blurb": "The book of Judges is one of the most bizarre books we find in the Bible. It’s a book filled with dark, tragic, and violent stories.  It’s a book filled with gamblers, sex addicts, assassins, and embarrassing characters. And we don’t know how to handle it. But if we scroll through our news feeds, we read stories of racial violence, scandalous politicians, horrific abuse, and suicide bombers… every day.  Our world – like that world – is a world gone wrong.  But into the “wrongness” comes the “rightness” of God’s salvation.  Join us as we explore this odd, yet intriguing book of Scripture that reveals a God who works in a world gone wrong.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T18:05:48.983710+00:00",
+    "transcript_hash": "b712446c05f93a86e5c6170fa614ef3038e055dd50c42704c690f349ccd90d1d",
+    "content_path": "transcripts/gracepres/2018-07-01_judges-the-enemy-within_gracepres_tag_soundcloud_2010_tracks_653653061.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/653653070": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/653653070",
