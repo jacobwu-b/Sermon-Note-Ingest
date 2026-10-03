@@ -8682,10 +8682,12 @@
     "blurb": "You know that Christmas is near when you begin to hear all the songs.  Songs are a signal that the season is finally here. The first few chapters of the gospel of Luke are infused with song. Songs sung by a pregnant teen, a senior citizen, and a multitude of angels. Songs from the lips of those who had been waiting for something BIG. Songs from joyful hearts that had heard THAT SOMETHING BIG HAD ARRIVED.  Advent (which means “Arrival”) is a special season of celebrating the coming of Christ.  But it’s also a season of waiting. With the birth of Jesus, the Messiah has already come, but the fullness of His Kingdom has not yet come. So we wait in this already, but not yet season. We wait in the difficult tension of wanting, and not having. But as we wait, we sing.  We sing songs that nourish hope and repeat the sounding joy of good news for all the world.",
     "first_seen_at": "2026-09-18T20:45:38.108374+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-03T14:06:11.722101+00:00",
+    "transcript_hash": "3068ae76a686ac4de8a2dd2d2728ef3eee3cadd6bbedb71bda6d3c246aa4f894",
+    "content_path": "transcripts/gracepres/2018-11-25_advent-2018-mission-impossible_gracepres_tag_soundcloud_2010_tracks_631016055.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "gracepres:tag:soundcloud,2010:tracks/653653061": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/653653061",
