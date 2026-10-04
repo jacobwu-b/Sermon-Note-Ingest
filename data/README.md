@@ -55,9 +55,9 @@ Do not edit between the markers by hand; it will be overwritten.
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 139 | How to Fight Spiritual Battles You Can't See | 2026-10-04 |
 | menlo | 148 | The Purity of Reality | 2026-09-27 |
-| north_point | 103 | Mind Games, Part 3: Living Freely | 2026-09-27 |
+| north_point | 104 | Be Rich 2026: A Conversation with Janine Maxwell | 2026-10-04 |
 | pbc | 400 | Rich Towards God | 2026-09-27 |
 | westgate | 107 | Week 3 - A Shared Life | 2026-09-27 |
 
-**Total sermons across all churches: 1853**
+**Total sermons across all churches: 1854**
 <!-- STATS:END -->
