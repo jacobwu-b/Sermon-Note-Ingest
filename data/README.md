@@ -53,11 +53,11 @@ Do not edit between the markers by hand; it will be overwritten.
 |---|---|---|---|
 | gracepres | 447 | Work & Rest | 2026-09-27 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
-| lakepointe | 138 | God Wants You To Pour Yourself OUT | 2026-09-27 |
+| lakepointe | 139 | How to Fight Spiritual Battles You Can't See | 2026-10-04 |
 | menlo | 148 | The Purity of Reality | 2026-09-27 |
 | north_point | 103 | Mind Games, Part 3: Living Freely | 2026-09-27 |
 | pbc | 400 | Rich Towards God | 2026-09-27 |
 | westgate | 107 | Week 3 - A Shared Life | 2026-09-27 |
 
-**Total sermons across all churches: 1852**
+**Total sermons across all churches: 1853**
 <!-- STATS:END -->
