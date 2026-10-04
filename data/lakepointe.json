@@ -12,12 +12,12 @@
     "blurb": null,
     "first_seen_at": "2026-10-04T17:54:27.375327+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-04T18:49:19.145528+00:00",
+    "transcript_hash": "1949473e00f00fae63bd039e1cf24c5f466da7703e0c6a3bbcc089f6c20b9bec",
+    "content_path": "transcripts/lakepointe/2026-10-04_how-to-fight-spiritual-battles-you-can-t-see_lakepointe_6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "lakepointe:e3b16160-baa0-11f1-9b71-07e37867d17b": {
     "guid": "lakepointe:e3b16160-baa0-11f1-9b71-07e37867d17b",
