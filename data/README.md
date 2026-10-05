@@ -57,7 +57,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | menlo | 148 | The Purity of Reality | 2026-09-27 |
 | north_point | 104 | Be Rich 2026: A Conversation with Janine Maxwell | 2026-10-04 |
 | pbc | 400 | Rich Towards God | 2026-09-27 |
-| westgate | 107 | Week 3 - A Shared Life | 2026-09-27 |
+| westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
 
-**Total sermons across all churches: 1854**
+**Total sermons across all churches: 1855**
 <!-- STATS:END -->
