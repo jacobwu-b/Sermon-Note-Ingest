@@ -169,7 +169,8 @@ def transcribe_church(
 
     ``marks_out``, when given, is filled with every ledger mutation this call actually
     durably makes (guid -> ``{"kind": "done", ...mark_transcribed kwargs}`` or
-    ``{"kind": "failed"}``) — never a transcription whose Content push didn't succeed.
+    ``{"kind": "failed", "error": ...}``, or ``{"kind": "download_failed"}``) — never a
+    transcription whose Content push didn't succeed.
     :func:`replay_marks` re-applies this record verbatim onto a freshly-loaded ledger, so
     transcribe.yml's push-conflict recovery never has to re-run Whisper or re-push Content
     just to recover from a losing ``data/*.json`` race (issue #60).
@@ -205,6 +206,7 @@ def transcribe_church(
                 transcribed_at=adopted_at,
                 model=None,
                 domain_prompt=None,
+                adopted=True,
             )
             if marks_out is not None:
                 marks_out[guid] = {
@@ -214,6 +216,7 @@ def transcribe_church(
                     "transcribed_at": adopted_at,
                     "model": None,
                     "domain_prompt": None,
+                    "adopted": True,
                 }
             continue
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
@@ -222,12 +225,20 @@ def transcribe_church(
             text, digest = transcribe_audio(record["audio_url"], hotwords)
         except net.AudioDownloadError as exc:
             logger.warning("%s/%s: audio download failed, retrying next run: %s", name, guid, exc)
+            store.mark_download_failed(record)
+            if marks_out is not None:
+                marks_out[guid] = {"kind": "download_failed"}
             continue
         except (transcribe.TranscriptionError, transcribe.EmptyTranscriptError) as exc:
             logger.warning("%s/%s: transcription failed terminally: %s", name, guid, exc)
-            store.mark_transcription_failed(record)
+            error = (
+                store.EMPTY_TRANSCRIPT_ERROR
+                if isinstance(exc, transcribe.EmptyTranscriptError)
+                else store.TRANSCRIPTION_ERROR
+            )
+            store.mark_transcription_failed(record, error=error)
             if marks_out is not None:
-                marks_out[guid] = {"kind": "failed"}
+                marks_out[guid] = {"kind": "failed", "error": error}
             all_ok = False
             continue
         to_push[path] = text
@@ -265,6 +276,7 @@ def transcribe_church(
                     "transcribed_at": transcribed_at,
                     "model": whisper_cfg.model,
                     "domain_prompt": whisper_cfg.domain_prompt,
+                    "adopted": False,
                 }
             if not pipeline_enabled:
                 logger.debug("%s/%s: church not enabled in pipeline, skipping pipeline dispatch", name, guid)
@@ -355,9 +367,13 @@ def replay_marks(path: str) -> bool:
                     transcribed_at=fields["transcribed_at"],
                     model=fields["model"],
                     domain_prompt=fields["domain_prompt"],
+                    adopted=fields.get("adopted", False),
                 )
             elif kind == "failed":
-                store.mark_transcription_failed(record)
+                # A marks file from before ADR-0018 carries no reason; the model is all it covered.
+                store.mark_transcription_failed(record, error=fields.get("error", store.TRANSCRIPTION_ERROR))
+            elif kind == "download_failed":
+                store.mark_download_failed(record)
             else:
                 logger.warning("%s/%s: replay-marks: unknown mark kind %r, skipping", church, guid, kind)
                 continue

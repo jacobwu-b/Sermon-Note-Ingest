@@ -31,6 +31,11 @@ from poller.sources.base import SermonItem
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
+# The values of a record's ``transcription_last_error`` (ADR-0018).
+DOWNLOAD_ERROR = "audio_download"
+TRANSCRIPTION_ERROR = "transcription"
+EMPTY_TRANSCRIPT_ERROR = "empty_transcript"
+
 logger = logging.getLogger("poller")
 
 
@@ -180,6 +185,8 @@ def item_to_record(item: SermonItem, *, first_seen_at: str, feed_published_at: s
         "content_path": None,
         "transcription_model": None,
         "transcription_domain_prompt": None,
+        "transcription_last_error": None,
+        "transcript_adopted": None,
     }
 
 
@@ -236,6 +243,7 @@ def mark_transcribed(
     transcribed_at: str,
     model: str | None,
     domain_prompt: bool | None,
+    adopted: bool = False,
 ) -> None:
     """Advance ``record`` to transcribed, recording where its text landed in Content.
 
@@ -244,7 +252,9 @@ def mark_transcribed(
     ``model``/``domain_prompt`` are the ``WhisperConfig`` values active for this
     transcription (ADR-0012), so a later re-transcription pass can select precisely
     instead of inferring from timestamps; ``None`` when unknown (a transcript adopted
-    from Content that this run didn't produce).
+    from Content that this run didn't produce). ``adopted`` marks exactly that case: its
+    ``transcribed_at`` is when it was adopted, not produced, so latency reports skip it
+    (ADR-0018).
     """
     record["transcription_status"] = "done"
     record["content_path"] = content_path
@@ -252,16 +262,31 @@ def mark_transcribed(
     record["transcribed_at"] = transcribed_at
     record["transcription_model"] = model
     record["transcription_domain_prompt"] = domain_prompt
+    record["transcript_adopted"] = adopted
+    record["transcription_last_error"] = None
 
 
-def mark_transcription_failed(record: dict[str, Any]) -> None:
+def mark_download_failed(record: dict[str, Any]) -> None:
+    """Record that ``record``'s audio could not be downloaded; it stays pending for retry.
+
+    Only a still-pending record is touched, so a replayed mark cannot relabel one another
+    run has since settled. No attempt time is stored: a download failing on every run must
+    leave the ledger byte-identical rather than commit on every run (ADR-0018).
+    """
+    if record.get("transcription_status") is None:
+        record["transcription_last_error"] = DOWNLOAD_ERROR
+
+
+def mark_transcription_failed(record: dict[str, Any], *, error: str) -> None:
     """Send ``record``'s transcription attempt terminal — the model failed after its retries.
 
     Distinct from a download failure, which leaves ``transcription_status`` untouched
     (``None``) so the next run retries it; this is for a failure that retrying the
-    same audio would not fix.
+    same audio would not fix. ``error`` is :data:`TRANSCRIPTION_ERROR` or
+    :data:`EMPTY_TRANSCRIPT_ERROR`.
     """
     record["transcription_status"] = "failed"
+    record["transcription_last_error"] = error
 
 
 def validate_all() -> list[str]:
