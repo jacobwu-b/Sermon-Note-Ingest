@@ -12,12 +12,12 @@
     "blurb": "Hope for Everyone has always been asking the question underneath the question. Not what should I give, but what kind of person am I becoming? The campaign is the context. Formation is the point. The reason the gift matters is not because the church needs the money but because you are being formed every day by something, and stewardship is the practice that lets God speak into the one room of the house where the world has been doing the loudest catechism. Better him than them.\nText Our Team (650) 600-0402 | Connect With Us",
     "first_seen_at": "2026-10-05T15:00:28.925203+00:00",
     "notified_at": "2026-10-05T15:00:29.186832+00:00",
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-05T15:34:52.266113+00:00",
+    "transcript_hash": "4b5b11d1447f5f1b2fa36d36b6b4835afbfcd28c7e1f0a23f8b32d089388bee3",
+    "content_path": "transcripts/menlo/2026-10-04_still_menlochurchvideo.podbean.com_10fec83e-a8f4-3d0b-a15d-690590479858.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": true
   },
   "menlochurchvideo.podbean.com/3a5d9a10-5d84-38e2-9892-6defef866a53": {
     "guid": "menlochurchvideo.podbean.com/3a5d9a10-5d84-38e2-9892-6defef866a53",
