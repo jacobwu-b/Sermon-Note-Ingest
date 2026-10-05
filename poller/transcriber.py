@@ -146,6 +146,7 @@ def transcribe_church(
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
     fetch_existing: FetchExisting = content_repo.existing_transcripts,
     vocabulary: Sequence[str] = (),
+    pipeline_enabled: bool = True,
     marks_out: dict[str, dict] | None = None,
 ) -> bool:
     """Transcribe ``batch``, push the successes to Content in one commit, then ledger them.
@@ -162,7 +163,9 @@ def transcribe_church(
     push (if there was anything to push) succeeded. A download failure is not a failure
     of this run — it's an expected, retried-next-run outcome. ``vocabulary`` is the
     church's configured term list (its ``ingest.vocabulary`` in the church table), prompted alongside
-    what ``records`` already knows about the church.
+    what ``records`` already knows about the church. ``pipeline_enabled`` is False for a
+    church Pipeline does not run: it is transcribed, but Pipeline is not dispatched, since
+    its plan has no ledger record to fan out and would report a broken handoff.
 
     ``marks_out``, when given, is filled with every ledger mutation this call actually
     durably makes (guid -> ``{"kind": "done", ...mark_transcribed kwargs}`` or
@@ -263,6 +266,9 @@ def transcribe_church(
                     "model": whisper_cfg.model,
                     "domain_prompt": whisper_cfg.domain_prompt,
                 }
+            if not pipeline_enabled:
+                logger.debug("%s/%s: church not enabled in pipeline, skipping pipeline dispatch", name, guid)
+                continue
             if not _recently_published(record, now=now_dt):
                 logger.debug(
                     "%s/%s: published more than %d days ago, skipping pipeline dispatch (backfill)",
@@ -435,6 +441,7 @@ def run(
                 dispatch_ingest_event=dispatch_ingest_event,
                 fetch_existing=fetch_existing,
                 vocabulary=selected[name].vocabulary,
+                pipeline_enabled=selected[name].pipeline_enabled,
                 marks_out=marks_out.setdefault(name, {}) if marks_out is not None else None,
             )
         except Exception:
