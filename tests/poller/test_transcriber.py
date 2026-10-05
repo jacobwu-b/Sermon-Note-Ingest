@@ -232,6 +232,55 @@ def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcrib
     assert event["transcript"]["transcript_hash"] == "hash123"
 
 
+def test_transcribe_church_does_not_dispatch_for_a_church_pipeline_does_not_run(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
+    records = {"g1": _record("g1", preached_on="2026-09-15")}
+    dispatched = []
+
+    ok = transcriber.transcribe_church(
+        "lakepointe",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
+        pipeline_enabled=False,
+    )
+
+    assert ok is True
+    assert dispatched == []
+    assert store.load("lakepointe")["g1"]["transcription_status"] == "done"
+
+
+def test_run_dispatches_only_for_churches_the_table_enables_under_pipeline(
+    tmp_path, monkeypatch, church_table
+):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
+    church_table(
+        '{"menlo": {"rss": "https://example.org/m.xml", "pipeline": {"enabled": true},'
+        ' "ingest": {"enabled": true}},'
+        ' "lakepointe": {"rss": "https://example.org/l.xml", "pipeline": {"enabled": false},'
+        ' "ingest": {"enabled": true}}}'
+    )
+    for name in ("menlo", "lakepointe"):
+        store.save(name, {"g1": _record("g1", preached_on="2026-09-15")})
+    dispatched = []
+
+    transcriber.run(
+        church_names=None,
+        limit=1,
+        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123"),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: dispatched.append(source),
+    )
+
+    assert dispatched == ["menlo"]
+
+
 def test_transcribe_church_survives_a_dispatch_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-09-15")}

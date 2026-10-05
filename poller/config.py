@@ -29,6 +29,9 @@ class ChurchConfig:
     # Operator-supplied terms the feed can't tell us (the church's full name, campus
     # names); prompted into every transcription of this church (poller/prompting.py).
     vocabulary: tuple[str, ...] = ()
+    # Whether Pipeline generates notes for this church. Ingest transcribes a church
+    # either way, but only dispatches Pipeline for one it runs.
+    pipeline_enabled: bool = True
 
 
 def _fetch_church_table() -> str:
@@ -69,6 +72,9 @@ def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
         section = entry.get("ingest", {})
         if not isinstance(section, dict):
             raise ConfigError(f"church table entry {name!r} has a non-object ingest section")
+        pipeline_section = entry.get("pipeline", {})
+        if not isinstance(pipeline_section, dict):
+            raise ConfigError(f"church table entry {name!r} has a non-object pipeline section")
         vocabulary = section.get("vocabulary", [])
         if not isinstance(vocabulary, list) or not all(isinstance(term, str) for term in vocabulary):
             raise ConfigError(f"church table entry {name!r}: ingest.vocabulary must be a list of strings")
@@ -78,6 +84,7 @@ def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
             enabled=bool(section.get("enabled", False)),
             notify=bool(section.get("notify", False)),
             vocabulary=tuple(vocabulary),
+            pipeline_enabled=bool(pipeline_section.get("enabled", False)),
         )
     return churches
 

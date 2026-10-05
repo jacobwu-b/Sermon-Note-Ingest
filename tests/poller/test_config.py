@@ -11,7 +11,7 @@ def test_load_churches_parses_a_valid_object():
     )
     churches = config.load_churches(raw)
     assert churches["menlo"] == config.ChurchConfig(
-        name="menlo", rss="https://example.org/feed.xml", enabled=True, notify=False
+        name="menlo", rss="https://example.org/feed.xml", enabled=True, notify=False, pipeline_enabled=False
     )
 
 
@@ -309,3 +309,19 @@ def test_load_log_level_defaults_to_info(monkeypatch):
 def test_load_log_level_reads_override(monkeypatch):
     monkeypatch.setenv("LOG_LEVEL", "debug")
     assert config.load_log_level() == "DEBUG"
+
+
+def test_load_churches_reads_the_pipeline_section_s_enabled_flag():
+    raw = (
+        '{"menlo": {"rss": "https://example.org/m.xml", "pipeline": {"enabled": true},'
+        ' "ingest": {"enabled": true}},'
+        ' "lakepointe": {"rss": "https://example.org/l.xml", "pipeline": {"enabled": false},'
+        ' "ingest": {"enabled": true}},'
+        ' "bare": {"rss": "https://example.org/b.xml", "ingest": {"enabled": true}}}'
+    )
+
+    churches = config.load_churches(raw)
+
+    assert churches["menlo"].pipeline_enabled is True
+    assert churches["lakepointe"].pipeline_enabled is False
+    assert churches["bare"].pipeline_enabled is False
