@@ -273,3 +273,29 @@ jobs:
           name: transcribe-marks-shard-${{ matrix.shard }}
           path: ${{ env.MARKS_FILE }}
           if-no-files-found: ignore
+
+  # Publishes status/ingest.json for the web report (spec 0009): a projection of every
+  # ledger, pushed to Content only when it changed. Every tick that planned — including
+  # one with no shards, where `transcribe` is skipped — and after every shard's ledger
+  # push, so it reads main's tip rather than the plan's pinned commit.
+  publish-status:
+    name: Publish status
+    needs: [plan, transcribe]
+    if: ${{ !cancelled() && needs.plan.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.14"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install --require-hashes -r requirements.txt
+
+      - name: Publish status
+        run: python -m poller.status

@@ -168,3 +168,48 @@ def test_run_git_redacts_token_from_a_failure_message(tmp_path):
             token="super-secret-token",
         )
     assert "super-secret-token" not in str(exc_info.value)
+
+
+def test_default_push_status_replaces_the_status_file_and_nothing_else(content_repo_env):
+    """Unlike a transcript, the status file is meant to change: no overwrite guard."""
+    content_repo.default_push_status({"status/ingest.json": '{"sermons": []}\n'})
+    content_repo.default_push_status({"status/ingest.json": '{"sermons": [1]}\n'})
+
+    assert _read_file_at_head(content_repo_env, "status/ingest.json") == '{"sermons": [1]}\n'
+    assert _read_file_at_head(content_repo_env, "notes/existing.txt") == "pre-existing pipeline output\n"
+
+
+def test_default_push_status_is_a_noop_when_the_status_is_unchanged(content_repo_env):
+    content_repo.default_push_status({"status/ingest.json": '{"sermons": []}\n'})
+    before = subprocess.run(
+        ["git", "rev-parse", "main"], cwd=content_repo_env, capture_output=True, text=True, check=True
+    ).stdout
+
+    content_repo.default_push_status({"status/ingest.json": '{"sermons": []}\n'})
+    after = subprocess.run(
+        ["git", "rev-parse", "main"], cwd=content_repo_env, capture_output=True, text=True, check=True
+    ).stdout
+
+    assert before == after
+
+
+def test_push_status_retries_a_rejected_push_from_a_fresh_clone():
+    """Pipeline pushes to Content too; a push that lost the race is retried, not lost."""
+    calls = []
+
+    def flaky(files):
+        calls.append(files)
+        if len(calls) == 1:
+            raise content_repo.ContentPublishError("! [rejected] main -> main (fetch first)")
+
+    content_repo.push_status({"status/ingest.json": "{}\n"}, push=flaky, sleep=lambda _s: None)
+
+    assert len(calls) == 2
+
+
+def test_push_status_raises_after_exhausting_attempts():
+    def refuse(files):
+        raise content_repo.ContentPublishError("rejected")
+
+    with pytest.raises(content_repo.ContentPublishError, match="after 3 attempts"):
+        content_repo.push_status({"status/ingest.json": "{}\n"}, push=refuse, sleep=lambda _s: None)
