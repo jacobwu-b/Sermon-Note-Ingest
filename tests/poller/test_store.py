@@ -115,6 +115,8 @@ def test_item_to_record_defaults_transcription_fields_to_absent():
     assert record["content_path"] is None
     assert record["transcription_model"] is None
     assert record["transcription_domain_prompt"] is None
+    assert record["transcription_last_error"] is None
+    assert record["transcript_adopted"] is None
 
 
 def test_mark_transcribed_sets_exactly_its_own_fields():
@@ -133,12 +135,74 @@ def test_mark_transcribed_sets_exactly_its_own_fields():
     assert record["transcribed_at"] == "2026-09-06T12:00:00+00:00"
     assert record["transcription_model"] == "large-v3"
     assert record["transcription_domain_prompt"] is True
+    assert record["transcript_adopted"] is False
 
 
-def test_mark_transcription_failed_sets_only_the_status():
+def test_mark_transcribed_records_a_transcript_adopted_from_content():
     record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
-    store.mark_transcription_failed(record)
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
+        transcript_hash="deadbeef",
+        transcribed_at="2026-09-19T15:49:16+00:00",
+        model=None,
+        domain_prompt=None,
+        adopted=True,
+    )
+    assert record["transcript_adopted"] is True
+
+
+def test_a_successful_transcription_clears_the_earlier_failure_reason():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_download_failed(record)
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
+        transcript_hash="deadbeef",
+        transcribed_at="2026-09-06T12:00:00+00:00",
+        model="large-v3",
+        domain_prompt=True,
+    )
+    assert record["transcription_last_error"] is None
+
+
+def test_mark_download_failed_records_the_reason_and_leaves_the_record_pending():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_download_failed(record)
+    assert record["transcription_last_error"] == "audio_download"
+    assert record["transcription_status"] is None
+
+
+def test_mark_download_failed_never_overwrites_a_settled_record():
+    """A replayed download mark landing after another run finished must not relabel it."""
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
+        transcript_hash="deadbeef",
+        transcribed_at="2026-09-06T12:00:00+00:00",
+        model="large-v3",
+        domain_prompt=True,
+    )
+    store.mark_download_failed(record)
+    assert record["transcription_last_error"] is None
+    assert record["transcription_status"] == "done"
+
+
+def test_a_repeated_download_failure_leaves_the_record_byte_identical():
+    """No attempt timestamp: a download failing every run must not rewrite the ledger every run."""
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_download_failed(record)
+    first = json.dumps(record, sort_keys=True)
+    store.mark_download_failed(record)
+    assert json.dumps(record, sort_keys=True) == first
+
+
+def test_mark_transcription_failed_records_the_status_and_the_reason():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcription_failed(record, error="empty_transcript")
     assert record["transcription_status"] == "failed"
+    assert record["transcription_last_error"] == "empty_transcript"
     assert record["content_path"] is None
     assert record["transcript_hash"] is None
 
