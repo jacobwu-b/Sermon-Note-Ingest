@@ -28,6 +28,7 @@ _GIT_TIMEOUT = 120
 _COMMIT_AUTHOR_NAME = "github-actions[bot]"
 _COMMIT_AUTHOR_EMAIL = "github-actions[bot]@users.noreply.github.com"
 _COMMIT_MESSAGE = "chore(transcripts): add newly-transcribed sermons"
+_STATUS_COMMIT_MESSAGE = "chore(status): publish ingest status"
 
 
 class ContentPublishError(RuntimeError):
@@ -90,6 +91,20 @@ def default_push(files: dict[str, str]) -> None:
     consumer (Pipeline) may already have fetched and hashed (issue #60). A rewrite with
     identical text is unaffected: it diffs to nothing and stays a no-op push.
     """
+    _push(files, overwrite=False, message=_COMMIT_MESSAGE)
+
+
+def default_push_status(files: dict[str, str]) -> None:
+    """Like :func:`default_push`, but for the status file, which is meant to change.
+
+    No overwrite guard: ``status/ingest.json`` is regenerated whole from the ledger
+    each run (spec 0009), so replacing it is the point. Still additive — nothing but
+    ``files`` is written — and still a no-op push when the text is unchanged.
+    """
+    _push(files, overwrite=True, message=_STATUS_COMMIT_MESSAGE)
+
+
+def _push(files: dict[str, str], *, overwrite: bool, message: str) -> None:
     cfg = config.load_content_repo_config()
     remote = _remote_url(cfg.repo, cfg.token)
 
@@ -102,7 +117,7 @@ def default_push(files: dict[str, str]) -> None:
         )
         for rel_path, text in files.items():
             dest = checkout / rel_path
-            if dest.exists() and dest.read_text(encoding="utf-8") != text:
+            if not overwrite and dest.exists() and dest.read_text(encoding="utf-8") != text:
                 raise ContentPublishError(
                     f"refusing to overwrite existing Content file {rel_path!r} with different "
                     "text — a sermon must be represented in Content exactly once"
@@ -120,7 +135,7 @@ def default_push(files: dict[str, str]) -> None:
                 f"user.email={_COMMIT_AUTHOR_EMAIL}",
                 "commit",
                 "-m",
-                _COMMIT_MESSAGE,
+                message,
             ],
             cwd=checkout,
             token=cfg.token,
@@ -204,3 +219,22 @@ def push_transcripts(
     if not files:
         return
     _with_retries(lambda: push(files), what="push", sleep=sleep, attempts=attempts, backoff_base=backoff_base)
+
+
+def push_status(
+    files: dict[str, str],
+    *,
+    push: Callable[[dict[str, str]], None] = default_push_status,
+    sleep: Callable[[float], None] = time.sleep,
+    attempts: int = _PUSH_ATTEMPTS,
+    backoff_base: float = _PUSH_BACKOFF_BASE,
+) -> None:
+    """Push the status file, retrying with backoff; each attempt starts from a fresh clone.
+
+    Pipeline pushes to Content too, so a push rejected because Content moved is routine:
+    the retry re-clones the new tip and re-applies the file. Exhausting all attempts
+    raises :class:`ContentPublishError`.
+    """
+    _with_retries(
+        lambda: push(files), what="status push", sleep=sleep, attempts=attempts, backoff_base=backoff_base
+    )

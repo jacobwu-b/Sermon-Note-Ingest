@@ -264,3 +264,22 @@ def test_transcribe_workflow_pushes_the_ledger_from_a_detached_checkout():
     transcribe = _job_text("transcribe")
     assert "if git push origin HEAD:main; then" in transcribe
     assert not re.search(r"git push\s*;", transcribe)
+
+
+def test_status_publishes_on_every_planned_tick_even_with_no_shards():
+    # A tick with nothing pending runs zero shards, so the transcribe job is skipped;
+    # the status file must still refresh (spec 0009), so the job keys off the plan
+    # succeeding and a status function, not off transcribe having run.
+    job = _job_text("publish-status")
+    assert "needs: [plan, transcribe]" in job
+    assert "if: ${{ !cancelled() && needs.plan.result == 'success' }}" in job
+    assert "timeout-minutes:" in job
+
+
+def test_status_publishes_from_the_ledger_every_shard_already_pushed():
+    # Read main's tip when the job starts, after the shards' ledger pushes — not the
+    # plan's pinned commit, which predates this run's own progress.
+    job = _job_text("publish-status")
+    assert "ref: ${{ github.ref }}" in job
+    assert "ledger_sha" not in job
+    assert "python -m poller.status" in job
