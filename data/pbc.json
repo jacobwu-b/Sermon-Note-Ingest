@@ -1,4 +1,26 @@
 {
+  "https://pbc.org?enmse_mid=4696": {
+    "guid": "https://pbc.org?enmse_mid=4696",
+    "title": "Enough?",
+    "raw_title": "Enough? - Luke",
+    "series": "Luke",
+    "speaker": "Cormac Parker Jr.",
+    "preached_on": "2026-10-04",
+    "feed_published_at": "2026-10-04T00:00:00+00:00",
+    "episode_url": "https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid=4696",
+    "audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/10/04/Sermon+Audio+2026-10-04.mp3",
+    "blurb": "We spend our lives trying to make sure there will be enough: money, time, security; the list goes on. But the more we try to secure, the more anxious we can become. Jesus gives a surprising invitation: look at the birds, consider the flowers. What might they know about the life we’re desperately trying to hold together?",
+    "first_seen_at": "2026-10-06T01:30:35.440357+00:00",
+    "notified_at": "2026-10-06T01:30:35.608144+00:00",
+    "transcription_status": null,
+    "transcribed_at": null,
+    "transcript_hash": null,
+    "content_path": null,
+    "transcription_model": null,
+    "transcription_domain_prompt": null,
+    "transcription_last_error": null,
+    "transcript_adopted": null
+  },
   "https://pbc.org?enmse_mid=4694": {
     "guid": "https://pbc.org?enmse_mid=4694",
     "title": "Rich Towards God",

@@ -56,8 +56,8 @@ Do not edit between the markers by hand; it will be overwritten.
 | lakepointe | 139 | How to Fight Spiritual Battles You Can't See | 2026-10-04 |
 | menlo | 149 | Still | 2026-10-04 |
 | north_point | 104 | Be Rich 2026: A Conversation with Janine Maxwell | 2026-10-04 |
-| pbc | 400 | Rich Towards God | 2026-09-27 |
+| pbc | 401 | Enough? | 2026-10-04 |
 | westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
 
-**Total sermons across all churches: 1856**
+**Total sermons across all churches: 1857**
 <!-- STATS:END -->
