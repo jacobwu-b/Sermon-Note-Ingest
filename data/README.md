@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| gracepres | 447 | Work & Rest | 2026-09-27 |
+| gracepres | 448 | Made For Relationship | 2026-10-04 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 139 | How to Fight Spiritual Battles You Can't See | 2026-10-04 |
 | menlo | 149 | Still | 2026-10-04 |
@@ -59,5 +59,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | pbc | 401 | Enough? | 2026-10-04 |
 | westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
 
-**Total sermons across all churches: 1857**
+**Total sermons across all churches: 1858**
 <!-- STATS:END -->
