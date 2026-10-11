@@ -12,14 +12,14 @@
     "blurb": "Having compassion is a good place to start, but it's what we do with it that matters most.",
     "first_seen_at": "2026-10-11T18:21:30.597299+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null,
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-11T19:13:43.209891+00:00",
+    "transcript_hash": "0c317f44c9f8bc170c055edb10c04178856f6cae47192d47d1426844caed8748",
+    "content_path": "transcripts/north_point/2026-10-11_be-rich-2026-part-2-show-me_north_point_f1705244A5B076f7e874A942ACd7.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false,
     "transcription_last_error": null,
-    "transcript_adopted": null
+    "transcript_adopted": false
   },
   "north_point:fC26398C5AF81F6691A47a943Ae0": {
     "guid": "north_point:fC26398C5AF81F6691A47a943Ae0",
