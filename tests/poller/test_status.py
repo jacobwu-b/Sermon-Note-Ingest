@@ -161,16 +161,26 @@ def test_an_unchanged_ledger_renders_byte_identical_status():
     assert first.endswith("\n")
 
 
-def test_main_pushes_the_rendered_file_to_its_contract_path():
+def test_main_pushes_the_status_file_and_transcript_index_in_one_push():
+    """One clone, one commit (ADR-0020): both contract paths land together or not at all."""
     record = _record("menlochurchvideo.podbean.com/3a5d9a10", preached_on="2026-09-27")
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/2026-09-27_the-purity-of-reality_x.txt",
+        transcript_hash="2ce57804",
+        transcribed_at="2026-09-27T21:34:56+00:00",
+        model="large-v3",
+        domain_prompt=False,
+    )
     store.save("menlo", {record["guid"]: record})
     pushed: list[dict[str, str]] = []
 
     assert status.main([], push=pushed.append) == 0
 
     [files] = pushed
-    assert list(files) == ["status/ingest.json"]
+    assert sorted(files) == ["status/ingest.json", "transcripts/index.json"]
     assert json.loads(files["status/ingest.json"])["sermons"][0]["guid"] == record["guid"]
+    assert json.loads(files["transcripts/index.json"])["transcripts"][0]["path"] == record["content_path"]
 
 
 def test_main_exits_non_zero_when_the_push_never_lands():
