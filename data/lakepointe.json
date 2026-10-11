@@ -12,14 +12,14 @@
     "blurb": null,
     "first_seen_at": "2026-10-11T17:54:31.170143+00:00",
     "notified_at": null,
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null,
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-11T18:38:57.333832+00:00",
+    "transcript_hash": "5e9154a163069f8cee829e3e1584cc22155d55e8bb0f1fb1cc22cfa44ca2d1b1",
+    "content_path": "transcripts/lakepointe/2026-10-11_a-call-to-die_lakepointe_50f497e6-c59c-11f1-89b8-3fc61e72e568.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false,
     "transcription_last_error": null,
-    "transcript_adopted": null
+    "transcript_adopted": false
   },
   "lakepointe:6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1": {
     "guid": "lakepointe:6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1",
