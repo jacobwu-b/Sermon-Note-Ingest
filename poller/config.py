@@ -137,8 +137,11 @@ class WhisperConfig:
     cpu_threads: int
     beam_size: int
     condition_on_previous_text: bool
-    # The kill switch for poller/prompting.py's hotwords (spec 0003).
+    # Opts in to poller/prompting.py's hotwords (spec 0003).
     domain_prompt: bool
+    # Seconds of silence around a suspected hallucination that make faster-whisper skip
+    # it; ``None`` turns the guard off.
+    hallucination_silence_threshold: float | None
 
 
 def load_whisper_config() -> WhisperConfig:
@@ -148,17 +151,27 @@ def load_whisper_config() -> WhisperConfig:
     own thread count (every core it can see). A single-run GitHub Actions job never needs
     to override this; a local run fanning out several parallel shards (scripts/
     transcribe_local.py) sets it per-shard so shards divide cores instead of each
-    claiming every core faster-whisper can see. ``beam_size`` 5 and
-    ``condition_on_previous_text`` true are faster-whisper's own defaults, exposed so a
-    production run can be retuned without a code change.
+    claiming every core faster-whisper can see. ``beam_size`` 5 is faster-whisper's own
+    default. ``condition_on_previous_text`` and ``domain_prompt`` default off and the
+    silence guard to 2.0 s, departing from faster-whisper's defaults because measured
+    transcripts looped, leaked hotwords and dropped speech without them (ADR-0019). A
+    threshold of ``0`` turns the guard off.
     """
+    threshold_raw = os.environ.get("WHISPER_HALLUCINATION_SILENCE_THRESHOLD") or "2.0"
+    try:
+        threshold = float(threshold_raw)
+    except ValueError:
+        raise ConfigError(
+            f"WHISPER_HALLUCINATION_SILENCE_THRESHOLD must be a number of seconds, got {threshold_raw!r}"
+        ) from None
     return WhisperConfig(
         model=os.environ.get("WHISPER_MODEL") or "small",
         compute_type=os.environ.get("WHISPER_COMPUTE_TYPE") or "int8",
         cpu_threads=int(os.environ.get("WHISPER_CPU_THREADS") or "0"),
         beam_size=int(os.environ.get("WHISPER_BEAM_SIZE") or "5"),
-        condition_on_previous_text=_env_flag("WHISPER_CONDITION_ON_PREVIOUS_TEXT", True),
-        domain_prompt=_env_flag("WHISPER_DOMAIN_PROMPT", True),
+        condition_on_previous_text=_env_flag("WHISPER_CONDITION_ON_PREVIOUS_TEXT", False),
+        domain_prompt=_env_flag("WHISPER_DOMAIN_PROMPT", False),
+        hallucination_silence_threshold=threshold or None,
     )
 
 
