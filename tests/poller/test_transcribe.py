@@ -166,10 +166,13 @@ def _install_fake_whisper(monkeypatch, calls):
     monkeypatch.setattr(transcribe, "_model", None)
 
 
-def test_default_transcribe_passes_hotwords_beam_size_and_condition_flag_from_config(monkeypatch, tmp_path):
+def test_default_transcribe_passes_hotwords_beam_size_condition_flag_and_silence_guard_from_config(
+    monkeypatch, tmp_path
+):
     monkeypatch.setenv("WHISPER_BEAM_SIZE", "3")
-    monkeypatch.setenv("WHISPER_CONDITION_ON_PREVIOUS_TEXT", "false")
+    monkeypatch.setenv("WHISPER_CONDITION_ON_PREVIOUS_TEXT", "true")
     monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "true")
+    monkeypatch.setenv("WHISPER_HALLUCINATION_SILENCE_THRESHOLD", "1.5")
     calls = []
     _install_fake_whisper(monkeypatch, calls)
     audio = tmp_path / "audio"
@@ -185,17 +188,27 @@ def test_default_transcribe_passes_hotwords_beam_size_and_condition_flag_from_co
                 "vad_filter": True,
                 "log_progress": True,
                 "beam_size": 3,
-                "condition_on_previous_text": False,
+                "condition_on_previous_text": True,
                 "hotwords": "Keith Crosby, Luke",
+                "word_timestamps": True,
+                "hallucination_silence_threshold": 1.5,
             },
         )
     ]
 
 
-def test_default_transcribe_sends_no_hotwords_when_domain_prompting_is_off(monkeypatch, tmp_path):
-    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "false")
-    monkeypatch.delenv("WHISPER_BEAM_SIZE", raising=False)
-    monkeypatch.delenv("WHISPER_CONDITION_ON_PREVIOUS_TEXT", raising=False)
+def test_default_transcribe_by_default_sends_no_hotwords_or_previous_text_and_guards_silence(
+    monkeypatch, tmp_path
+):
+    # ADR-0019: hotwords leaked into and dropped speech from transcripts, and
+    # previous-window text made short repetition loops self-reinforcing.
+    for var in (
+        "WHISPER_DOMAIN_PROMPT",
+        "WHISPER_BEAM_SIZE",
+        "WHISPER_CONDITION_ON_PREVIOUS_TEXT",
+        "WHISPER_HALLUCINATION_SILENCE_THRESHOLD",
+    ):
+        monkeypatch.delenv(var, raising=False)
     calls = []
     _install_fake_whisper(monkeypatch, calls)
     audio = tmp_path / "audio"
@@ -207,4 +220,21 @@ def test_default_transcribe_sends_no_hotwords_when_domain_prompting_is_off(monke
     assert kwargs["hotwords"] is None
     assert "initial_prompt" not in kwargs
     assert kwargs["beam_size"] == 5
-    assert kwargs["condition_on_previous_text"] is True
+    assert kwargs["condition_on_previous_text"] is False
+    # faster-whisper ignores the threshold unless word timestamps are on.
+    assert kwargs["word_timestamps"] is True
+    assert kwargs["hallucination_silence_threshold"] == 2.0
+
+
+def test_default_transcribe_omits_the_silence_guard_when_its_threshold_is_zero(monkeypatch, tmp_path):
+    monkeypatch.setenv("WHISPER_HALLUCINATION_SILENCE_THRESHOLD", "0")
+    calls = []
+    _install_fake_whisper(monkeypatch, calls)
+    audio = tmp_path / "audio"
+    audio.write_bytes(b"audio")
+
+    transcribe.default_transcribe(audio, None)
+
+    _audio, kwargs = calls[0]
+    assert "word_timestamps" not in kwargs
+    assert "hallucination_silence_threshold" not in kwargs

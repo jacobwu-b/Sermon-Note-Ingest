@@ -155,10 +155,11 @@ _WHISPER_VARS = (
     "WHISPER_BEAM_SIZE",
     "WHISPER_CONDITION_ON_PREVIOUS_TEXT",
     "WHISPER_DOMAIN_PROMPT",
+    "WHISPER_HALLUCINATION_SILENCE_THRESHOLD",
 )
 
 
-def test_load_whisper_config_defaults_to_small_int8_and_prompted_beam_search(monkeypatch):
+def test_load_whisper_config_defaults_to_unprompted_silence_guarded_beam_search(monkeypatch):
     for var in _WHISPER_VARS:
         monkeypatch.delenv(var, raising=False)
     assert config.load_whisper_config() == config.WhisperConfig(
@@ -166,8 +167,9 @@ def test_load_whisper_config_defaults_to_small_int8_and_prompted_beam_search(mon
         compute_type="int8",
         cpu_threads=0,
         beam_size=5,
-        condition_on_previous_text=True,
-        domain_prompt=True,
+        condition_on_previous_text=False,
+        domain_prompt=False,
+        hallucination_silence_threshold=2.0,
     )
 
 
@@ -176,15 +178,17 @@ def test_load_whisper_config_reads_overrides(monkeypatch):
     monkeypatch.setenv("WHISPER_COMPUTE_TYPE", "float32")
     monkeypatch.setenv("WHISPER_CPU_THREADS", "3")
     monkeypatch.setenv("WHISPER_BEAM_SIZE", "8")
-    monkeypatch.setenv("WHISPER_CONDITION_ON_PREVIOUS_TEXT", "false")
-    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "False")
+    monkeypatch.setenv("WHISPER_CONDITION_ON_PREVIOUS_TEXT", "true")
+    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "True")
+    monkeypatch.setenv("WHISPER_HALLUCINATION_SILENCE_THRESHOLD", "1.5")
     assert config.load_whisper_config() == config.WhisperConfig(
         model="medium",
         compute_type="float32",
         cpu_threads=3,
         beam_size=8,
-        condition_on_previous_text=False,
-        domain_prompt=False,
+        condition_on_previous_text=True,
+        domain_prompt=True,
+        hallucination_silence_threshold=1.5,
     )
 
 
@@ -195,8 +199,20 @@ def test_load_whisper_config_treats_empty_values_as_unset(monkeypatch):
         monkeypatch.setenv(var, "")
     cfg = config.load_whisper_config()
     assert cfg.beam_size == 5
-    assert cfg.condition_on_previous_text is True
-    assert cfg.domain_prompt is True
+    assert cfg.condition_on_previous_text is False
+    assert cfg.domain_prompt is False
+    assert cfg.hallucination_silence_threshold == 2.0
+
+
+def test_load_whisper_config_reads_a_zero_silence_threshold_as_guard_off(monkeypatch):
+    monkeypatch.setenv("WHISPER_HALLUCINATION_SILENCE_THRESHOLD", "0")
+    assert config.load_whisper_config().hallucination_silence_threshold is None
+
+
+def test_load_whisper_config_rejects_a_non_numeric_silence_threshold(monkeypatch):
+    monkeypatch.setenv("WHISPER_HALLUCINATION_SILENCE_THRESHOLD", "two seconds")
+    with pytest.raises(config.ConfigError):
+        config.load_whisper_config()
 
 
 def test_load_whisper_config_rejects_an_unrecognised_flag_value(monkeypatch):

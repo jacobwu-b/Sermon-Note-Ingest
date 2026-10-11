@@ -62,10 +62,17 @@ def _get_model() -> Any:
 def default_transcribe(audio_path: Path, hotwords: str | None) -> str:
     """Run faster-whisper over ``audio_path`` and return the joined transcript text.
 
-    ``hotwords`` (poller/prompting.py) is dropped here, not upstream, when
-    ``WHISPER_DOMAIN_PROMPT`` is off — this is the one place that talks to the model.
+    ``hotwords`` (poller/prompting.py) is dropped here, not upstream, unless
+    ``WHISPER_DOMAIN_PROMPT`` is on — this is the one place that talks to the model.
     """
     whisper_cfg = config.load_whisper_config()
+    silence_guard: dict[str, Any] = {}
+    if whisper_cfg.hallucination_silence_threshold is not None:
+        # faster-whisper applies the threshold only when word timestamps are on.
+        silence_guard = {
+            "word_timestamps": True,
+            "hallucination_silence_threshold": whisper_cfg.hallucination_silence_threshold,
+        }
     segments, _info = _get_model().transcribe(
         str(audio_path),
         vad_filter=True,
@@ -73,6 +80,7 @@ def default_transcribe(audio_path: Path, hotwords: str | None) -> str:
         beam_size=whisper_cfg.beam_size,
         condition_on_previous_text=whisper_cfg.condition_on_previous_text,
         hotwords=hotwords if whisper_cfg.domain_prompt else None,
+        **silence_guard,
     )
     return " ".join(segment.text.strip() for segment in segments)
 

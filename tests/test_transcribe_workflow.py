@@ -190,6 +190,9 @@ def test_transcribe_workflow_wires_whisper_decoding_vars():
     assert "WHISPER_BEAM_SIZE: ${{ vars.WHISPER_BEAM_SIZE }}" in text
     assert "WHISPER_CONDITION_ON_PREVIOUS_TEXT: ${{ vars.WHISPER_CONDITION_ON_PREVIOUS_TEXT }}" in text
     assert "WHISPER_DOMAIN_PROMPT: ${{ vars.WHISPER_DOMAIN_PROMPT }}" in text
+    assert (
+        "WHISPER_HALLUCINATION_SILENCE_THRESHOLD: ${{ vars.WHISPER_HALLUCINATION_SILENCE_THRESHOLD }}" in text
+    )
 
 
 def test_transcribe_workflow_does_not_interpolate_dispatch_inputs_into_run_scripts():
