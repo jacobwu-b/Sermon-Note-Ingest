@@ -2874,14 +2874,14 @@
     "blurb": "This week we dive into our Wired for Wonder series to explore wrestling with God, and how honest reflection matters. We also answer your questions about faith, God, and religion. Keep sending them in!Text us: (650)600-0402",
     "first_seen_at": "2026-10-11T19:06:28.363965+00:00",
     "notified_at": "2026-10-11T19:06:28.580273+00:00",
-    "transcription_status": null,
-    "transcribed_at": null,
-    "transcript_hash": null,
-    "content_path": null,
-    "transcription_model": null,
-    "transcription_domain_prompt": null,
+    "transcription_status": "done",
+    "transcribed_at": "2026-10-11T19:37:45.828568+00:00",
+    "transcript_hash": "3d0fc69388c98d3d32700f6eea318dd2debf3a1cbceb6e15299d256083158b5a",
+    "content_path": "transcripts/menlo/2024-01-07_longing-for-wonder_menlochurchvideo.podbean.com_029a6ac1-51eb-3671-a6fc-29ba413d1ef0.txt",
+    "transcription_model": "large-v3",
+    "transcription_domain_prompt": false,
     "transcription_last_error": null,
-    "transcript_adopted": null
+    "transcript_adopted": false
   },
   "menlochurchvideo.podbean.com/0ef6fab1-a4ed-30a6-a2fa-cff7fd24a50a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/6u27dw/Wonder1Cheryl.mp3",
