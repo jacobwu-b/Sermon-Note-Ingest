@@ -1,5 +1,8 @@
 """Publish ``status/ingest.json``: Ingest's half of the web status report (spec 0009).
 
+Also publishes ``transcripts/index.json`` (spec 0010) in the same push: one clone,
+one commit (ADR-0020).
+
 A pure projection of every church's ledger plus the church table, in the shape
 Sermon-Note-Pipeline's spec 0029 defines. The web app joins it by guid with
 Pipeline's own ``status/pipeline.json`` and derives every reason and metric itself.
@@ -19,7 +22,7 @@ import sys
 from collections.abc import Callable
 from typing import Any
 
-from poller import config, content_repo, net, store
+from poller import config, content_repo, net, store, transcript_index
 
 logger = logging.getLogger("poller")
 
@@ -66,13 +69,18 @@ def main(
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    text = render_status(config.load_churches())
+    churches = config.load_churches()
+    files = {
+        STATUS_PATH: render_status(churches),
+        transcript_index.INDEX_PATH: transcript_index.render_index(churches),
+    }
     try:
-        push({STATUS_PATH: text})
+        push(files)
     except content_repo.ContentPublishError as exc:
         logger.error("status push to Content failed: %s", exc)
         return 1
-    logger.info("published %s (%d bytes)", STATUS_PATH, len(text))
+    for path, text in files.items():
+        logger.info("published %s (%d bytes)", path, len(text))
     return 0
 
 
