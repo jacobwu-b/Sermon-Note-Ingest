@@ -1,4 +1,26 @@
 {
+  "lakepointe:50f497e6-c59c-11f1-89b8-3fc61e72e568": {
+    "guid": "lakepointe:50f497e6-c59c-11f1-89b8-3fc61e72e568",
+    "title": "A Call to Die",
+    "raw_title": "A Call to Die | Lakepointe Church | David Nasser",
+    "series": "Lakepointe Church",
+    "speaker": "David Nasser",
+    "preached_on": "2026-10-11",
+    "feed_published_at": "2026-10-11T17:50:00+00:00",
+    "episode_url": null,
+    "audio_url": "https://traffic.megaphone.fm/HAEEH2638534842.mp3",
+    "blurb": null,
+    "first_seen_at": "2026-10-11T17:54:31.170143+00:00",
+    "notified_at": null,
+    "transcription_status": null,
+    "transcribed_at": null,
+    "transcript_hash": null,
+    "content_path": null,
+    "transcription_model": null,
+    "transcription_domain_prompt": null,
+    "transcription_last_error": null,
+    "transcript_adopted": null
+  },
   "lakepointe:6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1": {
     "guid": "lakepointe:6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1",
     "title": "How to Fight Spiritual Battles You Can't See",

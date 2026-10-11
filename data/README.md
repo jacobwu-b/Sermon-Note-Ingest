@@ -53,11 +53,11 @@ Do not edit between the markers by hand; it will be overwritten.
 |---|---|---|---|
 | gracepres | 448 | Made For Relationship | 2026-10-04 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
-| lakepointe | 139 | How to Fight Spiritual Battles You Can't See | 2026-10-04 |
+| lakepointe | 140 | A Call to Die | 2026-10-11 |
 | menlo | 149 | Still | 2026-10-04 |
 | north_point | 104 | Be Rich 2026: A Conversation with Janine Maxwell | 2026-10-04 |
 | pbc | 401 | Enough? | 2026-10-04 |
 | westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
 
-**Total sermons across all churches: 1858**
+**Total sermons across all churches: 1859**
 <!-- STATS:END -->
