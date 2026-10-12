@@ -134,6 +134,9 @@ jobs:
   transcribe:
     name: Transcribe (shard ${{ matrix.shard }})
     needs: plan
+    # An empty matrix fails the run even though every job that ran is green; skip
+    # instead, so an idle tick stays green and a red run means something broke.
+    if: ${{ needs.plan.outputs.shard_count != '0' }}
     runs-on: ubuntu-latest
     # No timeout-minutes: large-v3 run length varies enough that a fixed cap keeps
     # cutting runs off before they finish. Public repo — GitHub-hosted runner
