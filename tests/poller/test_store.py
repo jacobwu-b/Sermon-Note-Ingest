@@ -119,6 +119,13 @@ def test_item_to_record_defaults_transcription_fields_to_absent():
     assert record["transcript_adopted"] is None
 
 
+def test_item_to_record_carries_every_decoding_profile_field_as_unknown():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    assert {key: record[f"transcription_{key}"] for key in store.PROFILE_KEYS} == dict.fromkeys(
+        store.PROFILE_KEYS
+    )
+
+
 def test_mark_transcribed_sets_exactly_its_own_fields():
     record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
     store.mark_transcribed(
@@ -126,8 +133,7 @@ def test_mark_transcribed_sets_exactly_its_own_fields():
         content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
         transcript_hash="deadbeef",
         transcribed_at="2026-09-06T12:00:00+00:00",
-        model="large-v3",
-        domain_prompt=True,
+        profile={"model": "large-v3", "domain_prompt": True},
     )
     assert record["transcription_status"] == "done"
     assert record["content_path"] == "transcripts/menlo/2026-09-06_hear-and-do_g1.txt"
@@ -138,6 +144,46 @@ def test_mark_transcribed_sets_exactly_its_own_fields():
     assert record["transcript_adopted"] is False
 
 
+_FULL_PROFILE = {
+    "model": "large-v3",
+    "compute_type": "int8",
+    "beam_size": 5,
+    "condition_on_previous_text": False,
+    "hallucination_silence_threshold": 2.0,
+    "vad_filter": True,
+    "domain_prompt": True,
+    "hotwords": "Keith Crosby, Luke",
+    "faster_whisper_version": "1.2.1",
+    "ctranslate2_version": "4.8.2",
+}
+
+
+def test_mark_transcribed_records_every_decoding_profile_field():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record, content_path="x", transcript_hash="h", transcribed_at="t", profile=_FULL_PROFILE
+    )
+    assert {key: record[f"transcription_{key}"] for key in store.PROFILE_KEYS} == _FULL_PROFILE
+
+
+def test_mark_transcribed_records_a_missing_profile_field_as_unknown():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record, content_path="x", transcript_hash="h", transcribed_at="t", profile={"model": "large-v3"}
+    )
+    assert record["transcription_model"] == "large-v3"
+    assert record["transcription_beam_size"] is None
+
+
+def test_mark_transcribed_refuses_a_profile_field_the_ledger_does_not_know():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    with pytest.raises(ValueError, match="temperature"):
+        store.mark_transcribed(
+            record, content_path="x", transcript_hash="h", transcribed_at="t", profile={"temperature": 0.0}
+        )
+    assert record["transcription_status"] is None
+
+
 def test_mark_transcribed_records_a_transcript_adopted_from_content():
     record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
     store.mark_transcribed(
@@ -145,8 +191,7 @@ def test_mark_transcribed_records_a_transcript_adopted_from_content():
         content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
         transcript_hash="deadbeef",
         transcribed_at="2026-09-19T15:49:16+00:00",
-        model=None,
-        domain_prompt=None,
+        profile=None,
         adopted=True,
     )
     assert record["transcript_adopted"] is True
@@ -160,8 +205,7 @@ def test_a_successful_transcription_clears_the_earlier_failure_reason():
         content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
         transcript_hash="deadbeef",
         transcribed_at="2026-09-06T12:00:00+00:00",
-        model="large-v3",
-        domain_prompt=True,
+        profile={"model": "large-v3", "domain_prompt": True},
     )
     assert record["transcription_last_error"] is None
 
@@ -181,8 +225,7 @@ def test_mark_download_failed_never_overwrites_a_settled_record():
         content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
         transcript_hash="deadbeef",
         transcribed_at="2026-09-06T12:00:00+00:00",
-        model="large-v3",
-        domain_prompt=True,
+        profile={"model": "large-v3", "domain_prompt": True},
     )
     store.mark_download_failed(record)
     assert record["transcription_last_error"] is None
@@ -231,8 +274,7 @@ def test_refresh_record_never_touches_first_seen_at_feed_published_at_or_progres
         content_path="transcripts/x.txt",
         transcript_hash="abc",
         transcribed_at="2026-01-03T00:00:00+00:00",
-        model="large-v3",
-        domain_prompt=True,
+        profile={"model": "large-v3", "domain_prompt": True},
     )
 
     store.refresh_record(record, _item(preached_on="2026-09-06"))
@@ -252,8 +294,7 @@ def test_refresh_record_freezes_title_once_transcription_is_done_but_not_other_f
         content_path="transcripts/x.txt",
         transcript_hash="abc",
         transcribed_at="now",
-        model="large-v3",
-        domain_prompt=True,
+        profile={"model": "large-v3", "domain_prompt": True},
     )
 
     renamed_and_rotated = _item(preached_on="2026-09-06").__class__(

@@ -24,6 +24,7 @@ import json
 import logging
 import os
 import sys
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
@@ -35,6 +36,21 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DOWNLOAD_ERROR = "audio_download"
 TRANSCRIPTION_ERROR = "transcription"
 EMPTY_TRANSCRIPT_ERROR = "empty_transcript"
+
+# What a transcript records about how it was produced, each as ``transcription_<key>``
+# (ADR-0012, ADR-0022); ``poller.transcribe.DecodingProfile`` has exactly these fields.
+PROFILE_KEYS = (
+    "model",
+    "compute_type",
+    "beam_size",
+    "condition_on_previous_text",
+    "hallucination_silence_threshold",
+    "vad_filter",
+    "domain_prompt",
+    "hotwords",
+    "faster_whisper_version",
+    "ctranslate2_version",
+)
 
 logger = logging.getLogger("poller")
 
@@ -183,8 +199,7 @@ def item_to_record(item: SermonItem, *, first_seen_at: str, feed_published_at: s
         "transcribed_at": None,
         "transcript_hash": None,
         "content_path": None,
-        "transcription_model": None,
-        "transcription_domain_prompt": None,
+        **{f"transcription_{key}": None for key in PROFILE_KEYS},
         "transcription_last_error": None,
         "transcript_adopted": None,
     }
@@ -241,27 +256,31 @@ def mark_transcribed(
     content_path: str,
     transcript_hash: str,
     transcribed_at: str,
-    model: str | None,
-    domain_prompt: bool | None,
+    profile: Mapping[str, Any] | None,
     adopted: bool = False,
 ) -> None:
     """Advance ``record`` to transcribed, recording where its text landed in Content.
 
     Called only once this record's content is durably in Content — the transcript
     text itself is never written here or anywhere else in this repo.
-    ``model``/``domain_prompt`` are the ``WhisperConfig`` values active for this
-    transcription (ADR-0012), so a later re-transcription pass can select precisely
-    instead of inferring from timestamps; ``None`` when unknown (a transcript adopted
-    from Content that this run didn't produce). ``adopted`` marks exactly that case: its
+    ``profile`` is the decoding profile that produced this text, keyed by
+    :data:`PROFILE_KEYS` (ADR-0012, ADR-0022), so a later re-transcription pass can select
+    precisely instead of inferring from timestamps. A key it lacks, or a ``None`` profile
+    (a transcript adopted from Content that this run didn't produce), records "unknown";
+    a key the ledger doesn't know raises ``ValueError``. ``adopted`` marks the adopted case: its
     ``transcribed_at`` is when it was adopted, not produced, so latency reports skip it
     (ADR-0018).
     """
+    profile = profile or {}
+    unknown = sorted(set(profile) - set(PROFILE_KEYS))
+    if unknown:
+        raise ValueError(f"not a ledger profile field: {', '.join(unknown)}")
     record["transcription_status"] = "done"
     record["content_path"] = content_path
     record["transcript_hash"] = transcript_hash
     record["transcribed_at"] = transcribed_at
-    record["transcription_model"] = model
-    record["transcription_domain_prompt"] = domain_prompt
+    for key in PROFILE_KEYS:
+        record[f"transcription_{key}"] = profile.get(key)
     record["transcript_adopted"] = adopted
     record["transcription_last_error"] = None
 

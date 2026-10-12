@@ -71,8 +71,7 @@ def test_a_transcribed_sermon_carries_its_instants_and_no_error():
         content_path="transcripts/menlo/2026-09-27_the-purity-of-reality_x.txt",
         transcript_hash="2ce57804",
         transcribed_at="2026-09-27T21:34:56+00:00",
-        model="large-v3",
-        domain_prompt=True,
+        profile={"model": "large-v3", "domain_prompt": True},
     )
     store.save("menlo", {record["guid"]: record})
 
@@ -169,8 +168,7 @@ def test_main_pushes_the_status_file_and_transcript_index_in_one_push():
         content_path="transcripts/menlo/2026-09-27_the-purity-of-reality_x.txt",
         transcript_hash="2ce57804",
         transcribed_at="2026-09-27T21:34:56+00:00",
-        model="large-v3",
-        domain_prompt=False,
+        profile={"model": "large-v3", "domain_prompt": False},
     )
     store.save("menlo", {record["guid"]: record})
     pushed: list[dict[str, str]] = []
