@@ -25,6 +25,7 @@ decides which of them this particular invocation is responsible for. The default
 from __future__ import annotations
 
 import argparse
+import dataclasses
 import json
 import logging
 import re
@@ -35,7 +36,7 @@ from datetime import UTC, datetime, timedelta
 from poller import config, content_repo, net, pipeline_dispatch, prompting, store, transcribe
 from poller.slug import slugify
 
-TranscribeAudio = Callable[[str, str | None], tuple[str, str]]
+TranscribeAudio = Callable[[str, str | None], tuple[str, str, transcribe.DecodingProfile]]
 PushTranscripts = Callable[[dict[str, str]], None]
 FetchExisting = Callable[[list[str]], dict[str, str]]
 DispatchIngestEvent = Callable[[dict[str, object], str], None]
@@ -168,7 +169,8 @@ def transcribe_church(
     its plan has no ledger record to fan out and would report a broken handoff.
 
     ``marks_out``, when given, is filled with every ledger mutation this call actually
-    durably makes (guid -> ``{"kind": "done", ...mark_transcribed kwargs}`` or
+    durably makes (guid -> ``{"kind": "done", ...mark_transcribed kwargs}``, its
+    ``profile`` as a plain dict, or
     ``{"kind": "failed", "error": ...}``, or ``{"kind": "download_failed"}``) — never a
     transcription whose Content push didn't succeed.
     :func:`replay_marks` re-applies this record verbatim onto a freshly-loaded ledger, so
@@ -176,10 +178,9 @@ def transcribe_church(
     just to recover from a losing ``data/*.json`` race (issue #60).
     """
     to_push: dict[str, str] = {}
-    pending_marks: dict[str, tuple[str, str]] = {}
+    pending_marks: dict[str, tuple[str, str, dict[str, object]]] = {}
     all_ok = True
     church_terms = prompting.church_vocabulary(records)
-    whisper_cfg = config.load_whisper_config()
 
     paths = {guid: _content_path(name, record) for guid, record in batch}
     try:
@@ -204,8 +205,7 @@ def transcribe_church(
                 content_path=path,
                 transcript_hash=adopted_hash,
                 transcribed_at=adopted_at,
-                model=None,
-                domain_prompt=None,
+                profile=None,
                 adopted=True,
             )
             if marks_out is not None:
@@ -214,15 +214,14 @@ def transcribe_church(
                     "content_path": path,
                     "transcript_hash": adopted_hash,
                     "transcribed_at": adopted_at,
-                    "model": None,
-                    "domain_prompt": None,
+                    "profile": None,
                     "adopted": True,
                 }
             continue
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
         logger.debug("%s/%s: hotwords: %s", name, guid, hotwords)
         try:
-            text, digest = transcribe_audio(record["audio_url"], hotwords)
+            text, digest, decoded_under = transcribe_audio(record["audio_url"], hotwords)
         except net.AudioDownloadError as exc:
             logger.warning("%s/%s: audio download failed, retrying next run: %s", name, guid, exc)
             store.mark_download_failed(record)
@@ -242,7 +241,7 @@ def transcribe_church(
             all_ok = False
             continue
         to_push[path] = text
-        pending_marks[guid] = (path, digest)
+        pending_marks[guid] = (path, digest, dataclasses.asdict(decoded_under))
 
     if to_push:
         try:
@@ -258,15 +257,14 @@ def transcribe_church(
             return False
         transcribed_at = net.now()
         now_dt = datetime.fromisoformat(transcribed_at)
-        for guid, (path, digest) in pending_marks.items():
+        for guid, (path, digest, profile) in pending_marks.items():
             record = records[guid]
             store.mark_transcribed(
                 record,
                 content_path=path,
                 transcript_hash=digest,
                 transcribed_at=transcribed_at,
-                model=whisper_cfg.model,
-                domain_prompt=whisper_cfg.domain_prompt,
+                profile=profile,
             )
             if marks_out is not None:
                 marks_out[guid] = {
@@ -274,8 +272,7 @@ def transcribe_church(
                     "content_path": path,
                     "transcript_hash": digest,
                     "transcribed_at": transcribed_at,
-                    "model": whisper_cfg.model,
-                    "domain_prompt": whisper_cfg.domain_prompt,
+                    "profile": profile,
                     "adopted": False,
                 }
             if not pipeline_enabled:
@@ -360,13 +357,18 @@ def replay_marks(path: str) -> bool:
                 continue
             kind = fields.get("kind")
             if kind == "done":
+                # A marks file from before ADR-0022 carries only the ADR-0012 pair; the rest is unknown.
+                profile = (
+                    fields["profile"]
+                    if "profile" in fields
+                    else {"model": fields["model"], "domain_prompt": fields["domain_prompt"]}
+                )
                 store.mark_transcribed(
                     record,
                     content_path=fields["content_path"],
                     transcript_hash=fields["transcript_hash"],
                     transcribed_at=fields["transcribed_at"],
-                    model=fields["model"],
-                    domain_prompt=fields["domain_prompt"],
+                    profile=profile,
                     adopted=fields.get("adopted", False),
                 )
             elif kind == "failed":

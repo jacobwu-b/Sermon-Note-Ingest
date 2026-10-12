@@ -65,8 +65,7 @@ def _transcribed(record: dict, content_path: str, *, adopted: bool = False) -> d
         content_path=content_path,
         transcript_hash="2ce57804",
         transcribed_at="2026-09-27T21:34:56+00:00",
-        model=None if adopted else "large-v3",
-        domain_prompt=None if adopted else False,
+        profile=None if adopted else {"model": "large-v3", "domain_prompt": False},
         adopted=adopted,
     )
     return record

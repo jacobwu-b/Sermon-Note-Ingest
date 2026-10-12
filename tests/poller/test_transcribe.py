@@ -1,21 +1,36 @@
+import dataclasses
 import hashlib
 import sys
 import types
+from importlib import metadata
 
 import pytest
 
-from poller import net, transcribe
+from poller import net, store, transcribe
+
+_PROFILE = transcribe.DecodingProfile(
+    model="large-v3",
+    compute_type="int8",
+    beam_size=5,
+    condition_on_previous_text=False,
+    hallucination_silence_threshold=2.0,
+    vad_filter=True,
+    domain_prompt=False,
+    hotwords=None,
+    faster_whisper_version="1.2.1",
+    ctranslate2_version="4.8.2",
+)
 
 
-def test_transcribe_audio_returns_text_and_hash(tmp_path):
+def test_transcribe_audio_returns_text_hash_and_the_profile_that_produced_it(tmp_path):
     def fake_download(url, dest):
         dest.write_bytes(b"fake audio")
 
     def fake_transcribe(audio_path, hotwords):
         assert audio_path.read_bytes() == b"fake audio"
-        return "  Hello, this is a sermon.  "
+        return "  Hello, this is a sermon.  ", _PROFILE
 
-    text, digest = transcribe.transcribe_audio(
+    text, digest, profile = transcribe.transcribe_audio(
         "https://example.org/a.mp3",
         transcribe=fake_transcribe,
         download=fake_download,
@@ -23,6 +38,7 @@ def test_transcribe_audio_returns_text_and_hash(tmp_path):
     )
     assert text == "Hello, this is a sermon."
     assert digest == hashlib.sha256(text.encode("utf-8")).hexdigest()
+    assert profile == _PROFILE
 
 
 def test_transcribe_audio_propagates_download_failure(tmp_path):
@@ -32,7 +48,7 @@ def test_transcribe_audio_propagates_download_failure(tmp_path):
     with pytest.raises(net.AudioDownloadError):
         transcribe.transcribe_audio(
             "https://example.org/a.mp3",
-            transcribe=lambda p, hw: "unused",
+            transcribe=lambda p, hw: ("unused", _PROFILE),
             download=always_fails,
             sleep=lambda _s: None,
         )
@@ -45,7 +61,7 @@ def test_transcribe_audio_raises_empty_transcript_error_after_retries():
     with pytest.raises(transcribe.EmptyTranscriptError):
         transcribe.transcribe_audio(
             "https://example.org/a.mp3",
-            transcribe=lambda p, hw: "   ",
+            transcribe=lambda p, hw: ("   ", _PROFILE),
             download=fake_download,
             sleep=lambda _s: None,
         )
@@ -74,12 +90,12 @@ def test_transcribe_audio_succeeds_on_a_later_attempt(tmp_path):
         calls.append(1)
         if len(calls) < 2:
             raise RuntimeError("transient decode error")
-        return "recovered transcript"
+        return "recovered transcript", _PROFILE
 
     def fake_download(url, dest):
         dest.write_bytes(b"audio")
 
-    text, _digest = transcribe.transcribe_audio(
+    text, _digest, _profile = transcribe.transcribe_audio(
         "https://example.org/a.mp3",
         transcribe=flaky_transcribe,
         download=fake_download,
@@ -118,7 +134,7 @@ def test_transcribe_audio_forwards_hotwords_to_the_model_call():
 
     def fake_transcribe(audio_path, hotwords):
         seen.append(hotwords)
-        return "text"
+        return "text", _PROFILE
 
     transcribe.transcribe_audio(
         "https://example.org/a.mp3",
@@ -138,7 +154,7 @@ def test_transcribe_audio_defaults_to_no_hotwords():
 
     def fake_transcribe(audio_path, hotwords):
         seen.append(hotwords)
-        return "text"
+        return "text", _PROFILE
 
     transcribe.transcribe_audio(
         "https://example.org/a.mp3", transcribe=fake_transcribe, download=fake_download, sleep=lambda _s: None
@@ -178,9 +194,10 @@ def test_default_transcribe_passes_hotwords_beam_size_condition_flag_and_silence
     audio = tmp_path / "audio"
     audio.write_bytes(b"audio")
 
-    text = transcribe.default_transcribe(audio, "Keith Crosby, Luke")
+    text, profile = transcribe.default_transcribe(audio, "Keith Crosby, Luke")
 
     assert text == "Hello, church. Amen."
+    assert profile.hotwords == "Keith Crosby, Luke"
     assert calls == [
         (
             str(audio),
@@ -238,3 +255,80 @@ def test_default_transcribe_omits_the_silence_guard_when_its_threshold_is_zero(m
     _audio, kwargs = calls[0]
     assert "word_timestamps" not in kwargs
     assert "hallucination_silence_threshold" not in kwargs
+
+
+def test_default_transcribe_records_exactly_the_decoding_inputs_it_passed_to_the_model(monkeypatch, tmp_path):
+    # ADR-0022: the profile is built once and both drives the call and is recorded —
+    # never re-derived from config afterwards.
+    monkeypatch.setenv("WHISPER_MODEL", "large-v3")
+    monkeypatch.setenv("WHISPER_COMPUTE_TYPE", "int8")
+    monkeypatch.setenv("WHISPER_BEAM_SIZE", "4")
+    monkeypatch.setenv("WHISPER_CONDITION_ON_PREVIOUS_TEXT", "true")
+    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "true")
+    monkeypatch.setenv("WHISPER_HALLUCINATION_SILENCE_THRESHOLD", "1.5")
+    calls = []
+    _install_fake_whisper(monkeypatch, calls)
+    audio = tmp_path / "audio"
+    audio.write_bytes(b"audio")
+
+    _text, profile = transcribe.default_transcribe(audio, "Keith Crosby, Luke")
+
+    _audio, kwargs = calls[0]
+    assert {k: v for k, v in kwargs.items() if k != "log_progress"} == profile.model_kwargs()
+    assert (
+        profile.model,
+        profile.compute_type,
+        profile.beam_size,
+        profile.condition_on_previous_text,
+        profile.hallucination_silence_threshold,
+        profile.vad_filter,
+        profile.domain_prompt,
+        profile.hotwords,
+    ) == ("large-v3", "int8", 4, True, 1.5, True, True, "Keith Crosby, Luke")
+
+
+def test_default_transcribe_records_no_hotwords_when_domain_prompting_is_off(monkeypatch, tmp_path):
+    monkeypatch.setenv("WHISPER_DOMAIN_PROMPT", "false")
+    calls = []
+    _install_fake_whisper(monkeypatch, calls)
+    audio = tmp_path / "audio"
+    audio.write_bytes(b"audio")
+
+    _text, profile = transcribe.default_transcribe(audio, "Keith Crosby, Luke")
+
+    assert profile.domain_prompt is False
+    assert profile.hotwords is None
+    assert calls[0][1]["hotwords"] is None
+
+
+def test_default_transcribe_records_an_off_silence_guard_as_zero(monkeypatch, tmp_path):
+    monkeypatch.setenv("WHISPER_HALLUCINATION_SILENCE_THRESHOLD", "0")
+    calls = []
+    _install_fake_whisper(monkeypatch, calls)
+    audio = tmp_path / "audio"
+    audio.write_bytes(b"audio")
+
+    _text, profile = transcribe.default_transcribe(audio, None)
+
+    assert profile.hallucination_silence_threshold == 0
+    assert "hallucination_silence_threshold" not in profile.model_kwargs()
+
+
+def test_decoding_profile_records_the_installed_engine_versions():
+    profile = transcribe.decoding_profile(transcribe.config.load_whisper_config(), None)
+    assert profile.faster_whisper_version == metadata.version("faster-whisper")
+    assert profile.ctranslate2_version == metadata.version("ctranslate2")
+
+
+def test_decoding_profile_records_an_engine_that_is_not_installed_as_unknown(monkeypatch):
+    def not_installed(dist):
+        raise metadata.PackageNotFoundError(dist)
+
+    monkeypatch.setattr(transcribe.metadata, "version", not_installed)
+    profile = transcribe.decoding_profile(transcribe.config.load_whisper_config(), None)
+    assert profile.faster_whisper_version is None
+    assert profile.ctranslate2_version is None
+
+
+def test_decoding_profile_fields_are_exactly_the_ledger_s_profile_fields():
+    assert tuple(field.name for field in dataclasses.fields(transcribe.DecodingProfile)) == store.PROFILE_KEYS
