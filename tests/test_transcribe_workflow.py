@@ -269,6 +269,14 @@ def test_transcribe_workflow_pushes_the_ledger_from_a_detached_checkout():
     assert not re.search(r"git push\s*;", transcribe)
 
 
+def test_transcribe_job_is_skipped_when_the_plan_counts_no_shards():
+    # An empty matrix (`fromJson('[]')`) fails the whole run even though every job
+    # that ran is green, so an idle tick reads as an outage. Skipping the job leaves
+    # the run green and keeps a red run meaning something broke.
+    job = _job_text("transcribe")
+    assert "if: ${{ needs.plan.outputs.shard_count != '0' }}" in job
+
+
 def test_status_publishes_on_every_planned_tick_even_with_no_shards():
     # A tick with nothing pending runs zero shards, so the transcribe job is skipped;
     # the status file must still refresh (spec 0009), so the job keys off the plan
