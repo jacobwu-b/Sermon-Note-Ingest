@@ -19,7 +19,12 @@
     "transcription_model": "large-v3",
     "transcription_domain_prompt": false,
     "transcription_last_error": null,
-    "transcript_adopted": false
+    "transcript_adopted": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": false,
+    "transcription_hallucination_silence_threshold": 2.0
   },
   "lakepointe:6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1": {
     "guid": "lakepointe:6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1",
@@ -39,7 +44,12 @@
     "transcript_hash": "1949473e00f00fae63bd039e1cf24c5f466da7703e0c6a3bbcc089f6c20b9bec",
     "content_path": "transcripts/lakepointe/2026-10-04_how-to-fight-spiritual-battles-you-can-t-see_lakepointe_6bf0317a-c01c-11f1-88a0-cb09cbc9b0d1.txt",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:e3b16160-baa0-11f1-9b71-07e37867d17b": {
     "guid": "lakepointe:e3b16160-baa0-11f1-9b71-07e37867d17b",
@@ -59,7 +69,12 @@
     "transcript_hash": "be92567fc46bcdd10b2e684eb8f89643fd2e557df1ea35862bb610232cc920fe",
     "content_path": "transcripts/lakepointe/2026-09-27_god-wants-you-to-pour-yourself-out_lakepointe_e3b16160-baa0-11f1-9b71-07e37867d17b.txt",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:955e721c-b51b-11f1-b806-0fb5c6e32935": {
     "guid": "lakepointe:955e721c-b51b-11f1-b806-0fb5c6e32935",
@@ -79,7 +94,12 @@
     "transcript_hash": "19137cda412599bec062fa0acdafe47b3561faed0c9656b0bb84dabc558032f5",
     "content_path": "transcripts/lakepointe/2026-09-20_why-following-jesus-will-make-you-weird_lakepointe_955e721c-b51b-11f1-b806-0fb5c6e32935.txt",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:3e3f3a82-af9b-11f1-ad89-77ec95c060f4": {
     "guid": "lakepointe:3e3f3a82-af9b-11f1-ad89-77ec95c060f4",
@@ -99,7 +119,12 @@
     "transcript_hash": "6f0c3697e6aaca3afb25a8aa7984ac8471a808438c7f80fdad81c3101397e7a3",
     "transcribed_at": "2026-09-14T07:05:43.603729+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:08a8ef5c-aa1a-11f1-a002-4b2b4579dc2b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1458294367.mp3",
@@ -119,7 +144,12 @@
     "transcript_hash": "869999624532bfcb4b6e2feb4a5c939265fbc32f46eef83991e6578a1eb07130",
     "transcribed_at": "2026-09-14T07:15:52.488657+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:244b0562-a49b-11f1-bb5e-c391319433ba": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4123679489.mp3",
@@ -139,7 +169,12 @@
     "transcript_hash": "1cd9295aed0f2dce24bc77bfc1dd1df59526f6f35562368ffdb4399590668282",
     "transcribed_at": "2026-09-14T07:13:16.094548+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:4e7b3552-9f12-11f1-9d73-b76bbbad48f6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2608809547.mp3",
@@ -159,7 +194,12 @@
     "transcript_hash": "91d14da4c3b0198ce57bcd13533742713e92a5e79d8466b84ca7de69fa11e7ae",
     "transcribed_at": "2026-09-14T07:19:38.921499+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:49697736-999a-11f1-8221-fb7335b00c35": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8244482911.mp3",
@@ -179,7 +219,12 @@
     "transcript_hash": "8c48fdb45be1040ac8e774816f7d8b342251632855153329364d595fc032843d",
     "transcribed_at": "2026-09-14T07:12:23.837088+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:b445bed4-941d-11f1-8099-a3564bfef232": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7420355677.mp3",
@@ -199,7 +244,12 @@
     "transcript_hash": "6af039e32cc756ccc0236c2e7a39c6b0dab5d417a718e81b3472e042915ded1a",
     "transcribed_at": "2026-09-14T14:20:35.187022+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:26b2e67e-789c-11f1-ba97-e320afc5442a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5561402125.mp3",
@@ -219,7 +269,12 @@
     "transcript_hash": "92e64c58e287fa7ab22e244968e991186a11e49d9dcdf82166afb5acb2c4a702",
     "transcribed_at": "2026-09-14T14:08:49.140461+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:03363acc-731d-11f1-a29b-638d24917f6a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3564208990.mp3",
@@ -239,7 +294,12 @@
     "transcript_hash": "15b641d2d86aee39e4c52d86c87d96b20d4127eafe8dae420d37a2f3807e74d7",
     "transcribed_at": "2026-09-14T13:48:27.093138+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:0449828e-6d9b-11f1-be67-cb455c8fe748": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4334295760.mp3",
@@ -259,7 +319,12 @@
     "transcript_hash": "a470eebf2a6225f3688ca160faf00800ade294c884e760d83bd545e48c3bdada",
     "transcribed_at": "2026-09-14T14:06:34.591824+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:def7f5ba-6818-11f1-bf9b-e7a54963f20e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1661616848.mp3",
@@ -279,7 +344,12 @@
     "transcript_hash": "421bcf910a843774882cd5081e0ec63915c49b61c3e0885b62f2481cccef5c46",
     "transcribed_at": "2026-09-14T13:56:28.996553+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:27a08cd0-62a3-11f1-97d1-7f367294f057": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5679571855.mp3",
@@ -299,7 +369,12 @@
     "transcript_hash": "a9d75386436143eeef0bcd53cb0771bdef51b7286ec73a8b50d9031ba4155c0c",
     "transcribed_at": "2026-09-14T19:18:31.976905+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:090d7bae-5d1a-11f1-8baa-273fb2c108d1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7926686353.mp3",
@@ -319,7 +394,12 @@
     "transcript_hash": "9272804a5d5c9953f837338091a59118818cc697c62c88107add5fa031e63951",
     "transcribed_at": "2026-09-14T19:45:09.993429+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:d851091a-579a-11f1-aee7-1bce2593eb97": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7900112834.mp3",
@@ -339,7 +419,12 @@
     "transcript_hash": "19a9b12ea4f4c7d594dff97244fb90936c65da4c449e0e2082e3a63730e3398f",
     "transcribed_at": "2026-09-14T19:38:59.921292+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:158e4a58-521a-11f1-af30-dffd8c4a5a49": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5280695709.mp3",
@@ -359,7 +444,12 @@
     "transcript_hash": "c6ebe277e5f81106a7fa0053293e26e9468d2a4ee65c7aa6cc964d0916118ef4",
     "transcribed_at": "2026-09-14T19:10:16.505253+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:56cc43d8-4c9a-11f1-a33a-3be6d3252272": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1197373911.mp3",
@@ -379,7 +469,12 @@
     "transcript_hash": "9810cb38c9b1a85f8cbf25bc4d55a964ed8059358d46cabc02c05e2cd474969e",
     "transcribed_at": "2026-09-14T19:44:39.608836+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:e9d62118-471c-11f1-b1de-c7352a8d2808": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4183299957.mp3",
@@ -399,7 +494,12 @@
     "transcript_hash": "bc8b7026343890647f6679e1580454302b1519cc50c06a791528c9b9517b2ddd",
     "transcribed_at": "2026-09-14T23:19:06.002782+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:175c3082-4105-11f1-8e7c-4bfce9364ed5": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9590833076.mp3?updated=1777389440",
@@ -419,7 +519,12 @@
     "transcript_hash": "1efc2d489822bbcc99b6eeedef768b61cee758401427a3797b4016ceda6d978e",
     "transcribed_at": "2026-09-14T22:55:57.240839+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:862e5ad2-3c17-11f1-ad1d-1b93caa2fde2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5665637689.mp3",
@@ -439,7 +544,12 @@
     "transcript_hash": "99432a324698ca97c75345667a549b162e037589af51e8ccfc36978c61de1d20",
     "transcribed_at": "2026-09-14T22:48:18.589590+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:8c50c20c-3699-11f1-bf01-c3b7f5f0ec42": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3478826337.mp3",
@@ -459,7 +569,12 @@
     "transcript_hash": "96de8b6b87e11dd4c3eb946b05f9706fd1e0ece28d19c3242cc2e18c36509119",
     "transcribed_at": "2026-09-14T22:44:25.862391+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:ec260c14-310d-11f1-bca1-2f3f716ea9a7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3508549211.mp3",
@@ -479,7 +594,12 @@
     "transcript_hash": "eff387329a33cacb97cc4d9981465d91f7e09e56721b06e5cacb386395c56178",
     "transcribed_at": "2026-09-14T23:01:43.180881+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:a87d9a3a-2b96-11f1-845b-cfb44ced041c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6000855758.mp3",
@@ -499,7 +619,12 @@
     "transcript_hash": "4ef8c26035f09a262b290d2c6581fe833ecc37fd60f4da4a92d75417c9940d14",
     "transcribed_at": "2026-09-15T01:26:49.210153+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:55345904-2097-11f1-a70f-cbed1a186118": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9782766805.mp3",
@@ -519,7 +644,12 @@
     "transcript_hash": "d8b377384f0d984136d4195f2b16767a360233ee2a9fea83585ea1c3cb686d8a",
     "transcribed_at": "2026-09-15T01:37:54.575484+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:c1f84e16-1b14-11f1-8bd5-ebd5615be8ed": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1122815354.mp3",
@@ -539,7 +669,12 @@
     "transcript_hash": "fdfc2e5e453a241a4b3aa65c8d818e9eeab6b8588d4ab7e9b2da26541623803f",
     "transcribed_at": "2026-09-15T01:57:50.800861+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:484077bc-159f-11f1-a1f9-ef2336e6b67c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1475402782.mp3",
@@ -559,7 +694,12 @@
     "transcript_hash": "f2ec3262ad47d5a828f61cca319354675b602d7c683ec00402875b07620a9aab",
     "transcribed_at": "2026-09-15T01:58:03.768751+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:2e8ef830-1021-11f1-8ef7-f74714c1a0c7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9173919675.mp3",
@@ -579,7 +719,12 @@
     "transcript_hash": "249ccb31f81656d748c52dc6697153d7413d380ee3800d0a2884bb80ddddb35e",
     "transcribed_at": "2026-09-15T01:54:43.147304+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:4bae9622-0a9b-11f1-a341-cb009796d578": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8323222566.mp3",
@@ -599,7 +744,12 @@
     "transcript_hash": "ecd43840af050272f8a32df51d85f2beca6adfac447e39df7924a11c06feb25e",
     "transcribed_at": "2026-09-15T06:01:45.994033+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:9b2e14a0-051b-11f1-9eb3-c3db383791ac": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1521934337.mp3",
@@ -619,7 +769,12 @@
     "transcript_hash": "a8b8ca63910757371feb57294dd1e7529a0e27519ca90fb58fd0a072682af29c",
     "transcribed_at": "2026-09-15T06:33:31.322333+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:3486c630-ff9d-11f0-8256-5baad845b33e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3569939407.mp3",
@@ -639,7 +794,12 @@
     "transcript_hash": "64f378f6234a3e0d2bfba2cc69963d35185da9beed4c26f7bc99096bc76e0bb4",
     "transcribed_at": "2026-09-15T06:24:07.234202+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:fd226484-f49c-11f0-bb15-733c0828e89d": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8914790452.mp3",
@@ -659,7 +819,12 @@
     "transcript_hash": "f081940e7e390e899cc2d8b78bb47bba65ce001f63504831b44d265650a56b8f",
     "transcribed_at": "2026-09-15T06:37:45.001573+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:3f03a1ec-ef1b-11f0-aac1-035da6038eb9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9807814197.mp3",
@@ -679,7 +844,12 @@
     "transcript_hash": "4afe308fa21404972b475edbe4f1da1974cb727741eaf0f7641a33bf21ae8593",
     "transcribed_at": "2026-09-15T06:31:30.067387+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:3c8b9fa2-e99c-11f0-a5d0-8f0b456b5ec6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9304979158.mp3",
@@ -699,7 +869,12 @@
     "transcript_hash": "ed6e029aee5e69d84251365c4d70d87ae04a47e0bec7c03c654dd8be92a57232",
     "transcribed_at": "2026-09-15T11:46:55.227041+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:bc7a9880-e12c-11f0-8266-7b4f2e14ceba": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2767766621.mp3",
@@ -719,7 +894,12 @@
     "transcript_hash": "580a95b550ab67862b41964bc681f1418a11230ae50a7030f57d274527767cbb",
     "transcribed_at": "2026-09-15T10:38:40.497495+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:30ba9f34-d91b-11f0-8ffa-d72148c5d75f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9949363126.mp3",
@@ -739,7 +919,12 @@
     "transcript_hash": "ceaf8ca3322cd4c0a69d3a103e0d61aee5688c82062fd57a645159b78625ed1d",
     "transcribed_at": "2026-09-15T10:36:13.494004+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:51c60c58-d39a-11f0-af68-93148b07ab0c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9013694725.mp3",
@@ -759,7 +944,12 @@
     "transcript_hash": "e112e05fd0c94511cdafc78328e5a7d3a2dbd200dfb7742116275aecded9a0fe",
     "transcribed_at": "2026-09-15T11:13:18.861974+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:c36a294c-c89c-11f0-92cf-2be3afec539f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7612470907.mp3",
@@ -779,7 +969,12 @@
     "transcript_hash": "59fe6aba140730bab3d901525620cd6664f784fd8a821dfcb5bfcaa2d741aee0",
     "transcribed_at": "2026-09-15T11:02:15.114431+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:6e64917a-c31b-11f0-963f-9792fc610914": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6316748907.mp3",
@@ -799,7 +994,12 @@
     "transcript_hash": "ae135c3aa386d121ac2a58da7f614f8a101b5f56733bf2e8155d21dfd26bea4b",
     "transcribed_at": "2026-09-15T16:32:53.843313+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:b03008b8-bd9a-11f0-8d9e-831e21f972d9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1848022417.mp3",
@@ -819,7 +1019,12 @@
     "transcript_hash": "e48440fcd1ece1c9d042663e73275044fef51edbc66b35fe65e9d0ca83384e81",
     "transcribed_at": "2026-09-15T16:33:15.147243+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:6e785b98-b81b-11f0-8471-3b5e296b3c79": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3251866715.mp3",
@@ -839,7 +1044,12 @@
     "transcript_hash": "261a9ba537657ef819d313eb48c986dd457953eedc3e3da720681fb6cbd5f793",
     "transcribed_at": "2026-09-15T16:31:06.397016+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:8c93eabc-b293-11f0-b016-2fb2d2dc040f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9749876600.mp3",
@@ -859,7 +1069,12 @@
     "transcript_hash": "7d10aad4455661bc95dabea1b10dccc18b24757d135d801bc5b1564b6533cc05",
     "transcribed_at": "2026-09-15T16:19:06.527941+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:bdd9067e-ad12-11f0-868f-bfbc4dea4e66": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3515667648.mp3",
@@ -879,7 +1094,12 @@
     "transcript_hash": "b84a9f3affcc231564412b68c8e6bbf7e1ca07a1fd46cfb521cba4a08b89fbb7",
     "transcribed_at": "2026-09-15T16:13:50.011341+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:583b1602-a792-11f0-9e88-db9ee01e8501": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3681795885.mp3",
@@ -899,7 +1119,12 @@
     "transcript_hash": "e5ce9abbfdac2da3d058e2ed8033b8bba258920c33fcf08597dd9a0f92914cba",
     "transcribed_at": "2026-09-15T19:49:17.933021+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:eb45abc4-a210-11f0-aed4-130b8b07245b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1869816725.mp3",
@@ -919,7 +1144,12 @@
     "transcript_hash": "8463b910537f40fc0af12e655c704295a0148088e6d33db794cd344b0a3b5bea",
     "transcribed_at": "2026-09-15T19:46:27.902833+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:ab382b18-9c90-11f0-90f0-9fe6192adda1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2278042280.mp3",
@@ -939,7 +1169,12 @@
     "transcript_hash": "4996897fd24499fb6aaa0e2449c8f9095d10a0f741e2f2466b09421a78419a23",
     "transcribed_at": "2026-09-15T20:16:31.657068+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:530feeec-9715-11f0-9504-97a1dcbe1135": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5464400138.mp3",
@@ -959,7 +1194,12 @@
     "transcript_hash": "73288f01e2458b84bf86ad464a64e0892aa6e4cd2a650adba6029e3dfbb824cc",
     "transcribed_at": "2026-09-15T20:02:11.969505+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:36b9766c-9190-11f0-8f93-038194ae305e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9198628247.mp3",
@@ -979,7 +1219,12 @@
     "transcript_hash": "2716a0ed406931b7b94eae0f9f6dce9885ec7a81f9b87104a7e6704e3f2e4eae",
     "transcribed_at": "2026-09-15T20:12:41.681081+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:7fe9ad30-8c12-11f0-a423-1b527821c998": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1524600487.mp3",
@@ -999,7 +1244,12 @@
     "transcript_hash": "3377b936c1dfa0eb1e8d2a80bf0379d2e95c12df0be92f92cc56a5745911358f",
     "transcribed_at": "2026-09-15T23:23:16.142491+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:9f3e562c-8695-11f0-9829-db2bfe5a8d37": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9658260273.mp3",
@@ -1019,7 +1269,12 @@
     "transcript_hash": "50de95382b13741f9f49b07283eb98a3ff743599c7725be790bee9aaa6c886f5",
     "transcribed_at": "2026-09-15T22:39:45.981106+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:e681ae5a-8111-11f0-b2b8-bf6564d65657": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7648814399.mp3",
@@ -1039,7 +1294,12 @@
     "transcript_hash": "a8c57ab100d34ec9e7747d1791db96052b4e9566d7fa8d9d86a016f0254c05dc",
     "transcribed_at": "2026-09-15T23:14:31.051877+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:a2a12ba6-7b95-11f0-b14a-dfbfceee4cd6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9127229380.mp3",
@@ -1059,7 +1319,12 @@
     "transcript_hash": "7cc8bffbb75a8eea95c04bebff0a44082ce661535494a9fbd222e1757433d15c",
     "transcribed_at": "2026-09-15T23:24:14.049355+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:61e308e0-7614-11f0-84e8-5765c1914ca3": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6333917493.mp3",
@@ -1079,7 +1344,12 @@
     "transcript_hash": "ad5a6540dd0171d73350ebec20b9b36862af6c5476eb9a2825fd7c0ee67d5efd",
     "transcribed_at": "2026-09-15T23:24:48.903646+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:5880d68a-5a92-11f0-9e28-d365cccef5d2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3956082524.mp3?updated=1751824819",
@@ -1099,7 +1369,12 @@
     "transcript_hash": "21a6ff57144a375b0f29743036cf2307e832410815f723239df84b895c2b1514",
     "transcribed_at": "2026-09-16T01:50:28.709381+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:bc4f541c-551e-11f0-96a0-bbda738d4579": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7413500722.mp3?updated=1751225403",
@@ -1119,7 +1394,12 @@
     "transcript_hash": "d4e5dc2d465d01d80e3e0d23fdde456b0b2c3eddd90f5b1aaadbd42db01b5ad6",
     "transcribed_at": "2026-09-16T01:22:12.031208+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:abdfedda-4f8d-11f0-81e4-1f7624d0bafd": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3690763145.mp3?updated=1750613336",
@@ -1139,7 +1419,12 @@
     "transcript_hash": "ba54654da3d211361dfe91e5b170abd146ab6719807f8c84e4db198d77da5582",
     "transcribed_at": "2026-09-16T01:06:03.610975+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:f0aa8b98-4a0e-11f0-8432-d31a427097f8": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8802799753.mp3?updated=1750009148",
@@ -1159,7 +1444,12 @@
     "transcript_hash": "6027c5f88a78c336f215b72d38fa88d11b1889cac43a736b1100ecfabc7039c3",
     "transcribed_at": "2026-09-16T01:11:13.823825+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:b696ae74-4495-11f0-9126-ff6dadccfde8": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3792002469.mp3?updated=1749407326",
@@ -1179,7 +1469,12 @@
     "transcript_hash": "889ce1a924f73fa42768a8d23883e0b0f34a4293e9af2de5e306c0ca8da6d249",
     "transcribed_at": "2026-09-16T01:06:40.283494+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:26132242-3f0e-11f0-bf58-2b854a9d62fc": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5701143690.mp3?updated=1748799345",
@@ -1199,7 +1494,12 @@
     "transcript_hash": "c3774b9ff1bcc7ff665714e7e53ad9cd18486165a6ded5354f3e28ccf37c2dc1",
     "transcribed_at": "2026-09-16T06:07:33.677389+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:fc652210-398b-11f0-9957-0f289c3d1211": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9479203433.mp3?updated=1748193685",
@@ -1219,7 +1519,12 @@
     "transcript_hash": "404b2ea79dc449ad2025abae58b169069606797dbdb7df0efd97e3d21419122c",
     "transcribed_at": "2026-09-16T05:28:37.364229+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:1f9616c2-340f-11f0-b647-83be7fc99541": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2742801799.mp3?updated=1747590302",
@@ -1239,7 +1544,12 @@
     "transcript_hash": "1c6c783d6292e3ce46482c63bfa9e0471e5fc08da653895e31e4f13903e125d0",
     "transcribed_at": "2026-09-16T06:14:35.224421+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:0cd5b2f2-2e8f-11f0-9f77-5ba7159cb103": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2139462344.mp3?updated=1746985539",
@@ -1259,7 +1569,12 @@
     "transcript_hash": "7a1d4b7cc00b1f5efa731f114160668e6e26185ec24cfd0c39713e7a22e12219",
     "transcribed_at": "2026-09-16T05:47:25.071431+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:658e3c4a-2910-11f0-b803-d3f363a711d2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1515015423.mp3?updated=1746381385",
@@ -1279,7 +1594,12 @@
     "transcript_hash": "314317b86e70bb1528b689efb2634f5abba46c92ed49673c9e9a47290114f784",
     "transcribed_at": "2026-09-16T06:10:19.264791+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:9dc25f02-238d-11f0-8c8e-23748b829008": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9430889788.mp3?updated=1745775460",
@@ -1299,7 +1619,12 @@
     "transcript_hash": "dcb26bcc9155df21acc289f38a8beb8bd677b552440e13555391f188694bfa0c",
     "transcribed_at": "2026-09-16T11:18:18.309157+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:360e4b26-1e0d-11f0-b2ea-2fc8e6534f44": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4316997173.mp3?updated=1745170555",
@@ -1319,7 +1644,12 @@
     "transcript_hash": "b874b812b1e0c46e9a3b87ccc335cf887760dcb7ec8f9feb589a5976c6b0ce40",
     "transcribed_at": "2026-09-16T11:01:55.989683+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:d277a4de-188c-11f0-8389-5b8aa79f7ecf": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7653274030.mp3?updated=1744565656",
@@ -1339,7 +1669,12 @@
     "transcript_hash": "3f62890d1ef43791abf96ce2f47fcdd4f67cfc618b3b280a27c2d1204fb69ffc",
     "transcribed_at": "2026-09-16T10:20:11.087784+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:de5e4042-1313-11f0-b6ff-bf885bbbd320": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3024093804.mp3?updated=1743963951",
@@ -1359,7 +1694,12 @@
     "transcript_hash": "e383b2dd991bc94095d763a38ac4d9de20be1487f7fa532e80c8bb27a102c57c",
     "transcribed_at": "2026-09-16T11:09:38.123053+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:b74d9fec-0d8d-11f0-99c2-57802877c2b3": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2986918668.mp3?updated=1743356577",
@@ -1379,7 +1719,12 @@
     "transcript_hash": "753cfae48600d56c030ff3ffac0818a9b7dda4709d0309af521c3d5d78acce5b",
     "transcribed_at": "2026-09-16T11:02:51.648093+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:22fc7114-07f8-11f0-85ed-af15f176e9e3": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4212456801.mp3?updated=1742742578",
@@ -1399,7 +1744,12 @@
     "transcript_hash": "f5701155b87a9703ad0d08ceb664435b07dfbd4e8b588214182222335b52b6d8",
     "transcribed_at": "2026-09-16T15:19:46.101569+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:c6e5ac54-0295-11f0-95dc-2ff2037080ea": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6508609551.mp3?updated=1742150576",
@@ -1419,7 +1769,12 @@
     "transcript_hash": "ce9cbd2c0e67b1cbe23ca61b3bb9d4d64497296dcc3b40b9e87c46e7ff6ab3c4",
     "transcribed_at": "2026-09-16T15:35:00.969545+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:2cafb3bc-fd15-11ef-9bc1-5760a456f689": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8370889184.mp3?updated=1741545587",
@@ -1439,7 +1794,12 @@
     "transcript_hash": "612a5a0839c2842e62d6c8f5c213a2e4c029f1a4c21bf690223702c2d5bc1b56",
     "transcribed_at": "2026-09-16T15:14:55.369175+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:cd92b38a-f79b-11ef-957c-1bdd0f63502b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7171685546.mp3?updated=1740943702",
@@ -1459,7 +1819,12 @@
     "transcript_hash": "42383ec34b6d5d340a3d75cc54f4363e0135366bc69b57de5f3e55360b615e2a",
     "transcribed_at": "2026-09-16T16:10:28.878723+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:e9b20068-f21c-11ef-8c06-233bc80b9ced": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8985698057.mp3?updated=1740339609",
@@ -1479,7 +1844,12 @@
     "transcript_hash": "aeb0876b0ccf6f8f68a30f16ada55f591950becf1587e465b1ce355122e00a19",
     "transcribed_at": "2026-09-16T19:41:11.501533+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:6c1c8156-ec8a-11ef-a9b1-a72902b96b56": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4528111327.mp3?updated=1740339707",
@@ -1499,7 +1869,12 @@
     "transcript_hash": "c53130199afeb836430ef5431a173824c3b530772a9fb9677b4f6896a7dfb1fc",
     "transcribed_at": "2026-09-16T15:29:06.854384+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:422f86d4-e719-11ef-b901-0fa6f3b222ba": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9821124347.mp3?updated=1739128415",
@@ -1519,7 +1894,12 @@
     "transcript_hash": "f2a49000a6aaf43f2358a73426ac30f2115a5dd6cf685e8f88c2e80713823cba",
     "transcribed_at": "2026-09-16T19:11:17.774251+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:9046c8e8-e1a4-11ef-aa12-07dc70132fcc": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8775437366.mp3?updated=1738528540",
@@ -1539,7 +1919,12 @@
     "transcript_hash": "d013b17cefc5af7b5ae7784cfb061a13b0ec484b032633d1fd232dccabb631f4",
     "transcribed_at": "2026-09-16T19:31:11.940011+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:a6d060a2-dc1c-11ef-a63c-1b81560bc112": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4378016831.mp3?updated=1737920428",
@@ -1559,7 +1944,12 @@
     "transcript_hash": "eb3d8f671acedca49632ff31400e2362d87d37fd1281782e0d1983df69111129",
     "transcribed_at": "2026-09-16T19:28:29.399272+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:aec31bda-d6a7-11ef-b81f-1b3f147a0932": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6855486984.mp3?updated=1737320416",
@@ -1579,7 +1969,12 @@
     "transcript_hash": "6294596d44b592bb600b00290bfb9e885757e4349af4fbc6bee2719729562bbf",
     "transcribed_at": "2026-09-16T19:45:12.041172+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:1bdf16c4-d117-11ef-902a-df7957a39b04": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7334026820.mp3?updated=1736785174",
@@ -1599,7 +1994,12 @@
     "transcript_hash": "eb8a9c155954f7dff8a5432ab01f1504d9bc263c6d17f52bb4ea62f023b96493",
     "transcribed_at": "2026-09-16T22:16:54.235042+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:69b5c1b4-cb99-11ef-b06d-6700a06d9d58": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4227916731.mp3?updated=1736104824",
@@ -1619,7 +2019,12 @@
     "transcript_hash": "2379b60ae730150757660239b7d51456d91757b5796fbec19b823435d263da1f",
     "transcribed_at": "2026-09-16T22:21:44.470194+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:6bad56c0-bb23-11ef-868c-372b85446f96": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3763060372.mp3?updated=1734294929",
@@ -1639,7 +2044,12 @@
     "transcript_hash": "35ce357c954336570f1bbd2ac52c2d62ac6fb30d7458a602ef457d69739fdb42",
     "transcribed_at": "2026-09-16T22:17:22.594604+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:0c07a4fe-7880-11ef-803b-675aa3c85318": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5997205318.mp3?updated=1726967984",
@@ -1659,7 +2069,12 @@
     "transcript_hash": "03289bdaf1bcec83726e64e2ebc52ffb723cd2e147277c77805d57e94bbaa18c",
     "transcribed_at": "2026-09-16T22:27:37.084527+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:78cdb87ee6a5638e4247773006834032": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7154722856.mp3?updated=1704307202",
@@ -1679,7 +2094,12 @@
     "transcript_hash": "3870b6eb336f0544d66b816f47afb1245c5046f53efefab335f54a9416d505ea",
     "transcribed_at": "2026-09-16T21:57:59.867139+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:555370bc0bc85383e836a4586319d121": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9972471309.mp3?updated=1704307202",
@@ -1699,7 +2119,12 @@
     "transcript_hash": "50926f3509fa1da13cd050e0a94644f24fbbe95afcdb921e38adca6584fe80e7",
     "transcribed_at": "2026-09-17T00:21:54.062264+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:49fd13c634efcf039624b1f5aea63527": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2545225583.mp3?updated=1704307203",
@@ -1719,7 +2144,12 @@
     "transcript_hash": "ca30127043685f2d2c27b3e92e22ed5ad803fa73a0e000bb8fea1f0cf889055d",
     "transcribed_at": "2026-09-17T00:29:13.928004+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:0c5be24877b30115d31a945dcf1fc893": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9891600395.mp3?updated=1704307203",
@@ -1739,7 +2169,12 @@
     "transcript_hash": "ed7a1cf81a9c68352dc5a31ed481efda5f69250dfb9df112cff2b877262156d3",
     "transcribed_at": "2026-09-17T01:09:00.868782+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:37d64ef39efb16067c0e2b095c9b481c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9771367454.mp3?updated=1704307204",
@@ -1759,7 +2194,12 @@
     "transcript_hash": "596c2a2d6831224fb25c8cd39af4d7b435be8c89c4968739d3faede30d2a1bf8",
     "transcribed_at": "2026-09-17T00:20:31.105283+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:9467c7a60247e77dbd7f50ce5b5277ff": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4886600203.mp3?updated=1704307205",
@@ -1779,7 +2219,12 @@
     "transcript_hash": "6936c1d1ce4ed7ac4e2f4b33fef4ebb0fafcabdb73a9bb09cf3cf654a7f41f54",
     "transcribed_at": "2026-09-17T00:25:38.064921+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:4a31edff3b06f61115385f631fc24410": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2272695395.mp3?updated=1704307206",
@@ -1799,7 +2244,12 @@
     "transcript_hash": "602f61afb4dec8b366e768d45e9776359faab8602562b3b5e8f0d9cfdeeedff8",
     "transcribed_at": "2026-09-17T04:00:13.444746+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:9ae3f867867382879d0c060075cad4c7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4609636963.mp3?updated=1704307207",
@@ -1819,7 +2269,12 @@
     "transcript_hash": "05dd60950d7530c2dd78fc879ca07d6c469f0330bf9786050444f55a9dc646c9",
     "transcribed_at": "2026-09-17T04:07:50.577173+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:b4f0fac311e882c11cc807af250764a6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2884817450.mp3?updated=1704307207",
@@ -1839,7 +2294,12 @@
     "transcript_hash": "82029688a929b64ece156cd44104b4243aa0c5e69f0fc5135381b79920c0246d",
     "transcribed_at": "2026-09-17T04:10:44.592534+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:83f014ab07f37abcbf37bddd5aa8044f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7405131666.mp3?updated=1704307208",
@@ -1859,7 +2319,12 @@
     "transcript_hash": "cac365cf921c3f2375970292c692fcb9e76434149513f204ad12616dbb066bc2",
     "transcribed_at": "2026-09-17T03:41:06.219438+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:9c49b157d4c24d088c8567853f249abc": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1646041454.mp3?updated=1704307208",
@@ -1879,7 +2344,12 @@
     "transcript_hash": "4cdc1315347624838fce3aab34894b6897fa48b72d3a3b5005b8083426ef76d0",
     "transcribed_at": "2026-09-17T04:19:32.832019+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:ca8229dcab2b22a28d5104f141def4ac": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4801330627.mp3?updated=1704307209",
@@ -1899,7 +2369,12 @@
     "transcript_hash": "d06aa3a9922ef26c42c0b562fa34acf85245781836bbfdedb1cb302d1b56d9d6",
     "transcribed_at": "2026-09-17T09:25:21.668599+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:70990e74273e5843bd39b280d1122504": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6000185871.mp3?updated=1704307210",
@@ -1919,7 +2394,12 @@
     "transcript_hash": "8b986e6ae68f180571f8ecd2f380552d00d337df6657cd82895bbfdf336039ab",
     "transcribed_at": "2026-09-17T09:45:02.528169+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:3d5c546912de569b27628331afa8d2e6": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6353012951.mp3?updated=1704307211",
@@ -1939,7 +2419,12 @@
     "transcript_hash": "34e886a46c858b241d90427a85dd8bcf8aa7c6b05302439e222430535820ec5f",
     "transcribed_at": "2026-09-17T09:29:55.130957+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:94b9a92510a5142e6f51c11115f8964e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH3765408907.mp3?updated=1704307212",
@@ -1959,7 +2444,12 @@
     "transcript_hash": "849b38ece2d0b0ffbe394514f884dda54fd3b8e62e386c473a299b6e53413929",
     "transcribed_at": "2026-09-17T09:41:40.835122+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:32a0a8133bbb3b0966340cc1ab9a9917": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7034828447.mp3?updated=1704307212",
@@ -1979,7 +2469,12 @@
     "transcript_hash": "763121bc55553c20bd8fac7dc7ffe18fff57e559584e0b858221787fc4efb13c",
     "transcribed_at": "2026-09-17T09:36:22.393831+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:5b9442648c5698738015c99fdf12477e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9474129141.mp3?updated=1704307213",
@@ -1999,7 +2494,12 @@
     "transcript_hash": "0bc6764e7c43d785967241a45fa2580d8a28319d20eb62850c1d56fb293f3613",
     "transcribed_at": "2026-09-17T14:48:50.745351+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:2e6c1e9ab13e09932f6fc4d03650fe50": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2323503657.mp3?updated=1704307225",
@@ -2019,7 +2519,12 @@
     "transcript_hash": "3185c52330201ea2f5cbea01a27bc490aff383797eac51b418fc35b84a43ca00",
     "transcribed_at": "2026-09-17T14:26:03.622054+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:c3b1275f1212869e5ec525154ca1b140": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1252471634.mp3?updated=1704307229",
@@ -2039,7 +2544,12 @@
     "transcript_hash": "6ce684395ecd5a9a3ed79e4420c360d8545165dedd96bda1180df87a6b5cefdf",
     "transcribed_at": "2026-09-17T14:26:46.148034+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:e018293ebd09f99a895b053ffd9f1815": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8619698257.mp3?updated=1704307234",
@@ -2059,7 +2569,12 @@
     "transcript_hash": "af66bba504b07e955026cf7c750a10b8c4edd2e5c5a66d476e722fba819b43f0",
     "transcribed_at": "2026-09-17T14:28:01.146685+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:c6a81aae7b76a87ffcc30c1253b4e9f9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1734788922.mp3?updated=1704307238",
@@ -2079,7 +2594,12 @@
     "transcript_hash": "0ba95d057296c2ec2bcd7ea87ddcb85e3cd74a587510e0c7ea6353eeba309576",
     "transcribed_at": "2026-09-17T14:43:23.419334+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:33041525a6b96ce94792adb5f05808de": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6839867539.mp3?updated=1704307242",
@@ -2099,7 +2619,12 @@
     "transcript_hash": "77c9d014a56ea268abe9bc88daec9dbbb1de92950c0060d3559d5a2480ce3c08",
     "transcribed_at": "2026-09-17T18:55:18.527786+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:4f42afc976b8f63da81b5078a760bc82": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4503724670.mp3?updated=1704307246",
@@ -2119,7 +2644,12 @@
     "transcript_hash": "6b2039995d8950d4f5f7d84594cd149422c26e0b2ac40face69030ff7880f7cd",
     "transcribed_at": "2026-09-17T18:33:37.853907+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:85669eb9e294edea41f01da54ac66d94": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5519038333.mp3?updated=1704307250",
@@ -2139,7 +2669,12 @@
     "transcript_hash": "57066b135a90312d2498138a05e8719107ff41504d6e4134d7da926204a12066",
     "transcribed_at": "2026-09-17T18:54:30.197097+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:6154cabc2b27969034017125e6a69055": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1835316397.mp3?updated=1704307254",
@@ -2159,7 +2694,12 @@
     "transcript_hash": "4bcc7ac6fe7b6f6b271a8529b9fb6001cd23fc26ff1457d468e275a9b769377a",
     "transcribed_at": "2026-09-17T18:35:04.029805+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:5b85f9a1fa9d58321b2b36ade96514f9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4497713462.mp3?updated=1704307258",
@@ -2179,7 +2719,12 @@
     "transcript_hash": "50c97afef0dfaf510cb937117f8e632385cc0930a6011b8da77657a53189f344",
     "transcribed_at": "2026-09-17T18:28:20.509949+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:eea49ca87cc41b27abcb107f32469f86": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6601818693.mp3?updated=1704307264",
@@ -2199,7 +2744,12 @@
     "transcript_hash": "d279f9f58eee0cdf7143a3f5e07e2f7fdb14f2090e46d76d361f0b7e3803a66f",
     "transcribed_at": "2026-09-17T21:55:05.734187+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:1387ad0fc65ff4e8ff86b7139a5edd11": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9502422838.mp3?updated=1704307268",
@@ -2219,7 +2769,12 @@
     "transcript_hash": "e184da8c9ae2ed3ae9d6d79f2b710b109905478371210762c3890d81d94cd664",
     "transcribed_at": "2026-09-17T21:39:53.416342+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:a3328e79ec62df82d0c2d1e3465bda5f": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH2232570909.mp3?updated=1704307274",
@@ -2239,7 +2794,12 @@
     "transcript_hash": "ced3b1beaf00e75df670c177a94a136737977536c11516953699f67c8a6e2a01",
     "transcribed_at": "2026-09-17T22:06:42.888779+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:39686ab7e9e05efe7482a731b46e4ee5": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH8673378765.mp3?updated=1704307282",
@@ -2259,7 +2819,12 @@
     "transcript_hash": "0853e9ea793369f9612668ec4913bff8e30ce13a031117ccd31c795cb09181ed",
     "transcribed_at": "2026-09-17T21:35:52.758180+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:1c0c7c30a096ae2365f54efd17a2671e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1902606032.mp3?updated=1704307287",
@@ -2279,7 +2844,12 @@
     "transcript_hash": "7728e7bbf3438b3d360760ae62debce22cdc5163f26d80c81b85db5aa3daf09e",
     "transcribed_at": "2026-09-17T21:45:58.934663+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:24a297fd8ff0e707200889ee0fd508b8": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4380648288.mp3?updated=1704307294",
@@ -2299,7 +2869,12 @@
     "transcript_hash": "62b064ed9cbb8383608b6fecd8234e8c12c7b16f622bcb3708d23428b5531d55",
     "transcribed_at": "2026-09-18T19:08:39.025968+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:3d8960b5792c495d4f49a4f553a2a0ef": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6426062352.mp3?updated=1704307298",
@@ -2319,7 +2894,12 @@
     "transcript_hash": "ecc5518d8056f909329012f27d3beb9b3444dcdfa96f2a8a1f6124b331e589a3",
     "transcribed_at": "2026-09-18T19:18:47.928941+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:c254d1f06c88b1029e3c7d9bc191677d": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1474701187.mp3?updated=1704307303",
@@ -2339,7 +2919,12 @@
     "transcript_hash": "a4f86de7f10775067bd8842e7224a3fba0d7e1ce55e76587d9e5fa085c659bed",
     "transcribed_at": "2026-09-18T19:26:10.079559+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:cbc10553e1c743dc63183d689da86068": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6139102303.mp3?updated=1704307308",
@@ -2359,7 +2944,12 @@
     "transcript_hash": "7a71089f40dc50d101afc6ab5ad15988df46a54dcc1b58954bb1153453665e15",
     "transcribed_at": "2026-09-18T19:26:58.082183+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:da67c1c97bbf6273038f70383971f3a0": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6691661657.mp3?updated=1704307312",
@@ -2379,7 +2969,12 @@
     "transcript_hash": "4ab5779b0662db4f893a13a4e195754817ea3c07a77dc495d824f9963ae8d93a",
     "transcribed_at": "2026-09-18T19:11:54.294618+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:ae9c29f34448c7327e871a95ee6c83a1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1185601520.mp3?updated=1704307317",
@@ -2417,7 +3012,12 @@
     "transcript_hash": "39df5d57ac08715ff234b788f038d90606bc3e2b010bfa3b424acbe9e60b79d7",
     "transcribed_at": "2026-09-18T22:06:19.666919+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:03bbe2eec23ffa07a1606ea5306c2fe1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4526631575.mp3?updated=1704307319",
@@ -2437,7 +3037,12 @@
     "transcript_hash": "881bf641ffc72ff53fbc5b46bf8f197215e5f1cf37cddb7310a3117d9ea6ba35",
     "transcribed_at": "2026-09-18T22:08:59.967660+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:e2ff7861cc2fbbfb156ea9893fdc0a0e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9695613578.mp3?updated=1704307320",
@@ -2457,7 +3062,12 @@
     "transcript_hash": "50b8e4cbdce73d3615b85fcb4d2cd82051bfb2bfd28d91b916a1b18798a91533",
     "transcribed_at": "2026-09-18T22:10:01.528419+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:0c4f0144cb73d2e295654cb9f98f7db2": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9823305224.mp3?updated=1704307320",
@@ -2477,7 +3087,12 @@
     "transcript_hash": "341c9ed3b0a1ac0563519bda49edc2c49334c714f39f88f4e7b6ad2126f82406",
     "transcribed_at": "2026-09-18T22:04:20.869805+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:ec47548010cf19ecad23efbe41910304": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1210452414.mp3?updated=1704307321",
@@ -2497,7 +3112,12 @@
     "transcript_hash": "db0cb132619f1901e5e6a4aa5c8eba63607d5404b8ab563f955b704e6f5b5344",
     "transcribed_at": "2026-09-19T01:13:29.718698+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:34ea32afa39d3b8c77965ee02a06bf64": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7502711841.mp3?updated=1704307322",
@@ -2517,7 +3137,12 @@
     "transcript_hash": "c38ea7899709dd70378c2785519b46bf2821ff3796416434aaf6bdf2afe46305",
     "transcribed_at": "2026-09-19T00:54:25.936877+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:688628a95b2adaff2208a60595534f8a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4567932610.mp3?updated=1704307322",
@@ -2537,7 +3162,12 @@
     "transcript_hash": "b92648db0680b63c141f8a7bdd5871fbcc82c14a2ac36973bfdcef26b882b5ad",
     "transcribed_at": "2026-09-19T01:21:00.496585+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:b37d17ec727ebca8e87057f8623532ad": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4154264100.mp3?updated=1704307323",
@@ -2557,7 +3187,12 @@
     "transcript_hash": "a697f01904ebe885f65ab4cf167a66c89c3f141245192ef8c41674a08e0102a4",
     "transcribed_at": "2026-09-19T01:10:15.821968+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:f8c6cdc6a022cfe49ae463a8da4f4fa1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5851084567.mp3?updated=1704307324",
@@ -2574,10 +3209,20 @@
     "title": "Let's Talk Adoption",
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2022-11-20_let-s-talk-adoption_lakepointe_f8c6cdc6a022cfe49ae463a8da4f4fa1.txt",
-    "transcript_hash": "e9fc8018947b67c7d06a14596ecdabe3d181a6733fa69e6de9ce06e5693c67e2",
-    "transcribed_at": "2026-09-19T01:28:21.454190+00:00",
+    "transcript_hash": "ea6222042680e3139c39246a249b61e0e8b1fd4c6806464735baa8ac3e370b0c",
+    "transcribed_at": "2026-09-19T03:37:01+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": null,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0,
+    "transcription_hotwords": null,
+    "transcription_faster_whisper_version": null,
+    "transcription_ctranslate2_version": null,
+    "transcript_adopted": false,
+    "transcription_last_error": null
   },
   "lakepointe:7f2b735c82fa1360c24a053b5a09604a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6809710005.mp3?updated=1704307325",
@@ -2597,7 +3242,12 @@
     "transcript_hash": "096faeac61e49556b7b3e20f1357a9573207e1c88c03deddf5644600143305f8",
     "transcribed_at": "2026-09-19T03:03:18.980156+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:492376794e86d0f751cbf4b93e411a0b": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH7563980294.mp3?updated=1704307326",
@@ -2614,10 +3264,20 @@
     "title": "Are You Rich in Love?",
     "transcription_status": "done",
     "content_path": "transcripts/lakepointe/2022-11-06_are-you-rich-in-love_lakepointe_492376794e86d0f751cbf4b93e411a0b.txt",
-    "transcript_hash": "fdb174b7adf874463a2e529da72001715d76ae030533eca2c9b2cfb3d171a685",
-    "transcribed_at": "2026-09-19T03:37:41.581570+00:00",
+    "transcript_hash": "08a55a376a8f9523920b1a5048095eb8d5df348e5e38463d56f4193ec05afbfc",
+    "transcribed_at": "2026-09-19T04:34:34+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": null,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0,
+    "transcription_hotwords": null,
+    "transcription_faster_whisper_version": null,
+    "transcription_ctranslate2_version": null,
+    "transcript_adopted": false,
+    "transcription_last_error": null
   },
   "lakepointe:f5fa95da08a8a62c1d5e789526a590e7": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH6940427814.mp3?updated=1704307326",
@@ -2637,7 +3297,12 @@
     "transcript_hash": "aacf9f30fa8380d34ea8c742a1ba4d8a3f7213f3aa5a23f2001a69ca4925c2f1",
     "transcribed_at": "2026-09-19T03:04:14.451949+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:df507f8615eb18db783d9ff1dc44a79e": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1940215320.mp3?updated=1704307327",
@@ -2657,7 +3322,12 @@
     "transcript_hash": "edd007ec7fb2ba850ba03087f3042fad9a19397a7bff44a8bdc9d22e593720d4",
     "transcribed_at": "2026-09-19T03:15:13.909127+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:a2676e6ab2a85ce8525ac8ce7a6de7cb": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1675312919.mp3?updated=1704307328",
@@ -2677,7 +3347,12 @@
     "transcript_hash": "99bf1ee087be36c277004654451ec3400e94ef5c5ceeb7ea8f2144c82c298685",
     "transcribed_at": "2026-09-19T05:31:49.490057+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:3a727d523bbf529f5374024e3e63239c": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH1897907937.mp3?updated=1704307328",
@@ -2697,7 +3372,12 @@
     "transcript_hash": "6d857fd08810ddce056ad9fa7cfd4834d908371cba48ea58040e9fa11664e0d6",
     "transcribed_at": "2026-09-19T07:00:37.613670+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:bc11dff36fee92b9add07e6223c929e9": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4817757484.mp3?updated=1704307330",
@@ -2717,7 +3397,12 @@
     "transcript_hash": "467ac5256bca22386be6f86d63a2ef0e888600ef450ddef97a9e2441ab979267",
     "transcribed_at": "2026-09-19T06:57:55.927559+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:e7a8e1a5d3d585e15f7a0df6062b7cf1": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5762220747.mp3?updated=1704307331",
@@ -2737,7 +3422,12 @@
     "transcript_hash": "f4535e071f14a799641c22ffab9a4b02ab3edab26faf22482e400ec4a45de38e",
     "transcribed_at": "2026-09-19T07:27:17.297845+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:7ec75e0bfa52c9ae822ea182c1c7fa7a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH4952294164.mp3?updated=1704307332",
@@ -2757,7 +3447,12 @@
     "transcript_hash": "76c42056646e0df73ca5938151025e9f4bf1f0ca29eeb920957e09220699a28a",
     "transcribed_at": "2026-09-19T06:58:52.696603+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:619171f4a14c96df58f04c9dda5f054a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH5951228348.mp3?updated=1704307332",
@@ -2777,7 +3472,12 @@
     "transcript_hash": "c980bf7ee7dcc2f6c6df7cfd678ca5e5e0d97e07d5043c151c0bb899ef0f3798",
     "transcribed_at": "2026-09-19T06:55:34.520910+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": true
+    "transcription_domain_prompt": true,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   },
   "lakepointe:4333d3497680451f2e6255501e13a53a": {
     "audio_url": "https://traffic.megaphone.fm/HAEEH9987665612.mp3?updated=1704307333",
@@ -2797,6 +3497,11 @@
     "transcript_hash": "9abfc9c12212d9496bd8a01a61f3be412fb7db79d54fe2d53893f4917267d13e",
     "transcribed_at": "2026-09-14T03:08:27.766508+00:00",
     "transcription_model": "large-v3",
-    "transcription_domain_prompt": false
+    "transcription_domain_prompt": false,
+    "transcription_compute_type": "int8",
+    "transcription_beam_size": 5,
+    "transcription_vad_filter": true,
+    "transcription_condition_on_previous_text": true,
+    "transcription_hallucination_silence_threshold": 0
   }
 }
