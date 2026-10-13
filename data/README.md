@@ -56,8 +56,8 @@ Do not edit between the markers by hand; it will be overwritten.
 | lakepointe | 140 | A Call to Die | 2026-10-11 |
 | menlo | 151 | Without Pretense | 2026-10-11 |
 | north_point | 105 | Be Rich 2026, Part 2: Show Me | 2026-10-11 |
-| pbc | 401 | Enough? | 2026-10-04 |
+| pbc | 402 | Ready or Not | 2026-10-11 |
 | westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
 
-**Total sermons across all churches: 1862**
+**Total sermons across all churches: 1863**
 <!-- STATS:END -->
