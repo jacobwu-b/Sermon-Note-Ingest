@@ -217,3 +217,31 @@ def test_send_quality_alert_raises_notify_error_on_http_error(monkeypatch):
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
     with pytest.raises(notify.NotifyError, match="422"):
         notify.send_quality_alert("menlo", [_flagged()], _config())
+
+
+def test_send_retranscribe_alert_sends_the_subject_and_one_escaped_item_per_line(monkeypatch):
+    captured = _capture(monkeypatch)
+
+    notify.send_retranscribe_alert(
+        "Re-transcription verify: 2 violations",
+        [
+            "menlo/g1: transcripts/menlo/a.txt hashes to 0123456789ab, ledger names ba9876543210",
+            "pbc <x> & y",
+        ],
+        _config(),
+    )
+
+    body = captured["body"]
+    assert body["subject"] == "Re-transcription verify: 2 violations"
+    assert "<li>menlo/g1: transcripts/menlo/a.txt hashes to 0123456789ab" in body["html"]
+    assert "pbc &lt;x&gt; &amp; y" in body["html"]
+    assert captured["headers"]["user-agent"] == notify.DEFAULT_USER_AGENT
+
+
+def test_send_retranscribe_alert_raises_notify_error_on_http_error(monkeypatch):
+    def fake_urlopen(request, timeout):
+        raise urllib.error.HTTPError(request.full_url, 500, "Server Error", {}, io.BytesIO(b"down"))
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    with pytest.raises(notify.NotifyError, match="500"):
+        notify.send_retranscribe_alert("subject", ["line"], _config())

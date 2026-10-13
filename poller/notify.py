@@ -14,6 +14,7 @@ import datetime
 import json
 import urllib.error
 import urllib.request
+from collections.abc import Sequence
 from dataclasses import dataclass
 
 from poller.config import NotifyConfig
@@ -140,6 +141,16 @@ def send_quality_alert(church: str, flagged: list[FlaggedTranscript], config: No
     """Send one email naming a church's flagged transcripts. Raises :class:`NotifyError` on failure."""
     subject, html_body = _format_quality_alert(church, flagged)
     _send(subject, html_body, config)
+
+
+def send_retranscribe_alert(subject: str, lines: Sequence[str], config: NotifyConfig) -> None:
+    """Send a re-transcription alert (ADR-0022): ``subject`` and one list item per line.
+
+    Lines name churches, guids, paths and counts, never transcript text. Raises
+    :class:`NotifyError` on failure.
+    """
+    body = "<ul>" + "".join(f"<li>{_escape(line)}</li>" for line in lines) + "</ul>"
+    _send(subject, body, config)
 
 
 def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
