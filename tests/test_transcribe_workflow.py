@@ -371,7 +371,7 @@ def test_each_mode_has_its_own_concurrency_group():
 
 def test_the_pass_caps_parallelism_and_bounds_each_shard():
     job = _job_text("transcribe")
-    assert "max-parallel: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 8 || 256 }}" in job
+    assert "max-parallel: ${{ fromJSON(needs.plan.outputs.max_parallel) }}" in job
     assert "timeout-minutes: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 180 || 360 }}" in job
 
 
@@ -440,6 +440,7 @@ def _plan_body() -> str:
 
 
 _PLAN_ENV = {
+    "RETRANSCRIBE_MAX_PARALLEL": "",
     "TRANSCRIBE_MODE": "pending",
     "LIMIT": "5",
     "CHURCH": "",
@@ -509,6 +510,30 @@ def test_the_hourly_pass_does_nothing_until_the_kill_switch_is_on(tmp_path):
     assert "--retranscribe-stale" in calls[0]
     assert "mode=retranscribe-stale\n" in output
     assert "scheduled=true\n" in output
+
+
+def test_the_plan_reads_the_passs_parallelism_from_a_variable_defaulting_to_32(tmp_path):
+    assert "RETRANSCRIBE_MAX_PARALLEL: ${{ vars.RETRANSCRIBE_MAX_PARALLEL }}" in _job_text("plan")
+    stale = {**_PLAN_ENV, "TRANSCRIBE_MODE": "retranscribe-stale"}
+
+    assert "max_parallel=256\n" in _run_script(_plan_body(), tmp_path, _PLAN_ENV)[3]
+    assert "max_parallel=32\n" in _run_script(_plan_body(), tmp_path, stale)[3]
+    assert (
+        "max_parallel=12\n"
+        in _run_script(_plan_body(), tmp_path, {**stale, "RETRANSCRIBE_MAX_PARALLEL": "12"})[3]
+    )
+
+
+@pytest.mark.parametrize("value", ["0", "-4", "eight", "257", "1e3"])
+def test_the_plan_refuses_a_parallelism_github_would_not_accept(tmp_path, value):
+    env = {**_PLAN_ENV, "TRANSCRIBE_MODE": "retranscribe-stale", "RETRANSCRIBE_MAX_PARALLEL": value}
+    code, out, _calls, _output = _run_script(_plan_body(), tmp_path, env)
+    assert code != 0
+    assert "RETRANSCRIBE_MAX_PARALLEL" in out
+
+
+def test_the_job_reads_the_parallelism_the_plan_validated():
+    assert "max_parallel: ${{ steps.compute.outputs.max_parallel }}" in _job_text("plan")
 
 
 def test_the_plan_refuses_more_shards_than_github_allows_in_a_matrix(tmp_path):

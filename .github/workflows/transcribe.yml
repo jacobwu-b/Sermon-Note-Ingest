@@ -107,6 +107,7 @@ jobs:
     timeout-minutes: 5
     outputs:
       mode: ${{ steps.compute.outputs.mode }}
+      max_parallel: ${{ steps.compute.outputs.max_parallel }}
       scheduled: ${{ steps.compute.outputs.scheduled }}
       shards: ${{ steps.compute.outputs.shards }}
       shard_count: ${{ steps.compute.outputs.shard_count }}
@@ -137,6 +138,7 @@ jobs:
         env:
           SCHEDULED_PASS: ${{ github.event.schedule == '23 * * * *' }}
           RETRANSCRIBE_ENABLED: ${{ vars.RETRANSCRIBE_ENABLED }}
+          RETRANSCRIBE_MAX_PARALLEL: ${{ vars.RETRANSCRIBE_MAX_PARALLEL }}
         run: |
           mode="$TRANSCRIBE_MODE"
           case "$mode" in
@@ -158,7 +160,15 @@ jobs:
           if [ -n "$CHURCH" ]; then
             args+=(--church "$CHURCH")
           fi
+          # Pending: every shard at once. The pass: capped, so it leaves room in the account's
+          # concurrent-job limit for poll, pending transcription, Pipeline and CI.
+          max_parallel=256
           if [ "$mode" = "retranscribe-stale" ]; then
+            max_parallel="${RETRANSCRIBE_MAX_PARALLEL:-32}"
+            if ! [[ "$max_parallel" =~ ^[1-9][0-9]*$ ]] || [ "$max_parallel" -gt 256 ]; then
+              echo "::error::RETRANSCRIBE_MAX_PARALLEL '$max_parallel' is not a whole number from 1 to 256"
+              exit 1
+            fi
             args+=(--retranscribe-stale)
             IFS=';' read -ra guid_list <<< "$GUIDS"
             for guid in "${guid_list[@]}"; do
@@ -193,6 +203,7 @@ jobs:
           done
           shards+="]"
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
           echo "scheduled=$SCHEDULED_PASS" >> "$GITHUB_OUTPUT"
           echo "shards=$shards" >> "$GITHUB_OUTPUT"
           echo "shard_count=$count" >> "$GITHUB_OUTPUT"
@@ -213,11 +224,10 @@ jobs:
     timeout-minutes: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 180 || 360 }}
     # One shard failing (a crashed runner, a terminal model error) must not cancel
     # the others — each is an independent slice of the backlog, per ADR-0005. The
-    # re-transcription pass runs 8 at a time, leaving room in the account's
-    # concurrent-job cap for poll, pending transcription and Pipeline.
+    # plan sets how many run at once (vars.RETRANSCRIBE_MAX_PARALLEL for the pass).
     strategy:
       fail-fast: false
-      max-parallel: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 8 || 256 }}
+      max-parallel: ${{ fromJSON(needs.plan.outputs.max_parallel) }}
       matrix:
         shard: ${{ fromJson(needs.plan.outputs.shards) }}
     steps:

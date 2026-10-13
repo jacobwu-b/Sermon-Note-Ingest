@@ -845,7 +845,7 @@ def _retranscribe_sermon(
 
     old_clean = quality.clean_words(current, hotwords=record.get("transcription_hotwords"))
     new_clean = quality.clean_words(text, hotwords=decoded_under.hotwords)
-    refusal = list(quality.flags(new_score))
+    refusal = list(quality.worse_flags(old_score, new_score))
     if new_clean < _MIN_CLEAN_WORDS_RATIO * old_clean:
         refusal.append("clean_words")
     if refusal:
