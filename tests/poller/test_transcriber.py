@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from poller import net, pipeline_dispatch, store, transcribe, transcriber
+from poller import net, notify, pipeline_dispatch, store, transcribe, transcriber
 from poller.content_repo import ContentPublishError
 from poller.net import AudioDownloadError
 from poller.sources.base import SermonItem
@@ -1266,3 +1266,287 @@ def test_run_threads_fetch_existing_through_to_each_church(tmp_path, monkeypatch
     assert ok is True
     assert whisper_calls == []
     assert store.load("menlo")["m1"]["transcription_status"] == "done"
+
+
+# ADR-0023: score every transcript before push, record the counts, alert on a flag.
+
+_CLEAN_TEXT = (
+    "This morning we are continuing in the book of Romans, chapter eight. Paul has spent seven "
+    "chapters telling us what God has done, and now he turns to what that means for the way we live."
+)
+# "We lead with mercy." x12 adds 44 loop words: over the 40-word flag.
+_LOOPED_TEXT = _CLEAN_TEXT + " " + "We lead with mercy. " * 12 + "And that is the gospel."
+
+
+def _transcribe_returning(text: str, profile: transcribe.DecodingProfile = _PROFILE):
+    return lambda url, hotwords: (text, transcribe.transcript_hash(text), profile)
+
+
+def _collecting_alerts(sent: list):
+    return lambda church, flagged: sent.append((church, flagged))
+
+
+def test_a_looped_transcript_is_still_pushed_marked_done_dispatched_and_alerted(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-09-15T12:00:00+00:00")
+    records = {"g1": _record("g1", preached_on="2026-09-15")}
+    pushed, dispatched, alerts = {}, [], []
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
+        push=pushed.update,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: dispatched.append(event["external_id"]),
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert ok is True
+    assert list(pushed.values()) == [_LOOPED_TEXT]
+    assert dispatched == ["g1"]
+    saved = store.load("menlo")["g1"]
+    assert saved["transcription_status"] == "done"
+    assert saved["transcript_loop_words"] == 44
+    assert saved["transcript_words"] == 36 + 48 + 5
+    assert [church for church, _flagged in alerts] == ["menlo"]
+    [(_church, [flagged])] = alerts
+    assert flagged.guid == "g1"
+    assert flagged.title == "Sermon g1"
+    assert flagged.preached_on == "2026-09-15"
+    assert flagged.flags == ("loops",)
+    assert flagged.score.loop_words == 44
+
+
+def test_a_clean_transcript_records_its_counts_and_sends_no_alert(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+    alerts: list = []
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_CLEAN_TEXT),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert ok is True
+    assert alerts == []
+    saved = store.load("menlo")["g1"]
+    assert {key: saved[f"transcript_{key}"] for key in store.QUALITY_KEYS} == {
+        "words": 36,
+        "loop_words": 0,
+        "credit_hits": 0,
+        "hotword_pairs": 0,
+    }
+
+
+@pytest.mark.parametrize(("sent_hotwords", "pairs"), [("Keith Crosby, Luke", 1), (None, 0)])
+def test_hotword_pairs_are_scored_only_against_hotwords_the_model_was_sent(
+    tmp_path, monkeypatch, sent_hotwords, pairs
+):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01") | {"speaker": "Keith Crosby", "series": "Luke"}}
+    profile = dataclasses.replace(_PROFILE, domain_prompt=sent_hotwords is not None, hotwords=sent_hotwords)
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_CLEAN_TEXT + " Keith Crosby, Luke.", profile),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        send_quality_alert=lambda church, flagged: None,
+    )
+
+    assert store.load("menlo")["g1"]["transcript_hotword_pairs"] == pairs
+
+
+def test_a_transcript_adopted_from_content_is_neither_scored_nor_alerted(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2019-01-06")}
+    alerts: list = []
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
+        push=lambda files: None,
+        fetch_existing=lambda paths: dict.fromkeys(paths, _LOOPED_TEXT),
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert alerts == []
+    assert store.transcript_quality(store.load("menlo")["g1"]) is None
+
+
+def test_a_transcript_whose_push_failed_is_neither_recorded_nor_alerted(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+    alerts: list = []
+
+    def failing_push(files):
+        raise ContentPublishError("content repo unreachable")
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
+        push=failing_push,
+        fetch_existing=_nothing_in_content,
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert ok is False
+    assert alerts == []
+    assert store.transcript_quality(store.load("menlo")["g1"]) is None
+
+
+def test_an_undelivered_alert_fails_the_run_but_keeps_the_push_and_the_mark(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+    pushed: dict = {}
+
+    def failing_alert(church, flagged):
+        raise notify.NotifyError("Resend rejected the request: 422")
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
+        push=pushed.update,
+        fetch_existing=_nothing_in_content,
+        send_quality_alert=failing_alert,
+    )
+
+    assert ok is False
+    assert list(pushed.values()) == [_LOOPED_TEXT]
+    assert store.load("menlo")["g1"]["transcription_status"] == "done"
+    assert "quality alert" in caplog.text
+    assert "422" in caplog.text
+
+
+def test_missing_notify_secrets_fail_the_run_when_a_transcript_is_flagged(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    for var in ("NOTIFY_EMAIL_FROM", "NOTIFY_EMAIL_TO", "RESEND_API_KEY"):
+        monkeypatch.delenv(var, raising=False)
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+
+    ok = transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+    )
+
+    assert ok is False
+    assert store.load("menlo")["g1"]["transcription_status"] == "done"
+    assert "RESEND_API_KEY" in caplog.text
+
+
+def test_run_threads_the_alert_sender_through_to_each_church(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
+    alerts: list = []
+
+    transcriber.run(
+        church_names=["pbc"],
+        limit=1,
+        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert [church for church, _flagged in alerts] == ["pbc"]
+
+
+def test_marks_out_carries_the_counts_and_replay_restores_them_without_alerting(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+    marks: dict = {}
+    alerts: list = []
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        marks_out=marks,
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+    assert marks["g1"]["quality"] == {"words": 89, "loop_words": 44, "credit_hits": 0, "hotword_pairs": 0}
+
+    fresh_dir = tmp_path / "fresh"
+    fresh_dir.mkdir()
+    monkeypatch.setattr(store, "DATA_DIR", fresh_dir)
+    monkeypatch.setattr(notify, "send_quality_alert", lambda *a, **k: alerts.append("replayed"))
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
+    marks_path = tmp_path / "marks.json"
+    marks_path.write_text(json.dumps({"menlo": marks}))
+
+    assert transcriber.replay_marks(str(marks_path)) is True
+    assert store.load("menlo")["g1"]["transcript_loop_words"] == 44
+    assert len(alerts) == 1
+
+
+def test_replay_marks_reads_a_done_mark_written_before_quality_counts_existed_as_not_scored(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
+    marks_path = tmp_path / "marks.json"
+    marks_path.write_text(
+        json.dumps(
+            {
+                "menlo": {
+                    "g1": {
+                        "kind": "done",
+                        "content_path": "transcripts/menlo/g1.txt",
+                        "transcript_hash": "hash1",
+                        "transcribed_at": "2026-01-01T00:00:00+00:00",
+                        "profile": dataclasses.asdict(_PROFILE),
+                    }
+                }
+            }
+        )
+    )
+
+    assert transcriber.replay_marks(str(marks_path)) is True
+    saved = store.load("menlo")["g1"]
+    assert saved["transcription_status"] == "done"
+    assert store.transcript_quality(saved) is None
+
+
+def test_no_transcript_text_reaches_the_logs_or_the_alert(tmp_path, monkeypatch, caplog):
+    # This repo's Actions logs are public (ADR-0004): counts and names only.
+    caplog.set_level("DEBUG", logger="poller")
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {"g1": _record("g1", preached_on="2026-01-01")}
+    alerts: list = []
+    sentinel = "Zebulun carried the lanterns across the brook. "
+
+    transcriber.transcribe_church(
+        "menlo",
+        records,
+        [("g1", records["g1"])],
+        transcribe_audio=_transcribe_returning(_CLEAN_TEXT + " " + sentinel * 7),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert len(alerts) == 1
+    assert "Zebulun" not in caplog.text
+    assert "Zebulun" not in repr(alerts)

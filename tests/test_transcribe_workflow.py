@@ -294,3 +294,34 @@ def test_status_publishes_from_the_ledger_every_shard_already_pushed():
     assert "ref: ${{ github.ref }}" in job
     assert "ledger_sha" not in job
     assert "python -m poller.status" in job
+
+
+_NOTIFY_SECRETS = ("NOTIFY_EMAIL_FROM", "NOTIFY_EMAIL_TO", "RESEND_API_KEY")
+
+
+def _job(text: str, name: str) -> str:
+    """One top-level job's block, by its two-space-indented key."""
+    match = re.search(rf"^  {name}:\n(.*?)(?=^  [\w-]+:\n|\Z)", text, re.DOTALL | re.MULTILINE)
+    assert match, f"no job {name!r}"
+    return match.group(1)
+
+
+def test_the_transcribe_job_receives_the_notify_secrets_for_quality_alerts():
+    # ADR-0023: a flagged transcript is emailed from the shard that produced it.
+    job = _job(workflow_text(), "transcribe")
+    for var in _NOTIFY_SECRETS:
+        assert f"{var}: ${{{{ secrets.{var} }}}}" in job
+
+
+def test_the_transcribe_step_fails_fast_when_a_notify_secret_is_missing():
+    # Missing wiring must show on the first run, not on the first flagged sermon.
+    [body] = [b for b in run_block_bodies(_job(workflow_text(), "transcribe")) if "--shard-index" in b]
+    check = body.index("::error::notify secret")
+    assert check < body.index("python -m poller.transcriber")
+    for var in _NOTIFY_SECRETS:
+        assert var in body[:check]
+
+
+def test_no_secret_is_interpolated_into_a_run_script():
+    for body in run_block_bodies(workflow_text()):
+        assert "secrets." not in body

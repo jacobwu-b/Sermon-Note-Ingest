@@ -30,6 +30,7 @@ _CONTRACT_KEYS = {
     "transcribed_at",
     "transcript_adopted",
     "last_error",
+    "quality_flags",
 }
 
 
@@ -89,6 +90,7 @@ def test_a_transcribed_sermon_carries_its_instants_and_no_error():
         "transcribed_at": "2026-09-27T21:34:56+00:00",
         "transcript_adopted": False,
         "last_error": None,
+        "quality_flags": None,
     }
 
 
@@ -123,6 +125,52 @@ def test_a_record_saved_before_failure_reasons_existed_reads_as_unknown():
 
     assert entry["last_error"] is None
     assert entry["transcript_adopted"] is None
+
+
+_LOOPED = {"words": 6606, "loop_words": 72, "credit_hits": 0, "hotword_pairs": 0}
+_CLEAN = {"words": 6423, "loop_words": 0, "credit_hits": 0, "hotword_pairs": 0}
+
+
+@pytest.mark.parametrize(("counts", "flags"), [(_LOOPED, ["loops"]), (_CLEAN, [])])
+def test_a_scored_transcript_reports_the_flags_its_counts_trip(counts, flags):
+    record = _record("menlochurchvideo.podbean.com/scored", preached_on="2026-08-23")
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/x.txt",
+        transcript_hash="h",
+        transcribed_at="t",
+        profile=None,
+        quality=counts,
+    )
+    store.save("menlo", {record["guid"]: record})
+
+    entry = _only(status.build_status(config.load_churches()), record["guid"])
+
+    assert entry["quality_flags"] == flags
+
+
+def test_a_record_never_scored_reports_null_quality_flags():
+    pending = _record("menlochurchvideo.podbean.com/pending", preached_on="2026-10-04")
+    adopted = _record("menlochurchvideo.podbean.com/adopted", preached_on="2019-01-06")
+    store.mark_transcribed(
+        adopted,
+        content_path="transcripts/menlo/y.txt",
+        transcript_hash="h",
+        transcribed_at="t",
+        profile=None,
+        adopted=True,
+    )
+    legacy = _record("menlochurchvideo.podbean.com/legacy-done", preached_on="2025-01-05")
+    store.mark_transcribed(
+        legacy, content_path="transcripts/menlo/z.txt", transcript_hash="h", transcribed_at="t", profile=None
+    )
+    for key in store.QUALITY_KEYS:
+        del legacy[f"transcript_{key}"]
+    store.save("menlo", {r["guid"]: r for r in (pending, adopted, legacy)})
+
+    payload = status.build_status(config.load_churches())
+
+    assert [s["quality_flags"] for s in payload["sermons"]] == [None, None, None]
 
 
 def test_every_church_in_the_table_is_listed_with_its_enablement_and_records():

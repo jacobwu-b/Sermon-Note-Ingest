@@ -14,9 +14,11 @@ import datetime
 import json
 import urllib.error
 import urllib.request
+from dataclasses import dataclass
 
 from poller.config import NotifyConfig
 from poller.net import DEFAULT_USER_AGENT
+from poller.quality import QualityScore
 from poller.sources.base import SermonItem
 from poller.sources.common import is_service_date
 
@@ -96,6 +98,51 @@ def send_new_sermons(church: str, items: list[SermonItem], config: NotifyConfig)
     if not items:
         return
     subject, html_body = _format_email(church, items)
+    _send(subject, html_body, config)
+
+
+@dataclass(frozen=True)
+class FlaggedTranscript:
+    """A transcript that tripped a quality flag (ADR-0023): identifiers and counts, never its text."""
+
+    guid: str
+    title: str | None
+    preached_on: str | None
+    score: QualityScore
+    flags: tuple[str, ...]
+
+
+def _format_quality_alert(church: str, flagged: list[FlaggedTranscript]) -> tuple[str, str]:
+    """Return ``(subject, html_body)`` for one church's flagged transcripts."""
+    noun = "sermon" if len(flagged) == 1 else "sermons"
+    subject = f"Transcript quality: {len(flagged)} {noun} from {church} flagged"
+    rows = []
+    for entry in flagged:
+        score = entry.score
+        details = [f"<strong>{_escape(entry.title or '(untitled)')}</strong>"]
+        if entry.preached_on:
+            details.append(entry.preached_on)
+        details.append(_escape(entry.guid))
+        rows.append(
+            "<li>"
+            + " — ".join(details)
+            + f"<br>flags: {', '.join(entry.flags)}; {score.words} words, {score.loop_words} loop words, "
+            f"{score.credit_hits} credit hits, {score.hotword_pairs} hotword pairs</li>"
+        )
+    body = (
+        f"<p>{church}: {len(flagged)} {noun} pushed to Content tripped a transcript quality flag. "
+        "They were kept and marked done; review them in Content.</p><ul>" + "".join(rows) + "</ul>"
+    )
+    return subject, body
+
+
+def send_quality_alert(church: str, flagged: list[FlaggedTranscript], config: NotifyConfig) -> None:
+    """Send one email naming a church's flagged transcripts. Raises :class:`NotifyError` on failure."""
+    subject, html_body = _format_quality_alert(church, flagged)
+    _send(subject, html_body, config)
+
+
+def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
     payload = json.dumps(
         {
             "from": config.from_addr,

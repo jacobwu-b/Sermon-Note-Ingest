@@ -33,13 +33,14 @@ import sys
 from collections.abc import Callable, Sequence
 from datetime import UTC, datetime, timedelta
 
-from poller import config, content_repo, net, pipeline_dispatch, prompting, store, transcribe
+from poller import config, content_repo, net, notify, pipeline_dispatch, prompting, quality, store, transcribe
 from poller.slug import slugify
 
 TranscribeAudio = Callable[[str, str | None], tuple[str, str, transcribe.DecodingProfile]]
 PushTranscripts = Callable[[dict[str, str]], None]
 FetchExisting = Callable[[list[str]], dict[str, str]]
 DispatchIngestEvent = Callable[[dict[str, object], str], None]
+SendQualityAlert = Callable[[str, list[notify.FlaggedTranscript]], None]
 
 logger = logging.getLogger("poller")
 
@@ -116,6 +117,10 @@ def _dispatch_ingest_event(event: dict[str, object], source: str) -> None:
     pipeline_dispatch.dispatch_ingest_event(event, source=source, config=pipeline_config)
 
 
+def _send_quality_alert(church: str, flagged: list[notify.FlaggedTranscript]) -> None:
+    notify.send_quality_alert(church, flagged, config.load_notify_config())
+
+
 def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
     """Records not yet transcribed or failed, with a fetchable enclosure, newest first.
 
@@ -149,6 +154,7 @@ def transcribe_church(
     vocabulary: Sequence[str] = (),
     pipeline_enabled: bool = True,
     marks_out: dict[str, dict] | None = None,
+    send_quality_alert: SendQualityAlert = _send_quality_alert,
 ) -> bool:
     """Transcribe ``batch``, push the successes to Content in one commit, then ledger them.
 
@@ -160,9 +166,14 @@ def transcribe_church(
     :func:`content_repo.default_push`'s overwrite guard, failing every run (issue #84).
     If Content can't be read at all, the whole batch stays pending.
 
-    Returns ``True`` iff no sermon in ``batch`` ended terminally failed and the Content
-    push (if there was anything to push) succeeded. A download failure is not a failure
-    of this run — it's an expected, retried-next-run outcome. ``vocabulary`` is the
+    Each transcript is scored (ADR-0023) before the push. A flagged one is still pushed,
+    ledgered and dispatched; once the push lands, the church's flagged sermons go out in
+    one ``send_quality_alert`` email.
+
+    Returns ``True`` iff no sermon in ``batch`` ended terminally failed, the Content
+    push (if there was anything to push) succeeded, and any quality alert was delivered.
+    A download failure is not a failure of this run — it's an expected, retried-next-run
+    outcome. ``vocabulary`` is the
     church's configured term list (its ``ingest.vocabulary`` in the church table), prompted alongside
     what ``records`` already knows about the church. ``pipeline_enabled`` is False for a
     church Pipeline does not run: it is transcribed, but Pipeline is not dispatched, since
@@ -170,7 +181,7 @@ def transcribe_church(
 
     ``marks_out``, when given, is filled with every ledger mutation this call actually
     durably makes (guid -> ``{"kind": "done", ...mark_transcribed kwargs}``, its
-    ``profile`` as a plain dict, or
+    ``profile`` and ``quality`` as plain dicts, or
     ``{"kind": "failed", "error": ...}``, or ``{"kind": "download_failed"}``) — never a
     transcription whose Content push didn't succeed.
     :func:`replay_marks` re-applies this record verbatim onto a freshly-loaded ledger, so
@@ -178,7 +189,8 @@ def transcribe_church(
     just to recover from a losing ``data/*.json`` race (issue #60).
     """
     to_push: dict[str, str] = {}
-    pending_marks: dict[str, tuple[str, str, dict[str, object]]] = {}
+    pending_marks: dict[str, tuple[str, str, dict[str, object], quality.QualityScore]] = {}
+    flagged: list[notify.FlaggedTranscript] = []
     all_ok = True
     church_terms = prompting.church_vocabulary(records)
 
@@ -216,6 +228,7 @@ def transcribe_church(
                     "transcribed_at": adopted_at,
                     "profile": None,
                     "adopted": True,
+                    "quality": None,
                 }
             continue
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
@@ -241,7 +254,8 @@ def transcribe_church(
             all_ok = False
             continue
         to_push[path] = text
-        pending_marks[guid] = (path, digest, dataclasses.asdict(decoded_under))
+        score = quality.score(text, hotwords=decoded_under.hotwords)
+        pending_marks[guid] = (path, digest, dataclasses.asdict(decoded_under), score)
 
     if to_push:
         try:
@@ -257,14 +271,16 @@ def transcribe_church(
             return False
         transcribed_at = net.now()
         now_dt = datetime.fromisoformat(transcribed_at)
-        for guid, (path, digest, profile) in pending_marks.items():
+        for guid, (path, digest, profile, score) in pending_marks.items():
             record = records[guid]
+            counts = dataclasses.asdict(score)
             store.mark_transcribed(
                 record,
                 content_path=path,
                 transcript_hash=digest,
                 transcribed_at=transcribed_at,
                 profile=profile,
+                quality=counts,
             )
             if marks_out is not None:
                 marks_out[guid] = {
@@ -274,7 +290,22 @@ def transcribe_church(
                     "transcribed_at": transcribed_at,
                     "profile": profile,
                     "adopted": False,
+                    "quality": counts,
                 }
+            tripped = quality.flags(score)
+            if tripped:
+                logger.warning(
+                    "%s/%s: transcript quality flagged %s: %s", name, guid, ",".join(tripped), counts
+                )
+                flagged.append(
+                    notify.FlaggedTranscript(
+                        guid=guid,
+                        title=record.get("title"),
+                        preached_on=record.get("preached_on"),
+                        score=score,
+                        flags=tripped,
+                    )
+                )
             if not pipeline_enabled:
                 logger.debug("%s/%s: church not enabled in pipeline, skipping pipeline dispatch", name, guid)
                 continue
@@ -301,6 +332,14 @@ def transcribe_church(
 
     store.save(name, records)
     logger.info("%s: transcribed %d/%d selected", name, len(pending_marks), len(batch))
+    if flagged:
+        try:
+            send_quality_alert(name, flagged)
+        except (config.ConfigError, notify.NotifyError) as exc:
+            logger.error(
+                "%s: quality alert for %d flagged transcript(s) not sent: %s", name, len(flagged), exc
+            )
+            all_ok = False
     return all_ok
 
 
@@ -370,6 +409,8 @@ def replay_marks(path: str) -> bool:
                     transcribed_at=fields["transcribed_at"],
                     profile=profile,
                     adopted=fields.get("adopted", False),
+                    # A marks file from before ADR-0023 carries no counts: not scored.
+                    quality=fields.get("quality"),
                 )
             elif kind == "failed":
                 # A marks file from before ADR-0018 carries no reason; the model is all it covered.
@@ -418,6 +459,7 @@ def run(
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
     fetch_existing: FetchExisting = content_repo.existing_transcripts,
     marks_out: dict[str, dict[str, dict]] | None = None,
+    send_quality_alert: SendQualityAlert = _send_quality_alert,
 ) -> bool:
     """Transcribe at most ``limit`` pending sermons per selected church.
 
@@ -427,9 +469,10 @@ def run(
     exactly one shard, and the default (0, 1) is every sermon, unchanged from before
     sharding existed.
 
-    ``transcribe_audio``/``push``/``dispatch_ingest_event``/``fetch_existing`` are threaded through to
-    :func:`transcribe_church` rather than relied on as its defaults, so a caller (or a
-    test) can replace them without reaching into another module's attributes.
+    ``transcribe_audio``/``push``/``dispatch_ingest_event``/``fetch_existing``/
+    ``send_quality_alert`` are threaded through to :func:`transcribe_church` rather than
+    relied on as its defaults, so a caller (or a test) can replace them without reaching
+    into another module's attributes.
 
     ``marks_out``, when given, is filled per church with this run's
     :func:`transcribe_church` marks (see there) for :func:`replay_marks` to later
@@ -461,6 +504,7 @@ def run(
                 vocabulary=selected[name].vocabulary,
                 pipeline_enabled=selected[name].pipeline_enabled,
                 marks_out=marks_out.setdefault(name, {}) if marks_out is not None else None,
+                send_quality_alert=send_quality_alert,
             )
         except Exception:
             logger.exception("%s: transcription crashed unexpectedly", name)

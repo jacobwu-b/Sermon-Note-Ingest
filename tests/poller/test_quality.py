@@ -92,3 +92,34 @@ def test_score_holds_only_counts_so_it_is_safe_to_log():
     # This repo's Actions logs are public: a score must never carry transcript text.
     text = "A sentinel phrase nobody would say. " * 5
     assert "sentinel" not in repr(quality.score(text, hotwords="sentinel phrase, nobody"))
+
+
+def _score(**counts: int) -> quality.QualityScore:
+    return quality.QualityScore(
+        **({"words": 5000, "loop_words": 0, "credit_hits": 0, "hotword_pairs": 0} | counts)
+    )
+
+
+def test_flags_is_empty_for_a_clean_score():
+    assert quality.flags(_score()) == ()
+
+
+def test_flags_trips_loops_at_forty_loop_words_and_not_below():
+    assert quality.flags(_score(loop_words=39)) == ()
+    assert quality.flags(_score(loop_words=40)) == ("loops",)
+
+
+def test_flags_trips_credits_on_a_single_credit_hit():
+    assert quality.flags(_score(credit_hits=1)) == ("credits",)
+
+
+def test_flags_trips_hotword_leak_on_a_single_adjacent_pair():
+    assert quality.flags(_score(hotword_pairs=1)) == ("hotword_leak",)
+
+
+def test_flags_lists_every_tripped_flag_in_a_fixed_order():
+    assert quality.flags(_score(hotword_pairs=3, credit_hits=2, loop_words=120)) == (
+        "loops",
+        "credits",
+        "hotword_leak",
+    )

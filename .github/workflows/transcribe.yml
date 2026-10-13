@@ -182,12 +182,25 @@ jobs:
         env:
           LIMIT: ${{ inputs.limit || 5 }}
           CHURCH: ${{ inputs.church }}
+          # A transcript that trips a quality flag is emailed from this step (ADR-0023);
+          # the same repository secrets poll.yml uses for discovery emails.
+          NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
+          NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: |
           # Written first, before any input validation can exit, so a later step
           # can always find (or safely not find, via if-no-files-found: ignore)
           # this shard's marks regardless of where this run stops (ADR-0014).
           marks_file="${{ runner.temp }}/transcribe-marks-${{ matrix.shard }}.json"
           echo "MARKS_FILE=$marks_file" >> "$GITHUB_ENV"
+          # Checked before any Whisper time is spent: a missing secret would otherwise
+          # surface only on the first flagged transcript, as an alert nobody received.
+          for var in NOTIFY_EMAIL_FROM NOTIFY_EMAIL_TO RESEND_API_KEY; do
+            if [ -z "${!var}" ]; then
+              echo "::error::notify secret $var is not set; transcript quality alerts cannot be sent"
+              exit 1
+            fi
+          done
           if ! [[ "$LIMIT" =~ ^[1-9][0-9]*$ ]]; then
             echo "::error::LIMIT input '$LIMIT' is not a positive integer"
             exit 1

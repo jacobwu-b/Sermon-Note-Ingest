@@ -4,7 +4,7 @@ import urllib.error
 
 import pytest
 
-from poller import notify
+from poller import notify, quality
 from poller.config import NotifyConfig
 from poller.sources.base import SermonItem
 
@@ -158,3 +158,62 @@ def test_send_new_sermons_html_has_no_warning_for_sunday_and_special_service_ite
     notify.send_new_sermons("menlo", [_item(), christmas_eve], _config())
 
     assert "Heads up" not in captured["body"]["html"]
+
+
+def _flagged(title: str = "Hear and Do") -> notify.FlaggedTranscript:
+    return notify.FlaggedTranscript(
+        guid="menlochurchvideo.podbean.com/3a5d9a10",
+        title=title,
+        preached_on="2026-08-23",
+        score=quality.QualityScore(words=6606, loop_words=72, credit_hits=2, hotword_pairs=0),
+        flags=("loops", "credits"),
+    )
+
+
+def _capture(monkeypatch) -> dict:
+    captured: dict = {}
+
+    def fake_urlopen(request, timeout):
+        captured["url"] = request.full_url
+        captured["headers"] = {k.lower(): v for k, v in request.headers.items()}
+        captured["body"] = json.loads(request.data)
+        return _FakeResponse(200)
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    return captured
+
+
+def test_send_quality_alert_names_each_flagged_sermon_with_its_counts_and_flags(monkeypatch):
+    captured = _capture(monkeypatch)
+
+    notify.send_quality_alert("menlo", [_flagged()], _config())
+
+    body = captured["body"]
+    assert captured["url"] == "https://api.resend.com/emails"
+    assert body["to"] == ["team@example.org"]
+    assert body["subject"] == "Transcript quality: 1 sermon from menlo flagged"
+    for expected in ("Hear and Do", "2026-08-23", "menlochurchvideo.podbean.com/3a5d9a10", "loops, credits"):
+        assert expected in body["html"]
+    for count in ("6606 words", "72 loop words", "2 credit hits", "0 hotword pairs"):
+        assert count in body["html"]
+
+
+def test_send_quality_alert_sets_the_project_user_agent(monkeypatch):
+    captured = _capture(monkeypatch)
+    notify.send_quality_alert("menlo", [_flagged()], _config())
+    assert captured["headers"]["user-agent"] == notify.DEFAULT_USER_AGENT
+
+
+def test_send_quality_alert_escapes_a_title_with_markup(monkeypatch):
+    captured = _capture(monkeypatch)
+    notify.send_quality_alert("menlo", [_flagged(title="Faith <and> Works")], _config())
+    assert "Faith &lt;and&gt; Works" in captured["body"]["html"]
+
+
+def test_send_quality_alert_raises_notify_error_on_http_error(monkeypatch):
+    def fake_urlopen(request, timeout):
+        raise urllib.error.HTTPError(request.full_url, 422, "Unprocessable", {}, io.BytesIO(b"bad"))
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    with pytest.raises(notify.NotifyError, match="422"):
+        notify.send_quality_alert("menlo", [_flagged()], _config())
