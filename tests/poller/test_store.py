@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from poller import store
+from poller import quality, store
 from poller.sources.base import SermonItem
 
 
@@ -195,6 +195,63 @@ def test_mark_transcribed_records_a_transcript_adopted_from_content():
         adopted=True,
     )
     assert record["transcript_adopted"] is True
+
+
+_COUNTS = {"words": 6423, "loop_words": 72, "credit_hits": 0, "hotword_pairs": 0}
+
+
+def test_item_to_record_carries_every_quality_count_as_not_scored():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    assert {key: record[f"transcript_{key}"] for key in store.QUALITY_KEYS} == dict.fromkeys(
+        store.QUALITY_KEYS
+    )
+
+
+def test_mark_transcribed_records_the_transcripts_quality_counts():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record,
+        content_path="x",
+        transcript_hash="h",
+        transcribed_at="t",
+        profile=_FULL_PROFILE,
+        quality=_COUNTS,
+    )
+    assert {key: record[f"transcript_{key}"] for key in store.QUALITY_KEYS} == _COUNTS
+    assert store.transcript_quality(record) == quality.QualityScore(**_COUNTS)
+
+
+def test_an_adopted_transcript_records_its_quality_as_not_scored():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record, content_path="x", transcript_hash="h", transcribed_at="t", profile=None, adopted=True
+    )
+    assert {key: record[f"transcript_{key}"] for key in store.QUALITY_KEYS} == dict.fromkeys(
+        store.QUALITY_KEYS
+    )
+    assert store.transcript_quality(record) is None
+
+
+def test_mark_transcribed_refuses_a_quality_count_the_ledger_does_not_know():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    with pytest.raises(ValueError, match="wpm"):
+        store.mark_transcribed(
+            record,
+            content_path="x",
+            transcript_hash="h",
+            transcribed_at="t",
+            profile=None,
+            quality={"wpm": 150},
+        )
+    assert record["transcription_status"] is None
+
+
+def test_a_record_saved_before_quality_counts_existed_reads_as_not_scored():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(record, content_path="x", transcript_hash="h", transcribed_at="t", profile=None)
+    for key in store.QUALITY_KEYS:
+        del record[f"transcript_{key}"]
+    assert store.transcript_quality(record) is None
 
 
 def test_a_successful_transcription_clears_the_earlier_failure_reason():

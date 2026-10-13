@@ -28,6 +28,7 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
+from poller.quality import QualityScore
 from poller.sources.base import SermonItem
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
@@ -51,6 +52,10 @@ PROFILE_KEYS = (
     "faster_whisper_version",
     "ctranslate2_version",
 )
+
+# A transcript's quality counts, each as ``transcript_<key>`` (ADR-0023);
+# ``poller.quality.QualityScore`` has exactly these fields.
+QUALITY_KEYS = ("words", "loop_words", "credit_hits", "hotword_pairs")
 
 logger = logging.getLogger("poller")
 
@@ -202,6 +207,7 @@ def item_to_record(item: SermonItem, *, first_seen_at: str, feed_published_at: s
         **{f"transcription_{key}": None for key in PROFILE_KEYS},
         "transcription_last_error": None,
         "transcript_adopted": None,
+        **{f"transcript_{key}": None for key in QUALITY_KEYS},
     }
 
 
@@ -258,6 +264,7 @@ def mark_transcribed(
     transcribed_at: str,
     profile: Mapping[str, Any] | None,
     adopted: bool = False,
+    quality: Mapping[str, int] | None = None,
 ) -> None:
     """Advance ``record`` to transcribed, recording where its text landed in Content.
 
@@ -269,12 +276,14 @@ def mark_transcribed(
     (a transcript adopted from Content that this run didn't produce), records "unknown";
     a key the ledger doesn't know raises ``ValueError``. ``adopted`` marks the adopted case: its
     ``transcribed_at`` is when it was adopted, not produced, so latency reports skip it
-    (ADR-0018).
+    (ADR-0018). ``quality`` is the transcript's counts keyed by :data:`QUALITY_KEYS`
+    (ADR-0023); ``None`` records "not scored", as for an adopted transcript.
     """
     profile = profile or {}
-    unknown = sorted(set(profile) - set(PROFILE_KEYS))
+    quality = quality or {}
+    unknown = sorted(set(profile) - set(PROFILE_KEYS)) + sorted(set(quality) - set(QUALITY_KEYS))
     if unknown:
-        raise ValueError(f"not a ledger profile field: {', '.join(unknown)}")
+        raise ValueError(f"not a ledger profile or quality field: {', '.join(unknown)}")
     record["transcription_status"] = "done"
     record["content_path"] = content_path
     record["transcript_hash"] = transcript_hash
@@ -282,7 +291,24 @@ def mark_transcribed(
     for key in PROFILE_KEYS:
         record[f"transcription_{key}"] = profile.get(key)
     record["transcript_adopted"] = adopted
+    for key in QUALITY_KEYS:
+        record[f"transcript_{key}"] = quality.get(key)
     record["transcription_last_error"] = None
+
+
+def transcript_quality(record: Mapping[str, Any]) -> QualityScore | None:
+    """``record``'s transcript counts, or ``None`` if it was never scored (ADR-0023).
+
+    Unscored covers pending and failed records, adopted transcripts and anything
+    transcribed before scoring existed. None of these may read as clean.
+    """
+    counts: dict[str, Any] = {}
+    for key in QUALITY_KEYS:
+        value = record.get(f"transcript_{key}")
+        if value is None:
+            return None
+        counts[key] = value
+    return QualityScore(**counts)
 
 
 def mark_download_failed(record: dict[str, Any]) -> None:

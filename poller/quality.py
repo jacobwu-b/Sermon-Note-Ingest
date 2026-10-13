@@ -24,6 +24,12 @@ _CREDIT_RE = re.compile(
 _MIN_LOOP_PHRASE, _MAX_LOOP_PHRASE = 4, 40
 _MIN_LOOP_REPEATS = 3
 
+# A transcript is flagged at these counts (ADR-0022 rule 6, ADR-0023). The only copy: the
+# alert, the status file and the re-transcription gate all go through :func:`flags`.
+LOOP_WORDS_FLAG = 40
+CREDIT_HITS_FLAG = 1
+HOTWORD_PAIRS_FLAG = 1
+
 
 @dataclass(frozen=True)
 class QualityScore:
@@ -81,3 +87,13 @@ def score(text: str, *, hotwords: str | None) -> QualityScore:
         credit_hits=credit_hits(text),
         hotword_pairs=hotword_pairs(text, hotwords),
     )
+
+
+def flags(score: QualityScore) -> tuple[str, ...]:
+    """The names of the flags ``score`` trips, in a fixed order; ``()`` when it is clean."""
+    tripped = (
+        ("loops", score.loop_words >= LOOP_WORDS_FLAG),
+        ("credits", score.credit_hits >= CREDIT_HITS_FLAG),
+        ("hotword_leak", score.hotword_pairs >= HOTWORD_PAIRS_FLAG),
+    )
+    return tuple(name for name, hit in tripped if hit)

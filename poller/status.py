@@ -22,7 +22,7 @@ import sys
 from collections.abc import Callable
 from typing import Any
 
-from poller import config, content_repo, net, store, transcript_index
+from poller import config, content_repo, net, quality, store, transcript_index
 
 logger = logging.getLogger("poller")
 
@@ -42,7 +42,14 @@ def _project(source: str, record: dict[str, Any]) -> dict[str, Any]:
         "transcribed_at": record.get("transcribed_at"),
         "transcript_adopted": record.get("transcript_adopted"),
         "last_error": record.get("transcription_last_error"),
+        "quality_flags": _quality_flags(record),
     }
+
+
+def _quality_flags(record: dict[str, Any]) -> list[str] | None:
+    """The flags the record's transcript trips (ADR-0023), or ``None`` if it was never scored."""
+    score = store.transcript_quality(record)
+    return None if score is None else list(quality.flags(score))
 
 
 def build_status(churches: dict[str, config.ChurchConfig]) -> dict[str, Any]:
