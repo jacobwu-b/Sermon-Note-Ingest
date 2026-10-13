@@ -50,6 +50,8 @@ def _speech(sentences: int) -> str:
 
 _OLD_TEXT = f"{_SENTINEL}. " + _speech(20) + "We lead with mercy. " * 30
 _NEW_TEXT = f"{_SENTINEL}. " + _speech(21)
+# Ten Amara lines where the old text had none: worse beyond chance (``quality.worse_flags``).
+_WORSE_TEXT = _NEW_TEXT + " Subtitles by the Amara.org community." * 10
 _OLD_HASH = transcribe.transcript_hash(_OLD_TEXT)
 _NEW_HASH = transcribe.transcript_hash(_NEW_TEXT)
 _CURRENT_FIELDS = (
@@ -451,10 +453,10 @@ def test_a_model_failure_keeps_the_old_transcript_and_fails_the_run(exc, error):
     _failed_without_touching_the_transcript(before, error)
 
 
-def test_a_new_transcript_that_trips_a_flag_is_refused_and_kept_as_a_candidate():
+def test_a_new_transcript_meaningfully_worse_on_a_flag_is_refused_and_kept_as_a_candidate():
     record, path = _one_stale_sermon()
     before = dict(record)
-    worse = _NEW_TEXT + " Subtitles by the Amara.org community"
+    worse = _WORSE_TEXT
     content = _Content({path: _OLD_TEXT})
 
     assert _run(content, _transcribes(worse)) is True
@@ -471,6 +473,22 @@ def test_a_new_transcript_that_trips_a_flag_is_refused_and_kept_as_a_candidate()
     saved = _failed_without_touching_the_transcript(before, store.QUALITY_REGRESSION_ERROR)
     assert saved["retranscription_candidate_path"] == candidate_path
     assert saved["retranscription_candidate_hash"] == worse_hash
+
+
+def test_a_flagged_transcript_within_chance_of_the_old_one_replaces_it():
+    # ADR-0022 rule 6 as amended: one stray credit line where the old had none is not a
+    # regression; the replacement lands and its counts flag it on the ledger instead.
+    _record_before, path = _one_stale_sermon()
+    content = _Content({path: _OLD_TEXT})
+    stray = _NEW_TEXT + " Thanks for watching."
+
+    assert _run(content, _transcribes(stray)) is True
+
+    assert content.kept == []
+    assert [text for _p, text, _e, _t in content.replaced] == [stray]
+    saved = store.load("menlo")["g1"]
+    assert saved["transcript_credit_hits"] == 1
+    assert quality.flags(store.transcript_quality(saved)) == ("credits",)
 
 
 def test_a_new_transcript_with_under_90_percent_of_the_old_speech_is_refused():
@@ -521,7 +539,7 @@ def test_an_exhausted_candidate_push_leaves_the_ledger_untouched_so_the_next_run
     content = _Content({path: _OLD_TEXT})
     content.keep_error = content_repo.ContentPublishError("candidate push failed after 5 attempts")
 
-    assert _run(content, _transcribes(_NEW_TEXT + " Thanks for watching")) is False
+    assert _run(content, _transcribes(_WORSE_TEXT)) is False
     assert store.load("menlo")["g1"] == before
 
 
@@ -590,7 +608,7 @@ def test_a_replacement_mark_is_not_replayed_over_a_hash_that_has_since_moved(tmp
 def test_a_failure_mark_replays_only_onto_the_hash_the_attempt_saw(tmp_path):
     record, path = _one_stale_sermon()
     content = _Content({path: _OLD_TEXT})
-    marks = _marks_for(content, _transcribes(_NEW_TEXT + " Thanks for watching"))
+    marks = _marks_for(content, _transcribes(_WORSE_TEXT))
     marks_file = tmp_path / "marks.json"
     marks_file.write_text(json.dumps(marks))
 
@@ -618,7 +636,7 @@ def test_no_log_line_or_summary_row_carries_transcript_text(branch, caplog):
     if branch == "identical":
         fake = _transcribes(_OLD_TEXT)
     elif branch == "refused":
-        fake = _transcribes(_NEW_TEXT + " Thanks for watching")
+        fake = _transcribes(_WORSE_TEXT)
     elif branch == "conflict":
         content.files[path] = f"{_SENTINEL} edited by hand"
     elif branch == "download":

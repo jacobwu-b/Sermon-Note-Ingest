@@ -144,3 +144,80 @@ def test_clean_words_leaves_out_loop_repeats_credit_lines_and_hotword_pairs():
 def test_clean_words_counts_hotword_terms_as_speech_when_none_were_sent():
     leaked = _PROSE + " Ready To Serve, Grace Presbyterian"
     assert quality.clean_words(leaked, hotwords=None) == quality.clean_words(_PROSE, hotwords=None) + 5
+
+
+# --- "Thanks for watching" in context ------------------------------------------------------
+
+
+def test_thanks_for_watching_inside_a_sentence_is_speech_not_a_credit_line():
+    # A sermon illustration, not Whisper's stock outro.
+    story = (
+        f"{_PROSE} She does the cartwheel. And she goes, OK, thanks for watching, Dad. And she runs off. "
+        "She says, thanks for watching. She feels seen."
+    )
+    assert quality.credit_hits(story) == 0
+
+
+def test_thanks_for_watching_as_a_sentence_of_its_own_is_a_credit_line():
+    after_a_loop = f"{_PROSE} God. God. God. God. Thanks for watching. In Jesus' name, amen."
+    at_the_end = f"{_PROSE} Thank you for watching"
+    assert quality.credit_hits(after_a_loop) == 1
+    assert quality.credit_hits(at_the_end) == 1
+
+
+def test_an_attribution_line_counts_wherever_it_appears():
+    run_on = (
+        f"{_PROSE} Transcription by CastingWords David Jones, Iron Kim, Rod Miles look, don't be surprised"
+    )
+    assert quality.credit_hits(run_on) == 1
+
+
+def test_clean_words_keeps_thanks_for_watching_said_in_a_story():
+    story = _PROSE + " And she goes, OK, thanks for watching, Dad."
+    assert quality.clean_words(story, hotwords=None) == quality.score(story, hotwords=None).words
+
+
+# --- Worse beyond chance -------------------------------------------------------------------
+
+
+def _counts(words: int, **counts: int) -> quality.QualityScore:
+    return quality.QualityScore(
+        **({"words": words, "loop_words": 0, "credit_hits": 0, "hotword_pairs": 0} | counts)
+    )
+
+
+def test_a_clean_new_transcript_is_never_worse():
+    assert quality.worse_flags(_counts(5000), _counts(5000, loop_words=30)) == ()
+
+
+def test_a_flagged_new_transcript_is_not_worse_than_a_far_worse_old_one():
+    old = _counts(3273, loop_words=1371, credit_hits=56, hotword_pairs=300)
+    new = _counts(5977, loop_words=48, credit_hits=2, hotword_pairs=1)
+    assert quality.worse_flags(old, new) == ()
+
+
+def test_one_stray_credit_line_where_the_old_had_none_is_within_chance():
+    assert quality.worse_flags(_counts(6000), _counts(6000, credit_hits=1)) == ()
+
+
+def test_a_block_of_credit_lines_where_the_old_had_none_is_worse():
+    assert quality.worse_flags(_counts(6000), _counts(6000, credit_hits=20)) == ("credits",)
+
+
+def test_a_new_loop_where_the_old_had_none_is_worse():
+    assert quality.worse_flags(_counts(6000), _counts(6000, loop_words=60)) == ("loops",)
+
+
+def test_worse_is_judged_per_word_so_a_longer_transcript_may_carry_proportionally_more():
+    # Twice the speech with twice the loop words is the same rate, not a regression.
+    assert quality.worse_flags(_counts(3000, loop_words=40), _counts(6000, loop_words=80)) == ()
+
+
+def test_a_modest_rise_across_the_flag_line_is_within_chance():
+    # 30 → 45 loop words over the same length: flagged now, but p ≈ 0.05, above the 0.01 bar.
+    assert quality.worse_flags(_counts(6000, loop_words=30), _counts(6000, loop_words=45)) == ()
+
+
+def test_each_worse_flag_is_named_in_flag_order():
+    new = _counts(6000, loop_words=200, credit_hits=20, hotword_pairs=15)
+    assert quality.worse_flags(_counts(6000), new) == ("loops", "credits", "hotword_leak")
