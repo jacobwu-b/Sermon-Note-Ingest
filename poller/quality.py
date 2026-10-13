@@ -70,13 +70,17 @@ def credit_hits(text: str) -> int:
     return len(_CREDIT_RE.findall(text))
 
 
+def _hotword_pair_strings(hotwords: str | None) -> list[str]:
+    if not hotwords:
+        return []
+    terms = [t.strip() for t in hotwords.split(",") if t.strip()]
+    return [f"{a}, {b}".lower() for a, b in itertools.pairwise(terms)]
+
+
 def hotword_pairs(text: str, hotwords: str | None) -> int:
     """Occurrences of two adjacent hotword terms emitted as ``"A, B"`` — the list read back as speech."""
-    if not hotwords:
-        return 0
-    terms = [t.strip() for t in hotwords.split(",") if t.strip()]
     lowered = text.lower()
-    return sum(lowered.count(f"{a}, {b}".lower()) for a, b in itertools.pairwise(terms))
+    return sum(lowered.count(pair) for pair in _hotword_pair_strings(hotwords))
 
 
 def score(text: str, *, hotwords: str | None) -> QualityScore:
@@ -87,6 +91,19 @@ def score(text: str, *, hotwords: str | None) -> QualityScore:
         credit_hits=credit_hits(text),
         hotword_pairs=hotword_pairs(text, hotwords),
     )
+
+
+def clean_words(text: str, *, hotwords: str | None) -> int:
+    """Words left once credit lines, hotword pairs and loop repeats are taken out.
+
+    The speech a transcript actually carries, which ADR-0022's re-transcription gate
+    compares between the old and new text. Junk is removed before loops are counted so
+    a looping credit line isn't subtracted twice.
+    """
+    residue = _CREDIT_RE.sub(" ", text.lower())
+    for pair in _hotword_pair_strings(hotwords):
+        residue = residue.replace(pair, " ")
+    return len(_words(residue)) - loop_words(residue)
 
 
 def flags(score: QualityScore) -> tuple[str, ...]:

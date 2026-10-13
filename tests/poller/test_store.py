@@ -646,3 +646,188 @@ def test_load_prefers_the_legacy_value_when_a_record_carries_both_names(tmp_path
 
     assert loaded["preached_on"] == "2026-09-13"
     assert "published_on" not in loaded
+
+
+_RUNNING = {
+    "model": "large-v3",
+    "compute_type": "int8",
+    "beam_size": 5,
+    "condition_on_previous_text": False,
+    "hallucination_silence_threshold": 2.0,
+    "vad_filter": True,
+    "domain_prompt": False,
+}
+
+
+def _done_record(**profile) -> dict:
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/2026-09-06_hear-and-do_g1.txt",
+        transcript_hash="oldhash",
+        transcribed_at="2026-09-20T12:00:00+00:00",
+        profile={**_RUNNING, "hotwords": None, **profile},
+        quality={"words": 5000, "loop_words": 120, "credit_hits": 1, "hotword_pairs": 0},
+    )
+    return record
+
+
+def test_a_record_produced_under_the_running_profile_is_not_stale():
+    assert store.profile_is_stale(_done_record(), _RUNNING) is False
+
+
+@pytest.mark.parametrize(
+    ("key", "old_value"),
+    [
+        ("model", "small"),
+        ("compute_type", "float32"),
+        ("beam_size", 1),
+        ("condition_on_previous_text", True),
+        ("hallucination_silence_threshold", 0),
+        ("vad_filter", False),
+        ("domain_prompt", True),
+    ],
+)
+def test_a_record_is_stale_when_any_one_decoding_knob_differs(key, old_value):
+    assert store.profile_is_stale(_done_record(**{key: old_value}), _RUNNING) is True
+
+
+@pytest.mark.parametrize("key", store.STALENESS_KEYS)
+def test_a_missing_decoding_knob_counts_as_stale(key):
+    record = _done_record()
+    del record[f"transcription_{key}"]
+    assert store.profile_is_stale(record, _RUNNING) is True
+
+
+def test_engine_versions_and_the_hotwords_string_never_make_a_record_stale():
+    # ADR-0022 rule 2: a Dependabot bump or a vocabulary edit must not queue the corpus.
+    record = _done_record(
+        hotwords="Keith Crosby, Luke", faster_whisper_version="0.9", ctranslate2_version=None
+    )
+    assert store.profile_is_stale(record, _RUNNING) is False
+
+
+def test_the_profile_digest_names_the_decoding_knobs_only():
+    full = {
+        **_RUNNING,
+        "hotwords": "Luke, Acts",
+        "faster_whisper_version": "1.2.1",
+        "ctranslate2_version": "4.8",
+    }
+    assert store.profile_digest(full) == store.profile_digest(_RUNNING)
+    assert store.profile_digest({**_RUNNING, "beam_size": 1}) != store.profile_digest(_RUNNING)
+
+
+def test_the_profile_digest_reads_a_whole_number_threshold_the_same_as_its_float():
+    # JSON round-trips 2.0 as 2.0, but config can hand over 0 or 0.0 for the guard off.
+    off = {**_RUNNING, "hallucination_silence_threshold": 0}
+    assert store.profile_digest(off) == store.profile_digest({**off, "hallucination_silence_threshold": 0.0})
+
+
+_NEW_PROFILE = {
+    **_RUNNING,
+    "hotwords": None,
+    "faster_whisper_version": "1.2.1",
+    "ctranslate2_version": "4.8.2",
+}
+_NEW_QUALITY = {"words": 5200, "loop_words": 0, "credit_hits": 0, "hotword_pairs": 0}
+
+
+def test_mark_retranscribed_replaces_the_transcript_fields_and_keeps_the_old_hash():
+    record = _done_record(condition_on_previous_text=True)
+    store.mark_retranscribed(
+        record,
+        transcript_hash="newhash",
+        transcribed_at="2026-10-13T01:00:00+00:00",
+        profile=_NEW_PROFILE,
+        quality=_NEW_QUALITY,
+        superseded="oldhash",
+    )
+    assert record["transcript_hash"] == "newhash"
+    assert record["transcribed_at"] == "2026-10-13T01:00:00+00:00"
+    assert record["superseded_transcript_hash"] == "oldhash"
+    assert {key: record[f"transcription_{key}"] for key in store.PROFILE_KEYS} == _NEW_PROFILE
+    assert {key: record[f"transcript_{key}"] for key in store.QUALITY_KEYS} == _NEW_QUALITY
+    assert record["transcription_status"] == "done"
+    assert record["content_path"] == "transcripts/menlo/2026-09-06_hear-and-do_g1.txt"
+    assert record["transcript_adopted"] is False
+
+
+def test_mark_retranscribed_with_identical_text_leaves_any_earlier_superseded_hash():
+    record = _done_record(condition_on_previous_text=True)
+    record["superseded_transcript_hash"] = "olderhash"
+    store.mark_retranscribed(
+        record,
+        transcript_hash="oldhash",
+        transcribed_at="2026-10-13T01:00:00+00:00",
+        profile=_NEW_PROFILE,
+        quality=_NEW_QUALITY,
+        superseded=None,
+    )
+    assert record["superseded_transcript_hash"] == "olderhash"
+    assert record["transcription_condition_on_previous_text"] is False
+
+
+def test_mark_retranscribed_clears_an_earlier_retranscription_failure():
+    record = _done_record(condition_on_previous_text=True)
+    store.mark_retranscribe_failed(
+        record,
+        error=store.QUALITY_REGRESSION_ERROR,
+        failed_profile="digest",
+        candidate_path="retranscription-candidates/menlo/x.abc.txt",
+        candidate_hash="abc",
+    )
+    store.mark_retranscribed(
+        record,
+        transcript_hash="newhash",
+        transcribed_at="t",
+        profile=_NEW_PROFILE,
+        quality=_NEW_QUALITY,
+        superseded="oldhash",
+    )
+    for field in (
+        "retranscription_last_error",
+        "retranscription_failed_profile",
+        "retranscription_candidate_path",
+        "retranscription_candidate_hash",
+    ):
+        assert record[field] is None
+
+
+def test_mark_retranscribed_refuses_a_field_the_ledger_does_not_know():
+    with pytest.raises(ValueError, match="temperature"):
+        store.mark_retranscribed(
+            _done_record(),
+            transcript_hash="h",
+            transcribed_at="t",
+            profile={**_NEW_PROFILE, "temperature": 0},
+            quality=_NEW_QUALITY,
+            superseded="oldhash",
+        )
+
+
+def test_mark_retranscribe_failed_leaves_every_current_transcript_field_untouched():
+    record = _done_record(condition_on_previous_text=True)
+    before = {key: value for key, value in record.items() if not key.startswith("retranscription_")}
+    store.mark_retranscribe_failed(
+        record,
+        error=store.QUALITY_REGRESSION_ERROR,
+        failed_profile="digest",
+        candidate_path="retranscription-candidates/menlo/x.abc.txt",
+        candidate_hash="abc",
+    )
+    assert {key: value for key, value in record.items() if not key.startswith("retranscription_")} == before
+    assert record["retranscription_last_error"] == "quality_regression"
+    assert record["retranscription_failed_profile"] == "digest"
+    assert record["retranscription_candidate_path"] == "retranscription-candidates/menlo/x.abc.txt"
+    assert record["retranscription_candidate_hash"] == "abc"
+
+
+def test_a_later_retranscription_failure_keeps_the_pointer_to_an_earlier_candidate():
+    record = _done_record()
+    store.mark_retranscribe_failed(
+        record, error="quality_regression", failed_profile="d1", candidate_path="p", candidate_hash="h"
+    )
+    store.mark_retranscribe_failed(record, error=store.DOWNLOAD_ERROR, failed_profile="d2")
+    assert record["retranscription_last_error"] == "audio_download"
+    assert record["retranscription_candidate_path"] == "p"

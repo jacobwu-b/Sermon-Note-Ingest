@@ -20,6 +20,7 @@ sermon at the top.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import os
@@ -37,6 +38,10 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DOWNLOAD_ERROR = "audio_download"
 TRANSCRIPTION_ERROR = "transcription"
 EMPTY_TRANSCRIPT_ERROR = "empty_transcript"
+# Re-transcription only (ADR-0022): the new text was refused by the quality gate, or
+# Content no longer held the text the ledger names.
+QUALITY_REGRESSION_ERROR = "quality_regression"
+CONTENT_CONFLICT_ERROR = "content_conflict"
 
 # What a transcript records about how it was produced, each as ``transcription_<key>``
 # (ADR-0012, ADR-0022); ``poller.transcribe.DecodingProfile`` has exactly these fields.
@@ -51,6 +56,19 @@ PROFILE_KEYS = (
     "hotwords",
     "faster_whisper_version",
     "ctranslate2_version",
+)
+
+# The profile keys that make a transcript stale when they differ from the running config
+# (ADR-0022 rule 2). Engine versions and the hotwords string are recorded but left out, so a
+# dependency bump or a vocabulary edit never queues the whole corpus.
+STALENESS_KEYS = (
+    "model",
+    "compute_type",
+    "beam_size",
+    "condition_on_previous_text",
+    "hallucination_silence_threshold",
+    "vad_filter",
+    "domain_prompt",
 )
 
 # A transcript's quality counts, each as ``transcript_<key>`` (ADR-0023);
@@ -309,6 +327,88 @@ def transcript_quality(record: Mapping[str, Any]) -> QualityScore | None:
             return None
         counts[key] = value
     return QualityScore(**counts)
+
+
+def profile_is_stale(record: Mapping[str, Any], running: Mapping[str, Any]) -> bool:
+    """Whether ``record``'s transcript was produced under a profile other than ``running``.
+
+    ``running`` is keyed by :data:`STALENESS_KEYS`. A field the record lacks, or holds as
+    ``None``, is unknown and counts as stale (ADR-0022 rule 2).
+    """
+    for key in STALENESS_KEYS:
+        recorded = record.get(f"transcription_{key}")
+        if recorded is None or recorded != running[key]:
+            return True
+    return False
+
+
+def profile_digest(profile: Mapping[str, Any]) -> str:
+    """A short key naming ``profile``'s :data:`STALENESS_KEYS` values.
+
+    Stored as ``retranscription_failed_profile`` so a record that failed terminally isn't
+    selected again until the profile changes. Only compared for equality, never queried.
+    """
+    values = {key: profile[key] for key in STALENESS_KEYS}
+    values["hallucination_silence_threshold"] = float(values["hallucination_silence_threshold"])
+    canonical = json.dumps(values, sort_keys=True)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()[:16]
+
+
+def mark_retranscribed(
+    record: dict[str, Any],
+    *,
+    transcript_hash: str,
+    transcribed_at: str,
+    profile: Mapping[str, Any],
+    quality: Mapping[str, int],
+    superseded: str | None,
+) -> None:
+    """Record that ``record``'s transcript was re-produced under ``profile`` (ADR-0022 rule 3).
+
+    The only writer of a ``done`` record's transcript fields in re-transcription. Called
+    only once Content holds the new text, or the new text was byte-identical to the old
+    (``superseded`` ``None``: there is nothing to supersede, so an earlier
+    ``superseded_transcript_hash`` stays), or a previous run's Content commit proved the
+    text is ours. ``content_path`` and ``transcription_status`` never change. Any earlier
+    re-transcription failure, and its candidate pointer, is cleared.
+    """
+    unknown = sorted(set(profile) - set(PROFILE_KEYS)) + sorted(set(quality) - set(QUALITY_KEYS))
+    if unknown:
+        raise ValueError(f"not a ledger profile or quality field: {', '.join(unknown)}")
+    record["transcript_hash"] = transcript_hash
+    record["transcribed_at"] = transcribed_at
+    for key in PROFILE_KEYS:
+        record[f"transcription_{key}"] = profile.get(key)
+    record["transcript_adopted"] = False
+    for key in QUALITY_KEYS:
+        record[f"transcript_{key}"] = quality.get(key)
+    if superseded is not None:
+        record["superseded_transcript_hash"] = superseded
+    record["retranscription_last_error"] = None
+    record["retranscription_failed_profile"] = None
+    record["retranscription_candidate_path"] = None
+    record["retranscription_candidate_hash"] = None
+
+
+def mark_retranscribe_failed(
+    record: dict[str, Any],
+    *,
+    error: str,
+    failed_profile: str,
+    candidate_path: str | None = None,
+    candidate_hash: str | None = None,
+) -> None:
+    """Record a failed re-transcription attempt, leaving the current transcript's fields alone.
+
+    ``failed_profile`` is :func:`profile_digest` of the profile the attempt ran under.
+    ``candidate_path``/``candidate_hash`` point at a refused candidate kept in Content; a
+    later failure without one leaves an earlier pointer in place.
+    """
+    record["retranscription_last_error"] = error
+    record["retranscription_failed_profile"] = failed_profile
+    if candidate_path is not None:
+        record["retranscription_candidate_path"] = candidate_path
+        record["retranscription_candidate_hash"] = candidate_hash
 
 
 def mark_download_failed(record: dict[str, Any]) -> None:

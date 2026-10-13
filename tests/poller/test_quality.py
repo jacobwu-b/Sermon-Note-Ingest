@@ -123,3 +123,24 @@ def test_flags_lists_every_tripped_flag_in_a_fixed_order():
         "credits",
         "hotword_leak",
     )
+
+
+def test_clean_words_of_clean_prose_is_its_word_count():
+    assert quality.clean_words(_PROSE, hotwords=_HOTWORDS) == quality.score(_PROSE, hotwords=_HOTWORDS).words
+
+
+def test_clean_words_leaves_out_loop_repeats_credit_lines_and_hotword_pairs():
+    # ADR-0022 rule 6: the re-transcription gate compares speech, not the junk around it.
+    looped = _PROSE + " " + "We lead with mercy. " * 10
+    credited = _PROSE + " Subtitles by the Amara.org community"
+    leaked = _PROSE + " Ready To Serve, Grace Presbyterian"
+    base = quality.clean_words(_PROSE, hotwords=_HOTWORDS)
+
+    assert quality.clean_words(looped, hotwords=None) == base + 4
+    assert quality.clean_words(credited, hotwords=None) == base + 2  # "the community" survives
+    assert quality.clean_words(leaked, hotwords=_HOTWORDS) == base
+
+
+def test_clean_words_counts_hotword_terms_as_speech_when_none_were_sent():
+    leaked = _PROSE + " Ready To Serve, Grace Presbyterian"
+    assert quality.clean_words(leaked, hotwords=None) == quality.clean_words(_PROSE, hotwords=None) + 5

@@ -213,3 +213,255 @@ def test_push_status_raises_after_exhausting_attempts():
 
     with pytest.raises(content_repo.ContentPublishError, match="after 3 attempts"):
         content_repo.push_status({"status/ingest.json": "{}\n"}, push=refuse, sleep=lambda _s: None)
+
+
+# --- Re-transcription (ADR-0022) ---------------------------------------------------------
+
+_PATH = "transcripts/menlo/2026-09-06_hear-and-do_g1.txt"
+_OLD = "This morning we turn to Luke chapter six. Hear and do. Hear and do. Hear and do."
+_NEW = "This morning we turn to Luke chapter six, where Jesus tells us to hear and to do."
+_TRAILERS = {
+    "Ingest-Guid": "menlo:g1, part 1",
+    "Ingest-Supersedes": "oldhash",
+    "Ingest-Profile-Model": '"large-v3"',
+}
+
+
+def _head(bare):
+    return subprocess.run(
+        ["git", "rev-parse", "main"], cwd=bare, capture_output=True, text=True, check=True
+    ).stdout.strip()
+
+
+def _last_message(bare):
+    return subprocess.run(
+        ["git", "log", "-1", "--format=%B", "main"], cwd=bare, capture_output=True, text=True, check=True
+    ).stdout
+
+
+def _changed_paths(bare):
+    return subprocess.run(
+        ["git", "show", "--name-only", "--format=", "main"],
+        cwd=bare,
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout.split()
+
+
+def _hash(text):
+    from poller.transcribe import transcript_hash
+
+    return transcript_hash(text)
+
+
+def test_default_replace_overwrites_only_the_named_path_when_content_holds_the_expected_text(
+    content_repo_env,
+):
+    content_repo.default_push({_PATH: _OLD})
+
+    content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=_TRAILERS)
+
+    assert _read_file_at_head(content_repo_env, _PATH) == _NEW
+    assert _changed_paths(content_repo_env) == [_PATH]
+    message = _last_message(content_repo_env)
+    for key, value in _TRAILERS.items():
+        assert f"{key}: {value}" in message
+
+
+def test_default_replace_refuses_when_content_holds_text_the_ledger_does_not_name(content_repo_env):
+    # Someone else's edit (Pipeline, a person) is never clobbered: CAS on the ledger's hash.
+    content_repo.default_push({_PATH: "a hand-corrected transcript"})
+    head = _head(content_repo_env)
+
+    with pytest.raises(content_repo.ContentConflictError):
+        content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=_TRAILERS)
+
+    assert _head(content_repo_env) == head
+
+
+def test_default_replace_refuses_when_the_file_is_missing_from_content(content_repo_env):
+    with pytest.raises(content_repo.ContentConflictError):
+        content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=_TRAILERS)
+    with pytest.raises(subprocess.CalledProcessError):
+        _read_file_at_head(content_repo_env, _PATH)
+
+
+def test_default_replace_is_a_noop_when_content_already_holds_the_new_text(content_repo_env):
+    # A retry after a push that landed but reported failure must not read as a conflict.
+    content_repo.default_push({_PATH: _NEW})
+    head = _head(content_repo_env)
+
+    content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=_TRAILERS)
+
+    assert _head(content_repo_env) == head
+
+
+def test_default_replace_redacts_the_token_from_a_failure(monkeypatch):
+    monkeypatch.setenv("CONTENT_REPO", "owner/sermon-note-content")
+    monkeypatch.setenv("CONTENT_REPO_TOKEN", "super-secret-token")
+    monkeypatch.setattr(content_repo, "_remote_url", lambda repo, token: f"/nonexistent/{token}/content.git")
+
+    with pytest.raises(content_repo.ContentPublishError) as exc_info:
+        content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=_TRAILERS)
+    assert "super-secret-token" not in str(exc_info.value)
+
+
+def test_replace_transcript_retries_a_rejected_push_and_checks_again_each_time():
+    calls = []
+
+    def flaky(path, text, *, expect_hash, trailers):
+        calls.append(expect_hash)
+        if len(calls) < 3:
+            raise content_repo.ContentPublishError("! [rejected] main -> main (fetch first)")
+
+    content_repo.replace_transcript(
+        _PATH, _NEW, expect_hash="oldhash", trailers=_TRAILERS, replace=flaky, sleep=lambda _s: None
+    )
+
+    assert calls == ["oldhash", "oldhash", "oldhash"]
+
+
+def test_replace_transcript_never_retries_a_conflict():
+    calls = []
+
+    def moved(path, text, *, expect_hash, trailers):
+        calls.append(path)
+        raise content_repo.ContentConflictError("Content moved")
+
+    with pytest.raises(content_repo.ContentConflictError):
+        content_repo.replace_transcript(
+            _PATH, _NEW, expect_hash="oldhash", trailers=_TRAILERS, replace=moved, sleep=lambda _s: None
+        )
+    assert len(calls) == 1
+
+
+def test_replace_transcript_raises_after_exhausting_five_attempts():
+    calls = []
+
+    def refuse(path, text, *, expect_hash, trailers):
+        calls.append(path)
+        raise content_repo.ContentPublishError("rejected")
+
+    with pytest.raises(content_repo.ContentPublishError, match="after 5 attempts"):
+        content_repo.replace_transcript(
+            _PATH, _NEW, expect_hash="oldhash", trailers=_TRAILERS, replace=refuse, sleep=lambda _s: None
+        )
+    assert len(calls) == 5
+
+
+def test_default_last_commit_trailers_reads_the_last_commit_that_touched_the_path(content_repo_env):
+    content_repo.default_push({_PATH: _OLD})
+    content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=_TRAILERS)
+    content_repo.default_push({"transcripts/menlo/another.txt": "a later sermon"})
+
+    assert content_repo.default_last_commit_trailers(_PATH) == _TRAILERS
+
+
+def test_default_last_commit_trailers_is_empty_for_a_commit_without_trailers(content_repo_env):
+    content_repo.default_push({_PATH: _OLD})
+    assert content_repo.default_last_commit_trailers(_PATH) == {}
+
+
+def test_last_commit_trailers_retries_a_transient_failure():
+    calls = []
+
+    def flaky(path):
+        calls.append(path)
+        if len(calls) == 1:
+            raise content_repo.ContentPublishError("connection reset")
+        return {"Ingest-Guid": "g1"}
+
+    assert content_repo.last_commit_trailers(_PATH, fetch=flaky, sleep=lambda _s: None) == {
+        "Ingest-Guid": "g1"
+    }
+
+
+_CANDIDATE = "retranscription-candidates/menlo/2026-09-06_hear-and-do_g1.abcdef012345.txt"
+
+
+def test_default_keep_candidate_adds_the_file_with_its_trailers_outside_transcripts(content_repo_env):
+    content_repo.default_push({_PATH: _OLD})
+
+    content_repo.default_keep_candidate(_CANDIDATE, _NEW, trailers={"Ingest-Refusal": "loops"})
+
+    assert _read_file_at_head(content_repo_env, _CANDIDATE) == _NEW
+    assert _read_file_at_head(content_repo_env, _PATH) == _OLD
+    assert _changed_paths(content_repo_env) == [_CANDIDATE]
+    assert "Ingest-Refusal: loops" in _last_message(content_repo_env)
+
+
+def test_default_keep_candidate_never_overwrites_a_kept_candidate(content_repo_env):
+    content_repo.default_keep_candidate(_CANDIDATE, _NEW, trailers={"Ingest-Refusal": "loops"})
+    head = _head(content_repo_env)
+
+    content_repo.default_keep_candidate(_CANDIDATE, _NEW, trailers={"Ingest-Refusal": "loops"})
+    assert _head(content_repo_env) == head
+    with pytest.raises(content_repo.ContentPublishError):
+        content_repo.default_keep_candidate(_CANDIDATE, "different text", trailers={})
+    assert _read_file_at_head(content_repo_env, _CANDIDATE) == _NEW
+
+
+def test_keep_candidate_retries_then_raises():
+    calls = []
+
+    def refuse(path, text, *, trailers):
+        calls.append(path)
+        raise content_repo.ContentPublishError("rejected")
+
+    with pytest.raises(content_repo.ContentPublishError):
+        content_repo.keep_candidate(_CANDIDATE, _NEW, trailers={}, keep=refuse, sleep=lambda _s: None)
+    assert len(calls) == 5
+
+
+def test_default_fetch_all_transcripts_returns_every_transcript_and_nothing_else(content_repo_env):
+    content_repo.default_push({_PATH: _OLD, "transcripts/pbc/2019-01-06_untitled_a.txt": "pbc text"})
+    content_repo.default_keep_candidate(_CANDIDATE, _NEW, trailers={})
+
+    assert content_repo.default_fetch_all_transcripts() == {
+        _PATH: _OLD,
+        "transcripts/pbc/2019-01-06_untitled_a.txt": "pbc text",
+    }
+
+
+def test_provenance_trailers_survive_a_real_git_commit_and_prove_the_replacement(content_repo_env):
+    # The crash-between-pushes repair (ADR-0022 rule 5) depends on git's own trailer
+    # parser giving back exactly what the replacement wrote.
+    from poller import transcriber
+
+    profile = {
+        "model": "large-v3",
+        "compute_type": "int8",
+        "beam_size": 5,
+        "condition_on_previous_text": False,
+        "hallucination_silence_threshold": 2.0,
+        "vad_filter": True,
+        "domain_prompt": True,
+        "hotwords": "Keith Crosby, Luke: Hear and Do, Grace #2",
+        "faster_whisper_version": "1.2.1",
+        "ctranslate2_version": None,
+    }
+    counts = {"words": 5210, "loop_words": 0, "credit_hits": 0, "hotword_pairs": 0}
+    guid = "gracepres:sid:2023-07-30,slot:sermon/0ab4"
+    content_repo.default_push({_PATH: _OLD})
+    trailers = transcriber._provenance_trailers(
+        guid,
+        superseded=_hash(_OLD),
+        transcript_hash=_hash(_NEW),
+        transcribed_at="2026-10-13T02:00:00+00:00",
+        profile=profile,
+        counts=counts,
+    )
+
+    content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=trailers)
+    mark = transcriber._mark_from_trailers(
+        content_repo.default_last_commit_trailers(_PATH),
+        guid=guid,
+        ledger_hash=_hash(_OLD),
+        content_hash=_hash(_NEW),
+    )
+
+    assert mark is not None
+    assert mark["profile"] == profile
+    assert mark["quality"] == counts
+    assert mark["transcribed_at"] == "2026-10-13T02:00:00+00:00"

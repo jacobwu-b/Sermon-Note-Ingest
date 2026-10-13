@@ -13,14 +13,33 @@
 # the `plan` job below computes it from the actual number of sermons in scope
 # (poller.transcriber --print-shard-count), so a routine tick with 0-1 pending
 # sermons runs 0-1 shards and a larger backlog parallelizes itself.
+#
+# Two modes (ADR-0022). `pending` (every */15 tick, poll's dispatches, the default)
+# transcribes new sermons. `retranscribe-stale` re-transcribes done sermons whose
+# recorded decoding profile differs from the running one, replacing them in Content
+# by compare-and-swap; it runs from a dispatch (the canary and ramp) or the hourly
+# cron below, which does nothing unless vars.RETRANSCRIBE_ENABLED is 'true' (the
+# kill switch). Each mode has its own concurrency group, so new sermons never queue
+# behind a multi-hour pass, and the `verify` job checks every ledger hash against
+# Content after a retranscribe-stale run.
 
 name: Transcribe sermons
 
 on:
   schedule:
     - cron: "*/15 * * * *"
+    # The scheduled re-transcription pass. Off the quarter-hours so it never shares a
+    # minute with the pending tick; the mode expressions below key on this exact string.
+    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
+      mode:
+        description: "pending: transcribe new sermons. retranscribe-stale: re-transcribe stale-profile ones (ADR-0022)."
+        type: choice
+        options:
+          - pending
+          - retranscribe-stale
+        default: pending
       limit:
         description: "Maximum sermons to transcribe this run, per selected church."
         type: number
@@ -29,18 +48,29 @@ on:
         description: "Only transcribe this church (its key in the church table). Leave blank for every enabled church."
         type: string
         default: ""
+      guids:
+        description: "retranscribe-stale only: guids to narrow the pass to, separated by ';' (the canary)."
+        type: string
+        default: ""
 
 # Separate from poll.yml's group: transcription and polling never need to block
 # each other. Both still write data/ — see the push step below for how that race
-# is handled.
+# is handled. One group per mode: the modes select disjoint records (pending vs
+# done), and a pass taking hours must not hold up a new sermon.
 concurrency:
-  group: transcribe-sermons
+  group: transcribe-sermons-${{ inputs.mode || (github.event.schedule == '23 * * * *' && 'retranscribe-stale') || 'pending' }}
   cancel-in-progress: false
 
 permissions:
   contents: read
 
 env:
+  # The run's mode and per-church limit, once for every job. The hourly cron is the
+  # scheduled re-transcription pass, sized by vars.RETRANSCRIBE_LIMIT.
+  TRANSCRIBE_MODE: ${{ inputs.mode || (github.event.schedule == '23 * * * *' && 'retranscribe-stale') || 'pending' }}
+  LIMIT: ${{ inputs.limit || (github.event.schedule == '23 * * * *' && vars.RETRANSCRIBE_LIMIT) || 5 }}
+  CHURCH: ${{ inputs.church }}
+  GUIDS: ${{ inputs.guids }}
   LOG_LEVEL: ${{ vars.LOG_LEVEL }}
   WHISPER_MODEL: ${{ vars.WHISPER_MODEL }}
   WHISPER_COMPUTE_TYPE: ${{ vars.WHISPER_COMPUTE_TYPE }}
@@ -76,6 +106,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
+      mode: ${{ steps.compute.outputs.mode }}
+      scheduled: ${{ steps.compute.outputs.scheduled }}
       shards: ${{ steps.compute.outputs.shards }}
       shard_count: ${{ steps.compute.outputs.shard_count }}
       ledger_sha: ${{ steps.compute.outputs.ledger_sha }}
@@ -97,15 +129,23 @@ jobs:
 
       - name: Count sermons in scope
         id: compute
-        # LIMIT/CHURCH read as shell variables, never interpolated directly
-        # into the script — `${{ inputs.x }}` inside `run:` is text
-        # substitution before the shell sees it, so an unvalidated dispatch
-        # input would otherwise run as code with access to every secret in
+        # TRANSCRIBE_MODE/LIMIT/CHURCH/GUIDS (workflow env) read as shell variables,
+        # never interpolated directly into the script — `${{ inputs.x }}` inside
+        # `run:` is text substitution before the shell sees it, so an unvalidated
+        # dispatch input would otherwise run as code with access to every secret in
         # this job.
         env:
-          LIMIT: ${{ inputs.limit || 5 }}
-          CHURCH: ${{ inputs.church }}
+          SCHEDULED_PASS: ${{ github.event.schedule == '23 * * * *' }}
+          RETRANSCRIBE_ENABLED: ${{ vars.RETRANSCRIBE_ENABLED }}
         run: |
+          mode="$TRANSCRIBE_MODE"
+          case "$mode" in
+            pending | retranscribe-stale) ;;
+            *)
+              echo "::error::mode '$mode' is not pending or retranscribe-stale"
+              exit 1
+              ;;
+          esac
           if ! [[ "$LIMIT" =~ ^[1-9][0-9]*$ ]]; then
             echo "::error::LIMIT input '$LIMIT' is not a positive integer"
             exit 1
@@ -118,7 +158,32 @@ jobs:
           if [ -n "$CHURCH" ]; then
             args+=(--church "$CHURCH")
           fi
-          count=$(python -m poller.transcriber "${args[@]}" --print-shard-count)
+          if [ "$mode" = "retranscribe-stale" ]; then
+            args+=(--retranscribe-stale)
+            IFS=';' read -ra guid_list <<< "$GUIDS"
+            for guid in "${guid_list[@]}"; do
+              if ! [[ "$guid" =~ ^[A-Za-z0-9][A-Za-z0-9\ ,._:/=?\&%+~-]*$ ]]; then
+                echo "::error::GUIDS entry '$guid' is not a ledger guid"
+                exit 1
+              fi
+              args+=(--guid "$guid")
+            done
+          elif [ -n "$GUIDS" ]; then
+            echo "::error::GUIDS applies only to mode retranscribe-stale"
+            exit 1
+          fi
+          if [ "$SCHEDULED_PASS" = "true" ] && [ "$RETRANSCRIBE_ENABLED" != "true" ]; then
+            echo "Scheduled re-transcription is off (vars.RETRANSCRIBE_ENABLED); nothing to do."
+            mode="off"
+            count=0
+          else
+            count=$(python -m poller.transcriber "${args[@]}" --print-shard-count)
+          fi
+          # GitHub refuses a matrix of more than 256 jobs, with an error that names no cause.
+          if [ "$count" -gt 256 ]; then
+            echo "::error::$count sermons in scope; lower LIMIT so the matrix stays within 256 shards"
+            exit 1
+          fi
           shards="["
           for ((i = 0; i < count; i++)); do
             shards+="$i"
@@ -127,6 +192,8 @@ jobs:
             fi
           done
           shards+="]"
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "scheduled=$SCHEDULED_PASS" >> "$GITHUB_OUTPUT"
           echo "shards=$shards" >> "$GITHUB_OUTPUT"
           echo "shard_count=$count" >> "$GITHUB_OUTPUT"
           echo "ledger_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -138,14 +205,19 @@ jobs:
     # instead, so an idle tick stays green and a red run means something broke.
     if: ${{ needs.plan.outputs.shard_count != '0' }}
     runs-on: ubuntu-latest
-    # No timeout-minutes: large-v3 run length varies enough that a fixed cap keeps
-    # cutting runs off before they finish. Public repo — GitHub-hosted runner
-    # minutes are unmetered, so the usual §13 cost-ceiling rationale doesn't apply;
-    # GitHub's own default job cap (6h) still bounds a truly stuck runner.
+    # Pending: GitHub's own 6h job cap. large-v3 run length varies enough that a
+    # tighter fixed cap kept cutting runs off before they finished, and GitHub-hosted
+    # minutes are unmetered for this public repo. Re-transcription: one sermon per
+    # shard, and the longest benchmarked (48 min of audio, slowest runner) took about
+    # 55 min, so 180 covers a 90-minute service with headroom.
+    timeout-minutes: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 180 || 360 }}
     # One shard failing (a crashed runner, a terminal model error) must not cancel
-    # the others — each is an independent slice of the backlog, per ADR-0005.
+    # the others — each is an independent slice of the backlog, per ADR-0005. The
+    # re-transcription pass runs 8 at a time, leaving room in the account's
+    # concurrent-job cap for poll, pending transcription and Pipeline.
     strategy:
       fail-fast: false
+      max-parallel: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 8 || 256 }}
       matrix:
         shard: ${{ fromJson(needs.plan.outputs.shards) }}
     steps:
@@ -180,8 +252,7 @@ jobs:
 
       - name: Transcribe
         env:
-          LIMIT: ${{ inputs.limit || 5 }}
-          CHURCH: ${{ inputs.church }}
+          MODE: ${{ needs.plan.outputs.mode }}
           # A transcript that trips a quality flag is emailed from this step (ADR-0023);
           # the same repository secrets poll.yml uses for discovery emails.
           NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
@@ -212,6 +283,18 @@ jobs:
           args=(--limit "$LIMIT" --shard-index "${{ matrix.shard }}" --shard-count "${{ needs.plan.outputs.shard_count }}" --marks-out "$marks_file")
           if [ -n "$CHURCH" ]; then
             args+=(--church "$CHURCH")
+          fi
+          # The same selection the plan counted, or the shards would partition a different list.
+          if [ "$MODE" = "retranscribe-stale" ]; then
+            args+=(--retranscribe-stale --summary-md "$GITHUB_STEP_SUMMARY")
+            IFS=';' read -ra guid_list <<< "$GUIDS"
+            for guid in "${guid_list[@]}"; do
+              if ! [[ "$guid" =~ ^[A-Za-z0-9][A-Za-z0-9\ ,._:/=?\&%+~-]*$ ]]; then
+                echo "::error::GUIDS entry '$guid' is not a ledger guid"
+                exit 1
+              fi
+              args+=(--guid "$guid")
+            done
           fi
           python -m poller.transcriber "${args[@]}"
 
@@ -290,6 +373,51 @@ jobs:
           name: transcribe-marks-shard-${{ matrix.shard }}
           path: ${{ env.MARKS_FILE }}
           if-no-files-found: ignore
+
+  # After a re-transcription run: every done record's Content file must exist and hash
+  # to its ledger transcript_hash, every replaced record must name its full profile, and
+  # no guid may own two Content files (ADR-0022). A violation turns the run red and is
+  # emailed. Reads main's tip, after every shard's ledger push. On the hourly pass it
+  # also alerts on absence: nothing replaced in 24h while stale sermons remain, and
+  # once when the backlog empties.
+  verify:
+    name: Verify ledger against Content
+    needs: [plan, transcribe]
+    if: ${{ !cancelled() && needs.plan.result == 'success' && needs.plan.outputs.mode == 'retranscribe-stale' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.14"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install --require-hashes -r requirements.txt
+
+      - name: Verify
+        env:
+          SCHEDULED: ${{ needs.plan.outputs.scheduled }}
+          PLANNED: ${{ needs.plan.outputs.shard_count }}
+          NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
+          NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          for var in NOTIFY_EMAIL_FROM NOTIFY_EMAIL_TO RESEND_API_KEY; do
+            if [ -z "${!var}" ]; then
+              echo "::error::notify secret $var is not set; re-transcription alerts cannot be sent"
+              exit 1
+            fi
+          done
+          args=(--summary-md "$GITHUB_STEP_SUMMARY")
+          if [ "$SCHEDULED" = "true" ]; then
+            args+=(--scheduled --planned "$PLANNED")
+          fi
+          python -m poller.verify_content "${args[@]}"
 
   # Publishes status/ingest.json for the web report (spec 0009): a projection of every
   # ledger, pushed to Content only when it changed. Every tick that planned — including

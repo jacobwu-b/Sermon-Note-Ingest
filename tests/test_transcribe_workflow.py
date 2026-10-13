@@ -5,8 +5,12 @@ the file's text rather than a parsed structure — the same tradeoff
 test_poll_workflow.py makes for poll.yml.
 """
 
+import os
 import re
+import subprocess
 from pathlib import Path
+
+import pytest
 
 WORKFLOW = Path(__file__).parent.parent / ".github" / "workflows" / "transcribe.yml"
 
@@ -206,9 +210,16 @@ def test_transcribe_workflow_does_not_interpolate_dispatch_inputs_into_run_scrip
 
 
 def test_transcribe_workflow_passes_inputs_through_env_not_interpolation():
-    text = workflow_text()
-    assert "LIMIT: ${{ inputs.limit || 5 }}" in text
-    assert "CHURCH: ${{ inputs.church }}" in text
+    # Once, at workflow level, so the plan and every shard read the same values.
+    workflow_env = workflow_text()[: workflow_text().index("\njobs:")]
+    assert (
+        "  LIMIT: ${{ inputs.limit || (github.event.schedule == '23 * * * *' && vars.RETRANSCRIBE_LIMIT) || 5 }}"
+        in workflow_env
+    )
+    assert "  CHURCH: ${{ inputs.church }}" in workflow_env
+    assert "  GUIDS: ${{ inputs.guids }}" in workflow_env
+    for job in ("plan", "transcribe"):
+        assert "LIMIT:" not in _job_text(job), "a step-level LIMIT would let the plan and shards disagree"
 
 
 def test_transcribe_workflow_validates_limit_and_church_inputs_before_use():
@@ -325,3 +336,259 @@ def test_the_transcribe_step_fails_fast_when_a_notify_secret_is_missing():
 def test_no_secret_is_interpolated_into_a_run_script():
     for body in run_block_bodies(workflow_text()):
         assert "secrets." not in body
+
+
+# --- Re-transcription mode (ADR-0022) ------------------------------------------------------
+
+_PASS_CRON = "23 * * * *"
+_MODE_EXPR = (
+    "${{ inputs.mode || (github.event.schedule == '23 * * * *' && 'retranscribe-stale') || 'pending' }}"
+)
+
+
+def test_the_hourly_cron_is_the_one_the_mode_expressions_key_on():
+    text = workflow_text()
+    assert f'    - cron: "{_PASS_CRON}"' in text
+    assert '    - cron: "*/15 * * * *"' in text
+    assert text.count(f"github.event.schedule == '{_PASS_CRON}'") == 4  # concurrency, mode, limit, plan
+
+
+def test_mode_is_a_dispatch_choice_with_pending_as_the_default():
+    text = workflow_text()
+    inputs = text[text.index("    inputs:") : text.index("\nconcurrency:")]
+    assert "      mode:\n" in inputs
+    assert "        type: choice" in inputs
+    assert "          - pending\n          - retranscribe-stale\n        default: pending" in inputs
+    assert "      guids:\n" in inputs
+
+
+def test_each_mode_has_its_own_concurrency_group():
+    # A multi-hour pass must never hold up a new sermon's transcription.
+    text = workflow_text()
+    assert f"  group: transcribe-sermons-{_MODE_EXPR}\n" in text
+    assert f"  TRANSCRIBE_MODE: {_MODE_EXPR}\n" in text
+
+
+def test_the_pass_caps_parallelism_and_bounds_each_shard():
+    job = _job_text("transcribe")
+    assert "max-parallel: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 8 || 256 }}" in job
+    assert "timeout-minutes: ${{ needs.plan.outputs.mode == 'retranscribe-stale' && 180 || 360 }}" in job
+
+
+def test_verify_runs_after_every_retranscribe_run_against_mains_tip():
+    job = _job_text("verify")
+    assert "needs: [plan, transcribe]" in job
+    assert (
+        "if: ${{ !cancelled() && needs.plan.result == 'success' && needs.plan.outputs.mode == 'retranscribe-stale' }}"
+        in job
+    )
+    assert "timeout-minutes: 10" in job
+    assert "ref: ${{ github.ref }}" in job
+    assert "python -m poller.verify_content" in job
+
+
+def test_verify_receives_the_notify_secrets_and_checks_them_before_verifying():
+    job = _job(workflow_text(), "verify")
+    for var in _NOTIFY_SECRETS:
+        assert f"{var}: ${{{{ secrets.{var} }}}}" in job
+    [body] = [b for b in run_block_bodies(job) if "verify_content" in b]
+    assert body.index("::error::notify secret") < body.index("python -m poller.verify_content")
+
+
+def _run_script(
+    body: str, tmp_path, env: dict[str, str], *, count: str = "3"
+) -> tuple[int, str, list[str], str]:
+    """Run a `run:` body under bash with a stub `python` that logs its argv.
+
+    Returns the exit code, stdout, the logged python invocations and $GITHUB_OUTPUT.
+    """
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir(exist_ok=True)
+    log = tmp_path / "python.log"
+    stub = bin_dir / "python"
+    stub.write_text(
+        "#!/bin/bash\n"
+        f'printf "%s\\x1f" "$@" >> "{log}"\n'
+        f'echo >> "{log}"\n'
+        f'if [[ " $* " == *" --print-shard-count "* ]]; then echo {count}; fi\n'
+    )
+    stub.chmod(0o755)
+    output = tmp_path / "github_output"
+    output.write_text("")
+    summary = tmp_path / "summary"
+    result = subprocess.run(
+        ["bash", "-e", "-c", body],
+        check=False,
+        capture_output=True,
+        text=True,
+        cwd=tmp_path,
+        env={
+            "PATH": f"{bin_dir}:{os.environ['PATH']}",
+            "GITHUB_OUTPUT": str(output),
+            "GITHUB_ENV": str(tmp_path / "github_env"),
+            "GITHUB_STEP_SUMMARY": str(summary),
+            **env,
+        },
+    )
+    calls = [line.split("\x1f")[:-1] for line in log.read_text().splitlines()] if log.exists() else []
+    return result.returncode, result.stdout, calls, output.read_text()
+
+
+def _plan_body() -> str:
+    [body] = [b for b in run_block_bodies(_job_text("plan")) if "--print-shard-count" in b]
+    return body.replace("$(git rev-parse HEAD)", "deadbeef")
+
+
+_PLAN_ENV = {
+    "TRANSCRIBE_MODE": "pending",
+    "LIMIT": "5",
+    "CHURCH": "",
+    "GUIDS": "",
+    "SCHEDULED_PASS": "false",
+    "RETRANSCRIBE_ENABLED": "",
+}
+
+
+def test_the_plan_counts_the_pending_selection_by_default(tmp_path):
+    code, _out, calls, output = _run_script(_plan_body(), tmp_path, _PLAN_ENV)
+    assert code == 0
+    assert calls == [["-m", "poller.transcriber", "--limit", "5", "--print-shard-count"]]
+    assert "mode=pending\n" in output
+    assert "shards=[0,1,2]\n" in output
+
+
+def test_the_plan_counts_the_stale_selection_narrowed_to_the_dispatched_guids(tmp_path):
+    env = {
+        **_PLAN_ENV,
+        "TRANSCRIBE_MODE": "retranscribe-stale",
+        "GUIDS": "menlo:a1, part 2;gracepres:x/y?z=1",
+    }
+    code, _out, calls, output = _run_script(_plan_body(), tmp_path, env)
+    assert code == 0
+    assert calls == [
+        [
+            "-m",
+            "poller.transcriber",
+            "--limit",
+            "5",
+            "--retranscribe-stale",
+            "--guid",
+            "menlo:a1, part 2",
+            "--guid",
+            "gracepres:x/y?z=1",
+            "--print-shard-count",
+        ]
+    ]
+    assert "mode=retranscribe-stale\n" in output
+
+
+@pytest.mark.parametrize("guid", ["a$(id)", "a`id`", 'a"b', "-x", " a"])
+def test_the_plan_refuses_a_guid_outside_the_ledger_charset(tmp_path, guid):
+    env = {**_PLAN_ENV, "TRANSCRIBE_MODE": "retranscribe-stale", "GUIDS": guid}
+    code, out, calls, _output = _run_script(_plan_body(), tmp_path, env)
+    assert code != 0
+    assert calls == []
+    assert "::error::GUIDS entry" in out
+
+
+def test_the_plan_refuses_guids_in_pending_mode_and_an_unknown_mode(tmp_path):
+    assert _run_script(_plan_body(), tmp_path, {**_PLAN_ENV, "GUIDS": "menlo:a"})[0] != 0
+    assert _run_script(_plan_body(), tmp_path, {**_PLAN_ENV, "TRANSCRIBE_MODE": "everything"})[0] != 0
+
+
+def test_the_hourly_pass_does_nothing_until_the_kill_switch_is_on(tmp_path):
+    env = {**_PLAN_ENV, "TRANSCRIBE_MODE": "retranscribe-stale", "SCHEDULED_PASS": "true"}
+    code, _out, calls, output = _run_script(_plan_body(), tmp_path, env)
+    assert code == 0
+    assert calls == []
+    assert "mode=off\n" in output
+    assert "shard_count=0\n" in output
+
+    code, _out, calls, output = _run_script(_plan_body(), tmp_path, {**env, "RETRANSCRIBE_ENABLED": "true"})
+    assert code == 0
+    assert "--retranscribe-stale" in calls[0]
+    assert "mode=retranscribe-stale\n" in output
+    assert "scheduled=true\n" in output
+
+
+def test_the_plan_refuses_more_shards_than_github_allows_in_a_matrix(tmp_path):
+    code, out, _calls, _output = _run_script(_plan_body(), tmp_path, _PLAN_ENV, count="257")
+    assert code != 0
+    assert "within 256 shards" in out
+
+
+def _shard_body() -> str:
+    [body] = [b for b in run_block_bodies(_job(workflow_text(), "transcribe")) if "--shard-index" in b]
+    return (
+        body.replace("${{ runner.temp }}", ".")
+        .replace("${{ matrix.shard }}", "1")
+        .replace("${{ needs.plan.outputs.shard_count }}", "2")
+    )
+
+
+_SHARD_ENV = {
+    **{var: "set" for var in _NOTIFY_SECRETS},
+    "LIMIT": "1",
+    "CHURCH": "",
+    "GUIDS": "",
+}
+
+
+def test_a_pending_shard_runs_the_pending_selection(tmp_path):
+    code, _out, calls, _output = _run_script(_shard_body(), tmp_path, {**_SHARD_ENV, "MODE": "pending"})
+    assert code == 0
+    [call] = calls
+    assert "--retranscribe-stale" not in call
+    assert "--summary-md" not in call
+
+
+def test_a_retranscribe_shard_runs_the_same_selection_the_plan_counted(tmp_path):
+    env = {**_SHARD_ENV, "MODE": "retranscribe-stale", "GUIDS": "menlo:a1, part 2;pbc:b"}
+    code, _out, calls, _output = _run_script(_shard_body(), tmp_path, env)
+    assert code == 0
+    [call] = calls
+    assert call[:9] == [
+        "-m",
+        "poller.transcriber",
+        "--limit",
+        "1",
+        "--shard-index",
+        "1",
+        "--shard-count",
+        "2",
+        "--marks-out",
+    ]
+    assert call[10:] == [
+        "--retranscribe-stale",
+        "--summary-md",
+        str(tmp_path / "summary"),
+        "--guid",
+        "menlo:a1, part 2",
+        "--guid",
+        "pbc:b",
+    ]
+
+
+def _verify_body() -> str:
+    [body] = [b for b in run_block_bodies(_job(workflow_text(), "verify")) if "verify_content" in b]
+    return body
+
+
+def test_verify_alerts_on_absence_only_on_the_scheduled_pass(tmp_path):
+    env = {**{var: "set" for var in _NOTIFY_SECRETS}, "PLANNED": "4"}
+    _code, _out, calls, _output = _run_script(_verify_body(), tmp_path, {**env, "SCHEDULED": "false"})
+    assert calls == [["-m", "poller.verify_content", "--summary-md", str(tmp_path / "summary")]]
+
+    (tmp_path / "python.log").unlink()
+    _code, _out, calls, _output = _run_script(_verify_body(), tmp_path, {**env, "SCHEDULED": "true"})
+    assert calls == [
+        [
+            "-m",
+            "poller.verify_content",
+            "--summary-md",
+            str(tmp_path / "summary"),
+            "--scheduled",
+            "--planned",
+            "4",
+        ]
+    ]
