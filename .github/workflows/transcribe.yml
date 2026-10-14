@@ -17,20 +17,19 @@
 # Two modes (ADR-0022). `pending` (every */15 tick, poll's dispatches, the default)
 # transcribes new sermons. `retranscribe-stale` re-transcribes done sermons whose
 # recorded decoding profile differs from the running one, replacing them in Content
-# by compare-and-swap; it runs from a dispatch (the canary and ramp) or the hourly
-# cron below, which does nothing unless vars.RETRANSCRIBE_ENABLED is 'true' (the
-# kill switch). Each mode has its own concurrency group, so new sermons never queue
-# behind a multi-hour pass, and the `verify` job checks every ledger hash against
-# Content after a retranscribe-stale run.
+# by compare-and-swap; it runs only from a workflow_dispatch: the canary (with
+# `guids`) and the unattended pass, which an external scheduler (cron-job.org) dispatches
+# hourly with `mode` and `limit` set, as for poll.yml (ADR-0002, ADR-0011) — GitHub's own
+# cron is delayed or dropped under load. Disabling that job is the pass's off switch.
+# Each mode has its own concurrency group, so new sermons never queue behind a
+# multi-hour pass, and the `verify` job checks every ledger hash against Content after a
+# retranscribe-stale run.
 
 name: Transcribe sermons
 
 on:
   schedule:
     - cron: "*/15 * * * *"
-    # The scheduled re-transcription pass. Off the quarter-hours so it never shares a
-    # minute with the pending tick; the mode expressions below key on this exact string.
-    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -58,17 +57,18 @@ on:
 # is handled. One group per mode: the modes select disjoint records (pending vs
 # done), and a pass taking hours must not hold up a new sermon.
 concurrency:
-  group: transcribe-sermons-${{ inputs.mode || (github.event.schedule == '23 * * * *' && 'retranscribe-stale') || 'pending' }}
+  group: transcribe-sermons-${{ inputs.mode || 'pending' }}
   cancel-in-progress: false
 
 permissions:
   contents: read
 
 env:
-  # The run's mode and per-church limit, once for every job. The hourly cron is the
-  # scheduled re-transcription pass, sized by vars.RETRANSCRIBE_LIMIT.
-  TRANSCRIBE_MODE: ${{ inputs.mode || (github.event.schedule == '23 * * * *' && 'retranscribe-stale') || 'pending' }}
-  LIMIT: ${{ inputs.limit || (github.event.schedule == '23 * * * *' && vars.RETRANSCRIBE_LIMIT) || 5 }}
+  # The run's mode and per-church limit, once for every job. The */15 tick has no
+  # inputs, so it is a pending run at the default limit; the re-transcription pass sets
+  # both in its dispatch.
+  TRANSCRIBE_MODE: ${{ inputs.mode || 'pending' }}
+  LIMIT: ${{ inputs.limit || 5 }}
   CHURCH: ${{ inputs.church }}
   GUIDS: ${{ inputs.guids }}
   LOG_LEVEL: ${{ vars.LOG_LEVEL }}
@@ -136,8 +136,6 @@ jobs:
         # dispatch input would otherwise run as code with access to every secret in
         # this job.
         env:
-          SCHEDULED_PASS: ${{ github.event.schedule == '23 * * * *' }}
-          RETRANSCRIBE_ENABLED: ${{ vars.RETRANSCRIBE_ENABLED }}
           RETRANSCRIBE_MAX_PARALLEL: ${{ vars.RETRANSCRIBE_MAX_PARALLEL }}
         run: |
           mode="$TRANSCRIBE_MODE"
@@ -182,13 +180,13 @@ jobs:
             echo "::error::GUIDS applies only to mode retranscribe-stale"
             exit 1
           fi
-          if [ "$SCHEDULED_PASS" = "true" ] && [ "$RETRANSCRIBE_ENABLED" != "true" ]; then
-            echo "Scheduled re-transcription is off (vars.RETRANSCRIBE_ENABLED); nothing to do."
-            mode="off"
-            count=0
-          else
-            count=$(python -m poller.transcriber "${args[@]}" --print-shard-count)
+          # The unattended pass is a re-transcription dispatch that names no guids; the
+          # canary names them. Only the pass owes the absence alerts (verify job).
+          scheduled=false
+          if [ "$mode" = "retranscribe-stale" ] && [ -z "$GUIDS" ]; then
+            scheduled=true
           fi
+          count=$(python -m poller.transcriber "${args[@]}" --print-shard-count)
           # GitHub refuses a matrix of more than 256 jobs, with an error that names no cause.
           if [ "$count" -gt 256 ]; then
             echo "::error::$count sermons in scope; lower LIMIT so the matrix stays within 256 shards"
@@ -204,7 +202,7 @@ jobs:
           shards+="]"
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
           echo "max_parallel=$max_parallel" >> "$GITHUB_OUTPUT"
-          echo "scheduled=$SCHEDULED_PASS" >> "$GITHUB_OUTPUT"
+          echo "scheduled=$scheduled" >> "$GITHUB_OUTPUT"
           echo "shards=$shards" >> "$GITHUB_OUTPUT"
           echo "shard_count=$count" >> "$GITHUB_OUTPUT"
           echo "ledger_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -387,7 +385,7 @@ jobs:
   # After a re-transcription run: every done record's Content file must exist and hash
   # to its ledger transcript_hash, every replaced record must name its full profile, and
   # no guid may own two Content files (ADR-0022). A violation turns the run red and is
-  # emailed. Reads main's tip, after every shard's ledger push. On the hourly pass it
+  # emailed. Reads main's tip, after every shard's ledger push. On the unattended pass it
   # also alerts on absence: nothing replaced in 24h while stale sermons remain, and
   # once when the backlog empties.
   verify:
