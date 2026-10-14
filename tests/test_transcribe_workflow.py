@@ -212,10 +212,7 @@ def test_transcribe_workflow_does_not_interpolate_dispatch_inputs_into_run_scrip
 def test_transcribe_workflow_passes_inputs_through_env_not_interpolation():
     # Once, at workflow level, so the plan and every shard read the same values.
     workflow_env = workflow_text()[: workflow_text().index("\njobs:")]
-    assert (
-        "  LIMIT: ${{ inputs.limit || (github.event.schedule == '23 * * * *' && vars.RETRANSCRIBE_LIMIT) || 5 }}"
-        in workflow_env
-    )
+    assert "  LIMIT: ${{ inputs.limit || 5 }}" in workflow_env
     assert "  CHURCH: ${{ inputs.church }}" in workflow_env
     assert "  GUIDS: ${{ inputs.guids }}" in workflow_env
     for job in ("plan", "transcribe"):
@@ -340,17 +337,17 @@ def test_no_secret_is_interpolated_into_a_run_script():
 
 # --- Re-transcription mode (ADR-0022) ------------------------------------------------------
 
-_PASS_CRON = "23 * * * *"
-_MODE_EXPR = (
-    "${{ inputs.mode || (github.event.schedule == '23 * * * *' && 'retranscribe-stale') || 'pending' }}"
-)
+_MODE_EXPR = "${{ inputs.mode || 'pending' }}"
 
 
-def test_the_hourly_cron_is_the_one_the_mode_expressions_key_on():
+def test_only_the_pending_tick_is_scheduled_and_the_pass_is_dispatched_by_an_external_scheduler():
+    # GitHub's own cron is delayed or dropped under load (ADR-0011); the re-transcription
+    # pass is driven by workflow_dispatch from cron-job.org, like poll.yml.
     text = workflow_text()
-    assert f'    - cron: "{_PASS_CRON}"' in text
-    assert '    - cron: "*/15 * * * *"' in text
-    assert text.count(f"github.event.schedule == '{_PASS_CRON}'") == 4  # concurrency, mode, limit, plan
+    on_block = text[text.index("\non:") : text.index("\nconcurrency:")]
+    assert on_block.count("cron:") == 1
+    assert '    - cron: "*/15 * * * *"' in on_block
+    assert "github.event.schedule" not in text
 
 
 def test_mode_is_a_dispatch_choice_with_pending_as_the_default():
@@ -445,8 +442,6 @@ _PLAN_ENV = {
     "LIMIT": "5",
     "CHURCH": "",
     "GUIDS": "",
-    "SCHEDULED_PASS": "false",
-    "RETRANSCRIBE_ENABLED": "",
 }
 
 
@@ -497,19 +492,32 @@ def test_the_plan_refuses_guids_in_pending_mode_and_an_unknown_mode(tmp_path):
     assert _run_script(_plan_body(), tmp_path, {**_PLAN_ENV, "TRANSCRIBE_MODE": "everything"})[0] != 0
 
 
-def test_the_hourly_pass_does_nothing_until_the_kill_switch_is_on(tmp_path):
-    env = {**_PLAN_ENV, "TRANSCRIBE_MODE": "retranscribe-stale", "SCHEDULED_PASS": "true"}
+def test_an_unnarrowed_retranscribe_dispatch_is_the_unattended_pass_that_owes_absence_alerts(tmp_path):
+    # cron-job.org dispatches mode and limit only; a canary names guids and is a one-off.
+    env = {**_PLAN_ENV, "TRANSCRIBE_MODE": "retranscribe-stale"}
     code, _out, calls, output = _run_script(_plan_body(), tmp_path, env)
-    assert code == 0
-    assert calls == []
-    assert "mode=off\n" in output
-    assert "shard_count=0\n" in output
-
-    code, _out, calls, output = _run_script(_plan_body(), tmp_path, {**env, "RETRANSCRIBE_ENABLED": "true"})
     assert code == 0
     assert "--retranscribe-stale" in calls[0]
     assert "mode=retranscribe-stale\n" in output
     assert "scheduled=true\n" in output
+
+    (tmp_path / "python.log").unlink()
+    code, _out, calls, output = _run_script(_plan_body(), tmp_path, {**env, "GUIDS": "menlo:a"})
+    assert code == 0
+    assert "scheduled=false\n" in output
+
+
+def test_a_pending_run_is_never_the_scheduled_pass(tmp_path):
+    code, _out, _calls, output = _run_script(_plan_body(), tmp_path, _PLAN_ENV)
+    assert code == 0
+    assert "scheduled=false\n" in output
+
+
+def test_there_is_no_repo_variable_kill_switch_for_the_pass():
+    # Disabling the cron-job.org job is the off switch; a variable would make a dispatched
+    # run that does nothing look like a healthy green run (CLAUDE.md section 6, Controls).
+    assert "RETRANSCRIBE_ENABLED" not in workflow_text()
+    assert "RETRANSCRIBE_LIMIT" not in workflow_text()
 
 
 def test_the_plan_reads_the_passs_parallelism_from_a_variable_defaulting_to_32(tmp_path):
