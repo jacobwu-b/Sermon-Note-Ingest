@@ -4017,7 +4017,9 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": true,
-    "transcription_hallucination_silence_threshold": 0
+    "transcription_hallucination_silence_threshold": 0,
+    "retranscription_last_error": "empty_transcript",
+    "retranscription_failed_profile": "97ef3a217c5d23a5"
   },
   "gracepres:tag:soundcloud,2010:tracks/1927248101": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1927248101",
