@@ -56,7 +56,7 @@ def _split_title(raw_title: str) -> tuple[str, date | None]:
         return raw_title, None
     try:
         # Only the calendar date is kept, so strptime's naive instant is never used.
-        title_date = datetime.strptime(match.group("date"), _TITLE_DATE_FMT).date()  # noqa: DTZ007
+        title_date = datetime.strptime(match.group("date"), _TITLE_DATE_FMT).date()
     except ValueError:
         return raw_title, None
     return match.group("title").strip() or raw_title, title_date

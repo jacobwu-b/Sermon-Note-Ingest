@@ -173,7 +173,8 @@ def test_transcribe_workflow_preserves_unpushed_marks_as_an_artifact_on_failure(
     # If the push retry loop still fails, this shard's already-Content-pushed
     # marks must survive the runner rather than being lost (§13 durable output).
     text = workflow_text()
-    assert "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7" in text
+    # The SHA is Dependabot's to bump; test_action_pinning asserts it is a pin.
+    assert re.search(r"uses: actions/upload-artifact@[0-9a-f]{40} # v\d+", text)
     assert "if: failure()" in text
 
 
