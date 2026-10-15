@@ -42,7 +42,7 @@ def _parse_title(raw_title: str) -> tuple[str, str | None, date | None]:
     try:
         # Only the calendar date is kept (.date() below), so the naive instant
         # strptime produces is never used as a real datetime.
-        service_date = datetime.strptime(match.group("date"), _TITLE_DATE_FMT).date()  # noqa: DTZ007
+        service_date = datetime.strptime(match.group("date"), _TITLE_DATE_FMT).date()
     except ValueError:
         return raw_title, None, None
     rest = match.group("rest")
