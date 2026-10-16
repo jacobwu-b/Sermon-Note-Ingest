@@ -7071,7 +7071,11 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": true,
-    "transcription_hallucination_silence_threshold": 0
+    "transcription_hallucination_silence_threshold": 0,
+    "retranscription_last_error": "quality_regression",
+    "retranscription_failed_profile": "97ef3a217c5d23a5",
+    "retranscription_candidate_path": "retranscription-candidates/gracepres/2023-04-02_tuesday-april-4-2023-holy-week_gracepres_tag_soundcloud_2010_tracks_1484206309.24c289752f79.txt",
+    "retranscription_candidate_hash": "24c289752f79a1ad1394b7277a82c9aec2824578f1d0d6ccc7835a5d13063ddc"
   },
   "gracepres:tag:soundcloud,2010:tracks/1484193079": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1484193079",
