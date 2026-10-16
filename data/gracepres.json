@@ -8352,7 +8352,11 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": true,
-    "transcription_hallucination_silence_threshold": 0
+    "transcription_hallucination_silence_threshold": 0,
+    "retranscription_last_error": "quality_regression",
+    "retranscription_failed_profile": "97ef3a217c5d23a5",
+    "retranscription_candidate_path": "retranscription-candidates/gracepres/2023-02-12_monday-february-27-2023-the-revealed-name_gracepres_tag_soundcloud_2010_tracks_1448753866.d070f8516483.txt",
+    "retranscription_candidate_hash": "d070f8516483dd218abdfaaa3c359478bccc8e10ef0375845f2a275e39518c14"
   },
   "gracepres:tag:soundcloud,2010:tracks/1448752672": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448752672",
