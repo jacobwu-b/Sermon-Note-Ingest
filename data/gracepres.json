@@ -7655,7 +7655,11 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": true,
-    "transcription_hallucination_silence_threshold": 0
+    "transcription_hallucination_silence_threshold": 0,
+    "retranscription_last_error": "quality_regression",
+    "retranscription_failed_profile": "97ef3a217c5d23a5",
+    "retranscription_candidate_path": "retranscription-candidates/gracepres/2023-03-12_friday-march-17-2023-the-god-who-provides_gracepres_tag_soundcloud_2010_tracks_1469025271.56efefbdba95.txt",
+    "retranscription_candidate_hash": "56efefbdba954d1e259c4779d5c7f8e99f12956aa348c6bb62e74b86619a5bdc"
   },
   "gracepres:tag:soundcloud,2010:tracks/1468758958": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1468758958",
