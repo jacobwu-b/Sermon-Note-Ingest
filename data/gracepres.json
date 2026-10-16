@@ -8298,7 +8298,11 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": true,
-    "transcription_hallucination_silence_threshold": 0
+    "transcription_hallucination_silence_threshold": 0,
+    "retranscription_last_error": "quality_regression",
+    "retranscription_failed_profile": "97ef3a217c5d23a5",
+    "retranscription_candidate_path": "retranscription-candidates/gracepres/2023-02-12_wednesday-march-8-2023-submitting-to-god-s-will_gracepres_tag_soundcloud_2010_tracks_1448755930.99e6d06b864d.txt",
+    "retranscription_candidate_hash": "99e6d06b864d332734886b4bbe9e2c6e2f50a98a015ed02d14e9d865f143ecdb"
   },
   "gracepres:tag:soundcloud,2010:tracks/1448754661": {
     "guid": "gracepres:tag:soundcloud,2010:tracks/1448754661",
