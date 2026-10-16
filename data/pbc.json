@@ -7315,7 +7315,9 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": true,
-    "transcription_hallucination_silence_threshold": 0
+    "transcription_hallucination_silence_threshold": 0,
+    "retranscription_last_error": "transcription",
+    "retranscription_failed_profile": "97ef3a217c5d23a5"
   },
   "pbc-archive:Main_Service/2023/02/05/20230205.mp3": {
     "guid": "pbc-archive:Main_Service/2023/02/05/20230205.mp3",
