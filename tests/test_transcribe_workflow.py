@@ -345,7 +345,7 @@ def test_only_the_pending_tick_is_scheduled_and_the_pass_is_dispatched_by_an_ext
     text = workflow_text()
     on_block = text[text.index("\non:") : text.index("\nconcurrency:")]
     assert on_block.count("cron:") == 1
-    assert '    - cron: "*/15 * * * *"' in on_block
+    assert '    - cron: "7 1 * * 1,2,4,6"' in on_block
     assert "github.event.schedule" not in text
 
 

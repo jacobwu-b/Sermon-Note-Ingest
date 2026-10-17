@@ -14,7 +14,7 @@
 # (poller.transcriber --print-shard-count), so a routine tick with 0-1 pending
 # sermons runs 0-1 shards and a larger backlog parallelizes itself.
 #
-# Two modes (ADR-0022). `pending` (every */15 tick, poll's dispatches, the default)
+# Two modes (ADR-0022). `pending` (the scheduled backstop tick, poll's dispatches, the default)
 # transcribes new sermons. `retranscribe-stale` re-transcribes done sermons whose
 # recorded decoding profile differs from the running one, replacing them in Content
 # by compare-and-swap; it runs only from a workflow_dispatch: the canary (with
@@ -29,7 +29,9 @@ name: Transcribe sermons
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    # Backstop for poll's dispatches, not the primary trigger. UTC: 01:07 on Mon, Tue,
+    # Thu and Sat is 5:07pm PST on the Sunday, Monday, Wednesday and Friday before.
+    - cron: "7 1 * * 1,2,4,6"
   workflow_dispatch:
     inputs:
       mode:
@@ -68,7 +70,7 @@ permissions:
   contents: read
 
 env:
-  # The run's mode and per-church limit, once for every job. The */15 tick has no
+  # The run's mode and per-church limit, once for every job. The scheduled tick has no
   # inputs, so it is a pending run at the default limit; the re-transcription pass sets
   # both in its dispatch.
   TRANSCRIBE_MODE: ${{ inputs.mode || 'pending' }}
