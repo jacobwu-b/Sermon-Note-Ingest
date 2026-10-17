@@ -332,3 +332,24 @@ def test_decoding_profile_records_an_engine_that_is_not_installed_as_unknown(mon
 
 def test_decoding_profile_fields_are_exactly_the_ledger_s_profile_fields():
     assert tuple(field.name for field in dataclasses.fields(transcribe.DecodingProfile)) == store.PROFILE_KEYS
+
+
+def test_transcribe_audio_logs_the_traceback_of_each_failed_model_attempt(caplog):
+    def fake_download(url, dest):
+        dest.write_bytes(b"audio")
+
+    def always_raises(_path, _hotwords):
+        raise ValueError("boolean index did not match indexed array along axis 0")
+
+    with caplog.at_level("ERROR", logger="poller"), pytest.raises(transcribe.TranscriptionError):
+        transcribe.transcribe_audio(
+            "https://example.org/a.mp3",
+            transcribe=always_raises,
+            download=fake_download,
+            sleep=lambda _s: None,
+        )
+
+    failures = [r for r in caplog.records if r.exc_info is not None]
+    assert len(failures) == 2
+    assert all(r.exc_info[0] is ValueError for r in failures)
+    assert "attempt 1/2" in failures[0].getMessage()
