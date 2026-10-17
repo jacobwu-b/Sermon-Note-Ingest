@@ -195,9 +195,7 @@ def test_transcribe_workflow_wires_whisper_decoding_vars():
     assert "WHISPER_BEAM_SIZE: ${{ vars.WHISPER_BEAM_SIZE }}" in text
     assert "WHISPER_CONDITION_ON_PREVIOUS_TEXT: ${{ vars.WHISPER_CONDITION_ON_PREVIOUS_TEXT }}" in text
     assert "WHISPER_DOMAIN_PROMPT: ${{ vars.WHISPER_DOMAIN_PROMPT }}" in text
-    assert (
-        "WHISPER_HALLUCINATION_SILENCE_THRESHOLD: ${{ vars.WHISPER_HALLUCINATION_SILENCE_THRESHOLD }}" in text
-    )
+    assert "vars.WHISPER_HALLUCINATION_SILENCE_THRESHOLD }}" in text
 
 
 def test_transcribe_workflow_does_not_interpolate_dispatch_inputs_into_run_scripts():
@@ -491,6 +489,78 @@ def test_the_plan_refuses_a_guid_outside_the_ledger_charset(tmp_path, guid):
 def test_the_plan_refuses_guids_in_pending_mode_and_an_unknown_mode(tmp_path):
     assert _run_script(_plan_body(), tmp_path, {**_PLAN_ENV, "GUIDS": "menlo:a"})[0] != 0
     assert _run_script(_plan_body(), tmp_path, {**_PLAN_ENV, "TRANSCRIBE_MODE": "everything"})[0] != 0
+
+
+_CANARY_ENV = {
+    **_PLAN_ENV,
+    "TRANSCRIBE_MODE": "retranscribe-stale",
+    "GUIDS": "gracepres:tag:soundcloud,2010:tracks/1448755930",
+}
+
+
+def test_the_silence_guard_override_is_a_dispatch_input_that_beats_the_repo_variable():
+    text = workflow_text()
+    assert "      silence_guard:" in text
+    workflow_env = text[: text.index("\njobs:")]
+    assert "  SILENCE_GUARD: ${{ inputs.silence_guard }}" in workflow_env
+    assert (
+        "WHISPER_HALLUCINATION_SILENCE_THRESHOLD: "
+        "${{ inputs.silence_guard || vars.WHISPER_HALLUCINATION_SILENCE_THRESHOLD }}" in workflow_env
+    )
+
+
+def test_a_guid_narrowed_dispatch_may_override_the_silence_guard_including_to_zero(tmp_path):
+    for value in ("0", "1.5"):
+        env = {**_CANARY_ENV, "SILENCE_GUARD": value, "WHISPER_HALLUCINATION_SILENCE_THRESHOLD": value}
+        workdir = tmp_path / f"v{value}"
+        workdir.mkdir()
+        code, out, calls, _output = _run_script(_plan_body(), workdir, env)
+        assert code == 0, out
+        assert calls and calls[0][-1] == "--print-shard-count"
+
+
+def test_the_silence_guard_override_is_named_in_the_run_summary(tmp_path):
+    env = {**_CANARY_ENV, "SILENCE_GUARD": "0", "WHISPER_HALLUCINATION_SILENCE_THRESHOLD": "0"}
+    code, _out, _calls, _output = _run_script(_plan_body(), tmp_path, env)
+    assert code == 0
+    assert "silence guard" in (tmp_path / "summary").read_text().lower()
+
+
+def test_the_plan_refuses_a_silence_guard_override_that_names_no_guids(tmp_path):
+    # Every record decoded under the default would turn stale against an unnarrowed override
+    # and be re-transcribed under it.
+    for mode in ("retranscribe-stale", "pending"):
+        env = {
+            **_PLAN_ENV,
+            "TRANSCRIBE_MODE": mode,
+            "SILENCE_GUARD": "0",
+            "WHISPER_HALLUCINATION_SILENCE_THRESHOLD": "0",
+        }
+        workdir = tmp_path / mode
+        workdir.mkdir()
+        code, out, calls, _output = _run_script(_plan_body(), workdir, env)
+        assert code != 0
+        assert calls == []
+        assert "::error::SILENCE_GUARD" in out
+
+
+@pytest.mark.parametrize("value", ["abc", "-1", "1e3", "1.", "$(id)", "2 "])
+def test_the_plan_refuses_a_silence_guard_override_that_is_not_a_number_of_seconds(tmp_path, value):
+    env = {**_CANARY_ENV, "SILENCE_GUARD": value, "WHISPER_HALLUCINATION_SILENCE_THRESHOLD": value}
+    code, out, calls, _output = _run_script(_plan_body(), tmp_path, env)
+    assert code != 0
+    assert calls == []
+    assert "::error::SILENCE_GUARD" in out
+
+
+def test_the_plan_fails_when_the_override_did_not_reach_the_decoder_setting(tmp_path):
+    # An expression that dropped the override would fall back to the variable and the pass
+    # would run, exit zero and record a profile nobody asked for.
+    env = {**_CANARY_ENV, "SILENCE_GUARD": "0", "WHISPER_HALLUCINATION_SILENCE_THRESHOLD": ""}
+    code, out, calls, _output = _run_script(_plan_body(), tmp_path, env)
+    assert code != 0
+    assert calls == []
+    assert "did not reach" in out
 
 
 def test_an_unnarrowed_retranscribe_dispatch_is_the_unattended_pass_that_owes_absence_alerts(tmp_path):

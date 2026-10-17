@@ -51,6 +51,10 @@ on:
         description: "retranscribe-stale only: guids to narrow the pass to, separated by ';' (the canary)."
         type: string
         default: ""
+      silence_guard:
+        description: "retranscribe-stale with guids only: hallucination-silence threshold in seconds for this run, overriding the repo variable. 0 turns the guard off."
+        type: string
+        default: ""
 
 # Separate from poll.yml's group: transcription and polling never need to block
 # each other. Both still write data/ — see the push step below for how that race
@@ -71,6 +75,7 @@ env:
   LIMIT: ${{ inputs.limit || 5 }}
   CHURCH: ${{ inputs.church }}
   GUIDS: ${{ inputs.guids }}
+  SILENCE_GUARD: ${{ inputs.silence_guard }}
   LOG_LEVEL: ${{ vars.LOG_LEVEL }}
   WHISPER_MODEL: ${{ vars.WHISPER_MODEL }}
   WHISPER_COMPUTE_TYPE: ${{ vars.WHISPER_COMPUTE_TYPE }}
@@ -80,7 +85,8 @@ env:
   WHISPER_BEAM_SIZE: ${{ vars.WHISPER_BEAM_SIZE }}
   WHISPER_CONDITION_ON_PREVIOUS_TEXT: ${{ vars.WHISPER_CONDITION_ON_PREVIOUS_TEXT }}
   WHISPER_DOMAIN_PROMPT: ${{ vars.WHISPER_DOMAIN_PROMPT }}
-  WHISPER_HALLUCINATION_SILENCE_THRESHOLD: ${{ vars.WHISPER_HALLUCINATION_SILENCE_THRESHOLD }}
+  # A dispatch's silence_guard beats the variable, for the plan and every shard alike.
+  WHISPER_HALLUCINATION_SILENCE_THRESHOLD: ${{ inputs.silence_guard || vars.WHISPER_HALLUCINATION_SILENCE_THRESHOLD }}
   CONTENT_REPO: ${{ vars.CONTENT_REPO }}
   CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
   # Read directly by huggingface_hub (faster-whisper's model download), not by our own
@@ -179,6 +185,25 @@ jobs:
           elif [ -n "$GUIDS" ]; then
             echo "::error::GUIDS applies only to mode retranscribe-stale"
             exit 1
+          fi
+          # Against an unnarrowed run the override would make every record decoded under the
+          # default stale, and the pass would re-transcribe them all under it.
+          if [ -n "$SILENCE_GUARD" ]; then
+            if [ -z "$GUIDS" ]; then
+              echo "::error::SILENCE_GUARD applies only to a retranscribe-stale run that names GUIDS"
+              exit 1
+            fi
+            if ! [[ "$SILENCE_GUARD" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+              echo "::error::SILENCE_GUARD '$SILENCE_GUARD' is not a number of seconds"
+              exit 1
+            fi
+            # The workflow env falls back to the variable when it reads the input as false;
+            # a pass that ran under the wrong profile would exit zero.
+            if [ "$WHISPER_HALLUCINATION_SILENCE_THRESHOLD" != "$SILENCE_GUARD" ]; then
+              echo "::error::SILENCE_GUARD '$SILENCE_GUARD' did not reach the decoder setting"
+              exit 1
+            fi
+            echo "Silence guard overridden to ${SILENCE_GUARD}s for this run (repo variable ignored)." >> "$GITHUB_STEP_SUMMARY"
           fi
           # The unattended pass is a re-transcription dispatch that names no guids; the
           # canary names them. Only the pass owes the absence alerts (verify job).
