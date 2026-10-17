@@ -22,7 +22,7 @@ which writes the study note. It never generates notes itself.
   - If the church's `notify` flag is on, one email per poll lists its new
     sermons, via [Resend](https://resend.com).
 - **Transcribe.** [`.github/workflows/transcribe.yml`](./.github/workflows/transcribe.yml)
-  runs every 15 minutes, and `poll.yml` also dispatches it right after a
+  runs a few times a week as a backstop, and `poll.yml` also dispatches it right after a
   discovery. It downloads each untranscribed sermon's audio and transcribes it
   with [faster-whisper](https://github.com/SYSTRAN/faster-whisper), spreading
   the work across parallel jobs.

@@ -12,7 +12,7 @@
 #
 # After a successful ledger push, dispatches transcribe.yml for each church that
 # had a new sermon this run, so transcription starts within this workflow's own
-# cadence instead of waiting for transcribe.yml's independent 15-minute schedule
+# cadence instead of waiting for transcribe.yml's independent weekly-backstop schedule
 # (that schedule stays as the backstop if this dispatch fails or is skipped).
 # See ADR-0007 (docs/decisions/0007-poll-dispatches-transcription-on-discovery.md).
 #
@@ -144,7 +144,7 @@ jobs:
 
       - name: Dispatch transcription for newly-discovered churches
         # Best-effort latency optimization, not a correctness dependency (ADR-0007):
-        # transcribe.yml's own */15 schedule still catches anything this misses, so a
+        # transcribe.yml's own backstop schedule still catches anything this misses, so a
         # dispatch failure here warns and moves on rather than failing the job. Runs
         # only once the ledger update for this run's discoveries actually landed on
         # main — dispatching against a push that failed would have transcribe.yml find
@@ -158,6 +158,6 @@ jobs:
           for church in "${churches[@]}"; do
             echo "dispatching transcription for $church"
             if ! gh workflow run transcribe.yml --repo "${{ github.repository }}" -f church="$church"; then
-              echo "::warning::failed to dispatch transcription for $church; the */15 schedule will still catch it"
+              echo "::warning::failed to dispatch transcription for $church; the backstop schedule will still catch it"
             fi
           done
