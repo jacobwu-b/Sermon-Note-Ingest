@@ -15,6 +15,7 @@ tooling never load model weights; the model call itself is mocked at the
 from __future__ import annotations
 
 import hashlib
+import logging
 import tempfile
 import time
 from collections.abc import Callable
@@ -25,6 +26,8 @@ from typing import Any
 
 from poller import config
 from poller.net import download_audio, http_download
+
+logger = logging.getLogger("poller")
 
 _TRANSCRIBE_ATTEMPTS = 2
 _TRANSCRIBE_BACKOFF_BASE = 1.0
@@ -160,8 +163,12 @@ def _transcribe_with_retries(
     for attempt in range(1, attempts + 1):
         try:
             text, profile = transcribe(audio_path, hotwords)
-        except Exception as exc:  # noqa: BLE001 — a per-file model failure; classified below.
+        except Exception as exc:
             model_error = exc
+            # The wrapped TranscriptionError keeps only str(exc); the traceback names the failing library line.
+            logger.error(
+                "%s: model call failed (attempt %d/%d)", audio_path.name, attempt, attempts, exc_info=exc
+            )
         else:
             if text.strip():
                 return text.strip(), profile
