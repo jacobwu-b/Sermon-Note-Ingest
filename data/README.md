@@ -53,11 +53,11 @@ Do not edit between the markers by hand; it will be overwritten.
 |---|---|---|---|
 | gracepres | 449 | Redemption In The Ruins | 2026-10-11 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
-| lakepointe | 140 | A Call to Die | 2026-10-11 |
+| lakepointe | 141 | The ALL-OR-NOTHING Journey Jesus Invites You To Take | 2026-10-18 |
 | menlo | 152 | Without Pretense | 2026-10-11 |
 | north_point | 105 | Be Rich 2026, Part 2: Show Me | 2026-10-11 |
 | pbc | 402 | Ready or Not | 2026-10-11 |
 | westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
 
-**Total sermons across all churches: 1865**
+**Total sermons across all churches: 1866**
 <!-- STATS:END -->
