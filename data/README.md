@@ -55,9 +55,9 @@ Do not edit between the markers by hand; it will be overwritten.
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 141 | The ALL-OR-NOTHING Journey Jesus Invites You To Take | 2026-10-18 |
 | menlo | 152 | Without Pretense | 2026-10-11 |
-| north_point | 106 | All Good Things, Part 1: All Good Things | 2026-10-18 |
+| north_point | 107 | All Good Things, Part 1: All Good Things | 2026-10-18 |
 | pbc | 402 | Ready or Not | 2026-10-11 |
 | westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
 
-**Total sermons across all churches: 1867**
+**Total sermons across all churches: 1868**
 <!-- STATS:END -->
