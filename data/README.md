@@ -57,7 +57,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | menlo | 152 | Without Pretense | 2026-10-11 |
 | north_point | 107 | All Good Things, Part 1: All Good Things | 2026-10-18 |
 | pbc | 402 | Ready or Not | 2026-10-11 |
-| westgate | 108 | Week 4 - Spiritual Families | 2026-10-04 |
+| westgate | 109 | Beautiful Day Celebration | 2026-10-18 |
 
-**Total sermons across all churches: 1868**
+**Total sermons across all churches: 1869**
 <!-- STATS:END -->
