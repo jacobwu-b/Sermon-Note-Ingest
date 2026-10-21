@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| gracepres | 449 | Redemption In The Ruins | 2026-10-11 |
+| gracepres | 450 | Cain & Abel | 2026-10-18 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 141 | The ALL-OR-NOTHING Journey Jesus Invites You To Take | 2026-10-18 |
 | menlo | 153 | Who Are You, Really? | 2026-10-18 |
@@ -59,5 +59,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | pbc | 403 | Almost Too Late | 2026-10-18 |
 | westgate | 109 | Beautiful Day Celebration | 2026-10-18 |
 
-**Total sermons across all churches: 1872**
+**Total sermons across all churches: 1873**
 <!-- STATS:END -->
