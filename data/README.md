@@ -55,9 +55,9 @@ Do not edit between the markers by hand; it will be overwritten.
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 142 | What Is Keeping You From Fully Following Jesus? | 2026-10-25 |
 | menlo | 153 | Who Are You, Really? | 2026-10-18 |
-| north_point | 108 | All Good Things, Part 1: All Good Things | 2026-10-18 |
+| north_point | 109 | All Good Things, Part 2: Up in the Mix | 2026-10-25 |
 | pbc | 403 | Almost Too Late | 2026-10-18 |
 | westgate | 109 | Beautiful Day Celebration | 2026-10-18 |
 
-**Total sermons across all churches: 1874**
+**Total sermons across all churches: 1875**
 <!-- STATS:END -->
