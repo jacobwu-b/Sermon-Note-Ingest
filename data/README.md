@@ -56,8 +56,8 @@ Do not edit between the markers by hand; it will be overwritten.
 | lakepointe | 142 | What Is Keeping You From Fully Following Jesus? | 2026-10-25 |
 | menlo | 154 | Posture for People, Policies, and the Polls | 2026-10-25 |
 | north_point | 109 | All Good Things, Part 2: Up in the Mix | 2026-10-25 |
-| pbc | 403 | Almost Too Late | 2026-10-18 |
+| pbc | 404 | Setting Captives Free | 2026-10-25 |
 | westgate | 109 | Beautiful Day Celebration | 2026-10-18 |
 
-**Total sermons across all churches: 1876**
+**Total sermons across all churches: 1877**
 <!-- STATS:END -->
