@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| gracepres | 450 | Cain & Abel | 2026-10-18 |
+| gracepres | 451 | Life East Of Eden | 2026-10-25 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 142 | What Is Keeping You From Fully Following Jesus? | 2026-10-25 |
 | menlo | 154 | Posture for People, Policies, and the Polls | 2026-10-25 |
@@ -59,5 +59,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | pbc | 404 | Setting Captives Free | 2026-10-25 |
 | westgate | 109 | Beautiful Day Celebration | 2026-10-18 |
 
-**Total sermons across all churches: 1877**
+**Total sermons across all churches: 1878**
 <!-- STATS:END -->
