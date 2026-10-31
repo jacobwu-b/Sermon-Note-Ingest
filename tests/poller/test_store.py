@@ -457,14 +457,82 @@ def test_load_warns_and_skips_an_override_for_an_unknown_guid(tmp_path, monkeypa
     assert any("unknown-guid" in message for message in caplog.messages)
 
 
-def test_save_does_not_read_or_touch_the_overrides_file(tmp_path, monkeypatch):
+def _on_disk(tmp_path, church: str) -> dict:
+    return json.loads((tmp_path / f"{church}.json").read_text(encoding="utf-8"))
+
+
+def test_a_load_then_save_round_trip_keeps_the_override_out_of_the_ledger_file(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-09-06")})
     _write_overrides(tmp_path, "menlo", {"g1": {"audio_url": "https://cdn.example.org/fixed.mp3"}})
 
-    store.save("menlo", {"g1": _record("g1", preached_on="2026-09-06")})
+    store.save("menlo", store.load("menlo"))
 
-    on_disk = json.loads((tmp_path / "menlo.json").read_text(encoding="utf-8"))
-    assert on_disk["g1"]["audio_url"] == "https://example.org/ep1.mp3"
+    assert _on_disk(tmp_path, "menlo")["g1"]["audio_url"] == "https://example.org/ep1.mp3"
+    assert store.load("menlo")["g1"]["audio_url"] == "https://cdn.example.org/fixed.mp3"
+
+
+def test_removing_an_override_after_a_round_trip_restores_the_ledger_value(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-09-06")})
+    _write_overrides(
+        tmp_path, "menlo", {"g1": {"audio_url": "https://cdn.example.org/fixed.mp3", "title": "Fixed"}}
+    )
+    records = store.load("menlo")
+    store.mark_download_failed(records["g1"])
+    store.save("menlo", records)
+
+    (tmp_path / "overrides" / "menlo.json").unlink()
+
+    reloaded = store.load("menlo")["g1"]
+    assert reloaded["audio_url"] == "https://example.org/ep1.mp3"
+    assert reloaded["title"] == "Hear and Do"
+    assert reloaded["transcription_last_error"] == store.DOWNLOAD_ERROR
+
+
+def test_an_override_adding_a_field_the_ledger_lacks_is_not_written_back(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-09-06")})
+    _write_overrides(tmp_path, "menlo", {"g1": {"service_note": "Combined campus service"}})
+
+    store.save("menlo", store.load("menlo"))
+
+    assert "service_note" not in _on_disk(tmp_path, "menlo")["g1"]
+
+
+def test_save_writes_an_overridden_field_a_caller_changed_since_load(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-09-06")})
+    _write_overrides(tmp_path, "menlo", {"g1": {"audio_url": "https://cdn.example.org/fixed.mp3"}})
+    records = store.load("menlo")
+    records["g1"]["audio_url"] = "https://cdn.example.org/rotated.mp3"
+
+    store.save("menlo", records)
+
+    assert _on_disk(tmp_path, "menlo")["g1"]["audio_url"] == "https://cdn.example.org/rotated.mp3"
+
+
+def test_save_leaves_the_callers_merged_records_unchanged(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-09-06")})
+    _write_overrides(tmp_path, "menlo", {"g1": {"audio_url": "https://cdn.example.org/fixed.mp3"}})
+    records = store.load("menlo")
+
+    store.save("menlo", records)
+
+    assert records["g1"]["audio_url"] == "https://cdn.example.org/fixed.mp3"
+
+
+def test_save_writes_a_newly_discovered_record_as_given_even_if_it_matches_an_override(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    store.save("menlo", {"g1": _record("g1", preached_on="2026-09-06")})
+    _write_overrides(tmp_path, "menlo", {"g2": {"audio_url": "https://example.org/ep1.mp3"}})
+    records = store.load("menlo")
+    records["g2"] = _record("g2", preached_on="2026-09-13")
+
+    store.save("menlo", records)
+
+    assert _on_disk(tmp_path, "menlo")["g2"]["audio_url"] == "https://example.org/ep1.mp3"
 
 
 def test_save_interrupted_mid_write_leaves_the_previous_ledger_intact(tmp_path, monkeypatch):
