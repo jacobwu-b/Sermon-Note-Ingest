@@ -23,9 +23,14 @@ from poller.sources.common import entry_audio_url, entry_has_identity, parse_pub
 
 _GUID_PREFIX = "westgate:"
 
-# e.g. "The Gospel of John (Part 2) | To Whom Shall We Go | August 16, 2026".
-_TITLE_DATE_RE = re.compile(r"^(?P<rest>.+) \| (?P<date>[A-Za-z]+ \d{1,2}, \d{4})$")
-_TITLE_DATE_FMT = "%B %d, %Y"
+# e.g. "The Gospel of John (Part 2) | To Whom Shall We Go | August 16, 2026". Titles are
+# typed by hand, so the live feed also varies the spacing around "|", abbreviates the month
+# ("Sep. 6, 2026") and drops the comma ("March 09 2025"); each variant once dropped a sermon.
+_TITLE_DATE_RE = re.compile(
+    r"^(?P<rest>.+?)\s*\|\s*(?P<month>[A-Za-z]+)\.?\s+(?P<day>\d{1,2}),?\s+(?P<year>\d{4})\s*$"
+)
+_SEPARATOR_RE = re.compile(r"\s*\|\s*")
+_TITLE_DATE_FMTS = ("%B %d %Y", "%b %d %Y")
 
 # A distinct kids/family program that happens to publish on a Sunday —
 # excluded per the owner's resolved decision, not the main congregational teaching.
@@ -39,17 +44,27 @@ def _parse_title(raw_title: str) -> tuple[str, str | None, date | None]:
     match = _TITLE_DATE_RE.match(raw_title)
     if not match:
         return raw_title, None, None
-    try:
-        # Only the calendar date is kept (.date() below), so the naive instant
-        # strptime produces is never used as a real datetime.
-        service_date = datetime.strptime(match.group("date"), _TITLE_DATE_FMT).date()
-    except ValueError:
+    service_date = _parse_title_date(f"{match['month']} {match['day']} {match['year']}")
+    if service_date is None:
         return raw_title, None, None
     rest = match.group("rest")
-    series, sep, title = rest.partition(" | ")
-    if not sep:
+    parts = _SEPARATOR_RE.split(rest, maxsplit=1)
+    if len(parts) == 1:
         return rest, None, service_date
+    series, title = parts
     return title, series, service_date
+
+
+def _parse_title_date(text: str) -> date | None:
+    """``text`` (``"<month> <day> <year>"``) as a date, with the month full or abbreviated."""
+    for fmt in _TITLE_DATE_FMTS:
+        try:
+            # Only the calendar date is kept (.date() below), so the naive instant
+            # strptime produces is never used as a real datetime.
+            return datetime.strptime(text, fmt).date()
+        except ValueError:
+            continue
+    return None
 
 
 def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
