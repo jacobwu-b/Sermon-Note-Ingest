@@ -16,6 +16,10 @@
 # (that schedule stays as the backstop if this dispatch fails or is skipped).
 # See ADR-0007 (docs/decisions/0007-poll-dispatches-transcription-on-discovery.md).
 #
+# The Poll step also alerts, once per incident, when a church misses a Sunday or its feed
+# keeps failing, recording that in data/alerts/state.json for the commit step below.
+# See ADR-0025 (docs/decisions/0025-discovery-absence-alerts.md).
+#
 # The Poll step below also checks Sermon-Note-Pipeline's pending Claude batches
 # and dispatches its pipeline.yml the moment one has ended, instead of waiting for
 # Pipeline's own (much longer) cron. See ADR-0010
@@ -63,8 +67,13 @@ jobs:
       # GITHUB_TOKEN — main's ruleset requires a PR from everyone else, and
       # this key is the one actor on its bypass list, so the push here must
       # go over SSH with this key rather than the default token-authed remote.
+      #
+      # ref: the live branch tip, not the default github.sha (the commit as of dispatch):
+      # a run queued behind another must read the discovery alert state that run recorded,
+      # or it re-sends the same alert (ADR-0025).
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
+          ref: ${{ github.ref }}
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
@@ -139,7 +148,7 @@ jobs:
             echo "No new sermons discovered this run."
             exit 0
           fi
-          git commit -m "chore(data): record newly-discovered sermons [skip ci]"
+          git commit -m "chore(data): record poll results [skip ci]"
           git push
 
       - name: Dispatch transcription for newly-discovered churches

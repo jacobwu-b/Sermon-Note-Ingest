@@ -434,8 +434,51 @@ def mark_transcription_failed(record: dict[str, Any], *, error: str) -> None:
     record["transcription_last_error"] = error
 
 
+def _alerts_dir() -> Path:
+    return DATA_DIR / "alerts"
+
+
+def load_alert_state() -> dict[str, dict[str, Any]]:
+    """Discovery alert state (ADR-0025), keyed by church, or ``{}`` before any has been saved."""
+    path = _alerts_dir() / "state.json"
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as f:
+        state: dict[str, dict[str, Any]] = json.load(f)
+    return state
+
+
+def save_alert_state(state: Mapping[str, Mapping[str, Any]]) -> None:
+    """Write discovery alert state, atomically like :func:`save`."""
+    path = _alerts_dir() / "state.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_suffix(path.suffix + ".tmp")
+    try:
+        with tmp_path.open("w", encoding="utf-8") as f:
+            json.dump(dict(sorted(state.items())), f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        os.replace(tmp_path, path)
+    except BaseException:
+        tmp_path.unlink(missing_ok=True)
+        raise
+
+
+def load_alert_snoozes() -> dict[str, str]:
+    """Each snoozed church's ``until`` date from the hand-edited ``data/alerts/snooze.json``.
+
+    Like an override (ADR-0008), ``_``-prefixed keys are notes for whoever edits the file.
+    """
+    path = _alerts_dir() / "snooze.json"
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as f:
+        snoozes: dict[str, dict[str, Any]] = json.load(f)
+    return {church: str(entry["until"]) for church, entry in snoozes.items()}
+
+
 def validate_all() -> list[str]:
-    """Strict-load every ``data/*.json`` ledger; return the filenames that fail to parse.
+    """Strict-load every ``data/*.json`` ledger and ``data/alerts/*.json`` file; return the
+    paths, relative to ``data/``, that fail to parse.
 
     Run by both poll.yml's and transcribe.yml's commit steps before ``git add data/``, so a
     truncated or corrupted ledger fails the step instead of landing on main with `[skip ci]`.
@@ -443,12 +486,12 @@ def validate_all() -> list[str]:
     if not DATA_DIR.exists():
         return []
     bad = []
-    for path in sorted(DATA_DIR.glob("*.json")):
+    for path in sorted(DATA_DIR.glob("*.json")) + sorted(_alerts_dir().glob("*.json")):
         try:
             with path.open(encoding="utf-8") as f:
                 json.load(f)
         except (OSError, json.JSONDecodeError):
-            bad.append(path.name)
+            bad.append(path.relative_to(DATA_DIR).as_posix())
     return bad
 
 

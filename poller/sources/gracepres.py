@@ -120,6 +120,8 @@ class GracepresAdapter(SourceAdapter):
     """Ingest Grace Presbyterian Church of Silicon Valley sermons from the SoundCloud feed."""
 
     source = "gracepres"
+    # Measured: 69–141 h after Sunday 00:00 UTC (June–October 2026).
+    publish_grace = timedelta(hours=168)
 
     def poll(self) -> PollResult:
         try:

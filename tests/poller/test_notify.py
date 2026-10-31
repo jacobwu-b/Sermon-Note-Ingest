@@ -245,3 +245,34 @@ def test_send_retranscribe_alert_raises_notify_error_on_http_error(monkeypatch):
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
     with pytest.raises(notify.NotifyError, match="500"):
         notify.send_retranscribe_alert("subject", ["line"], _config())
+
+
+def test_send_discovery_alert_posts_the_subject_and_one_item_per_line(monkeypatch):
+    captured = {}
+
+    def fake_urlopen(request, timeout):
+        captured["headers"] = {k.lower(): v for k, v in request.headers.items()}
+        captured["body"] = json.loads(request.data)
+        return _FakeResponse(200)
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    notify.send_discovery_alert(
+        "Discovery: no sermon from westgate for Sunday 2026-10-25",
+        ["westgate: newest ledgered sermon is 2026-10-18 <check the feed>"],
+        _config(),
+    )
+
+    assert captured["body"]["subject"] == "Discovery: no sermon from westgate for Sunday 2026-10-25"
+    assert captured["body"]["html"] == (
+        "<ul><li>westgate: newest ledgered sermon is 2026-10-18 &lt;check the feed&gt;</li></ul>"
+    )
+    assert captured["headers"]["user-agent"] == notify.DEFAULT_USER_AGENT
+
+
+def test_send_discovery_alert_raises_notify_error_on_http_error(monkeypatch):
+    def fake_urlopen(request, timeout):
+        raise urllib.error.HTTPError(request.full_url, 500, "boom", {}, io.BytesIO(b"down"))
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    with pytest.raises(notify.NotifyError):
+        notify.send_discovery_alert("subject", ["line"], _config())

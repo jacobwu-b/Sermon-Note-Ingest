@@ -831,3 +831,40 @@ def test_a_later_retranscription_failure_keeps_the_pointer_to_an_earlier_candida
     store.mark_retranscribe_failed(record, error=store.DOWNLOAD_ERROR, failed_profile="d2")
     assert record["retranscription_last_error"] == "audio_download"
     assert record["retranscription_candidate_path"] == "p"
+
+
+# --- discovery alert state (ADR-0025) ---
+
+
+def test_alert_state_is_empty_before_any_alert_and_round_trips(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    assert store.load_alert_state() == {}
+
+    state = {
+        "westgate": {"missing_alerted_for": "2026-10-25"},
+        "pbc": {"failing_since": "2026-10-29T15:00:00+00:00"},
+    }
+    store.save_alert_state(state)
+    assert store.load_alert_state() == state
+    assert not list((tmp_path / "alerts").glob("*.tmp"))
+
+
+def test_alert_snoozes_are_empty_without_a_snooze_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    assert store.load_alert_snoozes() == {}
+
+
+def test_alert_snoozes_read_each_churchs_until_date_and_skip_notes(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "alerts").mkdir()
+    (tmp_path / "alerts" / "snooze.json").write_text(
+        json.dumps({"lakepointe": {"until": "2026-08-02", "_reason": "summer break"}}), encoding="utf-8"
+    )
+    assert store.load_alert_snoozes() == {"lakepointe": "2026-08-02"}
+
+
+def test_validate_all_reports_a_corrupt_alert_state_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "alerts").mkdir()
+    (tmp_path / "alerts" / "state.json").write_text('{"westgate": {', encoding="utf-8")
+    assert store.validate_all() == ["alerts/state.json"]

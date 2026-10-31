@@ -12,7 +12,7 @@ this adapter classifies on, not ``pubDate``.
 from __future__ import annotations
 
 import re
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from typing import Any
 
 import feedparser
@@ -112,6 +112,8 @@ class WestgateAdapter(SourceAdapter):
     """Ingest WestGate Church (San Jose) sermons from the Squarespace feed."""
 
     source = "westgate"
+    # Measured: 27–66 h after Sunday 00:00 UTC (June–October 2026).
+    publish_grace = timedelta(hours=96)
 
     def poll(self) -> PollResult:
         try:

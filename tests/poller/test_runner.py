@@ -1,3 +1,5 @@
+import json
+from datetime import UTC, datetime, timedelta
 from typing import ClassVar
 
 from poller import batch_poll, config, notify, runner, stats, store
@@ -24,12 +26,16 @@ def _item(guid: str) -> SermonItem:
 class _FakeAdapter(SourceAdapter):
     source = "fake"
     items: ClassVar[list[SermonItem]] = []
+    excluded = 0
     deferred = False
+    # Older than any fixture date, so the polling tests here never trip a missing-Sunday
+    # alert; the alert tests below use _AlertingAdapter.
+    publish_grace = timedelta(days=3650)
 
     def poll(self) -> PollResult:
         if self.deferred:
             return PollResult(deferred=True)
-        return PollResult(items=list(self.items), excluded=0)
+        return PollResult(items=list(self.items), excluded=self.excluded)
 
 
 def _church(*, notify_flag: bool) -> config.ChurchConfig:
@@ -335,3 +341,170 @@ def test_run_survives_an_unexpected_batch_poll_crash(tmp_path, monkeypatch, chur
     monkeypatch.setattr(batch_poll, "poll_pending_batches", _boom)
 
     assert runner.run(church_names=None, backfill=False) is True
+
+
+# --- discovery absence alerts (spec 0011, ADR-0025) ---
+
+# Thursday after Westgate's 2026-10-25 sermon was dropped.
+_THU = datetime(2026, 10, 29, 15, 0, tzinfo=UTC)
+_ONE_CHURCH = (
+    '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
+)
+
+
+class _AlertingAdapter(_FakeAdapter):
+    publish_grace = timedelta(hours=48)
+
+
+def _dated(guid: str, preached_on: str) -> SermonItem:
+    return _item(guid).__class__(**{**_item(guid).__dict__, "preached_on": preached_on})
+
+
+def _alert_setup(tmp_path, monkeypatch, church_table, *, items, deferred=False, excluded=0):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _AlertingAdapter})
+    monkeypatch.setattr(batch_poll, "poll_pending_batches", lambda: None)
+    _AlertingAdapter.items = items
+    _AlertingAdapter.deferred = deferred
+    _AlertingAdapter.excluded = excluded
+    church_table(_ONE_CHURCH)
+    monkeypatch.setenv("NOTIFY_EMAIL_FROM", "alerts@example.org")
+    monkeypatch.setenv("NOTIFY_EMAIL_TO", "team@example.org")
+    monkeypatch.setenv("RESEND_API_KEY", "re_123")
+    sent: list[tuple[str, list[str]]] = []
+    monkeypatch.setattr(
+        notify, "send_discovery_alert", lambda subject, lines, cfg: sent.append((subject, list(lines)))
+    )
+    return sent
+
+
+def _at(monkeypatch, when: datetime) -> None:
+    monkeypatch.setattr(runner, "now", lambda: when.isoformat())
+
+
+def test_run_alerts_once_for_a_missing_sunday_and_fails_only_that_run(tmp_path, monkeypatch, church_table):
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[_dated("g1", "2026-10-18")], excluded=191)
+
+    _at(monkeypatch, _THU)
+    assert runner.run(church_names=None, backfill=False) is False
+    assert len(sent) == 1
+    assert "fake" in sent[0][0]
+    assert "2026-10-25" in sent[0][0] + " ".join(sent[0][1])
+
+    _at(monkeypatch, _THU + timedelta(minutes=5))
+    assert runner.run(church_names=None, backfill=False) is True
+    assert len(sent) == 1
+
+
+def test_run_stays_green_when_the_due_sunday_is_ledgered(tmp_path, monkeypatch, church_table):
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[_dated("g1", "2026-10-25")])
+    _at(monkeypatch, _THU)
+
+    assert runner.run(church_names=None, backfill=False) is True
+    assert sent == []
+    # Nothing changed, so nothing is written for poll.yml to commit.
+    assert not (tmp_path / "alerts" / "state.json").exists()
+
+
+def test_run_retries_an_alert_whose_send_failed(tmp_path, monkeypatch, church_table):
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[_dated("g1", "2026-10-18")])
+
+    def _rejected(subject, lines, cfg):
+        raise notify.NotifyError("Resend rejected the request: 500")
+
+    monkeypatch.setattr(notify, "send_discovery_alert", _rejected)
+    _at(monkeypatch, _THU)
+    assert runner.run(church_names=None, backfill=False) is False
+
+    monkeypatch.setattr(
+        notify, "send_discovery_alert", lambda subject, lines, cfg: sent.append((subject, lines))
+    )
+    _at(monkeypatch, _THU + timedelta(minutes=5))
+    assert runner.run(church_names=None, backfill=False) is False
+    assert len(sent) == 1
+
+    _at(monkeypatch, _THU + timedelta(minutes=10))
+    assert runner.run(church_names=None, backfill=False) is True
+
+
+def test_run_fails_and_keeps_the_alert_pending_when_notify_secrets_are_missing(
+    tmp_path, monkeypatch, church_table
+):
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[_dated("g1", "2026-10-18")])
+    monkeypatch.delenv("RESEND_API_KEY")
+    _at(monkeypatch, _THU)
+
+    assert runner.run(church_names=None, backfill=False) is False
+    assert sent == []
+
+    monkeypatch.setenv("RESEND_API_KEY", "re_123")
+    _at(monkeypatch, _THU + timedelta(minutes=5))
+    assert runner.run(church_names=None, backfill=False) is False
+    assert len(sent) == 1
+
+
+def test_run_honors_a_snooze_through_the_due_sunday(tmp_path, monkeypatch, church_table):
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[_dated("g1", "2026-10-18")])
+    (tmp_path / "alerts").mkdir()
+    (tmp_path / "alerts" / "snooze.json").write_text(
+        json.dumps({"fake": {"until": "2026-11-01", "_reason": "fall break"}}), encoding="utf-8"
+    )
+    _at(monkeypatch, _THU)
+
+    assert runner.run(church_names=None, backfill=False) is True
+    assert sent == []
+
+
+def test_run_alerts_once_a_feed_has_deferred_for_six_hours(tmp_path, monkeypatch, church_table):
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[], deferred=True)
+
+    _at(monkeypatch, _THU)
+    assert runner.run(church_names=None, backfill=False) is True
+    _at(monkeypatch, _THU + timedelta(hours=6))
+    assert runner.run(church_names=None, backfill=False) is False
+    assert len(sent) == 1
+    _at(monkeypatch, _THU + timedelta(hours=7))
+    assert runner.run(church_names=None, backfill=False) is True
+    assert len(sent) == 1
+
+
+def test_run_alerts_once_a_feed_has_parsed_empty_for_six_hours(tmp_path, monkeypatch, church_table):
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[], excluded=0)
+
+    _at(monkeypatch, _THU)
+    assert runner.run(church_names=None, backfill=False) is True
+    _at(monkeypatch, _THU + timedelta(hours=6))
+    assert runner.run(church_names=None, backfill=False) is False
+    assert len(sent) == 1
+
+
+def test_run_alert_state_lands_under_data_for_poll_yml_to_commit(tmp_path, monkeypatch, church_table):
+    _alert_setup(tmp_path, monkeypatch, church_table, items=[], deferred=True)
+    _at(monkeypatch, _THU)
+    runner.run(church_names=None, backfill=False)
+
+    state = json.loads((tmp_path / "alerts" / "state.json").read_text(encoding="utf-8"))
+    assert state == {"fake": {"failing_since": _THU.isoformat()}}
+    assert store.validate_all() == []
+
+
+def test_poll_church_reports_feed_health(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    cases = [
+        ("deferred", [], 0, True, False),
+        ("parsed empty", [], 0, False, False),
+        ("only excluded items", [], 4, False, True),
+        ("sermons", [_item("g1")], 0, False, True),
+    ]
+    for label, items, excluded, deferred, healthy in cases:
+        _FakeAdapter.items, _FakeAdapter.excluded, _FakeAdapter.deferred = items, excluded, deferred
+        health: dict[str, bool] = {}
+        assert (
+            runner.poll_church("fake", _church(notify_flag=False), backfill=False, health_out=health) is True
+        )
+        assert health == {"fake": healthy}, label
+    _FakeAdapter.excluded = 0
+
+    assert "parsed to no entries" in caplog.text
