@@ -174,8 +174,41 @@ def _ordered_items(records: dict[str, dict[str, Any]]) -> list[tuple[str, dict[s
     return dated + undated
 
 
+def _strip_overrides(church: str, records: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """``records`` with every field :func:`load` merged in from an override put back to the
+    ledger file's value, so a load-then-save round trip never bakes a correction in (ADR-0008).
+
+    A field still equal to its override is taken as merged in and restored, or dropped if the
+    file lacks it; one a caller has changed since (a feed refresh) is kept. ``records`` itself
+    is not modified — callers keep working from the corrected view after a save.
+    """
+    overrides = _load_overrides(church)
+    if not overrides:
+        return records
+    on_disk = {guid: _rename_legacy_keys(record) for guid, record in _load_raw(church).items()}
+    stripped = dict(records)
+    for guid, fields in overrides.items():
+        record, base = records.get(guid), on_disk.get(guid)
+        if record is None or base is None:
+            continue
+        merged = {
+            key
+            for key, value in fields.items()
+            if not key.startswith("_") and key in record and record[key] == value
+        }
+        stripped[guid] = {
+            key: base[key] if key in merged else value
+            for key, value in record.items()
+            if key not in merged or key in base
+        }
+    return stripped
+
+
 def save(church: str, records: dict[str, dict[str, Any]]) -> None:
     """Write a church's ledger back, newest ``preached_on`` first, for an easy-to-scan file.
+
+    Override values merged in by :func:`load` are written as the ledger file's own values,
+    never as the corrections (:func:`_strip_overrides`).
 
     Writes to a ``.tmp`` sibling and ``os.replace``s it onto the real path, so a process
     killed mid-write (a job timeout, a runner eviction) never leaves a truncated ledger on
@@ -184,7 +217,7 @@ def save(church: str, records: dict[str, dict[str, Any]]) -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     path = _record_path(church)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
-    ordered = dict(_ordered_items(records))
+    ordered = dict(_ordered_items(_strip_overrides(church, records)))
     try:
         with tmp_path.open("w", encoding="utf-8") as f:
             json.dump(ordered, f, indent=2, ensure_ascii=False)
