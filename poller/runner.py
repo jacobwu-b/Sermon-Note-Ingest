@@ -7,7 +7,8 @@ notification failing, never stops the others from being polled and recorded.
 sending any notification for what it adds, so a first run (or a run after
 adding a new church) doesn't blast an inbox with years of back-catalog. Every
 run ends by regenerating ``data/README.md``'s stats section from whatever the
-ledgers now hold, whether or not this run found anything new.
+ledgers now hold, whether or not this run found anything new, and by checking each
+polled church for a missed Sunday or a feed that keeps failing (ADR-0025).
 """
 
 from __future__ import annotations
@@ -15,8 +16,9 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+from datetime import date, datetime
 
-from poller import batch_poll, config, notify, stats, store
+from poller import batch_poll, config, discovery_health, notify, stats, store
 from poller.net import now
 from poller.sources import ADAPTERS
 
@@ -29,6 +31,7 @@ def poll_church(
     *,
     backfill: bool,
     discovered_out: list[str] | None = None,
+    health_out: dict[str, bool] | None = None,
 ) -> bool:
     """Poll one church, ledger any new sermons, refresh known ones, and notify if configured.
 
@@ -39,6 +42,9 @@ def poll_church(
     at least one new sermon (whether or not it was a backfill or notified) — used
     by :func:`run` to report which churches ``poll.yml`` should dispatch
     transcription for (ADR-0007).
+
+    ``health_out``, when given, gets ``name`` mapped to whether its feed was healthy: ``False``
+    when it deferred or parsed to no entries at all (ADR-0025).
     """
     adapter_cls = ADAPTERS.get(name)
     if adapter_cls is None:
@@ -49,7 +55,16 @@ def poll_church(
     result = adapter.poll()
     if result.deferred:
         logger.warning("%s: feed unavailable, deferring to next run", name)
+        if health_out is not None:
+            health_out[name] = False
         return True
+    # Every real feed carries history, so a fetch that yields nothing at all — not even an
+    # excluded item — is a challenge page or a changed format, not a quiet week.
+    feed_empty = not result.items and result.excluded == 0
+    if feed_empty:
+        logger.warning("%s: feed fetched but parsed to no entries", name)
+    if health_out is not None:
+        health_out[name] = not feed_empty
 
     records = store.load(name)
     retrieved_at = now()
@@ -138,9 +153,10 @@ def run(
         return True
 
     all_ok = True
+    health: dict[str, bool] = {}
     for name, entry in selected.items():
         try:
-            ok = poll_church(name, entry, backfill=backfill, discovered_out=discovered_out)
+            ok = poll_church(name, entry, backfill=backfill, discovered_out=discovered_out, health_out=health)
         except Exception:
             logger.exception("%s: poll crashed unexpectedly", name)
             ok = False
@@ -152,6 +168,12 @@ def run(
         logger.exception("failed to regenerate data/README.md stats")
         all_ok = False
 
+    try:
+        all_ok = check_discovery(list(selected), health) and all_ok
+    except Exception:
+        logger.exception("discovery check crashed unexpectedly")
+        all_ok = False
+
     # Best-effort latency optimization (docs/decisions/0010), never a correctness
     # dependency — Pipeline's own cron is the backstop, so a crash here must not
     # fail an otherwise-successful poll run.
@@ -161,6 +183,51 @@ def run(
         logger.exception("batch poll crashed unexpectedly")
 
     return all_ok
+
+
+def check_discovery(church_names: list[str], health: dict[str, bool]) -> bool:
+    """Raise this tick's discovery alerts (ADR-0025). Returns ``False`` iff any was due.
+
+    An alert fails exactly the run that raises it: once delivered it is recorded and not
+    raised again, so cron-job.org's failure email fires once per incident rather than every
+    tick. An undelivered one stays unrecorded and is raised again next tick.
+    """
+    snoozes = store.load_alert_snoozes()
+    statuses = [
+        discovery_health.ChurchStatus(
+            name=name,
+            publish_grace=ADAPTERS[name].publish_grace,
+            newest_preached_on=discovery_health.newest_preached_on(store.load(name)),
+            feed_healthy=health.get(name),
+            snoozed_until=date.fromisoformat(snoozes[name]) if name in snoozes else None,
+        )
+        for name in church_names
+        if name in ADAPTERS
+    ]
+    state = store.load_alert_state()
+    alerts, next_state = discovery_health.evaluate(statuses, state, now=datetime.fromisoformat(now()))
+
+    notify_cfg = None
+    if alerts:
+        try:
+            notify_cfg = config.load_notify_config()
+        except config.ConfigError as exc:
+            logger.error("cannot send %d discovery alert(s): %s", len(alerts), exc)
+    for alert in alerts:
+        logger.error("%s", alert.subject)
+        if notify_cfg is None:
+            continue
+        try:
+            notify.send_discovery_alert(alert.subject, alert.lines, notify_cfg)
+        except notify.NotifyError as exc:
+            logger.error("%s: discovery alert failed to send: %s", alert.church, exc)
+            continue
+        next_state = discovery_health.mark_alerted(next_state, alert)
+
+    # Written only on a change, so a quiet tick leaves poll.yml nothing to commit.
+    if next_state != state:
+        store.save_alert_state(next_state)
+    return not alerts
 
 
 def main(argv: list[str] | None = None) -> int:

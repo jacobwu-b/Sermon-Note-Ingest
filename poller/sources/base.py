@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 @dataclass(frozen=True)
@@ -57,6 +57,10 @@ class SourceAdapter(ABC):
 
     #: Globally-unique source identity (e.g. ``"menlo"``), matching its church-table key.
     source: str
+
+    #: How long after a Sunday's 00:00 UTC this church's sermon is reliably in its feed; past
+    #: it, a missing sermon raises a discovery alert (ADR-0025). Sized from measured lags.
+    publish_grace: timedelta = timedelta(hours=48)
 
     def __init__(self, *, url: str) -> None:
         self.url = url

@@ -26,7 +26,7 @@ import dataclasses
 import re
 import urllib.parse
 from collections.abc import Callable
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 import feedparser
@@ -157,6 +157,8 @@ class PbcAdapter(SourceAdapter):
     """Ingest Peninsula Bible Church sermons from the SeriesEngine feed."""
 
     source = "pbc"
+    # Measured: 44–92 h after Sunday 00:00 UTC (June–October 2026).
+    publish_grace = timedelta(hours=120)
 
     def __init__(
         self,

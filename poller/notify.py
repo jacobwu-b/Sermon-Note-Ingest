@@ -153,6 +153,15 @@ def send_retranscribe_alert(subject: str, lines: Sequence[str], config: NotifyCo
     _send(subject, body, config)
 
 
+def send_discovery_alert(subject: str, lines: Sequence[str], config: NotifyConfig) -> None:
+    """Send a discovery absence alert (ADR-0025): ``subject`` and one list item per line.
+
+    Raises :class:`NotifyError` on failure.
+    """
+    body = "<ul>" + "".join(f"<li>{_escape(line)}</li>" for line in lines) + "</ul>"
+    _send(subject, body, config)
+
+
 def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
     payload = json.dumps(
         {

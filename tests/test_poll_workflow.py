@@ -133,3 +133,14 @@ def test_poll_workflow_reads_the_church_table_from_pipeline_not_a_variable():
     poll_step = text[text.index("- name: Poll\n") : text.index("- name: Commit newly-discovered sermons")]
     assert "PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}" in poll_step
     assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in poll_step
+
+
+def test_poll_workflow_checks_out_the_live_branch_tip_not_the_trigger_sha():
+    """A run queued behind another must read that run's committed alert state (ADR-0025).
+
+    `actions/checkout` defaults to `github.sha`, the commit as of dispatch, so a queued run
+    would re-send an alert the run ahead of it already sent and recorded.
+    """
+    text = workflow_text()
+    checkout = text[text.index("uses: actions/checkout@") : text.index("uses: actions/setup-python@")]
+    assert "ref: ${{ github.ref }}" in checkout
