@@ -85,6 +85,23 @@ jobs:
       - name: Build
         if: always()
         run: python -c "import poller.runner"
+      # Rule types only: the bypass list is unreadable below admin scope, which no
+      # token here has (repo-settings.md → Verifying). Never on a PR — repairing
+      # drift takes an admin, so gating merges on it would only block them.
+      - name: Live ruleset matches default-ruleset.json
+        if: always() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          want="$(jq -c '[.rules[].type] | sort' .github/default-ruleset.json)"
+          got="$(gh api "repos/$GH_REPO/rules/branches/main" | jq -c '[.[].type] | sort')"
+          if [ "$want" != "$got" ]; then
+            echo "::error::main enforces rule types $got; default-ruleset.json declares $want."
+            exit 1
+          fi
+          echo "main enforces exactly the declared rule types: $got"
 
   test:
     name: Test

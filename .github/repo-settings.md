@@ -192,6 +192,23 @@ list, for one. Where that is true, say so here explicitly and name the
 compensating control, rather than letting prose stand in for a check that
 nobody runs.
 
+**What this repo asserts, and what it does not:**
+
+- **Rule types: asserted daily.** `ci.yml`'s `Static checks` job, on its
+  scheduled run and on dispatch (never on a PR), compares the rule types
+  `rules/branches/main` reports with those in `.github/default-ruleset.json`
+  and fails on any difference, added or missing. Required contexts and the
+  strict flag are asserted again by `dependabot-auto-merge.yml` before it
+  merges anything.
+- **Bypass list: unasserted.** Below admin scope the ruleset endpoint answers
+  200 with `bypass_actors` left out, and no workflow here holds an admin
+  token — nor should one, on a public repo. Observed live (repo admin): the
+  `DeployKey` / `always` entry above, and repository admin (role 5) /
+  `pull_request` from `default-ruleset.json`. Compensating controls only: a
+  removed deploy-key entry surfaces as a refused ledger push from `poll.yml`
+  or `transcribe.yml`; an *added* entry is caught by nothing but the quarterly
+  audit below.
+
 ### Applying it (ordered — avoids an unprotected window)
 
 Rulesets are not reliably managed by the Probot Settings app, so apply them
@@ -252,6 +269,10 @@ Replace `<owner>/<repo>` with the repo slug.
   PR while every check shows green — add the rule in the same change that adds
   the workflow. Secret scanning plus a strict type checker and linter is a
   defensible posture on its own; say which one you have chosen here.
+  - Chosen: **on.** CodeQL default setup (Python, Actions) is the reporter, and
+    main's ruleset carries a `code_scanning` rule requiring CodeQL with
+    `alerts_threshold: errors` and `security_alerts_threshold: high_or_higher`,
+    declared in `default-ruleset.json`.
 - **Private vulnerability reporting**: On (so `SECURITY.md` link works)
 
 ## Access

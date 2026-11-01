@@ -81,4 +81,8 @@ assert_eq "does not require status checks on creation" \
   "true" \
   "$(printf '%s' "$checks_rule" | jq -r '.do_not_enforce_on_create')"
 
+assert_eq "requires CodeQL: errors, and high-or-higher security alerts" \
+  '[{"tool":"CodeQL","alerts_threshold":"errors","security_alerts_threshold":"high_or_higher"}]' \
+  "$(jq -c '.rules[] | select(.type == "code_scanning") | .parameters.code_scanning_tools' "$ruleset_json")"
+
 exit "$fail"
