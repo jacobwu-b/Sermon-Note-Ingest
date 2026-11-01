@@ -167,6 +167,71 @@ def test_poll_church_returns_false_when_notification_fails(tmp_path, monkeypatch
     assert store.load("fake")["g1"]["notified_at"] is None
 
 
+def _notify_setup(tmp_path, monkeypatch, items: list[SermonItem]) -> None:
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
+    _FakeAdapter.items = items
+    _FakeAdapter.deferred = False
+    monkeypatch.setenv("NOTIFY_EMAIL_FROM", "alerts@example.org")
+    monkeypatch.setenv("NOTIFY_EMAIL_TO", "team@example.org")
+    monkeypatch.setenv("RESEND_API_KEY", "re_123")
+
+
+def test_poll_church_resends_a_failed_notification_on_the_next_poll(tmp_path, monkeypatch):
+    _notify_setup(tmp_path, monkeypatch, [_item("g1")])
+
+    def _boom(*a, **k):
+        raise notify.NotifyError("Resend rejected the request: 503")
+
+    monkeypatch.setattr(notify, "send_new_sermons", _boom)
+    assert runner.poll_church("fake", _church(notify_flag=True), backfill=False) is False
+
+    sent = []
+    monkeypatch.setattr(
+        notify, "send_new_sermons", lambda church, items, cfg: sent.append([i.guid for i in items])
+    )
+    assert runner.poll_church("fake", _church(notify_flag=True), backfill=False) is True
+    assert sent == [["g1"]]
+    assert store.load("fake")["g1"]["notified_at"] is not None
+
+    # Once marked, a later poll sends nothing more.
+    assert runner.poll_church("fake", _church(notify_flag=True), backfill=False) is True
+    assert sent == [["g1"]]
+
+
+def test_poll_church_sends_a_left_over_sermon_together_with_a_new_one(tmp_path, monkeypatch):
+    _notify_setup(tmp_path, monkeypatch, [_item("g1")])
+    runner.poll_church("fake", _church(notify_flag=False), backfill=False)  # g1 ledgered, never notified
+
+    _FakeAdapter.items = [_item("g1"), _item("g2")]
+    sent = []
+    monkeypatch.setattr(
+        notify, "send_new_sermons", lambda church, items, cfg: sent.append({i.guid for i in items})
+    )
+    assert runner.poll_church("fake", _church(notify_flag=True), backfill=False) is True
+    assert sent == [{"g1", "g2"}]
+
+
+def test_poll_church_never_notifies_a_sermon_first_seen_outside_the_window(tmp_path, monkeypatch):
+    _notify_setup(tmp_path, monkeypatch, [_item("old"), _item("recent")])
+    first_seen = datetime(2026, 10, 1, 12, 0, tzinfo=UTC)
+    _at(monkeypatch, first_seen)
+    runner.poll_church("fake", _church(notify_flag=False), backfill=False)
+    records = store.load("fake")
+    records["recent"]["first_seen_at"] = (first_seen + timedelta(days=2)).isoformat()
+    store.save("fake", records)
+
+    sent = []
+    monkeypatch.setattr(
+        notify, "send_new_sermons", lambda church, items, cfg: sent.append([i.guid for i in items])
+    )
+    _at(monkeypatch, first_seen + runner.NOTIFY_WINDOW + timedelta(days=1))
+    assert runner.poll_church("fake", _church(notify_flag=True), backfill=False) is True
+
+    assert sent == [["recent"]]
+    assert store.load("fake")["old"]["notified_at"] is None
+
+
 def test_run_skips_disabled_and_unselected_churches(tmp_path, monkeypatch, church_table):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
