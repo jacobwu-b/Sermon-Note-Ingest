@@ -50,8 +50,12 @@ class ContentPublishError(RuntimeError):
     """Raised when the push to Sermon-Note-Content fails after all attempts."""
 
 
-class ContentConflictError(ContentPublishError):
-    """Content no longer holds the text a replacement expected; never retried (ADR-0022)."""
+class ContentRefusedError(ContentPublishError):
+    """Content holds something a write must not replace; a fresh clone can't change that, so never retried."""
+
+
+class ContentConflictError(ContentRefusedError):
+    """Content no longer holds the text a replacement expected (ADR-0022)."""
 
 
 def _remote_url(repo: str, token: str) -> str:
@@ -104,7 +108,7 @@ def default_push(files: dict[str, str]) -> None:
     (the mocked boundary). The token rides only in the clone remote URL, is never
     logged, and is redacted from any git error.
 
-    Refuses (raises :class:`ContentPublishError`) to overwrite a path that already
+    Refuses (raises :class:`ContentRefusedError`) to overwrite a path that already
     exists in Content with different text, rather than silently replacing it — Whisper
     is not bit-for-bit deterministic, so a second transcription of an already-"done"
     sermon must never quietly become a second, different version of what a downstream
@@ -126,41 +130,18 @@ def default_push_status(files: dict[str, str]) -> None:
 
 def _push(files: dict[str, str], *, overwrite: bool, message: str) -> None:
     cfg = config.load_content_repo_config()
-    remote = _remote_url(cfg.repo, cfg.token)
-
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = Path(workdir) / "content"
-        _run_git(
-            ["clone", "--depth", "1", "--branch", cfg.branch, remote, str(checkout)],
-            cwd=Path(workdir),
-            token=cfg.token,
-        )
+        checkout = _clone(workdir, cfg, "--depth", "1")
         for rel_path, text in files.items():
             dest = checkout / rel_path
             if not overwrite and dest.exists() and dest.read_text(encoding="utf-8") != text:
-                raise ContentPublishError(
+                raise ContentRefusedError(
                     f"refusing to overwrite existing Content file {rel_path!r} with different "
                     "text — a sermon must be represented in Content exactly once"
                 )
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(text, encoding="utf-8")
-        _run_git(["add", "-A"], cwd=checkout, token=cfg.token)
-        if not _has_staged_changes(checkout):
-            return
-        _run_git(
-            [
-                "-c",
-                f"user.name={_COMMIT_AUTHOR_NAME}",
-                "-c",
-                f"user.email={_COMMIT_AUTHOR_EMAIL}",
-                "commit",
-                "-m",
-                message,
-            ],
-            cwd=checkout,
-            token=cfg.token,
-        )
-        _run_git(["push", "origin", cfg.branch], cwd=checkout, token=cfg.token)
+        _commit_and_push(checkout, cfg, message)
 
 
 def _clone(workdir: str, cfg: config.ContentRepoConfig, *extra: str) -> Path:
@@ -254,7 +235,7 @@ def default_keep_candidate(path: str, text: str, *, trailers: Mapping[str, str])
         if dest.exists():
             if dest.read_text(encoding="utf-8") == text:
                 return
-            raise ContentPublishError(f"refusing to overwrite kept candidate {path!r} with different text")
+            raise ContentRefusedError(f"refusing to overwrite kept candidate {path!r} with different text")
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(text, encoding="utf-8")
         _commit_and_push(checkout, cfg, _commit_message(_CANDIDATE_COMMIT_MESSAGE, trailers))
@@ -282,15 +263,8 @@ def default_fetch_existing(paths: list[str]) -> dict[str, str]:
     absent from the result.
     """
     cfg = config.load_content_repo_config()
-    remote = _remote_url(cfg.repo, cfg.token)
-
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = Path(workdir) / "content"
-        _run_git(
-            ["clone", "--depth", "1", "--branch", cfg.branch, remote, str(checkout)],
-            cwd=Path(workdir),
-            token=cfg.token,
-        )
+        checkout = _clone(workdir, cfg, "--depth", "1")
         return {
             rel_path: (checkout / rel_path).read_text(encoding="utf-8")
             for rel_path in paths
@@ -305,14 +279,16 @@ def _with_retries[T](
     sleep: Callable[[float], None],
     attempts: int,
     backoff_base: float,
-    give_up_on: tuple[type[Exception], ...] = (),
 ) -> T:
     last_error: Exception | None = None
     for attempt in range(1, attempts + 1):
         try:
             return action()
-        except give_up_on:
+        except ContentRefusedError:
             raise
+        except config.ConfigError as exc:
+            # Callers handle ContentPublishError, so a missing setting fails the same way, just at once.
+            raise ContentPublishError(f"content {what} is not configured: {exc}") from exc
         except Exception as exc:  # noqa: BLE001 — any Content failure retries then escalates.
             last_error = exc
             if attempt < attempts:
@@ -406,7 +382,6 @@ def replace_transcript(
         sleep=_jittered(sleep),
         attempts=attempts,
         backoff_base=backoff_base,
-        give_up_on=(ContentConflictError,),
     )
 
 

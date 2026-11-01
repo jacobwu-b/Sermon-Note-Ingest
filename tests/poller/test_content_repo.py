@@ -75,10 +75,32 @@ def test_default_push_refuses_to_overwrite_an_existing_transcript_with_different
     # consumer (Pipeline) may already have fetched and hashed (issue #60).
     content_repo.default_push({"transcripts/menlo/sermon-1.txt": "first version"})
 
-    with pytest.raises(content_repo.ContentPublishError):
+    with pytest.raises(content_repo.ContentRefusedError):
         content_repo.default_push({"transcripts/menlo/sermon-1.txt": "second, different version"})
 
     assert _read_file_at_head(content_repo_env, "transcripts/menlo/sermon-1.txt") == "first version"
+
+
+def test_push_transcripts_gives_up_on_the_overwrite_guard_after_one_attempt(content_repo_env):
+    # A fresh clone can't change the refusal, so retrying it only burns backoff and clones.
+    content_repo.default_push({"transcripts/menlo/sermon-1.txt": "first version"})
+    sleeps = []
+
+    with pytest.raises(content_repo.ContentRefusedError, match="refusing to overwrite"):
+        content_repo.push_transcripts(
+            {"transcripts/menlo/sermon-1.txt": "second, different version"}, sleep=sleeps.append
+        )
+    assert sleeps == []
+
+
+def test_push_transcripts_fails_at_once_as_a_publish_error_when_content_is_unconfigured(monkeypatch):
+    monkeypatch.delenv("CONTENT_REPO", raising=False)
+    monkeypatch.delenv("CONTENT_REPO_TOKEN", raising=False)
+    sleeps = []
+
+    with pytest.raises(content_repo.ContentPublishError, match="CONTENT_REPO"):
+        content_repo.push_transcripts({"transcripts/menlo/sermon-1.txt": "hello world"}, sleep=sleeps.append)
+    assert sleeps == []
 
 
 def test_default_fetch_existing_returns_the_text_of_only_the_paths_content_already_holds(content_repo_env):
@@ -397,8 +419,18 @@ def test_default_keep_candidate_never_overwrites_a_kept_candidate(content_repo_e
 
     content_repo.default_keep_candidate(_CANDIDATE, _NEW, trailers={"Ingest-Refusal": "loops"})
     assert _head(content_repo_env) == head
-    with pytest.raises(content_repo.ContentPublishError):
+    with pytest.raises(content_repo.ContentRefusedError):
         content_repo.default_keep_candidate(_CANDIDATE, "different text", trailers={})
+    assert _read_file_at_head(content_repo_env, _CANDIDATE) == _NEW
+
+
+def test_keep_candidate_gives_up_on_a_different_kept_candidate_after_one_attempt(content_repo_env):
+    content_repo.default_keep_candidate(_CANDIDATE, _NEW, trailers={})
+    sleeps = []
+
+    with pytest.raises(content_repo.ContentRefusedError, match="kept candidate"):
+        content_repo.keep_candidate(_CANDIDATE, "different text", trailers={}, sleep=sleeps.append)
+    assert sleeps == []
     assert _read_file_at_head(content_repo_env, _CANDIDATE) == _NEW
 
 
