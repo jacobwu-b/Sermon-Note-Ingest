@@ -1,10 +1,11 @@
 """Contract test: every `uses:` reference is pinned to a commit SHA.
 
-The repo's Actions setting `sha_pinning_required: true` enforces this on GitHub's
-side, but a setting is prose to this test suite until something here checks it
-(CLAUDE.md §6 "Controls") — and this is the half a green setting can't show: a
-workflow edit that reintroduces a tag ref fails at dispatch time, not at review
-time, for whichever schedule or push trips it next.
+GitHub's side is the Actions setting `sha_pinning_required`, which refuses an
+unpinned ref at dispatch time. Nothing here can read that setting — its endpoint
+needs Administration read, which no CI token holds — so it is verified by hand
+(.github/repo-settings.md → Verifying), not by this test. This test is the
+review-time half: a tag ref fails the PR that adds it, not whichever schedule or
+push trips it next.
 """
 
 import re

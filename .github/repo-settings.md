@@ -212,6 +212,13 @@ nobody runs.
   or `transcribe.yml`; an *added* entry is caught by nothing but the quarterly
   audit below.
 
+- **Actions SHA pinning: asserted at review, unasserted live.**
+  `tests/test_action_pinning.py` fails any workflow `uses:` ref that is not a
+  full commit SHA. The `sha_pinning_required` setting behind it is readable
+  only with Administration read, which no token here holds, so check it by
+  hand — this must print `true`:
+  `gh api repos/<owner>/<repo>/actions/permissions --jq .sha_pinning_required`.
+
 ### Applying it (ordered — avoids an unprotected window)
 
 Rulesets are not reliably managed by the Probot Settings app, so apply them
@@ -256,7 +263,7 @@ Replace `<owner>/<repo>` with the repo slug.
 | Setting | Value | Why |
 |---|---|---|
 | Actions permissions | "Allow [org] actions and reusable workflows" + selected third-party | Least privilege. |
-| Allowed third-party actions | Pinned to SHA in workflows | Supply-chain hygiene. |
+| Require actions to be pinned to a full-length commit SHA | **On** (`sha_pinning_required`) | Supply-chain hygiene; GitHub refuses an unpinned ref even in a workflow no test here saw. |
 | Workflow permissions (default `GITHUB_TOKEN`) | **Read repository contents and packages permissions** | Per-job scope where needed. |
 | Allow GitHub Actions to create and approve PRs | **Off** | Humans approve. |
 | Fork PR workflows | "Require approval for first-time contributors" | Stops drive-by token theft. |
