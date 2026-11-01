@@ -21,10 +21,12 @@ from typing import Any
 import feedparser
 
 from poller.net import FeedFetchError, fetch_feed
-from poller.sources.base import PollResult, SermonItem, SourceAdapter
+from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 from poller.sources.common import (
     entry_audio_url,
     entry_has_identity,
+    excluded_entry,
+    excluded_item,
     parse_pubdate,
     parse_pubdate_at,
 )
@@ -73,13 +75,13 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
     return item, weekday
 
 
-def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], int]:
+def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], list[ExcludedItem]]:
     parsed = feedparser.parse(content)
     items: list[tuple[SermonItem, int]] = []
-    skipped = 0
+    skipped: list[ExcludedItem] = []
     for entry in parsed.entries:
         if not entry_has_identity(entry):
-            skipped += 1
+            skipped.append(excluded_entry(entry))
             continue
         items.append(_entry_to_item(entry))
     return items, skipped
@@ -110,5 +112,5 @@ class LakepointeAdapter(SourceAdapter):
             if is_main_sunday_sermon(item.raw_title, weekday):
                 included.append(item)
             else:
-                excluded += 1
+                excluded.append(excluded_item(item))
         return PollResult(items=included, excluded=excluded)

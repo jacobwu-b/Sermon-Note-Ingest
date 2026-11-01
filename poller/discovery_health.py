@@ -16,6 +16,8 @@ from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from typing import Any
 
+from poller.sources.base import ExcludedItem
+
 # Not measured: deferrals are only logged, so there is no history to size this from.
 FEED_FAILING_AFTER = timedelta(hours=6)
 
@@ -32,7 +34,7 @@ class ChurchStatus:
     """What one tick knows about one church.
 
     ``feed_healthy`` is ``None`` when the church wasn't polled to completion this tick, which
-    leaves its feed state untouched.
+    leaves its feed state untouched. ``excluded`` is what this tick's poll excluded.
     """
 
     name: str
@@ -40,6 +42,7 @@ class ChurchStatus:
     newest_preached_on: date | None
     feed_healthy: bool | None
     snoozed_until: date | None = None
+    excluded: tuple[ExcludedItem, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -133,9 +136,23 @@ def _missing_sunday(status: ChurchStatus, entry: Mapping[str, Any], now: datetim
                 f"one for {sunday.isoformat()} was due within {status.publish_grace} of that Sunday."
             ),
             "Check the feed for an item the adapter excluded, or snooze the church in data/alerts/snooze.json.",
+            *_excluded_since(status, sunday),
         ),
         sunday=sunday,
     )
+
+
+def _excluded_since(status: ChurchStatus, sunday: date) -> list[str]:
+    """One line per excluded item dated on or after ``sunday``, the likeliest dropped sermons."""
+    # A feed not read this tick says nothing about what it excluded.
+    if status.feed_healthy is not True:
+        return []
+    lines = [
+        f"{item.published_on.isoformat()} — {item.raw_title}"
+        for item in status.excluded
+        if item.published_on is not None and item.published_on >= sunday
+    ]
+    return lines or [f"The feed has no item excluded with a pubDate on or after {sunday.isoformat()}."]
 
 
 def mark_alerted(state: State, alert: Alert) -> State:

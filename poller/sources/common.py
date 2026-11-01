@@ -7,6 +7,8 @@ from email.utils import parsedate_to_datetime
 from typing import Any
 from zoneinfo import ZoneInfo
 
+from poller.sources.base import ExcludedItem, SermonItem
+
 _SUNDAY = 6
 
 
@@ -123,3 +125,18 @@ def entry_has_identity(entry: Any) -> bool:
     :class:`~poller.sources.base.SermonItem`.
     """
     return bool(entry.get("id", ""))
+
+
+def excluded_entry(entry: Any) -> ExcludedItem:
+    """A feed entry skipped before it became a :class:`SermonItem` (e.g. one with no id)."""
+    day, _weekday = parse_pubdate(entry.get("published"))
+    return ExcludedItem(
+        raw_title=(entry.get("title") or "").strip(),
+        published_on=date.fromisoformat(day) if day else None,
+    )
+
+
+def excluded_item(item: SermonItem) -> ExcludedItem:
+    """A parsed item the classifier rejected, dated by its own ``feed_published_at``."""
+    published = item.feed_published_at
+    return ExcludedItem(raw_title=item.raw_title, published_on=published.date() if published else None)

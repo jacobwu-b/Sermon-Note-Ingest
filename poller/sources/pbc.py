@@ -26,14 +26,14 @@ import dataclasses
 import re
 import urllib.parse
 from collections.abc import Callable
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from typing import Any
 
 import feedparser
 
 from poller.net import FeedFetchError, fetch_feed, http_get, http_head_last_modified
-from poller.sources.base import PollResult, SermonItem, SourceAdapter
-from poller.sources.common import entry_audio_url, entry_has_identity, parse_pubdate
+from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
+from poller.sources.common import entry_audio_url, entry_has_identity, excluded_entry, parse_pubdate
 
 # A real-browser User-Agent: PBC sits behind a CDN/WAF that can reject bot-shaped agents.
 _USER_AGENT = (
@@ -136,13 +136,13 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int, str | None]:
     return item, weekday, _mid_from_url(episode_url)
 
 
-def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int, str | None]], int]:
+def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int, str | None]], list[ExcludedItem]]:
     parsed = feedparser.parse(content)
     items: list[tuple[SermonItem, int, str | None]] = []
-    skipped = 0
+    skipped: list[ExcludedItem] = []
     for entry in parsed.entries:
         if not entry_has_identity(entry):
-            skipped += 1
+            skipped.append(excluded_entry(entry))
             continue
         items.append(_entry_to_item(entry))
     return items, skipped
@@ -215,7 +215,9 @@ class PbcAdapter(SourceAdapter):
             if is_main_sunday_sermon(item.audio_url, weekday):
                 included.append(item)
             else:
-                excluded += 1
+                # feed_published_at is None here (module docstring); preached_on is the pubDate's day.
+                published_on = date.fromisoformat(item.preached_on) if item.preached_on else None
+                excluded.append(ExcludedItem(raw_title=item.raw_title, published_on=published_on))
 
         speakers, self._page_dates = self._fetch_sermons_page()
         enriched: list[SermonItem] = []

@@ -21,6 +21,7 @@ from datetime import date, datetime
 from poller import batch_poll, config, discovery_health, notify, stats, store
 from poller.net import now
 from poller.sources import ADAPTERS
+from poller.sources.base import ExcludedItem
 
 logger = logging.getLogger("poller")
 
@@ -32,6 +33,7 @@ def poll_church(
     backfill: bool,
     discovered_out: list[str] | None = None,
     health_out: dict[str, bool] | None = None,
+    excluded_out: dict[str, list[ExcludedItem]] | None = None,
 ) -> bool:
     """Poll one church, ledger any new sermons, refresh known ones, and notify if configured.
 
@@ -44,7 +46,8 @@ def poll_church(
     transcription for (ADR-0007).
 
     ``health_out``, when given, gets ``name`` mapped to whether its feed was healthy: ``False``
-    when it deferred or parsed to no entries at all (ADR-0025).
+    when it deferred or parsed to no entries at all (ADR-0025). ``excluded_out``, when given,
+    gets ``name`` mapped to the items the adapter excluded, for the missing-Sunday alert to name.
     """
     adapter_cls = ADAPTERS.get(name)
     if adapter_cls is None:
@@ -60,11 +63,13 @@ def poll_church(
         return True
     # Every real feed carries history, so a fetch that yields nothing at all — not even an
     # excluded item — is a challenge page or a changed format, not a quiet week.
-    feed_empty = not result.items and result.excluded == 0
+    feed_empty = not result.items and not result.excluded
     if feed_empty:
         logger.warning("%s: feed fetched but parsed to no entries", name)
     if health_out is not None:
         health_out[name] = not feed_empty
+    if excluded_out is not None:
+        excluded_out[name] = result.excluded
 
     records = store.load(name)
     retrieved_at = now()
@@ -88,7 +93,7 @@ def poll_church(
         name,
         len(result.items),
         len(new_items),
-        result.excluded,
+        len(result.excluded),
     )
 
     if not new_items:
@@ -154,9 +159,17 @@ def run(
 
     all_ok = True
     health: dict[str, bool] = {}
+    excluded: dict[str, list[ExcludedItem]] = {}
     for name, entry in selected.items():
         try:
-            ok = poll_church(name, entry, backfill=backfill, discovered_out=discovered_out, health_out=health)
+            ok = poll_church(
+                name,
+                entry,
+                backfill=backfill,
+                discovered_out=discovered_out,
+                health_out=health,
+                excluded_out=excluded,
+            )
         except Exception:
             logger.exception("%s: poll crashed unexpectedly", name)
             ok = False
@@ -169,7 +182,7 @@ def run(
         all_ok = False
 
     try:
-        all_ok = check_discovery(list(selected), health) and all_ok
+        all_ok = check_discovery(list(selected), health, excluded) and all_ok
     except Exception:
         logger.exception("discovery check crashed unexpectedly")
         all_ok = False
@@ -185,7 +198,9 @@ def run(
     return all_ok
 
 
-def check_discovery(church_names: list[str], health: dict[str, bool]) -> bool:
+def check_discovery(
+    church_names: list[str], health: dict[str, bool], excluded: dict[str, list[ExcludedItem]]
+) -> bool:
     """Raise this tick's discovery alerts (ADR-0025). Returns ``False`` iff any was due.
 
     An alert fails exactly the run that raises it: once delivered it is recorded and not
@@ -200,6 +215,7 @@ def check_discovery(church_names: list[str], health: dict[str, bool]) -> bool:
             newest_preached_on=discovery_health.newest_preached_on(store.load(name)),
             feed_healthy=health.get(name),
             snoozed_until=date.fromisoformat(snoozes[name]) if name in snoozes else None,
+            excluded=tuple(excluded.get(name, ())),
         )
         for name in church_names
         if name in ADAPTERS

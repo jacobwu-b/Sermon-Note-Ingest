@@ -83,7 +83,7 @@ def test_poll_includes_a_sunday_sermon_whose_title_spacing_varies(monkeypatch):
 
     result = WestgateAdapter(url="https://www.westgatechurch.org/sermons?format=rss").poll()
 
-    assert result.excluded == 0
+    assert result.excluded == []
     assert [(item.title, item.preached_on) for item in result.items] == [
         ("I am the Light of the World", "2026-10-25")
     ]

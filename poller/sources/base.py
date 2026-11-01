@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 
 @dataclass(frozen=True)
@@ -40,11 +40,23 @@ class SermonItem:
 
 
 @dataclass(frozen=True)
+class ExcludedItem:
+    """A feed item the adapter did not ledger, as a missing-Sunday alert names it (spec 0011).
+
+    ``published_on`` is the calendar day of the feed's own ``pubDate`` — a day, not an
+    instant, because PBC's ``pubDate`` time is a placeholder — or ``None`` if it has none.
+    """
+
+    raw_title: str
+    published_on: date | None
+
+
+@dataclass(frozen=True)
 class PollResult:
-    """What one adapter's poll produced: the qualifying items, plus a defer flag."""
+    """What one adapter's poll produced: the qualifying items, what it excluded, and a defer flag."""
 
     items: list[SermonItem] = field(default_factory=list)
-    excluded: int = 0
+    excluded: list[ExcludedItem] = field(default_factory=list)
     deferred: bool = False
 
 
