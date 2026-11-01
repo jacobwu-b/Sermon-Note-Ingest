@@ -80,9 +80,14 @@ jobs:
         with:
           python-version: "3.14"
           cache: "pip"
+          # The default key hashes requirements.txt and names no workflow, so transcribe.yml
+          # would share it and could restore a cache without its Whisper wheels.
+          cache-dependency-path: requirements-poll.txt
 
+      # The poll lock, not requirements.txt: this job imports only feedparser and anthropic,
+      # and the transcription stack would add ~20 packages next to its secrets.
       - name: Install dependencies
-        run: pip install --require-hashes -r requirements.txt
+        run: pip install --require-hashes -r requirements-poll.txt
 
       - name: Poll
         id: poll
