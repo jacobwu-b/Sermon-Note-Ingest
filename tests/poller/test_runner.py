@@ -484,6 +484,20 @@ def test_run_names_the_excluded_item_that_was_likely_the_missing_sermon(tmp_path
     assert f"2026-10-26 — {dropped}" in sent[0][1]
 
 
+def test_run_alerts_for_a_missing_sunday_despite_a_future_dated_record(tmp_path, monkeypatch, church_table):
+    sent = _alert_setup(
+        tmp_path,
+        monkeypatch,
+        church_table,
+        items=[_dated("g1", "2026-10-18"), _dated("g2", "2027-10-24")],
+    )
+    _at(monkeypatch, _THU)
+
+    assert runner.run(church_names=None, backfill=False) is False
+    assert len(sent) == 1
+    assert "2026-10-25" in sent[0][0] + " ".join(sent[0][1])
+
+
 def test_run_stays_green_when_the_due_sunday_is_ledgered(tmp_path, monkeypatch, church_table):
     sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[_dated("g1", "2026-10-25")])
     _at(monkeypatch, _THU)

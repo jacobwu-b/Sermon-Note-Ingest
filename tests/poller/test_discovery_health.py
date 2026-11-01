@@ -68,12 +68,26 @@ def test_newest_preached_on_takes_the_latest_parseable_date_and_skips_the_rest()
         "d": {"preached_on": ""},
         "e": {"preached_on": "not a date"},
     }
-    assert discovery_health.newest_preached_on(records) == date(2026, 10, 18)
+    assert discovery_health.newest_preached_on(records, on_or_before=_THU.date()) == date(2026, 10, 18)
+
+
+def test_newest_preached_on_ignores_a_date_after_today_so_a_typo_cannot_cover_every_sunday():
+    records = {
+        "a": {"preached_on": "2026-10-18"},
+        # A typed title date a year out ("October 24, 2027" is a Sunday) passes every adapter check.
+        "b": {"preached_on": "2027-10-24"},
+    }
+    assert discovery_health.newest_preached_on(records, on_or_before=_THU.date()) == date(2026, 10, 18)
+
+
+def test_newest_preached_on_counts_a_sermon_dated_today():
+    records = {"a": {"preached_on": "2026-10-29"}}
+    assert discovery_health.newest_preached_on(records, on_or_before=date(2026, 10, 29)) == date(2026, 10, 29)
 
 
 def test_newest_preached_on_is_none_for_a_ledger_with_no_dated_sermon():
-    assert discovery_health.newest_preached_on({}) is None
-    assert discovery_health.newest_preached_on({"a": {"preached_on": None}}) is None
+    assert discovery_health.newest_preached_on({}, on_or_before=_THU.date()) is None
+    assert discovery_health.newest_preached_on({"a": {"preached_on": None}}, on_or_before=_THU.date()) is None
 
 
 # --- missing Sunday ---

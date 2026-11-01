@@ -218,11 +218,14 @@ def check_discovery(
     tick. An undelivered one stays unrecorded and is raised again next tick.
     """
     snoozes = store.load_alert_snoozes()
+    tick = datetime.fromisoformat(now())
     statuses = [
         discovery_health.ChurchStatus(
             name=name,
             publish_grace=ADAPTERS[name].publish_grace,
-            newest_preached_on=discovery_health.newest_preached_on(store.load(name)),
+            newest_preached_on=discovery_health.newest_preached_on(
+                store.load(name), on_or_before=tick.date()
+            ),
             feed_healthy=health.get(name),
             snoozed_until=date.fromisoformat(snoozes[name]) if name in snoozes else None,
             excluded=tuple(excluded.get(name, ())),
@@ -231,7 +234,7 @@ def check_discovery(
         if name in ADAPTERS
     ]
     state = store.load_alert_state()
-    alerts, next_state = discovery_health.evaluate(statuses, state, now=datetime.fromisoformat(now()))
+    alerts, next_state = discovery_health.evaluate(statuses, state, now=tick)
 
     notify_cfg = None
     if alerts:
