@@ -22,14 +22,18 @@ This repo follows the operating model in [`CLAUDE.md`](./CLAUDE.md). It applies 
 
 ## Dependencies
 
-`requirements.txt` / `requirements-dev.txt` are hash-pinned locks compiled from
-`requirements.in` / `requirements-dev.in` (ADR-0013) — don't hand-edit the `.txt` files.
+`requirements-poll.txt` / `requirements.txt` / `requirements-dev.txt` are hash-pinned
+locks compiled from the matching `.in` files (ADR-0013) — don't hand-edit the `.txt` files.
 CI installs with `pip install --require-hashes`, which refuses to install anything not in
-the lock.
+the lock. `poll.yml` installs only the poll lock, so a dependency the poll path imports
+belongs in `requirements-poll.in`, which `requirements.in` includes.
 
-To bump a version or accept a Dependabot PR, edit the `.in` file, then relock:
+To bump a version or accept a Dependabot PR, edit the `.in` file, then relock all three
+(the tests fail if the poll lock and the full lock disagree on a version):
 
 ```
+uv pip compile requirements-poll.in --generate-hashes --python-version 3.14 \
+    --python-platform x86_64-manylinux_2_28 -o requirements-poll.txt
 uv pip compile requirements.in --generate-hashes --python-version 3.14 \
     --python-platform x86_64-manylinux_2_28 -o requirements.txt
 uv pip compile requirements-dev.in --generate-hashes --python-version 3.14 \
