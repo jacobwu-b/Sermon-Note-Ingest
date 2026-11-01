@@ -1,3 +1,4 @@
+import dataclasses
 import io
 import json
 import urllib.error
@@ -97,6 +98,36 @@ def test_send_new_sermons_uses_a_count_only_subject_for_a_large_backlog(monkeypa
 
     assert captured["body"]["subject"] == "New 50 sermons from menlo"
     assert len(captured["body"]["subject"]) < notify._MAX_SUBJECT_LEN
+
+
+def test_send_new_sermons_keeps_a_quote_in_the_episode_url_inside_the_href(monkeypatch):
+    """Regression: a feed ``<link>`` carrying ``"`` closed the href and added its own attributes."""
+    captured = _capture(monkeypatch)
+    url = 'https://example.org/ep1" onmouseover="alert(1)'
+    notify.send_new_sermons("menlo", [dataclasses.replace(_item(), episode_url=url)], _config())
+
+    html = captured["body"]["html"]
+    assert 'href="https://example.org/ep1&quot; onmouseover=&quot;alert(1)"' in html
+    assert 'onmouseover="' not in html
+
+
+def test_send_new_sermons_shows_a_non_http_episode_url_as_plain_text(monkeypatch):
+    captured = _capture(monkeypatch)
+    url = "javascript:alert(document.cookie)"
+    notify.send_new_sermons("menlo", [dataclasses.replace(_item(), episode_url=url)], _config())
+
+    html = captured["body"]["html"]
+    assert "href" not in html
+    assert f"<br>{url}</li>" in html
+
+
+def test_send_new_sermons_escapes_the_church_and_preached_on(monkeypatch):
+    captured = _capture(monkeypatch)
+    notify.send_new_sermons("<b>menlo</b>", [_item(preached_on="2026-09-06<i>")], _config())
+
+    html = captured["body"]["html"]
+    assert "&lt;b&gt;menlo&lt;/b&gt; published" in html
+    assert "2026-09-06&lt;i&gt;" in html
 
 
 def test_send_new_sermons_raises_notify_error_on_http_error(monkeypatch):

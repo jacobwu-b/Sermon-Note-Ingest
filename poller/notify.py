@@ -11,6 +11,7 @@ mode (CLAUDE.md §6, never swallow an error to pass a test).
 from __future__ import annotations
 
 import datetime
+import html
 import json
 import urllib.error
 import urllib.request
@@ -18,7 +19,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 from poller.config import NotifyConfig
-from poller.net import DEFAULT_USER_AGENT
+from poller.net import DEFAULT_USER_AGENT, is_fetchable_enclosure
 from poller.quality import QualityScore
 from poller.sources.base import SermonItem
 from poller.sources.common import is_service_date
@@ -76,18 +77,25 @@ def _format_email(church: str, items: list[SermonItem]) -> tuple[str, str]:
         if item.series:
             details.append(_escape(item.series))
         if item.preached_on:
-            details.append(item.preached_on)
+            details.append(_escape(item.preached_on))
         line = " — ".join(details)
         if item.episode_url:
-            line += f'<br><a href="{_escape(item.episode_url)}">{_escape(item.episode_url)}</a>'
+            url = _escape(item.episode_url)
+            # Only http(s) gets a link: a feed-supplied javascript:/data: URL stays inert text.
+            if is_fetchable_enclosure(item.episode_url):
+                line += f'<br><a href="{url}">{url}</a>'
+            else:
+                line += f"<br>{url}"
         rows.append(f"<li>{line}</li>")
 
-    body = warning + f"<p>{church} published {len(items)} new {noun}:</p><ul>" + "".join(rows) + "</ul>"
+    body = (
+        warning + f"<p>{_escape(church)} published {len(items)} new {noun}:</p><ul>" + "".join(rows) + "</ul>"
+    )
     return subject, body
 
 
 def _escape(text: str) -> str:
-    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    return html.escape(text, quote=True)
 
 
 def send_new_sermons(church: str, items: list[SermonItem], config: NotifyConfig) -> None:
@@ -122,7 +130,7 @@ def _format_quality_alert(church: str, flagged: list[FlaggedTranscript]) -> tupl
         score = entry.score
         details = [f"<strong>{_escape(entry.title or '(untitled)')}</strong>"]
         if entry.preached_on:
-            details.append(entry.preached_on)
+            details.append(_escape(entry.preached_on))
         details.append(_escape(entry.guid))
         rows.append(
             "<li>"
@@ -131,7 +139,7 @@ def _format_quality_alert(church: str, flagged: list[FlaggedTranscript]) -> tupl
             f"{score.credit_hits} credit hits, {score.hotword_pairs} hotword pairs</li>"
         )
     body = (
-        f"<p>{church}: {len(flagged)} {noun} pushed to Content tripped a transcript quality flag. "
+        f"<p>{_escape(church)}: {len(flagged)} {noun} pushed to Content tripped a transcript quality flag. "
         "They were kept and marked done; review them in Content.</p><ul>" + "".join(rows) + "</ul>"
     )
     return subject, body
