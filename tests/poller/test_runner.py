@@ -1,9 +1,9 @@
 import json
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from typing import ClassVar
 
 from poller import batch_poll, config, notify, runner, stats, store
-from poller.sources.base import PollResult, SermonItem, SourceAdapter
+from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 
 _MARKED_README = "# Sermon ledger\n\n<!-- STATS:START -->\nplaceholder\n<!-- STATS:END -->\n"
 
@@ -26,7 +26,7 @@ def _item(guid: str) -> SermonItem:
 class _FakeAdapter(SourceAdapter):
     source = "fake"
     items: ClassVar[list[SermonItem]] = []
-    excluded = 0
+    excluded: ClassVar[list[ExcludedItem]] = []
     deferred = False
     # Older than any fixture date, so the polling tests here never trip a missing-Sunday
     # alert; the alert tests below use _AlertingAdapter.
@@ -35,7 +35,7 @@ class _FakeAdapter(SourceAdapter):
     def poll(self) -> PollResult:
         if self.deferred:
             return PollResult(deferred=True)
-        return PollResult(items=list(self.items), excluded=self.excluded)
+        return PollResult(items=list(self.items), excluded=list(self.excluded))
 
 
 def _church(*, notify_flag: bool) -> config.ChurchConfig:
@@ -360,14 +360,14 @@ def _dated(guid: str, preached_on: str) -> SermonItem:
     return _item(guid).__class__(**{**_item(guid).__dict__, "preached_on": preached_on})
 
 
-def _alert_setup(tmp_path, monkeypatch, church_table, *, items, deferred=False, excluded=0):
+def _alert_setup(tmp_path, monkeypatch, church_table, *, items, deferred=False, excluded=()):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _AlertingAdapter})
     monkeypatch.setattr(batch_poll, "poll_pending_batches", lambda: None)
     _AlertingAdapter.items = items
     _AlertingAdapter.deferred = deferred
-    _AlertingAdapter.excluded = excluded
+    _AlertingAdapter.excluded = list(excluded)
     church_table(_ONE_CHURCH)
     monkeypatch.setenv("NOTIFY_EMAIL_FROM", "alerts@example.org")
     monkeypatch.setenv("NOTIFY_EMAIL_TO", "team@example.org")
@@ -384,7 +384,13 @@ def _at(monkeypatch, when: datetime) -> None:
 
 
 def test_run_alerts_once_for_a_missing_sunday_and_fails_only_that_run(tmp_path, monkeypatch, church_table):
-    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[_dated("g1", "2026-10-18")], excluded=191)
+    sent = _alert_setup(
+        tmp_path,
+        monkeypatch,
+        church_table,
+        items=[_dated("g1", "2026-10-18")],
+        excluded=[ExcludedItem("NextGen Sunday | Light in the Dark | October 18, 2026", date(2026, 10, 18))],
+    )
 
     _at(monkeypatch, _THU)
     assert runner.run(church_names=None, backfill=False) is False
@@ -395,6 +401,22 @@ def test_run_alerts_once_for_a_missing_sunday_and_fails_only_that_run(tmp_path, 
     _at(monkeypatch, _THU + timedelta(minutes=5))
     assert runner.run(church_names=None, backfill=False) is True
     assert len(sent) == 1
+
+
+def test_run_names_the_excluded_item_that_was_likely_the_missing_sermon(tmp_path, monkeypatch, church_table):
+    dropped = "The Gospel of John (Part 3) |    I am the Light of the World |October 25 2026"
+    sent = _alert_setup(
+        tmp_path,
+        monkeypatch,
+        church_table,
+        items=[_dated("g1", "2026-10-18")],
+        excluded=[ExcludedItem(dropped, date(2026, 10, 26))],
+    )
+    _at(monkeypatch, _THU)
+
+    assert runner.run(church_names=None, backfill=False) is False
+    assert len(sent) == 1
+    assert f"2026-10-26 — {dropped}" in sent[0][1]
 
 
 def test_run_stays_green_when_the_due_sunday_is_ledgered(tmp_path, monkeypatch, church_table):
@@ -470,7 +492,7 @@ def test_run_alerts_once_a_feed_has_deferred_for_six_hours(tmp_path, monkeypatch
 
 
 def test_run_alerts_once_a_feed_has_parsed_empty_for_six_hours(tmp_path, monkeypatch, church_table):
-    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[], excluded=0)
+    sent = _alert_setup(tmp_path, monkeypatch, church_table, items=[])
 
     _at(monkeypatch, _THU)
     assert runner.run(church_names=None, backfill=False) is True
@@ -493,10 +515,10 @@ def test_poll_church_reports_feed_health(tmp_path, monkeypatch, caplog):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     cases = [
-        ("deferred", [], 0, True, False),
-        ("parsed empty", [], 0, False, False),
-        ("only excluded items", [], 4, False, True),
-        ("sermons", [_item("g1")], 0, False, True),
+        ("deferred", [], [], True, False),
+        ("parsed empty", [], [], False, False),
+        ("only excluded items", [], [ExcludedItem("Untitled upload", None)], False, True),
+        ("sermons", [_item("g1")], [], False, True),
     ]
     for label, items, excluded, deferred, healthy in cases:
         _FakeAdapter.items, _FakeAdapter.excluded, _FakeAdapter.deferred = items, excluded, deferred
@@ -505,6 +527,6 @@ def test_poll_church_reports_feed_health(tmp_path, monkeypatch, caplog):
             runner.poll_church("fake", _church(notify_flag=False), backfill=False, health_out=health) is True
         )
         assert health == {"fake": healthy}, label
-    _FakeAdapter.excluded = 0
+    _FakeAdapter.excluded = []
 
     assert "parsed to no entries" in caplog.text

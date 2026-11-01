@@ -21,10 +21,12 @@ from typing import Any
 import feedparser
 
 from poller.net import FeedFetchError, fetch_feed
-from poller.sources.base import PollResult, SermonItem, SourceAdapter
+from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 from poller.sources.common import (
     entry_audio_url,
     entry_has_identity,
+    excluded_entry,
+    excluded_item,
     parse_pubdate,
     parse_pubdate_at,
 )
@@ -69,14 +71,14 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
     ), weekday
 
 
-def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], int]:
+def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], list[ExcludedItem]]:
     """Parse raw feed bytes into ``(item, weekday)`` pairs, in feed order."""
     parsed = feedparser.parse(content)
     items: list[tuple[SermonItem, int]] = []
-    skipped = 0
+    skipped: list[ExcludedItem] = []
     for entry in parsed.entries:
         if not entry_has_identity(entry):
-            skipped += 1
+            skipped.append(excluded_entry(entry))
             continue
         items.append(_entry_to_item(entry))
     return items, skipped
@@ -182,9 +184,9 @@ class MenloPodbeanAdapter(SourceAdapter):
                         preached_on=_week_anchor(item.preached_on, weekday).isoformat(),
                     )
                 included.append(item)
-            elif verdict is Classification.EXCLUDE:
-                excluded += 1
-            # AMBIGUOUS items are neither included nor counted excluded — they
-            # are simply dropped (no downstream "flagged for review" state here).
+            else:
+                # An AMBIGUOUS item that wasn't promoted is dropped like an excluded one,
+                # and is just as likely to be the sermon a missing-Sunday alert is about.
+                excluded.append(excluded_item(item))
 
         return PollResult(items=included, excluded=excluded)

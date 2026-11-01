@@ -1,5 +1,6 @@
 from datetime import UTC, date, datetime
 
+from poller.sources.base import ExcludedItem
 from poller.sources.gracepres import (
     _parse,
     _speaker_from_blurb,
@@ -132,9 +133,9 @@ _FEED = b"""<?xml version='1.0' encoding='UTF-8'?>
 """
 
 
-def test_parse_maps_feed_entries_to_items_and_counts_id_less_ones():
+def test_parse_maps_feed_entries_to_items_and_lists_id_less_ones():
     items, id_less = _parse(_FEED)
-    assert id_less == 1
+    assert id_less == [ExcludedItem(raw_title="No identity here", published_on=date(2026, 9, 8))]
     assert [item.title for item in items] == ["Protected By The King", "Journey to the Cross: Day 40"]
     sermon = items[0]
     assert sermon.guid == "gracepres:tag:soundcloud,2010:tracks/2401192710"

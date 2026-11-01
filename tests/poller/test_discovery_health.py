@@ -2,6 +2,7 @@ from datetime import UTC, date, datetime, timedelta
 
 from poller import discovery_health
 from poller.discovery_health import ChurchStatus
+from poller.sources.base import ExcludedItem
 
 # Thursday after Westgate's 2026-10-25 sermon was dropped; its newest ledgered sermon was 10-18.
 _THU = datetime(2026, 10, 29, 15, 0, tzinfo=UTC)
@@ -14,6 +15,7 @@ def _status(
     grace_hours: int = 96,
     feed_healthy: bool | None = True,
     snoozed_until: date | None = None,
+    excluded: tuple[ExcludedItem, ...] = (),
 ) -> ChurchStatus:
     return ChurchStatus(
         name=name,
@@ -21,6 +23,7 @@ def _status(
         newest_preached_on=newest,
         feed_healthy=feed_healthy,
         snoozed_until=snoozed_until,
+        excluded=excluded,
     )
 
 
@@ -85,6 +88,43 @@ def test_a_church_missing_its_latest_due_sunday_raises_one_alert_naming_both_dat
     text = alerts[0].subject + " ".join(alerts[0].lines)
     assert "2026-10-25" in text
     assert "2026-10-18" in text
+
+
+def test_a_missing_sunday_alert_lists_the_excluded_items_dated_on_or_after_that_sunday():
+    excluded = (
+        ExcludedItem("NextGen Sunday | Light in the Dark | October 18, 2026", date(2026, 10, 18)),
+        ExcludedItem(
+            "The Gospel of John (Part 3) |    I am the Light of the World |Oct 25 2026", date(2026, 10, 26)
+        ),
+        ExcludedItem("NextGen Sunday | Walking in Light | October 25, 2026", date(2026, 10, 25)),
+        ExcludedItem("Untitled upload", None),
+    )
+    alerts, _ = _evaluate([_status(excluded=excluded)])
+
+    lines = alerts[0].lines
+    assert "2026-10-26 — The Gospel of John (Part 3) |    I am the Light of the World |Oct 25 2026" in lines
+    assert "2026-10-25 — NextGen Sunday | Walking in Light | October 25, 2026" in lines
+    text = " ".join(lines)
+    assert "October 18, 2026" not in text
+    assert "Untitled upload" not in text
+
+
+def test_a_missing_sunday_alert_says_so_when_the_feed_excluded_nothing_since_that_sunday():
+    excluded = (ExcludedItem("NextGen Sunday | Light in the Dark | October 18, 2026", date(2026, 10, 18)),)
+    alerts, _ = _evaluate([_status(excluded=excluded)])
+
+    assert any("no item excluded" in line and "2026-10-25" in line for line in alerts[0].lines)
+
+
+def test_a_missing_sunday_alert_says_nothing_about_exclusions_when_the_feed_was_not_read():
+    for feed_healthy in (False, None):
+        excluded = (ExcludedItem("Untitled upload", date(2026, 10, 27)),)
+        alerts, _ = _evaluate([_status(feed_healthy=feed_healthy, excluded=excluded)])
+
+        missing = [a for a in alerts if a.kind == "missing_sunday"]
+        text = " ".join(missing[0].lines)
+        assert "Untitled upload" not in text, feed_healthy
+        assert "no item excluded" not in text, feed_healthy
 
 
 def test_a_church_with_a_sermon_for_its_latest_due_sunday_raises_nothing():
