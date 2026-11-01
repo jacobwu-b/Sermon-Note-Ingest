@@ -158,7 +158,7 @@ jobs:
             echo "::error::LIMIT input '$LIMIT' is not a positive integer"
             exit 1
           fi
-          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
+          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z][a-z0-9_]*$ ]]; then
             echo "::error::CHURCH input '$CHURCH' is not a valid church key"
             exit 1
           fi
@@ -311,7 +311,7 @@ jobs:
             echo "::error::LIMIT input '$LIMIT' is not a positive integer"
             exit 1
           fi
-          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
+          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z][a-z0-9_]*$ ]]; then
             echo "::error::CHURCH input '$CHURCH' is not a valid church key"
             exit 1
           fi

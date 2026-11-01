@@ -12,6 +12,8 @@ from pathlib import Path
 
 import pytest
 
+from poller.config import CHURCH_KEY_RE
+
 WORKFLOW = Path(__file__).parent.parent / ".github" / "workflows" / "transcribe.yml"
 
 STEPS_OUTPUTS_RE = re.compile(r"\$\{\{\s*steps\.[\w-]+\.outputs\.")
@@ -223,7 +225,18 @@ def test_transcribe_workflow_validates_limit_and_church_inputs_before_use():
     # unvalidated LIMIT/CHURCH still reaches the CLI as an arbitrary string.
     text = workflow_text()
     assert "^[1-9][0-9]*$" in text
-    assert "^[a-z_]*$" in text
+    # The same rule load_churches applies to the table, so a church Pipeline adds is
+    # never one this input rejects. Two sites: the plan job and each shard.
+    assert re.findall(r'\[\[ "\$CHURCH" =~ (\S+) \]\]', text) == [CHURCH_KEY_RE.pattern] * 2
+
+
+@pytest.mark.parametrize(
+    "key", ["menlo", "north_point", "grace2", "Menlo", "2grace", "st-marks", "../x", "a/b"]
+)
+def test_bash_s_church_input_check_agrees_with_load_churches(key):
+    """Bash's ERE and Python's ``re`` must read ``CHURCH_KEY_RE`` the same way."""
+    result = subprocess.run(["bash", "-c", f'[[ "$1" =~ {CHURCH_KEY_RE.pattern} ]]', "_", key], check=False)
+    assert (result.returncode == 0) == bool(CHURCH_KEY_RE.fullmatch(key))
 
 
 def test_transcribe_workflow_validates_ledgers_before_every_git_add():

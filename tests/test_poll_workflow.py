@@ -8,6 +8,8 @@ docs/plans/chore-poll-external-dispatch-trigger.md for the tradeoff.
 import re
 from pathlib import Path
 
+from poller.config import CHURCH_KEY_RE
+
 WORKFLOW = Path(__file__).parent.parent / ".github" / "workflows" / "poll.yml"
 
 STEPS_OUTPUTS_RE = re.compile(r"\$\{\{\s*steps\.[\w-]+\.outputs\.")
@@ -111,8 +113,9 @@ def test_poll_workflow_passes_inputs_through_env_not_interpolation():
 def test_poll_workflow_validates_church_input_before_use():
     # Defense in depth even with the injection vector closed above: an
     # unvalidated CHURCH still reaches the CLI as an arbitrary string.
-    text = workflow_text()
-    assert "^[a-z_]*$" in text
+    # The same rule load_churches applies to the table, so a church Pipeline adds is
+    # never one this input rejects.
+    assert re.findall(r'\[\[ "\$CHURCH" =~ (\S+) \]\]', workflow_text()) == [CHURCH_KEY_RE.pattern]
 
 
 def test_poll_workflow_validates_ledgers_before_git_add():

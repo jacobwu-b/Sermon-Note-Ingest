@@ -109,7 +109,7 @@ jobs:
           ANTHROPIC_SERVICE_ACCOUNT_ID: ${{ github.ref == 'refs/heads/main' && 'svac_01CDFfTYqT39Gx5BXgRXBGHt' || '' }}
           ANTHROPIC_WORKSPACE_ID: ${{ github.ref == 'refs/heads/main' && 'wrkspc_01CzT9ik9bv58XyTBxKUNs2F' || '' }}
         run: |
-          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z_]*$ ]]; then
+          if [ -n "$CHURCH" ] && ! [[ "$CHURCH" =~ ^[a-z][a-z0-9_]*$ ]]; then
             echo "::error::CHURCH input '$CHURCH' is not a valid church key"
             exit 1
           fi

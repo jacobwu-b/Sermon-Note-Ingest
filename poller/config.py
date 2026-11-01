@@ -11,11 +11,20 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from dataclasses import dataclass
+from urllib.parse import urlsplit
 
 
 class ConfigError(RuntimeError):
     """Raised when required configuration is missing or malformed."""
+
+
+# A church key is a path component here (``data/<key>.json``) and in Content
+# (``transcripts/<key>/``). The workflows' ``CHURCH`` input check uses this exact
+# pattern; tests hold them equal. Match with ``fullmatch``: ``$`` alone admits a
+# trailing newline in Python's ``re``.
+CHURCH_KEY_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 
 
 @dataclass(frozen=True)
@@ -67,6 +76,8 @@ def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
 
     churches: dict[str, ChurchConfig] = {}
     for name, entry in data.items():
+        if not CHURCH_KEY_RE.fullmatch(name):
+            raise ConfigError(f"church key {name!r} must match {CHURCH_KEY_RE.pattern}")
         if not isinstance(entry, dict):
             raise ConfigError(f"church table entry {name!r} must be a JSON object")
         section = entry.get("ingest", {})
@@ -78,15 +89,28 @@ def load_churches(raw: str | None = None) -> dict[str, ChurchConfig]:
         vocabulary = section.get("vocabulary", [])
         if not isinstance(vocabulary, list) or not all(isinstance(term, str) for term in vocabulary):
             raise ConfigError(f"church table entry {name!r}: ingest.vocabulary must be a list of strings")
+        enabled = bool(section.get("enabled", False))
+        rss = entry.get("rss", "")
+        if enabled and not _is_http_url(rss):
+            raise ConfigError(
+                f"church table entry {name!r} is ingest-enabled but its rss is not an http(s) URL"
+            )
         churches[name] = ChurchConfig(
             name=name,
-            rss=str(entry.get("rss", "")),
-            enabled=bool(section.get("enabled", False)),
+            rss=str(rss),
+            enabled=enabled,
             notify=bool(section.get("notify", False)),
             vocabulary=tuple(vocabulary),
             pipeline_enabled=bool(pipeline_section.get("enabled", False)),
         )
     return churches
+
+
+def _is_http_url(value: object) -> bool:
+    if not isinstance(value, str):
+        return False
+    parts = urlsplit(value)
+    return parts.scheme in ("http", "https") and bool(parts.netloc)
 
 
 def _env_flag(name: str, default: bool) -> bool:
@@ -99,6 +123,15 @@ def _env_flag(name: str, default: bool) -> bool:
     if raw in ("false", "0", "no"):
         return False
     raise ConfigError(f"{name} must be true or false, got {raw!r}")
+
+
+def _env_int(name: str, default: int) -> int:
+    """An integer env var; unset or empty reads as ``default``."""
+    raw = os.environ.get(name) or str(default)
+    try:
+        return int(raw)
+    except ValueError:
+        raise ConfigError(f"{name} must be an integer, got {raw!r}") from None
 
 
 @dataclass(frozen=True)
@@ -167,8 +200,8 @@ def load_whisper_config() -> WhisperConfig:
     return WhisperConfig(
         model=os.environ.get("WHISPER_MODEL") or "small",
         compute_type=os.environ.get("WHISPER_COMPUTE_TYPE") or "int8",
-        cpu_threads=int(os.environ.get("WHISPER_CPU_THREADS") or "0"),
-        beam_size=int(os.environ.get("WHISPER_BEAM_SIZE") or "5"),
+        cpu_threads=_env_int("WHISPER_CPU_THREADS", 0),
+        beam_size=_env_int("WHISPER_BEAM_SIZE", 5),
         condition_on_previous_text=_env_flag("WHISPER_CONDITION_ON_PREVIOUS_TEXT", False),
         domain_prompt=_env_flag("WHISPER_DOMAIN_PROMPT", False),
         hallucination_silence_threshold=threshold or None,

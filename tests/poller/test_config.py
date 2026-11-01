@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from poller import config, pipeline_registry
@@ -371,3 +373,47 @@ def test_load_churches_reads_the_pipeline_section_s_enabled_flag():
     assert churches["menlo"].pipeline_enabled is True
     assert churches["lakepointe"].pipeline_enabled is False
     assert churches["bare"].pipeline_enabled is False
+
+
+@pytest.mark.parametrize("name", ["menlo", "north_point", "grace2"])
+def test_load_churches_accepts_lowercase_keys_with_digits_and_underscores(name):
+    raw = f'{{"{name}": {{"rss": "https://example.org/feed.xml", "ingest": {{"enabled": true}}}}}}'
+    assert config.load_churches(raw)[name].name == name
+
+
+@pytest.mark.parametrize("name", ["../menlo", "menlo/archive", "Menlo", "2grace", "st-marks", "", "menlo\n"])
+def test_load_churches_rejects_a_key_that_is_not_a_safe_path_component(name):
+    """A key becomes ``data/<key>.json`` here and ``transcripts/<key>/`` in Content."""
+    raw = json.dumps({name: {"rss": "https://example.org/feed.xml"}})
+    with pytest.raises(config.ConfigError, match="church key"):
+        config.load_churches(raw)
+
+
+@pytest.mark.parametrize(
+    "entry",
+    [
+        {"ingest": {"enabled": True}},
+        {"rss": "", "ingest": {"enabled": True}},
+        {"rss": "ftp://example.org/feed.xml", "ingest": {"enabled": True}},
+        {"rss": "file:///etc/passwd", "ingest": {"enabled": True}},
+        {"rss": "https://", "ingest": {"enabled": True}},
+        {"rss": ["https://example.org/feed.xml"], "ingest": {"enabled": True}},
+    ],
+)
+def test_load_churches_rejects_an_enabled_church_without_an_http_rss_feed(entry):
+    with pytest.raises(config.ConfigError, match="rss"):
+        config.load_churches(json.dumps({"menlo": entry}))
+
+
+def test_load_churches_accepts_a_disabled_church_with_no_rss_feed():
+    """A church only Pipeline uses is never polled here, so its feed is not this repo's to check."""
+    churches = config.load_churches('{"menlo": {"pipeline": {"enabled": true}}}')
+    assert churches["menlo"].enabled is False
+    assert churches["menlo"].rss == ""
+
+
+@pytest.mark.parametrize("var", ["WHISPER_CPU_THREADS", "WHISPER_BEAM_SIZE"])
+def test_load_whisper_config_rejects_a_non_integer_count(monkeypatch, var):
+    monkeypatch.setenv(var, "four")
+    with pytest.raises(config.ConfigError, match=var):
+        config.load_whisper_config()
