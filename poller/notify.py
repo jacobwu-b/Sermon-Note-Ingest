@@ -11,12 +11,12 @@ mode (CLAUDE.md §6, never swallow an error to pass a test).
 from __future__ import annotations
 
 import datetime
+import hashlib
 import html
 import json
 import time
 import urllib.error
 import urllib.request
-import uuid
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -175,10 +175,13 @@ def send_discovery_alert(subject: str, lines: Sequence[str], config: NotifyConfi
 
 
 def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
-    """POST one email, retrying a 429, a 5xx or a network failure with backoff (as ``net.fetch_feed``).
+    """POST one email, retrying a 409, 429, 5xx or network failure with backoff (as ``net.fetch_feed``).
 
-    Every attempt carries the same ``Idempotency-Key``, so a retry after a timeout that
-    Resend had in fact accepted returns the original send instead of emailing twice.
+    The ``Idempotency-Key`` is derived from the request body, so a retry after a timeout that
+    Resend had in fact accepted, or a later poll re-sending an email whose ``notified_at`` never
+    reached the ledger, gets the original send back from Resend instead of a second email.
+    Resend keeps keys for 24 hours, and a key always names one body, so its "same key,
+    different payload" 409 can't occur.
     """
     payload = json.dumps(
         {
@@ -191,7 +194,7 @@ def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
     headers = {
         "Authorization": f"Bearer {config.api_key}",
         "Content-Type": "application/json",
-        "Idempotency-Key": str(uuid.uuid4()),
+        "Idempotency-Key": f"email/{hashlib.sha256(payload).hexdigest()}",
         # Resend's edge blocks the stdlib default UA as a bot signature
         # (Cloudflare error 1010) — same fix as poller/net.py.
         "User-Agent": DEFAULT_USER_AGENT,
@@ -206,7 +209,8 @@ def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
             return
         except urllib.error.HTTPError as exc:
             error = NotifyError(f"Resend rejected the request: {exc.code} {exc.read()!r}")
-            if exc.code != 429 and exc.code < 500:
+            # A 409 can only mean an earlier attempt with this key is still in flight.
+            if exc.code not in (409, 429) and exc.code < 500:
                 raise error from exc
             last_error = error
         except OSError as exc:  # URLError, and a bare TimeoutError from a slow read
