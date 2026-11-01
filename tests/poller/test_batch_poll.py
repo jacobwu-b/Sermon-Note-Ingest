@@ -153,6 +153,47 @@ def test_poll_pending_batches_continues_past_one_batchs_anthropic_failure(monkey
     assert dispatched == ["batch_2"]
 
 
+def test_poll_pending_batches_still_dispatches_the_next_ended_batch_after_a_not_found(monkeypatch):
+    # A batch deleted or expired on Anthropic's side 404s on every tick it stays
+    # pending_batch; it must not hide the batches queued behind it.
+    import types
+
+    import anthropic
+
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-123")
+    monkeypatch.setenv("PIPELINE_REPO", "owner/sermon-note-pipeline")
+    monkeypatch.setenv("PIPELINE_DISPATCH_TOKEN", "ghp_456")
+
+    not_found = anthropic.NotFoundError(
+        "batch not found",
+        response=types.SimpleNamespace(request=None, status_code=404, headers={}),
+        body=None,
+    )
+
+    def retrieve(batch_id):
+        if batch_id == "msgbatch_expired":
+            raise not_found
+        return types.SimpleNamespace(id=batch_id, processing_status="ended")
+
+    monkeypatch.setattr(
+        anthropic_client,
+        "_client",
+        types.SimpleNamespace(
+            messages=types.SimpleNamespace(batches=types.SimpleNamespace(retrieve=retrieve))
+        ),
+    )
+    pending = [_pending("g1", "menlo", "msgbatch_expired"), _pending("g2", "north_point", "msgbatch_ended")]
+    dispatched = []
+
+    batch_poll.poll_pending_batches(
+        list_pending=lambda *, config: pending,
+        dispatch=lambda event, *, source, config: dispatched.append(event["batch_id"]),
+        has_active_run=lambda *, config: False,
+    )
+
+    assert dispatched == ["msgbatch_ended"]
+
+
 def test_poll_pending_batches_continues_past_a_dispatch_failure(monkeypatch):
     from poller import pipeline_dispatch
 

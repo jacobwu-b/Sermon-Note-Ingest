@@ -65,3 +65,38 @@ def test_every_workflow_pip_install_requires_hashes() -> None:
                 line_no = text[: match.start()].count("\n") + 1
                 offenders.append(f"{workflow.name}:{line_no}")
     assert not offenders, f"pip install without --require-hashes: {offenders}"
+
+
+def _third_party_imports(package: Path) -> set[str]:
+    import ast
+    import sys
+
+    names: set[str] = set()
+    for source in package.rglob("*.py"):
+        for node in ast.walk(ast.parse(source.read_text())):
+            if isinstance(node, ast.Import):
+                names.update(alias.name.split(".")[0] for alias in node.names)
+            elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                names.add(node.module.split(".")[0])
+    return {n for n in names if n not in sys.stdlib_module_names and n != package.name}
+
+
+def test_every_third_party_import_in_poller_is_a_declared_direct_dependency() -> None:
+    # A module that only arrives transitively breaks the day the package pulling it
+    # in drops it, and pip-compile never warns.
+    from importlib.metadata import packages_distributions
+
+    declared = {
+        re.sub(r"[-_.]+", "-", m.group(1)).lower()
+        for line in (REPO_ROOT / "requirements.in").read_text().splitlines()
+        if (m := REQUIREMENT_LINE_RE.match(line))
+    }
+    module_to_dists = packages_distributions()
+    imports = _third_party_imports(REPO_ROOT / "poller")
+    assert imports, "found no third-party imports in poller/ to check"
+    undeclared = {
+        module: module_to_dists.get(module, [])
+        for module in sorted(imports)
+        if not {re.sub(r"[-_.]+", "-", d).lower() for d in module_to_dists.get(module, [])} & declared
+    }
+    assert not undeclared, f"imported by poller/ but not declared in requirements.in: {undeclared}"
