@@ -6,12 +6,18 @@ version: 2
 # Minor/patch PRs auto-merge once CI passes; major bumps are held and labeled
 # `dependencies:major` for the monthly reconciliation. See the
 # dependabot-auto-merge / dependabot-reconciliation workflows.
+#
+# cooldown holds a newly published release back a week before it is proposed, so a
+# compromised one has time to be yanked before it auto-merges (ADR-0027). Version updates
+# only: security updates are never delayed.
 
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     labels: ["dependencies"]
     open-pull-requests-limit: 10
     groups:
@@ -23,6 +29,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     labels: ["dependencies"]
     open-pull-requests-limit: 10
     groups:

@@ -100,9 +100,12 @@ The ruleset must enforce, **for everyone except the documented bypass**:
       automation to confirm the push still lands.
       - Live: `DeployKey` / `always`, matching the write-access deploy key
         titled `poll-workflow-push` (repo Settings → Deploy keys), whose
-        private half is the `DEPLOY_KEY` secret `.github/workflows/poll.yml`
-        (and `.github/workflows/transcribe.yml`, for its own ledger commit)
-        uses to push `data/` updates straight to `main`.
+        private half is the `DEPLOY_KEY` secret. Only the `push` job of
+        `.github/workflows/poll.yml` and of `.github/workflows/transcribe.yml`
+        holds it. Those jobs install no packages and push only the ledger
+        allowlist (`data/<church>.json`, `data/alerts/state.json`) straight to
+        `main`. A job that runs third-party code never gets this key, because the
+        bypass covers every path, workflows included (ADR-0027).
       - **Not a bypass-list concern:** `CONTENT_REPO_TOKEN`, used by
         `transcribe.yml` to push transcripts to the private Sermon-Note-Content
         repo, authenticates against *that* repo, not this one — it needs no

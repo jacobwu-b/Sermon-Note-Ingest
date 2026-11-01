@@ -24,6 +24,10 @@
 # and dispatches its pipeline.yml the moment one has ended, instead of waiting for
 # Pipeline's own (much longer) cron. See ADR-0010
 # (docs/decisions/0010-poll-claude-batches-from-ingest.md).
+#
+# The poll job runs third-party code (feedparser on untrusted feeds, the anthropic SDK), so it
+# never holds the deploy key that bypasses main's ruleset: it uploads its data/ writes, and the
+# push job, which installs nothing, merges them onto the tip and pushes (ADR-0027).
 
 name: Poll church feeds
 
@@ -62,19 +66,15 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    outputs:
+      discovered: ${{ steps.poll.outputs.discovered }}
     steps:
-      # Deploy key (DEPLOY_KEY secret) authenticates the later `git push`, not
-      # GITHUB_TOKEN — main's ruleset requires a PR from everyone else, and
-      # this key is the one actor on its bypass list, so the push here must
-      # go over SSH with this key rather than the default token-authed remote.
-      #
       # ref: the live branch tip, not the default github.sha (the commit as of dispatch):
       # a run queued behind another must read the discovery alert state that run recorded,
       # or it re-sends the same alert (ADR-0025).
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: ${{ github.ref }}
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
@@ -128,7 +128,7 @@ jobs:
           # Captured via redirection (not a pipe) so `poll_exit` is this command's own
           # status, and the exit is deferred past recording `discovered` so a partial
           # failure (e.g. one church's notification) still reports the churches that
-          # did succeed (ADR-0007) — mirroring how the commit step below already
+          # did succeed (ADR-0007) — mirroring how the staging step below already
           # tolerates a non-zero Poll exit for the same reason.
           set +e
           python -m poller.runner "${args[@]}" --print-discovered > /tmp/poll_discovered.txt
@@ -137,66 +137,86 @@ jobs:
           echo "discovered=$(cat /tmp/poll_discovered.txt)" >> "$GITHUB_OUTPUT"
           exit "$poll_exit"
 
+      # Always, even if Poll exited non-zero (e.g. one church's notification failed):
+      # poll_church() writes each church's ledger before notifying, so one failure must not
+      # discard every church's discoveries, and a dropped notified_at re-sends its email.
+      - name: Stage ledger changes
+        if: always()
+        run: python -m poller.ledger_push stage "$RUNNER_TEMP/ledger"
+
+      - name: Upload ledger changes
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: ledger-poll
+          path: ${{ runner.temp }}/ledger
+          if-no-files-found: error
+          retention-days: 7
+
+  # The only job holding DEPLOY_KEY: main's ruleset requires a PR from everyone else, and this
+  # key is the one actor on its bypass list. So it installs nothing and runs this repo's code
+  # without site-packages (`python -E -S`), and pushes only the allowlisted ledger files
+  # (ADR-0027). A rejected push re-merges onto the fresh tip rather than re-polling, so no email
+  # is sent twice.
+  push:
+    name: Push ledger
+    needs: poll
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.ref }}
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+      # No pip cache: nothing is installed, and a cache a producer job saved is not restored here.
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: "3.14"
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: ledger-poll
+          path: ${{ runner.temp }}/ledger/poll
+
       - name: Commit newly-discovered sermons
         id: commit
-        # Always runs, even if Poll exited non-zero (e.g. one church's
-        # notification failed): poll_church() writes each church's ledger to
-        # disk before attempting to notify, so a failure for one church must
-        # not discard every church's discovered sermons for the run.
-        #
-        # transcribe.yml shards push data/ too, so a rejected push is expected: rebase onto
-        # the fresh tip, and only on a real conflict re-poll against it. A rejection left
-        # unhandled loses this run's ledger writes, and the next run re-sends their emails.
-        # The re-poll keeps --backfill/--church, or a backfill would email the back-catalog.
-        # It re-sends this run's emails too, so it is the fallback, not the first resort.
-        if: always()
         env:
-          BACKFILL: ${{ inputs.backfill }}
-          CHURCH: ${{ inputs.church }}
+          LEDGER_DIR: ${{ runner.temp }}/ledger
+          EXPECTED: "1"
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           attempts=3
-          python -m poller.store validate
-          git add data/
-          if git diff --cached --quiet; then
-            echo "No new sermons discovered this run."
-            exit 0
-          fi
-          git commit -m "chore(data): record poll results [skip ci]"
+          landed=false
           for attempt in $(seq 1 "$attempts"); do
-            if git push origin "HEAD:$GITHUB_REF_NAME"; then
-              exit 0
-            fi
-            echo "push rejected (attempt $attempt/$attempts); rebasing onto latest $GITHUB_REF_NAME and retrying"
-            git fetch origin "$GITHUB_REF_NAME"
-            if git rebase "origin/$GITHUB_REF_NAME"; then
-              python -m poller.store validate
-              continue
-            fi
-            echo "rebase conflicted; re-polling against latest $GITHUB_REF_NAME"
-            git rebase --abort
-            git reset --hard "origin/$GITHUB_REF_NAME"
-            args=()
-            if [ "$BACKFILL" = "true" ]; then
-              args+=(--backfill)
-            fi
-            if [ -n "$CHURCH" ]; then
-              args+=(--church "$CHURCH")
-            fi
-            if ! python -m poller.runner "${args[@]}"; then
-              echo "::warning::re-poll exited non-zero; committing whatever it recorded"
-            fi
-            python -m poller.store validate
+            python -E -S -m poller.ledger_push apply "$LEDGER_DIR"
             git add data/
+            python -E -S -m poller.ledger_push check-staged
             if git diff --cached --quiet; then
-              echo "Nothing left to record after re-polling."
-              exit 0
+              echo "No new sermons discovered this run."
+              landed=true
+              break
             fi
-            git commit -m "chore(data): record poll results [skip ci]"
+            git commit -q -m "chore(data): record poll results [skip ci]"
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              landed=true
+              break
+            fi
+            echo "push rejected (attempt $attempt/$attempts); merging onto the latest $GITHUB_REF_NAME and retrying"
+            git fetch -q origin "$GITHUB_REF_NAME"
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
           done
-          echo "::error::failed to push ledger update after $attempts attempts"
-          exit 1
+          if [ "$landed" != true ]; then
+            echo "::error::failed to push ledger update after $attempts attempts"
+            exit 1
+          fi
+          found=$(find "$LEDGER_DIR" -name ledger-base | wc -l | tr -d ' ')
+          if [ "$found" != "$EXPECTED" ]; then
+            echo "::error::$found of $EXPECTED staged ledger artifacts arrived; the rest were not recorded"
+            exit 1
+          fi
 
       - name: Dispatch transcription for newly-discovered churches
         # Best-effort latency optimization, not a correctness dependency (ADR-0007):
@@ -205,10 +225,10 @@ jobs:
         # only once the ledger update for this run's discoveries actually landed on
         # main — dispatching against a push that failed would have transcribe.yml find
         # nothing pending.
-        if: always() && steps.commit.outcome == 'success' && steps.poll.outputs.discovered != ''
+        if: always() && steps.commit.outcome == 'success' && needs.poll.outputs.discovered != ''
         env:
           GH_TOKEN: ${{ secrets.TRANSCRIBE_DISPATCH_TOKEN }}
-          DISCOVERED: ${{ steps.poll.outputs.discovered }}
+          DISCOVERED: ${{ needs.poll.outputs.discovered }}
         run: |
           IFS=',' read -ra churches <<< "$DISCOVERED"
           for church in "${churches[@]}"; do

@@ -11,6 +11,7 @@ import subprocess
 from pathlib import Path
 
 import pytest
+from push_job import PushJob, run_block
 
 from poller.config import CHURCH_KEY_RE
 
@@ -89,12 +90,12 @@ def test_transcribe_workflow_wires_pipeline_dispatch_config():
 
 
 # Every secret each job may receive. HF_TOKEN only where weights download; the Content
-# token only where Content is read or written; the plan only reads the church table.
+# token only where Content is read or written; the plan only reads the church table; the
+# deploy key only in the job that installs nothing (ADR-0027).
 _JOB_SECRETS = {
     "plan": {"PIPELINE_DISPATCH_TOKEN"},
     "transcribe": {
         "CONTENT_REPO_TOKEN",
-        "DEPLOY_KEY",
         "HF_TOKEN",
         "NOTIFY_EMAIL_FROM",
         "NOTIFY_EMAIL_TO",
@@ -109,6 +110,7 @@ _JOB_SECRETS = {
         "RESEND_API_KEY",
     },
     "publish-status": {"CONTENT_REPO_TOKEN", "PIPELINE_DISPATCH_TOKEN"},
+    "push": {"DEPLOY_KEY"},
 }
 
 _SECRET_RE = re.compile(r"\$\{\{\s*secrets\.(\w+)\s*\}\}")
@@ -130,7 +132,7 @@ def test_each_job_receives_exactly_its_allowlisted_secrets():
 
 def test_no_secret_reaches_a_job_wide_env_or_the_dependency_install():
     # Step-level only, so `pip install` (third-party code) runs with none of them.
-    for job in _JOB_SECRETS:
+    for job in _JOB_SECRETS.keys() - {"push"}:
         text = _job_text(job)
         job_env = re.search(r"^    env:\n((?:      .*\n)+)", text, re.MULTILINE)
         assert not (job_env and _SECRET_RE.search(job_env.group(1))), job
@@ -177,68 +179,83 @@ def test_transcribe_workflow_wires_shard_index_and_count_to_the_transcriber_cli(
     assert "needs.plan.outputs.shard_count" in text
 
 
-def test_transcribe_workflow_scales_ledger_push_retries_with_shard_count():
-    # More shards means more concurrent writers to data/*.json; a fixed retry
-    # budget sized for one concurrent writer (poll.yml) would run out headroom
-    # faster as shard count grows (ADR-0005 Decision 3).
-    text = workflow_text()
-    assert "attempts=" in text
-    assert 'attempts="${{ needs.plan.outputs.shard_count }}"' in text
+def _code(text: str) -> str:
+    """``text`` without its comment lines, which may name what the code must not do."""
+    return "\n".join(line for line in text.splitlines() if not line.lstrip().startswith("#"))
 
 
-def test_transcribe_workflow_rebases_onto_main_before_replaying_marks_on_conflict():
-    # Regression (issue #60): a rejected push used to unconditionally `git reset
-    # --hard` and re-run the whole shard's transcriber invocation on conflict —
-    # re-transcribing the whole batch with Whisper and risking a second,
-    # differently-worded push overwriting a transcript Pipeline may have already
-    # consumed. A rejected push must try a rebase first, and a genuine conflict
-    # must replay just this shard's own already-durable marks
-    # (poller.transcriber --replay-marks, ADR-0014) rather than redoing any
-    # transcription.
+def _push_script() -> str:
+    push = _job_text("push")
+    return run_block(push[push.index("- name: Push ledger update") :])
+
+
+def test_no_shard_holds_the_deploy_key():
+    # A shard installs the whole Whisper stack; the key bypasses main's ruleset (ADR-0027).
+    assert "DEPLOY_KEY" not in _code(_job_text("transcribe"))
+    assert workflow_text().count("secrets.DEPLOY_KEY") == 1
+
+
+def test_the_push_job_installs_nothing_and_restores_no_pip_cache():
+    push = _code(_job_text("push"))
+    assert "ssh-key: ${{ secrets.DEPLOY_KEY }}" in push
+    assert "pip install" not in push
+    assert "cache:" not in push
+    assert "requirements" not in push
+
+
+def test_the_push_job_runs_python_only_without_site_packages():
+    calls = re.findall(r"python[^\n]*", _push_script())
+    assert calls
+    assert all(call.startswith("python -E -S -m poller.ledger_push ") for call in calls), calls
+
+
+def test_every_shard_uploads_its_ledger_writes_even_when_transcription_fails():
+    shard = _job_text("transcribe")
+    stage = shard[shard.index("- name: Stage ledger changes") :]
+    assert stage.index("if: always()") < stage.index("python -m poller.ledger_push stage")
+    upload = shard[shard.index("- name: Upload ledger changes") :]
+    assert upload.index("if: always()") < upload.index("uses: actions/upload-artifact@")
+    assert "name: ledger-shard-${{ matrix.shard }}" in upload
+    assert "if-no-files-found: error" in upload
+
+
+def test_the_push_job_merges_every_shard_once_the_matrix_is_done():
+    # always(): a cancelled run's finished shards already pushed to Content, so their marks
+    # must still reach the ledger or the next run re-selects them.
+    push = _job_text("push")
+    assert "needs: [plan, transcribe]" in push
+    assert (
+        "if: ${{ always() && needs.plan.result == 'success' && needs.plan.outputs.shard_count != '0' }}"
+        in push
+    )
+    assert "pattern: ledger-shard-*" in push
+    assert "EXPECTED: ${{ needs.plan.outputs.shard_count }}" in push
+    assert "timeout-minutes:" in push
+
+
+def test_the_push_job_checks_out_the_live_tip_and_pushes_to_it():
+    push = _job_text("push")
+    assert "ref: ${{ github.ref }}" in push
+    assert "ledger_sha" not in push
+    script = _push_script()
+    assert 'git push origin "HEAD:$GITHUB_REF_NAME"' in script
+    assert not re.search(r"git push\s*$", script, re.MULTILINE)
+
+
+def test_the_push_job_never_rebases_replays_or_redoes_transcription():
+    # The merge needs neither the transcriber's import graph nor a Whisper call (ADR-0027).
     text = workflow_text()
-    assert "git rebase origin/main" in text
-    assert "git rebase --abort" in text
-    assert "--replay-marks" in text
-    # The replay path must be reached only from a failed rebase, not
-    # unconditionally on every rejected push.
-    reset_index = text.index("git reset --hard origin/main")
-    rebase_abort_index = text.index("git rebase --abort")
-    replay_index = text.index("python -m poller.transcriber --replay-marks")
-    assert rebase_abort_index < reset_index < replay_index
+    assert "git rebase" not in text
+    assert "--replay-marks" not in text
+    assert "poller.transcriber" not in _job_text("push")
 
 
 def test_transcribe_workflow_never_redoes_transcription_on_a_push_conflict():
-    # The old full-batch redo (issue #60) is removed entirely, not just guarded:
-    # no invocation of the transcriber with the original run's arguments, and no
-    # `|| true` masking a failed recovery step.
+    # The old full-batch redo (issue #60) stays gone: no invocation of the transcriber with
+    # the original run's arguments, and no `|| true` masking a failed recovery step.
     text = workflow_text()
     assert "TRANSCRIBE_ARGS" not in text
     assert "|| true" not in text
-
-
-def test_transcribe_workflow_writes_marks_out_for_the_push_conflict_recovery():
-    text = workflow_text()
-    assert "--marks-out" in text
-    assert "MARKS_FILE" in text
-
-
-def test_transcribe_workflow_preserves_unpushed_marks_as_an_artifact_on_failure():
-    # If the push retry loop still fails, this shard's already-Content-pushed
-    # marks must survive the runner rather than being lost (§13 durable output).
-    text = workflow_text()
-    # The SHA is Dependabot's to bump; test_action_pinning asserts it is a pin.
-    assert re.search(r"uses: actions/upload-artifact@[0-9a-f]{40} # v\d+", text)
-    assert "if: failure()" in text
-
-
-def test_transcribe_workflow_commits_the_ledger_update_once_before_the_push_retry_loop():
-    # The commit must happen once, outside the retry loop — a successful rebase
-    # already carries the commit forward, so re-committing on every loop
-    # iteration would either duplicate it or (worse) silently no-op the "nothing
-    # staged" check and report success without ever pushing.
-    text = workflow_text()
-    commit_count = text.count('git commit -m "chore(data): record transcription progress [skip ci]"')
-    assert commit_count == 2  # once up front, once after a redo following a real conflict
 
 
 def test_transcribe_workflow_wires_whisper_decoding_vars():
@@ -290,18 +307,15 @@ def test_bash_s_church_input_check_agrees_with_load_churches(key):
     assert (result.returncode == 0) == bool(CHURCH_KEY_RE.fullmatch(key))
 
 
-def test_transcribe_workflow_validates_ledgers_before_every_git_add():
-    # A truncated ledger must fail the push step rather than reach `git add
-    # data/` and land on main with `[skip ci]` — see poller/store.py:validate_all.
-    # Two `git add data/` sites: the normal commit and the post-rebase-conflict
-    # redo — both must be guarded.
-    text = workflow_text()
-    git_add_positions = [m.start() for m in re.finditer(re.escape("git add data/"), text)]
-    validate_positions = [m.start() for m in re.finditer(re.escape("python -m poller.store validate"), text)]
-    assert len(git_add_positions) == 2
-    assert len(validate_positions) == 2
-    for git_add_pos in git_add_positions:
-        assert any(validate_pos < git_add_pos for validate_pos in validate_positions)
+def test_the_push_job_refuses_staged_paths_outside_the_ledger_before_committing():
+    # apply parses every artifact file as a ledger before writing, and check-staged refuses
+    # anything else that reached the index, so neither a truncated ledger nor a non-ledger
+    # path lands on main with `[skip ci]`.
+    script = _push_script()
+    assert script.index("ledger_push apply") < script.index("git add data/")
+    assert (
+        script.index("git add data/") < script.index("ledger_push check-staged") < script.index("git commit")
+    )
 
 
 def _job_text(job: str) -> str:
@@ -332,14 +346,6 @@ def test_transcribe_workflow_shards_select_from_the_same_ledger_the_plan_counted
     assert "ref: ${{ needs.plan.outputs.ledger_sha }}" in transcribe
 
 
-def test_transcribe_workflow_pushes_the_ledger_from_a_detached_checkout():
-    # Checking out a commit SHA leaves HEAD detached, where a bare `git push` has no
-    # branch to push — every push must name main explicitly.
-    transcribe = _job_text("transcribe")
-    assert "if git push origin HEAD:main; then" in transcribe
-    assert not re.search(r"git push\s*;", transcribe)
-
-
 def test_transcribe_job_is_skipped_when_the_plan_counts_no_shards():
     # An empty matrix (`fromJson('[]')`) fails the whole run even though every job
     # that ran is green, so an idle tick reads as an outage. Skipping the job leaves
@@ -353,13 +359,13 @@ def test_status_publishes_on_every_planned_tick_even_with_no_shards():
     # the status file must still refresh (spec 0009), so the job keys off the plan
     # succeeding and a status function, not off transcribe having run.
     job = _job_text("publish-status")
-    assert "needs: [plan, transcribe]" in job
+    assert "needs: [plan, transcribe, push]" in job
     assert "if: ${{ !cancelled() && needs.plan.result == 'success' }}" in job
     assert "timeout-minutes:" in job
 
 
 def test_status_publishes_from_the_ledger_every_shard_already_pushed():
-    # Read main's tip when the job starts, after the shards' ledger pushes — not the
+    # Read main's tip when the job starts, after the ledger push — not the
     # plan's pinned commit, which predates this run's own progress.
     job = _job_text("publish-status")
     assert "ref: ${{ github.ref }}" in job
@@ -437,7 +443,7 @@ def test_the_pass_caps_parallelism_and_bounds_each_shard():
 
 def test_verify_runs_after_every_retranscribe_run_against_mains_tip():
     job = _job_text("verify")
-    assert "needs: [plan, transcribe]" in job
+    assert "needs: [plan, transcribe, push]" in job
     assert (
         "if: ${{ !cancelled() && needs.plan.result == 'success' && needs.plan.outputs.mode == 'retranscribe-stale' }}"
         in job
@@ -715,7 +721,7 @@ def test_a_retranscribe_shard_runs_the_same_selection_the_plan_counted(tmp_path)
     code, _out, calls, _output = _run_script(_shard_body(), tmp_path, env)
     assert code == 0
     [call] = calls
-    assert call[:9] == [
+    assert call[:8] == [
         "-m",
         "poller.transcriber",
         "--limit",
@@ -724,9 +730,8 @@ def test_a_retranscribe_shard_runs_the_same_selection_the_plan_counted(tmp_path)
         "1",
         "--shard-count",
         "2",
-        "--marks-out",
     ]
-    assert call[10:] == [
+    assert call[8:] == [
         "--retranscribe-stale",
         "--summary-md",
         str(tmp_path / "summary"),
@@ -760,3 +765,93 @@ def test_verify_alerts_on_absence_only_on_the_scheduled_pass(tmp_path):
             "4",
         ]
     ]
+
+
+# --- The push job's step, run end to end ---------------------------------------------------------
+
+ABIDE = {
+    "guid": "https://pbc.org?enmse_mid=4691",
+    "title": "Abide in Me",
+    "preached_on": "2026-10-18",
+    "feed_published_at": "2026-10-19T18:02:11+00:00",
+    "transcription_status": "pending",
+}
+CAPTIVES = {
+    "guid": "https://pbc.org?enmse_mid=4701",
+    "title": "Setting Captives Free",
+    "preached_on": "2026-10-25",
+    "feed_published_at": "2026-10-26T18:21:06+00:00",
+    "transcription_status": "pending",
+}
+
+
+def _done(record: dict, slug: str) -> dict:
+    return {
+        **record,
+        "transcription_status": "done",
+        "transcript_hash": f"{slug:0<64}"[:64],
+        "content_path": f"transcripts/pbc/{record['preached_on']}_{slug}.txt",
+    }
+
+
+def _two_pending() -> dict:
+    return {"data/pbc.json": {CAPTIVES["guid"]: CAPTIVES, ABIDE["guid"]: ABIDE}}
+
+
+def test_the_push_step_merges_every_shards_writes_onto_a_tip_the_poll_moved(tmp_path):
+    job = PushJob(tmp_path, _two_pending())
+    job.produce(
+        "ledger-shard-0",
+        {"data/pbc.json": {CAPTIVES["guid"]: CAPTIVES, ABIDE["guid"]: _done(ABIDE, "abide")}},
+    )
+    job.produce(
+        "ledger-shard-1",
+        {"data/pbc.json": {CAPTIVES["guid"]: _done(CAPTIVES, "captives"), ABIDE["guid"]: ABIDE}},
+    )
+    rooted = {"guid": "hillside-2026-11-01", "title": "Rooted", "preached_on": "2026-11-01"}
+    job.land_first(
+        {"data/hillside.json": {rooted["guid"]: rooted}}, "chore(data): record poll results [skip ci]"
+    )
+
+    result = job.run(_push_script(), expected="2")
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert job.main_json("data/pbc.json") == {
+        CAPTIVES["guid"]: _done(CAPTIVES, "captives"),
+        ABIDE["guid"]: _done(ABIDE, "abide"),
+    }
+    assert job.main_json("data/hillside.json") == {rooted["guid"]: rooted}
+    # One ledger commit for the whole run, on top of the seed and the poll's.
+    assert job.commit_count() == 3
+
+
+def test_the_push_step_records_the_shards_that_arrived_and_fails_for_the_one_that_did_not(tmp_path):
+    job = PushJob(tmp_path, _two_pending())
+    job.produce(
+        "ledger-shard-0",
+        {"data/pbc.json": {CAPTIVES["guid"]: CAPTIVES, ABIDE["guid"]: _done(ABIDE, "abide")}},
+    )
+
+    result = job.run(_push_script(), expected="2")
+
+    assert result.returncode != 0
+    assert "1 of 2 staged ledger artifacts arrived" in result.stdout
+    assert job.main_json("data/pbc.json")[ABIDE["guid"]]["transcription_status"] == "done"
+
+
+def test_the_push_step_fails_closed_when_two_shards_wrote_one_field_differently(tmp_path):
+    job = PushJob(tmp_path, _two_pending())
+    job.produce(
+        "ledger-shard-0",
+        {"data/pbc.json": {CAPTIVES["guid"]: CAPTIVES, ABIDE["guid"]: _done(ABIDE, "abide")}},
+    )
+    job.produce(
+        "ledger-shard-1",
+        {"data/pbc.json": {CAPTIVES["guid"]: CAPTIVES, ABIDE["guid"]: _done(ABIDE, "other")}},
+    )
+
+    result = job.run(_push_script(), expected="2")
+
+    assert result.returncode != 0
+    assert "changed on both sides" in result.stderr
+    assert job.commit_count() == 1
