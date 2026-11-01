@@ -145,7 +145,7 @@ def apply_mark(record: dict, mark: Mapping[str, Any]) -> bool:
     """Apply a ``retranscribed``/``retranscribe_failed`` mark if the record still matches it.
 
     The ledger-side compare-and-swap: a replacement applies while the record holds the
-    hash the attempt saw or the hash it produced (so replaying it twice is a no-op); a
+    hash the attempt saw or the hash it produced (so applying it twice is a no-op); a
     failure applies only while the record holds the hash the attempt saw.
     """
     current = record.get("transcript_hash")
@@ -417,7 +417,6 @@ def run_retranscribe(
     last_commit_trailers: LastCommitTrailers = content_repo.last_commit_trailers,
     replace: ReplaceTranscript = _replace_transcript,
     keep_candidate: KeepCandidate = _keep_candidate,
-    marks_out: dict[str, dict[str, dict]] | None = None,
     summary_rows: list[SummaryRow] | None = None,
 ) -> bool:
     """Re-transcribe at most ``limit`` stale ``done`` sermons per church (ADR-0022).
@@ -470,8 +469,6 @@ def run_retranscribe(
             apply_mark(record, attempt.mark)
             store.save(name, loaded[name])
             marked += attempt.model_called
-            if marks_out is not None:
-                marks_out.setdefault(name, {})[guid] = attempt.mark
         _log_attempt(attempt.row)
         if summary_rows is not None:
             summary_rows.append(attempt.row)

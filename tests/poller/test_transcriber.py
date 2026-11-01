@@ -1,5 +1,4 @@
 import dataclasses
-import json
 
 import pytest
 
@@ -496,7 +495,6 @@ def test_transcribe_church_leaves_a_download_failure_pending_not_failed(tmp_path
 def test_transcribe_church_records_why_a_transcription_failed(tmp_path, monkeypatch, error, reason):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-01-01")}
-    marks: dict = {}
 
     def failing_transcribe_audio(url, hotwords):
         raise error
@@ -508,40 +506,14 @@ def test_transcribe_church_records_why_a_transcription_failed(tmp_path, monkeypa
         transcribe_audio=failing_transcribe_audio,
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
-        marks_out=marks,
     )
 
     assert store.load("menlo")["g1"]["transcription_last_error"] == reason
-    assert marks == {"g1": {"kind": "failed", "error": reason}}
-
-
-def test_transcribe_church_marks_out_records_a_download_failure(tmp_path, monkeypatch):
-    # A push-conflict replay (ADR-0014) must carry the reason too, or it is lost with the
-    # discarded local commit.
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", preached_on="2026-01-01")}
-    marks: dict = {}
-
-    def failing_transcribe_audio(url, hotwords):
-        raise AudioDownloadError("cdn rejected")
-
-    transcriber.transcribe_church(
-        "menlo",
-        records,
-        [("g1", records["g1"])],
-        transcribe_audio=failing_transcribe_audio,
-        push=lambda files: None,
-        fetch_existing=_nothing_in_content,
-        marks_out=marks,
-    )
-
-    assert marks == {"g1": {"kind": "download_failed"}}
 
 
 def test_transcribe_church_records_a_whisper_transcript_as_not_adopted(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-01-01")}
-    marks: dict = {}
 
     transcriber.transcribe_church(
         "menlo",
@@ -550,11 +522,9 @@ def test_transcribe_church_records_a_whisper_transcript_as_not_adopted(tmp_path,
         transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", _PROFILE),
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
-        marks_out=marks,
     )
 
     assert store.load("menlo")["g1"]["transcript_adopted"] is False
-    assert marks["g1"]["adopted"] is False
 
 
 def test_transcribe_church_marks_a_terminal_model_failure(tmp_path, monkeypatch):
@@ -576,223 +546,6 @@ def test_transcribe_church_marks_a_terminal_model_failure(tmp_path, monkeypatch)
     assert ok is False
     saved = store.load("menlo")
     assert saved["g1"]["transcription_status"] == "failed"
-
-
-def test_transcribe_church_marks_out_records_a_successful_transcription(tmp_path, monkeypatch):
-    # poller.transcriber --replay-marks (issue #60, ADR-0014) reapplies exactly
-    # this record onto a freshly-loaded ledger, so it must carry everything
-    # store.mark_transcribed needs.
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    monkeypatch.setenv("WHISPER_MODEL", "large-v3")
-    records = {"g1": _record("g1", preached_on="2026-01-01")}
-    marks: dict = {}
-
-    transcriber.transcribe_church(
-        "menlo",
-        records,
-        [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", _PROFILE),
-        push=lambda files: None,
-        fetch_existing=_nothing_in_content,
-        marks_out=marks,
-    )
-
-    assert marks["g1"]["kind"] == "done"
-    assert marks["g1"]["content_path"] == "transcripts/menlo/2026-01-01_sermon-g1_g1.txt"
-    assert marks["g1"]["transcript_hash"] == "hash123"
-    assert marks["g1"]["profile"] == dataclasses.asdict(_PROFILE)
-
-
-def test_transcribe_church_marks_out_records_a_terminal_failure(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", preached_on="2026-01-01")}
-    marks: dict = {}
-
-    def failing_transcribe_audio(url, hotwords):
-        raise EmptyTranscriptError("nothing but silence")
-
-    transcriber.transcribe_church(
-        "menlo",
-        records,
-        [("g1", records["g1"])],
-        transcribe_audio=failing_transcribe_audio,
-        push=lambda files: None,
-        fetch_existing=_nothing_in_content,
-        marks_out=marks,
-    )
-
-    assert marks == {"g1": {"kind": "failed", "error": "empty_transcript"}}
-
-
-def test_transcribe_church_marks_out_omits_a_transcription_whose_push_failed(tmp_path, monkeypatch):
-    # A transcription that finished but never durably landed in Content must
-    # never be replayable as "done" — that's exactly the corruption issue #60
-    # was about (a mark claiming Content has something it doesn't).
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", preached_on="2026-01-01")}
-    marks: dict = {}
-
-    def failing_push(files):
-        raise ContentPublishError("content repo unreachable")
-
-    transcriber.transcribe_church(
-        "menlo",
-        records,
-        [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("text", "hash", _PROFILE),
-        push=failing_push,
-        fetch_existing=_nothing_in_content,
-        marks_out=marks,
-    )
-
-    assert marks == {}
-
-
-def test_replay_marks_reapplies_done_and_failed_marks_without_transcribing(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save(
-        "menlo",
-        {"g1": _record("g1", preached_on="2026-01-01"), "g2": _record("g2", preached_on="2026-01-02")},
-    )
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(
-        json.dumps(
-            {
-                "menlo": {
-                    "g1": {
-                        "kind": "done",
-                        "content_path": "transcripts/menlo/g1.txt",
-                        "transcript_hash": "hash1",
-                        "transcribed_at": "2026-01-01T00:00:00+00:00",
-                        "profile": dataclasses.asdict(_PROFILE),
-                    },
-                    "g2": {"kind": "failed"},
-                }
-            }
-        )
-    )
-
-    ok = transcriber.replay_marks(str(marks_path))
-
-    assert ok is True
-    saved = store.load("menlo")
-    assert saved["g1"]["transcription_status"] == "done"
-    assert saved["g1"]["content_path"] == "transcripts/menlo/g1.txt"
-    assert saved["g1"]["transcript_hash"] == "hash1"
-    assert saved["g1"]["transcription_ctranslate2_version"] == "4.8.2"
-    assert saved["g2"]["transcription_status"] == "failed"
-
-
-def test_replay_marks_reapplies_a_done_mark_written_before_the_full_profile_existed(tmp_path, monkeypatch):
-    # A marks artifact uploaded by a failed run before ADR-0022 carries only the two
-    # ADR-0012 fields; the rest stay null ("unknown"), never a guessed default.
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(
-        json.dumps(
-            {
-                "menlo": {
-                    "g1": {
-                        "kind": "done",
-                        "content_path": "transcripts/menlo/g1.txt",
-                        "transcript_hash": "hash1",
-                        "transcribed_at": "2026-01-01T00:00:00+00:00",
-                        "model": "large-v3",
-                        "domain_prompt": True,
-                    }
-                }
-            }
-        )
-    )
-
-    assert transcriber.replay_marks(str(marks_path)) is True
-
-    saved = store.load("menlo")["g1"]
-    assert saved["transcription_model"] == "large-v3"
-    assert saved["transcription_domain_prompt"] is True
-    assert saved["transcription_condition_on_previous_text"] is None
-    assert saved["transcription_beam_size"] is None
-
-
-def test_replay_marks_is_safe_to_run_twice(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(
-        json.dumps(
-            {
-                "menlo": {
-                    "g1": {
-                        "kind": "done",
-                        "content_path": "transcripts/menlo/g1.txt",
-                        "transcript_hash": "hash1",
-                        "transcribed_at": "2026-01-01T00:00:00+00:00",
-                        "profile": dataclasses.asdict(_PROFILE),
-                    }
-                }
-            }
-        )
-    )
-
-    assert transcriber.replay_marks(str(marks_path)) is True
-    assert transcriber.replay_marks(str(marks_path)) is True
-    assert store.load("menlo")["g1"]["transcription_status"] == "done"
-
-
-def test_replay_marks_skips_a_guid_missing_from_the_ledger(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(json.dumps({"menlo": {"ghost": {"kind": "failed"}}}))
-
-    ok = transcriber.replay_marks(str(marks_path))
-
-    assert ok is True
-    assert store.load("menlo")["g1"]["transcription_status"] is None
-
-
-def test_replay_marks_returns_false_when_the_file_is_missing(tmp_path):
-    ok = transcriber.replay_marks(str(tmp_path / "does-not-exist.json"))
-    assert ok is False
-
-
-def test_main_writes_marks_out_file_from_the_run(tmp_path, monkeypatch):
-    captured = {}
-
-    def fake_run(*, church_names, limit, shard_index, shard_count, marks_out=None):
-        captured["marks_out"] = marks_out
-        if marks_out is not None:
-            marks_out["menlo"] = {"g1": {"kind": "done"}}
-        return True
-
-    monkeypatch.setattr(transcriber, "run", fake_run)
-    marks_path = tmp_path / "marks.json"
-
-    exit_code = transcriber.main(["--marks-out", str(marks_path)])
-
-    assert exit_code == 0
-    assert captured["marks_out"] is not None
-    assert json.loads(marks_path.read_text()) == {"menlo": {"g1": {"kind": "done"}}}
-
-
-def test_main_replay_marks_calls_replay_marks_and_skips_the_run(monkeypatch):
-    called = {}
-    monkeypatch.setattr(transcriber, "replay_marks", lambda path: called.setdefault("path", path) or True)
-    monkeypatch.setattr(transcriber, "run", lambda **kwargs: called.setdefault("run_called", True))
-
-    exit_code = transcriber.main(["--replay-marks", "marks.json"])
-
-    assert exit_code == 0
-    assert called == {"path": "marks.json"}
-
-
-def test_main_replay_marks_returns_nonzero_on_failure(monkeypatch):
-    monkeypatch.setattr(transcriber, "replay_marks", lambda path: False)
-
-    exit_code = transcriber.main(["--replay-marks", "marks.json"])
-
-    assert exit_code == 1
 
 
 def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkeypatch):
@@ -1039,25 +792,6 @@ def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):
     assert store.load("pbc")["p1"]["transcription_status"] is None
 
 
-def test_run_populates_marks_out_per_church(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"m1": _record("m1", preached_on="2026-01-01")})
-    store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
-    marks: dict = {}
-
-    transcriber.run(
-        church_names=None,
-        limit=5,
-        transcribe_audio=lambda url, hotwords: ("text", "hash", _PROFILE),
-        push=lambda files: None,
-        fetch_existing=_nothing_in_content,
-        marks_out=marks,
-    )
-
-    assert marks["menlo"]["m1"]["kind"] == "done"
-    assert marks["pbc"]["p1"]["kind"] == "done"
-
-
 def test_transcribe_church_records_a_sermon_already_in_content_without_retranscribing_it(
     tmp_path, monkeypatch
 ):
@@ -1151,79 +885,6 @@ def test_transcribe_church_never_dispatches_for_a_sermon_already_in_content(tmp_
     )
 
     assert dispatched == []
-
-
-def test_transcribe_church_marks_out_records_a_sermon_adopted_from_content(tmp_path, monkeypatch):
-    # A push-conflict replay (ADR-0014) must be able to re-apply the adoption too.
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", preached_on="2019-01-06")}
-    marks: dict = {}
-
-    transcriber.transcribe_church(
-        "menlo",
-        records,
-        [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("new text", "new-hash", _PROFILE),
-        push=lambda files: None,
-        fetch_existing=lambda paths: dict.fromkeys(paths, "already there"),
-        marks_out=marks,
-    )
-
-    assert marks["g1"]["kind"] == "done"
-    assert marks["g1"]["transcript_hash"] == transcribe.transcript_hash("already there")
-    assert marks["g1"]["profile"] is None
-    assert marks["g1"]["adopted"] is True
-
-    fresh_dir = tmp_path / "fresh"
-    fresh_dir.mkdir()
-    monkeypatch.setattr(store, "DATA_DIR", fresh_dir)
-    store.save("menlo", {"g1": _record("g1", preached_on="2019-01-06")})
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(json.dumps({"menlo": marks}))
-    assert transcriber.replay_marks(str(marks_path)) is True
-    assert store.load("menlo")["g1"]["transcription_status"] == "done"
-    assert store.load("menlo")["g1"]["transcript_adopted"] is True
-
-
-def test_replay_marks_reapplies_failure_reasons(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save(
-        "menlo",
-        {"g1": _record("g1", preached_on="2026-01-01"), "g2": _record("g2", preached_on="2026-01-02")},
-    )
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(
-        json.dumps(
-            {
-                "menlo": {
-                    "g1": {"kind": "download_failed"},
-                    "g2": {"kind": "failed", "error": "empty_transcript"},
-                }
-            }
-        )
-    )
-
-    assert transcriber.replay_marks(str(marks_path)) is True
-
-    saved = store.load("menlo")
-    assert saved["g1"]["transcription_status"] is None
-    assert saved["g1"]["transcription_last_error"] == "audio_download"
-    assert saved["g2"]["transcription_status"] == "failed"
-    assert saved["g2"]["transcription_last_error"] == "empty_transcript"
-
-
-def test_replay_marks_reads_a_marks_file_written_before_failure_reasons_existed(tmp_path, monkeypatch):
-    """A marks artifact uploaded by a run on the previous code can still be replayed."""
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(json.dumps({"menlo": {"g1": {"kind": "failed"}}}))
-
-    assert transcriber.replay_marks(str(marks_path)) is True
-
-    saved = store.load("menlo")["g1"]
-    assert saved["transcription_status"] == "failed"
-    assert saved["transcription_last_error"] == "transcription"
 
 
 def test_transcribe_church_leaves_the_batch_pending_when_content_cannot_be_read(tmp_path, monkeypatch):
@@ -1468,65 +1129,6 @@ def test_run_threads_the_alert_sender_through_to_each_church(tmp_path, monkeypat
     )
 
     assert [church for church, _flagged in alerts] == ["pbc"]
-
-
-def test_marks_out_carries_the_counts_and_replay_restores_them_without_alerting(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    records = {"g1": _record("g1", preached_on="2026-01-01")}
-    marks: dict = {}
-    alerts: list = []
-
-    transcriber.transcribe_church(
-        "menlo",
-        records,
-        [("g1", records["g1"])],
-        transcribe_audio=_transcribe_returning(_LOOPED_TEXT),
-        push=lambda files: None,
-        fetch_existing=_nothing_in_content,
-        marks_out=marks,
-        send_quality_alert=_collecting_alerts(alerts),
-    )
-    assert marks["g1"]["quality"] == {"words": 89, "loop_words": 44, "credit_hits": 0, "hotword_pairs": 0}
-
-    fresh_dir = tmp_path / "fresh"
-    fresh_dir.mkdir()
-    monkeypatch.setattr(store, "DATA_DIR", fresh_dir)
-    monkeypatch.setattr(notify, "send_quality_alert", lambda *a, **k: alerts.append("replayed"))
-    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(json.dumps({"menlo": marks}))
-
-    assert transcriber.replay_marks(str(marks_path)) is True
-    assert store.load("menlo")["g1"]["transcript_loop_words"] == 44
-    assert len(alerts) == 1
-
-
-def test_replay_marks_reads_a_done_mark_written_before_quality_counts_existed_as_not_scored(
-    tmp_path, monkeypatch
-):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("menlo", {"g1": _record("g1", preached_on="2026-01-01")})
-    marks_path = tmp_path / "marks.json"
-    marks_path.write_text(
-        json.dumps(
-            {
-                "menlo": {
-                    "g1": {
-                        "kind": "done",
-                        "content_path": "transcripts/menlo/g1.txt",
-                        "transcript_hash": "hash1",
-                        "transcribed_at": "2026-01-01T00:00:00+00:00",
-                        "profile": dataclasses.asdict(_PROFILE),
-                    }
-                }
-            }
-        )
-    )
-
-    assert transcriber.replay_marks(str(marks_path)) is True
-    saved = store.load("menlo")["g1"]
-    assert saved["transcription_status"] == "done"
-    assert store.transcript_quality(saved) is None
 
 
 def test_no_transcript_text_reaches_the_logs_or_the_alert(tmp_path, monkeypatch, caplog):
