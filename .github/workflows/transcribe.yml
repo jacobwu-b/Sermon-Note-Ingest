@@ -90,19 +90,15 @@ env:
   # A dispatch's silence_guard beats the variable, for the plan and every shard alike.
   WHISPER_HALLUCINATION_SILENCE_THRESHOLD: ${{ inputs.silence_guard || vars.WHISPER_HALLUCINATION_SILENCE_THRESHOLD }}
   CONTENT_REPO: ${{ vars.CONTENT_REPO }}
-  CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
-  # Read directly by huggingface_hub (faster-whisper's model download), not by our own
-  # code — authenticates the weight download so it isn't subject to Hugging Face's
-  # anonymous rate limit.
-  HF_TOKEN: ${{ secrets.HF_TOKEN }}
-  # Lets poller/pipeline_dispatch.py trigger Sermon-Note-Pipeline's pipeline.yml
-  # right after a sermon's transcript lands in Content (spec 0005, ADR-0009).
-  # Best-effort: a dispatch failure is logged, never fails this job — Pipeline's
-  # own cron still catches anything it misses. Also reads the church table from
-  # Pipeline's config/churches.json (ADR-0016), which is not best-effort: without
-  # it every job here fails.
+  # PIPELINE_DISPATCH_TOKEN lets poller/pipeline_dispatch.py trigger Sermon-Note-Pipeline's
+  # pipeline.yml right after a sermon's transcript lands in Content (spec 0005, ADR-0009).
+  # Best-effort: a dispatch failure is logged, never fails this job — Pipeline's own cron
+  # still catches anything it misses. It also reads the church table from Pipeline's
+  # config/churches.json (ADR-0016), which is not best-effort: without it every job here
+  # fails.
   PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}
-  PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
+  # Secrets are not set here: workflow env reaches every job. Each one is set on just the
+  # steps whose code reads it, so no job, and no `pip install`, holds a token it never uses.
 
 jobs:
   # Sizes the matrix `transcribe` fans out over from the actual backlog, not a
@@ -145,6 +141,7 @@ jobs:
         # this job.
         env:
           RETRANSCRIBE_MAX_PARALLEL: ${{ vars.RETRANSCRIBE_MAX_PARALLEL }}
+          PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
         run: |
           mode="$TRANSCRIBE_MODE"
           case "$mode" in
@@ -288,6 +285,12 @@ jobs:
       - name: Transcribe
         env:
           MODE: ${{ needs.plan.outputs.mode }}
+          CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+          # Read directly by huggingface_hub (faster-whisper's model download), not by our
+          # own code — authenticates the weight download so it isn't subject to Hugging
+          # Face's anonymous rate limit.
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
           # A transcript that trips a quality flag is emailed from this step (ADR-0023);
           # the same repository secrets poll.yml uses for discovery emails.
           NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
@@ -438,6 +441,8 @@ jobs:
         env:
           SCHEDULED: ${{ needs.plan.outputs.scheduled }}
           PLANNED: ${{ needs.plan.outputs.shard_count }}
+          CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+          PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
           NOTIFY_EMAIL_FROM: ${{ secrets.NOTIFY_EMAIL_FROM }}
           NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -478,4 +483,7 @@ jobs:
         run: pip install --require-hashes -r requirements.txt
 
       - name: Publish status
+        env:
+          CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+          PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
         run: python -m poller.status

@@ -79,12 +79,63 @@ def test_transcribe_workflow_does_not_share_poll_yml_s_concurrency_group():
 def test_transcribe_workflow_wires_pipeline_dispatch_config():
     # poller/pipeline_dispatch.py (spec 0005, ADR-0009) needs both to trigger
     # Sermon-Note-Pipeline's ingest-event dispatch after a successful transcription,
-    # and every job needs them to read the church table (ADR-0016) — so they are
-    # workflow-level env, before the first job.
+    # and every job needs them to read the church table (ADR-0016). The repo is a
+    # workflow-level variable; the token reaches each job through its own step env.
     text = workflow_text()
     workflow_env = text[: text.index("\njobs:")]
     assert "PIPELINE_REPO: ${{ vars.PIPELINE_REPO }}" in workflow_env
-    assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in workflow_env
+    for job in ("plan", "transcribe", "verify", "publish-status"):
+        assert "PIPELINE_DISPATCH_TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}" in _job_text(job)
+
+
+# Every secret each job may receive. HF_TOKEN only where weights download; the Content
+# token only where Content is read or written; the plan only reads the church table.
+_JOB_SECRETS = {
+    "plan": {"PIPELINE_DISPATCH_TOKEN"},
+    "transcribe": {
+        "CONTENT_REPO_TOKEN",
+        "DEPLOY_KEY",
+        "HF_TOKEN",
+        "NOTIFY_EMAIL_FROM",
+        "NOTIFY_EMAIL_TO",
+        "PIPELINE_DISPATCH_TOKEN",
+        "RESEND_API_KEY",
+    },
+    "verify": {
+        "CONTENT_REPO_TOKEN",
+        "NOTIFY_EMAIL_FROM",
+        "NOTIFY_EMAIL_TO",
+        "PIPELINE_DISPATCH_TOKEN",
+        "RESEND_API_KEY",
+    },
+    "publish-status": {"CONTENT_REPO_TOKEN", "PIPELINE_DISPATCH_TOKEN"},
+}
+
+_SECRET_RE = re.compile(r"\$\{\{\s*secrets\.(\w+)\s*\}\}")
+
+
+def test_no_secret_is_set_in_the_workflow_level_env():
+    # Workflow-level env reaches every job, so a secret there is handed to jobs that never use it.
+    text = workflow_text()
+    assert not _SECRET_RE.search(text[: text.index("\njobs:")])
+
+
+def test_each_job_receives_exactly_its_allowlisted_secrets():
+    text = workflow_text()
+    jobs = re.findall(r"^  ([\w-]+):\n", text[text.index("\njobs:") :], re.MULTILINE)
+    assert set(jobs) == set(_JOB_SECRETS), "a new job needs an entry in _JOB_SECRETS"
+    for job, allowed in _JOB_SECRETS.items():
+        assert set(_SECRET_RE.findall(_job_text(job))) == allowed, job
+
+
+def test_no_secret_reaches_a_job_wide_env_or_the_dependency_install():
+    # Step-level only, so `pip install` (third-party code) runs with none of them.
+    for job in _JOB_SECRETS:
+        text = _job_text(job)
+        job_env = re.search(r"^    env:\n((?:      .*\n)+)", text, re.MULTILINE)
+        assert not (job_env and _SECRET_RE.search(job_env.group(1))), job
+        install = re.search(r"- name: Install dependencies\n((?:        .*\n)+)", text)
+        assert install and not _SECRET_RE.search(install.group(1)), job
 
 
 def test_transcribe_workflow_reads_the_church_table_from_pipeline_not_a_variable():
