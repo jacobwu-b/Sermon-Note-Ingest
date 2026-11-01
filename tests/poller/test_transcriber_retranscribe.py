@@ -9,7 +9,7 @@ import logging
 
 import pytest
 
-from poller import content_repo, pipeline_dispatch, quality, store, transcribe, transcriber
+from poller import content_repo, pipeline_dispatch, quality, retranscribe, store, transcribe, transcriber
 from poller.net import AudioDownloadError
 from poller.sources.base import SermonItem
 
@@ -123,7 +123,7 @@ def _done(guid: str, *, profile: dict | None = None, preached_on: str = "2026-09
 
 
 def _selected(records: dict) -> list[str]:
-    return [guid for guid, _r in transcriber.select_stale(records, running=_RUNNING, digest=_RUNNING_DIGEST)]
+    return [guid for guid, _r in retranscribe.select_stale(records, running=_RUNNING, digest=_RUNNING_DIGEST)]
 
 
 def test_a_record_produced_under_the_running_profile_is_not_selected():
@@ -284,7 +284,7 @@ def _raises(exc):
 
 
 def _run(content: _Content, transcribe_audio, *, marks=None, rows=None, guids=None) -> bool:
-    return transcriber.run_retranscribe(
+    return retranscribe.run_retranscribe(
         church_names=None,
         limit=5,
         guids=guids,
@@ -333,7 +333,9 @@ def test_the_replacement_commit_carries_trailers_that_parse_back_to_the_recorded
     [(_p, _t, _e, trailers)] = content.replaced
     saved = store.load("menlo")["g1"]
 
-    mark = transcriber._mark_from_trailers(trailers, guid="g1", ledger_hash=_OLD_HASH, content_hash=_NEW_HASH)
+    mark = retranscribe._mark_from_trailers(
+        trailers, guid="g1", ledger_hash=_OLD_HASH, content_hash=_NEW_HASH
+    )
 
     assert mark is not None
     assert mark["profile"] == dataclasses.asdict(_NEW_PROFILE)
@@ -356,7 +358,7 @@ def test_identical_text_records_the_profile_without_pushing():
 
 def test_a_content_commit_whose_ledger_push_was_lost_is_adopted_from_its_trailers_without_whisper():
     _record_before, path = _one_stale_sermon()
-    trailers = transcriber._provenance_trailers(
+    trailers = retranscribe._provenance_trailers(
         "g1",
         superseded=_OLD_HASH,
         transcript_hash=_NEW_HASH,
@@ -401,7 +403,7 @@ def test_content_holding_someone_elses_text_is_a_conflict_and_is_not_overwritten
 def test_trailers_naming_a_different_superseded_hash_are_a_conflict():
     record, path = _one_stale_sermon()
     before = dict(record)
-    trailers = transcriber._provenance_trailers(
+    trailers = retranscribe._provenance_trailers(
         "g1",
         superseded="some-other-hash",
         transcript_hash=_NEW_HASH,
@@ -651,7 +653,7 @@ def test_no_log_line_or_summary_row_carries_transcript_text(branch, caplog):
         _run(content, fake, rows=rows)
 
     assert _SENTINEL.lower() not in caplog.text.lower()
-    assert _SENTINEL.lower() not in transcriber.render_summary(rows).lower()
+    assert _SENTINEL.lower() not in retranscribe.render_summary(rows).lower()
 
 
 def test_the_summary_has_one_row_per_sermon_with_its_outcome():
@@ -659,7 +661,7 @@ def test_the_summary_has_one_row_per_sermon_with_its_outcome():
     rows: list = []
     _run(_Content({path: _OLD_TEXT}), _transcribes(_NEW_TEXT), rows=rows)
 
-    summary = transcriber.render_summary(rows)
+    summary = retranscribe.render_summary(rows)
 
     assert "| menlo | g1 | replaced |" in summary
     assert _OLD_HASH[:12] in summary
@@ -679,10 +681,10 @@ def test_main_passes_its_arguments_through_and_writes_the_summary_and_marks_file
     def fake_run(**kwargs):
         calls.append(kwargs)
         kwargs["marks_out"].setdefault("menlo", {})["g1"] = {"kind": "retranscribed"}
-        kwargs["summary_rows"].append(transcriber.SummaryRow(church="menlo", guid="g1", outcome="replaced"))
+        kwargs["summary_rows"].append(retranscribe.SummaryRow(church="menlo", guid="g1", outcome="replaced"))
         return True
 
-    monkeypatch.setattr(transcriber, "run_retranscribe", fake_run)
+    monkeypatch.setattr(retranscribe, "run_retranscribe", fake_run)
     summary = tmp_path / "summary.md"
     marks = tmp_path / "marks.json"
 
@@ -719,5 +721,5 @@ def test_main_passes_its_arguments_through_and_writes_the_summary_and_marks_file
 
 
 def test_main_returns_non_zero_when_the_pass_needs_a_human(tmp_path, monkeypatch):
-    monkeypatch.setattr(transcriber, "run_retranscribe", lambda **_k: False)
+    monkeypatch.setattr(retranscribe, "run_retranscribe", lambda **_k: False)
     assert transcriber.main(["--retranscribe-stale", "--limit", "1"]) == 1

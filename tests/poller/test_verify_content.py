@@ -136,7 +136,7 @@ def test_no_violation_names_any_transcript_text():
 def test_backlog_counts_stale_in_scope_failed_and_replaced_per_church():
     stale = _done("stale", profile=_STALE_PROFILE)
     refused = _done("refused", profile=_STALE_PROFILE)
-    running = verify_content.transcriber._running_profile()
+    running = verify_content.retranscribe.running_profile()
     store.mark_retranscribe_failed(
         refused, error=store.QUALITY_REGRESSION_ERROR, failed_profile=store.profile_digest(running)
     )
@@ -248,7 +248,7 @@ def test_a_dispatched_run_never_sends_the_dead_man_alert():
 
 def test_the_scheduled_run_that_empties_the_backlog_sends_one_completion_email():
     refused = _done("refused", profile=_STALE_PROFILE)
-    running = verify_content.transcriber._running_profile()
+    running = verify_content.retranscribe.running_profile()
     store.mark_retranscribe_failed(
         refused, error=store.QUALITY_REGRESSION_ERROR, failed_profile=store.profile_digest(running)
     )

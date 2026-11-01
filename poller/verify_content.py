@@ -26,7 +26,7 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
 from pathlib import PurePosixPath
 
-from poller import config, content_repo, notify, store, transcribe, transcriber
+from poller import config, content_repo, notify, retranscribe, store, transcribe
 
 logger = logging.getLogger("poller")
 
@@ -97,13 +97,13 @@ class Backlog:
 def backlog(churches: Iterable[str]) -> list[Backlog]:
     """Per church: stale ``done`` records, how many the pass would still select, how many
     it replaced, and failures under the running profile by reason."""
-    running = transcriber._running_profile()
+    running = retranscribe.running_profile()
     digest = store.profile_digest(running)
     rows = []
     for church in churches:
         records = store.load(church)
         row = Backlog(church=church)
-        row.in_scope = len(transcriber.select_stale(records, running=running, digest=digest))
+        row.in_scope = len(retranscribe.select_stale(records, running=running, digest=digest))
         for record in records.values():
             if record.get("transcription_status") != "done":
                 continue
