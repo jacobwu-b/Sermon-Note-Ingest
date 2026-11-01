@@ -72,10 +72,12 @@ run_scenario() {
   existing_num="$2"
   log="$script_dir/log-$3"
   : > "$log"
+  # As Actions runs a `run:` step: bash -e. The step is bash (pipefail, <<<),
+  # and `sh` is dash on ubuntu-latest, where it fails before doing anything.
   MOCK_PR_COUNT="$pr_count" MOCK_EXISTING_NUM="$existing_num" MOCK_LOG="$log" \
     GH_TOKEN=fake REPO=owner/repo \
     PATH="$script_dir:$PATH" \
-    sh "$script_dir/run.sh" > "$script_dir/stdout-$3" 2>&1 || true
+    bash -e "$script_dir/run.sh" > "$script_dir/stdout-$3" 2>&1 || true
 }
 
 # 1. No open majors, no existing issue this month → no issue is created.
