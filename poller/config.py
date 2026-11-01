@@ -224,6 +224,8 @@ class AnthropicConfig:
     ``api_key`` wins if set; otherwise ``federation_rule_id`` (with
     ``organization_id``) selects Workload Identity Federation. ``service_account_id``
     and ``workspace_id`` are optional narrowing on the federation exchange.
+    ``oidc_request_url``/``oidc_request_token`` are the Actions runner's handle for
+    minting the GitHub OIDC token that exchange consumes.
     """
 
     api_key: str | None
@@ -231,15 +233,20 @@ class AnthropicConfig:
     organization_id: str | None
     service_account_id: str | None
     workspace_id: str | None
+    oidc_request_url: str | None
+    oidc_request_token: str | None
 
 
 def load_anthropic_config() -> AnthropicConfig:
     """Read Anthropic auth: ``ANTHROPIC_API_KEY`` or ``ANTHROPIC_FEDERATION_RULE_ID``
-    (with ``ANTHROPIC_ORGANIZATION_ID``), raising if neither path is configured.
+    (with ``ANTHROPIC_ORGANIZATION_ID`` and the Actions OIDC request vars), raising if
+    neither path is fully configured.
     """
     api_key = os.environ.get("ANTHROPIC_API_KEY") or None
     federation_rule_id = os.environ.get("ANTHROPIC_FEDERATION_RULE_ID") or None
     organization_id = os.environ.get("ANTHROPIC_ORGANIZATION_ID") or None
+    oidc_request_url = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL") or None
+    oidc_request_token = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN") or None
     if not api_key and not federation_rule_id:
         raise ConfigError(
             "missing required env var for Claude batch poll: ANTHROPIC_API_KEY "
@@ -250,12 +257,28 @@ def load_anthropic_config() -> AnthropicConfig:
             "missing required env var for Claude batch poll: ANTHROPIC_ORGANIZATION_ID "
             "(required alongside ANTHROPIC_FEDERATION_RULE_ID)"
         )
+    if not api_key:
+        missing = [
+            var
+            for var, value in (
+                ("ACTIONS_ID_TOKEN_REQUEST_URL", oidc_request_url),
+                ("ACTIONS_ID_TOKEN_REQUEST_TOKEN", oidc_request_token),
+            )
+            if not value
+        ]
+        if missing:
+            raise ConfigError(
+                f"missing required env var(s) for Claude batch poll: {', '.join(missing)} "
+                "(set by the Actions runner only when the job has `permissions: id-token: write`)"
+            )
     return AnthropicConfig(
         api_key=api_key,
         federation_rule_id=federation_rule_id,
         organization_id=organization_id,
         service_account_id=os.environ.get("ANTHROPIC_SERVICE_ACCOUNT_ID") or None,
         workspace_id=os.environ.get("ANTHROPIC_WORKSPACE_ID") or None,
+        oidc_request_url=oidc_request_url,
+        oidc_request_token=oidc_request_token,
     )
 
 

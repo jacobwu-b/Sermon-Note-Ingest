@@ -264,6 +264,8 @@ def _clear_anthropic_env(monkeypatch):
         "ANTHROPIC_ORGANIZATION_ID",
         "ANTHROPIC_SERVICE_ACCOUNT_ID",
         "ANTHROPIC_WORKSPACE_ID",
+        "ACTIONS_ID_TOKEN_REQUEST_URL",
+        "ACTIONS_ID_TOKEN_REQUEST_TOKEN",
     ):
         monkeypatch.delenv(var, raising=False)
 
@@ -277,6 +279,8 @@ def test_load_anthropic_config_reads_the_api_key(monkeypatch):
         organization_id=None,
         service_account_id=None,
         workspace_id=None,
+        oidc_request_url=None,
+        oidc_request_token=None,
     )
 
 
@@ -286,12 +290,16 @@ def test_load_anthropic_config_reads_federation_vars_when_no_api_key(monkeypatch
     monkeypatch.setenv("ANTHROPIC_ORGANIZATION_ID", "org_123")
     monkeypatch.setenv("ANTHROPIC_SERVICE_ACCOUNT_ID", "svac_123")
     monkeypatch.setenv("ANTHROPIC_WORKSPACE_ID", "wrkspc_123")
+    monkeypatch.setenv("ACTIONS_ID_TOKEN_REQUEST_URL", "https://pipelines.actions.githubusercontent.com/oidc")
+    monkeypatch.setenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN", "actions-req-token")
     assert config.load_anthropic_config() == config.AnthropicConfig(
         api_key=None,
         federation_rule_id="fdrl_123",
         organization_id="org_123",
         service_account_id="svac_123",
         workspace_id="wrkspc_123",
+        oidc_request_url="https://pipelines.actions.githubusercontent.com/oidc",
+        oidc_request_token="actions-req-token",
     )
 
 
@@ -315,6 +323,28 @@ def test_load_anthropic_config_raises_when_federation_rule_missing_organization_
     monkeypatch.setenv("ANTHROPIC_FEDERATION_RULE_ID", "fdrl_123")
     with pytest.raises(config.ConfigError, match="ANTHROPIC_ORGANIZATION_ID"):
         config.load_anthropic_config()
+
+
+@pytest.mark.parametrize("missing", ["ACTIONS_ID_TOKEN_REQUEST_URL", "ACTIONS_ID_TOKEN_REQUEST_TOKEN"])
+def test_load_anthropic_config_raises_when_federation_has_no_actions_oidc_request(monkeypatch, missing):
+    # A local run, or a job without `permissions: id-token: write`, has the federation
+    # vars but no way to mint the GitHub OIDC token the exchange needs.
+    _clear_anthropic_env(monkeypatch)
+    monkeypatch.setenv("ANTHROPIC_FEDERATION_RULE_ID", "fdrl_123")
+    monkeypatch.setenv("ANTHROPIC_ORGANIZATION_ID", "org_123")
+    monkeypatch.setenv("ACTIONS_ID_TOKEN_REQUEST_URL", "https://pipelines.actions.githubusercontent.com/oidc")
+    monkeypatch.setenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN", "actions-req-token")
+    monkeypatch.delenv(missing)
+    with pytest.raises(config.ConfigError, match=missing):
+        config.load_anthropic_config()
+
+
+def test_load_anthropic_config_api_key_path_needs_no_actions_oidc_request(monkeypatch):
+    _clear_anthropic_env(monkeypatch)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-123")
+    monkeypatch.setenv("ANTHROPIC_FEDERATION_RULE_ID", "fdrl_123")
+    monkeypatch.setenv("ANTHROPIC_ORGANIZATION_ID", "org_123")
+    assert config.load_anthropic_config().api_key == "sk-ant-123"
 
 
 def test_load_log_level_defaults_to_info(monkeypatch):
