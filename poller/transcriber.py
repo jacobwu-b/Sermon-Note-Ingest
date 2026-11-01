@@ -650,7 +650,7 @@ def _mark_from_trailers(
     try:
         profile = {key: json.loads(trailers[name]) for key, name in _PROFILE_TRAILERS.items()}
         counts = {key: json.loads(trailers[name]) for key, name in _QUALITY_TRAILERS.items()}
-    except (KeyError, json.JSONDecodeError):
+    except KeyError, json.JSONDecodeError:
         return None
     return {
         "kind": "retranscribed",

@@ -523,7 +523,7 @@ def validate_all() -> list[str]:
         try:
             with path.open(encoding="utf-8") as f:
                 json.load(f)
-        except (OSError, json.JSONDecodeError):
+        except OSError, json.JSONDecodeError:
             bad.append(path.relative_to(DATA_DIR).as_posix())
     return bad
 

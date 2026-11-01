@@ -77,13 +77,13 @@ def http_head_last_modified(url: str, *, user_agent: str = DEFAULT_USER_AGENT) -
     try:
         with urllib.request.urlopen(request, timeout=_TIMEOUT) as response:
             raw = response.headers.get("Last-Modified")
-    except (urllib.error.URLError, OSError):
+    except urllib.error.URLError, OSError:
         return None
     if not raw:
         return None
     try:
         when = parsedate_to_datetime(raw)
-    except (ValueError, TypeError):
+    except ValueError, TypeError:
         return None
     return when if when.tzinfo is not None else when.replace(tzinfo=UTC)
 

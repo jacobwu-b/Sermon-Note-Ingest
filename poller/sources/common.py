@@ -21,7 +21,7 @@ def parse_pubdate(raw: str | None) -> tuple[str, int]:
         return "", -1
     try:
         when = parsedate_to_datetime(raw)
-    except (ValueError, TypeError):
+    except ValueError, TypeError:
         return "", -1
     return when.date().isoformat(), when.weekday()
 
@@ -32,7 +32,7 @@ def parse_pubdate_at(raw: str | None) -> datetime | None:
         return None
     try:
         when = parsedate_to_datetime(raw)
-    except (ValueError, TypeError):
+    except ValueError, TypeError:
         return None
     return when if when.tzinfo is not None else when.replace(tzinfo=UTC)
 

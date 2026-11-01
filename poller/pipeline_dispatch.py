@@ -86,6 +86,6 @@ def has_active_run(*, config: PipelineConfig) -> bool:
                     return False
                 if json.loads(response.read())["total_count"] > 0:
                     return True
-        except (urllib.error.URLError, json.JSONDecodeError, KeyError, TypeError):
+        except urllib.error.URLError, json.JSONDecodeError, KeyError, TypeError:
             return False
     return False
