@@ -31,7 +31,6 @@ from __future__ import annotations
 
 import argparse
 import dataclasses
-import json
 import logging
 import re
 import sys
@@ -164,7 +163,6 @@ def transcribe_church(
     fetch_existing: FetchExisting = content_repo.existing_transcripts,
     vocabulary: Sequence[str] = (),
     pipeline_enabled: bool = True,
-    marks_out: dict[str, dict] | None = None,
     send_quality_alert: SendQualityAlert = _send_quality_alert,
 ) -> bool:
     """Transcribe ``batch``, push the successes to Content in one commit, then ledger them.
@@ -189,15 +187,6 @@ def transcribe_church(
     what ``records`` already knows about the church. ``pipeline_enabled`` is False for a
     church Pipeline does not run: it is transcribed, but Pipeline is not dispatched, since
     its plan has no ledger record to fan out and would report a broken handoff.
-
-    ``marks_out``, when given, is filled with every ledger mutation this call actually
-    durably makes (guid -> ``{"kind": "done", ...mark_transcribed kwargs}``, its
-    ``profile`` and ``quality`` as plain dicts, or
-    ``{"kind": "failed", "error": ...}``, or ``{"kind": "download_failed"}``) — never a
-    transcription whose Content push didn't succeed.
-    :func:`replay_marks` re-applies this record verbatim onto a freshly-loaded ledger, so
-    transcribe.yml's push-conflict recovery never has to re-run Whisper or re-push Content
-    just to recover from a losing ``data/*.json`` race (issue #60).
     """
     to_push: dict[str, str] = {}
     pending_marks: dict[str, tuple[str, str, dict[str, object], quality.QualityScore]] = {}
@@ -231,16 +220,6 @@ def transcribe_church(
                 profile=None,
                 adopted=True,
             )
-            if marks_out is not None:
-                marks_out[guid] = {
-                    "kind": "done",
-                    "content_path": path,
-                    "transcript_hash": adopted_hash,
-                    "transcribed_at": adopted_at,
-                    "profile": None,
-                    "adopted": True,
-                    "quality": None,
-                }
             continue
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
         logger.debug("%s/%s: hotwords: %s", name, guid, hotwords)
@@ -249,8 +228,6 @@ def transcribe_church(
         except net.AudioDownloadError as exc:
             logger.warning("%s/%s: audio download failed, retrying next run: %s", name, guid, exc)
             store.mark_download_failed(record)
-            if marks_out is not None:
-                marks_out[guid] = {"kind": "download_failed"}
             continue
         except (transcribe.TranscriptionError, transcribe.EmptyTranscriptError) as exc:
             logger.warning("%s/%s: transcription failed terminally: %s", name, guid, exc)
@@ -260,8 +237,6 @@ def transcribe_church(
                 else store.TRANSCRIPTION_ERROR
             )
             store.mark_transcription_failed(record, error=error)
-            if marks_out is not None:
-                marks_out[guid] = {"kind": "failed", "error": error}
             all_ok = False
             continue
         to_push[path] = text
@@ -293,16 +268,6 @@ def transcribe_church(
                 profile=profile,
                 quality=counts,
             )
-            if marks_out is not None:
-                marks_out[guid] = {
-                    "kind": "done",
-                    "content_path": path,
-                    "transcript_hash": digest,
-                    "transcribed_at": transcribed_at,
-                    "profile": profile,
-                    "adopted": False,
-                    "quality": counts,
-                }
             tripped = quality.flags(score)
             if tripped:
                 logger.warning(
@@ -354,68 +319,6 @@ def transcribe_church(
     return all_ok
 
 
-def replay_marks(path: str) -> bool:
-    """Re-apply a JSON marks file (:func:`transcribe_church`'s ``marks_out``) onto a
-    freshly-loaded ledger — no transcription, no Content push.
-
-    Used by transcribe.yml's push-conflict recovery (issue #60): after a genuine
-    ``git rebase`` conflict against ``origin/main``, ``git reset --hard`` discards this
-    shard's local ledger commit, but the marks it already durably pushed to Content
-    (or the model failures it already hit) must not be redone from scratch — that
-    re-runs Whisper on the whole batch and can push a second, differently-worded
-    version of a transcript Pipeline may have already consumed. Replaying is a pure,
-    idempotent record-level merge: a guid missing from the freshly-loaded ledger (e.g.
-    manually removed) is skipped with a warning rather than raised.
-    """
-    try:
-        with open(path, encoding="utf-8") as f:
-            marks: dict[str, dict[str, dict]] = json.load(f)
-    except (OSError, json.JSONDecodeError) as exc:
-        logger.error("replay-marks: could not read %s: %s", path, exc)
-        return False
-
-    for church, guid_marks in marks.items():
-        records = store.load(church)
-        for guid, fields in guid_marks.items():
-            record = records.get(guid)
-            if record is None:
-                logger.warning("%s/%s: replay-marks: guid not in ledger, skipping", church, guid)
-                continue
-            kind = fields.get("kind")
-            if kind == "done":
-                # A marks file from before ADR-0022 carries only the ADR-0012 pair; the rest is unknown.
-                profile = (
-                    fields["profile"]
-                    if "profile" in fields
-                    else {"model": fields["model"], "domain_prompt": fields["domain_prompt"]}
-                )
-                store.mark_transcribed(
-                    record,
-                    content_path=fields["content_path"],
-                    transcript_hash=fields["transcript_hash"],
-                    transcribed_at=fields["transcribed_at"],
-                    profile=profile,
-                    adopted=fields.get("adopted", False),
-                    # A marks file from before ADR-0023 carries no counts: not scored.
-                    quality=fields.get("quality"),
-                )
-            elif kind == "failed":
-                # A marks file from before ADR-0018 carries no reason; the model is all it covered.
-                store.mark_transcription_failed(record, error=fields.get("error", store.TRANSCRIPTION_ERROR))
-            elif kind == "download_failed":
-                store.mark_download_failed(record)
-            elif kind in ("retranscribed", "retranscribe_failed"):
-                if not retranscribe.apply_mark(record, fields):
-                    logger.warning(
-                        "%s/%s: replay-marks: transcript hash moved since the attempt, skipping", church, guid
-                    )
-            else:
-                logger.warning("%s/%s: replay-marks: unknown mark kind %r, skipping", church, guid, kind)
-                continue
-        store.save(church, records)
-    return True
-
-
 def count_in_scope(
     *,
     church_names: list[str] | None,
@@ -448,7 +351,6 @@ def run(
     push: PushTranscripts = content_repo.push_transcripts,
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
     fetch_existing: FetchExisting = content_repo.existing_transcripts,
-    marks_out: dict[str, dict[str, dict]] | None = None,
     send_quality_alert: SendQualityAlert = _send_quality_alert,
 ) -> bool:
     """Transcribe at most ``limit`` pending sermons per selected church.
@@ -463,10 +365,6 @@ def run(
     ``send_quality_alert`` are threaded through to :func:`transcribe_church` rather than
     relied on as its defaults, so a caller (or a test) can replace them without reaching
     into another module's attributes.
-
-    ``marks_out``, when given, is filled per church with this run's
-    :func:`transcribe_church` marks (see there) for :func:`replay_marks` to later
-    re-apply without redoing any transcription or Content push.
     """
     selected = selection.selected_churches(church_names)
     if not selected:
@@ -493,7 +391,6 @@ def run(
                 fetch_existing=fetch_existing,
                 vocabulary=selected[name].vocabulary,
                 pipeline_enabled=selected[name].pipeline_enabled,
-                marks_out=marks_out.setdefault(name, {}) if marks_out is not None else None,
                 send_quality_alert=send_quality_alert,
             )
         except Exception:
@@ -539,21 +436,6 @@ def main(argv: list[str] | None = None) -> int:
         help="Number of disjoint shards to split the selection into (default: 1, i.e. no sharding).",
     )
     parser.add_argument(
-        "--marks-out",
-        help=(
-            "Write a JSON record of every mark this run applied (guid -> done/failed "
-            "fields) to this path. Used by transcribe.yml's push-conflict recovery."
-        ),
-    )
-    parser.add_argument(
-        "--replay-marks",
-        help=(
-            "Re-apply a --marks-out file onto a freshly-loaded ledger and exit — no "
-            "transcription, no Content push. Used by transcribe.yml's push-conflict "
-            "recovery after a git reset --hard discards this shard's local commit."
-        ),
-    )
-    parser.add_argument(
         "--retranscribe-stale",
         action="store_true",
         help=(
@@ -580,9 +462,6 @@ def main(argv: list[str] | None = None) -> int:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    if args.replay_marks:
-        return 0 if replay_marks(args.replay_marks) else 1
-
     if args.limit <= 0:
         parser.error("--limit must be a positive integer")
     if (args.guids or args.summary_md) and not args.retranscribe_stale:
@@ -606,7 +485,6 @@ def main(argv: list[str] | None = None) -> int:
     if not 0 <= args.shard_index < args.shard_count:
         parser.error("--shard-index must be in [0, --shard-count)")
 
-    marks: dict[str, dict[str, dict]] = {}
     if args.retranscribe_stale:
         rows: list[retranscribe.SummaryRow] = []
         ok = retranscribe.run_retranscribe(
@@ -615,7 +493,6 @@ def main(argv: list[str] | None = None) -> int:
             guids=args.guids,
             shard_index=args.shard_index,
             shard_count=args.shard_count,
-            marks_out=marks,
             summary_rows=rows,
         )
         for row in rows:
@@ -631,11 +508,7 @@ def main(argv: list[str] | None = None) -> int:
             limit=args.limit,
             shard_index=args.shard_index,
             shard_count=args.shard_count,
-            marks_out=marks if args.marks_out else None,
         )
-    if args.marks_out:
-        with open(args.marks_out, "w", encoding="utf-8") as f:
-            json.dump(marks, f)
     return 0 if ok else 1
 
 

@@ -1,10 +1,9 @@
-"""``--retranscribe-stale`` (ADR-0022): selection, the per-sermon flow, marks and replay.
+"""``--retranscribe-stale`` (ADR-0022): selection, the per-sermon flow and its ledger marks.
 
 Synthetic sermon-like text only; real transcripts never enter this repo (ADR-0004).
 """
 
 import dataclasses
-import json
 import logging
 
 import pytest
@@ -283,7 +282,7 @@ def _raises(exc):
     return fake
 
 
-def _run(content: _Content, transcribe_audio, *, marks=None, rows=None, guids=None) -> bool:
+def _run(content: _Content, transcribe_audio, *, rows=None, guids=None) -> bool:
     return retranscribe.run_retranscribe(
         church_names=None,
         limit=5,
@@ -293,7 +292,6 @@ def _run(content: _Content, transcribe_audio, *, marks=None, rows=None, guids=No
         last_commit_trailers=content.last_commit_trailers,
         replace=content.replace,
         keep_candidate=content.keep_candidate,
-        marks_out=marks,
         summary_rows=rows,
     )
 
@@ -527,12 +525,10 @@ def test_an_exhausted_replacement_push_leaves_the_ledger_untouched_and_fails_the
     before = dict(record)
     content = _Content({path: _OLD_TEXT})
     content.replace_error = content_repo.ContentPublishError("content replace failed after 5 attempts")
-    marks: dict = {}
 
-    assert _run(content, _transcribes(_NEW_TEXT), marks=marks) is False
+    assert _run(content, _transcribes(_NEW_TEXT)) is False
 
     assert store.load("menlo")["g1"] == before
-    assert marks.get("menlo", {}) == {}
 
 
 def test_an_exhausted_candidate_push_leaves_the_ledger_untouched_so_the_next_run_redoes_it():
@@ -571,57 +567,53 @@ def test_guid_narrows_the_pass_to_the_named_sermons():
     assert [p for p, *_ in content.replaced] == [_done("a")["content_path"]]
 
 
-# --- Marks and replay ---------------------------------------------------------------------
+# --- Marks --------------------------------------------------------------------------------
 
 
-def _marks_for(content: _Content, transcribe_audio) -> dict:
-    marks: dict = {}
-    _run(content, transcribe_audio, marks=marks)
-    return json.loads(json.dumps(marks))
+def _mark_for(monkeypatch, content: _Content, transcribe_audio) -> dict:
+    marks = []
+    apply_mark = retranscribe.apply_mark
+    monkeypatch.setattr(
+        retranscribe, "apply_mark", lambda record, mark: marks.append(mark) or apply_mark(record, mark)
+    )
+    _run(content, transcribe_audio)
+    [mark] = marks
+    return mark
 
 
-def test_replaying_a_replacement_mark_onto_a_ledger_that_lost_it_restores_it(tmp_path):
+def test_applying_a_replacement_mark_twice_leaves_the_record_as_the_first_did(monkeypatch):
     record, path = _one_stale_sermon()
     before = dict(record)
-    marks = _marks_for(_Content({path: _OLD_TEXT}), _transcribes(_NEW_TEXT))
+    mark = _mark_for(monkeypatch, _Content({path: _OLD_TEXT}), _transcribes(_NEW_TEXT))
     after = store.load("menlo")["g1"]
-    _save("menlo", {"g1": before})
-    marks_file = tmp_path / "marks.json"
-    marks_file.write_text(json.dumps(marks))
 
-    assert transcriber.replay_marks(str(marks_file)) is True
-    assert store.load("menlo")["g1"] == after
-    assert transcriber.replay_marks(str(marks_file)) is True
-    assert store.load("menlo")["g1"] == after
+    again = dict(before)
+    assert retranscribe.apply_mark(again, mark) is True
+    assert again == after
+    assert retranscribe.apply_mark(again, mark) is True
+    assert again == after
 
 
-def test_a_replacement_mark_is_not_replayed_over_a_hash_that_has_since_moved(tmp_path):
+def test_a_replacement_mark_is_not_applied_over_a_hash_that_has_since_moved(monkeypatch):
     record, path = _one_stale_sermon()
-    marks = _marks_for(_Content({path: _OLD_TEXT}), _transcribes(_NEW_TEXT))
+    mark = _mark_for(monkeypatch, _Content({path: _OLD_TEXT}), _transcribes(_NEW_TEXT))
     moved = {**record, "transcript_hash": "someone-elses-hash"}
-    _save("menlo", {"g1": moved})
-    marks_file = tmp_path / "marks.json"
-    marks_file.write_text(json.dumps(marks))
 
-    assert transcriber.replay_marks(str(marks_file)) is True
-    assert store.load("menlo")["g1"] == moved
+    assert retranscribe.apply_mark(moved, mark) is False
+    assert moved == {**record, "transcript_hash": "someone-elses-hash"}
 
 
-def test_a_failure_mark_replays_only_onto_the_hash_the_attempt_saw(tmp_path):
+def test_a_failure_mark_applies_only_onto_the_hash_the_attempt_saw(monkeypatch):
     record, path = _one_stale_sermon()
-    content = _Content({path: _OLD_TEXT})
-    marks = _marks_for(content, _transcribes(_WORSE_TEXT))
-    marks_file = tmp_path / "marks.json"
-    marks_file.write_text(json.dumps(marks))
+    mark = _mark_for(monkeypatch, _Content({path: _OLD_TEXT}), _transcribes(_WORSE_TEXT))
 
-    _save("menlo", {"g1": dict(record)})
-    assert transcriber.replay_marks(str(marks_file)) is True
-    assert store.load("menlo")["g1"]["retranscription_last_error"] == store.QUALITY_REGRESSION_ERROR
+    seen = dict(record)
+    assert retranscribe.apply_mark(seen, mark) is True
+    assert seen["retranscription_last_error"] == store.QUALITY_REGRESSION_ERROR
 
     moved = {**record, "transcript_hash": "someone-elses-hash"}
-    _save("menlo", {"g1": moved})
-    assert transcriber.replay_marks(str(marks_file)) is True
-    assert store.load("menlo")["g1"] == moved
+    assert retranscribe.apply_mark(moved, mark) is False
+    assert moved == {**record, "transcript_hash": "someone-elses-hash"}
 
 
 # --- Observability ------------------------------------------------------------------------
@@ -675,18 +667,16 @@ def test_main_counts_stale_sermons_in_scope_for_the_plan_job(capsys):
     assert capsys.readouterr().out.strip() == "1"
 
 
-def test_main_passes_its_arguments_through_and_writes_the_summary_and_marks_files(tmp_path, monkeypatch):
+def test_main_passes_its_arguments_through_and_writes_the_summary_file(tmp_path, monkeypatch):
     calls = []
 
     def fake_run(**kwargs):
         calls.append(kwargs)
-        kwargs["marks_out"].setdefault("menlo", {})["g1"] = {"kind": "retranscribed"}
         kwargs["summary_rows"].append(retranscribe.SummaryRow(church="menlo", guid="g1", outcome="replaced"))
         return True
 
     monkeypatch.setattr(retranscribe, "run_retranscribe", fake_run)
     summary = tmp_path / "summary.md"
-    marks = tmp_path / "marks.json"
 
     code = transcriber.main(
         [
@@ -703,8 +693,6 @@ def test_main_passes_its_arguments_through_and_writes_the_summary_and_marks_file
             "2",
             "--summary-md",
             str(summary),
-            "--marks-out",
-            str(marks),
         ]
     )
 
@@ -717,7 +705,6 @@ def test_main_passes_its_arguments_through_and_writes_the_summary_and_marks_file
         2,
     )
     assert "| menlo | g1 | replaced |" in summary.read_text()
-    assert json.loads(marks.read_text()) == {"menlo": {"g1": {"kind": "retranscribed"}}}
 
 
 def test_main_returns_non_zero_when_the_pass_needs_a_human(tmp_path, monkeypatch):
