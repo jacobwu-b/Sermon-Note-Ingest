@@ -138,10 +138,20 @@ jobs:
         # notification failed): poll_church() writes each church's ledger to
         # disk before attempting to notify, so a failure for one church must
         # not discard every church's discovered sermons for the run.
+        #
+        # transcribe.yml shards push data/ too, so a rejected push is expected: rebase onto
+        # the fresh tip, and only on a real conflict re-poll against it. A rejection left
+        # unhandled loses this run's ledger writes, and the next run re-sends their emails.
+        # The re-poll keeps --backfill/--church, or a backfill would email the back-catalog.
+        # It re-sends this run's emails too, so it is the fallback, not the first resort.
         if: always()
+        env:
+          BACKFILL: ${{ inputs.backfill }}
+          CHURCH: ${{ inputs.church }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          attempts=3
           python -m poller.store validate
           git add data/
           if git diff --cached --quiet; then
@@ -149,7 +159,39 @@ jobs:
             exit 0
           fi
           git commit -m "chore(data): record poll results [skip ci]"
-          git push
+          for attempt in $(seq 1 "$attempts"); do
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            echo "push rejected (attempt $attempt/$attempts); rebasing onto latest $GITHUB_REF_NAME and retrying"
+            git fetch origin "$GITHUB_REF_NAME"
+            if git rebase "origin/$GITHUB_REF_NAME"; then
+              python -m poller.store validate
+              continue
+            fi
+            echo "rebase conflicted; re-polling against latest $GITHUB_REF_NAME"
+            git rebase --abort
+            git reset --hard "origin/$GITHUB_REF_NAME"
+            args=()
+            if [ "$BACKFILL" = "true" ]; then
+              args+=(--backfill)
+            fi
+            if [ -n "$CHURCH" ]; then
+              args+=(--church "$CHURCH")
+            fi
+            if ! python -m poller.runner "${args[@]}"; then
+              echo "::warning::re-poll exited non-zero; committing whatever it recorded"
+            fi
+            python -m poller.store validate
+            git add data/
+            if git diff --cached --quiet; then
+              echo "Nothing left to record after re-polling."
+              exit 0
+            fi
+            git commit -m "chore(data): record poll results [skip ci]"
+          done
+          echo "::error::failed to push ledger update after $attempts attempts"
+          exit 1
 
       - name: Dispatch transcription for newly-discovered churches
         # Best-effort latency optimization, not a correctness dependency (ADR-0007):
