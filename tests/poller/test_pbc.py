@@ -1,5 +1,10 @@
+import functools
+import io
+import urllib.error
 from datetime import UTC, datetime
 
+from poller import net
+from poller.sources import pbc
 from poller.sources.base import SermonItem
 from poller.sources.pbc import (
     PbcAdapter,
@@ -21,6 +26,34 @@ _SERMONS_PAGE_HTML = b"""
   <a href="?enmse_mid=4690">Watch</a>
 </div>
 """
+
+_FEED_URL = "https://pbc.org/?feed=seriesengine&enmse_pid=9000"
+_SERMONS_URL = "https://pbc.org/sermons/"
+_FEED_XML = b"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>PBC Sermons</title>
+<item>
+  <title>No Middle Ground - Luke</title>
+  <guid>https://pbc.org/?enmse_mid=4690</guid>
+  <link>https://pbc.org/?enmse=1&amp;enmse_mid=4690</link>
+  <pubDate>Sun, 06 Sep 2026 17:00:00 +0000</pubDate>
+  <enclosure url="https://cdn.pbc.org/Main_Service/2026/09/06/No_Middle_Ground.mp3" type="audio/mpeg" length="1"/>
+</item>
+</channel></rss>"""
+
+
+def _serve(monkeypatch, pages: dict[str, bytes]) -> dict[str, str | None]:
+    """Answer ``urlopen`` from ``pages`` (unknown URLs fail) and record each request's User-Agent."""
+    seen: dict[str, str | None] = {}
+
+    def fake_urlopen(request, timeout=None):
+        seen[request.full_url] = request.get_header("User-agent")
+        if request.full_url not in pages:
+            raise urllib.error.URLError("connection refused")
+        return io.BytesIO(pages[request.full_url])
+
+    monkeypatch.setattr(net.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(pbc, "fetch_feed", functools.partial(net.fetch_feed, sleep=lambda _: None))
+    return seen
 
 
 def _item(*, episode_url: str, audio_url: str = "https://cdn.pbc.org/Main_Service/ep.mp3") -> SermonItem:
@@ -114,3 +147,22 @@ def test_resolve_feed_published_at_falls_back_to_cdn_last_modified_when_mid_not_
     item = _item(episode_url="https://pbc.org/sermons?enmse=1&enmse_am=1&enmse_mid=9999")
 
     assert adapter.resolve_feed_published_at(item) == fallback
+
+
+def test_poll_identifies_itself_with_the_project_user_agent_on_the_feed_and_sermons_page(monkeypatch):
+    seen = _serve(monkeypatch, {_FEED_URL: _FEED_XML, _SERMONS_URL: _SERMONS_PAGE_HTML})
+
+    result = PbcAdapter(url=_FEED_URL, sermons_url=_SERMONS_URL).poll()
+
+    assert seen == {_FEED_URL: net.DEFAULT_USER_AGENT, _SERMONS_URL: net.DEFAULT_USER_AGENT}
+    assert [item.speaker for item in result.items] == ["Dan Westman"]
+
+
+def test_poll_warns_and_still_returns_feed_items_when_the_sermons_page_fetch_fails(monkeypatch, caplog):
+    _serve(monkeypatch, {_FEED_URL: _FEED_XML})
+
+    with caplog.at_level("WARNING", logger="poller"):
+        result = PbcAdapter(url=_FEED_URL, sermons_url=_SERMONS_URL).poll()
+
+    assert [(item.title, item.speaker) for item in result.items] == [("No Middle Ground", None)]
+    assert any(_SERMONS_URL in record.getMessage() for record in caplog.records)

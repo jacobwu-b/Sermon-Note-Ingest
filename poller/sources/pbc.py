@@ -18,11 +18,16 @@ Two enrichments this adapter does that no other church needs:
   after the sermon actually aired (issue #73). ``resolve_feed_published_at`` prefers
   that scraped date and falls back to the CDN header only for a guid that has
   scrolled off the page's limited recent window by the time it's first seen.
+
+Both pbc.org fetches send the project's own ``DEFAULT_USER_AGENT``: the site
+served the feed and sermons page to it identically to a browser agent when
+checked (October 2026), so there is no reason to disguise the poller.
 """
 
 from __future__ import annotations
 
 import dataclasses
+import logging
 import re
 import urllib.parse
 from collections.abc import Callable
@@ -31,15 +36,12 @@ from typing import Any
 
 import feedparser
 
-from poller.net import FeedFetchError, fetch_feed, http_get, http_head_last_modified
+from poller.net import FeedFetchError, fetch_feed, http_head_last_modified
 from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 from poller.sources.common import entry_audio_url, entry_has_identity, excluded_entry, parse_pubdate
 
-# A real-browser User-Agent: PBC sits behind a CDN/WAF that can reject bot-shaped agents.
-_USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-)
+logger = logging.getLogger("poller")
+
 _MAIN_SERVICE_SEGMENT = "/Main_Service/"
 _TITLE_SERIES_SEP = " - "
 _SUNDAY = 6
@@ -62,10 +64,6 @@ _SERMONS_PAGE_CARD_RE = re.compile(
     re.DOTALL,
 )
 _SERMONS_PAGE_DATE_FORMAT = "%B %d, %Y"
-
-
-def _fetch(url: str) -> bytes:
-    return fetch_feed(url, get=lambda target: http_get(target, user_agent=_USER_AGENT))
 
 
 def _mid_from_url(url: str) -> str | None:
@@ -178,11 +176,13 @@ class PbcAdapter(SourceAdapter):
     def _fetch_sermons_page(self) -> tuple[dict[str, str], dict[str, datetime]]:
         """Best-effort mid-to-speaker and mid-to-date mappings; never blocks discovery on failure."""
         try:
-            content = fetch_feed(
+            content = fetch_feed(self._sermons_url)
+        except FeedFetchError as exc:
+            logger.warning(
+                "pbc: sermons page %s unavailable, polling without speakers or air dates: %s",
                 self._sermons_url,
-                get=lambda target: http_get(target, user_agent=_USER_AGENT),
+                exc,
             )
-        except FeedFetchError:
             return {}, {}
         return parse_sermons_page_speakers(content), parse_sermons_page_dates(content)
 
@@ -204,7 +204,7 @@ class PbcAdapter(SourceAdapter):
 
     def poll(self) -> PollResult:
         try:
-            content = _fetch(self.url)
+            content = fetch_feed(self.url)
         except FeedFetchError:
             return PollResult(deferred=True)
 
