@@ -160,9 +160,9 @@ POLL_WORKFLOW = WORKFLOWS_DIR / "poll.yml"
 
 
 def test_poll_workflow_installs_the_poll_lock_not_the_transcription_stack() -> None:
-    # The poll runs every few minutes with the deploy key and every notify/dispatch secret
-    # in its environment; installing faster-whisper's ~30 packages there buys only PyPI
-    # outages and third-party code next to those credentials.
+    # The poll runs every few minutes with every notify/dispatch secret in its environment;
+    # installing faster-whisper's ~30 packages there buys only PyPI outages and third-party
+    # code next to those credentials.
     installs = PIP_INSTALL_RE.findall(POLL_WORKFLOW.read_text())
     assert installs == ["--require-hashes -r requirements-poll.txt"]
 
@@ -179,7 +179,7 @@ def test_poll_workflow_pip_cache_is_keyed_on_the_lock_it_installs() -> None:
 def test_every_third_party_import_on_the_poll_path_is_in_the_poll_lock() -> None:
     # Walks lazy imports too (anthropic is one), which a runtime import check would miss.
     entrypoints = sorted(set(re.findall(r"python -m (poller\.\w+)", POLL_WORKFLOW.read_text())))
-    assert entrypoints == ["poller.runner", "poller.store"]
+    assert entrypoints == ["poller.ledger_push", "poller.runner"]
     imports = _third_party_imports_reachable_from(entrypoints)
     assert {"feedparser", "anthropic"} <= imports, f"walk found too little to trust: {imports}"
     locked = set(_locked_versions("requirements-poll.txt"))

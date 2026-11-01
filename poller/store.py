@@ -27,10 +27,14 @@ import os
 import sys
 from collections.abc import Mapping
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from poller.quality import QualityScore
-from poller.sources.base import SermonItem
+
+# Annotations only: importing poller.sources loads every adapter and feedparser, and the push
+# job loads this module without site-packages (ADR-0027).
+if TYPE_CHECKING:
+    from poller.sources.base import SermonItem
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
