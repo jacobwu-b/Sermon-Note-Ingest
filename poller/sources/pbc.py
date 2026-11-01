@@ -38,13 +38,12 @@ import feedparser
 
 from poller.net import FeedFetchError, fetch_feed, http_head_last_modified
 from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
-from poller.sources.common import entry_audio_url, entry_has_identity, excluded_entry, parse_pubdate
+from poller.sources.common import SUNDAY, entry_audio_url, entry_has_identity, excluded_entry, parse_pubdate
 
 logger = logging.getLogger("poller")
 
 _MAIN_SERVICE_SEGMENT = "/Main_Service/"
 _TITLE_SERIES_SEP = " - "
-_SUNDAY = 6
 _DEFAULT_SERMONS_URL = "https://pbc.org/sermons/"
 
 # The feed's own <link> does not resolve to the episode on pbc.org's current
@@ -148,7 +147,7 @@ def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int, str | None]], li
 
 def is_main_sunday_sermon(audio_url: str, weekday: int) -> bool:
     """Whether an item is PBC's main Sunday sermon: ``Main_Service`` audio + Sunday."""
-    return _MAIN_SERVICE_SEGMENT in audio_url and weekday == _SUNDAY
+    return _MAIN_SERVICE_SEGMENT in audio_url and weekday == SUNDAY
 
 
 class PbcAdapter(SourceAdapter):

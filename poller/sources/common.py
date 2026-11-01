@@ -8,7 +8,8 @@ from typing import Any
 
 from poller.sources.base import ExcludedItem, SermonItem
 
-_SUNDAY = 6
+# The email.utils and date.weekday() convention, Monday == 0.
+SUNDAY = 6
 
 
 def parse_pubdate(raw: str | None) -> tuple[str, int]:
@@ -61,13 +62,18 @@ def _thanksgiving(year: int) -> date:
     return first + timedelta(days=(3 - first.weekday()) % 7 + 21)
 
 
+def sunday_on_or_before(day: date) -> date:
+    """The Sunday that starts ``day``'s week: ``day`` itself when it is a Sunday."""
+    return day - timedelta(days=(day.weekday() + 1) % 7)
+
+
 def is_service_date(day: date) -> bool:
     """Whether a sermon can have been preached on ``day``: a Sunday, or a special
     service churches hold off-Sunday — Christmas Eve/Day, New Year's Eve/Day,
     Good Friday, or Thanksgiving Day. Easter is omitted because it is always a Sunday.
     """
     return (
-        day.weekday() == _SUNDAY
+        day.weekday() == SUNDAY
         or (day.month, day.day) in _FIXED_SPECIAL_SERVICES
         or day == _easter(day.year) - timedelta(days=2)
         or day == _thanksgiving(day.year)

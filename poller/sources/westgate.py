@@ -24,6 +24,7 @@ from poller.sources.common import (
     entry_has_identity,
     excluded_entry,
     excluded_item,
+    is_service_date,
     parse_pubdate_at,
 )
 
@@ -73,16 +74,15 @@ def _parse_title_date(text: str) -> date | None:
     return None
 
 
-def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
-    """``preached_on``/weekday come from the title's parsed service date, not
+def _entry_to_item(entry: Any) -> SermonItem:
+    """``preached_on`` comes from the title's parsed service date, not
     ``pubDate``; ``feed_published_at`` still comes from the feed's own ``pubDate`` — it
     measures actual feed availability, a different instant than the nominal
     service date."""
     raw_title = (entry.get("title") or "").strip()
     title, series, service_date = _parse_title(raw_title)
     preached_on = service_date.isoformat() if service_date is not None else ""
-    weekday = service_date.weekday() if service_date is not None else -1
-    item = SermonItem(
+    return SermonItem(
         guid=_GUID_PREFIX + entry.get("id", ""),
         title=title,
         raw_title=raw_title,
@@ -94,12 +94,11 @@ def _entry_to_item(entry: Any) -> tuple[SermonItem, int]:
         audio_url=entry_audio_url(entry),
         blurb=(entry.get("summary") or "").strip(),
     )
-    return item, weekday
 
 
-def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], list[ExcludedItem]]:
+def _parse(content: bytes) -> tuple[list[SermonItem], list[ExcludedItem]]:
     parsed = feedparser.parse(content)
-    items: list[tuple[SermonItem, int]] = []
+    items: list[SermonItem] = []
     skipped: list[ExcludedItem] = []
     for entry in parsed.entries:
         if not entry_has_identity(entry):
@@ -109,9 +108,12 @@ def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], list[ExcludedI
     return items, skipped
 
 
-def is_main_sunday_sermon(raw_title: str, weekday: int) -> bool:
-    """A title date that parsed to a Sunday, excluding the "NextGen Sunday" program."""
-    return weekday == 6 and not raw_title.startswith(_NEXTGEN_PREFIX)
+def is_main_sunday_sermon(raw_title: str, preached_on: str) -> bool:
+    """A title date that parsed to a service date (a Sunday, or a special service such as
+    Good Friday), excluding the "NextGen Sunday" program."""
+    if not preached_on or raw_title.startswith(_NEXTGEN_PREFIX):
+        return False
+    return is_service_date(date.fromisoformat(preached_on))
 
 
 class WestgateAdapter(SourceAdapter):
@@ -127,11 +129,11 @@ class WestgateAdapter(SourceAdapter):
         except FeedFetchError:
             return PollResult(deferred=True)
 
-        pairs, id_less = _parse(content)
+        items, id_less = _parse(content)
         included: list[SermonItem] = []
         excluded = id_less
-        for item, weekday in pairs:
-            if is_main_sunday_sermon(item.raw_title, weekday):
+        for item in items:
+            if is_main_sunday_sermon(item.raw_title, item.preached_on):
                 included.append(item)
             else:
                 excluded.append(excluded_item(item))

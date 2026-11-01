@@ -24,6 +24,7 @@ import feedparser
 from poller.net import FeedFetchError, fetch_feed
 from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 from poller.sources.common import (
+    SUNDAY,
     entry_audio_url,
     entry_has_identity,
     excluded_entry,
@@ -34,7 +35,6 @@ from poller.sources.common import (
 
 _TITLE_SEP = " | "
 _TITLE_SEGMENTS = 3
-_SUNDAY = 6
 _GUID_PREFIX = "hillside:"
 # Subsplash writes the description as HTML paragraphs; block-level boundaries
 # become line breaks so the first paragraph can be taken as the title.
@@ -103,7 +103,7 @@ def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], list[ExcludedI
 def is_main_sunday_sermon(weekday: int) -> bool:
     """A bare ``pubDate`` weekday check, with no denylist; an undated item
     scores ``-1`` and so is never a match."""
-    return weekday == _SUNDAY
+    return weekday == SUNDAY
 
 
 class HillsideAdapter(SourceAdapter):

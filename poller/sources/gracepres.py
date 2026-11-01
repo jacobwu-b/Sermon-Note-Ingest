@@ -6,7 +6,8 @@ Two things about this feed are unlike the other sources:
   Sunday sermon typically lands Monday–Wednesday (19 of 500 live items fell on
   a Sunday), so the weekday check every other adapter classifies on is useless
   here. Instead, ``preached_on`` is *derived*: the ``YYMMDD`` the church
-  appended to titles through late 2025 when it parses to a Sunday, otherwise
+  appended to titles through late 2025 when it parses to a service date (a
+  Sunday, or a special service such as Good Friday), otherwise
   the most recent Sunday on or before the upload in the church's own timezone.
   Ordering both ways round matters — one live title carried a typo'd
   non-Sunday date, and the older archive was uploaded in batches weeks late.
@@ -37,11 +38,12 @@ from poller.sources.common import (
     entry_has_identity,
     excluded_entry,
     excluded_item,
+    is_service_date,
     parse_pubdate_at,
+    sunday_on_or_before,
 )
 
 _GUID_PREFIX = "gracepres:"
-_SUNDAY = 6
 _CHURCH_TZ = ZoneInfo("America/Los_Angeles")
 
 # e.g. "Living God's Mission: Growing Pains 251109" or "A Vision of Beauty _ 201011".
@@ -69,14 +71,13 @@ def _split_title(raw_title: str) -> tuple[str, date | None]:
 
 
 def service_date(title_date: date | None, feed_published_at: datetime | None) -> date | None:
-    """The Sunday this sermon was preached: the title's date if it is one, else the
-    most recent Sunday on or before the upload, in the church's local day."""
-    if title_date is not None and title_date.weekday() == _SUNDAY:
+    """The day this sermon was preached: the title's date if it is a service date, else
+    the most recent Sunday on or before the upload, in the church's local day."""
+    if title_date is not None and is_service_date(title_date):
         return title_date
     if feed_published_at is None:
         return None
-    local_day = feed_published_at.astimezone(_CHURCH_TZ).date()
-    return local_day - timedelta(days=(local_day.weekday() + 1) % 7)
+    return sunday_on_or_before(feed_published_at.astimezone(_CHURCH_TZ).date())
 
 
 def _speaker_from_blurb(blurb: str) -> str | None:

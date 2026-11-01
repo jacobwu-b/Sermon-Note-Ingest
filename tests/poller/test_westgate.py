@@ -52,17 +52,21 @@ def test_parse_title_without_trailing_date_is_unclassifiable():
     assert title == "An Old Archive Sermon"
 
 
-def test_is_main_sunday_sermon_requires_sunday_weekday():
-    assert is_main_sunday_sermon("Series | Title | August 16, 2026", 6) is True
-    assert is_main_sunday_sermon("Series | Title | August 17, 2026", 0) is False
+def test_is_main_sunday_sermon_requires_a_service_date():
+    assert is_main_sunday_sermon("Series | Title | August 16, 2026", "2026-08-16") is True
+    assert is_main_sunday_sermon("Series | Title | August 17, 2026", "2026-08-17") is False
+
+
+def test_is_main_sunday_sermon_includes_a_good_friday_service():
+    assert is_main_sunday_sermon("Holy Week | It Is Finished | April 3, 2026", "2026-04-03") is True
 
 
 def test_is_main_sunday_sermon_excludes_nextgen_program():
-    assert is_main_sunday_sermon("NextGen Sunday | Title | August 16, 2026", 6) is False
+    assert is_main_sunday_sermon("NextGen Sunday | Title | August 16, 2026", "2026-08-16") is False
 
 
 def test_is_main_sunday_sermon_excludes_unparseable_title():
-    assert is_main_sunday_sermon("An Old Archive Sermon", -1) is False
+    assert is_main_sunday_sermon("An Old Archive Sermon", "") is False
 
 
 _FEED = b"""<?xml version="1.0" encoding="UTF-8"?>
@@ -87,3 +91,25 @@ def test_poll_includes_a_sunday_sermon_whose_title_spacing_varies(monkeypatch):
     assert [(item.title, item.preached_on) for item in result.items] == [
         ("I am the Light of the World", "2026-10-25")
     ]
+
+
+_GOOD_FRIDAY_FEED = b"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>WestGate Church</title>
+<item>
+  <title>Holy Week | It Is Finished | April 3, 2026</title>
+  <guid isPermaLink="false">5f1a2b3c4d5e6f7a8b9c0d1e:64a1b2c3d4e5f6a7b8c9d0f2</guid>
+  <link>https://www.westgatechurch.org/sermons/it-is-finished</link>
+  <pubDate>Sat, 04 Apr 2026 03:10:00 +0000</pubDate>
+  <author>Pastor Example</author>
+  <enclosure url="https://static1.squarespace.com/static/example/it-is-finished.mp3" type="audio/mpeg"/>
+</item>
+</channel></rss>"""
+
+
+def test_poll_dates_a_good_friday_sermon_on_good_friday(monkeypatch):
+    monkeypatch.setattr(westgate, "fetch_feed", lambda url: _GOOD_FRIDAY_FEED)
+
+    result = WestgateAdapter(url="https://www.westgatechurch.org/sermons?format=rss").poll()
+
+    assert result.excluded == []
+    assert [(item.title, item.preached_on) for item in result.items] == [("It Is Finished", "2026-04-03")]
