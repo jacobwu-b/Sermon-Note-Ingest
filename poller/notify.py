@@ -13,8 +13,10 @@ from __future__ import annotations
 import datetime
 import html
 import json
+import time
 import urllib.error
 import urllib.request
+import uuid
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -26,6 +28,8 @@ from poller.sources.common import is_service_date
 
 _RESEND_URL = "https://api.resend.com/emails"
 _TIMEOUT = 15
+_ATTEMPTS = 3
+_BACKOFF_BASE = 1.0
 # Resend rejects a subject at 2000+ chars; a real backlog of titles blows past
 # that long before then, so fall back to a count-only subject well under it.
 _MAX_SUBJECT_LEN = 200
@@ -171,6 +175,11 @@ def send_discovery_alert(subject: str, lines: Sequence[str], config: NotifyConfi
 
 
 def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
+    """POST one email, retrying a 429, a 5xx or a network failure with backoff (as ``net.fetch_feed``).
+
+    Every attempt carries the same ``Idempotency-Key``, so a retry after a timeout that
+    Resend had in fact accepted returns the original send instead of emailing twice.
+    """
     payload = json.dumps(
         {
             "from": config.from_addr,
@@ -179,23 +188,29 @@ def _send(subject: str, html_body: str, config: NotifyConfig) -> None:
             "html": html_body,
         }
     ).encode("utf-8")
-    request = urllib.request.Request(
-        _RESEND_URL,
-        data=payload,
-        method="POST",
-        headers={
-            "Authorization": f"Bearer {config.api_key}",
-            "Content-Type": "application/json",
-            # Resend's edge blocks the stdlib default UA as a bot signature
-            # (Cloudflare error 1010) — same fix as poller/net.py.
-            "User-Agent": DEFAULT_USER_AGENT,
-        },
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=_TIMEOUT) as response:
-            if response.status >= 300:
-                raise NotifyError(f"Resend returned status {response.status}")
-    except urllib.error.HTTPError as exc:
-        raise NotifyError(f"Resend rejected the request: {exc.code} {exc.read()!r}") from exc
-    except urllib.error.URLError as exc:
-        raise NotifyError(f"could not reach Resend: {exc}") from exc
+    headers = {
+        "Authorization": f"Bearer {config.api_key}",
+        "Content-Type": "application/json",
+        "Idempotency-Key": str(uuid.uuid4()),
+        # Resend's edge blocks the stdlib default UA as a bot signature
+        # (Cloudflare error 1010) — same fix as poller/net.py.
+        "User-Agent": DEFAULT_USER_AGENT,
+    }
+    last_error: NotifyError | None = None
+    for attempt in range(1, _ATTEMPTS + 1):
+        request = urllib.request.Request(_RESEND_URL, data=payload, method="POST", headers=headers)
+        try:
+            with urllib.request.urlopen(request, timeout=_TIMEOUT) as response:
+                if response.status >= 300:
+                    raise NotifyError(f"Resend returned status {response.status}")
+            return
+        except urllib.error.HTTPError as exc:
+            error = NotifyError(f"Resend rejected the request: {exc.code} {exc.read()!r}")
+            if exc.code != 429 and exc.code < 500:
+                raise error from exc
+            last_error = error
+        except OSError as exc:  # URLError, and a bare TimeoutError from a slow read
+            last_error = NotifyError(f"could not reach Resend: {exc}")
+        if attempt < _ATTEMPTS:
+            time.sleep(_BACKOFF_BASE * 2 ** (attempt - 1))
+    raise NotifyError(f"send failed after {_ATTEMPTS} attempts: {last_error}") from last_error

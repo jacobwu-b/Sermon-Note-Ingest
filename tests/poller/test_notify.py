@@ -29,6 +29,13 @@ def _config() -> NotifyConfig:
     return NotifyConfig(from_addr="alerts@example.org", to_addr="team@example.org", api_key="re_123")
 
 
+@pytest.fixture(autouse=True)
+def _no_backoff_sleep(monkeypatch) -> list[float]:
+    delays: list[float] = []
+    monkeypatch.setattr(notify.time, "sleep", delays.append)
+    return delays
+
+
 class _FakeResponse:
     def __init__(self, status: int = 200) -> None:
         self.status = status
@@ -146,6 +153,89 @@ def test_send_new_sermons_raises_notify_error_on_network_failure(monkeypatch):
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
     with pytest.raises(notify.NotifyError):
         notify.send_new_sermons("menlo", [_item()], _config())
+
+
+def _flaky_urlopen(failures: list[BaseException]):
+    """A urlopen that raises each of ``failures`` in turn, then accepts; records every request."""
+    requests = []
+
+    def fake_urlopen(request, timeout):
+        requests.append(request)
+        if len(requests) <= len(failures):
+            raise failures[len(requests) - 1]
+        return _FakeResponse(200)
+
+    return fake_urlopen, requests
+
+
+def _http_error(code: int) -> urllib.error.HTTPError:
+    return urllib.error.HTTPError(_RESEND, code, "error", {}, io.BytesIO(b'{"message":"try later"}'))
+
+
+_RESEND = "https://api.resend.com/emails"
+
+
+@pytest.mark.parametrize(
+    "failure",
+    [
+        _http_error(500),
+        _http_error(503),
+        _http_error(429),
+        urllib.error.URLError("no route to host"),
+        TimeoutError("The read operation timed out"),
+    ],
+)
+def test_send_new_sermons_retries_a_transient_failure_and_then_succeeds(
+    monkeypatch, failure, _no_backoff_sleep
+):
+    fake_urlopen, requests = _flaky_urlopen([failure])
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    notify.send_new_sermons("menlo", [_item()], _config())
+
+    assert len(requests) == 2
+    assert _no_backoff_sleep == [1.0]
+
+
+def test_send_new_sermons_does_not_retry_a_rejected_request(monkeypatch):
+    fake_urlopen, requests = _flaky_urlopen([_http_error(422)])
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    with pytest.raises(notify.NotifyError, match="422"):
+        notify.send_new_sermons("menlo", [_item()], _config())
+    assert len(requests) == 1
+
+
+def test_send_new_sermons_raises_notify_error_once_every_attempt_times_out(monkeypatch, _no_backoff_sleep):
+    fake_urlopen, requests = _flaky_urlopen([TimeoutError("timed out")] * 3)
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    with pytest.raises(notify.NotifyError, match="3 attempts"):
+        notify.send_new_sermons("menlo", [_item()], _config())
+    assert len(requests) == 3
+    assert _no_backoff_sleep == [1.0, 2.0]
+
+
+def test_send_reuses_one_idempotency_key_across_retries_but_not_across_sends(monkeypatch):
+    fake_urlopen, requests = _flaky_urlopen([TimeoutError("timed out")])
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    notify.send_new_sermons("menlo", [_item()], _config())
+    notify.send_new_sermons("menlo", [_item()], _config())
+
+    keys = [request.get_header("Idempotency-key") for request in requests]
+    assert len(keys) == 3
+    assert keys[0] and keys[0] == keys[1]
+    assert keys[2] and keys[2] != keys[0]
+
+
+def test_send_quality_alert_retries_a_server_error(monkeypatch):
+    fake_urlopen, requests = _flaky_urlopen([_http_error(502)])
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    notify.send_quality_alert("menlo", [_flagged()], _config())
+
+    assert len(requests) == 2
 
 
 def test_off_day_items_returns_only_items_off_a_sunday_or_special_service():

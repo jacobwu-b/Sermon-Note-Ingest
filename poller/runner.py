@@ -16,7 +16,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 from poller import batch_poll, config, discovery_health, notify, stats, store
 from poller.net import now
@@ -24,6 +24,11 @@ from poller.sources import ADAPTERS
 from poller.sources.base import ExcludedItem
 
 logger = logging.getLogger("poller")
+
+# How far back a sermon still left un-notified (a failed send, or ``notify`` switched on
+# later) is emailed: long enough to outlast a Resend outage, short enough that switching
+# ``notify`` on doesn't email a church's whole ledger.
+NOTIFY_WINDOW = timedelta(days=7)
 
 
 def poll_church(
@@ -96,12 +101,7 @@ def poll_church(
         len(result.excluded),
     )
 
-    if not new_items:
-        if existing_items:
-            store.save(name, records)
-        return True
-
-    if discovered_out is not None:
+    if new_items and discovered_out is not None:
         discovered_out.append(name)
 
     if backfill:
@@ -109,27 +109,37 @@ def poll_church(
         # a later normal run never sends for these.
         for item in new_items:
             records[item.guid]["notified_at"] = retrieved_at
+
+    if new_items or existing_items:
         store.save(name, records)
+
+    if backfill or not entry.notify:
         return True
 
-    store.save(name, records)
-
-    if not entry.notify:
+    # A failed send leaves notified_at null, so a later poll picks it up from here.
+    cutoff = datetime.fromisoformat(retrieved_at) - NOTIFY_WINDOW
+    unnotified = [
+        item
+        for item in result.items
+        if records[item.guid]["notified_at"] is None
+        and datetime.fromisoformat(records[item.guid]["first_seen_at"]) >= cutoff
+    ]
+    if not unnotified:
         return True
 
     try:
         notify_cfg = config.load_notify_config()
-        notify.send_new_sermons(name, new_items, notify_cfg)
+        notify.send_new_sermons(name, unnotified, notify_cfg)
     except (config.ConfigError, notify.NotifyError) as exc:
         logger.error(
-            "%s: notification failed for %d new sermon(s): %s",
+            "%s: notification failed for %d sermon(s), will retry next poll: %s",
             name,
-            len(new_items),
+            len(unnotified),
             exc,
         )
         return False
 
-    for item in new_items:
+    for item in unnotified:
         records[item.guid]["notified_at"] = now()
     store.save(name, records)
     return True
