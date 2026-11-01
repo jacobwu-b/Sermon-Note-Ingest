@@ -90,19 +90,6 @@ def _overrides_path(church: str) -> Path:
     return DATA_DIR / "overrides" / f"{church}.json"
 
 
-# ADR-0015: the pre-rename names. A one-shot migration rewrote every committed ledger,
-# but a poll/transcribe run on the old code can still land a record under these names
-# after that merge — load() renames them so the next save() finishes the job.
-_LEGACY_KEYS = {"published_on": "preached_on", "published_at": "feed_published_at"}
-
-
-def _rename_legacy_keys(entry: dict[str, Any]) -> dict[str, Any]:
-    """``entry`` with any pre-ADR-0015 key renamed, each keeping its position."""
-    if not _LEGACY_KEYS.keys() & entry.keys():
-        return entry
-    return {_LEGACY_KEYS.get(key, key): value for key, value in entry.items()}
-
-
 def _load_overrides(church: str) -> dict[str, dict[str, Any]]:
     """Manual field corrections for ``church``, keyed by guid (ADR-0008).
 
@@ -116,7 +103,7 @@ def _load_overrides(church: str) -> dict[str, dict[str, Any]]:
         return {}
     with path.open(encoding="utf-8") as f:
         overrides: dict[str, dict[str, Any]] = json.load(f)
-    return {guid: _rename_legacy_keys(fields) for guid, fields in overrides.items()}
+    return overrides
 
 
 def _load_raw(church: str) -> dict[str, dict[str, Any]]:
@@ -133,12 +120,11 @@ def load(church: str) -> dict[str, dict[str, Any]]:
 
     Any matching entry in ``data/overrides/<church>.json`` is merged onto the returned
     records field by field (ADR-0008); an override for a guid absent from the ledger is
-    skipped with a warning rather than applied or raised. A record or override still on
-    the pre-ADR-0015 key names is returned under the new ones.
+    skipped with a warning rather than applied or raised.
     """
     if not _record_path(church).exists():
         return {}
-    records = {guid: _rename_legacy_keys(record) for guid, record in _load_raw(church).items()}
+    records = _load_raw(church)
 
     for guid, fields in _load_overrides(church).items():
         record = records.get(guid)
@@ -151,15 +137,6 @@ def load(church: str) -> dict[str, dict[str, Any]]:
             record[key] = value
 
     return records
-
-
-def legacy_key_guids(church: str) -> list[str]:
-    """Guids whose record in ``church``'s ledger file still uses a pre-ADR-0015 key name.
-
-    Reads the file as written, not through :func:`load` (which renames on the way in), so
-    ADR-0015's migration can tell which ledgers still need a rewrite.
-    """
-    return [guid for guid, record in _load_raw(church).items() if _LEGACY_KEYS.keys() & record.keys()]
 
 
 def _ordered_items(records: dict[str, dict[str, Any]]) -> list[tuple[str, dict[str, Any]]]:
@@ -189,7 +166,7 @@ def _strip_overrides(church: str, records: dict[str, dict[str, Any]]) -> dict[st
     overrides = _load_overrides(church)
     if not overrides:
         return records
-    on_disk = {guid: _rename_legacy_keys(record) for guid, record in _load_raw(church).items()}
+    on_disk = _load_raw(church)
     stripped = dict(records)
     for guid, fields in overrides.items():
         record, base = records.get(guid), on_disk.get(guid)

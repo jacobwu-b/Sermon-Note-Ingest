@@ -591,104 +591,6 @@ def test_main_validate_exits_non_zero_and_reports_a_truncated_ledger(tmp_path, m
     assert "menlo.json" in capsys.readouterr().err
 
 
-def _legacy_record(guid: str, *, published_on: str, published_at: str | None) -> dict:
-    """A ledger record exactly as written before ADR-0015's rename."""
-    return {
-        "guid": guid,
-        "title": "Hear and Do",
-        "raw_title": "Hear and Do - Luke",
-        "series": "Luke",
-        "speaker": "Jane Doe",
-        "published_on": published_on,
-        "published_at": published_at,
-        "episode_url": "https://example.org/ep1",
-        "audio_url": "https://example.org/ep1.mp3",
-        "blurb": "A sermon on Luke.",
-        "first_seen_at": "2026-09-06T20:00:00+00:00",
-        "notified_at": "2026-09-06T20:00:00+00:00",
-    }
-
-
-def _write_ledger(tmp_path, church: str, records: dict) -> None:
-    (tmp_path / f"{church}.json").write_text(json.dumps(records), encoding="utf-8")
-
-
-def test_load_renames_legacy_date_keys_in_place_preserving_field_order(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    legacy = _legacy_record("g1", published_on="2026-09-06", published_at="2026-09-06T17:03:00+00:00")
-    _write_ledger(tmp_path, "menlo", {"g1": legacy})
-
-    record = store.load("menlo")["g1"]
-
-    assert record["preached_on"] == "2026-09-06"
-    assert record["feed_published_at"] == "2026-09-06T17:03:00+00:00"
-    assert "published_on" not in record
-    assert "published_at" not in record
-    expected_order = [
-        {"published_on": "preached_on", "published_at": "feed_published_at"}.get(k, k) for k in legacy
-    ]
-    assert list(record) == expected_order
-
-
-def test_load_reads_a_ledger_mixing_legacy_and_renamed_records(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    renamed = _record("new", preached_on="2026-09-13", feed_published_at="2026-09-13T17:00:00+00:00")
-    legacy = _legacy_record("old", published_on="2026-09-06", published_at=None)
-    _write_ledger(tmp_path, "menlo", {"new": renamed, "old": legacy})
-
-    loaded = store.load("menlo")
-
-    assert loaded["new"] == renamed
-    assert loaded["old"]["preached_on"] == "2026-09-06"
-    assert loaded["old"]["feed_published_at"] is None
-
-
-def test_load_renames_legacy_date_keys_in_an_override_entry(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    store.save("pbc", {"g1": _record("g1", preached_on="2026-09-20")})
-    _write_overrides(
-        tmp_path, "pbc", {"g1": {"published_on": "2026-09-13", "_reason": "feed shows wrong week"}}
-    )
-
-    record = store.load("pbc")["g1"]
-
-    assert record["preached_on"] == "2026-09-13"
-    assert "published_on" not in record
-
-
-def test_save_after_loading_a_legacy_ledger_writes_only_the_renamed_keys(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    _write_ledger(
-        tmp_path, "menlo", {"g1": _legacy_record("g1", published_on="2026-09-06", published_at=None)}
-    )
-
-    store.save("menlo", store.load("menlo"))
-
-    text = (tmp_path / "menlo.json").read_text(encoding="utf-8")
-    assert '"published_on"' not in text
-    assert '"published_at"' not in text
-    assert '"preached_on": "2026-09-06"' in text
-
-
-def test_legacy_key_guids_names_only_records_still_on_the_old_keys(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    _write_ledger(
-        tmp_path,
-        "menlo",
-        {
-            "new": _record("new", preached_on="2026-09-13"),
-            "old": _legacy_record("old", published_on="2026-09-06", published_at=None),
-        },
-    )
-
-    assert store.legacy_key_guids("menlo") == ["old"]
-
-
-def test_legacy_key_guids_is_empty_for_a_church_with_no_ledger(tmp_path, monkeypatch):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    assert store.legacy_key_guids("menlo") == []
-
-
 def test_committed_ledgers_and_overrides_carry_no_legacy_date_keys():
     paths = sorted(store.DATA_DIR.glob("*.json")) + sorted((store.DATA_DIR / "overrides").glob("*.json"))
     assert paths, "expected committed ledgers under data/"
@@ -700,20 +602,6 @@ def test_committed_ledgers_and_overrides_carry_no_legacy_date_keys():
             if {"published_on", "published_at"} & entry.keys():
                 offenders.append(f"{path.name}:{guid}")
     assert offenders == [], f"legacy keys (ADR-0015) in {offenders[:5]}"
-
-
-def test_load_prefers_the_legacy_value_when_a_record_carries_both_names(tmp_path, monkeypatch):
-    # An old-code poll in flight across the rename merge refreshes `published_on` onto an
-    # already-renamed record: that write is the newer feed value.
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    record = _record("g1", preached_on="2026-09-20")
-    record["published_on"] = "2026-09-13"
-    _write_ledger(tmp_path, "pbc", {"g1": record})
-
-    loaded = store.load("pbc")["g1"]
-
-    assert loaded["preached_on"] == "2026-09-13"
-    assert "published_on" not in loaded
 
 
 _RUNNING = {
