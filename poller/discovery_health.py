@@ -17,14 +17,13 @@ from datetime import date, datetime, timedelta
 from typing import Any
 
 from poller.sources.base import ExcludedItem
+from poller.sources.common import sunday_on_or_before
 
 # Not measured: deferrals are only logged, so there is no history to size this from.
 FEED_FAILING_AFTER = timedelta(hours=6)
 
 MISSING_SUNDAY = "missing_sunday"
 FEED_FAILING = "feed_failing"
-
-_SUNDAY = 6
 
 State = dict[str, dict[str, Any]]
 
@@ -56,8 +55,7 @@ class Alert:
 
 def latest_due_sunday(now: datetime, publish_grace: timedelta) -> date:
     """The latest Sunday ``S`` with ``S`` 00:00 UTC + ``publish_grace`` at or before ``now``."""
-    cutoff = (now - publish_grace).date()
-    return cutoff - timedelta(days=(cutoff.weekday() - _SUNDAY) % 7)
+    return sunday_on_or_before((now - publish_grace).date())
 
 
 def newest_preached_on(records: Mapping[str, Mapping[str, Any]]) -> date | None:

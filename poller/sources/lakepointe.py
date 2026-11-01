@@ -23,6 +23,7 @@ import feedparser
 from poller.net import FeedFetchError, fetch_feed
 from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 from poller.sources.common import (
+    SUNDAY,
     entry_audio_url,
     entry_has_identity,
     excluded_entry,
@@ -35,7 +36,6 @@ from poller.sources.common import (
 # item is a bare title with no separator at all.
 _TITLE_SEP = " | "
 _TITLE_SEGMENTS = 3
-_SUNDAY = 6
 _GUID_PREFIX = "lakepointe:"
 # Matched on title text rather than segment count, because the bonus series
 # uses a double pipe and so already fails the three-segment split.
@@ -89,7 +89,7 @@ def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], list[ExcludedI
 
 def is_main_sunday_sermon(raw_title: str, weekday: int) -> bool:
     """A Sunday item whose title carries none of the feed's non-sermon series markers."""
-    if weekday != _SUNDAY:
+    if weekday != SUNDAY:
         return False
     return not any(marker in raw_title for marker in _NON_SERMON_MARKERS)
 

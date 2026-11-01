@@ -8,6 +8,7 @@ from poller.sources.common import (
     is_service_date,
     parse_pubdate,
     parse_pubdate_at,
+    sunday_on_or_before,
 )
 
 
@@ -107,3 +108,16 @@ def test_is_service_date_places_good_friday_two_days_before_easter(year, easter)
     good_friday = date.fromordinal(easter.toordinal() - 2)
     assert is_service_date(good_friday)
     assert not is_service_date(date.fromordinal(easter.toordinal() - 1))
+
+
+@pytest.mark.parametrize(
+    ("day", "sunday"),
+    [
+        (date(2026, 9, 6), date(2026, 9, 6)),  # a Sunday is its own week's Sunday
+        (date(2026, 9, 7), date(2026, 9, 6)),  # Monday
+        (date(2026, 9, 12), date(2026, 9, 6)),  # Saturday, the far end of the week
+        (date(2027, 1, 2), date(2026, 12, 27)),  # across a year boundary
+    ],
+)
+def test_sunday_on_or_before_is_the_sunday_starting_that_days_week(day, sunday):
+    assert sunday_on_or_before(day) == sunday

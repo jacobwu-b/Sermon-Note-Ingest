@@ -41,6 +41,17 @@ def test_service_date_falls_back_when_title_date_is_not_a_sunday():
     assert service_date(date(2025, 8, 7), uploaded) == date(2025, 9, 7)
 
 
+def test_service_date_keeps_a_good_friday_title_date():
+    # Without this the upload-day fallback dates it Easter Sunday, on top of Easter's own sermon.
+    uploaded = datetime(2026, 4, 6, 20, 0, tzinfo=UTC)  # Easter Monday
+    assert service_date(date(2026, 4, 3), uploaded) == date(2026, 4, 3)
+
+
+def test_service_date_keeps_a_christmas_eve_title_date():
+    uploaded = datetime(2025, 12, 26, 19, 0, tzinfo=UTC)  # Friday
+    assert service_date(date(2025, 12, 24), uploaded) == date(2025, 12, 24)
+
+
 def test_service_date_is_most_recent_sunday_on_or_before_upload():
     uploaded = datetime(2026, 9, 15, 23, 13, tzinfo=UTC)  # Tuesday
     assert service_date(None, uploaded) == date(2026, 9, 13)

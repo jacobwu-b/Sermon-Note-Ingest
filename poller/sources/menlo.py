@@ -23,20 +23,20 @@ import feedparser
 from poller.net import FeedFetchError, fetch_feed
 from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 from poller.sources.common import (
+    SUNDAY,
     entry_audio_url,
     entry_has_identity,
     excluded_entry,
     excluded_item,
     parse_pubdate,
     parse_pubdate_at,
+    sunday_on_or_before,
 )
 
 # The Legacy service names itself in the final title suffix.
 _LEGACY_SUFFIX = "Menlo Church Legacy Service"
 # The Midweek Podcast names itself in the title.
 _MIDWEEK_MARKER = "menlo midweek podcast"
-# email.utils weekday convention used throughout: Sunday == 6.
-_SUNDAY = 6
 
 
 def _split_title(raw_title: str) -> tuple[str, str | None, str | None]:
@@ -101,7 +101,7 @@ def classify(raw_title: str, weekday: int) -> Classification:
         return Classification.EXCLUDE
     if _MIDWEEK_MARKER in raw_title.lower():
         return Classification.EXCLUDE
-    if weekday == _SUNDAY:
+    if weekday == SUNDAY:
         return Classification.INCLUDE
     return Classification.AMBIGUOUS
 
@@ -110,9 +110,8 @@ def _days_since_sunday(weekday: int) -> int:
     return (weekday + 1) % 7
 
 
-def _week_anchor(preached_on: str, weekday: int) -> datetime.date:
-    published = datetime.date.fromisoformat(preached_on)
-    return published - datetime.timedelta(days=_days_since_sunday(weekday))
+def _week_anchor(preached_on: str) -> datetime.date:
+    return sunday_on_or_before(datetime.date.fromisoformat(preached_on))
 
 
 def classify_feed(
@@ -132,14 +131,14 @@ def classify_feed(
     # neither claim a week nor be promoted — excluding it here keeps
     # _week_anchor from raising on an empty date string.
     weeks_with_include = {
-        _week_anchor(item.preached_on, weekday)
+        _week_anchor(item.preached_on)
         for item, weekday in items
         if item.preached_on and verdicts[item.guid] is Classification.INCLUDE
     }
     ambiguous_by_week: dict[datetime.date, list[tuple[SermonItem, int]]] = defaultdict(list)
     for item, weekday in items:
         if item.preached_on and verdicts[item.guid] is Classification.AMBIGUOUS:
-            ambiguous_by_week[_week_anchor(item.preached_on, weekday)].append((item, weekday))
+            ambiguous_by_week[_week_anchor(item.preached_on)].append((item, weekday))
 
     for anchor, candidates in ambiguous_by_week.items():
         if anchor in weeks_with_include:
@@ -175,13 +174,13 @@ class MenloPodbeanAdapter(SourceAdapter):
         for item, weekday in pairs:
             verdict = verdicts[item.guid]
             if verdict is Classification.INCLUDE:
-                if weekday != _SUNDAY:
+                if weekday != SUNDAY:
                     # A promoted late-posted item: the feed's own pubDate is an
                     # internal detail, never the true service date — the sermon
                     # was preached on the Sunday classify_feed anchored it to.
                     item = dataclasses.replace(
                         item,
-                        preached_on=_week_anchor(item.preached_on, weekday).isoformat(),
+                        preached_on=_week_anchor(item.preached_on).isoformat(),
                     )
                 included.append(item)
             else:

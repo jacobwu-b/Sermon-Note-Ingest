@@ -17,6 +17,7 @@ import feedparser
 from poller.net import FeedFetchError, fetch_feed
 from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 from poller.sources.common import (
+    SUNDAY,
     entry_audio_url,
     entry_has_identity,
     excluded_entry,
@@ -28,7 +29,6 @@ from poller.sources.common import (
 # The feed titles a sermon as "{title} // {speaker}"; unlike PBC there's no
 # clean series delimiter, so series is left null.
 _TITLE_SPEAKER_SEP = " // "
-_SUNDAY = 6
 # The feed's own <guid> is an opaque, unnamespaced hex string, so this adapter
 # namespaces it to guarantee no cross-source collision.
 _GUID_PREFIX = "north_point:"
@@ -77,7 +77,7 @@ def _parse(content: bytes) -> tuple[list[tuple[SermonItem, int]], list[ExcludedI
 
 def is_main_sunday_sermon(weekday: int) -> bool:
     """Any Sunday item counts, regardless of speaker (owner's resolved decision)."""
-    return weekday == _SUNDAY
+    return weekday == SUNDAY
 
 
 class NorthPointAdapter(SourceAdapter):
