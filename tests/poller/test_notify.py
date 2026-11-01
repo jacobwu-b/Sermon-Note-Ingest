@@ -216,17 +216,51 @@ def test_send_new_sermons_raises_notify_error_once_every_attempt_times_out(monke
     assert _no_backoff_sleep == [1.0, 2.0]
 
 
-def test_send_reuses_one_idempotency_key_across_retries_but_not_across_sends(monkeypatch):
+def test_send_reuses_one_idempotency_key_across_retries(monkeypatch):
     fake_urlopen, requests = _flaky_urlopen([TimeoutError("timed out")])
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    notify.send_new_sermons("menlo", [_item()], _config())
+
+    keys = [request.get_header("Idempotency-key") for request in requests]
+    assert len(keys) == 2
+    assert keys[0] and keys[0] == keys[1]
+
+
+def test_resending_the_same_email_on_a_later_poll_reuses_its_idempotency_key(monkeypatch):
+    # The ledger push that recorded notified_at failed, so the next poll sends the same email.
+    fake_urlopen, requests = _flaky_urlopen([])
     monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
 
     notify.send_new_sermons("menlo", [_item()], _config())
     notify.send_new_sermons("menlo", [_item()], _config())
 
+    first, second = (request.get_header("Idempotency-key") for request in requests)
+    assert first and first == second
+    assert len(first) <= 256
+
+
+def test_a_different_email_gets_a_different_idempotency_key(monkeypatch):
+    fake_urlopen, requests = _flaky_urlopen([])
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    notify.send_new_sermons("menlo", [_item()], _config())
+    notify.send_new_sermons("menlo", [_item(title="Love Your Neighbor")], _config())
+    notify.send_discovery_alert(
+        "Discovery: menlo missed 2026-10-25", ["menlo: newest is 2026-10-18"], _config()
+    )
+
     keys = [request.get_header("Idempotency-key") for request in requests]
-    assert len(keys) == 3
-    assert keys[0] and keys[0] == keys[1]
-    assert keys[2] and keys[2] != keys[0]
+    assert len(set(keys)) == 3
+
+
+def test_send_retries_while_resend_is_still_processing_the_same_key(monkeypatch):
+    fake_urlopen, requests = _flaky_urlopen([_http_error(409)])
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    notify.send_new_sermons("menlo", [_item()], _config())
+
+    assert len(requests) == 2
 
 
 def test_send_quality_alert_retries_a_server_error(monkeypatch):
