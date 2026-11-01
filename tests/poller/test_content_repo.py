@@ -459,7 +459,7 @@ def test_default_fetch_all_transcripts_returns_every_transcript_and_nothing_else
 def test_provenance_trailers_survive_a_real_git_commit_and_prove_the_replacement(content_repo_env):
     # The crash-between-pushes repair (ADR-0022 rule 5) depends on git's own trailer
     # parser giving back exactly what the replacement wrote.
-    from poller import transcriber
+    from poller import retranscribe
 
     profile = {
         "model": "large-v3",
@@ -476,7 +476,7 @@ def test_provenance_trailers_survive_a_real_git_commit_and_prove_the_replacement
     counts = {"words": 5210, "loop_words": 0, "credit_hits": 0, "hotword_pairs": 0}
     guid = "gracepres:sid:2023-07-30,slot:sermon/0ab4"
     content_repo.default_push({_PATH: _OLD})
-    trailers = transcriber._provenance_trailers(
+    trailers = retranscribe._provenance_trailers(
         guid,
         superseded=_hash(_OLD),
         transcript_hash=_hash(_NEW),
@@ -486,7 +486,7 @@ def test_provenance_trailers_survive_a_real_git_commit_and_prove_the_replacement
     )
 
     content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers=trailers)
-    mark = transcriber._mark_from_trailers(
+    mark = retranscribe._mark_from_trailers(
         content_repo.default_last_commit_trailers(_PATH),
         guid=guid,
         ledger_hash=_hash(_OLD),
