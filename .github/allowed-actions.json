@@ -1,0 +1,9 @@
+{
+  "note": "The repo's selected-actions allowlist, applied with `allowed_actions: selected` (.github/repo-settings.md -> Actions). Single source of truth: apply it with `jq 'del(.note)' .github/allowed-actions.json | gh api -X PUT repos/<owner>/<repo>/actions/permissions/selected-actions --input -`, and tests/test_allowed_actions.py asserts every third-party `uses:` in .github/workflows/ matches a pattern here and every pattern is used. github_owned_allowed covers the `actions` and `github` orgs, which includes the actions CodeQL default setup and Dependabot updates run. Patterns end in @* so Dependabot's SHA bumps keep matching; sha_pinning_required is what pins the ref. Adding a third-party action is two steps: add its pattern here in the same PR, and re-apply this file to the live repo before merging, or the workflow is refused at dispatch.",
+  "github_owned_allowed": true,
+  "verified_allowed": false,
+  "patterns_allowed": [
+    "dependabot/fetch-metadata@*",
+    "gitleaks/gitleaks-action@*"
+  ]
+}

@@ -219,6 +219,15 @@ nobody runs.
   hand — this must print `true`:
   `gh api repos/<owner>/<repo>/actions/permissions --jq .sha_pinning_required`.
 
+- **Actions allowlist: asserted at review, unasserted live.**
+  `tests/test_allowed_actions.py` fails a third-party workflow `uses:` that
+  `.github/allowed-actions.json` does not cover, and an entry there that no
+  workflow uses. The live setting has the same Administration-read limit, so
+  check it by hand. The first command must print `"selected"`, and the second
+  must print the file without its `note`:
+  `gh api repos/<owner>/<repo>/actions/permissions --jq .allowed_actions` and
+  `gh api repos/<owner>/<repo>/actions/permissions/selected-actions`.
+
 ### Applying it (ordered — avoids an unprotected window)
 
 Rulesets are not reliably managed by the Probot Settings app, so apply them
@@ -262,7 +271,7 @@ Replace `<owner>/<repo>` with the repo slug.
 
 | Setting | Value | Why |
 |---|---|---|
-| Actions permissions | "Allow [org] actions and reusable workflows" + selected third-party | Least privilege. |
+| Actions permissions | **Selected** (`allowed_actions: selected`): GitHub-owned plus the patterns in `.github/allowed-actions.json` | Least privilege. A new third-party action is refused at dispatch until its pattern is added there and re-applied live. |
 | Require actions to be pinned to a full-length commit SHA | **On** (`sha_pinning_required`) | Supply-chain hygiene; GitHub refuses an unpinned ref even in a workflow no test here saw. |
 | Workflow permissions (default `GITHUB_TOKEN`) | **Read repository contents and packages permissions** | Per-job scope where needed. |
 | Allow GitHub Actions to create and approve PRs | **Off** | Humans approve. |
