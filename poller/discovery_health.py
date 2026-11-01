@@ -58,13 +58,18 @@ def latest_due_sunday(now: datetime, publish_grace: timedelta) -> date:
     return sunday_on_or_before((now - publish_grace).date())
 
 
-def newest_preached_on(records: Mapping[str, Mapping[str, Any]]) -> date | None:
-    """The latest parseable ``preached_on`` in a ledger, or ``None`` if it has none."""
+def newest_preached_on(records: Mapping[str, Mapping[str, Any]], *, on_or_before: date) -> date | None:
+    """The latest parseable ``preached_on`` no later than ``on_or_before``, or ``None`` if none.
+
+    A date after today can only be a typo, and counting it would cover every Sunday up to it.
+    """
     newest = None
     for record in records.values():
         try:
             when = date.fromisoformat(record.get("preached_on") or "")
         except ValueError:
+            continue
+        if when > on_or_before:
             continue
         if newest is None or when > newest:
             newest = when
