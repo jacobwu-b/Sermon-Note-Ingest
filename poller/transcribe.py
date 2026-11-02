@@ -5,7 +5,9 @@ module owns only the model call and its retry/error classification. Nothing here
 caches the transcript to disk — no sermon-specific content may persist in this
 public repo (ADR-0004) — so a cache-hit concept doesn't exist: every call downloads
 and transcribes, and the caller (:mod:`poller.transcriber`) is what makes a repeat
-run cheap, by never selecting a sermon whose ledger record already says done.
+run cheap, by never selecting a sermon whose ledger record already says done. The one
+exception is audio the caller names as already transcribed under another guid, which is
+downloaded and hashed but never transcribed (ADR-0028).
 
 faster-whisper is imported lazily inside :func:`_get_model` so unit tests and
 tooling never load model weights; the model call itself is mocked at the
@@ -18,7 +20,7 @@ import hashlib
 import logging
 import tempfile
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from importlib import metadata
 from pathlib import Path
@@ -104,6 +106,19 @@ class EmptyTranscriptError(RuntimeError):
     """Raised when transcription yields empty/whitespace text after its retries."""
 
 
+class DuplicateAudioError(Exception):
+    """The downloaded audio is byte-identical to audio already transcribed under ``original_guid``.
+
+    Not a failure: a church re-posted the same file under a new guid (ADR-0028), and the
+    caller reuses the original's transcript instead of running the model.
+    """
+
+    def __init__(self, audio_sha256: str, original_guid: str) -> None:
+        super().__init__(f"audio {audio_sha256[:12]} was already transcribed as {original_guid}")
+        self.audio_sha256 = audio_sha256
+        self.original_guid = original_guid
+
+
 class TranscriptionError(RuntimeError):
     """The model call failed on this file after its retries — a per-content failure.
 
@@ -182,17 +197,26 @@ def _transcribe_with_retries(
     raise EmptyTranscriptError(f"transcription produced no text after {attempts} attempts")
 
 
+def audio_sha256(path: Path) -> str:
+    """Return the sha256 hex digest of the audio file at ``path`` — the ledger's ``audio_sha256``."""
+    with path.open("rb") as f:
+        return hashlib.file_digest(f, "sha256").hexdigest()
+
+
 def transcribe_audio(
     audio_url: str,
     hotwords: str | None = None,
+    known_audio: Mapping[str, str] | None = None,
     *,
     transcribe: Callable[[Path, str | None], tuple[str, DecodingProfile]] = default_transcribe,
     download: Callable[[str, Path], None] = http_download,
     sleep: Callable[[float], None] = time.sleep,
-) -> tuple[str, str, DecodingProfile]:
-    """Download ``audio_url``'s enclosure and transcribe it, returning ``(text, sha256_hash, profile)``.
+) -> tuple[str, str, DecodingProfile, str]:
+    """Download ``audio_url``'s enclosure and transcribe it.
 
-    Raises :class:`~poller.net.AudioDownloadError` when the download is exhausted (the
+    Returns ``(text, sha256_hash, profile, audio_sha256)``. ``known_audio`` maps the
+    ``audio_sha256`` of audio already transcribed to its guid; a download matching one raises
+    :class:`DuplicateAudioError` without running the model (ADR-0028). Raises :class:`~poller.net.AudioDownloadError` when the download is exhausted (the
     caller should leave the sermon pending to retry next run), or
     :class:`TranscriptionError`/:class:`EmptyTranscriptError` when the model itself fails
     after its retries (the caller should mark the sermon terminally failed). The downloaded
@@ -201,5 +225,9 @@ def transcribe_audio(
     with tempfile.TemporaryDirectory() as tmpdir:
         dest = Path(tmpdir) / "audio"
         download_audio(audio_url, dest, download=download, sleep=sleep)
+        audio_digest = audio_sha256(dest)
+        original = (known_audio or {}).get(audio_digest)
+        if original is not None:
+            raise DuplicateAudioError(audio_digest, original)
         text, profile = _transcribe_with_retries(dest, hotwords, transcribe=transcribe, sleep=sleep)
-    return text, transcript_hash(text), profile
+    return text, transcript_hash(text), profile, audio_digest

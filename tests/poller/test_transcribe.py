@@ -30,7 +30,7 @@ def test_transcribe_audio_returns_text_hash_and_the_profile_that_produced_it(tmp
         assert audio_path.read_bytes() == b"fake audio"
         return "  Hello, this is a sermon.  ", _PROFILE
 
-    text, digest, profile = transcribe.transcribe_audio(
+    text, digest, profile, audio_sha256 = transcribe.transcribe_audio(
         "https://example.org/a.mp3",
         transcribe=fake_transcribe,
         download=fake_download,
@@ -39,6 +39,43 @@ def test_transcribe_audio_returns_text_hash_and_the_profile_that_produced_it(tmp
     assert text == "Hello, this is a sermon."
     assert digest == hashlib.sha256(text.encode("utf-8")).hexdigest()
     assert profile == _PROFILE
+    assert audio_sha256 == hashlib.sha256(b"fake audio").hexdigest()
+
+
+def test_transcribe_audio_skips_the_model_for_audio_already_transcribed_under_another_guid():
+    def fake_download(url, dest):
+        dest.write_bytes(b"north point audio, re-posted")
+
+    def must_not_run(_path, _hotwords):
+        raise AssertionError("Whisper ran on audio the church already has a transcript for")
+
+    reposted = hashlib.sha256(b"north point audio, re-posted").hexdigest()
+    with pytest.raises(transcribe.DuplicateAudioError) as raised:
+        transcribe.transcribe_audio(
+            "https://example.org/repost.mp3",
+            None,
+            {reposted: "north_point:9e1EFEED61D064276595A0B4B931"},
+            transcribe=must_not_run,
+            download=fake_download,
+            sleep=lambda _s: None,
+        )
+    assert raised.value.audio_sha256 == reposted
+    assert raised.value.original_guid == "north_point:9e1EFEED61D064276595A0B4B931"
+
+
+def test_transcribe_audio_transcribes_audio_whose_hash_is_not_known():
+    def fake_download(url, dest):
+        dest.write_bytes(b"this week's sermon")
+
+    text, _digest, _profile, _audio = transcribe.transcribe_audio(
+        "https://example.org/new.mp3",
+        None,
+        {hashlib.sha256(b"last week's sermon").hexdigest(): "north_point:248D1e023fBD11EF0A0f7E9533f0"},
+        transcribe=lambda _p, _hw: ("this week's transcript", _PROFILE),
+        download=fake_download,
+        sleep=lambda _s: None,
+    )
+    assert text == "this week's transcript"
 
 
 def test_transcribe_audio_propagates_download_failure(tmp_path):
@@ -95,7 +132,7 @@ def test_transcribe_audio_succeeds_on_a_later_attempt(tmp_path):
     def fake_download(url, dest):
         dest.write_bytes(b"audio")
 
-    text, _digest, _profile = transcribe.transcribe_audio(
+    text, _digest, _profile, _audio = transcribe.transcribe_audio(
         "https://example.org/a.mp3",
         transcribe=flaky_transcribe,
         download=fake_download,
