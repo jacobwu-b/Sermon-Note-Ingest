@@ -4,11 +4,12 @@ A pure projection of every church's done records. Web loads each ``path`` as wri
 and fails its build on a malformed file, so these pin the shape exactly.
 """
 
+import hashlib
 import json
 
 import pytest
 
-from poller import config, store, transcript_index
+from poller import config, store, transcribe, transcript_index
 from poller.sources.base import SermonItem
 
 _TABLE = (
@@ -28,7 +29,11 @@ _CONTRACT_KEYS = {
     "episode_url",
     "blurb",
     "path",
+    "sha256",
 }
+
+# A realistic ledger ``transcript_hash``: a 64-hex sha256 digest.
+_TRANSCRIPT_HASH = "2ce57804e7c3a2b5d1f0c9e8b7a6f5e4d3c2b1a09f8e7d6c5b4a39281706f5e4"
 
 
 @pytest.fixture(autouse=True)
@@ -63,7 +68,7 @@ def _transcribed(record: dict, content_path: str, *, adopted: bool = False) -> d
     store.mark_transcribed(
         record,
         content_path=content_path,
-        transcript_hash="2ce57804",
+        transcript_hash=_TRANSCRIPT_HASH,
         transcribed_at="2026-09-27T21:34:56+00:00",
         profile=None if adopted else {"model": "large-v3", "domain_prompt": False},
         adopted=adopted,
@@ -94,6 +99,7 @@ def test_a_transcribed_sermon_is_indexed_with_its_metadata_and_content_path():
                 "episode_url": "https://menlochurchvideo.podbean.com/e/the-purity-of-reality/",
                 "blurb": "Text Our Team (650) 600-0402",
                 "path": path,
+                "sha256": _TRANSCRIPT_HASH,
             }
         ]
     }
@@ -160,7 +166,10 @@ def test_absent_metadata_is_null_never_a_missing_key():
 
 
 def test_nothing_but_the_contract_crosses_into_content():
-    """Metadata only (ADR-0004): hashes, model and ledger bookkeeping stay out."""
+    """Metadata only (ADR-0004): the model, profile and ledger bookkeeping stay out.
+
+    The transcript's own hash is the one ledger hash that crosses, as ``sha256``.
+    """
     record = _transcribed(_record("menlochurchvideo.podbean.com/3a5d9a10"), "transcripts/menlo/x.txt")
     store.save("menlo", {record["guid"]: record})
 
@@ -168,6 +177,36 @@ def test_nothing_but_the_contract_crosses_into_content():
 
     assert set(payload) == {"transcripts"}
     assert set(payload["transcripts"][0]) == _CONTRACT_KEYS
+
+
+def test_sha256_is_the_hash_of_the_transcript_bytes_at_path():
+    """Pipeline's ``transcript_sha256`` is sha256 over the same UTF-8 bytes; equality is the join."""
+    text = "Grace and peace to you. Today we're in Mark 1 — “Repent and believe.”"
+    record = _record("menlochurchvideo.podbean.com/3a5d9a10")
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/x.txt",
+        transcript_hash=transcribe.transcript_hash(text),
+        transcribed_at="2026-09-27T21:34:56+00:00",
+        profile={"model": "large-v3", "domain_prompt": False},
+        adopted=False,
+    )
+    store.save("menlo", {record["guid"]: record})
+
+    [entry] = transcript_index.build_index(config.load_churches())["transcripts"]
+
+    assert entry["sha256"] == hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def test_a_done_record_without_a_hash_publishes_null_sha256():
+    """A missing value is null, never a missing key (spec 0010)."""
+    record = _transcribed(_record("menlochurchvideo.podbean.com/3a5d9a10"), "transcripts/menlo/x.txt")
+    del record["transcript_hash"]
+    store.save("menlo", {record["guid"]: record})
+
+    [entry] = transcript_index.build_index(config.load_churches())["transcripts"]
+
+    assert entry["sha256"] is None
 
 
 def test_a_done_record_without_a_content_path_refuses_to_render():

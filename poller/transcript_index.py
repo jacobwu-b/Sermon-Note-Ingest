@@ -6,6 +6,12 @@ this is how they reach it. ``path`` is the record's ``content_path`` exactly as
 pushed; Web loads it as written and never builds one. Metadata only, never
 transcript text (ADR-0004).
 
+``sha256`` is the record's ``transcript_hash``: the sha256 of the file at ``path``,
+byte for byte. Re-transcription replaces that file in place (ADR-0022). Pipeline's
+feed names the hash each note was generated from as ``transcript_sha256``, so a
+consumer joining on ``guid`` compares the two to tell whether the transcript has
+changed since the note was made (Pipeline ADR-0108). No consumer reads this file yet.
+
 Published by ``python -m poller.status`` in the same push as ``status/ingest.json``
 (ADR-0020). No timestamp: an unchanged ledger renders byte-identical text.
 """
@@ -32,6 +38,7 @@ def _project(source: str, record: dict[str, Any]) -> dict[str, Any]:
         "blurb": record.get("blurb"),
         # Indexed, not .get(): a done record naming no file must fail the render, not publish null.
         "path": record["content_path"],
+        "sha256": record.get("transcript_hash"),
     }
 
 
