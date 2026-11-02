@@ -22,6 +22,9 @@ def _init_bare_repo_with_content(tmp_path):
         capture_output=True,
     )
     subprocess.run(["git", "push", "origin", "main"], cwd=seed, check=True, capture_output=True)
+    # Serve partial clones as GitHub does, including the on-demand fetch of a skipped blob.
+    for setting in ("uploadpack.allowFilter", "uploadpack.allowAnySHA1InWant"):
+        subprocess.run(["git", "config", setting, "true"], cwd=bare, check=True, capture_output=True)
     return bare
 
 
@@ -37,14 +40,16 @@ def content_repo_env(tmp_path, monkeypatch):
     """Point ``default_push`` at a local bare repo instead of a real github.com remote.
 
     ``CONTENT_REPO``/``CONTENT_REPO_TOKEN`` are still read (proving config wiring), but
-    ``_remote_url`` is patched to return the local bare path directly rather than build a
+    ``_remote_url`` is patched to return the local bare repo rather than build a
     github.com URL from them, so this exercises the real git mechanics with no network.
+    It is a ``file://`` URL because git ignores ``--depth`` and ``--filter`` when cloning
+    a plain local path.
     """
     bare = _init_bare_repo_with_content(tmp_path)
     monkeypatch.setenv("CONTENT_REPO", "owner/sermon-note-content")
     monkeypatch.setenv("CONTENT_REPO_TOKEN", "unused-in-local-git-fixture")
     monkeypatch.setenv("CONTENT_REPO_BRANCH", "main")
-    monkeypatch.setattr(content_repo, "_remote_url", lambda repo, token: str(bare))
+    monkeypatch.setattr(content_repo, "_remote_url", lambda repo, token: f"file://{bare}")
     return bare
 
 
@@ -497,3 +502,60 @@ def test_provenance_trailers_survive_a_real_git_commit_and_prove_the_replacement
     assert mark["profile"] == profile
     assert mark["quality"] == counts
     assert mark["transcribed_at"] == "2026-10-13T02:00:00+00:00"
+
+
+def _checkout_on_disk(monkeypatch):
+    """Record the files the clone holds on disk when a write stages its commit."""
+    seen = []
+    original = content_repo._has_staged_changes
+
+    def spy(checkout):
+        seen.extend(
+            sorted(
+                p.relative_to(checkout).as_posix()
+                for p in checkout.rglob("*")
+                if p.is_file() and ".git" not in p.relative_to(checkout).parts
+            )
+        )
+        return original(checkout)
+
+    monkeypatch.setattr(content_repo, "_has_staged_changes", spy)
+    return seen
+
+
+def test_default_push_checks_out_only_the_paths_it_writes_and_keeps_the_rest(content_repo_env, monkeypatch):
+    """Content is mostly transcripts, so a write fetches only its own paths' blobs.
+
+    The paths the sparse clone skipped are not on disk, and must not be pushed as deleted.
+    """
+    content_repo.default_push({_PATH: _OLD, "transcripts/pbc/2019-01-06_untitled_a.txt": "pbc text"})
+    checkout = _checkout_on_disk(monkeypatch)
+
+    content_repo.default_push_status({"status/ingest.json": '{"sermons": []}\n'})
+
+    assert checkout == ["status/ingest.json"]
+    assert _read_file_at_head(content_repo_env, _PATH) == _OLD
+    assert _read_file_at_head(content_repo_env, "transcripts/pbc/2019-01-06_untitled_a.txt") == "pbc text"
+    assert _read_file_at_head(content_repo_env, "notes/existing.txt") == "pre-existing pipeline output\n"
+
+
+def test_default_replace_checks_out_only_the_transcript_it_replaces(content_repo_env, monkeypatch):
+    content_repo.default_push({_PATH: _OLD, "transcripts/pbc/2019-01-06_untitled_a.txt": "pbc text"})
+    checkout = _checkout_on_disk(monkeypatch)
+
+    content_repo.default_replace(_PATH, _NEW, expect_hash=_hash(_OLD), trailers={})
+
+    assert checkout == [_PATH]
+    assert _read_file_at_head(content_repo_env, _PATH) == _NEW
+    assert _read_file_at_head(content_repo_env, "transcripts/pbc/2019-01-06_untitled_a.txt") == "pbc text"
+
+
+def test_default_push_reads_a_path_with_glob_characters_literally(content_repo_env, monkeypatch):
+    """A sparse pattern is gitignore syntax; ``[1]`` must not also match a sibling ``1``."""
+    literal = "transcripts/menlo/2026-10-04_part-[1]_a.txt"
+    content_repo.default_push({literal: "bracketed", "transcripts/menlo/2026-10-04_part-1_a.txt": "plain"})
+    checkout = _checkout_on_disk(monkeypatch)
+
+    content_repo.default_push({literal: "bracketed"})
+
+    assert checkout == [literal]

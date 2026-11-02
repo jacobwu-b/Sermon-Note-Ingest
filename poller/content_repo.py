@@ -22,10 +22,11 @@ can be recognised as ours. A refused replacement is kept outside ``transcripts/`
 from __future__ import annotations
 
 import random
+import re
 import subprocess
 import tempfile
 import time
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Iterable, Mapping
 from pathlib import Path
 
 from poller import config
@@ -44,6 +45,8 @@ _STATUS_COMMIT_MESSAGE = "chore(status): publish ingest status"
 _REPLACE_COMMIT_MESSAGE = "chore(transcripts): replace a stale-profile transcript"
 _CANDIDATE_COMMIT_MESSAGE = "chore(transcripts): keep a refused re-transcription candidate"
 _TRANSCRIPTS_DIR = "transcripts"
+# Characters a sparse-checkout pattern (gitignore syntax) would read as a glob or trim.
+_PATTERN_SPECIAL = re.compile(r"[\\*?\[ ]")
 
 
 class ContentPublishError(RuntimeError):
@@ -131,7 +134,7 @@ def default_push_status(files: dict[str, str]) -> None:
 def _push(files: dict[str, str], *, overwrite: bool, message: str) -> None:
     cfg = config.load_content_repo_config()
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = _clone(workdir, cfg, "--depth", "1")
+        checkout = _sparse_clone(workdir, cfg, files)
         for rel_path, text in files.items():
             dest = checkout / rel_path
             if not overwrite and dest.exists() and dest.read_text(encoding="utf-8") != text:
@@ -149,6 +152,27 @@ def _clone(workdir: str, cfg: config.ContentRepoConfig, *extra: str) -> Path:
     _run_git(
         ["clone", *extra, "--branch", cfg.branch, _remote_url(cfg.repo, cfg.token), str(checkout)],
         cwd=Path(workdir),
+        token=cfg.token,
+    )
+    return checkout
+
+
+def _sparse_pattern(path: str) -> str:
+    """``path`` as an anchored sparse-checkout pattern matching it literally."""
+    return "/" + _PATTERN_SPECIAL.sub(lambda match: "\\" + match.group(), path)
+
+
+def _sparse_clone(workdir: str, cfg: config.ContentRepoConfig, paths: Iterable[str]) -> Path:
+    """A shallow, blobless clone with only ``paths`` checked out (``dir/`` names a folder).
+
+    Content is mostly transcripts, tens of MB and growing, and a write here touches a
+    few files, so only the blobs of ``paths`` are fetched. Every other path keeps its
+    skip-worktree bit, so ``git add -A`` never stages its absence as a deletion.
+    """
+    checkout = _clone(workdir, cfg, "--depth", "1", "--filter=blob:none", "--sparse")
+    _run_git(
+        ["sparse-checkout", "set", "--no-cone", "--", *map(_sparse_pattern, paths)],
+        cwd=checkout,
         token=cfg.token,
     )
     return checkout
@@ -190,7 +214,7 @@ def default_replace(path: str, text: str, *, expect_hash: str, trailers: Mapping
     """
     cfg = config.load_content_repo_config()
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = _clone(workdir, cfg, "--depth", "1")
+        checkout = _sparse_clone(workdir, cfg, [path])
         dest = checkout / path
         current = dest.read_text(encoding="utf-8") if dest.exists() else None
         if current == text:
@@ -230,7 +254,7 @@ def default_keep_candidate(path: str, text: str, *, trailers: Mapping[str, str])
     """
     cfg = config.load_content_repo_config()
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = _clone(workdir, cfg, "--depth", "1")
+        checkout = _sparse_clone(workdir, cfg, [path])
         dest = checkout / path
         if dest.exists():
             if dest.read_text(encoding="utf-8") == text:
@@ -245,7 +269,7 @@ def default_fetch_all_transcripts() -> dict[str, str]:
     """Every file under Content's ``transcripts/``, keyed by repo-relative path. Read-only."""
     cfg = config.load_content_repo_config()
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = _clone(workdir, cfg, "--depth", "1")
+        checkout = _sparse_clone(workdir, cfg, [f"{_TRANSCRIPTS_DIR}/"])
         root = checkout / _TRANSCRIPTS_DIR
         if not root.exists():
             return {}
@@ -264,7 +288,7 @@ def default_fetch_existing(paths: list[str]) -> dict[str, str]:
     """
     cfg = config.load_content_repo_config()
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = _clone(workdir, cfg, "--depth", "1")
+        checkout = _sparse_clone(workdir, cfg, paths)
         return {
             rel_path: (checkout / rel_path).read_text(encoding="utf-8")
             for rel_path in paths
