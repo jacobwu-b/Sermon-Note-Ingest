@@ -1,2 +1,3 @@
 -r requirements-poll.in
 faster-whisper==1.2.1
+jsonschema==4.26.0
