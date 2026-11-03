@@ -255,6 +255,47 @@ DONE = {
 SEED = {"data/pbc.json": {ABIDE["guid"]: ABIDE}, "data/hillside.json": {}}
 
 
+def test_the_push_step_regenerates_the_stats_from_what_it_commits(tmp_path):
+    # The stats used to be written in the poll job, whose stage refuses data/README.md, so every
+    # poll that discovered a sermon failed and its discovery was never recorded.
+    job = PushJob(tmp_path, SEED)
+    job.produce("poll", {"data/hillside.json": {ROOTED["guid"]: ROOTED}})
+    job.land_first({"data/pbc.json": {ABIDE["guid"]: {**ABIDE, **DONE}}})
+
+    result = job.run(commit_step_script(), expected="1")
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert job.main_json("data/hillside.json") == {ROOTED["guid"]: ROOTED}
+    readme = job.main_text("data/README.md")
+    assert "| hillside | 1 | Rooted | 2026-11-01 |" in readme
+    assert "| pbc | 1 | Abide in Me | 2026-10-18 |" in readme
+    assert "**Total sermons across all churches: 2**" in readme
+    assert job.commit_count() == 3
+    assert job.step_outputs() == {"stats": "ok"}
+
+
+def test_the_push_step_lands_the_ledger_even_when_the_stats_cannot_be_regenerated(tmp_path):
+    # A cosmetic file must never hold back a discovery; the run still goes red, after the dispatch.
+    job = PushJob(tmp_path, SEED)
+    job.produce("poll", {"data/hillside.json": {ROOTED["guid"]: ROOTED}})
+    job.land_first({"data/README.md": "# Sermon ledger\n"})
+
+    result = job.run(commit_step_script(), expected="1")
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert job.main_json("data/hillside.json") == {ROOTED["guid"]: ROOTED}
+    assert job.main_text("data/README.md") == "# Sermon ledger\n"
+    assert job.step_outputs() == {"stats": "failed"}
+
+
+def test_a_stats_failure_fails_the_run_only_after_the_transcription_dispatch():
+    push = _job_text("push")
+    dispatch = push.index("- name: Dispatch transcription for newly-discovered churches")
+    gate = push.index("if: always() && steps.commit.outputs.stats == 'failed'")
+    assert dispatch < gate
+    assert "exit 1" in run_block(push[gate:])
+
+
 def test_the_push_step_lands_a_discovery_on_a_tip_a_shard_moved(tmp_path):
     job = PushJob(tmp_path, SEED)
     job.produce("poll", {"data/hillside.json": {ROOTED["guid"]: ROOTED}})
@@ -316,7 +357,7 @@ def test_the_push_step_refuses_an_artifact_carrying_a_workflow(tmp_path):
 
     assert result.returncode != 0
     assert ".github/workflows/poll.yml" in result.stderr
-    assert job.main_paths() == ["data/hillside.json", "data/pbc.json"]
+    assert job.main_paths() == ["data/README.md", "data/hillside.json", "data/pbc.json"]
     assert job.commit_count() == 1
 
 

@@ -1,11 +1,24 @@
 import json
+import os
+import subprocess
 from datetime import UTC, date, datetime, timedelta
 from typing import ClassVar
 
-from poller import batch_poll, config, notify, runner, stats, store
+from poller import batch_poll, config, ledger_push, notify, runner, store
 from poller.sources.base import ExcludedItem, PollResult, SermonItem, SourceAdapter
 
 _MARKED_README = "# Sermon ledger\n\n<!-- STATS:START -->\nplaceholder\n<!-- STATS:END -->\n"
+
+# The developer's own git config (signing, hooks, default branch) must not reach these repos.
+_GIT_ENV = {
+    **os.environ,
+    "GIT_CONFIG_GLOBAL": os.devnull,
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_AUTHOR_NAME": "Ledger Writer",
+    "GIT_AUTHOR_EMAIL": "writer@example.com",
+    "GIT_COMMITTER_NAME": "Ledger Writer",
+    "GIT_COMMITTER_EMAIL": "writer@example.com",
+}
 
 
 def _item(guid: str) -> SermonItem:
@@ -249,23 +262,18 @@ def test_run_skips_disabled_and_unselected_churches(tmp_path, monkeypatch, churc
     assert store.load("off") == {}
 
 
-def test_run_regenerates_readme_stats_even_when_nothing_new_is_found(tmp_path, monkeypatch, church_table):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
-    monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
-    _FakeAdapter.items = []
-    _FakeAdapter.deferred = False
-    church_table(
-        '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
-    )
-
-    assert runner.run(church_names=None, backfill=False) is True
-    assert "placeholder" not in (tmp_path / "README.md").read_text(encoding="utf-8")
-
-
-def test_run_reports_failure_when_stats_regeneration_fails(tmp_path, monkeypatch, church_table):
-    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
-    (tmp_path / "README.md").write_text(_MARKED_README, encoding="utf-8")
+def test_a_poll_that_discovers_a_sermon_stages_every_data_file_it_wrote(tmp_path, monkeypatch, church_table):
+    # The poll job uploads whatever it changed under data/ and the stage refuses any path outside
+    # the ledger allowlist (ADR-0027), so a file the poll writes that the allowlist lacks fails
+    # every run that discovers something, and that discovery is never recorded.
+    repo = tmp_path / "repo"
+    data = repo / "data"
+    data.mkdir(parents=True)
+    (data / "README.md").write_text(_MARKED_README, encoding="utf-8")
+    (data / "fake.json").write_text("{}\n", encoding="utf-8")
+    for args in (["init", "-q", "-b", "main"], ["add", "data"], ["commit", "-q", "-m", "seed ledger"]):
+        subprocess.run(["git", *args], cwd=repo, check=True, capture_output=True, env=_GIT_ENV)
+    monkeypatch.setattr(store, "DATA_DIR", data)
     monkeypatch.setattr(runner, "ADAPTERS", {"fake": _FakeAdapter})
     _FakeAdapter.items = [_item("g1")]
     _FakeAdapter.deferred = False
@@ -273,14 +281,10 @@ def test_run_reports_failure_when_stats_regeneration_fails(tmp_path, monkeypatch
         '{"fake": {"rss": "https://example.org/feed.xml", "ingest": {"enabled": true, "notify": false}}}'
     )
 
-    def _boom():
-        raise stats.StatsError("markers missing")
+    assert runner.run(church_names=None, backfill=False) is True
 
-    monkeypatch.setattr(stats, "regenerate", _boom)
-
-    # The ledger write itself still succeeded; only the stats step failed.
-    assert runner.run(church_names=None, backfill=False) is False
-    assert set(store.load("fake")) == {"g1"}
+    assert ledger_push.stage(repo, tmp_path / "ledger") == ["data/fake.json"]
+    assert (data / "README.md").read_text(encoding="utf-8") == _MARKED_README
 
 
 def test_poll_church_records_discovery_when_new_items_are_found(tmp_path, monkeypatch):

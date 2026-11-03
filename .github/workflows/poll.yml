@@ -190,8 +190,12 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           attempts=3
           landed=false
+          stats=ok
           for attempt in $(seq 1 "$attempts"); do
             python -E -S -m poller.ledger_push apply "$LEDGER_DIR"
+            # Here, not in the poll job, so the stats describe the ledgers this commit lands
+            # (ADR-0030). A README that cannot be regenerated never holds back the ledger.
+            python -E -S -m poller.ledger_push stats || stats=failed
             git add data/
             python -E -S -m poller.ledger_push check-staged
             if git diff --cached --quiet; then
@@ -208,6 +212,7 @@ jobs:
             git fetch -q origin "$GITHUB_REF_NAME"
             git reset -q --hard "origin/$GITHUB_REF_NAME"
           done
+          echo "stats=$stats" >> "$GITHUB_OUTPUT"
           if [ "$landed" != true ]; then
             echo "::error::failed to push ledger update after $attempts attempts"
             exit 1
@@ -237,3 +242,11 @@ jobs:
               echo "::warning::failed to dispatch transcription for $church; the backstop schedule will still catch it"
             fi
           done
+
+      - name: Fail on unregenerated ledger stats
+        # After the dispatch, so a broken README neither holds back the ledger nor its
+        # transcription, yet still turns the run red.
+        if: always() && steps.commit.outputs.stats == 'failed'
+        run: |
+          echo "::error::data/README.md's stats could not be regenerated; the ledger landed without them"
+          exit 1
