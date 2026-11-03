@@ -4,7 +4,9 @@ The deploy key bypasses main's ruleset, so it never sits in a job that runs thir
 A producer (the poll job, each transcribe shard) ``stage``s the allowlisted ``data/`` files it
 changed, with the commit it started from, and uploads them as an artifact. The push job
 ``apply``s every artifact onto the live tip by a field-level three-way merge, and
-``check-staged`` refuses any other path before the commit. The push job runs this module as
+``check-staged`` refuses any other path before the commit. poll.yml's push job then regenerates
+``data/README.md``'s stats from the merged ledgers (``stats``, ADR-0030): the README is written
+there, never carried by an artifact. The push job runs this module as
 ``python -E -S``: without site-packages, so a third-party import on this path fails instead of
 running.
 
@@ -24,13 +26,15 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from poller import config, store
+from poller import config, stats, store
 
 logger = logging.getLogger("poller")
 
 # Names the commit a producer started from; every other file in an artifact is a ledger write.
 BASE_FILE = "ledger-base"
 ALERT_STATE = "data/alerts/state.json"
+# Written by the push job itself from the merged ledgers, so never admitted from an artifact.
+STATS_README = "data/README.md"
 _LEDGER_RE = re.compile(rf"data/{config.CHURCH_KEY_RE.pattern.strip('^$')}\.json")
 _SHA_RE = re.compile(r"[0-9a-f]{40}")
 _MISSING = object()
@@ -178,9 +182,9 @@ def apply(repo: Path, root: Path) -> int:
 
 
 def check_staged(repo: Path) -> list[str]:
-    """Every staged path outside the ledger allowlist."""
+    """Every staged path outside the ledger allowlist, besides the stats README this job writes."""
     staged = _git_out(repo, "diff", "--cached", "--name-only", "-z").split("\0")
-    return [path for path in staged if path and not allowed(path)]
+    return [path for path in staged if path and path != STATS_README and not allowed(path)]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -191,6 +195,7 @@ def main(argv: list[str] | None = None) -> int:
         "root"
     )
     commands.add_parser("check-staged", help="Fail if anything outside the ledger allowlist is staged.")
+    commands.add_parser("stats", help="Regenerate data/README.md's stats from this checkout's ledgers.")
     args = parser.parse_args(argv)
     logging.basicConfig(
         level=config.load_log_level(), format="%(asctime)s %(levelname)s %(name)s: %(message)s"
@@ -202,11 +207,13 @@ def main(argv: list[str] | None = None) -> int:
             stage(repo, Path(args.out))
         elif args.command == "apply":
             apply(repo, Path(args.root))
+        elif args.command == "stats":
+            stats.regenerate()
         else:
             refused = check_staged(repo)
             if refused:
                 raise LedgerPushError(f"staged outside the ledger allowlist: {', '.join(refused)}")
-    except LedgerPushError as exc:
+    except (LedgerPushError, stats.StatsError) as exc:
         logger.error("%s", exc)
         return 1
     return 0

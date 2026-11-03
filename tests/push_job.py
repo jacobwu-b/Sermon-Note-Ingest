@@ -7,6 +7,7 @@ loads without site-packages (ADR-0027).
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -46,13 +47,23 @@ def run_block(step: str) -> str:
     return "\n".join(body)
 
 
-def write_json(path: Path, data: dict) -> None:
+STATS_README = "# Sermon ledger\n\n<!-- STATS:START -->\n<!-- STATS:END -->\n"
+
+
+def write_json(path: Path, data: dict | str) -> None:
+    """``data`` as a ledger, or as the file's text when it is a string (the stats README)."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2) + "\n")
+    path.write_text(data if isinstance(data, str) else json.dumps(data, indent=2) + "\n")
+
+
+def copy_poller(checkout: Path) -> None:
+    """This repo's code inside ``checkout``, as the job has it: ``store.DATA_DIR`` follows the
+    module's own path, so a symlink would point the stats at this repo's real ``data/``."""
+    shutil.copytree(REPO_ROOT / "poller", checkout / "poller", ignore=shutil.ignore_patterns("__pycache__"))
 
 
 class PushJob:
-    """An origin holding ``seed`` on main, producers that clone it, and the push job's checkout."""
+    """An origin holding ``seed`` and its current stats on main, producers, and the push job's checkout."""
 
     def __init__(self, root: Path, seed: dict[str, dict]):
         self.root = root
@@ -63,8 +74,16 @@ class PushJob:
         # GitHub serves any reachable sha, which the push job's shallow checkout relies on.
         git(self.origin, "config", "uploadpack.allowAnySHA1InWant", "true")
         seeder = self.clone("seeder")
-        for path, data in seed.items():
+        for path, data in {"data/README.md": STATS_README, **seed}.items():
             write_json(seeder / path, data)
+        copy_poller(seeder)
+        subprocess.run(
+            [sys.executable, "-E", "-S", "-m", "poller.ledger_push", "stats"],
+            cwd=seeder,
+            check=True,
+            capture_output=True,
+            env=GIT_ENV,
+        )
         git(seeder, "add", "data")
         git(seeder, "commit", "-q", "-m", "seed ledger")
         git(seeder, "push", "-q", "origin", "main")
@@ -85,7 +104,7 @@ class PushJob:
         ledger_push.stage(producer, self.ledger_dir / name)
         return producer
 
-    def land_first(self, writes: dict[str, dict], message: str = "another writer") -> None:
+    def land_first(self, writes: dict[str, dict | str], message: str = "another writer") -> None:
         other = self.clone(f"other-{len(list(self.root.glob('other-*')))}")
         for path, data in writes.items():
             write_json(other / path, data)
@@ -103,10 +122,11 @@ class PushJob:
 
     def run(self, script: str, *, expected: str) -> subprocess.CompletedProcess[str]:
         checkout = self.clone("push-checkout", "--depth=1")
-        (checkout / "poller").symlink_to(REPO_ROOT / "poller")
+        copy_poller(checkout)
         env = {
             **GIT_ENV,
             "PATH": f"{self.bin}{os.pathsep}{os.environ['PATH']}",
+            "GITHUB_OUTPUT": str(self.github_output),
             "GITHUB_REF_NAME": "main",
             "LEDGER_DIR": str(self.ledger_dir),
             "EXPECTED": expected,
@@ -119,6 +139,19 @@ class PushJob:
             text=True,
             check=False,
         )
+
+    @property
+    def github_output(self) -> Path:
+        return self.root / "github-output"
+
+    def step_outputs(self) -> dict[str, str]:
+        """What the step wrote to ``$GITHUB_OUTPUT``."""
+        if not self.github_output.exists():
+            return {}
+        return dict(line.split("=", 1) for line in self.github_output.read_text().splitlines())
+
+    def main_text(self, path: str) -> str:
+        return git(self.origin, "show", f"main:{path}")
 
     def main_json(self, path: str) -> dict:
         return json.loads(git(self.origin, "show", f"main:{path}"))

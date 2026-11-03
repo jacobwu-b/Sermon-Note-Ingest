@@ -8,9 +8,11 @@ from pathlib import Path
 
 import pytest
 
-from poller import ledger_push
+from poller import ledger_push, store
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+
+STATS_README = "# Ledger\n\n<!-- STATS:START -->\nplaceholder\n<!-- STATS:END -->\n"
 
 # The developer's own git config (signing, hooks, default branch) must not reach these repos.
 GIT_ENV = {
@@ -336,16 +338,48 @@ def test_apply_refuses_a_ledger_that_is_not_records_keyed_by_guid(tmp_path, repo
 
 def test_check_staged_names_every_staged_path_outside_the_allowlist(repo):
     write_json(repo / "data" / "pbc.json", ledger(CAPTIVES, ABIDE))
-    (repo / "data" / "README.md").write_text("# Ledger, edited\n")
+    write_json(repo / "data" / "overrides" / "pbc.json", {ABIDE["guid"]: {"title": "Abide"}})
+    write_json(repo / "data" / "alerts" / "snooze.json", {"pbc": {"until": "2026-12-01"}})
     git(repo, "add", "data")
 
-    assert ledger_push.check_staged(repo) == ["data/README.md"]
+    assert ledger_push.check_staged(repo) == ["data/alerts/snooze.json", "data/overrides/pbc.json"]
+
+
+def test_check_staged_admits_the_stats_readme_the_push_job_regenerates(repo):
+    # The README is written in the push job from the merged ledgers, never taken from an artifact.
+    write_json(repo / "data" / "pbc.json", ledger(CAPTIVES, ABIDE))
+    (repo / "data" / "README.md").write_text(STATS_README)
+    git(repo, "add", "data")
+
+    assert ledger_push.check_staged(repo) == []
 
 
 def test_check_staged_passes_a_ledger_only_change(repo):
     write_json(repo / "data" / "pbc.json", ledger(CAPTIVES, ABIDE))
     git(repo, "add", "data")
     assert ledger_push.check_staged(repo) == []
+
+
+# --- stats ---------------------------------------------------------------------------------
+
+
+def test_stats_regenerates_the_readme_from_the_merged_ledgers(repo, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", repo / "data")
+    (repo / "data" / "README.md").write_text(STATS_README)
+    write_json(repo / "data" / "pbc.json", ledger(CAPTIVES, ABIDE))
+
+    assert ledger_push.main(["stats"]) == 0
+
+    readme = (repo / "data" / "README.md").read_text()
+    assert "| pbc | 2 | Setting Captives Free | 2026-10-25 |" in readme
+    assert readme.startswith("# Ledger\n") and readme.endswith("<!-- STATS:END -->\n")
+
+
+def test_stats_fails_without_touching_a_readme_that_lost_its_markers(repo, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", repo / "data")
+
+    assert ledger_push.main(["stats"]) == 1
+    assert (repo / "data" / "README.md").read_text() == "# Ledger\n"
 
 
 # --- the push job's interpreter ----------------------------------------------------------------

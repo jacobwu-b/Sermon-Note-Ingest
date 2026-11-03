@@ -2,9 +2,9 @@
 
 Recomputed from scratch from every ``data/*.json`` ledger (via
 :func:`poller.store.load`, never by reading the files directly — see
-``poller/store.py``'s data-access invariant) at the end of every poll run, so
-the numbers always reflect the ledger's current state, not just what one run
-discovered. Each church's "latest sermon" is simply its first record, relying
+``poller/store.py``'s data-access invariant) by poll.yml's push job, after it merges
+the run's ledger writes onto the tip (ADR-0030), so the numbers describe the ledgers
+that commit lands, not just what one run discovered. Each church's "latest sermon" is simply its first record, relying
 on ``store.save`` having already written every ledger newest-``preached_on``
 first.
 """

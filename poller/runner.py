@@ -6,9 +6,8 @@ notification failing, never stops the others from being polled and recorded.
 ``--backfill`` seeds a church's ledger from its full feed history without
 sending any notification for what it adds, so a first run (or a run after
 adding a new church) doesn't blast an inbox with years of back-catalog. Every
-run ends by regenerating ``data/README.md``'s stats section from whatever the
-ledgers now hold, whether or not this run found anything new, and by checking each
-polled church for a missed Sunday or a feed that keeps failing (ADR-0025).
+run ends by checking each polled church for a missed Sunday or a feed that keeps
+failing (ADR-0025).
 """
 
 from __future__ import annotations
@@ -18,7 +17,7 @@ import logging
 import sys
 from datetime import date, datetime, timedelta
 
-from poller import batch_poll, config, discovery_health, notify, stats, store
+from poller import batch_poll, config, discovery_health, notify, store
 from poller.net import now
 from poller.sources import ADAPTERS
 from poller.sources.base import ExcludedItem
@@ -184,12 +183,6 @@ def run(
             logger.exception("%s: poll crashed unexpectedly", name)
             ok = False
         all_ok = all_ok and ok
-
-    try:
-        stats.regenerate()
-    except stats.StatsError:
-        logger.exception("failed to regenerate data/README.md stats")
-        all_ok = False
 
     try:
         all_ok = check_discovery(list(selected), health, excluded) and all_ok
