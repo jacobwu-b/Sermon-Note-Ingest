@@ -53,11 +53,11 @@ Do not edit between the markers by hand; it will be overwritten.
 |---|---|---|---|
 | gracepres | 451 | Life East Of Eden | 2026-10-25 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
-| lakepointe | 142 | What Is Keeping You From Fully Following Jesus? | 2026-10-25 |
-| menlo | 154 | Posture for People, Policies, and the Polls | 2026-10-25 |
-| north_point | 109 | All Good Things, Part 2: Up in the Mix | 2026-10-25 |
+| lakepointe | 143 | What Is Keeping You From Putting God First? | 2026-11-01 |
+| menlo | 155 | No Kings... But Jesus | 2026-11-01 |
+| north_point | 110 | All Good Things, Part 3: A Conversation with Joel Thomas | 2026-11-01 |
 | pbc | 404 | Setting Captives Free | 2026-10-25 |
-| westgate | 114 | I am the Light of the World | 2026-10-25 |
+| westgate | 115 | Healing the Blind | 2026-11-01 |
 
-**Total sermons across all churches: 1883**
+**Total sermons across all churches: 1887**
 <!-- STATS:END -->
