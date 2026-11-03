@@ -1,8 +1,16 @@
+import json
 import subprocess
+from pathlib import Path
 
 import pytest
 
 from poller import content_repo
+
+# Content always holds a schema/; this one accepts any document, for tests about
+# something other than the schema check (a push with no schema is refused).
+_PERMISSIVE_SCHEMAS = {f"schema/{name}": "{}" for name in content_repo._SCHEMAS.values()}
+# Content's real schemas for the files this repo pushes, as a test copy (ADR-0029).
+_SCHEMA_COPY = Path(__file__).resolve().parents[1] / "fixtures" / "content_schema"
 
 
 def _init_bare_repo_with_content(tmp_path):
@@ -14,6 +22,9 @@ def _init_bare_repo_with_content(tmp_path):
     subprocess.run(["git", "clone", str(bare), str(seed)], check=True, capture_output=True)
     (seed / "notes").mkdir()
     (seed / "notes" / "existing.txt").write_text("pre-existing pipeline output\n")
+    (seed / "schema").mkdir()
+    for rel_path, text in _PERMISSIVE_SCHEMAS.items():
+        (seed / rel_path).write_text(text)
     subprocess.run(["git", "add", "-A"], cwd=seed, check=True, capture_output=True)
     subprocess.run(
         ["git", "-c", "user.name=seed", "-c", "user.email=seed@example.org", "commit", "-m", "seed"],
@@ -533,7 +544,7 @@ def test_default_push_checks_out_only_the_paths_it_writes_and_keeps_the_rest(con
 
     content_repo.default_push_status({"status/ingest.json": '{"sermons": []}\n'})
 
-    assert checkout == ["status/ingest.json"]
+    assert checkout == [*sorted(_PERMISSIVE_SCHEMAS), "status/ingest.json"]
     assert _read_file_at_head(content_repo_env, _PATH) == _OLD
     assert _read_file_at_head(content_repo_env, "transcripts/pbc/2019-01-06_untitled_a.txt") == "pbc text"
     assert _read_file_at_head(content_repo_env, "notes/existing.txt") == "pre-existing pipeline output\n"
@@ -559,3 +570,85 @@ def test_default_push_reads_a_path_with_glob_characters_literally(content_repo_e
     content_repo.default_push({literal: "bracketed"})
 
     assert checkout == [literal]
+
+
+def _schema_checkout(tmp_path, names):
+    """A stand-in clone whose ``schema/`` holds the real copies of ``names``."""
+    (tmp_path / "schema").mkdir()
+    for name in names:
+        (tmp_path / "schema" / name).write_text((_SCHEMA_COPY / name).read_text())
+    return tmp_path
+
+
+def test_a_status_file_that_fits_the_schema_passes(tmp_path):
+    checkout = _schema_checkout(tmp_path, content_repo._SCHEMAS.values())
+
+    content_repo._refuse_invalid(
+        {"status/ingest.json": json.dumps({"churches": {}, "sermons": []}), "transcripts/x.txt": "text"},
+        checkout,
+    )
+
+
+def test_an_undeclared_field_is_refused_naming_file_and_field(tmp_path):
+    """Every schema object is closed, so a ledger field cannot leak into Content by accident."""
+    checkout = _schema_checkout(tmp_path, content_repo._SCHEMAS.values())
+    status = {"churches": {}, "sermons": [], "audio_url": "https://cdn.example/a.mp3"}
+
+    with pytest.raises(content_repo.ContentSchemaError, match=r"status/ingest\.json: \(root\): .*audio_url"):
+        content_repo._refuse_invalid({"status/ingest.json": json.dumps(status)}, checkout)
+
+
+def test_a_missing_schema_is_refused(tmp_path):
+    """Fail closed: the check never passes because Content has no contract for the file."""
+    with pytest.raises(
+        content_repo.ContentSchemaError, match=r"schema/status-ingest\.schema\.json: unusable"
+    ):
+        content_repo._refuse_invalid({"status/ingest.json": "{}"}, tmp_path)
+
+
+def test_a_json_file_no_schema_describes_is_refused(tmp_path):
+    with pytest.raises(content_repo.ContentSchemaError, match=r"status/extra\.json: no schema describes"):
+        content_repo._refuse_invalid({"status/extra.json": "{}"}, tmp_path)
+
+
+def _head(bare):
+    return subprocess.run(
+        ["git", "rev-parse", "main"], cwd=bare, capture_output=True, text=True, check=True
+    ).stdout
+
+
+def test_default_push_status_refuses_an_invalid_file_and_leaves_content_unchanged(content_repo_env, tmp_path):
+    """The refusal comes before any write, against the schema Content holds now."""
+    seed = tmp_path / "schema-seed"
+    subprocess.run(["git", "clone", str(content_repo_env), str(seed)], check=True, capture_output=True)
+    name = "status-ingest.schema.json"
+    (seed / "schema" / name).write_text((_SCHEMA_COPY / name).read_text())
+    subprocess.run(
+        ["git", "-c", "user.name=seed", "-c", "user.email=seed@example.org", "commit", "-qam", "schema"],
+        cwd=seed,
+        check=True,
+        capture_output=True,
+    )
+    subprocess.run(["git", "push", "origin", "main"], cwd=seed, check=True, capture_output=True)
+    before = _head(content_repo_env)
+
+    with pytest.raises(content_repo.ContentSchemaError, match=r"sermons/0: 'first_seen_at' is a required"):
+        content_repo.default_push_status(
+            {"status/ingest.json": json.dumps({"churches": {}, "sermons": [{"guid": "g"}]})}
+        )
+
+    assert _head(content_repo_env) == before
+
+
+def test_push_status_does_not_retry_a_schema_refusal():
+    """Re-cloning cannot change the verdict, so the refusal surfaces at once."""
+    calls = []
+
+    def refuses(files):
+        calls.append(files)
+        raise content_repo.ContentSchemaError("refusing to push 1 schema violation(s)")
+
+    with pytest.raises(content_repo.ContentSchemaError):
+        content_repo.push_status({"status/ingest.json": "{}"}, push=refuses, sleep=lambda _s: None)
+
+    assert len(calls) == 1

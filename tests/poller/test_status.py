@@ -5,8 +5,10 @@ only when it changed. These pin the contract the web app joins against.
 """
 
 import json
+from pathlib import Path
 
 import pytest
+from jsonschema import Draft202012Validator
 
 from poller import config, content_repo, status, store
 from poller.sources.base import SermonItem
@@ -32,6 +34,10 @@ _CONTRACT_KEYS = {
     "last_error",
     "quality_flags",
 }
+
+# A copy of Content's schema/ (ADR-0029). The push validates against Content's own;
+# this one catches a mismatch before merge. Refresh it when Content's schema changes.
+_SCHEMA_COPY = Path(__file__).resolve().parents[1] / "fixtures" / "content_schema"
 
 
 @pytest.fixture(autouse=True)
@@ -234,3 +240,26 @@ def test_main_exits_non_zero_when_the_push_never_lands():
         raise content_repo.ContentPublishError("content push failed after 3 attempts: rejected")
 
     assert status.main([], push=refuse) == 1
+
+
+def test_every_shape_the_projection_emits_fits_contents_schema():
+    """Content refuses a status file its schema rejects (ADR-0029); catch it here first."""
+    done = _record("menlochurchvideo.podbean.com/done", preached_on="2026-09-27")
+    store.mark_transcribed(
+        done,
+        content_path="transcripts/menlo/x.txt",
+        transcript_hash="h",
+        transcribed_at="2026-09-27T21:34:56+00:00",
+        profile=None,
+        quality=_LOOPED,
+    )
+    failing = _record("menlochurchvideo.podbean.com/failing", preached_on="2026-10-04")
+    store.mark_download_failed(failing)
+    legacy = _record("menlochurchvideo.podbean.com/legacy", preached_on="2025-01-05")
+    del legacy["transcription_last_error"]
+    del legacy["transcript_adopted"]
+    no_audio = _record("menlochurchvideo.podbean.com/no-audio", preached_on="2026-10-04", audio_url="")
+    store.save("menlo", {r["guid"]: r for r in (done, failing, legacy, no_audio)})
+    schema = json.loads((_SCHEMA_COPY / "status-ingest.schema.json").read_text())
+
+    Draft202012Validator(schema).validate(json.loads(status.render_status(config.load_churches())))

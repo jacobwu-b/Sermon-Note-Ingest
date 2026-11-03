@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "status/ingest.json",
+  "description": "Every feed episode Sermon-Note-Ingest has ledgered, for the web status report (Ingest spec 0009). Written by Sermon-Note-Ingest.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["churches", "sermons"],
+  "properties": {
+    "churches": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z0-9_]+$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ingest_enabled"],
+        "properties": { "ingest_enabled": { "type": "boolean" } }
+      }
+    },
+    "sermons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "guid",
+          "source",
+          "title",
+          "preached_on",
+          "feed_published_at",
+          "first_seen_at",
+          "audio_available",
+          "transcription_status",
+          "transcribed_at",
+          "transcript_adopted",
+          "last_error",
+          "quality_flags"
+        ],
+        "properties": {
+          "guid": { "type": "string", "minLength": 1 },
+          "source": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "title": { "type": ["string", "null"] },
+          "preached_on": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "feed_published_at": { "type": ["string", "null"] },
+          "first_seen_at": { "type": "string" },
+          "audio_available": { "type": "boolean" },
+          "transcription_status": { "enum": ["done", "failed", null] },
+          "transcribed_at": { "type": ["string", "null"] },
+          "transcript_adopted": { "type": ["boolean", "null"] },
+          "last_error": { "enum": ["audio_download", "transcription", "empty_transcript", null] },
+          "quality_flags": {
+            "description": "[] when scored and clean, null when never scored.",
+            "type": ["array", "null"],
+            "items": { "enum": ["loops", "credits", "hotword_leak"] }
+          }
+        }
+      }
+    }
+  }
+}

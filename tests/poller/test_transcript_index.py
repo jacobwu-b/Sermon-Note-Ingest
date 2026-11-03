@@ -6,8 +6,10 @@ and fails its build on a malformed file, so these pin the shape exactly.
 
 import hashlib
 import json
+from pathlib import Path
 
 import pytest
+from jsonschema import Draft202012Validator
 
 from poller import config, store, transcribe, transcript_index
 from poller.sources.base import SermonItem
@@ -34,6 +36,10 @@ _CONTRACT_KEYS = {
 
 # A realistic ledger ``transcript_hash``: a 64-hex sha256 digest.
 _TRANSCRIPT_HASH = "2ce57804e7c3a2b5d1f0c9e8b7a6f5e4d3c2b1a09f8e7d6c5b4a39281706f5e4"
+
+# A copy of Content's schema/ (ADR-0029). The push validates against Content's own;
+# this one catches a mismatch before merge. Refresh it when Content's schema changes.
+_SCHEMA_COPY = Path(__file__).resolve().parents[1] / "fixtures" / "content_schema"
 
 
 @pytest.fixture(autouse=True)
@@ -249,3 +255,17 @@ def test_an_unchanged_ledger_renders_byte_identical_index():
 
 def test_an_empty_ledger_renders_an_empty_list_not_a_missing_file():
     assert json.loads(transcript_index.render_index(config.load_churches())) == {"transcripts": []}
+
+
+def test_the_index_fits_contents_schema():
+    """Content refuses an index its schema rejects (ADR-0029); catch it here first."""
+    done = _transcribed(_record("menlochurchvideo.podbean.com/done"), "transcripts/menlo/done.txt")
+    bare = _transcribed(
+        _record("https://pbc.org?enmse_mid=4696", title=None, speaker=None, episode_url=None, blurb=None),
+        "transcripts/pbc/untitled.txt",
+    )
+    del bare["transcript_hash"]
+    store.save("menlo", {r["guid"]: r for r in (done, bare)})
+    schema = json.loads((_SCHEMA_COPY / "transcripts-index.schema.json").read_text())
+
+    Draft202012Validator(schema).validate(json.loads(transcript_index.render_index(config.load_churches())))

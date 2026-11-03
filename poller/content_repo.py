@@ -17,10 +17,15 @@ ledger names. Its commits carry ``Ingest-*`` trailers, read back by
 :func:`last_commit_trailers`, so a run that died between the Content and ledger pushes
 can be recognised as ours. A refused replacement is kept outside ``transcripts/`` by
 :func:`keep_candidate`.
+
+Every JSON file a push writes is first validated against Content's own ``schema/``,
+read from the same clone (ADR-0029). Content owns the feed contract, so a file it does
+not describe or that does not match is refused rather than published.
 """
 
 from __future__ import annotations
 
+import json
 import random
 import re
 import subprocess
@@ -28,6 +33,9 @@ import tempfile
 import time
 from collections.abc import Callable, Iterable, Mapping
 from pathlib import Path
+
+from jsonschema import Draft202012Validator
+from jsonschema.exceptions import SchemaError
 
 from poller import config
 from poller.transcribe import transcript_hash
@@ -45,6 +53,15 @@ _STATUS_COMMIT_MESSAGE = "chore(status): publish ingest status"
 _REPLACE_COMMIT_MESSAGE = "chore(transcripts): replace a stale-profile transcript"
 _CANDIDATE_COMMIT_MESSAGE = "chore(transcripts): keep a refused re-transcription candidate"
 _TRANSCRIPTS_DIR = "transcripts"
+# Content's folder of JSON Schemas, one per JSON file there (ADR-0029).
+_SCHEMA_DIR = "schema"
+# Each JSON file this repo pushes, by the schema that describes it.
+_SCHEMAS = {
+    "status/ingest.json": "status-ingest.schema.json",
+    "transcripts/index.json": "transcripts-index.schema.json",
+}
+# Enough errors to diagnose a refusal without logging the whole ledger.
+_MAX_SCHEMA_ERRORS = 10
 # Characters a sparse-checkout pattern (gitignore syntax) would read as a glob or trim.
 _PATTERN_SPECIAL = re.compile(r"[\\*?\[ ]")
 
@@ -55,6 +72,10 @@ class ContentPublishError(RuntimeError):
 
 class ContentRefusedError(ContentPublishError):
     """Content holds something a write must not replace; a fresh clone can't change that, so never retried."""
+
+
+class ContentSchemaError(ContentRefusedError):
+    """A JSON file the push would write breaks Content's schema, or nothing there describes it (ADR-0029)."""
 
 
 class ContentConflictError(ContentRefusedError):
@@ -133,8 +154,10 @@ def default_push_status(files: dict[str, str]) -> None:
 
 def _push(files: dict[str, str], *, overwrite: bool, message: str) -> None:
     cfg = config.load_content_repo_config()
+    has_json = any(path.endswith(".json") for path in files)
     with tempfile.TemporaryDirectory() as workdir:
-        checkout = _sparse_clone(workdir, cfg, files)
+        checkout = _sparse_clone(workdir, cfg, [*files, f"{_SCHEMA_DIR}/"] if has_json else files)
+        _refuse_invalid(files, checkout)
         for rel_path, text in files.items():
             dest = checkout / rel_path
             if not overwrite and dest.exists() and dest.read_text(encoding="utf-8") != text:
@@ -145,6 +168,42 @@ def _push(files: dict[str, str], *, overwrite: bool, message: str) -> None:
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(text, encoding="utf-8")
         _commit_and_push(checkout, cfg, message)
+
+
+def _refuse_invalid(files: dict[str, str], checkout: Path) -> None:
+    """Raise :class:`ContentSchemaError` unless every JSON file in ``files`` fits its schema.
+
+    The schemas are the clone's, i.e. what Content holds now, never a copy. A missing or
+    unreadable schema is refused too, so the check never passes for want of one.
+    """
+    errors: list[str] = []
+    for rel_path, text in sorted(files.items()):
+        if not rel_path.endswith(".json"):
+            continue
+        name = _SCHEMAS.get(rel_path)
+        if name is None:
+            errors.append(f"{rel_path}: no schema describes this file")
+            continue
+        try:
+            schema = json.loads((checkout / _SCHEMA_DIR / name).read_text(encoding="utf-8"))
+            Draft202012Validator.check_schema(schema)
+        except (OSError, ValueError, SchemaError) as exc:
+            errors.append(f"{_SCHEMA_DIR}/{name}: unusable: {exc}")
+            continue
+        try:
+            document = json.loads(text)
+        except ValueError as exc:
+            errors.append(f"{rel_path}: not JSON: {exc}")
+            continue
+        for error in Draft202012Validator(schema).iter_errors(document):
+            where = "/".join(str(part) for part in error.absolute_path) or "(root)"
+            errors.append(f"{rel_path}: {where}: {error.message[:200]}")
+    if errors:
+        more = len(errors) - _MAX_SCHEMA_ERRORS
+        raise ContentSchemaError(
+            f"refusing to push {len(errors)} schema violation(s): {'; '.join(errors[:_MAX_SCHEMA_ERRORS])}"
+            + (f"; and {more} more" if more > 0 else "")
+        )
 
 
 def _clone(workdir: str, cfg: config.ContentRepoConfig, *extra: str) -> Path:
