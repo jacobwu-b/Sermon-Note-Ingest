@@ -18,7 +18,9 @@ from typing import Any
 
 from poller import config, content_repo, net, prompting, quality, selection, store, transcribe
 
-TranscribeAudio = Callable[[str, str | None], tuple[str, str, transcribe.DecodingProfile]]
+TranscribeAudio = Callable[
+    [str, str | None, Mapping[str, str]], tuple[str, str, transcribe.DecodingProfile, str]
+]
 FetchExisting = Callable[[list[str]], dict[str, str]]
 LastCommitTrailers = Callable[[str], dict[str, str]]
 ReplaceTranscript = Callable[..., None]
@@ -287,7 +289,8 @@ def _retranscribe_sermon(
 
     started = time.monotonic()
     try:
-        text, new_hash, decoded_under = transcribe_audio(record["audio_url"], hotwords)
+        # No known audio: the record's own audio is what is being re-transcribed.
+        text, new_hash, decoded_under, _audio = transcribe_audio(record["audio_url"], hotwords, {})
     except net.AudioDownloadError as exc:
         logger.warning("%s/%s: audio download failed, retrying on a later run: %s", name, guid, exc)
         return _Attempt(fail(store.DOWNLOAD_ERROR), row)

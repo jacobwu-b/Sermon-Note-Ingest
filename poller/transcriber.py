@@ -21,6 +21,10 @@ parallel runs instead of one. Sharding never changes *which* sermons are in scop
 decides which of them this particular invocation is responsible for. The default
 (index 0, count 1) is every sermon in scope, identical to omitting both flags.
 
+Re-posted audio (ADR-0028): a sermon whose downloaded audio is byte-identical to a
+transcript this church already has, under another guid, is not run through Whisper. The
+original's text is pushed under the new sermon's own path instead.
+
 ``--retranscribe-stale`` (ADR-0022) is a second mode over ``done`` records instead of
 pending ones: it re-transcribes each one whose recorded decoding profile differs from the
 running one, and replaces it in Content only by compare-and-swap. It never dispatches
@@ -34,7 +38,7 @@ import dataclasses
 import logging
 import re
 import sys
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from datetime import UTC, datetime, timedelta
 
 from poller import (
@@ -52,7 +56,9 @@ from poller import (
 )
 from poller.slug import slugify
 
-TranscribeAudio = Callable[[str, str | None], tuple[str, str, transcribe.DecodingProfile]]
+TranscribeAudio = Callable[
+    [str, str | None, Mapping[str, str]], tuple[str, str, transcribe.DecodingProfile, str]
+]
 PushTranscripts = Callable[[dict[str, str]], None]
 FetchExisting = Callable[[list[str]], dict[str, str]]
 DispatchIngestEvent = Callable[[dict[str, object], str], None]
@@ -137,6 +143,64 @@ def _send_quality_alert(church: str, flagged: list[notify.FlaggedTranscript]) ->
     notify.send_quality_alert(church, flagged, config.load_notify_config())
 
 
+@dataclasses.dataclass(frozen=True)
+class _Pushed:
+    """What a sermon's ledger mark records once its transcript lands in Content."""
+
+    path: str
+    digest: str
+    profile: dict[str, object]
+    score: quality.QualityScore | None
+    audio_sha256: str
+    copied_from: str | None = None
+
+
+def _known_audio(records: dict[str, dict]) -> dict[str, str]:
+    """Each ``done`` transcript's ``audio_sha256``, mapped to its guid (ADR-0028).
+
+    A copy is left out, so a re-post always names the transcript Whisper produced.
+    """
+    return {
+        record["audio_sha256"]: guid
+        for guid, record in records.items()
+        if record.get("transcription_status") == "done"
+        and record.get("audio_sha256")
+        and not record.get("transcript_copied_from")
+    }
+
+
+def _reused_transcript(
+    duplicate: transcribe.DuplicateAudioError,
+    path: str,
+    records: dict[str, dict],
+    to_push: dict[str, str],
+    pending_marks: dict[str, _Pushed],
+    fetch_existing: FetchExisting,
+) -> tuple[str, _Pushed] | None:
+    """The original's text, and the mark for pushing it to ``path``; ``None`` if Content lost it.
+
+    The original was either transcribed earlier in this batch, or is a ``done`` record whose
+    text is read back from Content (raising :class:`content_repo.ContentPublishError` if
+    Content can't be read).
+    """
+    original_guid = duplicate.original_guid
+    if original_guid in pending_marks:
+        original = pending_marks[original_guid]
+        return to_push[original.path], dataclasses.replace(original, path=path, copied_from=original_guid)
+    record = records[original_guid]
+    text = fetch_existing([record["content_path"]]).get(record["content_path"])
+    if text is None:
+        return None
+    return text, _Pushed(
+        path=path,
+        digest=transcribe.transcript_hash(text),
+        profile={key: record.get(f"transcription_{key}") for key in store.PROFILE_KEYS},
+        score=store.transcript_quality(record),
+        audio_sha256=duplicate.audio_sha256,
+        copied_from=original_guid,
+    )
+
+
 def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
     """Records not yet transcribed or failed, with a fetchable enclosure, newest first.
 
@@ -179,6 +243,12 @@ def transcribe_church(
     ledgered and dispatched; once the push lands, the church's flagged sermons go out in
     one ``send_quality_alert`` email.
 
+    A sermon whose audio is byte-identical to a ``done`` transcript of this church, or to
+    one transcribed earlier in ``batch``, reuses that transcript (ADR-0028): pushed under
+    its own path, ledgered with ``transcript_copied_from`` and dispatched, but never run
+    through Whisper and never alerted on. If Content no longer holds the original, it is
+    transcribed after all; if Content can't be read, it stays pending.
+
     Returns ``True`` iff no sermon in ``batch`` ended terminally failed, the Content
     push (if there was anything to push) succeeded, and any quality alert was delivered.
     A download failure is not a failure of this run — it's an expected, retried-next-run
@@ -189,10 +259,11 @@ def transcribe_church(
     its plan has no ledger record to fan out and would report a broken handoff.
     """
     to_push: dict[str, str] = {}
-    pending_marks: dict[str, tuple[str, str, dict[str, object], quality.QualityScore]] = {}
+    pending_marks: dict[str, _Pushed] = {}
     flagged: list[notify.FlaggedTranscript] = []
     all_ok = True
     church_terms = prompting.church_vocabulary(records)
+    known_audio = _known_audio(records)
 
     paths = {guid: _content_path(name, record) for guid, record in batch}
     try:
@@ -224,7 +295,35 @@ def transcribe_church(
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
         logger.debug("%s/%s: hotwords: %s", name, guid, hotwords)
         try:
-            text, digest, decoded_under = transcribe_audio(record["audio_url"], hotwords)
+            try:
+                text, digest, decoded_under, audio_digest = transcribe_audio(
+                    record["audio_url"], hotwords, known_audio
+                )
+            except transcribe.DuplicateAudioError as duplicate:
+                reused = _reused_transcript(duplicate, path, records, to_push, pending_marks, fetch_existing)
+                if reused is not None:
+                    logger.info(
+                        "%s/%s: audio identical to %s's; reusing its transcript instead of transcribing",
+                        name,
+                        guid,
+                        duplicate.original_guid,
+                    )
+                    to_push[path], pending_marks[guid] = reused
+                    continue
+                logger.error(
+                    "%s/%s: audio identical to %s's, but Content no longer holds its transcript; "
+                    "transcribing after all",
+                    name,
+                    guid,
+                    duplicate.original_guid,
+                )
+                text, digest, decoded_under, audio_digest = transcribe_audio(
+                    record["audio_url"], hotwords, {}
+                )
+        except content_repo.ContentPublishError as exc:
+            logger.error("%s/%s: could not read Content, leaving it pending: %s", name, guid, exc)
+            all_ok = False
+            continue
         except net.AudioDownloadError as exc:
             logger.warning("%s/%s: audio download failed, retrying next run: %s", name, guid, exc)
             store.mark_download_failed(record)
@@ -241,7 +340,8 @@ def transcribe_church(
             continue
         to_push[path] = text
         score = quality.score(text, hotwords=decoded_under.hotwords)
-        pending_marks[guid] = (path, digest, dataclasses.asdict(decoded_under), score)
+        pending_marks[guid] = _Pushed(path, digest, dataclasses.asdict(decoded_under), score, audio_digest)
+        known_audio.setdefault(audio_digest, guid)
 
     if to_push:
         try:
@@ -257,19 +357,22 @@ def transcribe_church(
             return False
         transcribed_at = net.now()
         now_dt = datetime.fromisoformat(transcribed_at)
-        for guid, (path, digest, profile, score) in pending_marks.items():
+        for guid, mark in pending_marks.items():
             record = records[guid]
-            counts = dataclasses.asdict(score)
+            counts = dataclasses.asdict(mark.score) if mark.score is not None else None
             store.mark_transcribed(
                 record,
-                content_path=path,
-                transcript_hash=digest,
+                content_path=mark.path,
+                transcript_hash=mark.digest,
                 transcribed_at=transcribed_at,
-                profile=profile,
+                profile=mark.profile,
                 quality=counts,
+                audio_sha256=mark.audio_sha256,
+                copied_from=mark.copied_from,
             )
-            tripped = quality.flags(score)
-            if tripped:
+            # A copy's original was already scored and, if flagged, alerted on.
+            own_score = mark.score if mark.copied_from is None else None
+            if own_score is not None and (tripped := quality.flags(own_score)):
                 logger.warning(
                     "%s/%s: transcript quality flagged %s: %s", name, guid, ",".join(tripped), counts
                 )
@@ -278,7 +381,7 @@ def transcribe_church(
                         guid=guid,
                         title=record.get("title"),
                         preached_on=record.get("preached_on"),
-                        score=score,
+                        score=own_score,
                         flags=tripped,
                     )
                 )
@@ -294,7 +397,12 @@ def transcribe_church(
                 )
                 continue
             event = _ingest_event(
-                name, guid, record, content_path=path, transcript_hash=digest, transcribed_at=transcribed_at
+                name,
+                guid,
+                record,
+                content_path=mark.path,
+                transcript_hash=mark.digest,
+                transcribed_at=transcribed_at,
             )
             try:
                 dispatch_ingest_event(event, name)

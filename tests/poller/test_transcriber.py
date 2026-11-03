@@ -1,4 +1,5 @@
 import dataclasses
+import hashlib
 
 import pytest
 
@@ -20,6 +21,7 @@ _PROFILE = transcribe.DecodingProfile(
     faster_whisper_version="1.2.1",
     ctranslate2_version="4.8.2",
 )
+_AUDIO = hashlib.sha256(b"sermon audio").hexdigest()
 
 
 def _item(guid: str, *, preached_on: str, audio_url: str = "https://example.org/a.mp3") -> SermonItem:
@@ -109,8 +111,8 @@ def test_transcribe_church_marks_success_only_after_push_succeeds(tmp_path, monk
     records = {"g1": _record("g1", preached_on="2026-01-01")}
     pushed = {}
 
-    def fake_transcribe_audio(url, hotwords):
-        return "the transcript", "hash123", _PROFILE
+    def fake_transcribe_audio(url, hotwords, known_audio):
+        return "the transcript", "hash123", _PROFILE, _AUDIO
 
     def fake_push(files):
         pushed.update(files)
@@ -145,7 +147,7 @@ def test_transcribe_church_records_the_decoding_profile_the_transcription_return
         "menlo",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", prompted),
+        transcribe_audio=lambda url, hotwords, known_audio: ("the transcript", "hash123", prompted, _AUDIO),
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
     )
@@ -164,9 +166,9 @@ def test_transcribe_church_passes_per_sermon_hotwords_built_from_the_record_and_
     }
     seen = {}
 
-    def fake_transcribe_audio(url, hotwords):
+    def fake_transcribe_audio(url, hotwords, known_audio):
         seen[url] = hotwords
-        return "the transcript", "hash123", _PROFILE
+        return "the transcript", "hash123", _PROFILE, _AUDIO
 
     ok = transcriber.transcribe_church(
         "hillside",
@@ -195,9 +197,9 @@ def test_run_passes_the_configured_church_vocabulary_through_to_the_hotwords(
     store.save("pbc", {"p1": _record("p1", preached_on="2026-01-01")})
     seen = []
 
-    def fake_transcribe_audio(url, hotwords):
+    def fake_transcribe_audio(url, hotwords, known_audio):
         seen.append(hotwords)
-        return "text", "hash", _PROFILE
+        return "text", "hash", _PROFILE, _AUDIO
 
     transcriber.run(
         church_names=["pbc"],
@@ -222,8 +224,8 @@ def test_transcribe_church_dispatches_an_ingest_event_per_successfully_transcrib
     records = {"g1": _record("g1", preached_on="2026-09-15")}
     dispatched = []
 
-    def fake_transcribe_audio(url, hotwords):
-        return "the transcript", "hash123", _PROFILE
+    def fake_transcribe_audio(url, hotwords, known_audio):
+        return "the transcript", "hash123", _PROFILE, _AUDIO
 
     ok = transcriber.transcribe_church(
         "menlo",
@@ -256,7 +258,7 @@ def test_transcribe_church_does_not_dispatch_for_a_church_pipeline_does_not_run(
         "lakepointe",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: ("the transcript", "hash123", _PROFILE, _AUDIO),
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
@@ -286,7 +288,7 @@ def test_run_dispatches_only_for_churches_the_table_enables_under_pipeline(
     transcriber.run(
         church_names=None,
         limit=1,
-        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: ("the transcript", "hash123", _PROFILE, _AUDIO),
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append(source),
@@ -299,8 +301,8 @@ def test_transcribe_church_survives_a_dispatch_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-09-15")}
 
-    def fake_transcribe_audio(url, hotwords):
-        return "the transcript", "hash123", _PROFILE
+    def fake_transcribe_audio(url, hotwords, known_audio):
+        return "the transcript", "hash123", _PROFILE, _AUDIO
 
     def failing_dispatch(event, source):
         raise pipeline_dispatch.PipelineDispatchError("pipeline unreachable")
@@ -325,8 +327,8 @@ def test_transcribe_church_never_dispatches_for_an_item_whose_push_failed(tmp_pa
     records = {"g1": _record("g1", preached_on="2026-09-15")}
     dispatched = []
 
-    def fake_transcribe_audio(url, hotwords):
-        return "text", "hash", _PROFILE
+    def fake_transcribe_audio(url, hotwords, known_audio):
+        return "text", "hash", _PROFILE, _AUDIO
 
     def failing_push(files):
         raise ContentPublishError("content repo unreachable")
@@ -350,8 +352,8 @@ def test_transcribe_church_never_dispatches_for_a_backfill_sermon(tmp_path, monk
     records = {"g1": _record("g1", preached_on="2026-01-01")}
     dispatched = []
 
-    def fake_transcribe_audio(url, hotwords):
-        return "the transcript", "hash123", _PROFILE
+    def fake_transcribe_audio(url, hotwords, known_audio):
+        return "the transcript", "hash123", _PROFILE, _AUDIO
 
     ok = transcriber.transcribe_church(
         "menlo",
@@ -378,8 +380,8 @@ def test_transcribe_church_dispatches_when_feed_published_at_is_recent_even_if_p
     records["g1"]["feed_published_at"] = "2026-09-15T10:00:00+00:00"
     dispatched = []
 
-    def fake_transcribe_audio(url, hotwords):
-        return "the transcript", "hash123", _PROFILE
+    def fake_transcribe_audio(url, hotwords, known_audio):
+        return "the transcript", "hash123", _PROFILE, _AUDIO
 
     ok = transcriber.transcribe_church(
         "menlo",
@@ -406,7 +408,7 @@ def test_ingest_event_carries_the_preached_date_and_feed_instant_as_separate_fie
         "menlo",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: ("the transcript", "hash123", _PROFILE, _AUDIO),
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
@@ -428,7 +430,7 @@ def test_ingest_event_sends_a_null_feed_instant_rather_than_the_preached_date(tm
         "pbc",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: ("the transcript", "hash123", _PROFILE, _AUDIO),
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
         dispatch_ingest_event=lambda event, source: dispatched.append((event, source)),
@@ -443,8 +445,8 @@ def test_transcribe_church_leaves_batch_pending_when_push_fails(tmp_path, monkey
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-01-01")}
 
-    def fake_transcribe_audio(url, hotwords):
-        return "text", "hash", _PROFILE
+    def fake_transcribe_audio(url, hotwords, known_audio):
+        return "text", "hash", _PROFILE, _AUDIO
 
     def failing_push(files):
         raise ContentPublishError("content repo unreachable")
@@ -467,7 +469,7 @@ def test_transcribe_church_leaves_a_download_failure_pending_not_failed(tmp_path
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-01-01")}
 
-    def failing_transcribe_audio(url, hotwords):
+    def failing_transcribe_audio(url, hotwords, known_audio):
         raise AudioDownloadError("cdn rejected")
 
     ok = transcriber.transcribe_church(
@@ -496,7 +498,7 @@ def test_transcribe_church_records_why_a_transcription_failed(tmp_path, monkeypa
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-01-01")}
 
-    def failing_transcribe_audio(url, hotwords):
+    def failing_transcribe_audio(url, hotwords, known_audio):
         raise error
 
     transcriber.transcribe_church(
@@ -519,7 +521,7 @@ def test_transcribe_church_records_a_whisper_transcript_as_not_adopted(tmp_path,
         "menlo",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("the transcript", "hash123", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: ("the transcript", "hash123", _PROFILE, _AUDIO),
         push=lambda files: None,
         fetch_existing=_nothing_in_content,
     )
@@ -531,7 +533,7 @@ def test_transcribe_church_marks_a_terminal_model_failure(tmp_path, monkeypatch)
     monkeypatch.setattr(store, "DATA_DIR", tmp_path)
     records = {"g1": _record("g1", preached_on="2026-01-01")}
 
-    def failing_transcribe_audio(url, hotwords):
+    def failing_transcribe_audio(url, hotwords, known_audio):
         raise EmptyTranscriptError("nothing but silence")
 
     ok = transcriber.transcribe_church(
@@ -561,9 +563,9 @@ def test_run_caps_each_church_independently_not_a_shared_budget(tmp_path, monkey
 
     transcribed = []
 
-    def fake_transcribe_audio(url, hotwords):
+    def fake_transcribe_audio(url, hotwords, known_audio):
         transcribed.append(url)
-        return "text", "hash", _PROFILE
+        return "text", "hash", _PROFILE, _AUDIO
 
     transcriber.run(
         church_names=None,
@@ -588,9 +590,9 @@ def test_run_is_a_noop_on_a_second_run_against_already_transcribed_records(tmp_p
 
     calls = []
 
-    def fake_transcribe_audio(url, hotwords):
+    def fake_transcribe_audio(url, hotwords, known_audio):
         calls.append(url)
-        return "text", "hash", _PROFILE
+        return "text", "hash", _PROFILE, _AUDIO
 
     transcriber.run(
         church_names=["menlo"],
@@ -621,9 +623,9 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
 
     unsharded_calls: list[str] = []
 
-    def fake_unsharded(url, hotwords):
+    def fake_unsharded(url, hotwords, known_audio):
         unsharded_calls.append(url)
-        return "text", "hash", _PROFILE
+        return "text", "hash", _PROFILE, _AUDIO
 
     transcriber.run(
         church_names=None,
@@ -642,9 +644,9 @@ def test_run_default_sharding_is_a_noop_matching_unsharded_order(tmp_path, monke
 
     sharded_calls: list[str] = []
 
-    def fake_sharded(url, hotwords):
+    def fake_sharded(url, hotwords, known_audio):
         sharded_calls.append(url)
-        return "text", "hash", _PROFILE
+        return "text", "hash", _PROFILE, _AUDIO
 
     transcriber.run(
         church_names=None,
@@ -680,9 +682,9 @@ def test_run_shards_partition_every_pending_sermon_exactly_once(tmp_path, monkey
             {"p1": _record("p1", preached_on="2026-01-01"), "p2": _record("p2", preached_on="2026-01-02")},
         )
 
-        def fake_transcribe_audio(url, hotwords, _seen=seen):
+        def fake_transcribe_audio(url, hotwords, known_audio, _seen=seen):
             _seen.append(url)
-            return "text", "hash", _PROFILE
+            return "text", "hash", _PROFILE, _AUDIO
 
         transcriber.run(
             church_names=None,
@@ -703,9 +705,9 @@ def test_run_shard_count_more_than_pending_leaves_extra_shards_empty(tmp_path, m
 
     calls = []
 
-    def fake_transcribe_audio(url, hotwords):
+    def fake_transcribe_audio(url, hotwords, known_audio):
         calls.append(url)
-        return "text", "hash", _PROFILE
+        return "text", "hash", _PROFILE, _AUDIO
 
     ok = transcriber.run(
         church_names=None,
@@ -777,9 +779,9 @@ def test_run_narrows_to_the_named_church(tmp_path, monkeypatch):
 
     calls = []
 
-    def fake_transcribe_audio(url, hotwords):
+    def fake_transcribe_audio(url, hotwords, known_audio):
         calls.append(url)
-        return "text", "hash", _PROFILE
+        return "text", "hash", _PROFILE, _AUDIO
 
     transcriber.run(
         church_names=["menlo"],
@@ -809,8 +811,8 @@ def test_transcribe_church_records_a_sermon_already_in_content_without_retranscr
         "menlo",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: (
-            whisper_calls.append(url) or ("new text", "new-hash", _PROFILE)
+        transcribe_audio=lambda url, hotwords, known_audio: (
+            whisper_calls.append(url) or ("new text", "new-hash", _PROFILE, _AUDIO)
         ),
         push=pushed.append,
         fetch_existing=lambda paths: {path: "the transcript already in Content"},
@@ -836,7 +838,7 @@ def test_transcribe_church_asks_content_about_exactly_the_batch_s_paths(tmp_path
         "menlo",
         records,
         [("g1", records["g1"]), ("g2", records["g2"])],
-        transcribe_audio=lambda url, hotwords: ("text", "hash", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: ("text", "hash", _PROFILE, _AUDIO),
         push=lambda files: None,
         fetch_existing=lambda paths: asked.append(sorted(paths)) or {},
     )
@@ -855,7 +857,12 @@ def test_transcribe_church_pushes_only_the_sermons_content_does_not_already_hold
         "menlo",
         records,
         [("g1", records["g1"]), ("g2", records["g2"])],
-        transcribe_audio=lambda url, hotwords: ("fresh transcript", "fresh-hash", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: (
+            "fresh transcript",
+            "fresh-hash",
+            _PROFILE,
+            _AUDIO,
+        ),
         push=pushed.update,
         fetch_existing=lambda paths: {"transcripts/menlo/2025-12-01_sermon-g2_g2.txt": "older transcript"},
     )
@@ -878,7 +885,7 @@ def test_transcribe_church_never_dispatches_for_a_sermon_already_in_content(tmp_
         "menlo",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: ("new text", "new-hash", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: ("new text", "new-hash", _PROFILE, _AUDIO),
         push=lambda files: None,
         dispatch_ingest_event=lambda event, source: dispatched.append(event),
         fetch_existing=lambda paths: dict.fromkeys(paths, "already there"),
@@ -901,7 +908,9 @@ def test_transcribe_church_leaves_the_batch_pending_when_content_cannot_be_read(
         "menlo",
         records,
         [("g1", records["g1"])],
-        transcribe_audio=lambda url, hotwords: whisper_calls.append(url) or ("text", "hash", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: (
+            whisper_calls.append(url) or ("text", "hash", _PROFILE, _AUDIO)
+        ),
         push=lambda files: None,
         fetch_existing=unreadable,
     )
@@ -919,7 +928,9 @@ def test_run_threads_fetch_existing_through_to_each_church(tmp_path, monkeypatch
     ok = transcriber.run(
         church_names=["menlo"],
         limit=5,
-        transcribe_audio=lambda url, hotwords: whisper_calls.append(url) or ("text", "hash", _PROFILE),
+        transcribe_audio=lambda url, hotwords, known_audio: (
+            whisper_calls.append(url) or ("text", "hash", _PROFILE, _AUDIO)
+        ),
         push=lambda files: None,
         fetch_existing=lambda paths: dict.fromkeys(paths, "already there"),
     )
@@ -940,7 +951,7 @@ _LOOPED_TEXT = _CLEAN_TEXT + " " + "We lead with mercy. " * 12 + "And that is th
 
 
 def _transcribe_returning(text: str, profile: transcribe.DecodingProfile = _PROFILE):
-    return lambda url, hotwords: (text, transcribe.transcript_hash(text), profile)
+    return lambda url, hotwords, known_audio: (text, transcribe.transcript_hash(text), profile, _AUDIO)
 
 
 def _collecting_alerts(sent: list):
@@ -1152,3 +1163,187 @@ def test_no_transcript_text_reaches_the_logs_or_the_alert(tmp_path, monkeypatch,
     assert len(alerts) == 1
     assert "Zebulun" not in caplog.text
     assert "Zebulun" not in repr(alerts)
+
+
+# Re-posted audio (ADR-0028). North Point re-posted 2026-10-18's sermon under new guids, each
+# with its own enclosure URL but the same file byte for byte.
+
+_ORIGINAL = "north_point:9e1EFEED61D064276595A0B4B931"
+_REPOST = "north_point:47F507bB27DC524dc65B128CD49F"
+_REPOSTED_AUDIO = hashlib.sha256(b"all good things, part 1").hexdigest()
+_ORIGINAL_TEXT = "So, if you haven't heard already, maybe you came in late, today's a little bit different."
+_ORIGINAL_COUNTS = {"words": 6423, "loop_words": 0, "credit_hits": 0, "hotword_pairs": 0}
+
+
+def _np_record(guid: str) -> dict:
+    record = _record(
+        guid,
+        preached_on="2026-10-18",
+        audio_url=f"https://storage.sardius.media/archives/{guid.split(':')[1]}/media/sermon.mp3",
+    )
+    record["title"] = "All Good Things, Part 1: All Good Things"
+    return record
+
+
+def _np_transcribed(
+    guid: str, *, audio_sha256: str | None = _REPOSTED_AUDIO, copied_from: str | None = None
+) -> dict:
+    record = _np_record(guid)
+    store.mark_transcribed(
+        record,
+        content_path=transcriber._content_path("north_point", record),
+        transcript_hash=transcribe.transcript_hash(_ORIGINAL_TEXT),
+        transcribed_at="2026-10-18T20:40:00+00:00",
+        profile=dataclasses.asdict(_PROFILE),
+        quality=_ORIGINAL_COUNTS,
+        audio_sha256=audio_sha256,
+        copied_from=copied_from,
+    )
+    return record
+
+
+def _whisper_by_audio(audio: dict[str, str], text: dict[str, str], calls: list):
+    """A ``transcribe_audio`` that behaves like the real one: same bytes as a known hash, no Whisper."""
+
+    def fake(url, hotwords, known_audio):
+        calls.append((url, dict(known_audio)))
+        if audio[url] in known_audio:
+            raise transcribe.DuplicateAudioError(audio[url], known_audio[audio[url]])
+        return text[url], transcribe.transcript_hash(text[url]), _PROFILE, audio[url]
+
+    return fake
+
+
+def test_a_repost_of_audio_already_transcribed_reuses_its_transcript_without_whisper(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-10-18T21:00:00+00:00")
+    records = {_ORIGINAL: _np_transcribed(_ORIGINAL), _REPOST: _np_record(_REPOST)}
+    original_path = records[_ORIGINAL]["content_path"]
+    repost_path = transcriber._content_path("north_point", records[_REPOST])
+    calls: list = []
+    pushed: dict = {}
+    dispatched: list = []
+    alerts: list = []
+
+    ok = transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio({records[_REPOST]["audio_url"]: _REPOSTED_AUDIO}, {}, calls),
+        push=pushed.update,
+        fetch_existing=lambda paths: {p: _ORIGINAL_TEXT for p in paths if p == original_path},
+        dispatch_ingest_event=lambda event, source: dispatched.append(event),
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert ok is True
+    assert calls == [(records[_REPOST]["audio_url"], {_REPOSTED_AUDIO: _ORIGINAL})]
+    assert pushed == {repost_path: _ORIGINAL_TEXT}
+    saved = store.load("north_point")[_REPOST]
+    assert saved["transcription_status"] == "done"
+    assert saved["content_path"] == repost_path
+    assert saved["transcript_hash"] == transcribe.transcript_hash(_ORIGINAL_TEXT)
+    assert saved["transcript_copied_from"] == _ORIGINAL
+    assert saved["audio_sha256"] == _REPOSTED_AUDIO
+    assert saved["transcript_adopted"] is False
+    assert {key: saved[f"transcription_{key}"] for key in store.PROFILE_KEYS} == dataclasses.asdict(_PROFILE)
+    assert {key: saved[f"transcript_{key}"] for key in store.QUALITY_KEYS} == _ORIGINAL_COUNTS
+    assert [event["external_id"] for event in dispatched] == [_REPOST]
+    assert dispatched[0]["transcript"]["transcript_hash"] == transcribe.transcript_hash(_ORIGINAL_TEXT)
+    assert alerts == []
+
+
+def test_reposts_in_one_batch_run_whisper_once(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    first, second = _ORIGINAL, _REPOST
+    records = {first: _np_record(first), second: _np_record(second)}
+    audio = {records[first]["audio_url"]: _REPOSTED_AUDIO, records[second]["audio_url"]: _REPOSTED_AUDIO}
+    calls: list = []
+    pushed: dict = {}
+    alerts: list = []
+
+    ok = transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(first, records[first]), (second, records[second])],
+        transcribe_audio=_whisper_by_audio(audio, {records[first]["audio_url"]: _LOOPED_TEXT}, calls),
+        push=pushed.update,
+        fetch_existing=_nothing_in_content,
+        send_quality_alert=_collecting_alerts(alerts),
+    )
+
+    assert ok is True
+    assert calls[1] == (records[second]["audio_url"], {_REPOSTED_AUDIO: first})
+    assert list(pushed.values()) == [_LOOPED_TEXT, _LOOPED_TEXT]
+    saved = store.load("north_point")
+    assert saved[first]["audio_sha256"] == _REPOSTED_AUDIO
+    assert saved[first]["transcript_copied_from"] is None
+    assert saved[second]["transcript_copied_from"] == first
+    assert saved[second]["transcript_hash"] == saved[first]["transcript_hash"]
+    assert store.transcript_quality(saved[second]) == store.transcript_quality(saved[first])
+    # The looped original is alerted on once; its copy is not alerted again.
+    assert [[f.guid for f in flagged] for _church, flagged in alerts] == [[first]]
+
+
+def test_a_repost_whose_original_is_gone_from_content_is_transcribed_after_all(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {_ORIGINAL: _np_transcribed(_ORIGINAL), _REPOST: _np_record(_REPOST)}
+    url = records[_REPOST]["audio_url"]
+    calls: list = []
+    pushed: dict = {}
+
+    ok = transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio({url: _REPOSTED_AUDIO}, {url: "the repost, transcribed"}, calls),
+        push=pushed.update,
+        fetch_existing=_nothing_in_content,
+    )
+
+    assert ok is True
+    assert calls == [(url, {_REPOSTED_AUDIO: _ORIGINAL}), (url, {})]
+    assert list(pushed.values()) == ["the repost, transcribed"]
+    saved = store.load("north_point")[_REPOST]
+    assert saved["transcript_copied_from"] is None
+    assert saved["audio_sha256"] == _REPOSTED_AUDIO
+    assert _ORIGINAL in caplog.text
+
+
+def test_a_repost_stays_pending_when_content_cannot_be_read_for_its_original(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {_ORIGINAL: _np_transcribed(_ORIGINAL), _REPOST: _np_record(_REPOST)}
+    original_path = records[_ORIGINAL]["content_path"]
+    pushed: dict = {}
+
+    def content_down_for_the_original(paths):
+        if original_path in paths:
+            raise ContentPublishError("content repo unreachable")
+        return {}
+
+    ok = transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio({records[_REPOST]["audio_url"]: _REPOSTED_AUDIO}, {}, []),
+        push=pushed.update,
+        fetch_existing=content_down_for_the_original,
+    )
+
+    assert ok is False
+    assert pushed == {}
+    saved = store.load("north_point")[_REPOST]
+    assert saved["transcription_status"] is None
+    assert saved["transcript_copied_from"] is None
+
+
+def test_known_audio_names_only_done_transcripts_that_were_not_themselves_copied():
+    copy = "north_point:BFF77112EF464803B69032F1FFF8"
+    older = "north_point:248D1e023fBD11EF0A0f7E9533f0"
+    records = {
+        _ORIGINAL: _np_transcribed(_ORIGINAL),
+        copy: _np_transcribed(copy, copied_from=_ORIGINAL),
+        older: _np_transcribed(older, audio_sha256=None),
+        _REPOST: _np_record(_REPOST),
+    }
+    assert transcriber._known_audio(records) == {_REPOSTED_AUDIO: _ORIGINAL}

@@ -240,6 +240,8 @@ def item_to_record(item: SermonItem, *, first_seen_at: str, feed_published_at: s
         "transcription_last_error": None,
         "transcript_adopted": None,
         **{f"transcript_{key}": None for key in QUALITY_KEYS},
+        "audio_sha256": None,
+        "transcript_copied_from": None,
     }
 
 
@@ -297,6 +299,8 @@ def mark_transcribed(
     profile: Mapping[str, Any] | None,
     adopted: bool = False,
     quality: Mapping[str, int] | None = None,
+    audio_sha256: str | None = None,
+    copied_from: str | None = None,
 ) -> None:
     """Advance ``record`` to transcribed, recording where its text landed in Content.
 
@@ -310,6 +314,9 @@ def mark_transcribed(
     ``transcribed_at`` is when it was adopted, not produced, so latency reports skip it
     (ADR-0018). ``quality`` is the transcript's counts keyed by :data:`QUALITY_KEYS`
     (ADR-0023); ``None`` records "not scored", as for an adopted transcript.
+    ``audio_sha256`` is the digest of the audio the text came from, ``None`` when this run
+    didn't download it. ``copied_from`` names the guid whose transcript of byte-identical
+    audio was reused instead of running the model (ADR-0028).
     """
     profile = profile or {}
     quality = quality or {}
@@ -325,6 +332,8 @@ def mark_transcribed(
     record["transcript_adopted"] = adopted
     for key in QUALITY_KEYS:
         record[f"transcript_{key}"] = quality.get(key)
+    record["audio_sha256"] = audio_sha256
+    record["transcript_copied_from"] = copied_from
     record["transcription_last_error"] = None
 
 
@@ -384,7 +393,8 @@ def mark_retranscribed(
     (``superseded`` ``None``: there is nothing to supersede, so an earlier
     ``superseded_transcript_hash`` stays), or a previous run's Content commit proved the
     text is ours. ``content_path`` and ``transcription_status`` never change. Any earlier
-    re-transcription failure, and its candidate pointer, is cleared.
+    re-transcription failure, and its candidate pointer, is cleared, and so is
+    ``transcript_copied_from``: the text now comes from the record's own audio.
     """
     unknown = sorted(set(profile) - set(PROFILE_KEYS)) + sorted(set(quality) - set(QUALITY_KEYS))
     if unknown:
@@ -394,6 +404,7 @@ def mark_retranscribed(
     for key in PROFILE_KEYS:
         record[f"transcription_{key}"] = profile.get(key)
     record["transcript_adopted"] = False
+    record["transcript_copied_from"] = None
     for key in QUALITY_KEYS:
         record[f"transcript_{key}"] = quality.get(key)
     if superseded is not None:

@@ -263,9 +263,9 @@ class _Content:
 def _transcribes(text: str, profile=_NEW_PROFILE):
     calls = []
 
-    def fake(url, hotwords):
+    def fake(url, hotwords, known_audio):
         calls.append(url)
-        return text, transcribe.transcript_hash(text), profile
+        return text, transcribe.transcript_hash(text), profile, "0" * 64
 
     fake.calls = calls
     return fake
@@ -274,7 +274,7 @@ def _transcribes(text: str, profile=_NEW_PROFILE):
 def _raises(exc):
     calls = []
 
-    def fake(url, hotwords):
+    def fake(url, hotwords, known_audio):
         calls.append(url)
         raise exc
 

@@ -197,6 +197,44 @@ def test_mark_transcribed_records_a_transcript_adopted_from_content():
     assert record["transcript_adopted"] is True
 
 
+_AUDIO = "6f1c0b0a9d2e4e3f8a7b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b7c6d5e4f"
+
+
+def test_item_to_record_carries_no_audio_hash_and_no_copy_source():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    assert record["audio_sha256"] is None
+    assert record["transcript_copied_from"] is None
+
+
+def test_mark_transcribed_records_the_audio_hash_of_a_whisper_transcript():
+    record = store.item_to_record(_item(), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record,
+        content_path="x",
+        transcript_hash="h",
+        transcribed_at="t",
+        profile=_FULL_PROFILE,
+        audio_sha256=_AUDIO,
+    )
+    assert record["audio_sha256"] == _AUDIO
+    assert record["transcript_copied_from"] is None
+
+
+def test_mark_transcribed_records_which_guid_a_copied_transcript_came_from():
+    record = store.item_to_record(_item("g2"), first_seen_at="now", feed_published_at=None)
+    store.mark_transcribed(
+        record,
+        content_path="transcripts/menlo/2026-09-06_hear-and-do_g2.txt",
+        transcript_hash="h",
+        transcribed_at="t",
+        profile=_FULL_PROFILE,
+        audio_sha256=_AUDIO,
+        copied_from="g1",
+    )
+    assert record["transcript_copied_from"] == "g1"
+    assert record["transcript_adopted"] is False
+
+
 _COUNTS = {"words": 6423, "loop_words": 72, "credit_hits": 0, "hotword_pairs": 0}
 
 
@@ -707,6 +745,20 @@ def test_mark_retranscribed_replaces_the_transcript_fields_and_keeps_the_old_has
     assert record["transcription_status"] == "done"
     assert record["content_path"] == "transcripts/menlo/2026-09-06_hear-and-do_g1.txt"
     assert record["transcript_adopted"] is False
+
+
+def test_mark_retranscribed_clears_the_guid_a_copied_transcript_came_from():
+    record = _done_record()
+    record["transcript_copied_from"] = "g0"
+    store.mark_retranscribed(
+        record,
+        transcript_hash="newhash",
+        transcribed_at="2026-10-13T01:00:00+00:00",
+        profile=_NEW_PROFILE,
+        quality=_NEW_QUALITY,
+        superseded="oldhash",
+    )
+    assert record["transcript_copied_from"] is None
 
 
 def test_mark_retranscribed_with_identical_text_leaves_any_earlier_superseded_hash():
