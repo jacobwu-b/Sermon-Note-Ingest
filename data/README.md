@@ -54,10 +54,10 @@ Do not edit between the markers by hand; it will be overwritten.
 | gracepres | 452 | A New Beginning | 2026-11-01 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 143 | What Is Keeping You From Putting God First? | 2026-11-01 |
-| menlo | 155 | No Kings... But Jesus | 2026-11-01 |
+| menlo | 156 | No Kings... But Jesus | 2026-11-01 |
 | north_point | 111 | All Good Things, Part 3: A Conversation with Joel Thomas | 2026-11-01 |
 | pbc | 404 | Setting Captives Free | 2026-10-25 |
 | westgate | 115 | Healing the Blind | 2026-11-01 |
 
-**Total sermons across all churches: 1889**
+**Total sermons across all churches: 1890**
 <!-- STATS:END -->
