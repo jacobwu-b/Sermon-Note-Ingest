@@ -203,6 +203,22 @@ def audio_sha256(path: Path) -> str:
         return hashlib.file_digest(f, "sha256").hexdigest()
 
 
+def download_sha256(
+    audio_url: str,
+    *,
+    download: Callable[[str, Path], None] = http_download,
+    sleep: Callable[[float], None] = time.sleep,
+) -> str:
+    """Return the sha256 of ``audio_url``'s enclosure, without running the model (ADR-0028).
+
+    Raises :class:`~poller.net.AudioDownloadError` when the download is exhausted.
+    """
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dest = Path(tmpdir) / "audio"
+        download_audio(audio_url, dest, download=download, sleep=sleep)
+        return audio_sha256(dest)
+
+
 def transcribe_audio(
     audio_url: str,
     hotwords: str | None = None,
