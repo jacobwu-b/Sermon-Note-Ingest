@@ -1347,3 +1347,189 @@ def test_known_audio_names_only_done_transcripts_that_were_not_themselves_copied
         _REPOST: _np_record(_REPOST),
     }
     assert transcriber._known_audio(records) == {_REPOSTED_AUDIO: _ORIGINAL}
+
+
+def _hashing(audio: dict[str, str], calls: list):
+    """A ``hash_audio`` over ``audio``, recording each enclosure it was asked to download."""
+
+    def fake(url):
+        calls.append(url)
+        return audio[url]
+
+    return fake
+
+
+def test_a_repost_of_a_transcript_with_no_audio_hash_is_caught_without_whisper(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-10-18T21:00:00+00:00")
+    records = {_ORIGINAL: _np_transcribed(_ORIGINAL, audio_sha256=None), _REPOST: _np_record(_REPOST)}
+    original_path = records[_ORIGINAL]["content_path"]
+    repost_path = transcriber._content_path("north_point", records[_REPOST])
+    original_url = records[_ORIGINAL]["audio_url"]
+    repost_url = records[_REPOST]["audio_url"]
+    calls: list = []
+    hashed: list = []
+    pushed: dict = {}
+
+    ok = transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio({repost_url: _REPOSTED_AUDIO}, {}, calls),
+        hash_audio=_hashing({original_url: _REPOSTED_AUDIO}, hashed),
+        push=pushed.update,
+        fetch_existing=lambda paths: {p: _ORIGINAL_TEXT for p in paths if p == original_path},
+        dispatch_ingest_event=lambda event, source: None,
+    )
+
+    assert ok is True
+    assert hashed == [original_url]
+    assert calls == [(repost_url, {_REPOSTED_AUDIO: _ORIGINAL})]
+    assert pushed == {repost_path: _ORIGINAL_TEXT}
+    saved = store.load("north_point")
+    assert saved[_REPOST]["transcript_copied_from"] == _ORIGINAL
+    assert saved[_ORIGINAL]["audio_sha256"] == _REPOSTED_AUDIO
+
+
+def test_a_same_titled_sermon_with_different_audio_is_transcribed_and_the_older_hash_is_kept(
+    tmp_path, monkeypatch
+):
+    # A church's edited re-upload: same title and date, different bytes, different words.
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-10-18T21:00:00+00:00")
+    records = {_ORIGINAL: _np_transcribed(_ORIGINAL, audio_sha256=None), _REPOST: _np_record(_REPOST)}
+    older_audio = hashlib.sha256(b"before the edit").hexdigest()
+    repost_url = records[_REPOST]["audio_url"]
+    calls: list = []
+    pushed: dict = {}
+
+    transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio(
+            {repost_url: _REPOSTED_AUDIO}, {repost_url: "The edited sermon."}, calls
+        ),
+        hash_audio=lambda url: older_audio,
+        push=pushed.update,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: None,
+    )
+
+    assert list(pushed.values()) == ["The edited sermon."]
+    saved = store.load("north_point")
+    assert saved[_REPOST]["transcript_copied_from"] is None
+    assert saved[_ORIGINAL]["audio_sha256"] == older_audio
+
+
+def test_an_expired_enclosure_on_the_older_record_leaves_the_sermon_to_be_transcribed(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-10-18T21:00:00+00:00")
+    records = {_ORIGINAL: _np_transcribed(_ORIGINAL, audio_sha256=None), _REPOST: _np_record(_REPOST)}
+    repost_url = records[_REPOST]["audio_url"]
+    pushed: dict = {}
+
+    def expired(url):
+        raise AudioDownloadError("HTTP Error 404: Not Found")
+
+    ok = transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio({repost_url: _REPOSTED_AUDIO}, {repost_url: "The sermon."}, []),
+        hash_audio=expired,
+        push=pushed.update,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: None,
+    )
+
+    assert ok is True
+    assert list(pushed.values()) == ["The sermon."]
+    assert store.load("north_point")[_ORIGINAL]["audio_sha256"] is None
+
+
+def test_only_done_unhashed_originals_with_the_same_title_are_downloaded(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-10-18T21:00:00+00:00")
+    hashed_already = "north_point:AAAA"
+    copy = "north_point:BBBB"
+    other_title = "north_point:CCCC"
+    pending = "north_point:DDDD"
+    no_enclosure = "north_point:EEEE"
+    records = {
+        _ORIGINAL: _np_transcribed(_ORIGINAL, audio_sha256=None),
+        hashed_already: _np_transcribed(hashed_already, audio_sha256=_AUDIO),
+        copy: _np_transcribed(copy, audio_sha256=None, copied_from=_ORIGINAL),
+        other_title: _np_transcribed(other_title, audio_sha256=None) | {"title": "Mind Games, Part 3"},
+        pending: _np_record(pending),
+        no_enclosure: _np_transcribed(no_enclosure, audio_sha256=None) | {"audio_url": None},
+        _REPOST: _np_record(_REPOST),
+    }
+    repost_url = records[_REPOST]["audio_url"]
+    hashed: list = []
+
+    transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio({repost_url: _REPOSTED_AUDIO}, {repost_url: "The sermon."}, []),
+        hash_audio=_hashing({records[_ORIGINAL]["audio_url"]: hashlib.sha256(b"older").hexdigest()}, hashed),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: None,
+    )
+
+    assert hashed == [records[_ORIGINAL]["audio_url"]]
+
+
+def test_a_sermon_with_no_title_downloads_nothing_extra(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-10-18T21:00:00+00:00")
+    records = {
+        _ORIGINAL: _np_transcribed(_ORIGINAL, audio_sha256=None) | {"title": None},
+        _REPOST: _np_record(_REPOST) | {"title": None},
+    }
+    repost_url = records[_REPOST]["audio_url"]
+    hashed: list = []
+
+    transcriber.transcribe_church(
+        "north_point",
+        records,
+        [(_REPOST, records[_REPOST])],
+        transcribe_audio=_whisper_by_audio({repost_url: _REPOSTED_AUDIO}, {repost_url: "The sermon."}, []),
+        hash_audio=_hashing({}, hashed),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: None,
+    )
+
+    assert hashed == []
+
+
+def test_run_threads_hash_audio_through_to_each_church(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-10-18T21:00:00+00:00")
+    older = _record("g1", preached_on="2026-10-11", audio_url="https://example.org/older.mp3")
+    store.mark_transcribed(
+        older,
+        content_path="transcripts/menlo/older.txt",
+        transcript_hash="h",
+        transcribed_at="t",
+        profile=None,
+    )
+    newer = _record("g2", preached_on="2026-10-18", audio_url="https://example.org/newer.mp3")
+    newer["title"] = older["title"]
+    store.save("menlo", {"g1": older, "g2": newer})
+    hashed: list = []
+
+    transcriber.run(
+        church_names=["menlo"],
+        limit=1,
+        transcribe_audio=lambda url, hotwords, known_audio: ("text", "hash", _PROFILE, _AUDIO),
+        hash_audio=_hashing({"https://example.org/older.mp3": _REPOSTED_AUDIO}, hashed),
+        push=lambda files: None,
+        fetch_existing=_nothing_in_content,
+        dispatch_ingest_event=lambda event, source: None,
+    )
+
+    assert hashed == ["https://example.org/older.mp3"]

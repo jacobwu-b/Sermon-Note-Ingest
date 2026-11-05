@@ -78,6 +78,25 @@ def test_transcribe_audio_transcribes_audio_whose_hash_is_not_known():
     assert text == "this week's transcript"
 
 
+def test_download_sha256_hashes_the_enclosure_without_running_the_model():
+    def fake_download(url, dest):
+        dest.write_bytes(b"audio bytes")
+
+    digest = transcribe.download_sha256("https://example.org/a.mp3", download=fake_download)
+
+    assert digest == hashlib.sha256(b"audio bytes").hexdigest()
+
+
+def test_download_sha256_propagates_download_failure():
+    def failing_download(url, dest):
+        raise net.AudioDownloadError("gone")
+
+    with pytest.raises(net.AudioDownloadError):
+        transcribe.download_sha256(
+            "https://example.org/a.mp3", download=failing_download, sleep=lambda _s: None
+        )
+
+
 def test_transcribe_audio_propagates_download_failure(tmp_path):
     def always_fails(url, dest):
         raise net.AudioDownloadError("cdn rejected the request")

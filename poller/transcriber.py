@@ -23,7 +23,8 @@ decides which of them this particular invocation is responsible for. The default
 
 Re-posted audio (ADR-0028): a sermon whose downloaded audio is byte-identical to a
 transcript this church already has, under another guid, is not run through Whisper. The
-original's text is pushed under the new sermon's own path instead.
+original's text is pushed under the new sermon's own path instead. A transcript from
+before audio was hashed is hashed when a sermon with its title turns up.
 
 ``--retranscribe-stale`` (ADR-0022) is a second mode over ``done`` records instead of
 pending ones: it re-transcribes each one whose recorded decoding profile differs from the
@@ -59,6 +60,7 @@ from poller.slug import slugify
 TranscribeAudio = Callable[
     [str, str | None, Mapping[str, str]], tuple[str, str, transcribe.DecodingProfile, str]
 ]
+HashAudio = Callable[[str], str]
 PushTranscripts = Callable[[dict[str, str]], None]
 FetchExisting = Callable[[list[str]], dict[str, str]]
 DispatchIngestEvent = Callable[[dict[str, object], str], None]
@@ -169,6 +171,36 @@ def _known_audio(records: dict[str, dict]) -> dict[str, str]:
     }
 
 
+def _hash_same_titled(
+    name: str, record: dict, records: dict[str, dict], known_audio: dict[str, str], hash_audio: HashAudio
+) -> None:
+    """Hash each unhashed ``done`` transcript titled like ``record``, adding it to ``known_audio``.
+
+    Transcripts from before ``audio_sha256`` existed can't be matched, and hashing them all
+    means downloading the whole archive. Every re-post seen so far kept its title, so only
+    those are fetched, each once: the hash stays on the record (ADR-0028). An enclosure that
+    can no longer be fetched is skipped, and the sermon is transcribed as usual.
+    """
+    title = record.get("title")
+    if not title:
+        return
+    for guid, other in records.items():
+        if (
+            other.get("title") != title
+            or other.get("transcription_status") != "done"
+            or other.get("audio_sha256")
+            or other.get("transcript_copied_from")
+            or not net.is_fetchable_enclosure(other.get("audio_url") or "")
+        ):
+            continue
+        try:
+            other["audio_sha256"] = hash_audio(other["audio_url"])
+        except net.AudioDownloadError as exc:
+            logger.warning("%s/%s: could not hash its audio to compare a re-post: %s", name, guid, exc)
+            continue
+        known_audio.setdefault(other["audio_sha256"], guid)
+
+
 def _reused_transcript(
     duplicate: transcribe.DuplicateAudioError,
     path: str,
@@ -222,6 +254,7 @@ def transcribe_church(
     batch: list[tuple[str, dict]],
     *,
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
+    hash_audio: HashAudio = transcribe.download_sha256,
     push: PushTranscripts = content_repo.push_transcripts,
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
     fetch_existing: FetchExisting = content_repo.existing_transcripts,
@@ -247,7 +280,8 @@ def transcribe_church(
     one transcribed earlier in ``batch``, reuses that transcript (ADR-0028): pushed under
     its own path, ledgered with ``transcript_copied_from`` and dispatched, but never run
     through Whisper and never alerted on. If Content no longer holds the original, it is
-    transcribed after all; if Content can't be read, it stays pending.
+    transcribed after all; if Content can't be read, it stays pending. A ``done`` transcript
+    with this sermon's title and no ``audio_sha256`` is hashed first, through ``hash_audio``.
 
     Returns ``True`` iff no sermon in ``batch`` ended terminally failed, the Content
     push (if there was anything to push) succeeded, and any quality alert was delivered.
@@ -292,6 +326,7 @@ def transcribe_church(
                 adopted=True,
             )
             continue
+        _hash_same_titled(name, record, records, known_audio, hash_audio)
         hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
         logger.debug("%s/%s: hotwords: %s", name, guid, hotwords)
         try:
@@ -456,6 +491,7 @@ def run(
     shard_index: int = 0,
     shard_count: int = 1,
     transcribe_audio: TranscribeAudio = transcribe.transcribe_audio,
+    hash_audio: HashAudio = transcribe.download_sha256,
     push: PushTranscripts = content_repo.push_transcripts,
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
     fetch_existing: FetchExisting = content_repo.existing_transcripts,
@@ -469,7 +505,7 @@ def run(
     in-scope sermon lands in exactly one shard, and the default (0, 1) is every sermon,
     unchanged from before sharding existed.
 
-    ``transcribe_audio``/``push``/``dispatch_ingest_event``/``fetch_existing``/
+    ``transcribe_audio``/``hash_audio``/``push``/``dispatch_ingest_event``/``fetch_existing``/
     ``send_quality_alert`` are threaded through to :func:`transcribe_church` rather than
     relied on as its defaults, so a caller (or a test) can replace them without reaching
     into another module's attributes.
@@ -494,6 +530,7 @@ def run(
                 loaded[name],
                 batch,
                 transcribe_audio=transcribe_audio,
+                hash_audio=hash_audio,
                 push=push,
                 dispatch_ingest_event=dispatch_ingest_event,
                 fetch_existing=fetch_existing,
