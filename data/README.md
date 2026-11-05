@@ -56,8 +56,8 @@ Do not edit between the markers by hand; it will be overwritten.
 | lakepointe | 143 | What Is Keeping You From Putting God First? | 2026-11-01 |
 | menlo | 156 | No Kings... But Jesus | 2026-11-01 |
 | north_point | 111 | All Good Things, Part 3: A Conversation with Joel Thomas | 2026-11-01 |
-| pbc | 404 | Setting Captives Free | 2026-10-25 |
+| pbc | 405 | The Kingdom of God Is Like... | 2026-11-01 |
 | westgate | 115 | Healing the Blind | 2026-11-01 |
 
-**Total sermons across all churches: 1890**
+**Total sermons across all churches: 1891**
 <!-- STATS:END -->
