@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| gracepres | 452 | A New Beginning | 2026-11-01 |
+| gracepres | 453 | A New Beginning | 2026-11-01 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 143 | What Is Keeping You From Putting God First? | 2026-11-01 |
 | menlo | 156 | No Kings... But Jesus | 2026-11-01 |
@@ -59,5 +59,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | pbc | 405 | The Kingdom of God Is Like... | 2026-11-01 |
 | westgate | 115 | Healing the Blind | 2026-11-01 |
 
-**Total sermons across all churches: 1891**
+**Total sermons across all churches: 1892**
 <!-- STATS:END -->
