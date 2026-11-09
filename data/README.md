@@ -57,7 +57,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | menlo | 157 | Identity in Christ, Identity in Crisis | 2026-11-08 |
 | north_point | 112 | Guessing Our Way to God? | 2026-11-08 |
 | pbc | 405 | The Kingdom of God Is Like... | 2026-11-01 |
-| westgate | 115 | Healing the Blind | 2026-11-01 |
+| westgate | 116 | The Good Shepherd | 2026-11-08 |
 
-**Total sermons across all churches: 1895**
+**Total sermons across all churches: 1896**
 <!-- STATS:END -->
