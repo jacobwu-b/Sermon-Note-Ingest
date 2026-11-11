@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| gracepres | 453 | A New Beginning | 2026-11-01 |
+| gracepres | 454 | The Grieving Heart of God | 2026-11-08 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 144 | Don't Settle For Anything LESS Than God’s Purposes | 2026-11-08 |
 | menlo | 157 | Identity in Christ, Identity in Crisis | 2026-11-08 |
@@ -59,5 +59,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | pbc | 405 | The Kingdom of God Is Like... | 2026-11-01 |
 | westgate | 116 | The Good Shepherd | 2026-11-08 |
 
-**Total sermons across all churches: 1896**
+**Total sermons across all churches: 1897**
 <!-- STATS:END -->
