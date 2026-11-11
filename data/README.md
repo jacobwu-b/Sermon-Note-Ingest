@@ -54,10 +54,10 @@ Do not edit between the markers by hand; it will be overwritten.
 | gracepres | 454 | The Grieving Heart of God | 2026-11-08 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 144 | Don't Settle For Anything LESS Than God’s Purposes | 2026-11-08 |
-| menlo | 157 | Identity in Christ, Identity in Crisis | 2026-11-08 |
+| menlo | 158 | Identity in Christ, Identity in Crisis | 2026-11-08 |
 | north_point | 112 | Guessing Our Way to God? | 2026-11-08 |
 | pbc | 405 | The Kingdom of God Is Like... | 2026-11-01 |
 | westgate | 116 | The Good Shepherd | 2026-11-08 |
 
-**Total sermons across all churches: 1897**
+**Total sermons across all churches: 1898**
 <!-- STATS:END -->
