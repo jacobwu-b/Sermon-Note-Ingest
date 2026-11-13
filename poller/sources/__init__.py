@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from poller.sources.base import PollResult, SermonItem, SourceAdapter
+from poller.sources.grace_cathedral import GraceCathedralAdapter
 from poller.sources.gracepres import GracepresAdapter
 from poller.sources.hillside import HillsideAdapter
 from poller.sources.lakepointe import LakepointeAdapter
 from poller.sources.menlo import MenloPodbeanAdapter
 from poller.sources.north_point import NorthPointAdapter
 from poller.sources.pbc import PbcAdapter
+from poller.sources.reality_sf import RealitySfAdapter
 from poller.sources.westgate import WestgateAdapter
 
 __all__ = [
@@ -27,4 +29,6 @@ ADAPTERS: dict[str, type[SourceAdapter]] = {
     "lakepointe": LakepointeAdapter,
     "hillside": HillsideAdapter,
     "gracepres": GracepresAdapter,
+    "reality_sf": RealitySfAdapter,
+    "grace_cathedral": GraceCathedralAdapter,
 }
