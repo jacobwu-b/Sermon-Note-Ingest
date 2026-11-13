@@ -51,13 +51,15 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
+| grace_cathedral | 86 | The Very Rev. Dr. Malcolm Clemens Young | 2026-11-08 |
 | gracepres | 454 | The Grieving Heart of God | 2026-11-08 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 144 | Don't Settle For Anything LESS Than God’s Purposes | 2026-11-08 |
 | menlo | 158 | Identity in Christ, Identity in Crisis | 2026-11-08 |
 | north_point | 112 | Guessing Our Way to God? | 2026-11-08 |
 | pbc | 405 | The Kingdom of God Is Like... | 2026-11-01 |
+| reality_sf | 750 | Esther, the Hidden Hand | 2026-11-08 |
 | westgate | 116 | The Good Shepherd | 2026-11-08 |
 
-**Total sermons across all churches: 1898**
+**Total sermons across all churches: 2734**
 <!-- STATS:END -->
