@@ -7,7 +7,19 @@ from poller.sources.grace_cathedral import (
     header_date,
     is_special_program,
     select_sermons,
+    sermon_title,
     service_date,
+)
+
+_REQUIEM_BLURB = (
+    "<p>The Very Rev. Dr. Malcolm Clemens Young, Dean<br /> Grace Cathedral, San Francisco, CA<br />"
+    " Sunday, November 8th, 2026 11 a. m. Eucharist<br /> Solemn Requiem For All Souls<br /> <br />"
+    " Wisdom 3:1-9<br /> Psalm 121<br /> 1 Thessalonians 4:13-18<br /> John 5:24-27</p>"
+)
+_ERICKSON_BLURB = (
+    "<p>The Rev. Susan Erickson<br /> Grace Cathedral, San Francisco, CA<br /> Sunday, October 25th, 2026</p>"
+    " <p><br /> Deuteronomy 34:1-12<br /> Psalm 90:1-6, 13-17<br /> 1 Thessalonians 2:1-8<br />"
+    " Matthew 22:34-46</p>"
 )
 
 
@@ -180,10 +192,7 @@ def _item(guid: str, title: str, pub: str, blurb: str = "", audio: str | None = 
 
 
 def test_parse_maps_a_sunday_sermon():
-    blurb = (
-        "<p>The Very Rev. Dr. Malcolm Clemens Young, Dean<br /> Grace Cathedral, San Francisco, CA<br />"
-        " Sunday, November 8th, 2026 11 a. m. Eucharist<br /> Solemn Requiem For All Souls</p>"
-    )
+    blurb = _REQUIEM_BLURB
     items, id_less = _parse(
         _feed(
             _item(
@@ -197,7 +206,8 @@ def test_parse_maps_a_sunday_sermon():
     assert id_less == []
     (sermon,) = items
     assert sermon.guid == "grace_cathedral:f2ef981c"
-    assert sermon.title == sermon.raw_title == "The Very Rev. Dr. Malcolm Clemens Young"
+    assert sermon.title == "Solemn Requiem For All Souls"
+    assert sermon.raw_title == "The Very Rev. Dr. Malcolm Clemens Young"
     assert sermon.series is None
     assert sermon.speaker == "Malcolm Clemens Young"
     assert sermon.preached_on == "2026-11-08"
@@ -252,3 +262,88 @@ def test_select_sermons_drops_a_repost_of_the_same_audio():
     included, excluded = select_sermons(items)
     assert [item.guid for item in included] == ["grace_cathedral:first"]
     assert [item.raw_title for item in excluded] == ["The Rev. Susanna Singer"]
+
+
+def test_sermon_title_names_a_name_only_sermon_by_its_service():
+    assert (
+        sermon_title("The Very Rev. Dr. Malcolm Clemens Young", "Malcolm Clemens Young", _REQUIEM_BLURB)
+        == "Solemn Requiem For All Souls"
+    )
+
+
+def test_sermon_title_names_a_name_only_sermon_by_its_gospel_reading():
+    assert sermon_title("The Rev. Susan Erickson", "Susan Erickson", _ERICKSON_BLURB) == "Matthew 22:34-46"
+
+
+def test_sermon_title_reads_past_a_role_line_and_a_title_spelled_unlike_the_blurb():
+    blurb = (
+        "<p>The Rt. Rev William Swing<br /> VII Bishop of California<br /> Grace Cathedral, San Francisco, CA<br />"
+        " Sunday, September 13th, 2026</p><p>Exodus 14:19-31<br /> Psalm 114<br /> Romans 14:1-12<br />"
+        " Matthew 18:21-35</p>"
+    )
+    assert sermon_title("The Rt. Rev. William Swing", "William Swing", blurb) == "Matthew 18:21-35"
+
+
+def test_sermon_title_ignores_a_feast_named_before_the_date_line():
+    blurb = (
+        "<p>The Rev. Canon J. Sierra Reyes</p> <p>Canon to the Ordinary, The Diocese of California</p>"
+        " <p>The Feast of St. Michael and All Angels</p> <p>11 am Eucharist</p> <p>Sunday 28 September 2025</p>"
+        " <p>\xa0</p> <p>Genesis 28:10-17</p> <p>Psalm 103:19-22</p> <p>Revelation 12:7-12</p> <p>John 1:47-51</p>"
+    )
+    assert sermon_title("The Rev. Canon J. Sierra Reyes", "J. Sierra Reyes", blurb) == "John 1:47-51"
+
+
+def test_sermon_title_skips_an_epistle_of_john_for_the_gospel():
+    blurb = (
+        "<p>The Rev. Susanna Singer<br />Grace Cathedral, San Francisco, CA<br />June 22, 2025</p>"
+        "<p>Acts 2:1-4<br />Psalm 42:1-7<br />Luke 8:26-39<br />1 John 3:1-3</p>"
+    )
+    assert sermon_title("The Rev. Susanna Singer", "Susanna Singer", blurb) == "Luke 8:26-39"
+
+
+def test_sermon_title_uses_the_gospel_when_two_lines_sit_before_the_readings():
+    blurb = (
+        "<p>The Rev. Susan Erickson<br />Grace Cathedral, San Francisco, CA<br />Sunday, October 25th, 2026<br />"
+        "Proper Twenty-Five<br />Commemoration of the Faithful Departed<br />Psalm 90<br />Matthew 22:34-46</p>"
+    )
+    assert sermon_title("The Rev. Susan Erickson", "Susan Erickson", blurb) == "Matthew 22:34-46"
+
+
+def test_sermon_title_ignores_a_reference_quoted_inside_prose():
+    blurb = (
+        "<p>The Very Revd Andrew Tremlett</p><p>Dean of St Paul's Cathedral, London UK</p>"
+        '<p>"But we speak God\'s wisdom, a hidden mystery" (1 Cor. 2.7) and so John 3:16 too.</p>'
+        "<p>Preached on Sunday February 8th, 2026</p><p>Grace Cathedral San Francisco, CA</p>"
+    )
+    assert (
+        sermon_title("The Very Revd Andrew Tremlett", "Andrew Tremlett", blurb)
+        == "The Very Revd Andrew Tremlett"
+    )
+
+
+def test_sermon_title_keeps_the_feed_title_when_the_blurb_names_no_reading():
+    blurb = (
+        "<p>The Rev. Canon Dr. Stephanie Spellers</p><p>Preached Sunday January 18th, 2026</p>"
+        "<p>The Second Sunday After the Epiphany</p><p>Grace Cathedral San Francisco, CA</p>"
+    )
+    title = "The Rev. Canon Dr. Stephanie Spellers"
+    assert sermon_title(title, "Stephanie Spellers", blurb) == title
+
+
+def test_sermon_title_names_a_title_that_is_the_bare_speaker():
+    assert sermon_title("Susan Erickson", "Susan Erickson", _ERICKSON_BLURB) == "Matthew 22:34-46"
+
+
+def test_sermon_title_keeps_a_real_title():
+    assert sermon_title("Why Did Jesus Have to Die?", "Susan Erickson", _ERICKSON_BLURB) == (
+        "Why Did Jesus Have to Die?"
+    )
+
+
+def test_sermon_title_keeps_a_title_with_more_than_the_name():
+    title = "The Right Rev. Austin Keith Rios - Easter Sunday Sermon"
+    blurb = (
+        "<p>The Right Rev. Austin Keith Rios<br />Grace Cathedral, San Francisco, CA<br />Sunday 5 April 2026<br />"
+        "Acts 10:34-43<br />Ps. 118:1-2, 14-24<br />Colossians 3:1-4<br />John 20:1-18</p>"
+    )
+    assert sermon_title(title, "Austin Keith Rios", blurb) == title
