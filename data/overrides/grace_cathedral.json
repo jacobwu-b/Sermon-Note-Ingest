@@ -1,0 +1,22 @@
+{
+  "grace_cathedral:f2ef981c-a6c1-46b4-97fc-fe4538219e13": {
+    "title": "Solemn Requiem For All Souls",
+    "_reason": "feed titles it with the preacher's name only; title derived from the blurb (spec 0012)",
+    "_added_at": "2026-11-14"
+  },
+  "grace_cathedral:d8c1a06e-5bef-464c-a3cd-2b38a8d248e4": {
+    "title": "Matthew 22:34-46",
+    "_reason": "feed titles it with the preacher's name only; title derived from the blurb (spec 0012)",
+    "_added_at": "2026-11-14"
+  },
+  "grace_cathedral:61532186-a03e-405b-a3cf-6c86514f0ea2": {
+    "title": "Luke 12:13-21",
+    "_reason": "feed titles it with the preacher's name only; title derived from the blurb (spec 0012)",
+    "_added_at": "2026-11-14"
+  },
+  "grace_cathedral:495e781f-e023-419e-9840-575a0de9b604": {
+    "title": "Matthew 18:21-35",
+    "_reason": "feed titles it with the preacher's name only; title derived from the blurb (spec 0012)",
+    "_added_at": "2026-11-14"
+  }
+}
