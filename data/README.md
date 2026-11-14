@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| grace_cathedral | 86 | The Very Rev. Dr. Malcolm Clemens Young | 2026-11-08 |
+| grace_cathedral | 86 | Solemn Requiem For All Souls | 2026-11-08 |
 | gracepres | 454 | The Grieving Heart of God | 2026-11-08 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 144 | Don't Settle For Anything LESS Than God’s Purposes | 2026-11-08 |
