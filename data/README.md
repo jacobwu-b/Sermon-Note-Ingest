@@ -55,11 +55,11 @@ Do not edit between the markers by hand; it will be overwritten.
 | gracepres | 454 | The Grieving Heart of God | 2026-11-08 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 145 | Why NOTHING Can Stop The Church | 2026-11-15 |
-| menlo | 158 | Identity in Christ, Identity in Crisis | 2026-11-08 |
+| menlo | 159 | Unfollow | 2026-11-15 |
 | north_point | 113 | Two Seeds, Part 1 | 2026-11-15 |
 | pbc | 405 | The Kingdom of God Is Like... | 2026-11-01 |
 | reality_sf | 750 | Esther, the Hidden Hand | 2026-11-08 |
 | westgate | 116 | The Good Shepherd | 2026-11-08 |
 
-**Total sermons across all churches: 2736**
+**Total sermons across all churches: 2737**
 <!-- STATS:END -->
