@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| grace_cathedral | 86 | Solemn Requiem For All Souls | 2026-11-08 |
+| grace_cathedral | 87 | What will you risk for God? | 2026-11-15 |
 | gracepres | 454 | The Grieving Heart of God | 2026-11-08 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 145 | Why NOTHING Can Stop The Church | 2026-11-15 |
@@ -61,5 +61,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | reality_sf | 750 | Esther, the Hidden Hand | 2026-11-08 |
 | westgate | 116 | The Good Shepherd | 2026-11-08 |
 
-**Total sermons across all churches: 2738**
+**Total sermons across all churches: 2739**
 <!-- STATS:END -->
