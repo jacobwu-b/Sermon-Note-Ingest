@@ -170,6 +170,11 @@ def test_speaker_is_none_when_nothing_names_one():
     assert _speaker("Hosanna Means Help Us", ["What does Hosanna really mean?"]) is None
 
 
+def test_speaker_is_none_when_a_revelation_reading_leads_with_rev():
+    lines = ["Acts 16:16-34", "Psalm 97", "Rev. 22:12-14,16-17,20-21", "John 17:20-26"]
+    assert _speaker("Revelation: The Anti-Christ Today", lines) is None
+
+
 def _feed(*items: str) -> bytes:
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'

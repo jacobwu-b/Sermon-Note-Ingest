@@ -71,8 +71,10 @@ _SPECIAL_PROGRAM_RE = re.compile(
     r"pride mass|evensong|ordination|confirmation|vigil|maundy thursday|ash wednesday", re.IGNORECASE
 )
 
+# The trailing lookahead wants a name to follow: "Rev. 22:12-14" is a reading from Revelation.
 _HONORIFIC_RE = re.compile(
     r"^(?:The\s+)?(?:(?:Very|Rt\.?|Right|Most)\s+)?(?:Rev\.?|Revd\.?|Reverend)\s+(?:(?:Dr\.?|Canon|Br\.?)\s+)*"
+    r"(?=[^\W\d_])"
 )
 _ROLE_SUFFIX_RE = re.compile(r"\s*(?:,| - ).*$")
 _BARE_NAME_RE = re.compile(r"^[A-Z][\w'’.-]*(?:\s+[A-Z][\w'’.()-]*){1,3}$")
