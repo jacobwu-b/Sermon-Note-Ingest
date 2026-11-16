@@ -59,7 +59,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | north_point | 113 | Two Seeds, Part 1 | 2026-11-15 |
 | pbc | 406 | A Seat at the Table | 2026-11-15 |
 | reality_sf | 750 | Esther, the Hidden Hand | 2026-11-08 |
-| westgate | 116 | The Good Shepherd | 2026-11-08 |
+| westgate | 117 | My Sheep Hear My Voice | 2026-11-15 |
 
-**Total sermons across all churches: 2739**
+**Total sermons across all churches: 2740**
 <!-- STATS:END -->
