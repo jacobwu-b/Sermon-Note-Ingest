@@ -56,10 +56,10 @@ Do not edit between the markers by hand; it will be overwritten.
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 145 | Why NOTHING Can Stop The Church | 2026-11-15 |
 | menlo | 159 | Unfollow | 2026-11-15 |
-| north_point | 113 | Two Seeds, Part 1 | 2026-11-15 |
+| north_point | 114 | Two Seeds, Part 1: When Others Win | 2026-11-15 |
 | pbc | 406 | A Seat at the Table | 2026-11-15 |
 | reality_sf | 751 | Don't Lose Heart | 2026-11-15 |
 | westgate | 117 | My Sheep Hear My Voice | 2026-11-15 |
 
-**Total sermons across all churches: 2741**
+**Total sermons across all churches: 2742**
 <!-- STATS:END -->
