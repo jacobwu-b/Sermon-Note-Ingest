@@ -52,7 +52,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
 | grace_cathedral | 87 | What will you risk for God? | 2026-11-15 |
-| gracepres | 454 | The Grieving Heart of God | 2026-11-08 |
+| gracepres | 455 | Rescued From The Flood | 2026-11-15 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 145 | Why NOTHING Can Stop The Church | 2026-11-15 |
 | menlo | 159 | Unfollow | 2026-11-15 |
@@ -61,5 +61,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | reality_sf | 751 | Don't Lose Heart | 2026-11-15 |
 | westgate | 117 | My Sheep Hear My Voice | 2026-11-15 |
 
-**Total sermons across all churches: 2742**
+**Total sermons across all churches: 2743**
 <!-- STATS:END -->
