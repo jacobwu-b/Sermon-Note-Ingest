@@ -51,7 +51,7 @@ Do not edit between the markers by hand; it will be overwritten.
 <!-- STATS:START -->
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
-| grace_cathedral | 87 | What will you risk for God? | 2026-11-15 |
+| grace_cathedral | 88 | Sleep in Safety | 2026-11-22 |
 | gracepres | 455 | Rescued From The Flood | 2026-11-15 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 146 | 3 Ways to Deal With the Weeds in Your Life | 2026-11-22 |
@@ -61,5 +61,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | reality_sf | 751 | Don't Lose Heart | 2026-11-15 |
 | westgate | 117 | My Sheep Hear My Voice | 2026-11-15 |
 
-**Total sermons across all churches: 2747**
+**Total sermons across all churches: 2748**
 <!-- STATS:END -->
