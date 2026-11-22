@@ -55,11 +55,11 @@ Do not edit between the markers by hand; it will be overwritten.
 | gracepres | 455 | Rescued From The Flood | 2026-11-15 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 146 | 3 Ways to Deal With the Weeds in Your Life | 2026-11-22 |
-| menlo | 159 | Unfollow | 2026-11-15 |
+| menlo | 160 | Radiant | 2026-11-22 |
 | north_point | 115 | Two Seeds, Part 2: When We Win | 2026-11-22 |
 | pbc | 407 | A Seat at the Table | 2026-11-15 |
 | reality_sf | 751 | Don't Lose Heart | 2026-11-15 |
 | westgate | 117 | My Sheep Hear My Voice | 2026-11-15 |
 
-**Total sermons across all churches: 2746**
+**Total sermons across all churches: 2747**
 <!-- STATS:END -->
