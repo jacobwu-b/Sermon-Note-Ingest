@@ -39,6 +39,9 @@ def _project(source: str, record: dict[str, Any]) -> dict[str, Any]:
         # Indexed, not .get(): a done record naming no file must fail the render, not publish null.
         "path": record["content_path"],
         "sha256": record.get("transcript_hash"),
+        # The enclosure the text came from, so a consumer can spot a re-posted item whose
+        # text is still the old audio's (ADR-0031).
+        "audio_url": record.get("transcribed_audio_url"),
     }
 
 

@@ -67,6 +67,7 @@ def select_stale(
         and record.get("transcript_hash")
         and net.is_fetchable_enclosure(record.get("audio_url") or "")
         and (guids is None or guid in guids)
+        and not store.enclosure_changed(record)  # the pending run owns a re-post (ADR-0031)
         and store.profile_is_stale(record, running)
         and not (
             record.get("retranscription_failed_profile") == digest
