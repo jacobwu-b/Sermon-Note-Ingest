@@ -33,7 +33,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "68da1e758f27c1741428415e2f3e5f04743586d816aa3c88c97b0d087760e922",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-11-22_-_Joe_C._Williams.mp3?dest-id=1079351"
   },
   "grace_cathedral:b8636601-a455-49f4-adcf-0f1b55ee86ad": {
     "guid": "grace_cathedral:b8636601-a455-49f4-adcf-0f1b55ee86ad",
@@ -69,7 +70,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "29274a70d13a86789d5bba75bdb8bd268bada271528af7a952dd49ee79f1436a",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-11-15_Mess_Tielens__sermon_1.mp3?dest-id=1079351"
   },
   "grace_cathedral:f2ef981c-a6c1-46b4-97fc-fe4538219e13": {
     "guid": "grace_cathedral:f2ef981c-a6c1-46b4-97fc-fe4538219e13",
@@ -105,7 +107,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "99e3332638afa349b70952a50839c7908b5bfab5bacc587af5ea78eca0f56bea",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-11-08_-_Malcolm_Clemens_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:5223498f-cb6c-402b-86ba-c8d60bd916f3": {
     "guid": "grace_cathedral:5223498f-cb6c-402b-86ba-c8d60bd916f3",
@@ -141,7 +144,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "2ae233c27848e605113b329a93c88caf07d4669b0a933703bc32aecb8ed8610d",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/12026-11-01_Sermon_Malcolm_.MOV.mp3?dest-id=1079351"
   },
   "grace_cathedral:d8c1a06e-5bef-464c-a3cd-2b38a8d248e4": {
     "guid": "grace_cathedral:d8c1a06e-5bef-464c-a3cd-2b38a8d248e4",
@@ -177,7 +181,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "962caf8713327509044856d121c1fdcbd117f56e7a311f440a9052061e4a11f6",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-10-25_-_Susan_Erickson.mp3?dest-id=1079351"
   },
   "grace_cathedral:be4ff459-44e8-4678-8bd1-5658e7453ae6": {
     "guid": "grace_cathedral:be4ff459-44e8-4678-8bd1-5658e7453ae6",
@@ -213,7 +218,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "f44d9ef5fa3f90e77fe79e5630c3d5d4a51f69341af30b9b7f74c79659bd9440",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-10-18_-_Malcolm_Clemens_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:ab644336-6eb1-46a9-a3d6-8764e118cbfc": {
     "guid": "grace_cathedral:ab644336-6eb1-46a9-a3d6-8764e118cbfc",
@@ -249,7 +255,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "24eae4dd5c311117a36be18c35da32288d3577047cac46b503d276604daec42b",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-10-11_-_Malcolm_Clemens_Young_-_Coming_Out.mp3?dest-id=1079351"
   },
   "grace_cathedral:61532186-a03e-405b-a3cf-6c86514f0ea2": {
     "guid": "grace_cathedral:61532186-a03e-405b-a3cf-6c86514f0ea2",
@@ -285,7 +292,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "fece06d72a46f14f9bf510c5ae254e48f5de011511fc07a0ac8a1b6ce3fa6506",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-10-04_-_Carl_F._Turner.mp3?dest-id=1079351"
   },
   "grace_cathedral:bab6a14f-44da-4dc1-b89c-23104362ffe2": {
     "guid": "grace_cathedral:bab6a14f-44da-4dc1-b89c-23104362ffe2",
@@ -321,7 +329,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "140ec2a84674fbdd4e6f741fc4b5d3bb7fdd67a78c5b67b0060c0d2202b4586d",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-09-27_-_Malcolm_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:05b67ee6-ab5d-4e55-b063-07b94c4d717f": {
     "guid": "grace_cathedral:05b67ee6-ab5d-4e55-b063-07b94c4d717f",
@@ -357,7 +366,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "056c288d59a3ab61621725fc7ce0b4549a7d1698ec2e2f954d4cf35a65114fb5",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-09-20_-_Malcolm_Clemens_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:495e781f-e023-419e-9840-575a0de9b604": {
     "guid": "grace_cathedral:495e781f-e023-419e-9840-575a0de9b604",
@@ -393,7 +403,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "cc0863df0e6cc516941d0f0407f27845279e50abcee3010e15c9ab5c22da1dfd",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-09-13_-_William_Swing.mp3?dest-id=1079351"
   },
   "grace_cathedral:0802e6b4-457c-464c-8211-101334a6fef6": {
     "guid": "grace_cathedral:0802e6b4-457c-464c-8211-101334a6fef6",
@@ -429,7 +440,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "5c983e71d9e6931ac24a95797ae70eb34d6d6754be313a02a5f177bc12ae2cd5",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-09-06_-_Joe_C._Williams.mp3?dest-id=1079351"
   },
   "grace_cathedral:4823b709-22da-4c60-bf21-ce3b95a2f1c0": {
     "guid": "grace_cathedral:4823b709-22da-4c60-bf21-ce3b95a2f1c0",
@@ -465,7 +477,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "d83655830be6c488afc88d28e158669be54b74f3a709e0a7afd38ebf54b4ffa2",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-08-30_-_Malcolm_Clemens_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:5abb416a-7683-4772-9d37-3cc7a4dfe012": {
     "guid": "grace_cathedral:5abb416a-7683-4772-9d37-3cc7a4dfe012",
@@ -501,7 +514,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "001c269933331fc664756fc241039d3f382dcc9178f03ed2e2450c5a3b31bd5b",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-08-23_-_Malcolm_Clemens_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:d5cacf8c-e223-4017-8f0e-53fb6c2e4b41": {
     "guid": "grace_cathedral:d5cacf8c-e223-4017-8f0e-53fb6c2e4b41",
@@ -537,7 +551,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "5ed1c996f7533db7aaf956bed947a3b6ece3948b8135a48ac8b9ecf2dca23a4f",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-08-16_Joe_C_Williams.mp3?dest-id=1079351"
   },
   "grace_cathedral:25179ad0-31f6-4b11-86b3-ffddde0a8ced": {
     "guid": "grace_cathedral:25179ad0-31f6-4b11-86b3-ffddde0a8ced",
@@ -573,7 +588,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "4c04717e378fe4f1bccce4feeaee092ebec442ccceaccd4203c2fe92b75d7c35",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-08-09_Mary_Carter_Greene.mp3?dest-id=1079351"
   },
   "grace_cathedral:805d5ae2-1f16-4b40-9793-eff4343d4d11": {
     "guid": "grace_cathedral:805d5ae2-1f16-4b40-9793-eff4343d4d11",
@@ -609,7 +625,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "5f9f4b74dd2d753543b6753653ffd563ee1da8b90cc0737d88ca548470823070",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-08-02_-_Malcolm_Young_.mp3?dest-id=1079351"
   },
   "grace_cathedral:85fed96b-5aa3-4e95-9009-13b6165915c2": {
     "guid": "grace_cathedral:85fed96b-5aa3-4e95-9009-13b6165915c2",
@@ -645,7 +662,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "137e64b7a18d49e1d3651517d47905a179c9d06c260b92953cecdaca54e01271",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-07-26_-_Susanna_Singer.mp3?dest-id=1079351"
   },
   "grace_cathedral:bcfde75f-d070-49de-a53f-db4992ba8cb9": {
     "guid": "grace_cathedral:bcfde75f-d070-49de-a53f-db4992ba8cb9",
@@ -681,7 +699,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "998e340b975f5dbd43309522af2597ace19995980795f1fc7332bfe534453b46",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-07-19_-_Joe_C._Wiloiams.mp3?dest-id=1079351"
   },
   "grace_cathedral:f64041dc-24cf-49c5-9148-e0435abbd820": {
     "guid": "grace_cathedral:f64041dc-24cf-49c5-9148-e0435abbd820",
@@ -717,7 +736,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "1ffbadd775aa0e17aa31b9c78c974a52a6c9fc0523917365b8ed568abfa4908f",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-07-12_-_Mees_Tielens.mp3?dest-id=1079351"
   },
   "grace_cathedral:9e1bd64a-a14e-4272-9ecd-ff531e4effca": {
     "guid": "grace_cathedral:9e1bd64a-a14e-4272-9ecd-ff531e4effca",
@@ -753,7 +773,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "68a709037164ea69fa0ad9c844ff31f02677b416478543726662fad0e00a4159",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-07-05_-_Richard_Edward_Helmer.mp3?dest-id=1079351"
   },
   "grace_cathedral:8e456bab-c244-4457-92e8-e13962a8d706": {
     "guid": "grace_cathedral:8e456bab-c244-4457-92e8-e13962a8d706",
@@ -789,7 +810,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "7bd3bfac984a162439da57c0bbafe79eb291636e47df1d3bc114aded5900bd4f",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-06-28_-_Mary_Carter_Greene.mp3?dest-id=1079351"
   },
   "grace_cathedral:b560eb3f-4fa1-40d9-8c4f-97a7e3084997": {
     "guid": "grace_cathedral:b560eb3f-4fa1-40d9-8c4f-97a7e3084997",
@@ -825,7 +847,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "f5ce0cfd816c41be4427c8bd321e3ba5c50ca43e093bcdb4dcd3fbb1bcc55e1d",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-06-21_-_Richard_Edward_Helmer.mp3?dest-id=1079351"
   },
   "grace_cathedral:c0d0c7f3-0072-4599-81ff-84a79a5dc883": {
     "guid": "grace_cathedral:c0d0c7f3-0072-4599-81ff-84a79a5dc883",
@@ -861,7 +884,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "604ddcee71d81909a7f163506ea0520681e19d0527b9ef06057064fe5c5d73fa",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-06-14_-_Mary_Carter_Greene.mp3?dest-id=1079351"
   },
   "grace_cathedral:81a90a99-d33c-4260-8de3-8c6d6024ad61": {
     "guid": "grace_cathedral:81a90a99-d33c-4260-8de3-8c6d6024ad61",
@@ -933,7 +957,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "f8000a6f346497a90511b4f2c960f19f0ac25e2bbbbc2c5ea84adc9ba87dffa9",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-05-24_-_Joe_C_Williams.mp3?dest-id=1079351"
   },
   "grace_cathedral:542df8fd-fcf7-4bcf-b1ce-c57d642fcb35": {
     "guid": "grace_cathedral:542df8fd-fcf7-4bcf-b1ce-c57d642fcb35",
@@ -969,7 +994,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "3bafbf58b4ec2646cd64d2356591c45198c9fdf732ed486c1943794c42e74f03",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-05-17_Rev._Br._Richards_Sermon_.mp3?dest-id=1079351"
   },
   "grace_cathedral:8526a9e4-c9f3-4085-be12-f6f6ce188d2c": {
     "guid": "grace_cathedral:8526a9e4-c9f3-4085-be12-f6f6ce188d2c",
@@ -1005,7 +1031,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "58e05e52ffeeb4bd06d556f7d61bd72ef1cd6d51db83afc6f8cbe79e5d8d5068",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-05-10_-_Malcolm_Clemens_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:a7bdeb3a-5522-4430-ac0b-769e344b011b": {
     "guid": "grace_cathedral:a7bdeb3a-5522-4430-ac0b-769e344b011b",
@@ -1041,7 +1068,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "b0cdf512392794b56d369095532c01eb0e3175a26b64a6f7c6e9fc2d30d16aab",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-05-03_-_Richard_Edward_Helmer.mp3?dest-id=1079351"
   },
   "grace_cathedral:f36d3cf1-4e5f-4728-bc30-d7b4b99c80e0": {
     "guid": "grace_cathedral:f36d3cf1-4e5f-4728-bc30-d7b4b99c80e0",
@@ -1077,7 +1105,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "af6dc33b73aa2cd28d784cdcbfbaa7e1273ef518ee59616904f2ce283935fa1e",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-04-26_-_Mary_Carter_Greene.mp3?dest-id=1079351"
   },
   "grace_cathedral:04e28cb5-1c3f-4731-b218-bd23fa76f22f": {
     "guid": "grace_cathedral:04e28cb5-1c3f-4731-b218-bd23fa76f22f",
@@ -1113,7 +1142,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "33098d91ae4f9624487d77e46be0b895ad5ce3d7a4df81158b6bf924eadefdac",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-04-19_-_Mees_Tielens.mp3?dest-id=1079351"
   },
   "grace_cathedral:1714437a-49f0-476c-aa33-07371246311f": {
     "guid": "grace_cathedral:1714437a-49f0-476c-aa33-07371246311f",
@@ -1149,7 +1179,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "83d5bf96450d8bd9dbe3755da6af372f1ba038119525c968a497927b43127563",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-04-12_-_Malcolm_Clemens_Young.mp3?dest-id=1079351"
   },
   "grace_cathedral:7c6d729f-5b07-43fc-96a1-c04ae1e08621": {
     "guid": "grace_cathedral:7c6d729f-5b07-43fc-96a1-c04ae1e08621",
@@ -1185,7 +1216,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "1788c0bcbf45d2cb52890230339729ec1fb6f490a90a313454fd7eaaa3d7d445",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-04-05_-_Bishop_Austin_Keith_Rios_Easter.mp3?dest-id=1079351"
   },
   "grace_cathedral:1728049e-13da-4f9f-8482-cb9712f0bf80": {
     "guid": "grace_cathedral:1728049e-13da-4f9f-8482-cb9712f0bf80",
@@ -1221,7 +1253,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "7a24f6cbbbe8e76af26504f4d54e0f1e7a68c2dfac57d65809ef5ed0ca730b70",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-04-05_-_Malcom_Clemens_Young_830a.mp3?dest-id=1079351"
   },
   "grace_cathedral:d448ecbe-4e37-4aac-baa5-1a72285ab199": {
     "guid": "grace_cathedral:d448ecbe-4e37-4aac-baa5-1a72285ab199",
@@ -1257,7 +1290,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "e745fe51fbac2def727ec2b10a9a5562d131ebe6a6a3b4a0b38e80aad9d2b9aa",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-04-03_-_Richard_Edward_Helmer.mp3?dest-id=1079351"
   },
   "grace_cathedral:b3375d32-1933-4fbf-a8f9-2d1dcb6761ee": {
     "guid": "grace_cathedral:b3375d32-1933-4fbf-a8f9-2d1dcb6761ee",
@@ -1293,7 +1327,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "ac836913b323c7e722e4c439c3b08eaa1dd95390ea64e0d24bf68bfd85771001",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-03-29_-_Malcom_Clemens_Young_Podcast.mp3?dest-id=1079351"
   },
   "grace_cathedral:fc76eaed-e60e-45b5-8837-91b0c340597a": {
     "guid": "grace_cathedral:fc76eaed-e60e-45b5-8837-91b0c340597a",
@@ -1329,7 +1364,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "dcdaca9bb3cd17ed000766e8023e60e3a561e971b683c1a7a9539475ec9e31db",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-03-22_-_Malcolm_Clemens_Young_-_Podcast.mp3?dest-id=1079351"
   },
   "grace_cathedral:eeff59d4-3038-4e64-8c98-100f193c7703": {
     "guid": "grace_cathedral:eeff59d4-3038-4e64-8c98-100f193c7703",
@@ -1365,7 +1401,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "31e8a56f4e23b04788fb09db8111e6a58c9c133715e11f6eb410891d27777e9a",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-03-15_-_Paul_Brandeis_Raushenbush.mp3?dest-id=1079351"
   },
   "grace_cathedral:b3da2590-c08b-4bea-97d3-1b9fd162daa9": {
     "guid": "grace_cathedral:b3da2590-c08b-4bea-97d3-1b9fd162daa9",
@@ -1401,7 +1438,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "74b56369431b64e50aa5fed9124640e4a76f696bf185e4df7d3770404d3cec12",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-03-08_-_Richard_Edward_Helmer_-_Thirst_Baptism_and_the_Woman_at_the_Well.mp3?dest-id=1079351"
   },
   "grace_cathedral:249e225a-b427-4e03-a175-31b21eff552b": {
     "guid": "grace_cathedral:249e225a-b427-4e03-a175-31b21eff552b",
@@ -1437,7 +1475,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "b713c80eecd37afd070b6f06a71593e109c6187768dc145695bdbf3ab4fcdb6b",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://traffic.libsyn.com/secure/gracecathedralsermons/2026-03-01_-_Mary_Carter_Greene.mp3?dest-id=1079351"
   },
   "grace_cathedral:3d78ccbe-f04e-427e-b120-4c655a7b8280": {
     "guid": "grace_cathedral:3d78ccbe-f04e-427e-b120-4c655a7b8280",

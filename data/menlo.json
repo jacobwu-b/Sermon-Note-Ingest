@@ -33,7 +33,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "a63c1aea33269c6393c02c4e2e51816f2aea2e6efbd998959cb9e82613f4ab48",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/i462giq4zhmcijb6/2026-11-22_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/7450defd-041f-3a77-9a87-ac2884bebc32": {
     "guid": "menlochurchvideo.podbean.com/7450defd-041f-3a77-9a87-ac2884bebc32",
@@ -69,7 +70,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "6fd37aa0e2d7e9cecbdd0a19090e4cd503a0cd02ee9ef32b1a1ae955b8a005c2",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/vw3j3ia9kzv9eerc/2026-11-15_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/1c90b09b-7659-3ef2-9025-d1f6a9a5e99e": {
     "guid": "menlochurchvideo.podbean.com/1c90b09b-7659-3ef2-9025-d1f6a9a5e99e",
@@ -105,7 +107,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "53b7b34938a8ba4f850ca2e002480832edf552f5cf82fdef4077c0fba5869fb3",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/c72b2eiw7caa3v6v/2026-11-08_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/8468e812-1ea0-3aab-b22e-7e0aa3bc1e9f": {
     "guid": "menlochurchvideo.podbean.com/8468e812-1ea0-3aab-b22e-7e0aa3bc1e9f",
@@ -141,7 +144,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "2544502d7c853694578bda4d5f6bed3c51e8d4324473a008c36d07a419465d07",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/84rgx9r5bkzsjndz/2026-11-01_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/847ed9c3-4bc2-3615-ba82-87711d201ecc": {
     "guid": "menlochurchvideo.podbean.com/847ed9c3-4bc2-3615-ba82-87711d201ecc",
@@ -175,7 +179,8 @@
     "transcript_words": 5718,
     "transcript_loop_words": 0,
     "transcript_credit_hits": 0,
-    "transcript_hotword_pairs": 0
+    "transcript_hotword_pairs": 0,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ph9j8yt9g4g4845s/2026-10-25_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/71e09e71-a480-3e2d-8d8d-29ae1cb56d16": {
     "guid": "menlochurchvideo.podbean.com/71e09e71-a480-3e2d-8d8d-29ae1cb56d16",
@@ -209,7 +214,8 @@
     "transcript_words": 6010,
     "transcript_loop_words": 0,
     "transcript_credit_hits": 0,
-    "transcript_hotword_pairs": 0
+    "transcript_hotword_pairs": 0,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/y3pedt8gnqr4kqcg/2026-10-18_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/836b5447-a202-3e0a-ae7f-9e2b2f19b6bc": {
     "guid": "menlochurchvideo.podbean.com/836b5447-a202-3e0a-ae7f-9e2b2f19b6bc",
@@ -236,7 +242,8 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": false,
-    "transcription_hallucination_silence_threshold": 2.0
+    "transcription_hallucination_silence_threshold": 2.0,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/qhxdiyrj3dvpuqst/2026-10-11_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/10fec83e-a8f4-3d0b-a15d-690590479858": {
     "guid": "menlochurchvideo.podbean.com/10fec83e-a8f4-3d0b-a15d-690590479858",
@@ -274,7 +281,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/crv97ejivxw4js8c/2026-10-04_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/3a5d9a10-5d84-38e2-9892-6defef866a53": {
     "guid": "menlochurchvideo.podbean.com/3a5d9a10-5d84-38e2-9892-6defef866a53",
@@ -312,7 +320,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/p2342kjt5fm8qydf/2026-09-27_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/4c2d6e13-f6b4-334b-b4a1-9613df0d51dd": {
     "guid": "menlochurchvideo.podbean.com/4c2d6e13-f6b4-334b-b4a1-9613df0d51dd",
@@ -350,7 +359,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/fb4ae2juvv7mevms/2026-09-20_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/11fa57bb-a88c-35fb-80a6-8fb0b12cf519": {
     "guid": "menlochurchvideo.podbean.com/11fa57bb-a88c-35fb-80a6-8fb0b12cf519",
@@ -388,7 +398,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/tcmc9bpuy9knpwkv/2026-09-13_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/6ebd0693-c10f-3125-8198-fdb35dec8944": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8avjusukg8kgzsgs/2026-09-06_Sermon-PodcastAudio.mp3",
@@ -426,7 +437,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/8avjusukg8kgzsgs/2026-09-06_Sermon-PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/86c1dcf1-1fd9-3507-ba53-1855ae72d6a3": {
     "audio_url": "https://mcdn.podbean.com/mf/web/45g3yceyb3fpt647/2026-08-30_PodcastAudio.mp3",
@@ -464,7 +476,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/45g3yceyb3fpt647/2026-08-30_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/a8e96ca6-8f0b-3d11-9d2e-628821d5cf7a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/cfqrt3rbagv8er62/2026-08-23_SermonPodcastAudio.mp3",
@@ -502,7 +515,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/cfqrt3rbagv8er62/2026-08-23_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/52d746b0-70af-3fef-8882-3bc2e3e2def1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v3cupcbtpb93i4ys/2026-08-16_SermonPodcastAudio.mp3",
@@ -540,7 +554,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/v3cupcbtpb93i4ys/2026-08-16_SermonPodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/275a86da-df23-3251-b364-a2507b24d854": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2kjvjafsmddfckwi/2026-08-09_PodcastAudio.mp3",
@@ -578,7 +593,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/2kjvjafsmddfckwi/2026-08-09_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/8f9d6d9e-2913-36ea-9739-69a7a63b4540": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dfrxsi7ku4qwp37m/Sermon_2026-08-02_PodcastAudio.mp3",
@@ -616,7 +632,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/dfrxsi7ku4qwp37m/Sermon_2026-08-02_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/5bd3b5e0-eb0b-336e-abe4-b22c9d7db8bf": {
     "audio_url": "https://mcdn.podbean.com/mf/web/iwyqepxhitx48qce/Sermon_2026-07-26_PodcastAudio.mp3",
@@ -654,7 +671,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/iwyqepxhitx48qce/Sermon_2026-07-26_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/15006a66-2fbb-3df2-8cd5-1ae735f04134": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ev6tdkj4rzfbfbfs/Sermon_2026-07-19_PodcastAudio.mp3",
@@ -692,7 +710,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ev6tdkj4rzfbfbfs/Sermon_2026-07-19_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/212bc814-4655-329c-bc16-27256dc8dc03": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v3y3hc5nxxytzvsn/Sermon_2026-07-12_PodcastAudio.mp3",
@@ -730,7 +749,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/v3y3hc5nxxytzvsn/Sermon_2026-07-12_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/49518992-b608-38f0-a006-1d84e77a9b5a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3z44k2x5ww4q85m9/Sermon_2026-7-5_PodcastAudio.mp3",
@@ -768,7 +788,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3z44k2x5ww4q85m9/Sermon_2026-7-5_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/4be93004-fe98-307d-953e-12af49c80200": {
     "audio_url": "https://mcdn.podbean.com/mf/web/pdb7xytp3utaz6qp/Sermon_2026-06-28_PodcastAudio.mp3",
@@ -806,7 +827,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/pdb7xytp3utaz6qp/Sermon_2026-06-28_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/6ac064de-cbff-3fde-a565-6270fd471ad0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/gvvv2m5qbzkd7xdu/Sermon_2026-06-21_PodcastAudio.mp3",
@@ -844,7 +866,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/gvvv2m5qbzkd7xdu/Sermon_2026-06-21_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/1ff09455-adfd-337d-9002-0e775fb28b69": {
     "audio_url": "https://mcdn.podbean.com/mf/web/k89ztb7viam8nxra/2026-06-14_PodcastAudio.mp3",
@@ -882,7 +905,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/k89ztb7viam8nxra/2026-06-14_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/8c8e620c-f1a8-34f9-8d1d-3361df2304a1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3s7zutwwbmvuym8j/Sermon_2026-06-07_PodcastAudio.mp3",
@@ -920,7 +944,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3s7zutwwbmvuym8j/Sermon_2026-06-07_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/94b28be5-934d-3297-82df-9a39dead63c6": {
     "audio_url": "https://mcdn.podbean.com/mf/web/uze5wsyi5rqspyzc/Sermon_2026-05-31_PodcastAudio.mp3",
@@ -958,7 +983,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/uze5wsyi5rqspyzc/Sermon_2026-05-31_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/4cf0ccd6-5085-304f-89eb-839cc22cf4af": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ca3t73xmyfath9v3/Sermon_2026-05-24_PodcastAudio.mp3",
@@ -996,7 +1022,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ca3t73xmyfath9v3/Sermon_2026-05-24_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/f269ef39-d737-3b61-8d90-4ab8680e6aba": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ymsvu9rxshixucyr/Sermon_2026-05-17_PodcastAudio.mp3",
@@ -1034,7 +1061,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ymsvu9rxshixucyr/Sermon_2026-05-17_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/a0c4c988-5457-3f69-83bf-0698d2933773": {
     "audio_url": "https://mcdn.podbean.com/mf/web/uxqq2stsf3xrjv98/2026-05-10_Sermon_PodcastAudio.mp3",
@@ -1072,7 +1100,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/uxqq2stsf3xrjv98/2026-05-10_Sermon_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/bd1c7882-0414-31b4-9d25-ae942847f779": {
     "audio_url": "https://mcdn.podbean.com/mf/web/zxpsg2mpcwhbxrwi/Sermon_2026-05-03_PodcastAudio.mp3",
@@ -1110,7 +1139,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/zxpsg2mpcwhbxrwi/Sermon_2026-05-03_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/2d144bf5-f873-37e0-ac65-98da9dee1013": {
     "audio_url": "https://mcdn.podbean.com/mf/web/vipr8ugm6kgcpgtu/Sermon_2026-04-26_PodcastAudio.mp3",
@@ -1148,7 +1178,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/vipr8ugm6kgcpgtu/Sermon_2026-04-26_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/f1d65163-6d4a-316e-a813-245b1848a972": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x8za6c4eqphhxksf/2026-04-19_SermonAudio.mp3",
@@ -1186,7 +1217,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/x8za6c4eqphhxksf/2026-04-19_SermonAudio.mp3"
   },
   "menlochurchvideo.podbean.com/df0f07fc-5c1a-34c3-b051-f0ac68792e57": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8subv5smwb5vpb4t/Sermon_2026-04-12_PodcastAudio.mp3",
@@ -1224,7 +1256,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/8subv5smwb5vpb4t/Sermon_2026-04-12_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/83633b52-d0ca-37e3-aa99-c68b278936eb": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ektk2mk4nhpfkmyw/Sermon_2026-04-05_PodcastAudio.mp3",
@@ -1262,7 +1295,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ektk2mk4nhpfkmyw/Sermon_2026-04-05_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/c466eab1-5b1b-3bc2-afec-e4180fd9ec2a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/97md8w6ue4mvq8zi/Sermon_2026-03-29_PodcastAudio.mp3",
@@ -1300,7 +1334,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/97md8w6ue4mvq8zi/Sermon_2026-03-29_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/b644dbb3-7002-3a18-9b20-ba896199389b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/a3gcyevbr8f8a7se/Sermon_2026-03-22_PodcastAudio.mp3",
@@ -1338,7 +1373,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/a3gcyevbr8f8a7se/Sermon_2026-03-22_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/0d11e418-ef07-3ded-909e-651495ef9aed": {
     "audio_url": "https://mcdn.podbean.com/mf/web/sqb7dki4exems79g/Sermon_2026-03-15_PodcastAudio.mp3",
@@ -1376,7 +1412,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/sqb7dki4exems79g/Sermon_2026-03-15_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/42922dbb-a797-35cc-9347-80e3fce1c61a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dbeiwkkriamyrhys/Sermon_2026-03-08_PodcastAudio.mp3",
@@ -1414,7 +1451,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/dbeiwkkriamyrhys/Sermon_2026-03-08_PodcastAudio.mp3"
   },
   "menlochurchvideo.podbean.com/5af77a48-ca50-3b12-b73b-e0141252457b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ii4psyt763irxjw7/Sermon_2026-03-01_Podcast.mp3",
@@ -1452,7 +1490,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ii4psyt763irxjw7/Sermon_2026-03-01_Podcast.mp3"
   },
   "menlochurchvideo.podbean.com/d2d4618d-9835-3e33-8b75-8ebc8c8e4c3e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3a4pxkhga5u82gm7/2026-02-22_Sermon_NoBumper.mp3",
@@ -1490,7 +1529,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3a4pxkhga5u82gm7/2026-02-22_Sermon_NoBumper.mp3"
   },
   "menlochurchvideo.podbean.com/031929bd-ba48-3507-b52a-73eeb8af980d": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bttkc2kcuy6wfykf/LoveisMessage3POD.mp3",
@@ -1528,7 +1568,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/bttkc2kcuy6wfykf/LoveisMessage3POD.mp3"
   },
   "menlochurchvideo.podbean.com/f378acce-35e5-3422-a40f-1c964702f4cb": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5pz7rgk829rsibqv/LoveisWorthWaitingforPdNewmp3.mp3",
@@ -1566,7 +1607,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/5pz7rgk829rsibqv/LoveisWorthWaitingforPdNewmp3.mp3"
   },
   "menlochurchvideo.podbean.com/59ea5d6b-808c-31c7-8216-12352991f3c8": {
     "audio_url": "https://mcdn.podbean.com/mf/web/upxqp322s9vnra28/LoveisMessage1PodcastFinal.mp3",
@@ -1604,7 +1646,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/upxqp322s9vnra28/LoveisMessage1PodcastFinal.mp3"
   },
   "menlochurchvideo.podbean.com/ccc53af7-1410-35bd-9807-a8f61258cd92": {
     "audio_url": "https://mcdn.podbean.com/mf/web/p6thdg6crm4im4xv/PerfectMessage4PodFinal.mp3",
@@ -1642,7 +1685,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/p6thdg6crm4im4xv/PerfectMessage4PodFinal.mp3"
   },
   "menlochurchvideo.podbean.com/52211f90-9f68-3d7c-b91d-40439cf91032": {
     "audio_url": "https://mcdn.podbean.com/mf/web/t8yd5gcd4vnrtd95/PerfectMessage3Pod.mp3",
@@ -1680,7 +1724,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/t8yd5gcd4vnrtd95/PerfectMessage3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/12e8300b-aba4-37a6-b3b3-60b74c7fd0d7": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x9xav3qe9hwqcnbb/PerfectMessage2POD.mp3",
@@ -1718,7 +1763,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/x9xav3qe9hwqcnbb/PerfectMessage2POD.mp3"
   },
   "menlochurchvideo.podbean.com/8737b88f-7130-39b8-8433-e07316529728": {
     "audio_url": "https://mcdn.podbean.com/mf/web/53qtfbihhhi4ndxp/PerfectMessage1PodFinal.mp3",
@@ -1756,7 +1802,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/53qtfbihhhi4ndxp/PerfectMessage1PodFinal.mp3"
   },
   "menlochurchvideo.podbean.com/44fa68d3-3279-3a09-9432-5fe376051e50": {
     "audio_url": "https://mcdn.podbean.com/mf/web/igqfbczqu3xt7tmp/ComeAllYeFaithless4POD.mp3",
@@ -1794,7 +1841,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/igqfbczqu3xt7tmp/ComeAllYeFaithless4POD.mp3"
   },
   "menlochurchvideo.podbean.com/f6883b55-589c-31ad-9fb6-0044ff76523f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/eyegibtvqp9sxkj5/ComeAllyeFaithlessWeek3PODmp4.mp3",
@@ -1832,7 +1880,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/eyegibtvqp9sxkj5/ComeAllyeFaithlessWeek3PODmp4.mp3"
   },
   "menlochurchvideo.podbean.com/e7dee28e-9715-39b6-9ca4-36b674f75ede": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5defe6a8fnnks4xr/JolyessPod.mp3",
@@ -1870,7 +1919,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/5defe6a8fnnks4xr/JolyessPod.mp3"
   },
   "menlochurchvideo.podbean.com/1e860ebd-9433-384b-b7be-5f03b380ac3a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ttgdmzd39sy87jiz/ComeallyehoplessPod.mp3",
@@ -1908,7 +1958,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ttgdmzd39sy87jiz/ComeallyehoplessPod.mp3"
   },
   "menlochurchvideo.podbean.com/4391e330-553b-3ede-b794-91b563052b20": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dk8urg3j84vmrb3x/HopeforEveryoneMessage2Pod.mp3",
@@ -1946,7 +1997,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/dk8urg3j84vmrb3x/HopeforEveryoneMessage2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/beee9c20-8070-3f02-830a-9e6ec267bff0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/y8pkjfc5cqfh6wjn/H4EWeek1PODFINAL.mp3",
@@ -1984,7 +2036,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/y8pkjfc5cqfh6wjn/H4EWeek1PODFINAL.mp3"
   },
   "menlochurchvideo.podbean.com/c9bd4a56-404c-3d20-ae09-05e483ce6257": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ci2d46kh3se28snh/NumbMessag4Pod.mp3",
@@ -2022,7 +2075,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ci2d46kh3se28snh/NumbMessag4Pod.mp3"
   },
   "menlochurchvideo.podbean.com/8ce726ac-7ccd-3874-b71e-2f0bdc845500": {
     "audio_url": "https://mcdn.podbean.com/mf/web/6ncj545ttr2si9j6/NumbMessagePod3.mp3",
@@ -2060,7 +2114,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/6ncj545ttr2si9j6/NumbMessagePod3.mp3"
   },
   "menlochurchvideo.podbean.com/0d5a5ec3-1498-36d0-bd3e-11d0bd20c75c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4pkhkqhvzaeevhns/NumbMessage2Pod.mp3",
@@ -2098,7 +2153,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/4pkhkqhvzaeevhns/NumbMessage2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/eec095a2-7433-3a18-8fe6-afe14d2dba22": {
     "audio_url": "https://mcdn.podbean.com/mf/web/jsenbtdem4z93x5k/NumbMessage1Podmp4.mp3",
@@ -2136,7 +2192,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/jsenbtdem4z93x5k/NumbMessage1Podmp4.mp3"
   },
   "menlochurchvideo.podbean.com/15b1edc3-d938-3d5a-912f-dffaa54ac26b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/84zyw77nfipsi8zk/BoTDMessage3Pod.mp3",
@@ -2174,7 +2231,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/84zyw77nfipsi8zk/BoTDMessage3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/47e4fafd-9f73-381f-b535-ce0db9a55618": {
     "audio_url": "https://mcdn.podbean.com/mf/web/n9afbvm9nz9wv23f/BoTDMessage2Pod.mp3",
@@ -2212,7 +2270,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/n9afbvm9nz9wv23f/BoTDMessage2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/34b7e834-6f10-3803-a990-2f73428aaa09": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8gbzu5ff7cqqwnnh/BotDMessage1Pod.mp3",
@@ -2250,7 +2309,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/8gbzu5ff7cqqwnnh/BotDMessage1Pod.mp3"
   },
   "menlochurchvideo.podbean.com/39dcca61-e3c3-3976-8752-84869049f42a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/qtix2jb87rs4653h/ACMPodcastPodmp4.mp3",
@@ -2288,7 +2348,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/qtix2jb87rs4653h/ACMPodcastPodmp4.mp3"
   },
   "menlochurchvideo.podbean.com/05b38ad3-8874-30f6-b408-4ab33639bc21": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3jxizvkb7ft8sd2m/WagingPeaceMesagePod.mp3",
@@ -2326,7 +2387,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3jxizvkb7ft8sd2m/WagingPeaceMesagePod.mp3"
   },
   "menlochurchvideo.podbean.com/939c7191-12ee-343a-9a7d-2aa88ba15142": {
     "audio_url": "https://mcdn.podbean.com/mf/web/fve8mj9wqsq23rxk/AoSUMessage4Pod.mp3",
@@ -2364,7 +2426,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/fve8mj9wqsq23rxk/AoSUMessage4Pod.mp3"
   },
   "menlochurchvideo.podbean.com/24e9c5d7-b1f4-310a-96b0-9c86616cf895": {
     "audio_url": "https://mcdn.podbean.com/mf/web/75rrgdgj8sfy7gdc/AoSUMessage3Pod.mp3",
@@ -2402,7 +2465,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/75rrgdgj8sfy7gdc/AoSUMessage3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/454ac64f-8c38-3584-89b0-b2235dfa20f8": {
     "audio_url": "https://mcdn.podbean.com/mf/web/nwqd7c3ridzyagnt/AoSUMidweek2Pod.mp3",
@@ -2440,7 +2504,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/nwqd7c3ridzyagnt/AoSUMidweek2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/4f1de1e2-b0a3-3bc7-bf31-89162320bd32": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2f48t3te592gy6m4/AosUMessage1Pod.mp3",
@@ -2478,7 +2543,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/2f48t3te592gy6m4/AosUMessage1Pod.mp3"
   },
   "menlochurchvideo.podbean.com/54ac5a80-caff-3dc2-a307-a77b8969a1b8": {
     "audio_url": "https://mcdn.podbean.com/mf/web/zq9zwa83dmw7r3yf/FFMessage4Pod.mp3",
@@ -2516,7 +2582,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/zq9zwa83dmw7r3yf/FFMessage4Pod.mp3"
   },
   "menlochurchvideo.podbean.com/29cd36f5-9e8d-3db2-9b0b-91394fdb9267": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bsspit5t2y5y9f3m/FFMessage3Pod.mp3",
@@ -2554,7 +2621,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/bsspit5t2y5y9f3m/FFMessage3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/c882ac25-0019-3e3b-a04b-d1c57603d9e6": {
     "audio_url": "https://mcdn.podbean.com/mf/web/za3adzj92tbk3bh7/FFMessage2Podmp4.mp3",
@@ -2592,7 +2660,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/za3adzj92tbk3bh7/FFMessage2Podmp4.mp3"
   },
   "menlochurchvideo.podbean.com/cdd8a379-0c28-3e12-ad22-eaff75ffbe8f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3tab3823sweb2s4n/FFmessage1Pod.mp3",
@@ -2630,7 +2699,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3tab3823sweb2s4n/FFmessage1Pod.mp3"
   },
   "menlochurchvideo.podbean.com/6842aa4f-e9a7-381e-8735-a409f0110cc5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/up6i3xikefeia8jv/IandUMessage5Pod.mp3",
@@ -2668,7 +2738,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/up6i3xikefeia8jv/IandUMessage5Pod.mp3"
   },
   "menlochurchvideo.podbean.com/382a3b31-4f0c-3ae5-ae9b-3ee5aac5c28c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/96htmj96ng3nvbvk/IandUMessage4Pod.mp3",
@@ -2706,7 +2777,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/96htmj96ng3nvbvk/IandUMessage4Pod.mp3"
   },
   "menlochurchvideo.podbean.com/f9b0d1a6-90da-3b77-8543-25fc530f2517": {
     "audio_url": "https://mcdn.podbean.com/mf/web/c3x7f6yzm7dtsaad/IandUMessage3Pod.mp3",
@@ -2744,7 +2816,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/c3x7f6yzm7dtsaad/IandUMessage3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/f3be0069-6c71-35c5-a48a-b80bb344fa3c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/6ncx3j3bj9dqzhfv/IandUMessage2Pod.mp3",
@@ -2782,7 +2855,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/6ncx3j3bj9dqzhfv/IandUMessage2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/595d6f86-ca5b-3086-a37b-02c838cdcbac": {
     "audio_url": "https://mcdn.podbean.com/mf/web/da3chmipy8dqiinz/IandUMessagePod.mp3",
@@ -2820,7 +2894,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/da3chmipy8dqiinz/IandUMessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/a53d271a-02d2-3e5e-856c-17f2328a0b5b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/n7eps7t7h74tmk8c/DadviceMessagePod.mp3",
@@ -2858,7 +2933,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/n7eps7t7h74tmk8c/DadviceMessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/76acba94-d1f2-37b3-a03b-46929364daf9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ecugkdqu6gyhzrnu/SM3MessagePod.mp3",
@@ -2896,7 +2972,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ecugkdqu6gyhzrnu/SM3MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/1c35a0fb-3137-325b-a6b9-e66331d6ebf0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/n59abmftcyqrvp7t/SoundMindMessage2Pod.mp3",
@@ -2934,7 +3011,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/n59abmftcyqrvp7t/SoundMindMessage2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/854f553a-5409-372f-a0bb-20b6f51ab5be": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hvd6ryrvd37xhcup/Week1NEWpod.mp3",
@@ -2972,7 +3050,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/hvd6ryrvd37xhcup/Week1NEWpod.mp3"
   },
   "menlochurchvideo.podbean.com/18e14c2e-ff8d-30ff-a347-8b07d3655092": {
     "audio_url": "https://mcdn.podbean.com/mf/web/aghu9heiwfdcr7is/WCMessage4Pod.mp3",
@@ -3010,7 +3089,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/aghu9heiwfdcr7is/WCMessage4Pod.mp3"
   },
   "menlochurchvideo.podbean.com/095f9bc7-aa78-39ab-906d-6f1bfb209bf2": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3xifa6bdyzm6he6y/WCMessage3Pod.mp3",
@@ -3048,7 +3128,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3xifa6bdyzm6he6y/WCMessage3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/810a5789-3df7-303b-a7b1-706fe4dbd3d5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/7ieikhj7misb7q32/WCMessage2Pod.mp3",
@@ -3086,7 +3167,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/7ieikhj7misb7q32/WCMessage2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/15f5d73c-fda0-30bd-bb3e-0604f71deb9a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2by8ddmx43tzmpki/WeirdChurchWk1MessagePod.mp3",
@@ -3124,7 +3206,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/2by8ddmx43tzmpki/WeirdChurchWk1MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/333e949b-794e-3c46-be40-020f45971f8e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/tmnmgvb8znv9wksq/EasterMessagePod.mp3",
@@ -3162,7 +3245,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/tmnmgvb8znv9wksq/EasterMessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/9b95d6ce-ba3b-31c2-ba40-3276ce7fca82": {
     "audio_url": "https://mcdn.podbean.com/mf/web/xyjh68g38ey3y9vg/CocSunday7MessagePOD.mp3",
@@ -3200,7 +3284,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/xyjh68g38ey3y9vg/CocSunday7MessagePOD.mp3"
   },
   "menlochurchvideo.podbean.com/63807d30-5551-38ab-b977-69863d58efaf": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ggvhiu6y2yuxtfcj/CocWeek6Pod.mp3",
@@ -3238,7 +3323,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ggvhiu6y2yuxtfcj/CocWeek6Pod.mp3"
   },
   "menlochurchvideo.podbean.com/bb86b69f-7344-3ec9-8923-b58105f23f47": {
     "audio_url": "https://mcdn.podbean.com/mf/web/b27vwy7qefpdj56w/CoCMessage5Pod.mp3",
@@ -3276,7 +3362,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/b27vwy7qefpdj56w/CoCMessage5Pod.mp3"
   },
   "menlochurchvideo.podbean.com/f0d4e113-8e7b-3063-b695-c6caf66b4ecd": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bd2d9s65eimpud9b/CofCMessage4Pod.mp3",
@@ -3314,7 +3401,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/bd2d9s65eimpud9b/CofCMessage4Pod.mp3"
   },
   "menlochurchvideo.podbean.com/cfa5f8d2-eaea-3bb6-8296-942b1ef5ef99": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wqgmnjabyz6hhgca/cocmessage3pod.mp3",
@@ -3352,7 +3440,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/wqgmnjabyz6hhgca/cocmessage3pod.mp3"
   },
   "menlochurchvideo.podbean.com/9b24189d-8228-35d4-b559-50349ead1300": {
     "audio_url": "https://mcdn.podbean.com/mf/web/d4bbk6k6fkkvwrzq/CocWeek2MessagePod.mp3",
@@ -3390,7 +3479,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/d4bbk6k6fkkvwrzq/CocWeek2MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/20ea29ed-1384-37b2-9b9a-e777541956fd": {
     "audio_url": "https://mcdn.podbean.com/mf/web/vu4gp8jx9tk4niiu/CocMessage1Pod.mp3",
@@ -3428,7 +3518,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/vu4gp8jx9tk4niiu/CocMessage1Pod.mp3"
   },
   "menlochurchvideo.podbean.com/cdcc377c-c70e-346d-b40c-67b3cbabe270": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ffaeg5sv2argzx8h/FMWeek3Pod.mp3",
@@ -3466,7 +3557,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ffaeg5sv2argzx8h/FMWeek3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/a8a63de4-4c7e-34e4-b046-adbc18e33bff": {
     "audio_url": "https://mcdn.podbean.com/mf/web/h9cqmvtwuu7wj34j/FMMessagePodb67et.mp3",
@@ -3504,7 +3596,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/h9cqmvtwuu7wj34j/FMMessagePodb67et.mp3"
   },
   "menlochurchvideo.podbean.com/44784844-6599-3343-918b-3bed37ac32c7": {
     "audio_url": "https://mcdn.podbean.com/mf/web/w68n465q4rtf7ysw/FMWeek1Pod.mp3",
@@ -3542,7 +3635,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/w68n465q4rtf7ysw/FMWeek1Pod.mp3"
   },
   "menlochurchvideo.podbean.com/bb875b4a-56cd-31ba-80b8-db5dff9ee219": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wcmce5a6gzxdu4qd/BaptismFebSundayMessage.mp3",
@@ -3580,7 +3674,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/wcmce5a6gzxdu4qd/BaptismFebSundayMessage.mp3"
   },
   "menlochurchvideo.podbean.com/ef3fcca2-ada2-3bb2-a11a-3ad5a8b402cf": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ismfptnmz7j7b3im/SufWeek4MessagePod.mp3",
@@ -3618,7 +3713,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ismfptnmz7j7b3im/SufWeek4MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/07eabd70-eec3-354d-ad9e-067680df9e3e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/44d6vxtvgxyf8vq2/Week3Pod_b991n.mp3",
@@ -3656,7 +3752,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/44d6vxtvgxyf8vq2/Week3Pod_b991n.mp3"
   },
   "menlochurchvideo.podbean.com/8de78206-444e-3897-a921-e4cd79363405": {
     "audio_url": "https://mcdn.podbean.com/mf/web/kmt2qmhrxj5gsckv/SuFWk2MessagePod.mp3",
@@ -3694,7 +3791,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/kmt2qmhrxj5gsckv/SuFWk2MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/5490ae9d-f57c-36d4-80d9-827b474c6a9a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3e66bry73kk79fkc/Week1MessagePod.mp3",
@@ -3732,7 +3830,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3e66bry73kk79fkc/Week1MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/30d401bc-f3f4-30c2-81a5-773061690fa9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5zne3swhbk8xx79g/Week5MessagePod.mp3",
@@ -3770,7 +3869,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/5zne3swhbk8xx79g/Week5MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/2f615720-42bf-3616-a7e5-3ac771429dd5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/e6yynj88ub75cqs3/Week3Pod.mp3",
@@ -3808,7 +3908,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/e6yynj88ub75cqs3/Week3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/f104fcf0-0ef8-3b23-81b9-768a6c590ec2": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ier4x3kryhxmxk27/HIBWeek2JosephPod.mp3",
@@ -3846,7 +3947,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ier4x3kryhxmxk27/HIBWeek2JosephPod.mp3"
   },
   "menlochurchvideo.podbean.com/c5b4e5c4-974e-3ef4-b4d2-12c67fc39e18": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4jca9rf5bjikzyf6/MaryMessagePod.mp3",
@@ -3884,7 +3986,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/4jca9rf5bjikzyf6/MaryMessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/2901658b-c037-373d-aa66-2f027a58da84": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rb2nxc6gs92m97tj/Message5JayKim.mp3",
@@ -3922,7 +4025,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/rb2nxc6gs92m97tj/Message5JayKim.mp3"
   },
   "menlochurchvideo.podbean.com/f94e75f7-89d7-39d2-82e3-22a983bd4bbc": {
     "audio_url": "https://mcdn.podbean.com/mf/web/268jubxa6tb28sig/ChoosingStayingOverGoingPod.mp3",
@@ -3960,7 +4064,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/268jubxa6tb28sig/ChoosingStayingOverGoingPod.mp3"
   },
   "menlochurchvideo.podbean.com/27c3815d-4e61-3f5c-94a0-9599918a4ffb": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hfgxh9xj8ntjnrfv/ForTheBay3politics.mp3",
@@ -3998,7 +4103,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/hfgxh9xj8ntjnrfv/ForTheBay3politics.mp3"
   },
   "menlochurchvideo.podbean.com/0800dd74-a15d-3a9e-a00b-cbb449914969": {
     "audio_url": "https://mcdn.podbean.com/mf/web/86u2ykuq8fta68wn/Week2MessagePod.mp3",
@@ -4036,7 +4142,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/86u2ykuq8fta68wn/Week2MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/eb8f8355-c73e-31e2-9cdd-e1279cf48783": {
     "audio_url": "https://mcdn.podbean.com/mf/web/njp5wrwmq64yb5pp/FTB1Message.mp3",
@@ -4074,7 +4181,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/njp5wrwmq64yb5pp/FTB1Message.mp3"
   },
   "menlochurchvideo.podbean.com/de0e40bb-e142-3324-864b-4eb7540e3f7e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rcnnravg25cbji2f/1020246ukcb.mp3",
@@ -4112,7 +4220,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/rcnnravg25cbji2f/1020246ukcb.mp3"
   },
   "menlochurchvideo.podbean.com/7323b2ad-034e-39fd-b440-0b019297f7c6": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wx9wtuusgfxfnxjr/H4E4Pod.mp3",
@@ -4150,7 +4259,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/wx9wtuusgfxfnxjr/H4E4Pod.mp3"
   },
   "menlochurchvideo.podbean.com/1b8abeb9-26f0-3ec5-88bc-f60ad166476a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/dh8b2hxuxv94svcy/H4e3Pod.mp3",
@@ -4188,7 +4298,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/dh8b2hxuxv94svcy/H4e3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/952a1fb7-f00f-3936-81d6-fbaa85a3e123": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hzm3tjiwjfkpurds/HopeWeek2Pod.mp3",
@@ -4226,7 +4337,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/hzm3tjiwjfkpurds/HopeWeek2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/322e9ba9-a69b-31ac-8f79-05a135f22557": {
     "audio_url": "https://mcdn.podbean.com/mf/web/feuahtrdqxrd9fit/HopeFound1MessagePod.mp3",
@@ -4264,7 +4376,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/feuahtrdqxrd9fit/HopeFound1MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/d60ec6e6-f459-3c5b-b910-7e647ff4b951": {
     "audio_url": "https://mcdn.podbean.com/mf/web/39hr9nm75w7858c5/Storytellers4MessagePod.mp3",
@@ -4302,7 +4415,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/39hr9nm75w7858c5/Storytellers4MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/a0a9451b-c485-323f-934f-8e56d70f5575": {
     "audio_url": "https://mcdn.podbean.com/mf/web/phhnujc8yggzdbsg/StorytellersMessage3Pod.mp3",
@@ -4340,7 +4454,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/phhnujc8yggzdbsg/StorytellersMessage3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/c9b5fc50-7fe6-3625-8976-9131a70e394f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v858q2t42dzsf4q6/Storytellers2Pod.mp3",
@@ -4378,7 +4493,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/v858q2t42dzsf4q6/Storytellers2Pod.mp3"
   },
   "menlochurchvideo.podbean.com/426dcc4f-a792-3320-ae4c-1eb8e86f7663": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2k9c7evaepwemjhj/Storytellers1MessagePod.mp3",
@@ -4416,7 +4532,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/2k9c7evaepwemjhj/Storytellers1MessagePod.mp3"
   },
   "menlochurchvideo.podbean.com/8d1a8390-2009-3f11-a80f-c76a31eb066f": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5kpwnpqxq4gsnxi4/Basics9Pod.mp3",
@@ -4454,7 +4571,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/5kpwnpqxq4gsnxi4/Basics9Pod.mp3"
   },
   "menlochurchvideo.podbean.com/81830806-7655-363e-bc50-c13b2c55ebd1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2cxmdd6z7nqzk3hj/Message8Pod.mp3",
@@ -4492,7 +4610,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/2cxmdd6z7nqzk3hj/Message8Pod.mp3"
   },
   "menlochurchvideo.podbean.com/39136c74-6639-33b1-8626-2d9751da1a7a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/qmcawuxngu7u4m6a/Basics7Message.mp3",
@@ -4530,7 +4649,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/qmcawuxngu7u4m6a/Basics7Message.mp3"
   },
   "menlochurchvideo.podbean.com/43bdb104-7caa-3064-a082-6fc9da388798": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ujxskwsygc69x6ia/Basics6Message.mp3",
@@ -4568,7 +4688,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ujxskwsygc69x6ia/Basics6Message.mp3"
   },
   "menlochurchvideo.podbean.com/11a8ceb9-8265-3dda-9d44-7dea72572adc": {
     "audio_url": "https://mcdn.podbean.com/mf/web/msy6ry6yu9ijtv9y/Week5Message.mp3",
@@ -4606,7 +4727,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/msy6ry6yu9ijtv9y/Week5Message.mp3"
   },
   "menlochurchvideo.podbean.com/2009f0e8-8ca7-358b-ab7b-ae2ad1847da0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/ymwkzaaqmsv6gsae/Basics4Message.mp3",
@@ -4644,7 +4766,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/ymwkzaaqmsv6gsae/Basics4Message.mp3"
   },
   "menlochurchvideo.podbean.com/a7953183-eade-3410-98d5-2b481639ae63": {
     "audio_url": "https://mcdn.podbean.com/mf/web/igznjwn7e5dd5tpd/Basics3Message.mp3",
@@ -4682,7 +4805,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/igznjwn7e5dd5tpd/Basics3Message.mp3"
   },
   "menlochurchvideo.podbean.com/0733b5f2-e482-3749-8129-9d2bdbe6f6c1": {
     "audio_url": "https://mcdn.podbean.com/mf/web/2s3wai2w9ggcqypa/basics2.mp3",
@@ -4720,7 +4844,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/2s3wai2w9ggcqypa/basics2.mp3"
   },
   "menlochurchvideo.podbean.com/b7687ea9-ae37-3825-bf52-98e7301c1aed": {
     "audio_url": "https://mcdn.podbean.com/mf/web/yg5thf2hgwy76m2x/FreedomMessage.mp3",
@@ -4758,7 +4883,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/yg5thf2hgwy76m2x/FreedomMessage.mp3"
   },
   "menlochurchvideo.podbean.com/e160ded3-cdd2-3eb9-8950-8340e6e9c1dc": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rjcbsqegiwwu3ibd/Smear5.mp3",
@@ -4796,7 +4922,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/rjcbsqegiwwu3ibd/Smear5.mp3"
   },
   "menlochurchvideo.podbean.com/15a3d899-7cbf-33cf-96e7-22abba4af627": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wj5xbtp2qvybhenp/Smear3Ashlee.mp3",
@@ -4834,7 +4961,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/wj5xbtp2qvybhenp/Smear3Ashlee.mp3"
   },
   "menlochurchvideo.podbean.com/a31873ea-aae7-3ec6-9f44-cdf95b246113": {
     "audio_url": "https://mcdn.podbean.com/mf/web/f2mz6iunjxhmp6sq/Smear2Message.mp3",
@@ -4872,7 +5000,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/f2mz6iunjxhmp6sq/Smear2Message.mp3"
   },
   "menlochurchvideo.podbean.com/e15abb67-c594-3c3d-820e-334dfdb51b0b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/jmv6atwxzyzcc3xr/Smear1Message.mp3",
@@ -4910,7 +5039,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/jmv6atwxzyzcc3xr/Smear1Message.mp3"
   },
   "menlochurchvideo.podbean.com/4175e59f-55e8-3f7f-b2e8-29c864e62f88": {
     "audio_url": "https://mcdn.podbean.com/mf/web/3xxvpea6d5ajqjgr/BaptismSundayMessage.mp3",
@@ -4948,7 +5078,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3xxvpea6d5ajqjgr/BaptismSundayMessage.mp3"
   },
   "menlochurchvideo.podbean.com/d5c3e76d-c988-31e6-9660-e268cd35179c": {
     "audio_url": "https://mcdn.podbean.com/mf/web/5ya4uvaibpk6fkh6/MothersDayMessage.mp3",
@@ -4986,7 +5117,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/5ya4uvaibpk6fkh6/MothersDayMessage.mp3"
   },
   "menlochurchvideo.podbean.com/b8b05ee9-84a1-316b-a081-21f7851f388e": {
     "audio_url": "https://mcdn.podbean.com/mf/web/7gvwj3g7ffnfyj4n/WM5Sermon.mp3",
@@ -5024,7 +5156,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/7gvwj3g7ffnfyj4n/WM5Sermon.mp3"
   },
   "menlochurchvideo.podbean.com/51bb91ef-f72f-3671-9c53-840b79d652f9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/qpp95ka7fzfkjm8c/WM5messagePOD.mp3",
@@ -5062,7 +5195,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/qpp95ka7fzfkjm8c/WM5messagePOD.mp3"
   },
   "menlochurchvideo.podbean.com/8cd3d453-de8d-3096-8d81-687f124d0f09": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8p7zhzd8recr3srb/MarkClarkMessage_1.mp3",
@@ -5100,7 +5234,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/8p7zhzd8recr3srb/MarkClarkMessage_1.mp3"
   },
   "menlochurchvideo.podbean.com/b2c4c942-28a5-39ee-aa11-a9eadcd2128d": {
     "audio_url": "https://mcdn.podbean.com/mf/web/c9nk3txwg2cjifyt/WonderfullyMade2Audio.mp3",
@@ -5138,7 +5273,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/c9nk3txwg2cjifyt/WonderfullyMade2Audio.mp3"
   },
   "menlochurchvideo.podbean.com/9a9bc116-4149-3b74-b875-f5ff83e22bde": {
     "audio_url": "https://mcdn.podbean.com/mf/web/rwtxus/WonderfullyMade1Sermon.mp3",
@@ -5176,7 +5312,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/rwtxus/WonderfullyMade1Sermon.mp3"
   },
   "menlochurchvideo.podbean.com/fd052162-d4e7-3205-97bb-8628bde80906": {
     "audio_url": "https://mcdn.podbean.com/mf/web/bjuy5m/EasterSermon.mp3",
@@ -5214,7 +5351,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/bjuy5m/EasterSermon.mp3"
   },
   "menlochurchvideo.podbean.com/1e7ba8d1-dac9-3324-a3e4-d3ce3160efff": {
     "audio_url": "https://mcdn.podbean.com/mf/web/62uzap/Lent7InjusticePod.mp3",
@@ -5252,7 +5390,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/62uzap/Lent7InjusticePod.mp3"
   },
   "menlochurchvideo.podbean.com/22b095eb-027d-3480-bcfb-84444c46325d": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4tf4vj/Lent6Suffering.mp3",
@@ -5290,7 +5429,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/4tf4vj/Lent6Suffering.mp3"
   },
   "menlochurchvideo.podbean.com/d64b845b-4a19-3a75-a042-695b2b07695b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/85cj73/Lent5CherylPod.mp3",
@@ -5328,7 +5468,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/85cj73/Lent5CherylPod.mp3"
   },
   "menlochurchvideo.podbean.com/93927d1e-aff4-3c51-90aa-fe5a0d92166b": {
     "audio_url": "https://mcdn.podbean.com/mf/web/4zd9tm/Lent4.mp3",
@@ -5366,7 +5507,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/4zd9tm/Lent4.mp3"
   },
   "menlochurchvideo.podbean.com/e0ee2524-8a96-360b-b9c4-6b8313b6c81a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x3frrt/TeachingsintheTempleScott.mp3",
@@ -5404,7 +5546,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/x3frrt/TeachingsintheTempleScott.mp3"
   },
   "menlochurchvideo.podbean.com/36b314fb-e043-34c8-bc0b-eb5c874e94ce": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8bsdx2/TeachingsintheTemple.mp3",
@@ -5442,7 +5585,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/8bsdx2/TeachingsintheTemple.mp3"
   },
   "menlochurchvideo.podbean.com/914dc3ce-e4ed-32c6-bba5-935828f94021": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wmz4hk/KingsArrival.mp3",
@@ -5480,7 +5624,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/wmz4hk/KingsArrival.mp3"
   },
   "menlochurchvideo.podbean.com/187345ab-c34e-30dc-b30f-99e01c2c3f83": {
     "guid": "menlochurchvideo.podbean.com/187345ab-c34e-30dc-b30f-99e01c2c3f83",
@@ -5516,7 +5661,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "930d91983db135a25efe7a37cb41b228fffb854fd312f41787a69d2eb0a743d9",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/emzsij/New_Thing_a1pa4.mp3"
   },
   "menlochurchvideo.podbean.com/8774749d-cabe-3cb0-9e54-bb6af5f3ab44": {
     "audio_url": "https://mcdn.podbean.com/mf/web/wf9whw/FaithinWonderSermon.mp3",
@@ -5554,7 +5700,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/wf9whw/FaithinWonderSermon.mp3"
   },
   "menlochurchvideo.podbean.com/86603e86-0a3f-394c-ad54-2acaf667f9ae": {
     "guid": "menlochurchvideo.podbean.com/86603e86-0a3f-394c-ad54-2acaf667f9ae",
@@ -5590,7 +5737,8 @@
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
     "audio_sha256": "f19cff88ebdbd70f81eb69128daa14d77a15acee34d43545bafb63204e12e8b5",
-    "transcript_copied_from": null
+    "transcript_copied_from": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/u2ivuf/Wonder4POD.mp3"
   },
   "menlochurchvideo.podbean.com/3a1be259-e25f-3610-95f4-aee32b3e2ba5": {
     "audio_url": "https://mcdn.podbean.com/mf/web/v57g2i/JoyinWonder.mp3",
@@ -5628,7 +5776,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/v57g2i/JoyinWonder.mp3"
   },
   "menlochurchvideo.podbean.com/3e7cef4d-4f8b-3f04-a8d5-a8874bc12e14": {
     "audio_url": "https://mcdn.podbean.com/mf/web/zgxtxs/Wonder3Pod.mp3",
@@ -5666,7 +5815,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/zgxtxs/Wonder3Pod.mp3"
   },
   "menlochurchvideo.podbean.com/ac306ded-4fcf-3da5-bdf9-c6fa05896c23": {
     "audio_url": "https://mcdn.podbean.com/mf/web/euadcg/HurriedPod.mp3",
@@ -5704,7 +5854,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/euadcg/HurriedPod.mp3"
   },
   "menlochurchvideo.podbean.com/cfad44a3-3307-38e1-9ea2-690d52d908cf": {
     "guid": "menlochurchvideo.podbean.com/cfad44a3-3307-38e1-9ea2-690d52d908cf",
@@ -5738,7 +5889,8 @@
     "transcript_words": 3500,
     "transcript_loop_words": 0,
     "transcript_credit_hits": 0,
-    "transcript_hotword_pairs": 0
+    "transcript_hotword_pairs": 0,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/vq8783/ChristmasMessage.mp3"
   },
   "menlochurchvideo.podbean.com/029a6ac1-51eb-3671-a6fc-29ba413d1ef0": {
     "guid": "menlochurchvideo.podbean.com/029a6ac1-51eb-3671-a6fc-29ba413d1ef0",
@@ -5765,7 +5917,8 @@
     "transcription_beam_size": 5,
     "transcription_vad_filter": true,
     "transcription_condition_on_previous_text": false,
-    "transcription_hallucination_silence_threshold": 2.0
+    "transcription_hallucination_silence_threshold": 2.0,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/3i6dbq/Wonder1Pod.mp3"
   },
   "menlochurchvideo.podbean.com/0ef6fab1-a4ed-30a6-a2fa-cff7fd24a50a": {
     "audio_url": "https://mcdn.podbean.com/mf/web/6u27dw/Wonder1Cheryl.mp3",
@@ -5803,7 +5956,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/6u27dw/Wonder1Cheryl.mp3"
   },
   "menlochurchvideo.podbean.com/b388d762-f03c-3380-a083-6bc677673dd0": {
     "audio_url": "https://mcdn.podbean.com/mf/web/hw9apf/NYEMessage.mp3",
@@ -5841,7 +5995,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/hw9apf/NYEMessage.mp3"
   },
   "menlochurchvideo.podbean.com/3478b879-1b5d-32ff-9ad1-6df59c1590aa": {
     "audio_url": "https://mcdn.podbean.com/mf/web/x2rx83/CarolPOD.mp3",
@@ -5879,7 +6034,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/x2rx83/CarolPOD.mp3"
   },
   "menlochurchvideo.podbean.com/3b9f87fe-2da9-3895-87a3-8642997d87d9": {
     "guid": "menlochurchvideo.podbean.com/3b9f87fe-2da9-3895-87a3-8642997d87d9",
@@ -5917,7 +6073,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/yj9ywg/ElfMidweekPod.mp3"
   },
   "menlochurchvideo.podbean.com/cbec77f9-485d-31a7-acb9-21e83a34ed62": {
     "audio_url": "https://mcdn.podbean.com/mf/web/kex8ie/Elf_Message_Pod.mp3",
@@ -5955,7 +6112,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/kex8ie/Elf_Message_Pod.mp3"
   },
   "menlochurchvideo.podbean.com/06b1ae3d-8ebd-374a-b435-626faecdb7ea": {
     "audio_url": "https://mcdn.podbean.com/mf/web/8z9aav/Xmas_2_WonderfulSermon.mp3",
@@ -5993,7 +6151,8 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/8z9aav/Xmas_2_WonderfulSermon.mp3"
   },
   "menlochurchvideo.podbean.com/c5a104ad-a5a9-3a28-a4eb-d51ed54319a9": {
     "audio_url": "https://mcdn.podbean.com/mf/web/megdz2/Miracel34POD.mp3",
@@ -6031,6 +6190,7 @@
     "retranscription_last_error": null,
     "retranscription_failed_profile": null,
     "retranscription_candidate_path": null,
-    "retranscription_candidate_hash": null
+    "retranscription_candidate_hash": null,
+    "transcribed_audio_url": "https://mcdn.podbean.com/mf/web/megdz2/Miracel34POD.mp3"
   }
 }
