@@ -58,8 +58,8 @@ Do not edit between the markers by hand; it will be overwritten.
 | menlo | 160 | Radiant | 2026-11-22 |
 | north_point | 115 | Two Seeds, Part 2: When We Win | 2026-11-22 |
 | pbc | 407 | A Seat at the Table | 2026-11-15 |
-| reality_sf | 751 | Don't Lose Heart | 2026-11-15 |
+| reality_sf | 752 | Your Faith is Tested | 2026-11-22 |
 | westgate | 118 | The Resurrection and the Life | 2026-11-22 |
 
-**Total sermons across all churches: 2749**
+**Total sermons across all churches: 2750**
 <!-- STATS:END -->
