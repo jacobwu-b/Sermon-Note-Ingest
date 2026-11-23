@@ -13,8 +13,8 @@
     "first_seen_at": "2026-11-15T21:09:18.352178+00:00",
     "notified_at": null,
     "transcription_status": "done",
-    "transcribed_at": "2026-11-15T21:35:36.238405+00:00",
-    "transcript_hash": "259d53618d13a5cb555ec38e5230f0b9d0a13bab6db9b66308de522fcbfb7a90",
+    "transcribed_at": "2026-11-23T04:14:57.907225+00:00",
+    "transcript_hash": "9e7753c265c472922a244b2df8c3d2c2a1a441cec7568bec878dcabfccf713b4",
     "content_path": "transcripts/pbc/2026-11-15_a-seat-at-the-table_https_pbc.org_enmse_mid_4706.txt",
     "transcription_model": "large-v3",
     "transcription_compute_type": "int8",
@@ -28,13 +28,14 @@
     "transcription_ctranslate2_version": "4.8.2",
     "transcription_last_error": null,
     "transcript_adopted": false,
-    "transcript_words": 3961,
+    "transcript_words": 4386,
     "transcript_loop_words": 0,
     "transcript_credit_hits": 0,
     "transcript_hotword_pairs": 0,
-    "audio_sha256": "df184ba32e750f97455e367622bc063ccb4404129cd9967553c18a880cec5af4",
+    "audio_sha256": "06fe1f847ca68239336056e455ea24e0b4cbf2823f08fbe183a0be0158e611ce",
     "transcript_copied_from": null,
-    "transcribed_audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/11/15/Sermon+Audio+2026-11-08.mp3"
+    "transcribed_audio_url": "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/11/15/Sermon+Audio+2026-11-15.mp3",
+    "superseded_transcript_hash": "259d53618d13a5cb555ec38e5230f0b9d0a13bab6db9b66308de522fcbfb7a90"
   },
   "https://pbc.org?enmse_mid=4704": {
     "guid": "https://pbc.org?enmse_mid=4704",
