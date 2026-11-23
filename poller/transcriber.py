@@ -36,11 +36,13 @@ from __future__ import annotations
 
 import argparse
 import dataclasses
+import json
 import logging
 import re
 import sys
 from collections.abc import Callable, Mapping, Sequence
 from datetime import UTC, datetime, timedelta
+from typing import Any
 
 from poller import (
     config,
@@ -64,6 +66,8 @@ HashAudio = Callable[[str], str]
 PushTranscripts = Callable[[dict[str, str]], None]
 FetchExisting = Callable[[list[str]], dict[str, str]]
 DispatchIngestEvent = Callable[[dict[str, object], str], None]
+ReplaceTranscript = Callable[..., None]
+LastCommitTrailers = Callable[[str], dict[str, str]]
 SendQualityAlert = Callable[[str, list[notify.FlaggedTranscript]], None]
 
 logger = logging.getLogger("poller")
@@ -236,6 +240,9 @@ def _reused_transcript(
 def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
     """Records not yet transcribed or failed, with a fetchable enclosure, newest first.
 
+    A ``done`` record whose feed now serves other audio (ADR-0031) is pending again,
+    unless its last re-post attempt failed in a way retrying would repeat.
+
     A record missing ``preached_on`` sorts last regardless of direction — it carries
     the least scheduling information, so it's the lowest priority either way (mirrors
     ``store._ordered_items``).
@@ -243,9 +250,257 @@ def _select_pending(records: dict[str, dict]) -> list[tuple[str, dict]]:
     return selection.newest_first(
         (guid, record)
         for guid, record in records.items()
-        if record.get("transcription_status") is None
+        if (
+            record.get("transcription_status") is None
+            or (store.enclosure_changed(record) and not record.get("transcription_last_error"))
+        )
         and net.is_fetchable_enclosure(record.get("audio_url") or "")
     )
+
+
+def _replace_transcript(path: str, text: str, *, expect_hash: str, trailers: Mapping[str, str]) -> None:
+    content_repo.replace_transcript(path, text, expect_hash=expect_hash, trailers=trailers)
+
+
+def _repost_trailers(
+    guid: str, *, superseded: str, mark: _Pushed, transcribed_at: str, audio_url: str
+) -> dict[str, str]:
+    """ADR-0022's replacement trailers plus the audio the new text came from (ADR-0031)."""
+    # An unscored copy has no counts; its trailers say so with JSON nulls.
+    counts: dict[str, Any] = (
+        dataclasses.asdict(mark.score) if mark.score is not None else dict.fromkeys(store.QUALITY_KEYS)
+    )
+    return {
+        **retranscribe._provenance_trailers(
+            guid,
+            superseded=superseded,
+            transcript_hash=mark.digest,
+            transcribed_at=transcribed_at,
+            profile={key: mark.profile.get(key) for key in store.PROFILE_KEYS},
+            counts=counts,
+        ),
+        "Ingest-Audio-Url": audio_url,
+        "Ingest-Audio-Sha256": mark.audio_sha256,
+        "Ingest-Copied-From": json.dumps(mark.copied_from),
+    }
+
+
+def _proven_repost(trailers: Mapping[str, str], *, guid: str, record: dict, content_hash: str) -> bool:
+    """Record a replacement an earlier run landed in Content but never ledgered, if its
+    commit's trailers prove it; return whether it did (ADR-0031)."""
+    mark = retranscribe._mark_from_trailers(
+        trailers, guid=guid, ledger_hash=record["transcript_hash"], content_hash=content_hash
+    )
+    if (
+        mark is None
+        or trailers.get("Ingest-Audio-Url") != record.get("audio_url")
+        or not trailers.get("Ingest-Audio-Sha256")
+    ):
+        return False
+    try:
+        copied_from = json.loads(trailers.get("Ingest-Copied-From", "null"))
+    except json.JSONDecodeError:
+        return False
+    store.mark_reposted(
+        record,
+        transcript_hash=content_hash,
+        transcribed_at=mark["transcribed_at"],
+        profile=mark["profile"],
+        quality=mark["quality"],
+        audio_sha256=trailers["Ingest-Audio-Sha256"],
+        copied_from=copied_from,
+        transcribed_audio_url=record["audio_url"],
+    )
+    return True
+
+
+def _transcribe_repost(
+    name: str,
+    guid: str,
+    record: dict,
+    records: dict[str, dict],
+    *,
+    hotwords: str | None,
+    known_audio: dict[str, str],
+    transcribe_audio: TranscribeAudio,
+    fetch_existing: FetchExisting,
+    replace: ReplaceTranscript,
+    last_commit_trailers: LastCommitTrailers,
+) -> tuple[bool, _Pushed | None]:
+    """Replace a ``done`` record's text with a transcript of its re-posted enclosure (ADR-0031).
+
+    Returns ``(ok, mark)``: ``mark`` is what was recorded when the record now carries new
+    text, for the caller to dispatch; ``None`` when nothing new landed (the bytes were the
+    old ones, a download failed, or the attempt was refused). ``ok`` is ``False`` only for
+    an outcome an operator has to look at.
+
+    Content is checked before any audio is fetched, so a refused record costs one read,
+    and a replacement an earlier run landed but never ledgered is recorded from its commit
+    instead of being transcribed again (CLAUDE.md §13).
+    """
+    path = record["content_path"]
+    old_hash = record["transcript_hash"]
+    audio_url = record["audio_url"]
+    current = fetch_existing([path]).get(path)
+    if current is None:
+        logger.error("%s/%s: %s is missing from Content; not replacing it", name, guid, path)
+        store.mark_repost_failed(record, error=store.CONTENT_CONFLICT_ERROR)
+        return False, None
+    current_hash = transcribe.transcript_hash(current)
+    if current_hash != old_hash:
+        if _proven_repost(last_commit_trailers(path), guid=guid, record=record, content_hash=current_hash):
+            logger.info("%s/%s: an earlier run's replacement is in Content; recorded it", name, guid)
+            return True, None
+        logger.error(
+            "%s/%s: Content's text (%s) is not the ledger's (%s) and no Ingest commit explains it",
+            name,
+            guid,
+            current_hash[:12],
+            old_hash[:12],
+        )
+        store.mark_repost_failed(record, error=store.CONTENT_CONFLICT_ERROR)
+        return False, None
+
+    own_audio = record.get("audio_sha256")
+    known = {**known_audio, **({own_audio: guid} if own_audio else {})}
+    try:
+        try:
+            text, digest, decoded_under, audio_digest = transcribe_audio(audio_url, hotwords, known)
+            mark = _Pushed(
+                path,
+                digest,
+                dataclasses.asdict(decoded_under),
+                quality.score(text, hotwords=decoded_under.hotwords),
+                audio_digest,
+            )
+        except transcribe.DuplicateAudioError as duplicate:
+            if duplicate.original_guid == guid:
+                logger.info("%s/%s: re-posted enclosure is byte-identical to the old one", name, guid)
+                record["transcribed_audio_url"] = audio_url
+                return True, None
+            reused = _reused_transcript(duplicate, path, records, {}, {}, fetch_existing)
+            if reused is None:
+                logger.error(
+                    "%s/%s: audio identical to %s's, but Content no longer holds its transcript; "
+                    "transcribing after all",
+                    name,
+                    guid,
+                    duplicate.original_guid,
+                )
+                text, digest, decoded_under, audio_digest = transcribe_audio(audio_url, hotwords, {})
+                mark = _Pushed(
+                    path,
+                    digest,
+                    dataclasses.asdict(decoded_under),
+                    quality.score(text, hotwords=decoded_under.hotwords),
+                    audio_digest,
+                )
+            else:
+                text, mark = reused
+    except content_repo.ContentPublishError as exc:
+        logger.error("%s/%s: could not read Content, leaving the re-post for next run: %s", name, guid, exc)
+        return False, None
+    except net.AudioDownloadError as exc:
+        logger.warning("%s/%s: re-posted audio download failed, retrying next run: %s", name, guid, exc)
+        return True, None
+    except (transcribe.TranscriptionError, transcribe.EmptyTranscriptError) as exc:
+        logger.warning("%s/%s: re-posted audio failed to transcribe: %s", name, guid, exc)
+        error = (
+            store.EMPTY_TRANSCRIPT_ERROR
+            if isinstance(exc, transcribe.EmptyTranscriptError)
+            else store.TRANSCRIPTION_ERROR
+        )
+        store.mark_repost_failed(record, error=error)
+        return False, None
+
+    transcribed_at = net.now()
+    trailers = _repost_trailers(
+        guid, superseded=old_hash, mark=mark, transcribed_at=transcribed_at, audio_url=audio_url
+    )
+    try:
+        replace(path, text, expect_hash=old_hash, trailers=trailers)
+    except content_repo.ContentConflictError as exc:
+        logger.error("%s/%s: %s", name, guid, exc)
+        store.mark_repost_failed(record, error=store.CONTENT_CONFLICT_ERROR)
+        return False, None
+    except content_repo.ContentPublishError as exc:
+        logger.error("%s/%s: replacement push failed, leaving the re-post for next run: %s", name, guid, exc)
+        return False, None
+    counts = dataclasses.asdict(mark.score) if mark.score is not None else None
+    store.mark_reposted(
+        record,
+        transcript_hash=mark.digest,
+        transcribed_at=transcribed_at,
+        profile=mark.profile,
+        quality=counts,
+        audio_sha256=mark.audio_sha256,
+        copied_from=mark.copied_from,
+        transcribed_audio_url=audio_url,
+    )
+    known_audio.setdefault(mark.audio_sha256, guid)
+    logger.info("%s/%s: replaced the transcript with one of the re-posted enclosure", name, guid)
+    return True, mark
+
+
+def _after_recorded(
+    name: str,
+    guid: str,
+    record: dict,
+    mark: _Pushed,
+    *,
+    transcribed_at: str,
+    flagged: list[notify.FlaggedTranscript],
+    pipeline_enabled: bool,
+    dispatch_ingest_event: DispatchIngestEvent,
+) -> None:
+    """Queue a quality alert for, and dispatch Pipeline about, a transcript just recorded."""
+    # A copy's original was already scored and, if flagged, alerted on.
+    own_score = mark.score if mark.copied_from is None else None
+    if own_score is not None and (tripped := quality.flags(own_score)):
+        logger.warning(
+            "%s/%s: transcript quality flagged %s: %s",
+            name,
+            guid,
+            ",".join(tripped),
+            dataclasses.asdict(own_score),
+        )
+        flagged.append(
+            notify.FlaggedTranscript(
+                guid=guid,
+                title=record.get("title"),
+                preached_on=record.get("preached_on"),
+                score=own_score,
+                flags=tripped,
+            )
+        )
+    if not pipeline_enabled:
+        logger.debug("%s/%s: church not enabled in pipeline, skipping pipeline dispatch", name, guid)
+        return
+    if not _recently_published(record, now=datetime.fromisoformat(transcribed_at)):
+        logger.debug(
+            "%s/%s: published more than %d days ago, skipping pipeline dispatch (backfill)",
+            name,
+            guid,
+            _DISPATCH_RECENCY.days,
+        )
+        return
+    event = _ingest_event(
+        name,
+        guid,
+        record,
+        content_path=mark.path,
+        transcript_hash=mark.digest,
+        transcribed_at=transcribed_at,
+    )
+    try:
+        dispatch_ingest_event(event, name)
+    except (config.ConfigError, pipeline_dispatch.PipelineDispatchError) as exc:
+        logger.warning(
+            "%s/%s: pipeline dispatch failed, pipeline's own cron will still catch it: %s",
+            name,
+            guid,
+            exc,
+        )
 
 
 def transcribe_church(
@@ -261,8 +516,14 @@ def transcribe_church(
     vocabulary: Sequence[str] = (),
     pipeline_enabled: bool = True,
     send_quality_alert: SendQualityAlert = _send_quality_alert,
+    replace: ReplaceTranscript = _replace_transcript,
+    last_commit_trailers: LastCommitTrailers = content_repo.last_commit_trailers,
 ) -> bool:
     """Transcribe ``batch``, push the successes to Content in one commit, then ledger them.
+
+    A ``done`` sermon in ``batch`` is a re-posted enclosure (ADR-0031): it is transcribed
+    and replaces its own Content file by compare-and-swap, one commit each, before the
+    rest of the batch is pushed. See :func:`_transcribe_repost`.
 
     A sermon whose transcript Content already holds is ledgered from Content's copy
     instead — no Whisper, no push, no pipeline dispatch (the run that pushed it already
@@ -299,11 +560,47 @@ def transcribe_church(
     church_terms = prompting.church_vocabulary(records)
     known_audio = _known_audio(records)
 
+    reposted = [(guid, record) for guid, record in batch if record.get("transcription_status") == "done"]
+    batch = [(guid, record) for guid, record in batch if record.get("transcription_status") != "done"]
+    for guid, record in reposted:
+        hotwords = prompting.build_hotwords(record, church_terms=church_terms, vocabulary=vocabulary)
+        try:
+            ok, replaced = _transcribe_repost(
+                name,
+                guid,
+                record,
+                records,
+                hotwords=hotwords,
+                known_audio=known_audio,
+                transcribe_audio=transcribe_audio,
+                fetch_existing=fetch_existing,
+                replace=replace,
+                last_commit_trailers=last_commit_trailers,
+            )
+        except content_repo.ContentPublishError as exc:
+            logger.error(
+                "%s/%s: could not read Content, leaving the re-post for next run: %s", name, guid, exc
+            )
+            ok, replaced = False, None
+        all_ok = all_ok and ok
+        if replaced is not None:
+            _after_recorded(
+                name,
+                guid,
+                record,
+                replaced,
+                transcribed_at=record["transcribed_at"],
+                flagged=flagged,
+                pipeline_enabled=pipeline_enabled,
+                dispatch_ingest_event=dispatch_ingest_event,
+            )
+
     paths = {guid: _content_path(name, record) for guid, record in batch}
     try:
         existing = fetch_existing(list(paths.values()))
     except content_repo.ContentPublishError as exc:
         logger.error("%s: could not read Content, leaving %d sermon(s) pending: %s", name, len(batch), exc)
+        store.save(name, records)
         return False
 
     for guid, record in batch:
@@ -391,7 +688,6 @@ def transcribe_church(
             store.save(name, records)
             return False
         transcribed_at = net.now()
-        now_dt = datetime.fromisoformat(transcribed_at)
         for guid, mark in pending_marks.items():
             record = records[guid]
             counts = dataclasses.asdict(mark.score) if mark.score is not None else None
@@ -405,49 +701,16 @@ def transcribe_church(
                 audio_sha256=mark.audio_sha256,
                 copied_from=mark.copied_from,
             )
-            # A copy's original was already scored and, if flagged, alerted on.
-            own_score = mark.score if mark.copied_from is None else None
-            if own_score is not None and (tripped := quality.flags(own_score)):
-                logger.warning(
-                    "%s/%s: transcript quality flagged %s: %s", name, guid, ",".join(tripped), counts
-                )
-                flagged.append(
-                    notify.FlaggedTranscript(
-                        guid=guid,
-                        title=record.get("title"),
-                        preached_on=record.get("preached_on"),
-                        score=own_score,
-                        flags=tripped,
-                    )
-                )
-            if not pipeline_enabled:
-                logger.debug("%s/%s: church not enabled in pipeline, skipping pipeline dispatch", name, guid)
-                continue
-            if not _recently_published(record, now=now_dt):
-                logger.debug(
-                    "%s/%s: published more than %d days ago, skipping pipeline dispatch (backfill)",
-                    name,
-                    guid,
-                    _DISPATCH_RECENCY.days,
-                )
-                continue
-            event = _ingest_event(
+            _after_recorded(
                 name,
                 guid,
                 record,
-                content_path=mark.path,
-                transcript_hash=mark.digest,
+                mark,
                 transcribed_at=transcribed_at,
+                flagged=flagged,
+                pipeline_enabled=pipeline_enabled,
+                dispatch_ingest_event=dispatch_ingest_event,
             )
-            try:
-                dispatch_ingest_event(event, name)
-            except (config.ConfigError, pipeline_dispatch.PipelineDispatchError) as exc:
-                logger.warning(
-                    "%s/%s: pipeline dispatch failed, pipeline's own cron will still catch it: %s",
-                    name,
-                    guid,
-                    exc,
-                )
 
     store.save(name, records)
     logger.info("%s: transcribed %d/%d selected", name, len(pending_marks), len(batch))
@@ -496,6 +759,8 @@ def run(
     dispatch_ingest_event: DispatchIngestEvent = _dispatch_ingest_event,
     fetch_existing: FetchExisting = content_repo.existing_transcripts,
     send_quality_alert: SendQualityAlert = _send_quality_alert,
+    replace: ReplaceTranscript = _replace_transcript,
+    last_commit_trailers: LastCommitTrailers = content_repo.last_commit_trailers,
 ) -> bool:
     """Transcribe at most ``limit`` pending sermons per selected church.
 
@@ -506,7 +771,7 @@ def run(
     unchanged from before sharding existed.
 
     ``transcribe_audio``/``hash_audio``/``push``/``dispatch_ingest_event``/``fetch_existing``/
-    ``send_quality_alert`` are threaded through to :func:`transcribe_church` rather than
+    ``send_quality_alert``/``replace``/``last_commit_trailers`` are threaded through to :func:`transcribe_church` rather than
     relied on as its defaults, so a caller (or a test) can replace them without reaching
     into another module's attributes.
     """
@@ -537,6 +802,8 @@ def run(
                 vocabulary=selected[name].vocabulary,
                 pipeline_enabled=selected[name].pipeline_enabled,
                 send_quality_alert=send_quality_alert,
+                replace=replace,
+                last_commit_trailers=last_commit_trailers,
             )
         except Exception:
             logger.exception("%s: transcription crashed unexpectedly", name)

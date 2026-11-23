@@ -28,6 +28,7 @@ import sys
 from collections.abc import Mapping
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
+from urllib.parse import unquote_plus
 
 from poller.quality import QualityScore
 
@@ -242,6 +243,7 @@ def item_to_record(item: SermonItem, *, first_seen_at: str, feed_published_at: s
         **{f"transcript_{key}": None for key in QUALITY_KEYS},
         "audio_sha256": None,
         "transcript_copied_from": None,
+        "transcribed_audio_url": None,
     }
 
 
@@ -301,6 +303,7 @@ def mark_transcribed(
     quality: Mapping[str, int] | None = None,
     audio_sha256: str | None = None,
     copied_from: str | None = None,
+    transcribed_audio_url: str | None = None,
 ) -> None:
     """Advance ``record`` to transcribed, recording where its text landed in Content.
 
@@ -316,7 +319,8 @@ def mark_transcribed(
     (ADR-0023); ``None`` records "not scored", as for an adopted transcript.
     ``audio_sha256`` is the digest of the audio the text came from, ``None`` when this run
     didn't download it. ``copied_from`` names the guid whose transcript of byte-identical
-    audio was reused instead of running the model (ADR-0028).
+    audio was reused instead of running the model (ADR-0028). ``transcribed_audio_url`` is
+    the enclosure the text came from, ``None`` when unknown, as for an adopted copy (ADR-0031).
     """
     profile = profile or {}
     quality = quality or {}
@@ -334,6 +338,7 @@ def mark_transcribed(
         record[f"transcript_{key}"] = quality.get(key)
     record["audio_sha256"] = audio_sha256
     record["transcript_copied_from"] = copied_from
+    record["transcribed_audio_url"] = transcribed_audio_url
     record["transcription_last_error"] = None
 
 
@@ -456,6 +461,60 @@ def mark_transcription_failed(record: dict[str, Any], *, error: str) -> None:
     :data:`EMPTY_TRANSCRIPT_ERROR`.
     """
     record["transcription_status"] = "failed"
+    record["transcription_last_error"] = error
+
+
+def enclosure_changed(record: Mapping[str, Any]) -> bool:
+    """Whether a ``done`` record's feed now serves other audio than its transcript came from.
+
+    A re-posted enclosure (ADR-0031). Unknown provenance (``transcribed_audio_url`` absent
+    or ``None``) is not a change. The two are compared after percent-decoding, since one S3
+    key can be spelled ``%20`` or ``+``.
+    """
+    transcribed_from = record.get("transcribed_audio_url")
+    if record.get("transcription_status") != "done" or not transcribed_from:
+        return False
+    return unquote_plus(transcribed_from) != unquote_plus(record.get("audio_url") or "")
+
+
+def mark_reposted(
+    record: dict[str, Any],
+    *,
+    transcript_hash: str,
+    transcribed_at: str,
+    profile: Mapping[str, Any] | None,
+    quality: Mapping[str, int] | None,
+    audio_sha256: str,
+    copied_from: str | None,
+    transcribed_audio_url: str,
+) -> None:
+    """Record that a ``done`` record's text was replaced from its re-posted enclosure (ADR-0031).
+
+    Called only once Content holds the new text at the record's unchanged ``content_path``.
+    The replaced text's hash is kept as ``superseded_transcript_hash``.
+    """
+    superseded = record.get("transcript_hash")
+    mark_transcribed(
+        record,
+        content_path=record["content_path"],
+        transcript_hash=transcript_hash,
+        transcribed_at=transcribed_at,
+        profile=profile,
+        quality=quality,
+        audio_sha256=audio_sha256,
+        copied_from=copied_from,
+        transcribed_audio_url=transcribed_audio_url,
+    )
+    if superseded != transcript_hash:
+        record["superseded_transcript_hash"] = superseded
+
+
+def mark_repost_failed(record: dict[str, Any], *, error: str) -> None:
+    """Hold a re-posted record whose replacement failed in a way retrying would repeat.
+
+    The record stays ``done`` with its old text, and the pending run skips it while
+    ``transcription_last_error`` is set; clearing the error re-queues it (ADR-0031).
+    """
     record["transcription_last_error"] = error
 
 

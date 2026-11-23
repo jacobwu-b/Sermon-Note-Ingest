@@ -32,6 +32,7 @@ _CONTRACT_KEYS = {
     "blurb",
     "path",
     "sha256",
+    "audio_url",
 }
 
 # A realistic ledger ``transcript_hash``: a 64-hex sha256 digest.
@@ -78,6 +79,7 @@ def _transcribed(record: dict, content_path: str, *, adopted: bool = False) -> d
         transcribed_at="2026-09-27T21:34:56+00:00",
         profile=None if adopted else {"model": "large-v3", "domain_prompt": False},
         adopted=adopted,
+        transcribed_audio_url=None if adopted else record["audio_url"],
     )
     return record
 
@@ -106,9 +108,30 @@ def test_a_transcribed_sermon_is_indexed_with_its_metadata_and_content_path():
                 "blurb": "Text Our Team (650) 600-0402",
                 "path": path,
                 "sha256": _TRANSCRIPT_HASH,
+                "audio_url": "https://mcdn.podbean.com/mf/web/abc/2026-09-27_SermonPodcastAudio.mp3",
             }
         ]
     }
+
+
+def test_each_entry_names_the_enclosure_its_text_came_from_not_the_feeds_current_one():
+    """A re-posted item's text is still the old audio's until it is re-transcribed, and a
+    consumer can only tell by comparing this with the feed (ADR-0031)."""
+    old_audio = (
+        "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/11/15/Sermon+Audio+2026-11-08.mp3"
+    )
+    record = _transcribed(_record("menlochurchvideo.podbean.com/reposted"), "transcripts/menlo/reposted.txt")
+    record["transcribed_audio_url"] = old_audio
+    record["audio_url"] = old_audio.replace("2026-11-08", "2026-11-15")
+    adopted = _transcribed(
+        _record("menlochurchvideo.podbean.com/adopted"), "transcripts/menlo/adopted.txt", adopted=True
+    )
+    store.save("menlo", {r["guid"]: r for r in (record, adopted)})
+
+    entries = {e["guid"]: e for e in transcript_index.build_index(config.load_churches())["transcripts"]}
+
+    assert entries["menlochurchvideo.podbean.com/reposted"]["audio_url"] == old_audio
+    assert entries["menlochurchvideo.podbean.com/adopted"]["audio_url"] is None
 
 
 def test_only_done_records_are_indexed():

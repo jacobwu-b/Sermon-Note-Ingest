@@ -26,6 +26,10 @@
             "description": "sha256 of the file at path. null for a record with no stored hash.",
             "type": ["string", "null"],
             "pattern": "^[0-9a-f]{64}$"
+          },
+          "audio_url": {
+            "description": "The enclosure URL the transcript at path was produced from. A feed can re-post an item with new audio, and the file at path stays the old audio's until Ingest re-transcribes it, so a consumer compares this against its own current enclosure before trusting the text. null when Ingest has no record of the source enclosure.",
+            "type": ["string", "null"]
           }
         }
       }

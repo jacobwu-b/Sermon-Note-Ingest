@@ -3,7 +3,7 @@ import hashlib
 
 import pytest
 
-from poller import net, notify, pipeline_dispatch, store, transcribe, transcriber
+from poller import net, notify, pipeline_dispatch, retranscribe, store, transcribe, transcriber
 from poller.content_repo import ContentPublishError
 from poller.net import AudioDownloadError
 from poller.sources.base import SermonItem
@@ -1533,3 +1533,240 @@ def test_run_threads_hash_audio_through_to_each_church(tmp_path, monkeypatch):
     )
 
     assert hashed == ["https://example.org/older.mp3"]
+
+
+# --- a re-posted enclosure (ADR-0031) ------------------------------------------------
+
+_SEAT = "https://pbc.org?enmse_mid=4706"
+_DOOR = "https://pbc.org?enmse_mid=4704"
+_OLD_URL = (
+    "https://s3.us-west-2.amazonaws.com/cdn.pbc.org/Main_Service/2026/11/15/Sermon+Audio+2026-11-08.mp3"
+)
+_NEW_URL = _OLD_URL.replace("2026-11-08", "2026-11-15")
+_OLD_SHA = hashlib.sha256(b"the door is open, for now").hexdigest()
+_NEW_SHA = hashlib.sha256(b"a seat at the table").hexdigest()
+_OLD_TEXT = "Strive to enter through the narrow door."
+_NEW_TEXT = "When you are invited to a wedding feast, do not sit down in a place of honor."
+_SEAT_PATH = "transcripts/pbc/2026-11-15_a-seat-at-the-table_https_pbc.org_enmse_mid_4706.txt"
+
+
+def _reposted_seat() -> dict:
+    """4706 transcribed from the Nov 8 file, then re-posted by the feed with the real one."""
+    record = _record(_SEAT, preached_on="2026-11-15", audio_url=_OLD_URL)
+    record["title"] = "A Seat at the Table"
+    record["feed_published_at"] = "2026-11-22T13:39:47+00:00"
+    store.mark_transcribed(
+        record,
+        content_path=_SEAT_PATH,
+        transcript_hash=transcribe.transcript_hash(_OLD_TEXT),
+        transcribed_at="2026-11-15T21:35:36+00:00",
+        profile=dataclasses.asdict(_PROFILE),
+        quality=_ORIGINAL_COUNTS,
+        audio_sha256=_OLD_SHA,
+        transcribed_audio_url=_OLD_URL,
+    )
+    record["audio_url"] = _NEW_URL
+    return record
+
+
+def _never(*_args, **_kwargs):
+    raise AssertionError("must not be called")
+
+
+def _repost_church(records, *, transcribe_audio, content, replace=_never, trailers=None, dispatched=None):
+    return transcriber.transcribe_church(
+        "pbc",
+        records,
+        [(_SEAT, records[_SEAT])],
+        transcribe_audio=transcribe_audio,
+        push=_never,
+        fetch_existing=lambda paths: {p: content[p] for p in paths if p in content},
+        dispatch_ingest_event=lambda event, source: (dispatched if dispatched is not None else []).append(
+            event
+        ),
+        send_quality_alert=lambda church, flagged: None,
+        replace=replace,
+        last_commit_trailers=lambda path: trailers or {},
+    )
+
+
+def test_select_pending_picks_a_done_record_whose_feed_now_serves_other_audio():
+    reposted = _reposted_seat()
+    unchanged = _reposted_seat()
+    unchanged["audio_url"] = _OLD_URL.replace("+", "%20")  # the same S3 key, spelled differently
+    unknown = _reposted_seat()
+    unknown["transcribed_audio_url"] = None
+    held = _reposted_seat()
+    store.mark_repost_failed(held, error=store.CONTENT_CONFLICT_ERROR)
+    records = {"reposted": reposted, "unchanged": unchanged, "unknown": unknown, "held": held}
+
+    assert [guid for guid, _ in transcriber._select_pending(records)] == ["reposted"]
+
+
+def test_the_stale_profile_pass_leaves_a_reposted_enclosure_to_the_pending_run():
+    record = _reposted_seat()
+    running = {**dataclasses.asdict(_PROFILE), "model": "large-v4"}
+
+    assert retranscribe.select_stale({_SEAT: record}, running=running, digest="d") == []
+
+
+def test_a_reposted_enclosure_is_transcribed_and_replaces_its_own_content_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-11-22T21:30:00+00:00")
+    records = {_SEAT: _reposted_seat()}
+    calls: list = []
+    replaced: list = []
+    dispatched: list = []
+
+    ok = _repost_church(
+        records,
+        transcribe_audio=_whisper_by_audio({_NEW_URL: _NEW_SHA}, {_NEW_URL: _NEW_TEXT}, calls),
+        content={_SEAT_PATH: _OLD_TEXT},
+        replace=lambda path, text, *, expect_hash, trailers: replaced.append(
+            (path, text, expect_hash, trailers)
+        ),
+        dispatched=dispatched,
+    )
+
+    assert ok is True
+    assert calls == [(_NEW_URL, {_OLD_SHA: _SEAT})]
+    [(path, text, expect_hash, trailers)] = replaced
+    assert (path, text, expect_hash) == (_SEAT_PATH, _NEW_TEXT, transcribe.transcript_hash(_OLD_TEXT))
+    assert trailers["Ingest-Guid"] == _SEAT
+    assert trailers["Ingest-Audio-Url"] == _NEW_URL
+    assert trailers["Ingest-Audio-Sha256"] == _NEW_SHA
+    saved = store.load("pbc")[_SEAT]
+    assert saved["transcript_hash"] == transcribe.transcript_hash(_NEW_TEXT)
+    assert saved["superseded_transcript_hash"] == transcribe.transcript_hash(_OLD_TEXT)
+    assert saved["transcribed_audio_url"] == _NEW_URL
+    assert saved["audio_sha256"] == _NEW_SHA
+    assert saved["content_path"] == _SEAT_PATH
+    assert not store.enclosure_changed(saved)
+    assert [e["transcript"]["content_path"] for e in dispatched] == [_SEAT_PATH]
+    assert dispatched[0]["transcript"]["transcript_hash"] == transcribe.transcript_hash(_NEW_TEXT)
+
+
+def test_a_reposted_enclosure_with_the_old_bytes_records_the_url_without_whisper_or_a_write(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {_SEAT: _reposted_seat()}
+    dispatched: list = []
+
+    ok = _repost_church(
+        records,
+        transcribe_audio=_whisper_by_audio({_NEW_URL: _OLD_SHA}, {}, []),
+        content={_SEAT_PATH: _OLD_TEXT},
+        dispatched=dispatched,
+    )
+
+    assert ok is True
+    saved = store.load("pbc")[_SEAT]
+    assert saved["transcribed_audio_url"] == _NEW_URL
+    assert saved["transcript_hash"] == transcribe.transcript_hash(_OLD_TEXT)
+    assert dispatched == []
+
+
+def test_a_reposted_enclosure_matching_another_sermons_audio_reuses_its_transcript(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-11-22T21:30:00+00:00")
+    door = _record(_DOOR, preached_on="2026-11-08", audio_url="https://example.org/door.mp3")
+    door_path = "transcripts/pbc/2026-11-08_the-door-is-open-for-now_https_pbc.org_enmse_mid_4704.txt"
+    store.mark_transcribed(
+        door,
+        content_path=door_path,
+        transcript_hash=transcribe.transcript_hash(_NEW_TEXT),
+        transcribed_at="t",
+        profile=dataclasses.asdict(_PROFILE),
+        quality=_ORIGINAL_COUNTS,
+        audio_sha256=_NEW_SHA,
+        transcribed_audio_url="https://example.org/door.mp3",
+    )
+    records = {_SEAT: _reposted_seat(), _DOOR: door}
+    replaced: list = []
+
+    _repost_church(
+        records,
+        transcribe_audio=_whisper_by_audio({_NEW_URL: _NEW_SHA}, {}, []),
+        content={_SEAT_PATH: _OLD_TEXT, door_path: _NEW_TEXT},
+        replace=lambda path, text, *, expect_hash, trailers: replaced.append((path, text)),
+    )
+
+    assert replaced == [(_SEAT_PATH, _NEW_TEXT)]
+    assert store.load("pbc")[_SEAT]["transcript_copied_from"] == _DOOR
+
+
+def test_a_replacement_that_landed_but_was_never_ledgered_is_recorded_from_its_commit(tmp_path, monkeypatch):
+    """The expensive output is already durable in Content; the next run must not pay for it again."""
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {_SEAT: _reposted_seat()}
+    landed = transcriber._Pushed(
+        _SEAT_PATH, transcribe.transcript_hash(_NEW_TEXT), dataclasses.asdict(_PROFILE), None, _NEW_SHA
+    )
+    trailers = transcriber._repost_trailers(
+        _SEAT,
+        superseded=transcribe.transcript_hash(_OLD_TEXT),
+        mark=landed,
+        transcribed_at="2026-11-22T21:30:00+00:00",
+        audio_url=_NEW_URL,
+    )
+
+    ok = _repost_church(records, transcribe_audio=_never, content={_SEAT_PATH: _NEW_TEXT}, trailers=trailers)
+
+    assert ok is True
+    saved = store.load("pbc")[_SEAT]
+    assert saved["transcript_hash"] == transcribe.transcript_hash(_NEW_TEXT)
+    assert saved["transcribed_audio_url"] == _NEW_URL
+    assert saved["audio_sha256"] == _NEW_SHA
+
+
+def test_content_holding_unexplained_text_holds_the_repost_instead_of_overwriting_it(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {_SEAT: _reposted_seat()}
+
+    ok = _repost_church(records, transcribe_audio=_never, content={_SEAT_PATH: "Edited by hand."})
+
+    assert ok is False
+    saved = store.load("pbc")[_SEAT]
+    assert saved["transcription_last_error"] == store.CONTENT_CONFLICT_ERROR
+    assert saved["transcribed_audio_url"] == _OLD_URL
+    assert transcriber._select_pending({_SEAT: saved}) == []
+
+
+def test_a_failed_replacement_push_leaves_the_repost_for_the_next_run(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(net, "now", lambda: "2026-11-22T21:30:00+00:00")
+    records = {_SEAT: _reposted_seat()}
+    dispatched: list = []
+
+    def push_fails(path, text, *, expect_hash, trailers):
+        raise ContentPublishError("push rejected after 3 attempts")
+
+    ok = _repost_church(
+        records,
+        transcribe_audio=_whisper_by_audio({_NEW_URL: _NEW_SHA}, {_NEW_URL: _NEW_TEXT}, []),
+        content={_SEAT_PATH: _OLD_TEXT},
+        replace=push_fails,
+        dispatched=dispatched,
+    )
+
+    assert ok is False
+    saved = store.load("pbc")[_SEAT]
+    assert saved["transcript_hash"] == transcribe.transcript_hash(_OLD_TEXT)
+    assert saved["transcription_last_error"] is None
+    assert [guid for guid, _ in transcriber._select_pending({_SEAT: saved})] == [_SEAT]
+    assert dispatched == []
+
+
+def test_a_reposted_enclosure_that_fails_to_download_is_retried_next_run(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA_DIR", tmp_path)
+    records = {_SEAT: _reposted_seat()}
+
+    def download_fails(url, hotwords, known_audio):
+        raise AudioDownloadError("HTTP 503")
+
+    ok = _repost_church(records, transcribe_audio=download_fails, content={_SEAT_PATH: _OLD_TEXT})
+
+    assert ok is True
+    saved = store.load("pbc")[_SEAT]
+    assert [guid for guid, _ in transcriber._select_pending({_SEAT: saved})] == [_SEAT]
