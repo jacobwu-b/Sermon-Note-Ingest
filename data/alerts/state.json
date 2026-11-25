@@ -1,7 +1,4 @@
 {
-  "gracepres": {
-    "failing_since": "2026-11-25T19:06:36.272647+00:00"
-  },
   "pbc": {
     "missing_alerted_for": "2026-11-08"
   }
