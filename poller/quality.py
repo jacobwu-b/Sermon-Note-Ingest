@@ -2,7 +2,8 @@
 
 Pure text detectors, no model call: repetition loops, Whisper's stock credit lines, and the
 hotwords list read back as speech. A score holds only counts, so it is safe to log and to
-record on the public ledger; the text itself never leaves memory (ADR-0004).
+record on the public ledger; the text itself never leaves memory (ADR-0004). The one
+transform, :func:`strip_closing_outro`, shares the outro's definition with its detector.
 
 Definitions match the ADR-0022 benchmark, so a gate built on them refuses what that
 benchmark measured.
@@ -23,10 +24,9 @@ _ATTRIBUTION_RE = re.compile(
 )
 # "Thanks for watching" can be speech ("she goes, OK, thanks for watching, Dad"); Whisper's
 # stock outro is the phrase as a sentence on its own, so only that counts.
-_OUTRO_RE = re.compile(
-    r"(?:^|(?<=[.!?])\s+)thanks? (?:you )?for watching\s*(?:[.!?]+|$)",
-    re.IGNORECASE,
-)
+_OUTRO_SENTENCE = r"(?:^|(?<=[.!?])\s+)thanks? (?:you )?for watching\s*"
+_OUTRO_RE = re.compile(_OUTRO_SENTENCE + r"(?:[.!?]+|$)", re.IGNORECASE)
+_CLOSING_OUTRO_RE = re.compile(_OUTRO_SENTENCE + r"[.!?]*\s*$", re.IGNORECASE)
 # Under four words a back-to-back repeat is usually the congregation ("Amen. Amen. Amen."),
 # not the decoder; past forty, no observed loop.
 _MIN_LOOP_PHRASE, _MAX_LOOP_PHRASE = 4, 40
@@ -85,6 +85,20 @@ def credit_hits(text: str) -> int:
     An attribution counts anywhere; "thanks for watching" only as a sentence of its own.
     """
     return len(_ATTRIBUTION_RE.findall(text)) + len(_OUTRO_RE.findall(text))
+
+
+def strip_closing_outro(text: str) -> tuple[str, int]:
+    """``text`` without Whisper's outro as its final sentence(s), and how many were dropped.
+
+    The model emits it over the audio after the closing prayer, and decoding is
+    deterministic, so no re-run clears it (ADR-0023 amendment). Only a final outro is
+    dropped; one followed by more speech may be a story, and stays for the detector.
+    """
+    dropped = 0
+    while match := _CLOSING_OUTRO_RE.search(text):
+        text = text[: match.start()].rstrip()
+        dropped += 1
+    return text, dropped
 
 
 def _hotword_pair_strings(hotwords: str | None) -> list[str]:

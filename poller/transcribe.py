@@ -26,7 +26,7 @@ from importlib import metadata
 from pathlib import Path
 from typing import Any
 
-from poller import config
+from poller import config, quality
 from poller.net import download_audio, http_download
 
 logger = logging.getLogger("poller")
@@ -170,6 +170,9 @@ def _transcribe_with_retries(
 ) -> tuple[str, DecodingProfile]:
     """Transcribe ``audio_path``, treating an empty result or a raising model call as failure.
 
+    Whisper's closing outro is dropped first (:func:`quality.strip_closing_outro`), so the
+    text hashed and pushed never carries it.
+
     Up to ``attempts`` runs, backing off between them. Empty/whitespace output exhausts to
     :class:`EmptyTranscriptError`; a model call that keeps raising exhausts to
     :class:`TranscriptionError`. Returns the stripped transcript and its profile on success.
@@ -185,8 +188,11 @@ def _transcribe_with_retries(
                 "%s: model call failed (attempt %d/%d)", audio_path.name, attempt, attempts, exc_info=exc
             )
         else:
-            if text.strip():
-                return text.strip(), profile
+            text, outros = quality.strip_closing_outro(text.strip())
+            if outros:
+                logger.info("%s: dropped Whisper's closing outro (%d sentence(s))", audio_path.name, outros)
+            if text:
+                return text, profile
             model_error = None
         if attempt < attempts:
             sleep(backoff_base * 2 ** (attempt - 1))

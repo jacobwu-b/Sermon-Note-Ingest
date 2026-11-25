@@ -123,6 +123,35 @@ def test_transcribe_audio_raises_empty_transcript_error_after_retries():
         )
 
 
+def test_transcribe_audio_drops_whispers_closing_outro_before_hashing():
+    # ADR-0023 amendment 2026-11-24: the hash on the ledger must match the text pushed.
+    def fake_download(url, dest):
+        dest.write_bytes(b"audio")
+
+    prayer = "Thank you for the hope you have offered to us. In Jesus' name, amen."
+    text, digest, _profile, _audio = transcribe.transcribe_audio(
+        "https://example.org/a.mp3",
+        transcribe=lambda p, hw: (f" {prayer} Thanks for watching! ", _PROFILE),
+        download=fake_download,
+        sleep=lambda _s: None,
+    )
+    assert text == prayer
+    assert digest == hashlib.sha256(prayer.encode("utf-8")).hexdigest()
+
+
+def test_transcribe_audio_treats_a_transcript_that_is_only_the_outro_as_empty():
+    def fake_download(url, dest):
+        dest.write_bytes(b"audio")
+
+    with pytest.raises(transcribe.EmptyTranscriptError):
+        transcribe.transcribe_audio(
+            "https://example.org/a.mp3",
+            transcribe=lambda p, hw: ("Thanks for watching!", _PROFILE),
+            download=fake_download,
+            sleep=lambda _s: None,
+        )
+
+
 def test_transcribe_audio_raises_transcription_error_when_model_keeps_raising():
     def fake_download(url, dest):
         dest.write_bytes(b"audio")
