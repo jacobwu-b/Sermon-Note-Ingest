@@ -1,5 +1,6 @@
 {
   "pbc": {
-    "missing_alerted_for": "2026-11-08"
+    "missing_alerted_for": "2026-11-08",
+    "failing_since": "2026-11-25T23:03:29.052888+00:00"
   }
 }
