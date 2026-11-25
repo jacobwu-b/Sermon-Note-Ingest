@@ -221,3 +221,73 @@ def test_a_modest_rise_across_the_flag_line_is_within_chance():
 def test_each_worse_flag_is_named_in_flag_order():
     new = _counts(6000, loop_words=200, credit_hits=20, hotword_pairs=15)
     assert quality.worse_flags(_counts(6000), new) == ("loops", "credits", "hotword_leak")
+
+
+# --- Closing outro (ADR-0023 amendment 2026-11-24) -----------------------------------------
+
+_CLOSING_PRAYER = (
+    f"{_PROSE} God, might we live worthy of the hope you have offered to us today. In Jesus' name, amen."
+)
+
+
+def test_strip_closing_outro_drops_whispers_outro_after_the_closing_prayer():
+    assert quality.strip_closing_outro(f"{_CLOSING_PRAYER} Thanks for watching!") == (_CLOSING_PRAYER, 1)
+
+
+def test_strip_closing_outro_drops_the_outro_after_a_prayer_with_no_amen():
+    prayer = f"{_PROSE} May we be a people of hope. In Jesus' name."
+    assert quality.strip_closing_outro(f"{prayer} Thanks for watching!") == (prayer, 1)
+
+
+def test_strip_closing_outro_drops_each_outro_variant_with_or_without_end_punctuation():
+    for outro in (
+        "Thank you for watching.",
+        "thanks for watching",
+        "Thanks for watching!!",
+        "THANK YOU FOR WATCHING?",
+    ):
+        assert quality.strip_closing_outro(f"{_CLOSING_PRAYER} {outro}") == (_CLOSING_PRAYER, 1), outro
+
+
+def test_strip_closing_outro_drops_back_to_back_outros_at_the_end():
+    text = f"{_CLOSING_PRAYER} Thanks for watching! Thank you for watching."
+    assert quality.strip_closing_outro(text) == (_CLOSING_PRAYER, 2)
+
+
+def test_strip_closing_outro_keeps_an_outro_followed_by_more_speech():
+    text = f"{_PROSE} God. God. God. God. Thanks for watching. In Jesus' name, amen."
+    assert quality.strip_closing_outro(text) == (text, 0)
+
+
+def test_strip_closing_outro_keeps_thanks_for_watching_said_in_a_closing_story():
+    for ending in ("And she goes, OK, thanks for watching, Dad.", "She says, thanks for watching."):
+        text = f"{_PROSE} {ending}"
+        assert quality.strip_closing_outro(text) == (text, 0), ending
+
+
+def test_strip_closing_outro_keeps_a_final_sentence_that_only_ends_with_the_phrase():
+    text = f"{_PROSE} We are so grateful you were here and thanks for watching."
+    assert quality.strip_closing_outro(text) == (text, 0)
+
+
+def test_strip_closing_outro_keeps_a_closing_attribution_line_for_the_detector_to_flag():
+    text = f"{_CLOSING_PRAYER} Subtitles by the Amara.org community"
+    assert quality.strip_closing_outro(text) == (text, 0)
+
+
+def test_strip_closing_outro_of_a_transcript_that_is_only_the_outro_is_empty():
+    assert quality.strip_closing_outro("Thanks for watching!") == ("", 1)
+
+
+def test_strip_closing_outro_leaves_clean_prose_unchanged():
+    assert quality.strip_closing_outro(_CLOSING_PRAYER) == (_CLOSING_PRAYER, 0)
+
+
+def test_strip_closing_outro_removes_exactly_the_credit_hits_it_reports():
+    for text in (
+        f"{_CLOSING_PRAYER} Thanks for watching!",
+        f"{_CLOSING_PRAYER} Thanks for watching! Thank you for watching.",
+        f"{_PROSE} Thanks for watching. {_CLOSING_PRAYER} Thanks for watching!",
+    ):
+        stripped, dropped = quality.strip_closing_outro(text)
+        assert quality.credit_hits(stripped) == quality.credit_hits(text) - dropped, text
