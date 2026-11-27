@@ -52,7 +52,7 @@ Do not edit between the markers by hand; it will be overwritten.
 | Church | Sermons | Latest sermon | Latest date |
 |---|---|---|---|
 | grace_cathedral | 88 | Sleep in Safety | 2026-11-22 |
-| gracepres | 456 | The Rainbow Of Grace | 2026-11-22 |
+| gracepres | 457 | Christ In The Carols: Mason Van Valin | 2026-11-22 |
 | hillside | 509 | A Parting Conversation | 2026-09-13 |
 | lakepointe | 146 | 3 Ways to Deal With the Weeds in Your Life | 2026-11-22 |
 | menlo | 160 | Radiant | 2026-11-22 |
@@ -61,5 +61,5 @@ Do not edit between the markers by hand; it will be overwritten.
 | reality_sf | 752 | Your Faith is Tested | 2026-11-22 |
 | westgate | 118 | The Resurrection and the Life | 2026-11-22 |
 
-**Total sermons across all churches: 2751**
+**Total sermons across all churches: 2752**
 <!-- STATS:END -->
